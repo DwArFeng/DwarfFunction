@@ -24,8 +24,8 @@ public final class DwarfFunction {
 	private static final String exceptionSfPath = "lang/stringField";
 	
 	private static final Version version = new DefaultVersion.Productor()
-			.type(VersionType.ALPHA).firstVersion((byte) 0).secondVersion((byte) 0).thirdVersion((byte) 16)
-			.buildDate("20160913").buildVersion('B')
+			.type(VersionType.ALPHA).firstVersion((byte) 0).secondVersion((byte) 1).thirdVersion((byte) 0)
+			.buildDate("20160919").buildVersion('A')
 			.product();
 	
 	/**

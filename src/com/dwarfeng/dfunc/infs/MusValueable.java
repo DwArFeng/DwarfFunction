@@ -1,18 +1,22 @@
 package com.dwarfeng.dfunc.infs;
 
+import com.dwarfeng.dmath.algebra.Valueable;
+
 /**
- * 值接口。
- * <p> 该接口意味着实现类能够转化为某个值。
+ * 多态值接口。
+ * <p> 该接口意味着实现类能够转化为某个值，并且可以将该值以任何一种基本数据类型返回。
  * @author DwArFeng
  * @since 1.8
  */
-public interface Valueable {
+public interface MusValueable extends Valueable{
 	
 	/**
 	 * 返回该值的double形式。
 	 * @return 该值的double形式。
 	 */
-	public double doubleValue();
+	public default double doubleValue(){
+		return value();
+	}
 	
 	/**
 	 * 返回该值的float形式。
@@ -20,7 +24,7 @@ public interface Valueable {
 	 * @return 该值的float形式。
 	 */
 	public default float floatValue(){
-		return (float)doubleValue();
+		return (float)value();
 	}
 	
 	/**
@@ -29,7 +33,7 @@ public interface Valueable {
 	 * @return 该值的long形式。
 	 */
 	public default long longValue(){
-		return (long)doubleValue();
+		return (long)value();
 	}
 	
 	/**
@@ -38,7 +42,7 @@ public interface Valueable {
 	 * @return 该值的int形式。
 	 */
 	public default int intValue(){
-		return (int)doubleValue();
+		return (int)value();
 	}
 	
 	/**
@@ -47,7 +51,7 @@ public interface Valueable {
 	 * @return 该值的short形式。
 	 */
 	public default short shortValue(){
-		return (short)doubleValue();
+		return (short)value();
 	}
 	
 	/**
@@ -56,6 +60,6 @@ public interface Valueable {
 	 * @return 该值的byte形式。
 	 */
 	public default byte byteValue(){
-		return (byte)doubleValue();
+		return (byte)value();
 	}
 }

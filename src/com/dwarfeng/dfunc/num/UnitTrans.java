@@ -1,6 +1,7 @@
 package com.dwarfeng.dfunc.num;
 
-import com.dwarfeng.dfunc.infs.Valueable;
+import com.dwarfeng.dfunc.infs.MusValueable;
+import com.dwarfeng.dmath.algebra.Valueable;
 
 /**
  * 单位换算工具类。
@@ -21,16 +22,16 @@ public final class UnitTrans {
 	 * @param u2 目标单位的权重。
 	 * @return 该值在目标单位下的值。
 	 */
-	public static Valueable trans(Valueable val, Valueable u1, Valueable u2){
+	public static MusValueable trans(Valueable val, Valueable u1, Valueable u2){
 		
-		return new Valueable() {
+		return new MusValueable() {
 			/*
 			 * (non-Javadoc)
-			 * @see com.dwarfeng.dfunc.infs.Valueable#doubleValue()
+			 * @see com.dwarfeng.dmath.algebra.Valable#value()
 			 */
 			@Override
-			public double doubleValue() {
-				return (val.doubleValue())/(u1.doubleValue())*(u2.doubleValue());
+			public double value() {
+				return (val.value())/(u1.value())*(u2.value());
 			}
 		};
 	}
@@ -42,16 +43,16 @@ public final class UnitTrans {
 	 * @param u2 目标单位的权重。
 	 * @return 该值在目标单位下的值。
 	 */
-	public static Valueable trans(float val, Valueable u1, Valueable u2){
+	public static MusValueable trans(float val, Valueable u1, Valueable u2){
 		
-		return new Valueable() {
+		return new MusValueable() {
 			/*
 			 * (non-Javadoc)
-			 * @see com.dwarfeng.dfunc.infs.Valueable#doubleValue()
+			 * @see com.dwarfeng.dmath.algebra.Valable#value()
 			 */
 			@Override
-			public double doubleValue() {
-				return ((double)val)/(u1.doubleValue())*(u2.doubleValue());
+			public double value() {
+				return ((double)val)/(u1.value())*(u2.value());
 			}
 		};
 	}
@@ -63,16 +64,16 @@ public final class UnitTrans {
 	 * @param u2 目标单位的权重。
 	 * @return 该值在目标单位下的值。
 	 */
-	public static Valueable trans(double val, Valueable u1, Valueable u2){
+	public static MusValueable trans(double val, Valueable u1, Valueable u2){
 		
-		return new Valueable() {
+		return new MusValueable() {
 			/*
 			 * (non-Javadoc)
-			 * @see com.dwarfeng.dfunc.infs.Valueable#doubleValue()
+			 * @see com.dwarfeng.dmath.algebra.Valable#value()
 			 */
 			@Override
-			public double doubleValue() {
-				return val/(u1.doubleValue())*(u2.doubleValue());
+			public double value() {
+				return val/(u1.value())*(u2.value());
 			}
 		};
 	}
@@ -84,16 +85,16 @@ public final class UnitTrans {
 	 * @param u2 目标单位的权重。
 	 * @return 该值在目标单位下的值。
 	 */
-	public static Valueable trans(long val, Valueable u1, Valueable u2){
+	public static MusValueable trans(long val, Valueable u1, Valueable u2){
 		
-		return new Valueable() {
+		return new MusValueable() {
 			/*
 			 * (non-Javadoc)
-			 * @see com.dwarfeng.dfunc.infs.Valueable#doubleValue()
+			 * @see com.dwarfeng.dmath.algebra.Valable#value()
 			 */
 			@Override
-			public double doubleValue() {
-				return ((double)val)/(u1.doubleValue())*(u2.doubleValue());
+			public double value() {
+				return ((double)val)/(u1.value())*(u2.value());
 			}
 		};
 	}
@@ -105,16 +106,16 @@ public final class UnitTrans {
 	 * @param u2 目标单位的权重。
 	 * @return 该值在目标单位下的值。
 	 */
-	public static Valueable trans(short val, Valueable u1, Valueable u2){
+	public static MusValueable trans(short val, Valueable u1, Valueable u2){
 		
-		return new Valueable() {
+		return new MusValueable() {
 			/*
 			 * (non-Javadoc)
-			 * @see com.dwarfeng.dfunc.infs.Valueable#doubleValue()
+			 * @see com.dwarfeng.dmath.algebra.Valable#value()
 			 */
 			@Override
-			public double doubleValue() {
-				return ((double)val)/(u1.doubleValue())*(u2.doubleValue());
+			public double value() {
+				return ((double)val)/(u1.value())*(u2.value());
 			}
 		};
 	}
@@ -126,16 +127,16 @@ public final class UnitTrans {
 	 * @param u2 目标单位的权重。
 	 * @return 该值在目标单位下的值。
 	 */
-	public static Valueable trans(int val, Valueable u1, Valueable u2){
+	public static MusValueable trans(int val, Valueable u1, Valueable u2){
 		
-		return new Valueable() {
+		return new MusValueable() {
 			/*
 			 * (non-Javadoc)
-			 * @see com.dwarfeng.dfunc.infs.Valueable#doubleValue()
+			 * @see com.dwarfeng.dmath.algebra.Valable#value()
 			 */
 			@Override
-			public double doubleValue() {
-				return ((double)val)/(u1.doubleValue())*(u2.doubleValue());
+			public double value() {
+				return ((double)val)/(u1.value())*(u2.value());
 			}
 		};
 	}
@@ -147,16 +148,16 @@ public final class UnitTrans {
 	 * @param u2 目标单位的权重。
 	 * @return 该值在目标单位下的值。
 	 */
-	public static Valueable trans(byte val, Valueable u1, Valueable u2){
+	public static MusValueable trans(byte val, Valueable u1, Valueable u2){
 		
-		return new Valueable() {
+		return new MusValueable() {
 			/*
 			 * (non-Javadoc)
-			 * @see com.dwarfeng.dfunc.infs.Valueable#doubleValue()
+			 * @see com.dwarfeng.dmath.algebra.Valable#value()
 			 */
 			@Override
-			public double doubleValue() {
-				return ((double)val)/(u1.doubleValue())*(u2.doubleValue());
+			public double value() {
+				return ((double)val)/(u1.value())*(u2.value());
 			}
 		};
 	}
@@ -189,10 +190,10 @@ public final class UnitTrans {
 
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dfunc.infs.Valueable#doubleValue()
+		 * @see com.dwarfeng.dmath.algebra.Valable#value()
 		 */
 		@Override
-		public double doubleValue() {
+		public double value() {
 			return val;
 		}
 		
@@ -228,10 +229,10 @@ public final class UnitTrans {
 		
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dfunc.infs.Valueable#doubleValue()
+		 * @see com.dwarfeng.dmath.algebra.Valable#value()
 		 */
 		@Override
-		public double doubleValue() {
+		public double value() {
 			return this.val;
 		}
 
@@ -268,10 +269,10 @@ public final class UnitTrans {
 		
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dfunc.infs.Valueable#doubleValue()
+		 * @see com.dwarfeng.dmath.algebra.Valable#value()
 		 */
 		@Override
-		public double doubleValue() {
+		public double value() {
 			return this.val;
 		}
 
@@ -310,10 +311,10 @@ public final class UnitTrans {
 		
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dfunc.infs.Valueable#doubleValue()
+		 * @see com.dwarfeng.dmath.algebra.Valable#value()
 		 */
 		@Override
-		public double doubleValue() {
+		public double value() {
 			return this.val;
 		}
 	}

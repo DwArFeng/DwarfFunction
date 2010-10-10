@@ -9,10 +9,10 @@ package com.dwarfeng.dmath;
 public interface Region<T> {
 
 	/**
-	 * 判断元素t是否属于这个域。
+	 * 判断域是否包含指定元素。
 	 * @param t 指定的元素。
 	 * @return 指定的元素是否属于这个域。
 	 */
-	public boolean belongs(T t);
+	public boolean contains(T t);
 	
 }

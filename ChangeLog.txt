@@ -46,3 +46,9 @@ Alpha_0.0.16_20160913_build_A
 	
 Alpha_0.0.16_20160913_build_B
 	修正了dfunc.gui.swing.JConsole在追加文本时不能始终显示最新文本的问题。
+	
+Alpha_0.1.0_20160919_build_A
+	新增了 dmath, dphic 包，分别提供数学和物理上的支持。
+	新增接口 dmath.Region<T> 代表数学意义上的域。
+	新增包 dmath.geom2d 提供二维几何学的支持。
+	新增包 dmath.algebra 提供代数学的支持。
