@@ -1,5 +1,7 @@
 package com.dwarfeng.dmath.geom2d;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.Objects;
 
 import com.dwarfeng.dmath.AbstractDMath;
@@ -35,6 +37,24 @@ public class DPoint2d extends AbstractDMath implements Dimension2d, Shape2d{
 	
 	/*
 	 * (non-Javadoc)
+	 * @see com.dwarfeng.dmath.geom2d.Shape2d#area()
+	 */
+	@Override
+	public double area() {
+		return 0;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dmath.geom2d.Shape2d#contains(com.dwarfeng.dmath.geom2d.DPoint2d)
+	 */
+	@Override
+	public boolean contains(DPoint2d t) {
+		return this.equals(t);
+	}
+	
+	/*
+	 * (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -44,24 +64,6 @@ public class DPoint2d extends AbstractDMath implements Dimension2d, Shape2d{
 		if(!(obj instanceof DPoint2d)) return false;
 		DPoint2d p = (DPoint2d) obj;
 		return p.x == x && p.y == y;
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		return Double.hashCode(x)*1777 + Double.hashCode(y);
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dmath.AbstractDMath#getMathName()
-	 */
-	@Override
-	public String getMathName() {
-		return "point";
 	}
 
 	/*
@@ -81,6 +83,33 @@ public class DPoint2d extends AbstractDMath implements Dimension2d, Shape2d{
 
 	/*
 	 * (non-Javadoc)
+	 * @see com.dwarfeng.dmath.AbstractDMath#getMathName()
+	 */
+	@Override
+	public String getMathName() {
+		return "point";
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		return Double.hashCode(x)*1777 + Double.hashCode(y);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dmath.geom2d.Shape2d#shapeCenter()
+	 */
+	@Override
+	public DPoint2d shapeCenter() {
+		return this;
+	}
+
+	/*
+	 * (non-Javadoc)
 	 * @see com.dwarfeng.dmath.geom2d.Dimension2d#x()
 	 */
 	@Override
@@ -95,33 +124,6 @@ public class DPoint2d extends AbstractDMath implements Dimension2d, Shape2d{
 	@Override
 	public double y() {
 		return y;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dmath.geom2d.Shape2d#shapeCenter()
-	 */
-	@Override
-	public DPoint2d shapeCenter() {
-		return this;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dmath.geom2d.Shape2d#contains(com.dwarfeng.dmath.geom2d.DPoint2d)
-	 */
-	@Override
-	public boolean contains(DPoint2d t) {
-		return this.equals(t);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dmath.geom2d.Shape2d#area()
-	 */
-	@Override
-	public double area() {
-		return 0;
 	}
 
 }
