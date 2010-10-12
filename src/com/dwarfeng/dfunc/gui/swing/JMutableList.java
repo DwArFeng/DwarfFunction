@@ -8,7 +8,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 
-import com.dwarfeng.dfunc.cna.ArrayFunction;
+import com.dwarfeng.dfunc.cna.ArrayUtil;
 import com.dwarfeng.dfunc.comp.ToStringComparator;
 
 /**
@@ -110,7 +110,7 @@ public class JMutableList<T> extends JList<T> {
 		T t = getSelectedValue();
 		for(T tt:objects){model.removeElement(tt);}
 		if(getSelectionMode() == ListSelectionModel.SINGLE_SELECTION &&
-				getSelectMode() == SELECT_AUTO && t != null && ArrayFunction.contains(objects, t)){setSelectedIndex(0);}
+				getSelectMode() == SELECT_AUTO && t != null && ArrayUtil.contains(objects, t)){setSelectedIndex(0);}
 	}
 	/**
 	 * 从列表中删除所有元素。

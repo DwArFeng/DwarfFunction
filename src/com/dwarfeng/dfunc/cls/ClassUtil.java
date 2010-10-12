@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 
-import com.dwarfeng.dfunc.cna.ArrayFunction;
+import com.dwarfeng.dfunc.cna.ArrayUtil;
 
 /**
  * 类功能包。
@@ -12,7 +12,7 @@ import com.dwarfeng.dfunc.cna.ArrayFunction;
  * @author DwArFeng
  * @since 1.8
  */
-public final class ClassFunction {
+public final class ClassUtil {
 	
 	/**
 	 * 获取一个类中的除了{@link Object}以外的所有父类。
@@ -102,12 +102,12 @@ public final class ClassFunction {
 	 * @return 源类是否直接或间接继承了目标子类或目标接口。
 	 */
 	public static boolean isSubClass(Class<?> source,Class<?> target){
-		Class<?>[] superClasses = ClassFunction.getAllSuperClassesArray(source);
-		Class<?>[] superInterfaces = ClassFunction.getAllInterfacesArray(source);
-		return ArrayFunction.contains(superClasses, target) || ArrayFunction.contains(superInterfaces, target);
+		Class<?>[] superClasses = ClassUtil.getAllSuperClassesArray(source);
+		Class<?>[] superInterfaces = ClassUtil.getAllInterfacesArray(source);
+		return ArrayUtil.contains(superClasses, target) || ArrayUtil.contains(superInterfaces, target);
 	}
 	
 	//该类无法实例化
-	private ClassFunction(){}
+	private ClassUtil(){}
 
 }

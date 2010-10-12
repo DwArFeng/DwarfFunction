@@ -10,7 +10,7 @@ import java.util.WeakHashMap;
 
 import com.dwarfeng.dfunc.DwarfFunction;
 import com.dwarfeng.dfunc.DwarfFunction.StringFiledKey;
-import com.dwarfeng.dfunc.cls.ClassFunction;
+import com.dwarfeng.dfunc.cls.ClassUtil;
 
 /**
  * 用于存放事件侦听器的弱引用集合。
@@ -40,7 +40,7 @@ public class EventListenerWeakSet implements Set<EventListener>{
 	public <T extends EventListener> Set<T> subSet(Class<T> cl){
 		Set<T> sub = new HashSet<T>(set.size());
 		for(EventListener listener : set){
-			if(listener.getClass().equals(cl) || ClassFunction.isSubClass(listener.getClass(), cl)){
+			if(listener.getClass().equals(cl) || ClassUtil.isSubClass(listener.getClass(), cl)){
 				//由于使用if判断是否类型相等或是否是子类的问题，因此在这里不存在转换问题。
 				@SuppressWarnings("unchecked")
 				T tListener = (T) listener;

@@ -3,6 +3,8 @@ package com.dwarfeng.dfunc;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import com.dwarfeng.dfunc.cna.ArrayPackUtil;
+import com.dwarfeng.dfunc.cna.ArrayUtil;
 import com.dwarfeng.dfunc.io.CT;
 import com.dwarfeng.dfunc.io.CT.OutputType;
 import com.dwarfeng.dfunc.prog.DefaultVersion;
@@ -17,6 +19,7 @@ import com.dwarfeng.dfunc.prog.VersionType;
 public final class DwarfFunction {
 	
 	public static void main(String[] args){
+		DwarfFunction.setLocale(Locale.US);
 		CT.setOutputType(OutputType.NO_DATE);
 		CT.trace(DwarfFunction.getWelcomeString());
 	}
@@ -55,8 +58,8 @@ public final class DwarfFunction {
 		MvcProgram_3,
 		/**CycledBuffer类第0号文本字段*/
 		CycledBuffer_0,
-		/**ArrayPackFunction类第0号文本字段*/
-		ArrayPackFunction_0,
+		/**ArrayPackUtil类第0号文本字段*/
+		ArrayPackUtil_0,
 		/**CodeTimer类第0号文本字段*/
 		CodeTimer_0,
 		/**CodeTimer类第1号文本字段*/
@@ -71,8 +74,8 @@ public final class DwarfFunction {
 		StringInputStream_0,
 		/**StringBuilderInputStream类第0号文本字段*/
 		StringInputStream_1,
-		/**ArraysFunction类第0号文本字段*/
-		ArraysFunction_0,
+		/**ArrayUtil类第0号文本字段*/
+		ArrayUtil_0,
 		
 	}
 	

@@ -18,7 +18,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.text.BadLocationException;
 
-import com.dwarfeng.dfunc.cna.ArrayPackFunction;
+import com.dwarfeng.dfunc.cna.ArrayPackUtil;
 import com.dwarfeng.dfunc.gui.event.EventListenerWeakSet;
 import com.dwarfeng.dfunc.num.NumTrans;
 
@@ -110,7 +110,7 @@ public class JConsole extends JPanel{
 		public void flush(){
 			outLock.lock();
 			try{
-				String str = new String(ArrayPackFunction.unpack(byteList.toArray(new Byte[0])));
+				String str = new String(ArrayPackUtil.unpack(byteList.toArray(new Byte[0])));
 				if(textArea != null){
 					append(str);
 				}

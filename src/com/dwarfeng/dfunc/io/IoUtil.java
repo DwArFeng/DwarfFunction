@@ -11,7 +11,7 @@ import java.io.OutputStream;
  * @author DwArFeng
  * @since 1.8
  */
-public final class IOFunction {
+public final class IoUtil {
 	
 	/**
 	 * 数据传送方法。
@@ -34,5 +34,5 @@ public final class IOFunction {
 	}
 	
 	//禁止外部生成实例。
-	private IOFunction(){}
+	private IoUtil(){}
 }

@@ -10,7 +10,7 @@ import com.dwarfeng.dfunc.DwarfFunction.StringFiledKey;
  * @author DwArFeng
  * @since 1.8
  */
-public final class ArrayPackFunction {
+public final class ArrayPackUtil {
 	
 	/**
 	 * 对Byte数组拆包。
@@ -19,7 +19,7 @@ public final class ArrayPackFunction {
 	 */
 	public static byte[] unpack(Byte[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackFunction_0));
+		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackUtil_0));
 		
 		byte[] bytes = new byte[target.length];
 		for(int i = 0 ; i < target.length ; i ++){
@@ -35,7 +35,7 @@ public final class ArrayPackFunction {
 	 */
 	public static short[] unpack(Short[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackFunction_0));
+		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackUtil_0));
 		
 		short[] shorts = new short[target.length];
 		for(int i = 0 ; i < target.length ; i ++){
@@ -51,7 +51,7 @@ public final class ArrayPackFunction {
 	 */
 	public static int[] unpack(Integer[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackFunction_0));
+		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackUtil_0));
 		
 		int[] ints = new int[target.length];
 		for(int i = 0 ; i < target.length ; i ++){
@@ -67,7 +67,7 @@ public final class ArrayPackFunction {
 	 */
 	public static float[] unpack(Float[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackFunction_0));
+		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackUtil_0));
 		
 		float[] floats = new float[target.length];
 		for(int i = 0 ; i < target.length ; i ++){
@@ -83,7 +83,7 @@ public final class ArrayPackFunction {
 	 */
 	public static long[] unpack(Long[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackFunction_0));
+		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackUtil_0));
 		
 		long[] longs = new long[target.length];
 		for(int i = 0 ; i < target.length ; i ++){
@@ -99,7 +99,7 @@ public final class ArrayPackFunction {
 	 */
 	public static char[] unpack(Character[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackFunction_0));
+		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackUtil_0));
 		
 		char[] charss = new char[target.length];
 		for(int i = 0 ; i < target.length ; i ++){
@@ -115,7 +115,7 @@ public final class ArrayPackFunction {
 	 */
 	public static boolean[] unpack(Boolean[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackFunction_0));
+		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackUtil_0));
 		
 		boolean[] booleans = new boolean[target.length];
 		for(int i = 0 ; i < target.length ; i ++){
@@ -131,7 +131,7 @@ public final class ArrayPackFunction {
 	 */
 	public static Byte[] pack(byte[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackFunction_0));
+		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackUtil_0));
 		
 		Byte[] bytes = new Byte[target.length];
 		for(int i = 0 ; i < target.length ; i ++){
@@ -147,7 +147,7 @@ public final class ArrayPackFunction {
 	 */
 	public static Short[] pack(short[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackFunction_0));
+		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackUtil_0));
 		
 		Short[] shorts = new Short[target.length];
 		for(int i = 0 ; i < target.length ; i ++){
@@ -163,7 +163,7 @@ public final class ArrayPackFunction {
 	 */
 	public static Integer[] pack(int[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackFunction_0));
+		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackUtil_0));
 		
 		Integer[] integers = new Integer[target.length];
 		for(int i = 0 ; i < target.length ; i ++){
@@ -179,7 +179,7 @@ public final class ArrayPackFunction {
 	 */
 	public static Long[] pack(long[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackFunction_0));
+		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackUtil_0));
 		
 		Long[] longs = new Long[target.length];
 		for(int i = 0 ; i < target.length ; i ++){
@@ -195,7 +195,7 @@ public final class ArrayPackFunction {
 	 */
 	public static Float[] Pack(float[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackFunction_0));
+		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackUtil_0));
 		
 		Float[] floats = new Float[target.length];
 		for(int i = 0 ; i < target.length ; i ++){
@@ -211,7 +211,7 @@ public final class ArrayPackFunction {
 	 */
 	public static Double[] Pack(double[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackFunction_0));
+		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackUtil_0));
 		
 		Double[] doubles = new Double[target.length];
 		for(int i = 0 ; i < target.length ; i ++){
@@ -227,7 +227,7 @@ public final class ArrayPackFunction {
 	 */
 	public static Character[] Pack(char[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackFunction_0));
+		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackUtil_0));
 		
 		Character[] characters = new Character[target.length];
 		for(int i = 0 ; i < target.length ; i ++){
@@ -243,7 +243,7 @@ public final class ArrayPackFunction {
 	 */
 	public static Boolean[] Pack(boolean[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackFunction_0));
+		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackUtil_0));
 		
 		Boolean[] booleans = new Boolean[target.length];
 		for(int i = 0 ; i < target.length ; i ++){
@@ -252,7 +252,7 @@ public final class ArrayPackFunction {
 		return booleans;
 	}
 
-	private ArrayPackFunction() {
+	private ArrayPackUtil() {
 		// 禁止该包被实例化
 	}
 

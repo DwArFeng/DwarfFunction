@@ -8,7 +8,7 @@ import java.util.Vector;
 import com.dwarfeng.dfunc.DwarfFunction;
 import com.dwarfeng.dfunc.DwarfFunction.StringFiledKey;
 
-public final class ArrayFunction {
+public final class ArrayUtil {
 	
 	/**
 	 * 判断数组中是否包含某个元素。
@@ -33,7 +33,7 @@ public final class ArrayFunction {
 	 * @param source 源数组。
 	 * @param target 目标数组。
 	 * @return 源数组是否包含目标数组的全部元素。
-	 * @see ArrayFunction#contains(Object[], Object)
+	 * @see ArrayUtil#contains(Object[], Object)
 	 */
 	public static boolean containsAll(Object[] source,Object[] target){
 		if(Objects.isNull(target)) return false;
@@ -84,7 +84,7 @@ public final class ArrayFunction {
 	 */
 	@SafeVarargs
 	public static<T> T[] concat(T[] first,T[]... rest){
-		Objects.requireNonNull(first, DwarfFunction.getStringField(StringFiledKey.ArraysFunction_0));
+		Objects.requireNonNull(first, DwarfFunction.getStringField(StringFiledKey.ArrayUtil_0));
 		
 		if(Objects.isNull(rest)) return first;
 		
@@ -103,7 +103,7 @@ public final class ArrayFunction {
 		return result;
 	}
 	
-	private ArrayFunction(){
+	private ArrayUtil(){
 		//不允许实例化。
 	}
 }
