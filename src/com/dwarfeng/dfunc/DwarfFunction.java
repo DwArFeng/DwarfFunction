@@ -17,7 +17,6 @@ import com.dwarfeng.dfunc.prog.VersionType;
 public final class DwarfFunction {
 	
 	public static void main(String[] args){
-		DwarfFunction.setLocale(Locale.US);
 		CT.setOutputType(OutputType.NO_DATE);
 		CT.trace(DwarfFunction.getWelcomeString());
 	}
@@ -74,10 +73,24 @@ public final class DwarfFunction {
 		StringInputStream_1,
 		/**ArrayUtil类第0号文本字段*/
 		ArrayUtil_0,
+		
 		/**AlgebraUtill类第0号文本字段*/
 		AlgebraUtil_0,
+		/**AlgebraUtill类第1号文本字段*/
+		AlgebraUtil_1,
+		/**AlgebraUtill类第2号文本字段*/
+		AlgebraUtil_2,
+		
 		/**Algebra包RealNumber字段*/
 		Algebra_RealNumber,
+		/**Algebra包Variable字段*/
+		Algebra_Variable,
+		/**Algebra包VariableSpace字段*/
+		Algebra_VariableSpace,
+		
+		/**Linalge包RowVector字段*/
+		Linalge_RowVector,
+		
 		/**CollectionUtil类第0号文本字段*/
 		CollectionUtil_0,
 		/**CollectionUtil类第1号文本字段*/
@@ -96,10 +109,34 @@ public final class DwarfFunction {
 		CollectionUtil_7,
 		/**CollectionUtil类第8号文本字段*/
 		CollectionUtil_8,
+		
 		/**NameableComparator类第0号文本字段*/
 		NameableComparator_0,
+		
 		/**ValueableComparator类第0号文本字段*/
 		ValueableComparator_0,
+		
+		/**Variable类第0号文本字段*/
+		Variable_0,
+		/**Variable类第1号文本字段*/
+		Variable_1,
+		
+		/**VariableValue类第0号文本字段*/
+		VariableValue_0,
+		
+		/**VariableSpace类第0号文本字段*/
+		VariableSpace_0,
+		/**VariableSpace类第1号文本字段*/
+		VariableSpace_1,
+		/**VariableSpace类第2号文本字段*/
+		VariableSpace_2,
+		
+		/**RowVector类第0号文本字段*/
+		RowVector_0,
+		/**RowVector类第1号文本字段*/
+		RowVector_1,
+		/**RowVector类第2号文本字段*/
+		RowVector_2,
 	}
 	
 	private static ResourceBundle exceptionSf = ResourceBundle.getBundle(exceptionSfPath,Locale.getDefault(),CT.class.getClassLoader());

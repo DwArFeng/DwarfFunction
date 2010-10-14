@@ -7,7 +7,7 @@ import com.dwarfeng.dmath.AbstractDMath;
  * @author DwArFeng
  * @since 1.8
  */
-public class DCoordinate2d extends AbstractDMath{
+public class Coordinate2d extends AbstractDMath{
 
 	/*
 	 * (non-Javadoc)

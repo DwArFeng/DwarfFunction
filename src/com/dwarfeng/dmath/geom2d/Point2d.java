@@ -9,7 +9,7 @@ import com.dwarfeng.dmath.AbstractDMath;
  * @author DwArFeng
  * @since 1.8
  */
-public class DPoint2d extends AbstractDMath implements Dimension2d, Shape2d{
+public class Point2d extends AbstractDMath implements Dimension2d, Shape2d{
 
 	/**点的x坐标*/
 	protected final double x;
@@ -19,7 +19,7 @@ public class DPoint2d extends AbstractDMath implements Dimension2d, Shape2d{
 	/**
 	 * 生成一个默认点（原点）。
 	 */
-	public DPoint2d() {
+	public Point2d() {
 		this(0,0);
 	}
 	
@@ -28,7 +28,7 @@ public class DPoint2d extends AbstractDMath implements Dimension2d, Shape2d{
 	 * @param x x坐标值。
 	 * @param y y坐标值。
 	 */
-	public DPoint2d(double x, double y){
+	public Point2d(double x, double y){
 		this.x = x;
 		this.y = y;
 	}
@@ -47,7 +47,7 @@ public class DPoint2d extends AbstractDMath implements Dimension2d, Shape2d{
 	 * @see com.dwarfeng.dmath.geom2d.Shape2d#contains(com.dwarfeng.dmath.geom2d.DPoint2d)
 	 */
 	@Override
-	public boolean contains(DPoint2d t) {
+	public boolean contains(Point2d t) {
 		return this.equals(t);
 	}
 	
@@ -59,8 +59,8 @@ public class DPoint2d extends AbstractDMath implements Dimension2d, Shape2d{
 	public boolean equals(Object obj) {
 		if(obj == this) return true;
 		if(Objects.isNull(obj)) return false;
-		if(!(obj instanceof DPoint2d)) return false;
-		DPoint2d p = (DPoint2d) obj;
+		if(!(obj instanceof Point2d)) return false;
+		Point2d p = (Point2d) obj;
 		return p.x == x && p.y == y;
 	}
 
@@ -102,7 +102,7 @@ public class DPoint2d extends AbstractDMath implements Dimension2d, Shape2d{
 	 * @see com.dwarfeng.dmath.geom2d.Shape2d#shapeCenter()
 	 */
 	@Override
-	public DPoint2d shapeCenter() {
+	public Point2d shapeCenter() {
 		return this;
 	}
 

@@ -1,22 +1,22 @@
 package com.dwarfeng.dfunc.infs;
 
+import com.dwarfeng.dmath.algebra.NumBase;
 import com.dwarfeng.dmath.algebra.Valueable;
 
 /**
  * 多态值接口。
  * <p> 该接口意味着实现类能够转化为某个值，并且可以将该值以任何一种基本数据类型返回。
+ * 但是该值不像 {@link Valueable} 接口那样，需要实现 {@link NumBase}中的方法。
  * @author DwArFeng
  * @since 1.8
  */
-public interface MusValueable extends Valueable{
+public interface MusValueable{
 	
 	/**
 	 * 返回该值的double形式。
 	 * @return 该值的double形式。
 	 */
-	public default double doubleValue(){
-		return value();
-	}
+	public double doubleValue();
 	
 	/**
 	 * 返回该值的float形式。
@@ -24,7 +24,7 @@ public interface MusValueable extends Valueable{
 	 * @return 该值的float形式。
 	 */
 	public default float floatValue(){
-		return (float)value();
+		return (float)doubleValue();
 	}
 	
 	/**
@@ -33,7 +33,7 @@ public interface MusValueable extends Valueable{
 	 * @return 该值的long形式。
 	 */
 	public default long longValue(){
-		return (long)value();
+		return (long)doubleValue();
 	}
 	
 	/**
@@ -42,7 +42,7 @@ public interface MusValueable extends Valueable{
 	 * @return 该值的int形式。
 	 */
 	public default int intValue(){
-		return (int)value();
+		return (int)doubleValue();
 	}
 	
 	/**
@@ -51,7 +51,7 @@ public interface MusValueable extends Valueable{
 	 * @return 该值的short形式。
 	 */
 	public default short shortValue(){
-		return (short)value();
+		return (short)doubleValue();
 	}
 	
 	/**
@@ -60,6 +60,6 @@ public interface MusValueable extends Valueable{
 	 * @return 该值的byte形式。
 	 */
 	public default byte byteValue(){
-		return (byte)value();
+		return (byte)doubleValue();
 	}
 }

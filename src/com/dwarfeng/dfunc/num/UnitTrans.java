@@ -22,7 +22,7 @@ public final class UnitTrans {
 	 * @param u2 目标单位的权重。
 	 * @return 该值在目标单位下的值。
 	 */
-	public static MusValueable trans(Valueable val, Valueable u1, Valueable u2){
+	public static MusValueable trans(Valueable val, MusValueable u1, MusValueable u2){
 		
 		return new MusValueable() {
 			/*
@@ -30,8 +30,8 @@ public final class UnitTrans {
 			 * @see com.dwarfeng.dmath.algebra.Valable#value()
 			 */
 			@Override
-			public double value() {
-				return (val.value())/(u1.value())*(u2.value());
+			public double doubleValue() {
+				return (val.value())/(u1.doubleValue())*(u2.doubleValue());
 			}
 		};
 	}
@@ -43,7 +43,7 @@ public final class UnitTrans {
 	 * @param u2 目标单位的权重。
 	 * @return 该值在目标单位下的值。
 	 */
-	public static MusValueable trans(float val, Valueable u1, Valueable u2){
+	public static MusValueable trans(float val, MusValueable u1, MusValueable u2){
 		
 		return new MusValueable() {
 			/*
@@ -51,8 +51,8 @@ public final class UnitTrans {
 			 * @see com.dwarfeng.dmath.algebra.Valable#value()
 			 */
 			@Override
-			public double value() {
-				return ((double)val)/(u1.value())*(u2.value());
+			public double doubleValue() {
+				return ((double)val)/(u1.doubleValue())*(u2.doubleValue());
 			}
 		};
 	}
@@ -64,7 +64,7 @@ public final class UnitTrans {
 	 * @param u2 目标单位的权重。
 	 * @return 该值在目标单位下的值。
 	 */
-	public static MusValueable trans(double val, Valueable u1, Valueable u2){
+	public static MusValueable trans(double val, MusValueable u1, MusValueable u2){
 		
 		return new MusValueable() {
 			/*
@@ -72,8 +72,8 @@ public final class UnitTrans {
 			 * @see com.dwarfeng.dmath.algebra.Valable#value()
 			 */
 			@Override
-			public double value() {
-				return val/(u1.value())*(u2.value());
+			public double doubleValue() {
+				return val/(u1.doubleValue())*(u2.doubleValue());
 			}
 		};
 	}
@@ -85,7 +85,7 @@ public final class UnitTrans {
 	 * @param u2 目标单位的权重。
 	 * @return 该值在目标单位下的值。
 	 */
-	public static MusValueable trans(long val, Valueable u1, Valueable u2){
+	public static MusValueable trans(long val, MusValueable u1, MusValueable u2){
 		
 		return new MusValueable() {
 			/*
@@ -93,8 +93,8 @@ public final class UnitTrans {
 			 * @see com.dwarfeng.dmath.algebra.Valable#value()
 			 */
 			@Override
-			public double value() {
-				return ((double)val)/(u1.value())*(u2.value());
+			public double doubleValue() {
+				return ((double)val)/(u1.doubleValue())*(u2.doubleValue());
 			}
 		};
 	}
@@ -106,7 +106,7 @@ public final class UnitTrans {
 	 * @param u2 目标单位的权重。
 	 * @return 该值在目标单位下的值。
 	 */
-	public static MusValueable trans(short val, Valueable u1, Valueable u2){
+	public static MusValueable trans(short val, MusValueable u1, MusValueable u2){
 		
 		return new MusValueable() {
 			/*
@@ -114,8 +114,8 @@ public final class UnitTrans {
 			 * @see com.dwarfeng.dmath.algebra.Valable#value()
 			 */
 			@Override
-			public double value() {
-				return ((double)val)/(u1.value())*(u2.value());
+			public double doubleValue() {
+				return ((double)val)/(u1.doubleValue())*(u2.doubleValue());
 			}
 		};
 	}
@@ -127,7 +127,7 @@ public final class UnitTrans {
 	 * @param u2 目标单位的权重。
 	 * @return 该值在目标单位下的值。
 	 */
-	public static MusValueable trans(int val, Valueable u1, Valueable u2){
+	public static MusValueable trans(int val, MusValueable u1, MusValueable u2){
 		
 		return new MusValueable() {
 			/*
@@ -135,8 +135,8 @@ public final class UnitTrans {
 			 * @see com.dwarfeng.dmath.algebra.Valable#value()
 			 */
 			@Override
-			public double value() {
-				return ((double)val)/(u1.value())*(u2.value());
+			public double doubleValue() {
+				return ((double)val)/(u1.doubleValue())*(u2.doubleValue());
 			}
 		};
 	}
@@ -148,7 +148,7 @@ public final class UnitTrans {
 	 * @param u2 目标单位的权重。
 	 * @return 该值在目标单位下的值。
 	 */
-	public static MusValueable trans(byte val, Valueable u1, Valueable u2){
+	public static MusValueable trans(byte val, MusValueable u1, MusValueable u2){
 		
 		return new MusValueable() {
 			/*
@@ -156,8 +156,8 @@ public final class UnitTrans {
 			 * @see com.dwarfeng.dmath.algebra.Valable#value()
 			 */
 			@Override
-			public double value() {
-				return ((double)val)/(u1.value())*(u2.value());
+			public double doubleValue() {
+				return ((double)val)/(u1.doubleValue())*(u2.doubleValue());
 			}
 		};
 	}
@@ -167,7 +167,7 @@ public final class UnitTrans {
 	 * @author DwArFeng
 	 * @since 1.8
 	 */
-	public enum ANGLE implements Valueable{
+	public enum ANGLE implements MusValueable{
 		
 		/**角度*/
 		DEG(180),
@@ -193,7 +193,7 @@ public final class UnitTrans {
 		 * @see com.dwarfeng.dmath.algebra.Valable#value()
 		 */
 		@Override
-		public double value() {
+		public double doubleValue() {
 			return val;
 		}
 		
@@ -204,7 +204,7 @@ public final class UnitTrans {
 	 * @author DwArFeng
 	 * @since 1.8
 	 */
-	public enum Time implements Valueable{
+	public enum Time implements MusValueable{
 		
 		/**纳秒*/
 		NS(86400000000000d),
@@ -232,7 +232,7 @@ public final class UnitTrans {
 		 * @see com.dwarfeng.dmath.algebra.Valable#value()
 		 */
 		@Override
-		public double value() {
+		public double doubleValue() {
 			return this.val;
 		}
 
@@ -243,7 +243,7 @@ public final class UnitTrans {
 	 * @author DwArFeng
 	 * @since 1.8
 	 */
-	public enum Weight implements Valueable{
+	public enum Weight implements MusValueable{
 		
 		/**吨*/
 		T(1d),
@@ -272,7 +272,7 @@ public final class UnitTrans {
 		 * @see com.dwarfeng.dmath.algebra.Valable#value()
 		 */
 		@Override
-		public double value() {
+		public double doubleValue() {
 			return this.val;
 		}
 
@@ -283,7 +283,7 @@ public final class UnitTrans {
 	 * @author DwArFeng
 	 * @since 1.8
 	 */
-	public enum DataSize implements Valueable{
+	public enum DataSize implements MusValueable{
 		
 		/**EB*/
 		EB(1d),
@@ -314,7 +314,7 @@ public final class UnitTrans {
 		 * @see com.dwarfeng.dmath.algebra.Valable#value()
 		 */
 		@Override
-		public double value() {
+		public double doubleValue() {
 			return this.val;
 		}
 	}

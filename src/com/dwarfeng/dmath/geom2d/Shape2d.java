@@ -7,7 +7,7 @@ import com.dwarfeng.dmath.Region;
  * @author DwArFeng
  * @since 1.8
  */
-public interface Shape2d extends Region<DPoint2d>{
+public interface Shape2d extends Region<Point2d>{
 
 	/**
 	 * 返回图形的面积。
@@ -22,7 +22,7 @@ public interface Shape2d extends Region<DPoint2d>{
 	 * @return 指定的点是否在图形中。
 	 */
 	public default boolean contains(double x, double y){
-		return contains(new DPoint2d(x, y));
+		return contains(new Point2d(x, y));
 	}
 	
 	/**
@@ -31,13 +31,13 @@ public interface Shape2d extends Region<DPoint2d>{
 	 * @return 指定的点是否在图形中。
 	 */
 	@Override
-	public boolean contains(DPoint2d t);
+	public boolean contains(Point2d t);
 	
 	/**
 	 * 返回图形的形心。
 	 * @return 图形的形心。
 	 */
-	public DPoint2d shapeCenter();
+	public Point2d shapeCenter();
 	
 	
 	

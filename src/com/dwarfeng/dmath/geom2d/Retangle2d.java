@@ -11,16 +11,16 @@ import com.dwarfeng.dmath.AbstractDMath;
  * @author DwArFeng
  * @since 1.8
  */
-public class DRetangle2d extends AbstractDMath implements Shape2d{
+public class Retangle2d extends AbstractDMath implements Shape2d{
 	
-	protected final DPoint2d point;
+	protected final Point2d point;
 	protected final double height;
 	protected final double weight;
 	
 	/**
 	 * 生成一个默认的矩形，该矩形的左上角点为(0,0) 且高度和宽度均为0。
 	 */
-	public DRetangle2d() {
+	public Retangle2d() {
 		this(0, 0, 0, 0);
 	}
 	
@@ -30,7 +30,7 @@ public class DRetangle2d extends AbstractDMath implements Shape2d{
 	 * @param weight 指定的宽度
 	 * @param heitht 指定的高度。
 	 */
-	public DRetangle2d(DPoint2d point, double weight, double heitht) {
+	public Retangle2d(Point2d point, double weight, double heitht) {
 		Objects.requireNonNull(point);
 		this.point = point;
 		this.height = heitht;
@@ -44,8 +44,8 @@ public class DRetangle2d extends AbstractDMath implements Shape2d{
 	 * @param weight 指定的宽度。
 	 * @param height 指定的高度。
 	 */
-	public DRetangle2d(double x, double y, double weight, double height){
-		this.point = new DPoint2d(x, y);
+	public Retangle2d(double x, double y, double weight, double height){
+		this.point = new Point2d(x, y);
 		this.height = height;
 		this.weight = weight;
 	}
@@ -60,7 +60,7 @@ public class DRetangle2d extends AbstractDMath implements Shape2d{
 	}
 
 	@Override
-	public boolean contains(DPoint2d t) {
+	public boolean contains(Point2d t) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -70,8 +70,8 @@ public class DRetangle2d extends AbstractDMath implements Shape2d{
 	 * @see com.dwarfeng.dmath.geom2d.Shape2d#shapeCenter()
 	 */
 	@Override
-	public DPoint2d shapeCenter() {
-		return new DPoint2d(point.x + weight/2, point.y + height/2);
+	public Point2d shapeCenter() {
+		return new Point2d(point.x + weight/2, point.y + height/2);
 	}
 
 	/*

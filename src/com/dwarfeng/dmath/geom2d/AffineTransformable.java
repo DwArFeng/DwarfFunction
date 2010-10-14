@@ -15,6 +15,6 @@ public interface AffineTransformable<T extends Shape2d> {
 	 * @return 变换后得到的图形。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public T transform(DCoordinate2d from, DCoordinate2d to);
+	public T transform(Coordinate2d from, Coordinate2d to);
 	
 }

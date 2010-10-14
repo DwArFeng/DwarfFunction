@@ -113,12 +113,26 @@ public final class ArrayUtil {
 	}
 	
 	/**
+	 * 判断数组是否含有空元素。
+	 * <p> 当且仅当数组本身不为 <code>null</code>且不含有任何 <code>null</code>元素是返回 <code>true</code>。
+	 * @param objs 待判断的数组。
+	 * @return 数组是否含有空元素。
+	 */
+	public static boolean isContainsNull(Object[] objs){
+		if(Objects.isNull(objs)) return false;
+		for(Object obj: objs){
+			if(Objects.isNull(obj)) return false;
+		}
+		return true;
+	}
+	
+	/**
 	 * 确保指定的数组不含有任何 <code>null</code>元素，如果有，则抛出异常。
 	 * @param objs 指定的数组。
 	 * @throws NullPointerException 指定数组本身是 <code>null</code>或其中含有 <code>null</code>元素时
 	 * 抛出该异常。
 	 */
-	public static void requireNotNull(Object[] objs) throws NullPointerException{
+	public static void requireNotContainsNull(Object[] objs) throws NullPointerException{
 		Objects.requireNonNull(objs);
 		for(Object obj: objs){
 			Objects.requireNonNull(obj);
@@ -132,7 +146,7 @@ public final class ArrayUtil {
 	 * @throws NullPointerException 指定数组本身是 <code>null</code>或其中含有 <code>null</code>元素时
 	 * 抛出该信息为指定字符串的异常。
 	 */
-	public static void requireNotNull(Object[] objs, String message) throws NullPointerException{
+	public static void requireNotContainsNull(Object[] objs, String message) throws NullPointerException{
 		Objects.requireNonNull(objs, message);
 		for(Object obj: objs){
 			Objects.requireNonNull(obj, message);

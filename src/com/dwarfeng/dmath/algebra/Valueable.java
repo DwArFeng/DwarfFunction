@@ -6,7 +6,7 @@ package com.dwarfeng.dmath.algebra;
  * @author DwArFeng
  * @since 1.8
  */
-public interface Valueable {
+public interface Valueable extends NumBase {
 
 	/**
 	 * 返回对象的值。
