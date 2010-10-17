@@ -6,7 +6,7 @@ package com.dwarfeng.dmath.algebra;
  * @author DwArFeng
  * @since 1.8
  */
-public class VariableConflictException extends Exception {
+public class VariableConflictException extends RuntimeException {
 
 	private static final long serialVersionUID = 4578575180130763488L;
 

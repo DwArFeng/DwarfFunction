@@ -37,13 +37,14 @@ public interface MatArray extends DMath, NumBase{
 	 * 返回指定行对应的行向量。
 	 * @param row 指定行。
 	 * @return 指定行对应的行向量。
+	 * @throws IndexOutOfBoundsException 指定的行号超界。
 	 */
 	public RowVector getRowVector(int row);
-	
 	/**
 	 * 返回指定列对应的列向量。
 	 * @param rank 指定的列。
 	 * @return 指定的列所对应的列向量。
+	 * @throws 指定的列号超界。
 	 */
 	public RankVector getRankVector(int rank);
 	

@@ -7,10 +7,10 @@ import com.dwarfeng.dfunc.StringFieldKey;
 import com.dwarfeng.dfunc.cna.ArrayUtil;
 import com.dwarfeng.dmath.AbstractDMath;
 import com.dwarfeng.dmath.algebra.AlgebraUtil;
+import com.dwarfeng.dmath.algebra.QuickValueable;
 import com.dwarfeng.dmath.algebra.Valueable;
 import com.dwarfeng.dmath.algebra.VariableConflictException;
 import com.dwarfeng.dmath.algebra.VariableSpace;
-import com.dwarfeng.dmath.algebra.VariableValue;
 
 /**
  * 行向量。
@@ -116,11 +116,123 @@ public class RowVector extends AbstractDMath implements MatArray{
 		return 1;
 	}
 	
-	public void mutiply(double d){
-		double[] ds = new double[vals.length];
-		for(int i = 0 ; i < ds.length ; i ++){
-			ds[i] = vals[i].value() * d;
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dmath.linalge.MatArray#getValueable(int, int)
+	 */
+	@Override
+	public Valueable getValueable(int row, int rank) {
+		LinalgeUtil.requrieRowInBound(this, row);
+		LinalgeUtil.requireRankInBound(this, rank);
+		return vals[rank];
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dmath.linalge.MatArray#getRowVector(int)
+	 */
+	@Override
+	public RowVector getRowVector(int row) {
+		LinalgeUtil.requrieRowInBound(this, row);
+		return this;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dmath.linalge.MatArray#getRankVector(int)
+	 */
+	@Override
+	public RankVector getRankVector(int rank) {
+		LinalgeUtil.requrieRowInBound(this, rank);
+		return new RankVector(new Valueable[]{vals[rank]});
+	}
+	
+	/**
+	 * 该行向量与另一个行向量相加。
+	 * <p> 注意，该运算是值运算，所得到的结果是结构破坏性的。
+	 * @param rowVector 指定的行向量。
+	 * @return 运算得出的新的行向量。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 * @throws IllegalArgumentException 入口行向量的尺寸不匹配。
+	 */
+	public RowVector add(RowVector rowVector){
+		Objects.requireNonNull(rowVector, DwarfFunction.getStringField(StringFieldKey.RowVector_3));
+		LinalgeUtil.requireSpecificSize(rowVector, rows(), ranks(), DwarfFunction.getStringField(StringFieldKey.RowVector_5));
+		
+		Valueable vs[] = new Valueable[vals.length];
+		for(int i = 0 ; i < vs.length ; i ++){
+			vs[i] = vals[i].add(rowVector.vals[i]);
 		}
+		return new RowVector(vs);
+	}
+	
+	/**
+	 * 该行向量与另一个行向量相减。
+	 * <p> 注意，该运算是值运算，所得到的结果是结构破坏性的。
+	 * @param rowVector 指定的行向量。
+	 * @return 运算得出的新的行向量。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 * @throws IllegalArgumentException 入口行向量的尺寸不匹配。
+	 */
+	public RowVector minus(RowVector rowVector){
+		Objects.requireNonNull(rowVector, DwarfFunction.getStringField(StringFieldKey.RowVector_3));
+		LinalgeUtil.requireSpecificSize(rowVector, rows(), ranks(), DwarfFunction.getStringField(StringFieldKey.RowVector_5));
+		
+		Valueable vs[] = new Valueable[vals.length];
+		for(int i = 0 ; i < vs.length ; i ++){
+			vs[i] = vals[i].minus(rowVector.vals[i]);
+		}
+		return new RowVector(vs);
+	}
+	
+	/**
+	 * 该行向量与指定的列向量相乘。
+	 * <p> 注意：列向量必须要能够与该行向量相乘，即列向量的列数要与该行向量的行数相等。
+	 * <p> 注意：该运算是值运算，所得到的结果是结构破坏性的。
+	 * @param rankVector 指定地点列向量。
+	 * @return 运算后得到的值。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 * @throws IllegalArgumentException 指定的列向量不能与该行向量相乘。
+	 */
+	public Valueable mul(RankVector rankVector){
+		Objects.requireNonNull(rankVector, DwarfFunction.getStringField(StringFieldKey.RowVector_4));
+		LinalgeUtil.requireForMutiply(this, rankVector, DwarfFunction.getStringField(StringFieldKey.RowVector_6));
+		
+		Valueable sum = QuickValueable.ZERO;
+		for(int i = 0 ; i < ranks() ; i ++){
+			Valueable v1 = this.getValueable(0, i);
+			Valueable v2 = rankVector.getValueable(i, 0);
+			sum = sum.add(v1.mul(v2));
+		}
+		
+		return sum;
+	}
+	
+	/**
+	 * 该行向量与指定的值相乘。
+	 * <p> 注意：该运算是值运算，所得到的结果是结构破坏性的。
+	 * @param val 指定的值。
+	 * @return 指定的值与该行向量相乘得到的行向量。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 */
+	public RowVector mul(Valueable val){
+		Objects.requireNonNull(val, DwarfFunction.getStringField(StringFieldKey.RowVector_7));
+		
+		Valueable[] vs = new Valueable[vals.length];
+		for(int i = 0 ; i < vs.length ; i ++){
+			vs[i] = getValueable(1, i).mul(val);
+		}
+		return new RowVector(vs);
+	}
+	
+	/**
+	 * 该行向量与指定的值相乘。
+	 * <p> 注意：该运算是值运算，所得到的结果是结构破坏性的。
+	 * @param d 指定的值。
+	 * @return 指定的值与该行向量相乘得到的行向量。
+	 */
+	public RowVector mul(double d){
+		return mul(new QuickValueable(d));
 	}
 	
 }

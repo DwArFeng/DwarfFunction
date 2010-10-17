@@ -111,6 +111,16 @@ public enum StringFieldKey{
 	RowVector_1,
 	/**RowVector类第2号文本字段*/
 	RowVector_2,
+	/**RowVector类第3号文本字段*/
+	RowVector_3,
+	/**RowVector类第4号文本字段*/
+	RowVector_4,
+	/**RowVector类第5号文本字段*/
+	RowVector_5,
+	/**RowVector类第6号文本字段*/
+	RowVector_6,
+	/**RowVector类第7号文本字段*/
+	RowVector_7,
 	
 	/**RankVector类第0号文本字段*/
 	RankVector_0,
@@ -118,6 +128,12 @@ public enum StringFieldKey{
 	RankVector_1,
 	/**RankVector类第2号文本字段*/
 	RankVector_2,
+	/**RankVector类第3号文本字段*/
+	RankVector_3,
+	/**RankVector类第4号文本字段*/
+	RankVector_4,
+	/**RankVector类第5号文本字段*/
+	RankVector_5,
 	
 	/**LinalgeUtil类第0号文本字段*/
 	LinalgeUtil_0,
@@ -125,6 +141,10 @@ public enum StringFieldKey{
 	LinalgeUtil_1,
 	/**LinalgeUtil类第2号文本字段*/
 	LinalgeUtil_2,
+	/**LinalgeUtil类第3号文本字段*/
+	LinalgeUtil_3,
+	/**LinalgeUtil类第4号文本字段*/
+	LinalgeUtil_4,
 	
 	/**Valueable类第0号文本字段*/
 	Valueable_0,

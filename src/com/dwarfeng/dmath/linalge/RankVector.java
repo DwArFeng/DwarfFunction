@@ -7,10 +7,10 @@ import com.dwarfeng.dfunc.StringFieldKey;
 import com.dwarfeng.dfunc.cna.ArrayUtil;
 import com.dwarfeng.dmath.AbstractDMath;
 import com.dwarfeng.dmath.algebra.AlgebraUtil;
+import com.dwarfeng.dmath.algebra.QuickValueable;
 import com.dwarfeng.dmath.algebra.Valueable;
 import com.dwarfeng.dmath.algebra.VariableConflictException;
 import com.dwarfeng.dmath.algebra.VariableSpace;
-import com.dwarfeng.dmath.algebra.VariableValue;
 
 /**
  * 列向量。
@@ -49,7 +49,7 @@ public class RankVector extends AbstractDMath implements MatArray{
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 值接口数组无效。 
 	 */
-	public RankVector(Valueable[] valueables) throws VariableConflictException {
+	public RankVector(Valueable[] valueables){
 		ArrayUtil.requireNotContainsNull(valueables, DwarfFunction.getStringField(StringFieldKey.RankVector_2));
 		if(valueables.length < 1){
 			throw new IllegalArgumentException(DwarfFunction.getStringField(StringFieldKey.RankVector_0));
@@ -116,6 +116,102 @@ public class RankVector extends AbstractDMath implements MatArray{
 	@Override
 	public int rows() {
 		return vals.length;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dmath.linalge.MatArray#getValueable(int, int)
+	 */
+	@Override
+	public Valueable getValueable(int row, int rank) {
+		LinalgeUtil.requrieRowInBound(this, row);
+		LinalgeUtil.requireRankInBound(this, rank);
+		return vals[row];
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dmath.linalge.MatArray#getRowVector(int)
+	 */
+	@Override
+	public RowVector getRowVector(int row) {
+		LinalgeUtil.requrieRowInBound(this, row);
+		return new RowVector(new Valueable[]{vals[row]});
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dmath.linalge.MatArray#getRankVector(int)
+	 */
+	@Override
+	public RankVector getRankVector(int rank) {
+		LinalgeUtil.requireRankInBound(this, rank);
+		return this;
+	}
+	
+	/**
+	 * 该列向量与另一个列向量相加。
+	 * <p> 注意，该运算是值运算，所得到的结果是结构破坏性的。
+	 * @param rankVector 指定的列向量。
+	 * @return 运算得出的新的列向量。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 * @throws IllegalArgumentException 入口列向量尺寸不匹配。
+	 */
+	public RankVector add(RankVector rankVector){
+		Objects.requireNonNull(rankVector, DwarfFunction.getStringField(StringFieldKey.RankVector_3));
+		LinalgeUtil.requireSpecificSize(rankVector, rows(), ranks(), DwarfFunction.getStringField(StringFieldKey.RankVector_4));
+
+		Valueable[] vs = new Valueable[vals.length];
+		for(int i = 0 ; i < vs.length ; i ++){
+			vs[i] = vals[i].add(rankVector.vals[i]);
+		}
+		return new RankVector(vs);
+	}
+	
+	/**
+	 * 该列向量与另一个列向量相减。
+	 * <p> 注意，该运算是值运算，所得到的结果是结构破坏性的。
+	 * @param rankVector 指定的列向量。
+	 * @return 运算得出的新的列向量。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 * @throws IllegalArgumentException 入口列向量尺寸不匹配。
+	 */
+	public RankVector minus(RankVector rankVector){
+		Objects.requireNonNull(rankVector, DwarfFunction.getStringField(StringFieldKey.RankVector_3));
+		LinalgeUtil.requireSpecificSize(rankVector, rows(), ranks(), DwarfFunction.getStringField(StringFieldKey.RankVector_4));
+
+		Valueable[] vs = new Valueable[vals.length];
+		for(int i = 0 ; i < vs.length ; i ++){
+			vs[i] = vals[i].minus(rankVector.vals[i]);
+		}
+		return new RankVector(vs);
+	}
+	
+	/**
+	 * 该列向量与指定的值相乘。
+	 * <p> 注意，该运算是值运算，所得到的结果是结构破坏性的。
+	 * @param val 指定的值。
+	 * @return 指定的值域该列向量相乘得到的列向量。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 */
+	public RankVector mul(Valueable val){
+		Objects.requireNonNull(val, DwarfFunction.getStringField(StringFieldKey.RankVector_5));
+		
+		Valueable[] vs = new Valueable[vals.length];
+		for(int i = 0 ; i < vs.length ; i ++){
+			vs[i] = getValueable(i, 0).mul(val);
+		}
+		return new RankVector(vs);
+	}
+	
+	/**
+	 * 该列向量与指定列向量相除。
+	 * <p> 注意，该运算是值运算，所得到的结果是结构破坏性的。
+	 * @param d 指定的值。
+	 * @return 指定的值域该列向量相处得到的列向量。
+	 */
+	public RankVector mul(double d){
+		return mul(new QuickValueable(d));
 	}
 	
 }

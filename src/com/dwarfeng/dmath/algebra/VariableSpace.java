@@ -53,41 +53,42 @@ Iterable<VariableValue>, Region<VariableValue>{
 		/**
 		 * 向变量空间的构造器中添加指定的可变对象。
 		 * @param var 指定的变量。
-		 * @return 该操作是否引起了构造器的改变。
+		 * @return 构造器自身。
 		 * @throws VariableConflictException 当添加的元素与构造器中的至少一个元素冲突。
 		 * @throws NullPointerException 入口参数为 <code>null</code> 时抛出异常。
 		 */
-		public boolean add(VariableValue var) throws VariableConflictException{
+		public Builder add(VariableValue var){
 			for(VariableValue vv : set){
 				if(AlgebraUtil.checkConflict(vv, var)){
 					throw new VariableConflictException(vv.getName());
 				}
 			}
-			return set.add(var);
+			set.add(var);
+			return this;
 		}
 		
 		/**
 		 * 向变量空间的构造器中添加一个变量空间中的所有变量。
 		 * @param variableSpace 指定的变量空间。
-		 * @return 该操作是否引起了构造器的改变。
+		 * @return 构造器自身。
 		 * @throws VariableConflictException 当添加的元素与构造器中的至少一个元素冲突。
 		 * @throws NullPointerException 当入口元素为 <code>null</code>时抛出异常。
 		 */
-		public boolean add(VariableSpace variableSpace) throws VariableConflictException{
-			boolean flag = false;
+		public Builder add(VariableSpace variableSpace){
 			for(VariableValue vv : variableSpace){
-				if(add(vv)) flag = true;
+				add(vv);
 			}
-			return flag;
+			return this;
 		}
 		
 		/**
 		 * 在变量空间移除指定的对象。
 		 * @param o 指定的对象。
-		 * @return 该操作是否引起了构造器的改变。
+		 * @return 构造器自身。
 		 */
-		public boolean remove(Object o){
-			return set.remove(o);
+		public Builder remove(Object o){
+			set.remove(o);
+			return this;
 		}
 		
 		/*
