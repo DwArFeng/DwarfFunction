@@ -197,4 +197,4 @@ Beta_0.1.5_20170625_build_A
 	过时 dutil.basic.cna.model.ModelUtil.unmodifiableKeySetModel(KeySetModel<K, V>, ReadOnlyGenerator<V>)方法。
 	新增 dutil.basic.cna.model.ModelUtil.unmodifiableKeySetModel(KeySetModel<K, V>) 方法，用以代替上面的过时方法。
 	添加 dutil.develop.cfg.parser.FontValueParser，用于转换 java.awt.Font 类。
-	
+	添加 dutil.develop.cfg.parser.FileValueParser，用于转换 java.awt.Font 类。
