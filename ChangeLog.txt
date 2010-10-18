@@ -194,6 +194,7 @@ Beta_0.1.4_20170625_build_A
 		
 Beta_0.1.5_20170625_build_A
 	新增引用模型 dutil.basic.cna.model.ReferenceModel<E>，用以监控单一元素。
-	过时dutil.basic.cna.model.ModelUtil.unmodifiableKeySetModel(KeySetModel<K, V>, ReadOnlyGenerator<V>)方法。
-	新增dutil.basic.cna.model.ModelUtil.unmodifiableKeySetModel(KeySetModel<K, V>)代替。
-		
+	过时 dutil.basic.cna.model.ModelUtil.unmodifiableKeySetModel(KeySetModel<K, V>, ReadOnlyGenerator<V>)方法。
+	新增 dutil.basic.cna.model.ModelUtil.unmodifiableKeySetModel(KeySetModel<K, V>) 方法，用以代替上面的过时方法。
+	添加 dutil.develop.cfg.parser.FontValueParser，用于转换 java.awt.Font 类。
+	
