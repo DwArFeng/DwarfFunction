@@ -70,12 +70,4 @@ public interface Valueable extends NumBase {
 		return new QuickValueable(val.value() / value());
 	}
 	
-	/**
-	 * 将该值接口转换为dfunc包中的多态值接口。
-	 * @return 转换成的多态值接口。
-	 */
-	public default MusValueable toMusValueable(){
-		return new QuickMusValueable(value());
-	}
-	
 }

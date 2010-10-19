@@ -69,7 +69,7 @@ public class QuickValueable extends AbstractDMath implements Valueable {
 	 */
 	@Override
 	public VariableSpace getVariableSpace() {
-		return AlgebraUtil.emptyVariableSpace();
+		return VariableSpace.EMPTY;
 	}
 
 }

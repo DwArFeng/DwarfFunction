@@ -5,6 +5,8 @@ import java.util.Objects;
 import com.dwarfeng.dfunc.DwarfFunction;
 import com.dwarfeng.dfunc.StringFieldKey;
 import com.dwarfeng.dfunc.cna.ArrayUtil;
+import com.dwarfeng.dfunc.infs.MusValueable;
+import com.dwarfeng.dfunc.num.QuickMusValueable;
 
 /**
  * 代数包工具类。
@@ -27,6 +29,17 @@ public final class AlgebraUtil {
 			dous[i] = vals[i].value();
 		}
 		return dous;
+	}
+	
+	/**
+	 * 将该值接口转换为dfunc包中的多态值接口。
+	 * @return 转换成的多态值接口。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 */
+	public static MusValueable toMusValueable(Valueable val){
+		
+		
+		return new QuickMusValueable(val.value());
 	}
 	
 	
@@ -59,16 +72,6 @@ public final class AlgebraUtil {
 		Objects.requireNonNull(v2, DwarfFunction.getStringField(StringFieldKey.AlgebraUtil_2));
 		
 		return v1 != v2 && v1.getName().equals(v2.getName());
-	}
-	
-	private static final VariableSpace EMPTYS_VARIABLE_SPACE = new VariableSpace.Builder().build();
-	
-	/**
-	 * 获取一个空的变量空间。
-	 * @return 获取一个空的变量控件。
-	 */
-	public static VariableSpace emptyVariableSpace(){
-		return EMPTYS_VARIABLE_SPACE;
 	}
 	
 	//禁止外部实例化。

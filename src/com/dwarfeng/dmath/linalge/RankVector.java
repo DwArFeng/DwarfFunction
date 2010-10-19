@@ -38,7 +38,7 @@ public class RankVector extends AbstractDMath implements MatArray{
 		}
 		
 		this.vals = AlgebraUtil.toValueables(vals);
-		this.vs = AlgebraUtil.emptyVariableSpace();
+		this.vs = VariableSpace.EMPTY;
 	}
 	
 	/**
@@ -212,6 +212,15 @@ public class RankVector extends AbstractDMath implements MatArray{
 	 */
 	public RankVector mul(double d){
 		return mul(new QuickValueable(d));
+	}
+	
+	/**
+	 * 返回该列向量的转置行向量。
+	 * <p> 该转置操作不破坏结构。
+	 * @return 转置行向量。
+	 */
+	public RowVector trans(){
+		return new RowVector(vals);
 	}
 	
 }

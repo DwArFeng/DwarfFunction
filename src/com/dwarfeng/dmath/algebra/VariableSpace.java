@@ -34,6 +34,9 @@ import com.dwarfeng.dmath.Region;
 public class VariableSpace extends AbstractDMath implements
 Iterable<VariableValue>, Region<VariableValue>{
 
+	/**空的变量集合*/
+	public static final VariableSpace EMPTY = new Builder().build();
+	
 	/**
 	 * 变量空间的构造器。
 	 * @author DwArFeng
