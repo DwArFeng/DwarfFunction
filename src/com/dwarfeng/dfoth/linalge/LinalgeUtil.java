@@ -1,4 +1,4 @@
-package com.dwarfeng.dmath.linalge;
+package com.dwarfeng.dfoth.linalge;
 
 import java.util.Objects;
 

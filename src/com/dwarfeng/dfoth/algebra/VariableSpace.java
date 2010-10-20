@@ -1,4 +1,4 @@
-package com.dwarfeng.dmath.algebra;
+package com.dwarfeng.dfoth.algebra;
 
 import java.util.Arrays;
 import java.util.Formatter;

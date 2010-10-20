@@ -4,4 +4,4 @@
  * @author DwArFeng
  * @since 1.8
  */
-package com.dwarfeng.dmath.linalge;
+package com.dwarfeng.dfoth.linalge;

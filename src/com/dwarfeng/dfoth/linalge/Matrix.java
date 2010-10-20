@@ -1,14 +1,14 @@
-package com.dwarfeng.dmath.linalge;
+package com.dwarfeng.dfoth.linalge;
 
 import java.util.Objects;
 
+import com.dwarfeng.dfoth.algebra.QuickValueable;
+import com.dwarfeng.dfoth.algebra.Valueable;
+import com.dwarfeng.dfoth.algebra.VariableSpace;
 import com.dwarfeng.dfunc.DwarfFunction;
 import com.dwarfeng.dfunc.StringFieldKey;
 import com.dwarfeng.dfunc.cna.ArrayUtil;
 import com.dwarfeng.dmath.AbstractDMath;
-import com.dwarfeng.dmath.algebra.QuickValueable;
-import com.dwarfeng.dmath.algebra.Valueable;
-import com.dwarfeng.dmath.algebra.VariableSpace;
 
 /**
  * æÿ’Û¿‡°£

@@ -1,4 +1,4 @@
-package com.dwarfeng.dmath.algebra;
+package com.dwarfeng.dfoth.algebra;
 
 import com.dwarfeng.dfunc.DwarfFunction;
 import com.dwarfeng.dfunc.StringFieldKey;

@@ -1,7 +1,7 @@
-package com.dwarfeng.dmath.algebra;
+package com.dwarfeng.dfoth.algebra;
 
+import com.dwarfeng.dfoth.MayChange;
 import com.dwarfeng.dmath.DMath;
-import com.dwarfeng.dmath.MayChange;
 import com.dwarfeng.dmath.Region;
 
 /**

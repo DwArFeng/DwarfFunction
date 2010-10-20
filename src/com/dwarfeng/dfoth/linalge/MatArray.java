@@ -1,8 +1,8 @@
-package com.dwarfeng.dmath.linalge;
+package com.dwarfeng.dfoth.linalge;
 
+import com.dwarfeng.dfoth.algebra.NumBase;
+import com.dwarfeng.dfoth.algebra.Valueable;
 import com.dwarfeng.dmath.DMath;
-import com.dwarfeng.dmath.algebra.NumBase;
-import com.dwarfeng.dmath.algebra.Valueable;
 
 /**
  * æÿ’Û’Û¡–°£
