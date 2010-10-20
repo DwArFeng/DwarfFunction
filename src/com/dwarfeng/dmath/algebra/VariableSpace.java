@@ -85,6 +85,18 @@ Iterable<VariableValue>, Region<VariableValue>{
 		}
 		
 		/**
+		 * 向变量控件的构造器中添加一个值对象中的所有变量。
+		 * @param valueable 指定的值对象。
+		 * @return 构造器自身。
+		 * @throws VariableConflictException 当值对象中的变量与构造器中的至少一个变量冲突。
+		 * @throws NullPointerException 入口参数为 <code>null</code> 或者值对象中的变量空间为 <code>null</code>。
+		 */
+		public Builder add(Valueable valueable){
+			add(valueable.getVariableSpace());
+			return this;
+		}
+		
+		/**
 		 * 在变量空间移除指定的对象。
 		 * @param o 指定的对象。
 		 * @return 构造器自身。

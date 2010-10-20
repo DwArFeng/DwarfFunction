@@ -64,6 +64,8 @@ public enum StringFieldKey{
 	Linalge_RowVector,
 	/**Linalge包RankVector字段*/
 	Linalge_RankVector,
+	/**Linalge包Matrix字段*/
+	Linalge_Matrix,
 	
 	/**CollectionUtil类第0号文本字段*/
 	CollectionUtil_0,
@@ -148,4 +150,9 @@ public enum StringFieldKey{
 	
 	/**Valueable类第0号文本字段*/
 	Valueable_0,
+	
+	/**Matrix类第0号文本字段*/
+	Matrix_0,
+	/**Matrix类第1号文本字段*/
+	Matrix_1,
 }
