@@ -5,13 +5,10 @@ import java.util.Objects;
 import com.dwarfeng.dfunc.DwarfFunction;
 import com.dwarfeng.dfunc.StringFieldKey;
 import com.dwarfeng.dfunc.cna.ArrayUtil;
-import com.dwarfeng.dfunc.infs.Buildable;
 import com.dwarfeng.dmath.AbstractDMath;
 import com.dwarfeng.dmath.algebra.QuickValueable;
 import com.dwarfeng.dmath.algebra.Valueable;
 import com.dwarfeng.dmath.algebra.VariableSpace;
-import com.dwarfeng.dmath.algebra.VariableValue;
-import com.dwarfeng.dmath.algebra.VariableSpace.Builder;
 
 /**
  * æÿ’Û¿‡°£
