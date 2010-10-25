@@ -1,6 +1,5 @@
 package com.dwarfeng.dutil.basic.num;
 
-import com.dwarfeng.dutil.basic.infs.MusValueable;
 
 /**
  * 单位换算工具类。

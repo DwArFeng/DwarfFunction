@@ -11,7 +11,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
  * @author DwArFeng
  * @since 1.8
  */
-public interface FValueable extends FNumBased{
+public interface FValue extends FNumBased{
 	
 	/**
 	 * 返回对象的值。
@@ -26,7 +26,7 @@ public interface FValueable extends FNumBased{
 	 * @return 该值对象与指定值对象相加得到的值对象。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public default FValueable add(FValueable val){
+	public default FValue add(FValue val){
 		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FValue_0));
 		return new QuickFValue(val.value() + value());
 	}
@@ -38,7 +38,7 @@ public interface FValueable extends FNumBased{
 	 * @return 该值对象与指定值对象相减得到的值对象。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public default FValueable minus(FValueable val){
+	public default FValue minus(FValue val){
 		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FValue_0));
 		return new QuickFValue(val.value() - value());
 	}
@@ -50,7 +50,7 @@ public interface FValueable extends FNumBased{
 	 * @return 该值对象与指定值对象相乘得到的值对象。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public default FValueable mul(FValueable val){
+	public default FValue mul(FValue val){
 		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FValue_0));
 		return new QuickFValue(val.value() * value());
 	}
@@ -63,7 +63,7 @@ public interface FValueable extends FNumBased{
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws ArithmeticException 当val为0是抛出异常。
 	 */
-	public default FValueable div(FValueable val){
+	public default FValue div(FValue val){
 		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FValue_0));
 		return new QuickFValue(val.value() / value());
 	}

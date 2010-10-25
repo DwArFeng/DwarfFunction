@@ -1,6 +1,6 @@
 package com.dwarfeng.dutil.foth.linalge;
 
-import com.dwarfeng.dutil.foth.algebra.FValueable;
+import com.dwarfeng.dutil.foth.algebra.FValue;
 import com.dwarfeng.dutil.foth.algebra.FNumBased;
 import com.dwarfeng.dutil.math.DMath;
 import com.dwarfeng.dutil.math.linalge.MatArray;
@@ -21,8 +21,8 @@ public interface FMatArray extends DMath, FNumBased, MatArray{
 	 * @see com.dwarfeng.dutil.math.linalge.MatArray#valueableAt(int, int)
 	 */
 	@Override
-	public default double valueableAt(int row, int column){
-		return fValueableAt(row, column).value();
+	public default double valueAt(int row, int column){
+		return fValueAt(row, column).value();
 	}
 	
 	/*
@@ -33,7 +33,7 @@ public interface FMatArray extends DMath, FNumBased, MatArray{
 	public default RowVector rowVectorAt(int row){
 		double[] ds = new double[columns()];
 		for(int i = 0 ; i < ds.length; i ++){
-			ds[i] = valueableAt(row, i);
+			ds[i] = valueAt(row, i);
 		}
 		return new RowVector(ds);	
 	}
@@ -46,7 +46,7 @@ public interface FMatArray extends DMath, FNumBased, MatArray{
 	public default ColVector colVectorAt(int column) {
 		double[] ds = new double[rows()];
 		for(int i = 0 ; i < ds.length; i ++){
-			ds[i] = valueableAt(i, column);
+			ds[i] = valueAt(i, column);
 		}
 		return new ColVector(ds);	
 	}
@@ -57,7 +57,7 @@ public interface FMatArray extends DMath, FNumBased, MatArray{
 	 * @param column 指定的列。
 	 * @return 指定的行列处对应的元素。
 	 */
-	public FValueable fValueableAt(int row, int column);
+	public FValue fValueAt(int row, int column);
 	
 	/**
 	 * 返回指定行对应的行向量。

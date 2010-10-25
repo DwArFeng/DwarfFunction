@@ -30,7 +30,7 @@ public interface MatArray extends DMath{
 	 * @return 指定的行列处对应的元素。
 	 * @throws IndexOutOfBoundsException 行列号超界。
 	 */
-	public double valueableAt(int row, int column);
+	public double valueAt(int row, int column);
 	
 	/**
 	 * 返回指定行对应的行向量。

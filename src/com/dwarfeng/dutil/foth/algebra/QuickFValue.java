@@ -6,13 +6,13 @@ import com.dwarfeng.dutil.math.AbstractDMath;
 
 /**
  * 快速值类。
- * <p> 该类对 {@link FValueable}接口进行了最简单的实现。
+ * <p> 该类对 {@link FValue}接口进行了最简单的实现。
  * <p> 该类不接受可变对象，所有传入其中的值对象都会进行取值，以<code>double</code>。
  * 的形式存储。
  * @author DwArFeng
  * @since 1.8
  */
-public class QuickFValue extends AbstractDMath implements FValueable {
+public class QuickFValue extends AbstractDMath implements FValue {
 
 	/**代表0*/
 	public static final QuickFValue ZERO = new QuickFValue();

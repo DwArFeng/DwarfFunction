@@ -1,4 +1,4 @@
-package com.dwarfeng.dutil.basic.infs;
+package com.dwarfeng.dutil.basic.num;
 
 
 /**

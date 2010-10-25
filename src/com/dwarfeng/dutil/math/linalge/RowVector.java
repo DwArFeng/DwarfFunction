@@ -54,9 +54,9 @@ public class RowVector extends AbstractDMath implements MatArray{
 	 * @see com.dwarfeng.dutil.math.linalge.MatArray#valueableAt(int, int)
 	 */
 	@Override
-	public double valueableAt(int row, int column) {
-		LinalgeUtil.requrieRowInBound(this, row);
-		LinalgeUtil.requireColumnInBound(this, column);
+	public double valueAt(int row, int column) {
+		LinalgeUtil.requrieRowInBound(this, row, DwarfUtil.getStringField(StringFieldKey.RowVector_6));
+		LinalgeUtil.requireColumnInBound(this, column, DwarfUtil.getStringField(StringFieldKey.RowVector_7));
 		return vals[column];
 	}
 
@@ -66,7 +66,7 @@ public class RowVector extends AbstractDMath implements MatArray{
 	 */
 	@Override
 	public RowVector rowVectorAt(int row) {
-		LinalgeUtil.requrieRowInBound(this, row);
+		LinalgeUtil.requrieRowInBound(this, row, DwarfUtil.getStringField(StringFieldKey.RowVector_6));
 		return this;
 	}
 
@@ -76,7 +76,7 @@ public class RowVector extends AbstractDMath implements MatArray{
 	 */
 	@Override
 	public ColVector colVectorAt(int column) {
-		LinalgeUtil.requrieRowInBound(this, column);
+		LinalgeUtil.requireColumnInBound(this, column, DwarfUtil.getStringField(StringFieldKey.RowVector_7));
 		return new ColVector(new double[]{vals[column]});
 	}
 
@@ -107,7 +107,6 @@ public class RowVector extends AbstractDMath implements MatArray{
 	
 	/**
 	 * 该行向量与另一个行向量相加。
-	 * <p> 注意，该运算是值运算，所得到的结果是结构破坏性的。
 	 * @param rowVector 指定的行向量。
 	 * @return 运算得出的新的行向量。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
@@ -126,7 +125,6 @@ public class RowVector extends AbstractDMath implements MatArray{
 	
 	/**
 	 * 该行向量与另一个行向量相减。
-	 * <p> 注意，该运算是值运算，所得到的结果是结构破坏性的。
 	 * @param rowVector 指定的行向量。
 	 * @return 运算得出的新的行向量。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
@@ -146,7 +144,6 @@ public class RowVector extends AbstractDMath implements MatArray{
 	/**
 	 * 该行向量与指定的列向量相乘。
 	 * <p> 注意：列向量必须要能够与该行向量相乘，即列向量的列数要与该行向量的行数相等。
-	 * <p> 注意：该运算是值运算，所得到的结果是结构破坏性的。
 	 * @param colVector 指定地点列向量。
 	 * @return 运算后得到的值。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
@@ -158,8 +155,8 @@ public class RowVector extends AbstractDMath implements MatArray{
 		
 		double sum = 0;
 		for(int i = 0 ; i < columns() ; i ++){
-			double v1 = this.valueableAt(0, i);
-			double v2 = colVector.valueableAt(i, 0);
+			double v1 = this.valueAt(0, i);
+			double v2 = colVector.valueAt(i, 0);
 			sum = sum + (v1 *v2);
 		}
 		
@@ -168,11 +165,10 @@ public class RowVector extends AbstractDMath implements MatArray{
 	
 	/**
 	 * 该行向量与指定的值相乘。
-	 * <p> 注意：该运算是值运算，所得到的结果是结构破坏性的。
 	 * @param d 指定的值。
 	 * @return 指定的值与该行向量相乘得到的行向量。
 	 */
-	public RowVector mul(double d){
+	public RowVector scale(double d){
 		double[] ds = new double[vals.length];
 		for(int i = 0 ; i  < ds.length ; i ++){
 			ds[i] = vals[i] * d;
@@ -182,7 +178,6 @@ public class RowVector extends AbstractDMath implements MatArray{
 	
 	/**
 	 * 返回该列向量的转置列向量。
-	 * <p> 该转置操作不破坏结构。
 	 * @return 转置列向量。
 	 */
 	public ColVector trans(){

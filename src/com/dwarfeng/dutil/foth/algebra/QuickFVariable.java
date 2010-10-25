@@ -35,7 +35,7 @@ public class QuickFVariable extends AbstractDMath implements FVariable {
 	 * @throws IllegalArgumentException name参数为 <code>null</code>或非法。
 	 * @throws NullPointerException 入口参数为 <code>null</code>时抛出异常。
 	 */
-	public QuickFVariable(String name, FValueable valueable) {
+	public QuickFVariable(String name, FValue valueable) {
 		if(Objects.isNull(name) || name.equals("")){
 			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.Variable_1));
 		}

@@ -128,6 +128,10 @@ public enum StringFieldKey{
 	FRowVector_6,
 	/**FRowVector类第7号文本字段*/
 	FRowVector_7,
+	/**FRowVector类第8号文本字段*/
+	FRowVector_8,
+	/**FRowVector类第9号文本字段*/
+	FRowVector_9,
 	
 	/**FColVector类第0号文本字段*/
 	FColVector_0,
@@ -141,6 +145,10 @@ public enum StringFieldKey{
 	FColVector_4,
 	/**FColVector类第5号文本字段*/
 	FColVector_5,
+	/**FColVector类第6号文本字段*/
+	FColVector_6,
+	/**FColVector类第7号文本字段*/
+	FColVector_7,
 	
 	/**LinalgeUtil类第0号文本字段*/
 	LinalgeUtil_0,
@@ -165,6 +173,14 @@ public enum StringFieldKey{
 	ColVector_0,
 	/*ColVector类第1号文本字段*/
 	ColVector_1,
+	/*ColVector类第2号文本字段*/
+	ColVector_2,
+	/*ColVector类第3号文本字段*/
+	ColVector_3,
+	/*ColVector类第4号文本字段*/
+	ColVector_4,
+	/*ColVector类第5号文本字段*/
+	ColVector_5,
 	
 	/**RowVecotr类第0号文本字段*/
 	RowVector_0,
@@ -178,4 +194,8 @@ public enum StringFieldKey{
 	RowVector_4,
 	/**RowVecotr类第5号文本字段*/
 	RowVector_5,
+	/**RowVecotr类第6号文本字段*/
+	RowVector_6,
+	/**RowVecotr类第7号文本字段*/
+	RowVector_7,
 }

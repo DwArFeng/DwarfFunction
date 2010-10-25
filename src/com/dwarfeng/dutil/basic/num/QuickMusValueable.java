@@ -1,6 +1,5 @@
 package com.dwarfeng.dutil.basic.num;
 
-import com.dwarfeng.dutil.basic.infs.MusValueable;
 
 /**
  * 快速多态值接口。

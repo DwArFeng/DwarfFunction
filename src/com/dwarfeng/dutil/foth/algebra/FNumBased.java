@@ -8,7 +8,7 @@ import com.dwarfeng.dutil.math.Region;
  * 数基接口。
  * <p> 实现该接口的类都是以数字为基础的，或者其中有关键性的数字字段，改变这些数字的会造成
  * 对象的属性修改。
- * <br> 所有的 {@link FValueable} 都是数基的，因为它们最终可以返回某个数值。不是 {@link FValueable}
+ * <br> 所有的 {@link FValue} 都是数基的，因为它们最终可以返回某个数值。不是 {@link FValue}
  * 的对象也有可能是数基的，比如矩阵，虽然不能以具体的一个数字代替，但是改变其中的数值会对矩阵
  * 造成本质的影响，因此它也是数基的。
  * @author DwArFeng
