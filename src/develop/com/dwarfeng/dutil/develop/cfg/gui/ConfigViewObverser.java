@@ -1,14 +1,15 @@
 package com.dwarfeng.dutil.develop.cfg.gui;
 
 import com.dwarfeng.dutil.develop.cfg.ConfigKey;
+import com.dwarfeng.dutil.basic.prog.Obverser;
 import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
 
 /**
- * 配置界面模型观察器。
+ * 配置视图模型观察器。
  * @author  DwArFeng
  * @since 1.8
  */
-public interface ConfigGuiModelObverser {
+public interface ConfigViewObverser extends Obverser{
 
 	/**
 	 * 通知视图模型添加元素。

@@ -301,16 +301,16 @@ public enum StringFieldKey{
 	/**ConfigKey类第0号文本字段*/
 	ConfigKey_0,
 	
-	/**ConfigPort类第0号文本字段*/
-	ConfigPort_0,
+	/**ConfigPerformModel类第0号文本字段*/
+	ConfigPerformModel_0,
 	
 	/**SwingUtil类第0号文本字段*/
 	SwingUtil_0,
 	
-	/**ConfigGuiModel类第0号文本字段*/
-	ConfigGuiModel_0,
-	/**ConfigGuiModel类第1号文本字段*/
-	ConfigGuiModel_1,
+	/**ConfigViewModel类第0号文本字段*/
+	ConfigViewModel_0,
+	/**ConfigViewModel类第1号文本字段*/
+	ConfigViewModel_1,
 	
 	/**ConfigTablePanel类第0号文本字段*/
 	ConfigTablePanel_0,

@@ -2,7 +2,6 @@ package com.dwarfeng.dutil.develop.cfg.checker;
 
 import java.util.Objects;
 
-import com.dwarfeng.dutil.basic.io.CT;
 import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
 
 /**

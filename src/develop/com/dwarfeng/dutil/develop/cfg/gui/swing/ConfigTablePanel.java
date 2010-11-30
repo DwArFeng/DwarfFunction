@@ -18,8 +18,8 @@ import com.dwarfeng.dutil.basic.LabelFieldKey;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.develop.cfg.ConfigKey;
 import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
-import com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModel;
-import com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModelObverser;
+import com.dwarfeng.dutil.develop.cfg.gui.ConfigViewModel;
+import com.dwarfeng.dutil.develop.cfg.gui.ConfigViewObverser;
 
 /**
  * 使用表格的配置编辑面板。
@@ -32,18 +32,18 @@ public class ConfigTablePanel extends JPanel {
 	protected final JTable table = new JTable();
 	
 	/**配置模型*/
-	protected ConfigGuiModel model;
+	protected ConfigViewModel model;
 	/**错误的配置字段的颜色*/
 	protected Color invalidConfigColor;
 	
 	
 	private final InnerTableModel tableModel = new InnerTableModel();
 	
-	private final ConfigGuiModelObverser obverser = new ConfigGuiModelObverser() {
+	private final ConfigViewObverser obverser = new ConfigViewObverser() {
 		
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModelObverser#fireEntryAdded(int, com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModel.Entry)
+		 * @see com.dwarfeng.dutil.develop.cfg.gui.ConfigViewObverser#fireValueAdded(int, com.dwarfeng.dutil.develop.cfg.ConfigKey, com.dwarfeng.dutil.develop.cfg.ConfigChecker, java.lang.String, java.lang.String)
 		 */
 		@Override
 		public void fireValueAdded(int index, ConfigKey configKey, ConfigChecker configChecker, String defaultValue, String currentValue) {
@@ -52,7 +52,7 @@ public class ConfigTablePanel extends JPanel {
 		
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModelObverser#fireEntryRemoved(int)
+		 * @see com.dwarfeng.dutil.develop.cfg.gui.ConfigViewObverser#fireValueRemoved(int)
 		 */
 		@Override
 		public void fireValueRemoved(int index) {
@@ -61,7 +61,7 @@ public class ConfigTablePanel extends JPanel {
 		
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModelObverser#fireEntryCleared()
+		 * @see com.dwarfeng.dutil.develop.cfg.gui.ConfigViewObverser#fireValueCleared(int)
 		 */
 		@Override
 		public void fireValueCleared(int size) {
@@ -70,7 +70,7 @@ public class ConfigTablePanel extends JPanel {
 		
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModelObverser#fireEntryChanged(int, com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModel.Entry)
+		 * @see com.dwarfeng.dutil.develop.cfg.gui.ConfigViewObverser#fireValueChanged(int, com.dwarfeng.dutil.develop.cfg.ConfigKey, com.dwarfeng.dutil.develop.cfg.ConfigChecker, java.lang.String, java.lang.String)
 		 */
 		@Override
 		public void fireValueChanged(int index, ConfigKey configKey, ConfigChecker configChecker, String defaultValue, String currentValue) {
@@ -140,7 +140,7 @@ public class ConfigTablePanel extends JPanel {
 	 * <p> 注意该值有可能为 <code>null</code>。
 	 * @return 该编辑界面的模型。
 	 */
-	public ConfigGuiModel getModel() {
+	public ConfigViewModel getModel() {
 		return model;
 	}
 
@@ -159,7 +159,7 @@ public class ConfigTablePanel extends JPanel {
 	 * 设置该编辑面板的模型。
 	 * @param model 指定的模型。
 	 */
-	public void setModel(ConfigGuiModel model) {
+	public void setModel(ConfigViewModel model) {
 		if(Objects.nonNull(this.model)){
 			this.model.removeObverser(obverser);
 		}

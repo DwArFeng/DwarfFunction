@@ -20,10 +20,10 @@ public interface ConfigLoader {
 	 * <br>ИзЈє
 	 * <pre>
 	 * <code>
-	 * public void mutiLoad(ConfigLoader loader, ConfigPort[] cps){
+	 * public void mutiLoad(ConfigLoader loader, ConfigReflect[] crs){
 	 * 	Map<ConfigKey, String> map = loader.loadConfig();
-	 * 	for(ConfigPort cp : cps){
-	 * 		cp.setAll(map);
+	 * 	for(ConfigReflect cr : crs){
+	 * 		cr.setAll(map);
 	 * 	}
 	 * }
 	 * </code>

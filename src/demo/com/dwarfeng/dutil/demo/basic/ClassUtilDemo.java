@@ -19,15 +19,10 @@ public class ClassUtilDemo {
 		}
 	}
 	
+	private static abstract class A{}
 	
-}
-
-abstract class A{
+	private static abstract class B extends A implements RunnableScheduledFuture<Object>{}
 	
-}
-abstract class B extends A implements RunnableScheduledFuture<Object>{
-	
-}
-abstract class C extends B implements List<Object>{
+	private static abstract class C extends B implements List<Object>{}
 	
 }

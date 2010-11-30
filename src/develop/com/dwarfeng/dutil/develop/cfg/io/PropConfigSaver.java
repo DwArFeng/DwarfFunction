@@ -8,7 +8,7 @@ import java.util.Properties;
 import com.dwarfeng.dutil.basic.io.CT;
 import com.dwarfeng.dutil.basic.io.SaveFailedException;
 import com.dwarfeng.dutil.develop.cfg.ConfigKey;
-import com.dwarfeng.dutil.develop.cfg.ConfigPort;
+import com.dwarfeng.dutil.develop.cfg.ConfigReflect;
 
 /**
  * Properties ≈‰÷√±£¥Ê∆˜°£
@@ -37,12 +37,12 @@ public class PropConfigSaver extends StreamConfigSaver implements ConfigSaver {
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.develop.cfg.io.ConfigSaver#saveConfig(com.dwarfeng.dutil.develop.cfg.ConfigPort)
+	 * @see com.dwarfeng.dutil.develop.cfg.io.ConfigSaver#saveConfig(com.dwarfeng.dutil.develop.cfg.ConfigPerformModel)
 	 */
 	@Override
-	public void saveConfig(ConfigPort configPort) throws SaveFailedException {
+	public void saveConfig(ConfigReflect configReflect) throws SaveFailedException {
 		Properties properties = new Properties();
-		for(Map.Entry<ConfigKey, String> entry : configPort.getCurrentValueMap().entrySet()){
+		for(Map.Entry<ConfigKey, String> entry : configReflect.getCurrentValueMap().entrySet()){
 			properties.put(entry.getKey().getName(), entry.getValue());
 			CT.trace(entry.getKey());
 		}

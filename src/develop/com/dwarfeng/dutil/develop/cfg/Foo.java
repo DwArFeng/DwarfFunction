@@ -1,12 +1,12 @@
 package com.dwarfeng.dutil.develop.cfg;
 
-import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 
-import com.dwarfeng.dutil.detool.gui.swing.JComponentTester;
 import com.dwarfeng.dutil.develop.cfg.checker.BooleanConfigChecker;
 import com.dwarfeng.dutil.develop.cfg.checker.IntegerConfigChecker;
-import com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModel;
-import com.dwarfeng.dutil.develop.cfg.gui.swing.ConfigTablePanel;
+import com.dwarfeng.dutil.develop.cfg.gui.ConfigViewModel;
+import com.dwarfeng.dutil.develop.cfg.gui.ConfigViewObverser;
 
 final class Foo {
 
@@ -55,19 +55,10 @@ final class Foo {
 		
 	}
 	
-	public Foo() {
-		// TODO Auto-generated constructor stub
-	}
+	public Foo() {}
 	
 	public void test(){
-		ConfigPort cp = ConfigUtil.newConfigPort(Cfg.values());
 		
-		ConfigGuiModel model = ConfigUtil.newConfigGuiModel(cp);
-		
-		ConfigTablePanel panel = new ConfigTablePanel();
-		new JComponentTester(panel).setVisible(true);
-		//panel.setLocale(Locale.ENGLISH);
-		panel.setModel(model);
 	}
 
 	public static void main(String[] args) {
