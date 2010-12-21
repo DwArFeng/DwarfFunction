@@ -1,7 +1,5 @@
 package com.dwarfeng.dutil.develop.cfg.io;
 
-import java.io.IOException;
-
 import com.dwarfeng.dutil.basic.io.SaveFailedException;
 import com.dwarfeng.dutil.develop.cfg.ConfigModel;
 
@@ -15,10 +13,10 @@ public interface ConfigSaver {
 	
 	/**
 	 * 保存指定的配置。
-	 * @param configReflect 指定的配置映射。
-	 * @throws IOException IO异常。
+	 * @param configModel 指定的配置映射。
+	 * @throws SaveFailedException 保存失败异常。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public void saveConfig(ConfigModel configReflect) throws SaveFailedException;
+	public void saveConfig(ConfigModel configModel) throws SaveFailedException;
 
 }

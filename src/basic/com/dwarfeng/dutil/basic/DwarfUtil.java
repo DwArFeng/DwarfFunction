@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-import com.dwarfeng.dutil.basic.cna.ArrayUtil;
 import com.dwarfeng.dutil.basic.io.CT;
 import com.dwarfeng.dutil.basic.io.CT.OutputType;
 import com.dwarfeng.dutil.basic.prog.DefaultVersion;

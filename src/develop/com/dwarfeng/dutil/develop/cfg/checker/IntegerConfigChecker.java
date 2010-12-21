@@ -11,26 +11,26 @@ import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
  * @since 1.8
  */
 public class IntegerConfigChecker implements ConfigChecker {
-	
-	private final int maxValue;
+
 	private final int minValue;
+	private final int maxValue;
 
 	/**
 	 * 生成一个整数检查器。
 	 * <p> 当指定的 value 值是整数的格式，则该 value 值有效。
 	 */
 	public IntegerConfigChecker() {
-		this(Integer.MAX_VALUE, Integer.MIN_VALUE);
+		this(Integer.MIN_VALUE, Integer.MAX_VALUE);
 	}
 	
 	/**
 	 * 生成一个具有指定最大值和最小值的整数检查器。
 	 * <p> 当指定的 value 值是整数的格式且该数组落在最大值和最小值之间（可以与最大值或最小值相等），
 	 * 则该 value 值有效。
-	 * @param maxValue 最大值。
 	 * @param minValue 最小值。
+	 * @param maxValue 最大值。
 	 */
-	public IntegerConfigChecker(int maxValue, int minValue) {
+	public IntegerConfigChecker(int minValue, int maxValue) {
 		this.maxValue = maxValue;
 		this.minValue = minValue;
 	}

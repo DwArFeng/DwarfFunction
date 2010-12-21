@@ -321,4 +321,11 @@ public enum StringFieldKey{
 	DefaultConfigModel_0,
 	/**DefaultConfigModel类第1号文本字段*/
 	DefaultConfigModel_1,
+	/**DefaultConfigModel类第2号文本字段*/
+	DefaultConfigModel_2,
+	/**DefaultConfigModel类第3号文本字段*/
+	DefaultConfigModel_3,
+	
+	/**PropertiesConfigSaver类第0号文本字段*/
+	PropertiesConfigSaver_0,
 }

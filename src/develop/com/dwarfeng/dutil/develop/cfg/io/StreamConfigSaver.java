@@ -30,8 +30,7 @@ public abstract class StreamConfigSaver implements ConfigSaver, Closeable{
 	 */
 	@Override
 	public void close() throws IOException {
-		// TODO Auto-generated method stub
-		
+		out.close();
 	}
 
 }

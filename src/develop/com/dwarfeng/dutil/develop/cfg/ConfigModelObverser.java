@@ -14,8 +14,9 @@ public interface ConfigModelObverser extends Obverser{
 	 * @param configKey 指定的配置键。
 	 * @param oldValue 配置键的旧值。
 	 * @param newValue 配置键的新值。
+	 * @param validValue 配置键当前的有效值。
 	 */
-	public void fireCurrentValueChanged(ConfigKey configKey, String oldValue, String newValue);
+	public void fireCurrentValueChanged(ConfigKey configKey, String oldValue, String newValue, String validValue);
 	
 	/**
 	 * 通知配置模型中的配置键进行了清除。

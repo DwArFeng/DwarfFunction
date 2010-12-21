@@ -28,10 +28,16 @@ public class DefaultConfigModel extends AbstractConfigModel {
 	 * <p> 生成的模型中，每个条目的现有值和默认值相等。
 	 * @param configEntries 指定的配置条目数组。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 * @throws IllegalArgumentException 配置入口集合中至少一个入口无效。
 	 */
 	public DefaultConfigModel(ConfigEntry[] configEntries){
 		Objects.requireNonNull(configEntries, DwarfUtil.getStringField(StringFieldKey.DefaultConfigModel_0));
 		
+		for(ConfigEntry configEntry : configEntries){
+			if(ConfigUtil.nonValid(configEntry)){
+				throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.DefaultConfigModel_2));
+			}
+		}
 		for(ConfigEntry configEntry : configEntries){
 			firmPropsMap.put(configEntry.getConfigKey(), configEntry.getConfigFirmProps());
 		}
@@ -46,6 +52,11 @@ public class DefaultConfigModel extends AbstractConfigModel {
 	public DefaultConfigModel(Collection<ConfigEntry> configEntries) {
 		Objects.requireNonNull(configEntries, DwarfUtil.getStringField(StringFieldKey.DefaultConfigModel_0));
 
+		for(ConfigEntry configEntry : configEntries){
+			if(ConfigUtil.nonValid(configEntry)){
+				throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.DefaultConfigModel_2));
+			}
+		}
 		for(ConfigEntry configEntry : configEntries){
 			firmPropsMap.put(configEntry.getConfigKey(), configEntry.getConfigFirmProps());
 		}
@@ -106,7 +117,7 @@ public class DefaultConfigModel extends AbstractConfigModel {
 	 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#configKeySet()
 	 */
 	@Override
-	public Set<ConfigKey> configKeySet() {
+	public Set<ConfigKey> keySet() {
 		return Collections.unmodifiableSet(firmPropsMap.keySet());
 	}
 
@@ -116,8 +127,7 @@ public class DefaultConfigModel extends AbstractConfigModel {
 	 */
 	@Override
 	public boolean add(ConfigEntry configEntry) {
-		if(Objects.isNull(configEntry)) return false;
-		if(Objects.isNull(configEntry.getConfigKey())) return false;
+		if(ConfigUtil.nonValid(configEntry)) return false;
 		
 		if(firmPropsMap.containsKey(configEntry.getConfigKey())){
 			return false;
@@ -262,15 +272,95 @@ public class DefaultConfigModel extends AbstractConfigModel {
 	 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#setConfigFirmProps(com.dwarfeng.dutil.develop.cfg.ConfigKey, com.dwarfeng.dutil.develop.cfg.ConfigFirmProps)
 	 */
 	@Override
-	public ConfigFirmProps setConfigFirmProps(ConfigKey configKey, ConfigFirmProps configFirmProps) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean resetValue(ConfigKey configKey) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean setConfigFirmProps(ConfigKey configKey, ConfigFirmProps configFirmProps) {
+		if(ConfigUtil.nonValid(configFirmProps)) return false;
+		if(! containsKey(configKey)) return false;
+		
+		ConfigFirmProps oldOne = firmPropsMap.get(configKey);
+		
+		if(oldOne != null && oldOne.equals(configFirmProps)) return false;
+		
+		firmPropsMap.put(configKey, configFirmProps);
+		
+		fireConfigFirmPropsChanged(configKey, oldOne, configFirmProps);
+		
+		return true;
 	}
 	
+	private void fireConfigFirmPropsChanged(ConfigKey configKey, ConfigFirmProps oldValue,
+			ConfigFirmProps newValue) {		
+		for(ConfigModelObverser obverser : obversers){
+			obverser.fireConfigFirmPropsChanged(configKey, oldValue, newValue);
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#setCurrentValue(com.dwarfeng.dutil.develop.cfg.ConfigKey, java.lang.String)
+	 */
+	@Override
+	public boolean setCurrentValue(ConfigKey configKey, String currentValue) {
+		if(Objects.isNull(configKey)) return false;
+		if(! containsKey(configKey)) return false;
+		
+		String oldOne = currentValueMap.get(configKey);
+		
+		if(oldOne == currentValue || (oldOne != null && oldOne.equals(currentValue))){
+			return false;
+		}
+		
+		currentValueMap.put(configKey, currentValue);
+		
+		fireCurrentValueChanged(configKey, oldOne, currentValue, getValidValue(configKey));
+		
+		return true;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#setAllCurrentValue(java.util.Map)
+	 */
+	@Override
+	public boolean setAllCurrentValue(Map<ConfigKey, String> map) {
+		Objects.requireNonNull(map, DwarfUtil.getStringField(StringFieldKey.DefaultConfigModel_3));
+		
+		boolean aFlag = false;
+		
+		for(Map.Entry<ConfigKey, String> entry : map.entrySet()){
+			if(setCurrentValue(entry.getKey(), entry.getValue())) aFlag = true;
+		}
+		
+		return aFlag;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#resetValue(com.dwarfeng.dutil.develop.cfg.ConfigKey)
+	 */
+	@Override
+	public boolean resetCurrentValue(ConfigKey configKey) {
+		return setCurrentValue(configKey, getConfigFirmProps(configKey).getDefaultValue());
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#resetAllCurrentValue()
+	 */
+	@Override
+	public boolean resetAllCurrentValue() {
+		boolean aFlag = false;
+		
+		for(ConfigKey configKey : keySet()){
+			if(resetCurrentValue(configKey)) aFlag = true;
+		}
+		
+		return aFlag;
+	}
+	
+	private void fireCurrentValueChanged(ConfigKey configKey, String oldValue, String newValue, String validValue) {
+		for(ConfigModelObverser obverser : obversers){
+			obverser.fireCurrentValueChanged(configKey, oldValue, newValue, validValue);
+		}
+	}
+
 }

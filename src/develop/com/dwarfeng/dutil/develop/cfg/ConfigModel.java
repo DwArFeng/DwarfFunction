@@ -1,6 +1,7 @@
 package com.dwarfeng.dutil.develop.cfg;
 
 import java.util.Collection;
+import java.util.Map;
 import java.util.Set;
 
 import com.dwarfeng.dutil.basic.prog.ObverserSet;
@@ -47,7 +48,7 @@ public interface ConfigModel extends ObverserSet<ConfigModelObverser>{
 	 * 该<code>Set</code>视图是只读的，调用其编辑方法会抛出 {@link UnsupportedOperationException}。
 	 * @return 包含此模型配置键的<code>Set</code>视图。
 	 */
-	public Set<ConfigKey> configKeySet();
+	public Set<ConfigKey> keySet();
 	
 	/**
 	 * 向该模型中添加指定的配置入口（可选操作）。
@@ -144,14 +145,39 @@ public interface ConfigModel extends ObverserSet<ConfigModelObverser>{
 	 * @return 该操作是否对模型产生了变更。
 	 * @throws UnsupportedOperationException 如果模型不支持该操作。
 	 */
-	public ConfigFirmProps setConfigFirmProps(ConfigKey configKey, ConfigFirmProps configFirmProps);
+	public boolean setConfigFirmProps(ConfigKey configKey, ConfigFirmProps configFirmProps);
+	
+	/**
+	 * 设置模型中指定配置键的当前值。
+	 * <p> 当指定的配置键为 <code>null</code>，或指定的配置键不存在于当前的模型时，不进行任何操作。
+	 * @param configKey  指定的配置键。
+	 * @param currentValue 指定的当前值。
+	 * @return 该操作是否对模型产生了变更。
+	 */
+	public boolean setCurrentValue(ConfigKey configKey, String currentValue);
+	
+	/**
+	 * 设置模型中指定配置键的当前值。
+	 * <p> 该操作试图将指定的映射中的所有的配置键-当前值设置到模型中。
+	 * <p> 当指定的配置键为 <code>null</code>，或指定的配置键不存在于当前的模型时，不进行任何操作。
+	 * @param map 指定的配置键-当前值映射。
+	 * @return 该操作是否对模型产生了改变。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 */
+	public boolean setAllCurrentValue(Map<ConfigKey, String> map);
 	
 	/**
 	 * 将一个指定的配置键对应的当前值重置为默认值。
 	 * <p> 如果指定的配置键不存在或者为 <code>null</code>，则不进行任何操作。
 	 * @param configKey 指定的配置键。
-	 * @return 该方法是否改变了该配置模型的结构。
+	 * @return 该方法是否对模型产生了变更。
 	 */
-	public boolean resetValue(ConfigKey configKey);
+	public boolean resetCurrentValue(ConfigKey configKey);
+	
+	/**
+	 * 将模型中的所有配置键对应的当前值重置为默认值。
+	 * @return 该方法是否对模型产生了变更。
+	 */
+	public boolean resetAllCurrentValue();
 	
 }
