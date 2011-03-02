@@ -7,12 +7,11 @@ import java.util.Objects;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
-import com.dwarfeng.dutil.basic.prog.Saver;
 
 /**
  * 流保存器。
  * <p> 用流实现的保存器。
- * @author  DwArFeng
+ * @author DwArFeng
  * @since 0.0.3-beta
  */
 public abstract class StreamSaver<T> implements Closeable, Saver<T> {

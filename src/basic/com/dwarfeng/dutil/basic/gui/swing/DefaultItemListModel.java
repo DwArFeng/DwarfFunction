@@ -30,7 +30,7 @@ import com.dwarfeng.dutil.basic.cna.CollectionUtil;
  * <br> 操作默认元素的方法是，使用 {@link #getDefaultList()}获取默认元素所在的列表，然后对列表进行操作。
  * <p> 该类可以通过指定入口的参数来保证列表的不同实现，如用同步列表作为实现就可以保证其中方法的同步。
  * <p> 如果不指定任何默认元素，该模型等同于 {@link DefaultListModel}。
- * @author  DwArFeng
+ * @author DwArFeng
  * @since 0.0.2-beta
  */
 public class DefaultItemListModel<E> extends AbstractListModel<E> implements Iterable<E>{

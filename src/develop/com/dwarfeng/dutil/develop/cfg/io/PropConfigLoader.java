@@ -1,11 +1,12 @@
 package com.dwarfeng.dutil.develop.cfg.io;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
+import java.util.Set;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
@@ -26,11 +27,13 @@ import com.dwarfeng.dutil.develop.cfg.ConfigModel;
  * 		</code>
  * </blockquote>
  * 其中 等号左边的是键，等号右边的是值。
- * @author  DwArFeng
+ * @author DwArFeng
  * @since 0.0.3-beta
  */
 public class PropConfigLoader extends StreamLoader<ConfigModel> {
 
+	private boolean flag = true;
+	
 	/**
 	 * 生成一个新的 Properties 配置读取器。
 	 * @param in 指定的输入流。
@@ -46,6 +49,8 @@ public class PropConfigLoader extends StreamLoader<ConfigModel> {
 	 */
 	@Override
 	public void load(ConfigModel configModel) throws LoadFailedException {
+		if(flag){flag = false;} else{
+			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.PropertiesConfigLoader_1));}
 		Objects.requireNonNull(configModel, DwarfUtil.getStringField(StringFieldKey.PropertiesConfigLoader_0));
 		
 		Properties properties = new Properties();
@@ -57,11 +62,37 @@ public class PropConfigLoader extends StreamLoader<ConfigModel> {
 			}
 			configModel.setAllCurrentValue(configMap);
 			
-		}catch (IOException e) {
-			LoadFailedException lfe = new LoadFailedException(e.getMessage(), e.getCause());
-			lfe.setStackTrace(e.getStackTrace());
-			throw lfe;
+		}catch (Exception e) {
+			throw new LoadFailedException(e.getMessage(), e.getCause());
 		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dutil.basic.io.Loader#countinuousLoad(java.lang.Object)
+	 */
+	@Override
+	public Set<LoadFailedException> countinuousLoad(ConfigModel configModel) throws IllegalStateException {
+		if(flag){flag = false;} else{
+			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.PropertiesConfigLoader_1));}
+		Objects.requireNonNull(configModel, DwarfUtil.getStringField(StringFieldKey.PropertiesConfigLoader_0));
+		
+		final Set<LoadFailedException> exceptions = new HashSet<>();
+		
+		Properties properties = new Properties();
+		try{
+			properties.load(in);
+			Map<ConfigKey, String> configMap = new HashMap<ConfigKey, String>();
+			for(String str : properties.stringPropertyNames()){
+				configMap.put(new ConfigKey(str), properties.getProperty(str));
+			}
+			configModel.setAllCurrentValue(configMap);
+			
+		}catch (Exception e) {
+			exceptions.add(new LoadFailedException(e.getMessage(), e.getCause()));
+		}
+		
+		return exceptions;
 	}
 
 }

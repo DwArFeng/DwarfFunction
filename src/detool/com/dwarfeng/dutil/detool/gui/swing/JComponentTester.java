@@ -14,7 +14,7 @@ import javax.swing.border.EmptyBorder;
  * <p> 该调试器是一个窗口，可以传入指定的组件。这样，用户就可以在程序中显示出这个界面，从而对组件进行调试了。
  * <br> 该界面的内容面板使用的是 {@link BorderLayout}，待调试的组件始终处于界面的中间。
  * <p> 该调试器窗口按下关闭按钮，程序即结束。
- * @author  DwArFeng
+ * @author DwArFeng
  * @since 0.0.2-beta
  */
 public class JComponentTester extends JFrame {

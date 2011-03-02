@@ -75,7 +75,7 @@ import com.dwarfeng.dutil.basic.threads.NumberedThreadFactory;
  * console.dispose(); //该方法才会真正的关闭控制台的输入输出流。
  * </pre>
  * 经优化后，该控制台的效率可以达到 cmd 控制台的 6900%，是一个货真价实的高效控制台。
- * @author  DwArFeng
+ * @author DwArFeng
  * @since 0.0.3-beta
  */
 public class JExconsole extends JPanel {

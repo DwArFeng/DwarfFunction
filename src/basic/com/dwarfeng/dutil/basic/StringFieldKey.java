@@ -320,12 +320,20 @@ public enum StringFieldKey{
 	DefaultConfigModel_2,
 	/**DefaultConfigModel类第3号文本字段*/
 	DefaultConfigModel_3,
+	/**DefaultConfigModel类第4号文本字段*/
+	DefaultConfigModel_4,
+	/**DefaultConfigModel类第5号文本字段*/
+	DefaultConfigModel_5,
 	
 	/**PropertiesConfigSaver类第0号文本字段*/
 	PropertiesConfigSaver_0,
+	/**PropertiesConfigSaver类第1号文本字段*/
+	PropertiesConfigSaver_1,
 	
 	/**PropertiesConfigLoader类第0号文本字段*/
 	PropertiesConfigLoader_0,
+	/**PropertiesConfigLoader类第1号文本字段*/
+	PropertiesConfigLoader_1,
 	
 	/**ConfigUtil类第0号文本字段*/
 	ConfigUtil_0,

@@ -2,7 +2,7 @@ package com.dwarfeng.dutil.develop.cfg;
 
 /**
  * ÅäÖÃÄ£ĞÍ¹Û²ìÆ÷ÊÊÅäÆ÷¡£
- * @author  DwArFeng
+ * @author DwArFeng
  * @since 0.0.2-beta
  */
 public abstract class ConfigAdapter implements ConfigObverser{

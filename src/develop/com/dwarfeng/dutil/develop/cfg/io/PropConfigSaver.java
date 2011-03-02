@@ -1,9 +1,10 @@
 package com.dwarfeng.dutil.develop.cfg.io;
 
-import java.io.IOException;
 import java.io.OutputStream;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Properties;
+import java.util.Set;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
@@ -24,11 +25,13 @@ import com.dwarfeng.dutil.develop.cfg.ConfigModel;
  * 		</code>
  * </blockquote>
  * 其中 等号左边的是键，等号右边的是值。
- * @author  DwArFeng
+ * @author DwArFeng
  * @since 0.0.3-beta
  */
 public class PropConfigSaver extends StreamSaver<ConfigModel> {
 
+	private boolean flag = true;
+	
 	/**
 	 * 生成一个新的 Properties 配置保存器。
 	 * @param out 指定的输出流。
@@ -44,6 +47,8 @@ public class PropConfigSaver extends StreamSaver<ConfigModel> {
 	 */
 	@Override
 	public void save(ConfigModel configModel) throws SaveFailedException {
+		if(flag){flag = false;} else{
+			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.PropertiesConfigSaver_1));}
 		Objects.requireNonNull(configModel, DwarfUtil.getStringField(StringFieldKey.PropertiesConfigSaver_0));
 		
 		Properties properties = new Properties();
@@ -52,11 +57,34 @@ public class PropConfigSaver extends StreamSaver<ConfigModel> {
 		}
 		try {
 			properties.store(out, null);
-		} catch (IOException e) {
-			SaveFailedException sfe = new SaveFailedException(e.getMessage(), e.getCause());
-			sfe.setStackTrace(e.getStackTrace());
-			throw sfe;
+		} catch (Exception e) {
+			throw new SaveFailedException(e.getMessage(), e.getCause());
 		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dutil.basic.io.Saver#countinuousSave(java.lang.Object)
+	 */
+	@Override
+	public Set<SaveFailedException> countinuousSave(ConfigModel configModel) throws IllegalStateException {
+		if(flag){flag = false;} else{
+			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.PropertiesConfigSaver_1));}
+		Objects.requireNonNull(configModel, DwarfUtil.getStringField(StringFieldKey.PropertiesConfigSaver_0));
+
+		final Set<SaveFailedException> exceptions = new HashSet<>();
+		
+		Properties properties = new Properties();
+		for(ConfigKey configKey : configModel.keySet()){
+			properties.setProperty(configKey.getName(), configModel.getCurrentValue(configKey));
+		}
+		try {
+			properties.store(out, null);
+		} catch (Exception e) {
+			exceptions.add(new SaveFailedException(e.getMessage(), e.getCause()));
+		}
+		
+		return exceptions;
 	}
 
 }

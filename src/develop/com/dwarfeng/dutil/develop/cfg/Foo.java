@@ -6,7 +6,7 @@ import com.dwarfeng.dutil.develop.cfg.checker.LocaleConfigChecker;
 
 /**
  * 调试用内部类。
- * @author  DwArFeng
+ * @author DwArFeng
  * @since 0.0.2-beta
  */
 class Foo {

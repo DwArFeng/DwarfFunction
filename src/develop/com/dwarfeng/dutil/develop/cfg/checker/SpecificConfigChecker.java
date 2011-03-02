@@ -8,7 +8,7 @@ import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
 /**
  * 特定文本检测器。
  * <p> 当待测文本为几个特定值中的一个时，即为有效。
- * @author  DwArFeng
+ * @author DwArFeng
  * @since 0.0.2-beta
  */
 public class SpecificConfigChecker implements ConfigChecker{

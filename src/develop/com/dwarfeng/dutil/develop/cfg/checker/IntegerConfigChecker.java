@@ -7,7 +7,7 @@ import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
 /**
  * 整数检查器。
  * <p> 如果指定的值是整数，且处于指定的范围之内，则能够通过值检查器。
- * @author  DwArFeng
+ * @author DwArFeng
  * @since 0.0.2-beta
  */
 public class IntegerConfigChecker implements ConfigChecker {

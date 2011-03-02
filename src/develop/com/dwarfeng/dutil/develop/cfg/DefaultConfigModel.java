@@ -1,5 +1,7 @@
 package com.dwarfeng.dutil.develop.cfg;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -12,22 +14,22 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 
 /**
  * 默认配置模型。
- * @author  DwArFeng
+ * @author DwArFeng
  * @since 0.0.2-beta
  */
 public class DefaultConfigModel extends AbstractConfigModel {
 
 	/**配置模型的当前值映射*/
-	protected final Map<ConfigKey, String> currentValueMap = new HashMap<>();
+	protected final Map<ConfigKey, String> currentValueMap;
 	
 	/**配置模型的固定属性映射*/
-	protected final Map<ConfigKey, ConfigFirmProps> firmPropsMap = new HashMap<>();
+	protected final Map<ConfigKey, ConfigFirmProps> firmPropsMap;
 	
 	/**
 	 * 生成一个默认的，不包含任何配置条目的默认配置模型。
 	 */
 	public DefaultConfigModel() {
-		this(new ConfigEntry[0]);
+		this(new ArrayList<>(), new HashMap<>(), new HashMap<>());
 	}
 	
 	/**
@@ -38,16 +40,7 @@ public class DefaultConfigModel extends AbstractConfigModel {
 	 * @throws IllegalArgumentException 配置入口集合中至少一个入口无效。
 	 */
 	public DefaultConfigModel(ConfigEntry[] configEntries){
-		Objects.requireNonNull(configEntries, DwarfUtil.getStringField(StringFieldKey.DefaultConfigModel_0));
-		
-		for(ConfigEntry configEntry : configEntries){
-			if(ConfigUtil.nonValid(configEntry)){
-				throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.DefaultConfigModel_2));
-			}
-		}
-		for(ConfigEntry configEntry : configEntries){
-			firmPropsMap.put(configEntry.getConfigKey(), configEntry.getConfigFirmProps());
-		}
+		this(Arrays.asList(configEntries), new HashMap<>(), new HashMap<>());
 	}
 	
 	/**
@@ -57,8 +50,18 @@ public class DefaultConfigModel extends AbstractConfigModel {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public DefaultConfigModel(Collection<ConfigEntry> configEntries) {
+		this(configEntries, new HashMap<>(), new HashMap<>());
+	}
+	
+	public DefaultConfigModel(Collection<ConfigEntry> configEntries, Map<ConfigKey, String> currentValueMap, 
+			Map<ConfigKey, ConfigFirmProps> firmPropsMap){
 		Objects.requireNonNull(configEntries, DwarfUtil.getStringField(StringFieldKey.DefaultConfigModel_0));
+		Objects.requireNonNull(currentValueMap, DwarfUtil.getStringField(StringFieldKey.DefaultConfigModel_4));
+		Objects.requireNonNull(firmPropsMap, DwarfUtil.getStringField(StringFieldKey.DefaultConfigModel_5));
 
+		this.currentValueMap = currentValueMap;
+		this.firmPropsMap = firmPropsMap;
+		
 		for(ConfigEntry configEntry : configEntries){
 			if(ConfigUtil.nonValid(configEntry)){
 				throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.DefaultConfigModel_2));
@@ -287,8 +290,6 @@ public class DefaultConfigModel extends AbstractConfigModel {
 		
 		ConfigFirmProps oldOne = firmPropsMap.get(configKey);
 		
-		if(oldOne != null && oldOne.equals(configFirmProps)) return false;
-		
 		firmPropsMap.put(configKey, configFirmProps);
 		
 		fireConfigFirmPropsChanged(configKey, oldOne, configFirmProps);
@@ -315,10 +316,6 @@ public class DefaultConfigModel extends AbstractConfigModel {
 		if(! containsKey(configKey)) return false;
 		
 		String oldOne = currentValueMap.get(configKey);
-		
-		if(oldOne == currentValue || (oldOne != null && oldOne.equals(currentValue))){
-			return false;
-		}
 		
 		currentValueMap.put(configKey, currentValue);
 		

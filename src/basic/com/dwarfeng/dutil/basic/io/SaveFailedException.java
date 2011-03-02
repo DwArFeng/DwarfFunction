@@ -1,11 +1,13 @@
 package com.dwarfeng.dutil.basic.io;
 
+import com.dwarfeng.dutil.basic.prog.ProcessFailedException;
+
 /**
  * ±£¥Ê ß∞‹“Ï≥£°£
- * @author  DwArFeng
+ * @author DwArFeng
  * @since 0.0.2-beta
  */
-public class SaveFailedException extends Exception {
+public class SaveFailedException extends ProcessFailedException {
 	
 	private static final long serialVersionUID = 6937158291009825017L;
 

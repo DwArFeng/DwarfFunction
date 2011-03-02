@@ -36,7 +36,7 @@ public final class DwarfUtil {
 	private static final String SF_PATH = "com/dwarfeng/dutil/resource/lang/stringField";
 	
 	private static final Version version = new DefaultVersion.Builder()
-			.type(VersionType.BETA).firstVersion((byte) 0).secondVersion((byte) 0).thirdVersion((byte) 3)
+			.type(VersionType.BETA).firstVersion((byte) 0).secondVersion((byte) 1).thirdVersion((byte) 0)
 			.buildDate("20170128").buildVersion('A')
 			.build();
 	

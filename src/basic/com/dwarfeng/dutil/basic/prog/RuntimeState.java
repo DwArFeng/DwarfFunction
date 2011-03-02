@@ -3,7 +3,7 @@ package com.dwarfeng.dutil.basic.prog;
 /**
  * 运行时状态。
  * <p> 指示程序的运行状态的枚举。
- * @author  DwArFeng
+ * @author DwArFeng
  * @since 0.0.3-beta
  */
 public enum RuntimeState {

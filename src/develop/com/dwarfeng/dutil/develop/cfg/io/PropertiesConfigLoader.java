@@ -26,7 +26,7 @@ import com.dwarfeng.dutil.develop.cfg.ConfigModel;
  * 		</code>
  * </blockquote>
  * 其中 等号左边的是键，等号右边的是值。
- * @author  DwArFeng
+ * @author DwArFeng
  * @since 0.0.2-beta
  */
 public class PropertiesConfigLoader extends StreamConfigLoader implements ConfigLoader {

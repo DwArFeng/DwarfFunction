@@ -8,7 +8,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 /**
  * 默认配置固定属性。
  * <p> 配置固定属性接口的默认实现。
- * @author  DwArFeng
+ * @author DwArFeng
  * @since 0.0.2-beta
  */
 public class DefaultConfigFirmProps implements ConfigFirmProps {

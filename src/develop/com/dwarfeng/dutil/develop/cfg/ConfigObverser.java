@@ -4,7 +4,7 @@ import com.dwarfeng.dutil.basic.prog.Obverser;
 
 /**
  * ≈‰÷√π€≤Ï∆˜°£
- * @author  DwArFeng
+ * @author DwArFeng
  * @since 0.0.2-beta
  */
 public interface ConfigObverser extends Obverser {

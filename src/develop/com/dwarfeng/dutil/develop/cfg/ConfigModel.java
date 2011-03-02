@@ -9,7 +9,7 @@ import com.dwarfeng.dutil.basic.prog.ObverserSet;
 /**
  * ≈‰÷√ƒ£–Õ°£
  * 
- * @author  DwArFeng
+ * @author DwArFeng
  * @since 0.0.2-beta
  */
 public interface ConfigModel extends ObverserSet<ConfigObverser>{
