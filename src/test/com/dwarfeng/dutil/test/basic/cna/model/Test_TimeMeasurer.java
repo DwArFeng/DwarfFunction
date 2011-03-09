@@ -1,4 +1,4 @@
-package com.dwarfeng.dutil.test.basic;
+package com.dwarfeng.dutil.test.basic.cna.model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;

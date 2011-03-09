@@ -1,4 +1,4 @@
-package com.dwarfeng.dutil.test.basic;
+package com.dwarfeng.dutil.test.basic.cna.model;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,45 +13,90 @@ import org.junit.Test;
 import com.dwarfeng.dutil.basic.cna.model.AbstractListModel;
 import com.dwarfeng.dutil.basic.cna.model.obv.ListAdapter;
 
-public class AbstractListModelTest extends AbstractListModel<String>{
-	
+/**
+ * 测试抽象列表模型。
+ * 
+ * @author DwArFeng
+ * @since 0.1.0-beta
+ */
+public class Test_AbstractListModel extends AbstractListModel<String> {
+
 	private final InnderListObverser obverser = new InnderListObverser();
-	
-	public AbstractListModelTest() {
+
+	public Test_AbstractListModel() {
 		super();
-		//super(new HashSet<>());
+		// super(new HashSet<>());
 	}
-	
+
 	@Before
-	public void reset(){
+	public void reset() {
 		clearObverser();
-		addObverser(obverser);
 	}
-	
+
+	/*
+	 * 测试观察器的操作。
+	 */
+	@Test
+	public void test_obverserOpeartion() {
+		ListAdapter<String> obv1 = new ListAdapter<String>() {
+		};
+		ListAdapter<String> obv2 = new ListAdapter<String>() {
+		};
+		addObverser(obv1);
+		addObverser(obv1);
+		addObverser(obv1);
+		addObverser(obv1);
+		addObverser(obv1);
+		assertEquals(1, getObversers().size());
+		addObverser(obv2);
+		addObverser(obv2);
+		assertEquals(2, getObversers().size());
+		removeObverser(obv1);
+		assertEquals(false, getObversers().contains(obv1));
+		assertEquals(1, getObversers().size());
+		clearObverser();
+		assertEquals(0, getObversers().size());
+	}
+
+	/*
+	 * 测试添加通知。
+	 */
 	@Test
 	public void test_fireAdded() {
+		addObverser(obverser);
 		fireAdded(0, "");
 		assertEquals("added", obverser.str);
 	}
-	
+
+	/*
+	 * 测试移除通知。
+	 */
 	@Test
-	public void test_fireRemoved(){
+	public void test_fireRemoved() {
+		addObverser(obverser);
 		fireRemoved(0, "");
 		assertEquals("removed", obverser.str);
 	}
-	
+
+	/*
+	 * 测试改变通知。
+	 */
 	@Test
-	public void test_fireChanged(){
+	public void test_fireChanged() {
+		addObverser(obverser);
 		fireChanged(0, "", "");
 		assertEquals("changed", obverser.str);
 	}
-	
+
+	/*
+	 * 测试清除通知。
+	 */
 	@Test
-	public void test_fireCleared(){
+	public void test_fireCleared() {
+		addObverser(obverser);
 		fireCleared();
 		assertEquals("cleared", obverser.str);
 	}
-	
 
 	@Override
 	public int size() {
@@ -134,7 +179,7 @@ public class AbstractListModelTest extends AbstractListModel<String>{
 	@Override
 	public void clear() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -152,7 +197,7 @@ public class AbstractListModelTest extends AbstractListModel<String>{
 	@Override
 	public void add(int index, String element) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -191,30 +236,30 @@ public class AbstractListModelTest extends AbstractListModel<String>{
 		return null;
 	}
 
-	public final class InnderListObverser extends ListAdapter<String>{
-		
+	public final class InnderListObverser extends ListAdapter<String> {
+
 		public String str = null;
-		
+
 		@Override
 		public void fireAdded(int index, String element) {
 			str = "added";
 		}
-	
+
 		@Override
 		public void fireRemoved(int index, String element) {
 			str = "removed";
 		}
-	
+
 		@Override
 		public void fireChanged(int index, String oldElement, String newElement) {
 			str = "changed";
 		}
-	
+
 		@Override
 		public void fireCleared() {
 			str = "cleared";
 		}
-		
+
 	}
 
 }

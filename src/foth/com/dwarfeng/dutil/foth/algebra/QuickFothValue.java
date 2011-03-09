@@ -53,7 +53,7 @@ public class QuickFothValue extends AbstractMathObject implements FothValue {
 	 */
 	@Override
 	public String getMathName() {
-		return DwarfUtil.getStringField(StringFieldKey.Algebra_RealNumber);
+		return DwarfUtil.getStringField(StringFieldKey.ALGEBRA_REALNUMBER);
 	}
 
 	/*

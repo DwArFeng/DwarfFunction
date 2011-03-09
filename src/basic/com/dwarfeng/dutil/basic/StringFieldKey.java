@@ -74,16 +74,16 @@ public enum StringFieldKey implements Name {
 	ARRAYUTIL_2(new DefaultName("ArrayUtil.2")),
 
 	/** FothAlgebraUtill类第0号文本字段 */
-	FothAlgebraUtil_0(new DefaultName("FothAlgebraUtil.0")),
+	FOTHALGEBRAUTIL_0(new DefaultName("FothAlgebraUtil.0")),
 	/** FothAlgebraUtill类第1号文本字段 */
-	FothAlgebraUtil_1(new DefaultName("FothAlgebraUtil.1")),
+	FOTHALGEBRAUTIL_1(new DefaultName("FothAlgebraUtil.1")),
 	/** FothAlgebraUtill类第2号文本字段 */
-	FothAlgebraUtil_2(new DefaultName("FothAlgebraUtil.2")),
+	FOTHALGEBRAUTIL_2(new DefaultName("FothAlgebraUtil.2")),
 
 	/** Algebra包RealNumber字段 */
-	Algebra_RealNumber(new DefaultName("Algebra_RealNumber")),
+	ALGEBRA_REALNUMBER(new DefaultName("Algebra_RealNumber")),
 	/** Algebra包Variable字段 */
-	Algebra_Variable(new DefaultName("Algebra_Variable")),
+	ALGEBRA_VARIABLE(new DefaultName("Algebra_Variable")),
 	/** Algebra包VariableSpace字段 */
 	Algebra_VariableSpace(new DefaultName("Algebra_VariableSpace")),
 
@@ -381,7 +381,15 @@ public enum StringFieldKey implements Name {
 
 	/** AbstractKeySetModel类第0号文本字段 */
 	ABSTRACTKEYSETMODEL_0(new DefaultName("AbstractKeySetModel.0")),
-	
+
+	/** ModelUtil类第0号文本字段 */
+	MODELUTIL_0(new DefaultName("ModelUtil.0")),
+	/** ModelUtil类第1号文本字段 */
+	MODELUTIL_1(new DefaultName("ModelUtil.1")),
+	/** ModelUtil类第2号文本字段 */
+	MODELUTIL_2(new DefaultName("ModelUtil.2")),
+	/** ModelUtil类第3号文本字段 */
+	MODELUTIL_3(new DefaultName("ModelUtil.3")),
 	;
 
 	private final Name name;
@@ -390,6 +398,11 @@ public enum StringFieldKey implements Name {
 		this.name = name;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.dwarfeng.dutil.basic.str.Name#getName()
+	 */
 	@Override
 	public String getName() {
 		return name.getName();

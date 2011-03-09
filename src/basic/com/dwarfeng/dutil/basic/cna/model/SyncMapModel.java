@@ -12,6 +12,7 @@ import com.dwarfeng.dutil.basic.threads.ExternalReadWriteThreadSafe;
  * 比如使用 {@link #keySet()}方法进行遍历。实例代码如下：
  * 
  * <pre>
+ * 
  * static void inspect(SyncListModel&lt;Object, Object&gt; model) {
  * 	model.getLock().readLock().lock();
  * 	try {
