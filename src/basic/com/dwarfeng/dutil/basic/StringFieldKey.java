@@ -390,6 +390,8 @@ public enum StringFieldKey implements Name {
 	MODELUTIL_2(new DefaultName("ModelUtil.2")),
 	/** ModelUtil类第3号文本字段 */
 	MODELUTIL_3(new DefaultName("ModelUtil.3")),
+	/** ModelUtil类第4号文本字段 */
+	MODELUTIL_4(new DefaultName("ModelUtil.4")),
 	;
 
 	private final Name name;
