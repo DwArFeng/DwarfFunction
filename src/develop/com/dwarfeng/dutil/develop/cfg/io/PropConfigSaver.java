@@ -15,27 +15,28 @@ import com.dwarfeng.dutil.develop.cfg.ConfigModel;
 
 /**
  * Properties 配置保存器。
- * <p> 该配置保存器假设待保存的文件格式符合 java 的 properties 文件格式。比如
- * <blockquote>
- * 		<code>
+ * <p>
+ * 该配置保存器假设待保存的文件格式符合 java 的 properties 文件格式。比如 <blockquote> <code>
  * 			# 注释...<br>
  * 			Config_0 = TURE<br>
  * 			Config_1 = FALSE<br>
  * 			Config_2 = 12.450
- * 		</code>
- * </blockquote>
- * 其中 等号左边的是键，等号右边的是值。
+ * 		</code> </blockquote> 其中 等号左边的是键，等号右边的是值。
+ * 
  * @author DwArFeng
  * @since 0.0.3-beta
  */
 public class PropConfigSaver extends StreamSaver<ConfigModel> {
 
 	private boolean flag = true;
-	
+
 	/**
 	 * 生成一个新的 Properties 配置保存器。
-	 * @param out 指定的输出流。
-	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 * 
+	 * @param out
+	 *            指定的输出流。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
 	 */
 	public PropConfigSaver(OutputStream out) {
 		super(out);
@@ -43,16 +44,20 @@ public class PropConfigSaver extends StreamSaver<ConfigModel> {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.dwarfeng.dutil.basic.prog.Saver#save(java.lang.Object)
 	 */
 	@Override
 	public void save(ConfigModel configModel) throws SaveFailedException {
-		if(flag){flag = false;} else{
-			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.PropertiesConfigSaver_1));}
+		if (flag) {
+			flag = false;
+		} else {
+			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.PropertiesConfigSaver_1));
+		}
 		Objects.requireNonNull(configModel, DwarfUtil.getStringField(StringFieldKey.PropertiesConfigSaver_0));
-		
+
 		Properties properties = new Properties();
-		for(ConfigKey configKey : configModel.keySet()){
+		for (ConfigKey configKey : configModel.keySet()) {
 			properties.setProperty(configKey.getName(), configModel.getCurrentValue(configKey));
 		}
 		try {
@@ -64,18 +69,22 @@ public class PropConfigSaver extends StreamSaver<ConfigModel> {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.dwarfeng.dutil.basic.io.Saver#countinuousSave(java.lang.Object)
 	 */
 	@Override
 	public Set<SaveFailedException> countinuousSave(ConfigModel configModel) throws IllegalStateException {
-		if(flag){flag = false;} else{
-			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.PropertiesConfigSaver_1));}
+		if (flag) {
+			flag = false;
+		} else {
+			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.PropertiesConfigSaver_1));
+		}
 		Objects.requireNonNull(configModel, DwarfUtil.getStringField(StringFieldKey.PropertiesConfigSaver_0));
 
 		final Set<SaveFailedException> exceptions = new HashSet<>();
-		
+
 		Properties properties = new Properties();
-		for(ConfigKey configKey : configModel.keySet()){
+		for (ConfigKey configKey : configModel.keySet()) {
 			properties.setProperty(configKey.getName(), configModel.getCurrentValue(configKey));
 		}
 		try {
@@ -83,7 +92,7 @@ public class PropConfigSaver extends StreamSaver<ConfigModel> {
 		} catch (Exception e) {
 			exceptions.add(new SaveFailedException(e.getMessage(), e.getCause()));
 		}
-		
+
 		return exceptions;
 	}
 

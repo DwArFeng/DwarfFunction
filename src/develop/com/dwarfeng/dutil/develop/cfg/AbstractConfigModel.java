@@ -7,16 +7,18 @@ import java.util.WeakHashMap;
 
 /**
  * 抽象配置模型实现。
+ * 
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public abstract class AbstractConfigModel implements ConfigModel {
-	
-	/**观察器集合*/
+
+	/** 观察器集合 */
 	protected final Set<ConfigObverser> obversers = Collections.newSetFromMap(new WeakHashMap<>());
-	
+
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
 	 */
 	@Override
@@ -26,17 +28,24 @@ public abstract class AbstractConfigModel implements ConfigModel {
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.dutil.basic.prog.Obverser)
+	 * 
+	 * @see
+	 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.dutil.
+	 * basic.prog.Obverser)
 	 */
 	@Override
 	public boolean addObverser(ConfigObverser obverser) {
-		if(Objects.isNull(obverser)) return false;
+		if (Objects.isNull(obverser))
+			return false;
 		return obversers.add(obverser);
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng.dutil.basic.prog.Obverser)
+	 * 
+	 * @see
+	 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng.
+	 * dutil.basic.prog.Obverser)
 	 */
 	@Override
 	public boolean removeObverser(ConfigObverser obverser) {
@@ -45,6 +54,7 @@ public abstract class AbstractConfigModel implements ConfigModel {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
 	 */
 	@Override

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -14,6 +15,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 
 /**
  * 默认配置模型。
+ * <p> 配置模型的默认实现。
  * 
  * @author DwArFeng
  * @since 0.0.2-beta
@@ -63,6 +65,24 @@ public class DefaultConfigModel extends AbstractConfigModel {
 		this(configEntries, new HashMap<>(), new HashMap<>());
 	}
 
+	/**
+	 * 生成一个由指定的配置条目，指定的当前值映射代理，指定的固定属性映射代理组合成的默认配置模型。
+	 * <p>
+	 * 映射代理决定了配置以何种形式存储，如指定代理为 {@link LinkedHashMap}就可以保证配置模型拥有固定的迭代顺序。
+	 * <p>
+	 * 需要注意的是，入口的代理映射应该是空的，如果映射代理是非空的，那它们会在存储配置数据之前先清空。
+	 * 
+	 * @param configEntries
+	 *            指定的配置条目集合。
+	 * @param currentValueMap
+	 *            指定的当前值映射代理。
+	 * @param firmPropsMap
+	 *            指定的固定属性映射代理。
+	 * @throws NullPointerException
+	 *             入口参数 为 <code>null</code>。
+	 * @throws IllegalArgumentException
+	 *             至少一个配置入口无效。
+	 */
 	public DefaultConfigModel(Collection<ConfigEntry> configEntries, Map<ConfigKey, String> currentValueMap,
 			Map<ConfigKey, ConfigFirmProps> firmPropsMap) {
 		Objects.requireNonNull(configEntries, DwarfUtil.getStringField(StringFieldKey.DefaultConfigModel_0));

@@ -96,3 +96,10 @@ Beta_0.1.0
 	新增 dutil.basic.prog.ElementWithKey 接口，该接口指示实现此接口的类拥有一个可辨识的主键。
 	新增 dutil.basic.str.DefaultName 类，为 dutil.basic.str.Name 接口的默认实现。
 	新增 dutil.test 包，用于存储调试用的代码，该包不在 release 版本发布。
+	对 dutil.develop.cfg 包进行了重大升级
+		引入 Exconfig 架构，对配置模型的处理能力进行了一次升级：
+			该架构下的配置模型 ExconfigModel 可以将配置的有效值直接转化为用户需要的格式。
+		新增 dutil.develop.cfg.ExconfigModel
+		新增 dutil.develop.cfg.struct 包
+			新增 dutil.develop.cfg.ExconfigEntry
+			新增 dutil.develop.cfg.ValueParser

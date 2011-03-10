@@ -5,14 +5,19 @@ import java.util.Map;
 import java.util.Set;
 
 import com.dwarfeng.dutil.basic.prog.ObverserSet;
+import com.dwarfeng.dutil.develop.cfg.obv.ExconfigObverser;
+import com.dwarfeng.dutil.develop.cfg.struct.ExconfigEntry;
+import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
 /**
- * 配置模型。
+ * Ex配置模型。
+ * <p>
+ * 该配置模型与 {@link ConfigModel} 相比， 增加了对指定的配置键对应的值直接解析的支持。 同时， 模型的入口将更加的合理。
  * 
  * @author DwArFeng
- * @since 0.0.2-beta
+ * @since 0.1.0-beta
  */
-public interface ConfigModel extends ObverserSet<ConfigObverser> {
+public interface ExconfigModel extends ObverserSet<ExconfigObverser> {
 
 	/**
 	 * 清空配置模型中的所有记录（可选操作）。
@@ -65,24 +70,26 @@ public interface ConfigModel extends ObverserSet<ConfigObverser> {
 	/**
 	 * 向该模型中添加指定的配置入口（可选操作）。
 	 * <p>
-	 * 当指定的配置入口不为 <code>null</code>且该配置入口中的配置键不存在于该模型时，可进行添加操作; 否则不进行任何操作。
+	 * 当指定的配置入口不为 <code>null</code>，且入口中的所有值都不为
+	 * <code>null</code>并有效，且该配置入口中的配置键不存在于该模型时，可进行添加操作; 否则不进行任何操作。
 	 * 
-	 * @param configEntry
+	 * @param exconfigEntry
 	 *            指定的配置入口。
 	 * @return 该操作是否对模型产生了变更。
 	 * @throws UnsupportedOperationException
 	 *             如果配置模型不支持该操作。
 	 */
-	public boolean add(ConfigEntry configEntry);
+	public boolean add(ExconfigEntry exconfigEntry);
 
 	/**
 	 * 向该模型中添加指定的配置入口（可选操作）。
 	 * <p>
-	 * 当指定的配置入口不为 <code>null</code>且该配置入口中的配置键不存在于该模型时，可进行添加操作; 否则不进行任何操作。
+	 * 当指定的配置入口不为 <code>null</code>，且入口中的所有值都不为
+	 * <code>null</code>并有效且该配置入口中的配置键不存在于该模型时，可进行添加操作; 否则不进行任何操作。
 	 * <p>
 	 * 该方法会试图添加 Collection 中所有的配置入口。
 	 * 
-	 * @param configEntries
+	 * @param exconfigEntries
 	 *            指定的配置入口 Collection 。
 	 * @return 该操作是否对模型产生了变更。
 	 * @throws UnsupportedOperationException
@@ -90,7 +97,7 @@ public interface ConfigModel extends ObverserSet<ConfigObverser> {
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public boolean addAll(Collection<ConfigEntry> configEntries);
+	public boolean addAll(Collection<ExconfigEntry> exconfigEntries);
 
 	/**
 	 * 移除该模型中指定的配置键（可选操作）。
@@ -246,4 +253,84 @@ public interface ConfigModel extends ObverserSet<ConfigObverser> {
 	 */
 	public boolean resetAllCurrentValue();
 
+	/**
+	 * 获取配置模型中的值解析器。
+	 * <p>
+	 * 如果配置模型中不存在指定的配置键或者入口配置键为 <code>null</code>，则返回 <code>null</code>。
+	 * 
+	 * @param configKey
+	 *            指定的配置键。
+	 * @return 指定的配置键对应的值解析器。
+	 */
+	public ValueParser getValueParser(ConfigKey configKey);
+
+	/**
+	 * 设置模型中指定配置键的值解析器（可选操作）。
+	 * <p>
+	 * 当指定的配置键为 <code>null</code>，或指定的配置键不存在于当前的模型时，不进行任何操作。 <br>
+	 * 当指定的 valueParser 为 <code>null</code>时，不进行任何操作。
+	 * 
+	 * @param configKey
+	 *            指定的配置键。
+	 * @param valueParser
+	 *            指定的值解析器。
+	 * @return 该操作是否对模型造成了改变。
+	 */
+	public boolean setValueParser(ConfigKey configKey, ValueParser valueParser);
+
+	/**
+	 * 获取模型中指定配置键的对应的有效值的解析值。
+	 * 
+	 * @param configKey
+	 *            指定配置键。
+	 * @return 指定的配置键对应的有效值的解析值。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public Object getParsedValue(ConfigKey configKey);
+
+	/**
+	 * 获取模型中指定配置键的对应的默认值的解析值。
+	 * 
+	 * @param configKey
+	 *            指定的配置键。
+	 * @return 指定的配置键对应的默认值的解析值。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public Object getParsedDefaultValue(ConfigKey configKey);
+
+	/**
+	 * 获取模型中指定配置键的对应的有效值的解析值。
+	 * <p>
+	 * 该解析值将被转换为指定的类型。
+	 * 
+	 * @param configKey
+	 *            指定的配置键。
+	 * @param clas
+	 *            指定的类型。
+	 * @return 被转换成指定类型的指定的配置键对应的有效值的解析值。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 * @throws ClassCastException
+	 *             类型转换异常。
+	 */
+	public <T> T getParsedValue(ConfigKey configKey, Class<T> clas);
+
+	/**
+	 * 获取模型中指定配置键的对应的默认值的解析值。
+	 * <p>
+	 * 该解析值江北转换为指定的类型。
+	 * 
+	 * @param configKey
+	 *            指定的配置键。
+	 * @param clas
+	 *            指定的类型。
+	 * @return 被转换成指定类型的指定配置键对应的默认值的解析值。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 * @throws ClassCastException
+	 *             类型转换异常。
+	 */
+	public <T> T getParsedDefaultValue(ConfigKey configKey, Class<T> clas);
 }
