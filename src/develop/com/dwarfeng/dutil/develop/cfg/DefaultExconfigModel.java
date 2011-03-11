@@ -167,41 +167,78 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#clear()
 	 */
 	@Override
 	public void clear() {
-		
+		delegate.clear();
+		fireConfigKeyCleared();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#containsKey(com.dwarfeng.
+	 * dutil.develop.cfg.ConfigKey)
+	 */
 	@Override
 	public boolean containsKey(ConfigKey configKey) {
-		// TODO Auto-generated method stub
-		return false;
+		return delegate.containsKey(configKey);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#getCurrentValue(com.dwarfeng
+	 * .dutil.develop.cfg.ConfigKey)
+	 */
 	@Override
 	public String getCurrentValue(ConfigKey configKey) {
-		// TODO Auto-generated method stub
-		return null;
+		return delegate.get(configKey).getCurrentValue();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#isEmpty()
+	 */
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return delegate.isEmpty();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#keySet()
+	 */
 	@Override
 	public Set<ConfigKey> keySet() {
-		// TODO Auto-generated method stub
-		return null;
+		return delegate.keySet();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#add(com.dwarfeng.dutil.
+	 * develop.cfg.struct.ExconfigEntry)
+	 */
 	@Override
 	public boolean add(ExconfigEntry exconfigEntry) {
-		// TODO Auto-generated method stub
-		return false;
+		if (Objects.isNull(exconfigEntry))
+			return false;
+		if (ConfigUtil.nonValid(exconfigEntry))
+			return false;
+		if (delegate.containsKey(exconfigEntry))
+			return false;
+		delegate.put(exconfigEntry.getConfigKey(), new ExconfigBean(exconfigEntry.getConfigFirmProps(),
+				exconfigEntry.getCurrentValue(), exconfigEntry.getValueParser()));
+		fireConfigKeyAdded(exconfigEntry.getConfigKey(), exconfigEntry.getConfigFirmProps(),
+				exconfigEntry.getValueParser(), exconfigEntry.getCurrentValue());
+		return true;
 	}
 
 	@Override

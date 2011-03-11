@@ -7,86 +7,107 @@ import java.util.Set;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.develop.cfg.struct.ExconfigEntry;
 
 /**
  * 有关于配置包的一些常用方法。
+ * 
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public final class ConfigUtil {
-	
+
 	/**
 	 * 判断指定的配置固定属性是否有效。
-	 * <p> 当指定的配置固定属性不为 <code>null</code>，并且其中的配置值检查器不为 <code>null</code>，
+	 * <p>
+	 * 当指定的配置固定属性不为 <code>null</code>，并且其中的配置值检查器不为 <code>null</code>，
 	 * 且其默认值能通过配置值检查器时，认为指定的配置固定属性有效。
-	 * @param configFirmProps 指定的配置固定属性。
+	 * 
+	 * @param configFirmProps
+	 *            指定的配置固定属性。
 	 * @return 指定的配置固定属性是否有效。
 	 */
-	public static boolean isValid(ConfigFirmProps configFirmProps){
-		if(Objects.isNull(configFirmProps)) return false;
-		if(Objects.isNull(configFirmProps.getConfigChecker())) return false;
-		if(Objects.isNull(configFirmProps.getDefaultValue())) return false;
-		
+	public static boolean isValid(ConfigFirmProps configFirmProps) {
+		if (Objects.isNull(configFirmProps))
+			return false;
+		if (Objects.isNull(configFirmProps.getConfigChecker()))
+			return false;
+		if (Objects.isNull(configFirmProps.getDefaultValue()))
+			return false;
+
 		return configFirmProps.getConfigChecker().isValid(configFirmProps.getDefaultValue());
 	}
-	
+
 	/**
 	 * 判断指定的配置固定属性是否无效。
-	 * <p> 如果配置固定值不有效，则无效，即该方法等同于
-	 * <code> ! isValid(configFirmProps)</code>
-	 * @param configFirmProps 指定的配置固定属性。
+	 * <p>
+	 * 如果配置固定值不有效，则无效，即该方法等同于 <code> ! isValid(configFirmProps)</code>
+	 * 
+	 * @param configFirmProps
+	 *            指定的配置固定属性。
 	 * @return 指定的配置固定属性值是否无效。
 	 */
-	public static boolean nonValid(ConfigFirmProps configFirmProps){
-		return ! isValid(configFirmProps);
+	public static boolean nonValid(ConfigFirmProps configFirmProps) {
+		return !isValid(configFirmProps);
 	}
-	
+
 	/**
 	 * 判断指定的配置入口是否有效。
-	 * <p> 当指定的配置入口不为 <code>null</code>， 且其中的配置键不为 <code>null</code>，
+	 * <p>
+	 * 当指定的配置入口不为 <code>null</code>， 且其中的配置键不为 <code>null</code>，
 	 * 且其中的配置固定值有效时，认为指定的配置入口有效。
-	 * @param configEntry 指定的配置入口。
+	 * 
+	 * @param configEntry
+	 *            指定的配置入口。
 	 * @return 指定的配置入口是否有效。
 	 */
-	public static boolean isValid(ConfigEntry configEntry){
-		if(Objects.isNull(configEntry)) return false;
-		if(Objects.isNull(configEntry.getConfigKey())) return false;
-		
+	public static boolean isValid(ConfigEntry configEntry) {
+		if (Objects.isNull(configEntry))
+			return false;
+		if (Objects.isNull(configEntry.getConfigKey()))
+			return false;
+
 		return isValid(configEntry.getConfigFirmProps());
 	}
-	
+
 	/**
 	 * 判断指定的配置入口是否无效。
-	 * <p> 如果配置入口不有效，则无效，即该方法等同于
-	 * <code>！ isValid(configEntry)</code>
-	 * @param configEntry 指定的配置入口。
+	 * <p>
+	 * 如果配置入口不有效，则无效，即该方法等同于 <code>！ isValid(configEntry)</code>
+	 * 
+	 * @param configEntry
+	 *            指定的配置入口。
 	 * @return 指定的配置入口是否无效。
 	 */
-	public static boolean nonValid(ConfigEntry configEntry){
-		return ! isValid(configEntry);
+	public static boolean nonValid(ConfigEntry configEntry) {
+		return !isValid(configEntry);
 	}
-	
+
 	/**
 	 * 根据指定的配置模型生成一个不可更改的配置模型。
-	 * @param configModel 指定的配置模型。
+	 * 
+	 * @param configModel
+	 *            指定的配置模型。
 	 * @return 根据指定模型生成的不可更改的配置模型。
-	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
 	 */
-	public static ConfigModel unmodifiableConfigModel(ConfigModel configModel){
+	public static ConfigModel unmodifiableConfigModel(ConfigModel configModel) {
 		Objects.requireNonNull(configModel, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_0));
 		return new UnmodifiableConfigModel(configModel);
 	}
-	
-	private static final class UnmodifiableConfigModel implements ConfigModel{
-		
+
+	private static final class UnmodifiableConfigModel implements ConfigModel {
+
 		private final ConfigModel delegate;
-		
+
 		public UnmodifiableConfigModel(ConfigModel delegate) {
 			this.delegate = delegate;
 		}
 
 		/*
 		 * (non-Javadoc)
+		 * 
 		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
 		 */
 		@Override
@@ -96,7 +117,10 @@ public final class ConfigUtil {
 
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.dutil.basic.prog.Obverser)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
+		 * dutil.basic.prog.Obverser)
 		 */
 		@Override
 		public boolean addObverser(ConfigObverser obverser) {
@@ -105,7 +129,10 @@ public final class ConfigUtil {
 
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng.dutil.basic.prog.Obverser)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
+		 * .dutil.basic.prog.Obverser)
 		 */
 		@Override
 		public boolean removeObverser(ConfigObverser obverser) {
@@ -114,6 +141,7 @@ public final class ConfigUtil {
 
 		/*
 		 * (non-Javadoc)
+		 * 
 		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
 		 */
 		@Override
@@ -123,6 +151,7 @@ public final class ConfigUtil {
 
 		/*
 		 * (non-Javadoc)
+		 * 
 		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#clear()
 		 */
 		@Override
@@ -132,7 +161,10 @@ public final class ConfigUtil {
 
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#containsKey(com.dwarfeng.dutil.develop.cfg.ConfigKey)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ConfigModel#containsKey(com.dwarfeng.
+		 * dutil.develop.cfg.ConfigKey)
 		 */
 		@Override
 		public boolean containsKey(ConfigKey configKey) {
@@ -141,7 +173,9 @@ public final class ConfigUtil {
 
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#getCurrentValue(com.dwarfeng.dutil.develop.cfg.ConfigKey)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#getCurrentValue(com.
+		 * dwarfeng.dutil.develop.cfg.ConfigKey)
 		 */
 		@Override
 		public String getCurrentValue(ConfigKey configKey) {
@@ -150,6 +184,7 @@ public final class ConfigUtil {
 
 		/*
 		 * (non-Javadoc)
+		 * 
 		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#isEmpty()
 		 */
 		@Override
@@ -159,6 +194,7 @@ public final class ConfigUtil {
 
 		/*
 		 * (non-Javadoc)
+		 * 
 		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#keySet()
 		 */
 		@Override
@@ -168,7 +204,10 @@ public final class ConfigUtil {
 
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#add(com.dwarfeng.dutil.develop.cfg.ConfigEntry)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ConfigModel#add(com.dwarfeng.dutil.
+		 * develop.cfg.ConfigEntry)
 		 */
 		@Override
 		public boolean add(ConfigEntry configEntry) {
@@ -177,7 +216,9 @@ public final class ConfigUtil {
 
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#addAll(java.util.Collection)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#addAll(java.util.
+		 * Collection)
 		 */
 		@Override
 		public boolean addAll(Collection<ConfigEntry> configEntries) {
@@ -186,7 +227,10 @@ public final class ConfigUtil {
 
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#remove(com.dwarfeng.dutil.develop.cfg.ConfigKey)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ConfigModel#remove(com.dwarfeng.dutil.
+		 * develop.cfg.ConfigKey)
 		 */
 		@Override
 		public boolean remove(ConfigKey configKey) {
@@ -195,7 +239,9 @@ public final class ConfigUtil {
 
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#removeAll(java.util.Collection)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#removeAll(java.util.
+		 * Collection)
 		 */
 		@Override
 		public boolean removeAll(Collection<ConfigKey> configKeys) {
@@ -204,7 +250,9 @@ public final class ConfigUtil {
 
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#retainAll(java.util.Collection)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#retainAll(java.util.
+		 * Collection)
 		 */
 		@Override
 		public boolean retainAll(Collection<ConfigKey> configKeys) {
@@ -213,6 +261,7 @@ public final class ConfigUtil {
 
 		/*
 		 * (non-Javadoc)
+		 * 
 		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#size()
 		 */
 		@Override
@@ -222,7 +271,10 @@ public final class ConfigUtil {
 
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#isValueValid(com.dwarfeng.dutil.develop.cfg.ConfigKey, java.lang.String)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ConfigModel#isValueValid(com.dwarfeng.
+		 * dutil.develop.cfg.ConfigKey, java.lang.String)
 		 */
 		@Override
 		public boolean isValueValid(ConfigKey configKey, String value) {
@@ -231,7 +283,10 @@ public final class ConfigUtil {
 
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#getValidValue(com.dwarfeng.dutil.develop.cfg.ConfigKey)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ConfigModel#getValidValue(com.dwarfeng
+		 * .dutil.develop.cfg.ConfigKey)
 		 */
 		@Override
 		public String getValidValue(ConfigKey configKey) {
@@ -240,7 +295,10 @@ public final class ConfigUtil {
 
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#getConfigFirmProps(com.dwarfeng.dutil.develop.cfg.ConfigKey)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ConfigModel#getConfigFirmProps(com.
+		 * dwarfeng.dutil.develop.cfg.ConfigKey)
 		 */
 		@Override
 		public ConfigFirmProps getConfigFirmProps(ConfigKey configKey) {
@@ -249,7 +307,11 @@ public final class ConfigUtil {
 
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#setConfigFirmProps(com.dwarfeng.dutil.develop.cfg.ConfigKey, com.dwarfeng.dutil.develop.cfg.ConfigFirmProps)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ConfigModel#setConfigFirmProps(com.
+		 * dwarfeng.dutil.develop.cfg.ConfigKey,
+		 * com.dwarfeng.dutil.develop.cfg.ConfigFirmProps)
 		 */
 		@Override
 		public boolean setConfigFirmProps(ConfigKey configKey, ConfigFirmProps configFirmProps) {
@@ -258,7 +320,9 @@ public final class ConfigUtil {
 
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#setCurrentValue(com.dwarfeng.dutil.develop.cfg.ConfigKey, java.lang.String)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#setCurrentValue(com.
+		 * dwarfeng.dutil.develop.cfg.ConfigKey, java.lang.String)
 		 */
 		@Override
 		public boolean setCurrentValue(ConfigKey configKey, String currentValue) {
@@ -267,7 +331,10 @@ public final class ConfigUtil {
 
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#setAllCurrentValue(java.util.Map)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ConfigModel#setAllCurrentValue(java.
+		 * util.Map)
 		 */
 		@Override
 		public boolean setAllCurrentValue(Map<ConfigKey, String> map) {
@@ -276,7 +343,10 @@ public final class ConfigUtil {
 
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#resetCurrentValue(com.dwarfeng.dutil.develop.cfg.ConfigKey)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ConfigModel#resetCurrentValue(com.
+		 * dwarfeng.dutil.develop.cfg.ConfigKey)
 		 */
 		@Override
 		public boolean resetCurrentValue(ConfigKey configKey) {
@@ -285,18 +355,53 @@ public final class ConfigUtil {
 
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#resetAllCurrentValue()
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ConfigModel#resetAllCurrentValue()
 		 */
 		@Override
 		public boolean resetAllCurrentValue() {
 			return delegate.resetAllCurrentValue();
 		}
-		
+
 	}
-	
-	
-	
-	//禁止外部实例化。
-	private ConfigUtil(){}
+
+	/**
+	 * 判断指定的 Ex配置入口是不是有效的。
+	 * 
+	 * @param entry
+	 *            指定的配置入口。
+	 * @return 指定的配置入口是不是有效的。
+	 */
+	public static boolean isValid(ExconfigEntry entry) {
+		if (Objects.isNull(entry))
+			return false;
+		if (Objects.isNull(entry.getConfigKey()))
+			return false;
+		if (Objects.isNull(entry.getValueParser()))
+			return false;
+		if (Objects.isNull(entry.getConfigFirmProps()))
+			return false;
+		if (Objects.isNull(entry.getCurrentValue()))
+			return false;
+		if (nonValid(entry.getConfigFirmProps()))
+			return false;
+		return true;
+	}
+
+	/**
+	 * 判断指定的 Ex配置入口是不是无效的。
+	 * 
+	 * @param entry
+	 *            指定的配置入口
+	 * @return 指定的配置入口是不是无效的。
+	 */
+	public static boolean nonValid(ExconfigEntry entry) {
+		return !isValid(entry);
+	}
+
+	// 禁止外部实例化。
+	private ConfigUtil() {
+	}
 
 }

@@ -392,15 +392,14 @@ public enum StringFieldKey implements Name {
 	MODELUTIL_3(new DefaultName("ModelUtil.3")),
 	/** ModelUtil类第4号文本字段 */
 	MODELUTIL_4(new DefaultName("ModelUtil.4")),
-	
+
 	/** AbstractExconfigModel类第0号文本字段 */
 	ABSTRACTEXCONFIGMODEL_0(new DefaultName("AbstractExconfigModel.0")),
-	
+
 	/** DefaultExconfigModel类第0号文本字段 */
 	DEFAULTEXCONFIGMODEL_0(new DefaultName("DefaultExconfigModel.0")),
 	/** DefaultExconfigModel类第1号文本字段 */
-	DEFAULTEXCONFIGMODEL_1(new DefaultName("DefaultExconfigModel.1")),
-	;
+	DEFAULTEXCONFIGMODEL_1(new DefaultName("DefaultExconfigModel.1")),;
 
 	private final Name name;
 

@@ -8,6 +8,7 @@ import java.util.WeakHashMap;
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.develop.cfg.obv.ExconfigObverser;
+import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
 /**
  * 抽象 Ex配置模型。
@@ -87,10 +88,108 @@ public abstract class AbstractExconfigModel implements ExconfigModel {
 	public void clearObverser() {
 		obversers.clear();
 	}
-	
-	
-	protected void fireConfigKeyCleared(){
-		//TODO
+
+	/**
+	 * 通知配置模型中指定的配置键的当前值发生了改变。
+	 * 
+	 * @param configKey
+	 *            指定的配置键。
+	 * @param oldValue
+	 *            配置键的旧值。
+	 * @param newValue
+	 *            配置键的新值。
+	 * @param validValue
+	 *            配置键当前的有效值。
+	 */
+	protected void fireCurrentValueChanged(ConfigKey configKey, String oldValue, String newValue, String validValue) {
+		for (ExconfigObverser obverser : obversers) {
+			if (Objects.nonNull(obverser))
+				obverser.fireCurrentValueChanged(configKey, oldValue, newValue, validValue);
+		}
+	}
+
+	/**
+	 * 通知配置模型中的配置键进行了清除。
+	 */
+	protected void fireConfigKeyCleared() {
+		for (ExconfigObverser obverser : obversers) {
+			if (Objects.nonNull(obverser))
+				obverser.fireConfigKeyCleared();
+		}
+	}
+
+	/**
+	 * 通知配置模型中指定的配置键进行了移除。
+	 * 
+	 * @param configKey
+	 *            指定的配置键。
+	 * @param configFirmProps
+	 *            指定的配置键对应的固定属性。
+	 * @param valueParser
+	 *            指定的配置键对应的值解析器。
+	 * @param currentValue
+	 *            指定的配置键对应的当前值。
+	 */
+	protected void fireConfigKeyRemoved(ConfigKey configKey, ConfigFirmProps configFirmProps, ValueParser valueParser,
+			String currentValue) {
+		for (ExconfigObverser obverser : obversers) {
+			if (Objects.nonNull(obverser))
+				obverser.fireConfigKeyRemoved(configKey, configFirmProps, valueParser, currentValue);
+		}
+	}
+
+	/**
+	 * 通知配置模型中指定的配置键进行了添加。
+	 * 
+	 * @param configKey
+	 *            指定的配置键。
+	 * @param configFirmProps
+	 *            指定的配置键对应的固定属性。
+	 * @param valueParser
+	 *            指定的配置键对应的值解析器。
+	 * @param currentValue
+	 *            指定的配置键对应的当前值。
+	 */
+	protected void fireConfigKeyAdded(ConfigKey configKey, ConfigFirmProps configFirmProps, ValueParser valueParser,
+			String currentValue) {
+		for (ExconfigObverser obverser : obversers) {
+			if (Objects.nonNull(obverser))
+				obverser.fireConfigKeyAdded(configKey, configFirmProps, valueParser, currentValue);
+		}
+	}
+
+	/**
+	 * 通知配置模型中指定的配置键的固定属性发生了改变。
+	 * 
+	 * @param configKey
+	 *            指定的配置键。
+	 * @param oldValue
+	 *            指定配置键的旧的固定属性。
+	 * @param newValue
+	 *            指定的配置键的新的固定属性。
+	 */
+	protected void fireConfigFirmPropsChanged(ConfigKey configKey, ConfigFirmProps oldValue, ConfigFirmProps newValue) {
+		for (ExconfigObverser obverser : obversers) {
+			if (Objects.nonNull(obverser))
+				obverser.fireConfigFirmPropsChanged(configKey, oldValue, newValue);
+		}
+	}
+
+	/**
+	 * 通知配置模型中指定的配置键的值解析器发生了改变。
+	 * 
+	 * @param configKey
+	 *            指定的配置键。
+	 * @param oldValue
+	 *            指定的配置键对应的旧的值解析器。
+	 * @param newValue
+	 *            指定的配置键对应的新的值解析器。
+	 */
+	protected void fireValueParserChanged(ConfigKey configKey, ValueParser oldValue, ValueParser newValue) {
+		for (ExconfigObverser obverser : obversers) {
+			if (Objects.nonNull(obverser))
+				obverser.fireValueParserChanged(configKey, oldValue, newValue);
+		}
 	}
 
 }
