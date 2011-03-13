@@ -11,7 +11,7 @@ import com.dwarfeng.dutil.develop.cfg.parser.IntegerValueParser;
 import com.dwarfeng.dutil.develop.cfg.struct.ExconfigEntry;
 import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
-enum ExconfigEntries implements ExconfigEntry, ConfigEntry{
+public enum ExconfigEntries implements ExconfigEntry, ConfigEntry{
 	
 	//
 	FAIL_0(null, null, null, null, null),

@@ -1,10 +1,10 @@
 package com.dwarfeng.dutil.test.develop.cfg;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -13,11 +13,14 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
 import com.dwarfeng.dutil.develop.cfg.ConfigFirmProps;
 import com.dwarfeng.dutil.develop.cfg.ConfigKey;
 import com.dwarfeng.dutil.develop.cfg.DefaultExconfigModel;
 import com.dwarfeng.dutil.develop.cfg.ExconfigModel;
+import com.dwarfeng.dutil.develop.cfg.checker.BooleanConfigChecker;
 import com.dwarfeng.dutil.develop.cfg.obv.ExconfigObverser;
+import com.dwarfeng.dutil.develop.cfg.parser.BooleanValueParser;
 import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
 public class Test_DefaultExconfigModel {
@@ -284,7 +287,7 @@ public class Test_DefaultExconfigModel {
 	@Test
 	public final void testGetValidValue() {
 		model.addAll(Arrays.asList(ExconfigEntries.values()));
-		
+
 		assertEquals("12450", model.getValidValue(ExconfigEntries.SUCC_0.getConfigKey()));
 		assertEquals("false", model.getValidValue(ExconfigEntries.SUCC_1.getConfigKey()));
 		assertEquals("0", model.getValidValue(ExconfigEntries.SUCC_2.getConfigKey()));
@@ -300,82 +303,151 @@ public class Test_DefaultExconfigModel {
 		assertEquals("0", model.getConfigFirmProps(ExconfigEntries.SUCC_3.getConfigKey()).getDefaultValue());
 	}
 
-	@Ignore
 	@Test
 	public final void testSetConfigFirmProps() {
-		fail("Not yet implemented"); // TODO
+		model.addAll(Arrays.asList(ExconfigEntries.values()));
+		assertEquals(true, model.setConfigFirmProps(ExconfigEntries.SUCC_0.getConfigKey(), new ConfigFirmProps() {
+
+			final BooleanConfigChecker checker = new BooleanConfigChecker();
+			final String defaultValue = "true";
+
+			@Override
+			public String getDefaultValue() {
+				return defaultValue;
+			}
+
+			@Override
+			public ConfigChecker getConfigChecker() {
+				return checker;
+			}
+		}));
+		assertEquals(1, obv2.configFirmProps);
+		assertEquals(true, obv1.configFirmPropsChangedList.contains(ExconfigEntries.SUCC_0.getConfigKey()));
+		assertEquals("true", model.getConfigFirmProps(ExconfigEntries.SUCC_0.getConfigKey()).getDefaultValue());
+		assertEquals(false, model.setConfigFirmProps(ExconfigEntries.SUCC_1.getConfigKey(), new ConfigFirmProps() {
+
+			final BooleanConfigChecker checker = new BooleanConfigChecker();
+			final String defaultValue = "0";
+
+			@Override
+			public String getDefaultValue() {
+				return defaultValue;
+			}
+
+			@Override
+			public ConfigChecker getConfigChecker() {
+				return checker;
+			}
+		}));
+		assertEquals(1, obv2.configFirmProps);
+		assertEquals(false, obv1.configFirmPropsChangedList.contains(ExconfigEntries.SUCC_1.getConfigKey()));
 	}
 
-	@Ignore
 	@Test
 	public final void testSetCurrentValue() {
-		fail("Not yet implemented"); // TODO
+		model.addAll(Arrays.asList(ExconfigEntries.values()));
+		assertEquals(false, model.setCurrentValue(ExconfigEntries.FAIL_2.getConfigKey(), "foo"));
+		assertEquals(true, model.setCurrentValue(ExconfigEntries.SUCC_0.getConfigKey(), "foo"));
+		assertEquals(true, model.setCurrentValue(ExconfigEntries.SUCC_1.getConfigKey(), "foo"));
+		assertEquals(true, model.setCurrentValue(ExconfigEntries.SUCC_2.getConfigKey(), "foo"));
+		assertEquals(3, obv2.currentValueChanged);
+		assertEquals("foo", model.getCurrentValue(ExconfigEntries.SUCC_0.getConfigKey()));
+		assertEquals("foo", model.getCurrentValue(ExconfigEntries.SUCC_1.getConfigKey()));
+		assertEquals("foo", model.getCurrentValue(ExconfigEntries.SUCC_2.getConfigKey()));
+		assertEquals("NAN", model.getCurrentValue(ExconfigEntries.SUCC_3.getConfigKey()));
+		assertEquals(true, obv1.currentValueChangedList.contains(ExconfigEntries.SUCC_0.getConfigKey()));
+		assertEquals(true, obv1.currentValueChangedList.contains(ExconfigEntries.SUCC_1.getConfigKey()));
+		assertEquals(true, obv1.currentValueChangedList.contains(ExconfigEntries.SUCC_2.getConfigKey()));
+		assertEquals(false, obv1.currentValueChangedList.contains(ExconfigEntries.SUCC_3.getConfigKey()));
 	}
 
-	@Ignore
 	@Test
 	public final void testSetAllCurrentValue() {
-		fail("Not yet implemented"); // TODO
+		model.addAll(Arrays.asList(ExconfigEntries.values()));
+		Map<ConfigKey, String> map = new HashMap<>();
+
+		map.put(ExconfigEntries.FAIL_2.getConfigKey(), "foo");
+		assertEquals(false, model.setAllCurrentValue(map));
+		assertEquals(0, obv2.currentValueChanged);
+
+		map.put(ExconfigEntries.SUCC_0.getConfigKey(), "foo");
+		map.put(ExconfigEntries.SUCC_1.getConfigKey(), "foo");
+		map.put(ExconfigEntries.SUCC_2.getConfigKey(), "foo");
+		assertEquals(true, model.setAllCurrentValue(map));
+		assertEquals(3, obv2.currentValueChanged);
+		assertEquals("foo", model.getCurrentValue(ExconfigEntries.SUCC_0.getConfigKey()));
+		assertEquals("foo", model.getCurrentValue(ExconfigEntries.SUCC_1.getConfigKey()));
+		assertEquals("foo", model.getCurrentValue(ExconfigEntries.SUCC_2.getConfigKey()));
+		assertEquals("NAN", model.getCurrentValue(ExconfigEntries.SUCC_3.getConfigKey()));
+		assertEquals(true, obv1.currentValueChangedList.contains(ExconfigEntries.SUCC_0.getConfigKey()));
+		assertEquals(true, obv1.currentValueChangedList.contains(ExconfigEntries.SUCC_1.getConfigKey()));
+		assertEquals(true, obv1.currentValueChangedList.contains(ExconfigEntries.SUCC_2.getConfigKey()));
+		assertEquals(false, obv1.currentValueChangedList.contains(ExconfigEntries.SUCC_3.getConfigKey()));
 	}
 
-	@Ignore
 	@Test
 	public final void testResetCurrentValue() {
-		fail("Not yet implemented"); // TODO
+		model.addAll(Arrays.asList(ExconfigEntries.values()));
+		assertEquals(true, model.resetCurrentValue(ExconfigEntries.SUCC_0.getConfigKey()));
+		assertEquals(true, model.resetCurrentValue(ExconfigEntries.SUCC_1.getConfigKey()));
+		assertEquals(true, model.resetCurrentValue(ExconfigEntries.SUCC_2.getConfigKey()));
+		assertEquals(true, model.resetCurrentValue(ExconfigEntries.SUCC_3.getConfigKey()));
+		assertEquals(true, model.resetCurrentValue(ExconfigEntries.SUCC_0.getConfigKey()));
+		assertEquals("0", model.getCurrentValue(ExconfigEntries.SUCC_0.getConfigKey()));
+		assertEquals("true", model.getCurrentValue(ExconfigEntries.SUCC_1.getConfigKey()));
+		assertEquals("0", model.getCurrentValue(ExconfigEntries.SUCC_2.getConfigKey()));
+		assertEquals("0", model.getCurrentValue(ExconfigEntries.SUCC_3.getConfigKey()));
+		assertEquals(5, obv2.currentValueChanged);
 	}
 
-	@Ignore
 	@Test
 	public final void testResetAllCurrentValue() {
-		fail("Not yet implemented"); // TODO
+		model.addAll(Arrays.asList(ExconfigEntries.values()));
+		assertEquals(true, model.resetAllCurrentValue());
+		assertEquals("0", model.getCurrentValue(ExconfigEntries.SUCC_0.getConfigKey()));
+		assertEquals("true", model.getCurrentValue(ExconfigEntries.SUCC_1.getConfigKey()));
+		assertEquals("0", model.getCurrentValue(ExconfigEntries.SUCC_2.getConfigKey()));
+		assertEquals("0", model.getCurrentValue(ExconfigEntries.SUCC_3.getConfigKey()));
+		assertEquals(4, obv2.currentValueChanged);
 	}
 
-	@Ignore
 	@Test
 	public final void testGetValueParser() {
-		fail("Not yet implemented"); // TODO
+		model.addAll(Arrays.asList(ExconfigEntries.values()));
+		assertEquals(12450, model.getValueParser(ExconfigEntries.SUCC_0.getConfigKey()).parseValue("12450"));
+		assertEquals(false, model.getValueParser(ExconfigEntries.SUCC_1.getConfigKey()).parseValue("false"));
 	}
 
-	@Ignore
 	@Test
 	public final void testSetValueParser() {
-		fail("Not yet implemented"); // TODO
+		model.addAll(Arrays.asList(ExconfigEntries.values()));
+		assertEquals(true, model.setValueParser(ExconfigEntries.SUCC_0.getConfigKey(), new BooleanValueParser()));
+		assertEquals(true, model.setValueParser(ExconfigEntries.SUCC_0.getConfigKey(), new BooleanValueParser()));
+		assertEquals(2, obv2.valueParser);
+		assertEquals(false, model.getValueParser(ExconfigEntries.SUCC_0.getConfigKey()).parseValue("12450"));
+		assertEquals(false, model.getValueParser(ExconfigEntries.SUCC_0.getConfigKey()).parseValue("false"));
 	}
 
-	@Ignore
 	@Test
 	public final void testGetParsedValueConfigKey() {
-		fail("Not yet implemented"); // TODO
+		model.addAll(Arrays.asList(ExconfigEntries.values()));
+		assertEquals(12450, model.getParsedValue(ExconfigEntries.SUCC_0.getConfigKey()));
+		assertEquals(false, model.getParsedValue(ExconfigEntries.SUCC_1.getConfigKey()));
 	}
 
-	@Ignore
 	@Test
 	public final void testGetParsedValueConfigKeyClassOfT() {
-		fail("Not yet implemented"); // TODO
+		model.addAll(Arrays.asList(ExconfigEntries.values()));
+		assertEquals((Integer) 12450, model.getParsedValue(ExconfigEntries.SUCC_0.getConfigKey(), Integer.class));
+		assertEquals((Boolean) false, model.getParsedValue(ExconfigEntries.SUCC_1.getConfigKey(), Boolean.class));
 	}
 
-	@Ignore
-	@Test
-	public final void testGetObversers() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
-	@Test
-	public final void testAddObverser() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
 	@Test
 	public final void testRemoveObverser() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
-	@Test
-	public final void testClearObverser() {
-		fail("Not yet implemented"); // TODO
+		model.removeObverser(obv1);
+		model.addAll(Arrays.asList(ExconfigEntries.values()));
+		assertEquals(0, obv1.addedList.size());
+		assertEquals(4, obv2.added);
 	}
 
 }

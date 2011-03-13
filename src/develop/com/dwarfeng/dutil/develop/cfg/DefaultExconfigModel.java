@@ -393,6 +393,12 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 	 */
 	@Override
 	public String getValidValue(ConfigKey configKey) {
+		if (Objects.isNull(configKey))
+			return null;
+
+		if (!containsKey(configKey))
+			return null;
+
 		String defaultValue = getConfigFirmProps(configKey).getDefaultValue();
 		String currentValue = getCurrentValue(configKey);
 
@@ -489,6 +495,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 	 */
 	@Override
 	public boolean resetCurrentValue(ConfigKey configKey) {
+		if (Objects.isNull(configKey))
+			return false;
 		return setCurrentValue(configKey, getConfigFirmProps(configKey).getDefaultValue());
 	}
 

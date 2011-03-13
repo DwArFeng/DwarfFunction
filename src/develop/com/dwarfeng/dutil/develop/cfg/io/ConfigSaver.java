@@ -2,7 +2,6 @@ package com.dwarfeng.dutil.develop.cfg.io;
 
 import com.dwarfeng.dutil.basic.io.SaveFailedException;
 import com.dwarfeng.dutil.basic.prog.Saver;
-import com.dwarfeng.dutil.develop.cfg.ConfigModel;
 import com.dwarfeng.dutil.develop.cfg.CurrentValueContainer;
 
 /**

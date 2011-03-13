@@ -28,6 +28,7 @@ import com.dwarfeng.dutil.develop.cfg.CurrentValueContainer;
  * @author DwArFeng
  * @since 0.0.2-beta
  */
+@SuppressWarnings("unused")
 public class PropertiesConfigLoader extends StreamConfigLoader implements ConfigLoader {
 
 	/**
