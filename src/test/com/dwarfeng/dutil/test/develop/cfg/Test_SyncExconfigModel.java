@@ -15,7 +15,8 @@ import com.dwarfeng.dutil.develop.cfg.obv.ExconfigAdapter;
 
 public class Test_SyncExconfigModel {
 
-	private final SyncExconfigModel model = ConfigUtil.syncExconfigModel(new DefaultExconfigModel());
+	private final SyncExconfigModel<ExconfigAdapter> model = ConfigUtil
+			.syncExconfigModel(new DefaultExconfigModel<ExconfigAdapter>());
 
 	@Before
 	public void setUp() throws Exception {

@@ -87,7 +87,56 @@ public class DelegateListModel<E, O extends ListObverser<E>> extends AbstractLis
 	 */
 	@Override
 	public Iterator<E> iterator() {
-		return delegate.iterator();
+		return new InnerIterator(delegate.iterator());
+	}
+
+	private class InnerIterator implements Iterator<E> {
+
+		private final Iterator<E> itr;
+		private int lastRet = -1;
+		private int cursor = 0;
+
+		public InnerIterator(Iterator<E> itr) {
+			this.itr = itr;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Iterator#hasNext()
+		 */
+		@Override
+		public boolean hasNext() {
+			return itr.hasNext();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Iterator#next()
+		 */
+		@Override
+		public E next() {
+			int i = cursor;
+			cursor++;
+			lastRet = i;
+			return itr.next();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Iterator#remove()
+		 */
+		@Override
+		public void remove() {
+			cursor = lastRet;
+			E element = delegate.get(lastRet);
+			itr.remove();
+			fireRemoved(lastRet, element);
+			lastRet = -1;
+		}
+
 	}
 
 	/*
@@ -194,8 +243,7 @@ public class DelegateListModel<E, O extends ListObverser<E>> extends AbstractLis
 	@Override
 	public boolean removeAll(Collection<?> c) {
 		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.DELEGATELISTMODEL_1));
-		// TODO Auto-generated method stub
-		return false;
+		return batchRemove(c, true);
 	}
 
 	/*
@@ -206,8 +254,24 @@ public class DelegateListModel<E, O extends ListObverser<E>> extends AbstractLis
 	@Override
 	public boolean retainAll(Collection<?> c) {
 		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.DELEGATELISTMODEL_1));
-		// TODO Auto-generated method stub
-		return false;
+		return batchRemove(c, false);
+	}
+
+	private boolean batchRemove(Collection<?> c, boolean aFlag) {
+		boolean result = false;
+
+		for (ListIterator<E> i = delegate.listIterator(); i.hasNext();) {
+			int index = i.nextIndex();
+			E element = i.next();
+
+			if (c.contains(element) == aFlag) {
+				i.remove();
+				fireRemoved(index, element);
+				result = true;
+			}
+		}
+
+		return result;
 	}
 
 	/*
@@ -293,7 +357,7 @@ public class DelegateListModel<E, O extends ListObverser<E>> extends AbstractLis
 	 */
 	@Override
 	public ListIterator<E> listIterator() {
-		return delegate.listIterator();
+		return new InnerListIterator(delegate.listIterator(), 0);
 	}
 
 	/*
@@ -303,7 +367,126 @@ public class DelegateListModel<E, O extends ListObverser<E>> extends AbstractLis
 	 */
 	@Override
 	public ListIterator<E> listIterator(int index) {
-		return delegate.listIterator(index);
+		return new InnerListIterator(delegate.listIterator(index), index);
+	}
+
+	private class InnerListIterator implements ListIterator<E> {
+
+		private final ListIterator<E> litr;
+		private int lastRet = -1;
+		private int cursor;
+
+		public InnerListIterator(ListIterator<E> litr, int cursor) {
+			this.litr = litr;
+			this.cursor = cursor;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.ListIterator#hasNext()
+		 */
+		@Override
+		public boolean hasNext() {
+			return litr.hasNext();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.ListIterator#next()
+		 */
+		@Override
+		public E next() {
+			int i = cursor;
+			cursor++;
+			lastRet = i;
+			return litr.next();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.ListIterator#hasPrevious()
+		 */
+		@Override
+		public boolean hasPrevious() {
+			return litr.hasPrevious();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.ListIterator#previous()
+		 */
+		@Override
+		public E previous() {
+			int i = cursor - 1;
+			cursor = i;
+			lastRet = i;
+			return litr.previous();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.ListIterator#nextIndex()
+		 */
+		@Override
+		public int nextIndex() {
+			return litr.nextIndex();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.ListIterator#previousIndex()
+		 */
+		@Override
+		public int previousIndex() {
+			return litr.previousIndex();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.ListIterator#remove()
+		 */
+		@Override
+		public void remove() {
+			cursor = lastRet;
+			E element = delegate.get(lastRet);
+			litr.remove();
+			fireRemoved(lastRet, element);
+			lastRet = -1;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.ListIterator#set(java.lang.Object)
+		 */
+		@Override
+		public void set(E e) {
+			E oldValue = delegate.get(lastRet);
+			litr.set(e);
+			fireChanged(lastRet, oldValue, e);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.ListIterator#add(java.lang.Object)
+		 */
+		@Override
+		public void add(E e) {
+			int i = cursor;
+			litr.add(e);
+			fireAdded(i, e);
+			cursor = i + 1;
+			lastRet = -1;
+		}
+
 	}
 
 	/*
@@ -313,7 +496,7 @@ public class DelegateListModel<E, O extends ListObverser<E>> extends AbstractLis
 	 */
 	@Override
 	public List<E> subList(int fromIndex, int toIndex) {
-		return delegate.subList(fromIndex, toIndex);
+		return new DelegateListModel<>(delegate.subList(fromIndex, toIndex), obversers);
 	}
 
 	/*

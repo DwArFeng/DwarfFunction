@@ -22,7 +22,7 @@ import com.dwarfeng.dutil.basic.cna.model.obv.ListObverser;
 public abstract class AbstractListModel<E, O extends ListObverser<E>> implements ListModel<E, O> {
 
 	/** 抽象列表模型的侦听器集合。 */
-	private final Set<O> obversers;
+	protected final Set<O> obversers;
 
 	/**
 	 * 生成一个默认的抽象列表模型。

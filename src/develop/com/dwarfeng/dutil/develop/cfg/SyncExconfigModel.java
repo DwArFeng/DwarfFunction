@@ -3,6 +3,7 @@ package com.dwarfeng.dutil.develop.cfg;
 import java.util.concurrent.locks.ReadWriteLock;
 
 import com.dwarfeng.dutil.basic.threads.ExternalReadWriteThreadSafe;
+import com.dwarfeng.dutil.develop.cfg.obv.ExconfigObverser;
 
 /**
  * 同步Ex配置模型。
@@ -30,6 +31,6 @@ import com.dwarfeng.dutil.basic.threads.ExternalReadWriteThreadSafe;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public interface SyncExconfigModel extends ExconfigModel, ExternalReadWriteThreadSafe {
+public interface SyncExconfigModel<O extends ExconfigObverser> extends ExconfigModel<O>, ExternalReadWriteThreadSafe {
 
 }

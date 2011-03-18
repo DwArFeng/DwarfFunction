@@ -31,7 +31,7 @@ import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public class DefaultExconfigModel extends AbstractExconfigModel {
+public class DefaultExconfigModel<O extends ExconfigObverser> extends AbstractExconfigModel<O> {
 
 	/**
 	 * Ex配置Bean。
@@ -166,7 +166,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public DefaultExconfigModel(Collection<ExconfigEntry> entries, Map<ConfigKey, ExconfigBean> delegate,
-			Set<ExconfigObverser> obversers) {
+			Set<O> obversers) {
 		super(obversers);
 
 		Objects.requireNonNull(delegate, DwarfUtil.getStringField(StringFieldKey.DEFAULTEXCONFIGMODEL_0));
