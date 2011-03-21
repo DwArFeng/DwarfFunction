@@ -287,28 +287,47 @@ public class Test_DelegateListModel_SubList {
 		i.previous();
 		i.previous();
 		i.add("A");
-		CT.trace(Arrays.toString(model.toArray()));
 		assertEquals(new Integer(2), obv.addedIndexes.get(1));
 		assertEquals("A", obv.addedElements.get(1));
-		//TODO
+		assertEquals("A", i.previous());
+		i.set("8");
+		assertEquals(new Integer(2), obv.changedIndexes.get(0));
+		assertEquals("A", obv.changedOldElements.get(0));
+		assertEquals("8", obv.changedNewElements.get(0));
+		assertEquals("8", i.next());
+		i.remove();
+		assertEquals(new Integer(2), obv.removeIndexes.get(0));
+		assertEquals("8", obv.removeElements.get(0));
 	}
 
-	@Ignore
 	@Test
 	public void testListIteratorInt() {
-		fail("Not yet implemented"); // TODO
+		ListIterator<String> i = subList.listIterator(1);
+		i.next();
+		assertEquals(2, i.nextIndex());
+		assertEquals(1, i.previousIndex());
+		i.add("9");
+		assertEquals(new Integer(4), obv.addedIndexes.get(0));
+		assertEquals("9", obv.addedElements.get(0));
+		i.previous();
+		i.previous();
+		i.add("A");
+		assertEquals(new Integer(3), obv.addedIndexes.get(1));
+		assertEquals("A", obv.addedElements.get(1));
+		assertEquals("A", i.previous());
+		i.set("8");
+		assertEquals(new Integer(3), obv.changedIndexes.get(0));
+		assertEquals("A", obv.changedOldElements.get(0));
+		assertEquals("8", obv.changedNewElements.get(0));
+		assertEquals("8", i.next());
+		i.remove();
+		assertEquals(new Integer(3), obv.removeIndexes.get(0));
+		assertEquals("8", obv.removeElements.get(0));
 	}
 
-	@Ignore
-	@Test
-	public void testSubList1() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
 	@Test
 	public void testEqualsObject() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(true, subList.equals(Arrays.asList("0", "1", "2", "3")));
 	}
 
 }

@@ -283,4 +283,14 @@ public class DelegateSetModel<E, O extends SetObverser<E>> extends AbstractSetMo
 		return delegate.equals(obj);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return delegate.toString();
+	}
+
 }

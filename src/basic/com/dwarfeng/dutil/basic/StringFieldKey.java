@@ -417,6 +417,13 @@ public enum StringFieldKey implements Name {
 	/** DelegateSetModel类第1号文本字段 */
 	DELEGATESETMODEL_1(new DefaultName("DelegateSetModel.1")),
 	
+	/** DelegateMapModel类第0号文本字段 */
+	DELEGATEMAPMODEL_0(new DefaultName("DelegateMapModel.0")),
+	/** DelegateMapModel类第1号文本字段 */
+	DELEGATEMAPMODEL_1(new DefaultName("DelegateMapModel.1")),
+	/** DelegateMapModel类第2号文本字段 */
+	DELEGATEMAPMODEL_2(new DefaultName("DelegateMapModel.2")),
+	
 	;
 
 	private final Name name;
