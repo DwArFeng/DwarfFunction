@@ -473,6 +473,7 @@ public class DelegateMapModel<K, V, O extends MapObverser<K, V>> extends Abstrac
 		private class ValuesIterator implements Iterator<V> {
 
 			private final Iterator<V> delegateIterator;
+			private V value;
 
 			public ValuesIterator(Iterator<V> delegateIterator) {
 				this.delegateIterator = delegateIterator;
@@ -495,7 +496,8 @@ public class DelegateMapModel<K, V, O extends MapObverser<K, V>> extends Abstrac
 			 */
 			@Override
 			public V next() {
-				return delegateIterator.next();
+				value = delegateIterator.next();
+				return value;
 			}
 
 			/*
@@ -505,7 +507,13 @@ public class DelegateMapModel<K, V, O extends MapObverser<K, V>> extends Abstrac
 			 */
 			@Override
 			public void remove() {
-
+				Set<K> set = findKey(value);
+				delegateIterator.remove();
+				for (K key : set) {
+					if (!delegate.containsKey(key)) {
+						fireRemoved(key, value);
+					}
+				}
 			}
 
 		}
@@ -554,10 +562,9 @@ public class DelegateMapModel<K, V, O extends MapObverser<K, V>> extends Abstrac
 			V value = (V) o;
 			Set<K> set = findKey(value);
 			if (delegateValues.remove(o)) {
-				V newValue = null;
 				for (K key : set) {
-					if ((newValue = get(key)) != value) {
-						fireChanged(key, value, newValue);
+					if (!delegate.containsKey(key)) {
+						fireRemoved(key, value);
 					}
 				}
 				return true;
@@ -618,9 +625,8 @@ public class DelegateMapModel<K, V, O extends MapObverser<K, V>> extends Abstrac
 					Set<K> set = findKey(value);
 					i.remove();
 					for (K key : set) {
-						V newValue = null;
-						if ((newValue = get(key)) != value) {
-							fireChanged(key, value, newValue);
+						if (!delegate.containsKey(key)) {
+							fireRemoved(key, value);
 						}
 					}
 					result = true;
@@ -647,31 +653,8 @@ public class DelegateMapModel<K, V, O extends MapObverser<K, V>> extends Abstrac
 		 */
 		@Override
 		public void clear() {
-			for (K key : delegate.keySet()) {
-				DelegateMapModel.this.put(key, null);
-			}
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
-		 */
-		@Override
-		public int hashCode() {
-			return delegateValues.hashCode();
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
-		 */
-		@Override
-		public boolean equals(Object obj) {
-			if (obj == this)
-				return true;
-			return delegateValues.equals(obj);
+			delegateValues.clear();
+			fireCleared();
 		}
 
 		/*
@@ -848,7 +831,7 @@ public class DelegateMapModel<K, V, O extends MapObverser<K, V>> extends Abstrac
 			Map.Entry<?, ?> entry = (java.util.Map.Entry<?, ?>) o;
 			Object k = entry.getKey();
 			V value = delegate.get(k);
-			if (delegateEntrySet.remove(k)) {
+			if (delegateEntrySet.remove(entry)) {
 				// 如果能够移除，则 k 一定属于 K，该类型转换是安全的。
 				@SuppressWarnings("unchecked")
 				K key = (K) k;

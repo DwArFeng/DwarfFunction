@@ -3,9 +3,8 @@ package com.dwarfeng.dutil.basic.cna.model;
 import java.util.Collection;
 import java.util.List;
 
-import com.dwarfeng.dutil.basic.cna.model.obv.KeyListObverser;
+import com.dwarfeng.dutil.basic.cna.model.obv.ListObverser;
 import com.dwarfeng.dutil.basic.prog.ElementWithKey;
-import com.dwarfeng.dutil.basic.prog.ObverserSet;
 
 /**
  * 键值列表模型。
@@ -19,8 +18,7 @@ import com.dwarfeng.dutil.basic.prog.ObverserSet;
  *            泛型V，代表元素的类型。
  * @since 0.1.0-beta
  */
-public interface KeyListModel<K, V extends ElementWithKey<K>, O extends KeyListObverser<K, V>>
-		extends List<V>, ObverserSet<O> {
+public interface KeyListModel<K, V extends ElementWithKey<K>, O extends ListObverser<V>> extends ListModel<V, O> {
 
 	/**
 	 * 如果列表包含指定的键，则返回 <code>true</code>。
@@ -91,33 +89,4 @@ public interface KeyListModel<K, V extends ElementWithKey<K>, O extends KeyListO
 	 */
 	public boolean retainAllKey(Collection<?> c);
 
-	/**
-	 * 返回列表中指定的 fromIndex（包括 ）和 toIndex（不包括）之间的部分视图。
-	 * <p>
-	 * （如果 fromIndex 和 toIndex 相等，则返回的列表为空）。
-	 * 返回的列表由此列表支持，因此返回列表中的非结构性更改将反映在此列表中，反之亦然。 返回的列表支持此列表支持的所有可选列表操作。
-	 * <p>
-	 * 此方法省去了显式范围操作（此操作通常针对数组存在）。 通过传递 subList 视图而非整个列表，期望列表的任何操作可用作范围操作。
-	 * 例如，下面的语句从列表中移除了元素的范围：
-	 * 
-	 * <pre>
-	 * list.subList(from, to).clear();
-	 * </pre>
-	 * <p>
-	 * 可以对 indexOf 和 lastIndexOf 构造类似的语句，而且 Collections 类中的所有算法都可以应用于 subList。
-	 * <p>
-	 * 如果支持列表（即此列表）通过任何其他方式（而不是通过返回的列表）从结构上修改，
-	 * 则此方法返回的列表语义将变为未定义（从结构上修改是指更改列表的大小，或者以其他方式打乱列表， 使正在进行的迭代产生错误的结果）。
-	 * 
-	 * @param fromIndex
-	 *            subList 的低端（包括）。
-	 * @param toIndex
-	 *            subList 的高端（不包括） 。
-	 * @return 列表中指定范围的视图。
-	 * @throws IndexOutOfBoundsException
-	 *             非法的端点值
-	 *             <code>(fromIndex &lt; 0 || toIndex &gt; size || fromIndex &gt; toIndex)</code>
-	 */
-	@Override
-	public KeyListModel<K, V, O> subList(int fromIndex, int toIndex);
 }

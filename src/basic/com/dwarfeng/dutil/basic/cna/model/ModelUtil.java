@@ -12,7 +12,6 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
-import com.dwarfeng.dutil.basic.cna.model.obv.KeyListObverser;
 import com.dwarfeng.dutil.basic.cna.model.obv.KeySetObverser;
 import com.dwarfeng.dutil.basic.cna.model.obv.ListObverser;
 import com.dwarfeng.dutil.basic.cna.model.obv.MapObverser;
@@ -1174,13 +1173,13 @@ public final class ModelUtil {
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public static <K, V extends ElementWithKey<K>, O extends KeyListObverser<K, V>> SyncKeyListModel<K, V, O> syncKeyListModel(
+	public static <K, V extends ElementWithKey<K>, O extends ListObverser<V>> SyncKeyListModel<K, V, O> syncKeyListModel(
 			KeyListModel<K, V, O> keyListModel) {
 		Objects.requireNonNull(keyListModel, DwarfUtil.getStringField(StringFieldKey.MODELUTIL_3));
 		return new SyncKeyListModelImpl<>(keyListModel);
 	}
 
-	private static class SyncKeyListModelImpl<K, V extends ElementWithKey<K>, O extends KeyListObverser<K, V>>
+	private static class SyncKeyListModelImpl<K, V extends ElementWithKey<K>, O extends ListObverser<V>>
 			implements SyncKeyListModel<K, V, O> {
 
 		private final KeyListModel<K, V, O> delegate;
@@ -1388,11 +1387,10 @@ public final class ModelUtil {
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see com.dwarfeng.dutil.basic.cna.model.KeyListModel#subList(int,
-		 * int)
+		 * @see java.util.List#subList(int, int)
 		 */
 		@Override
-		public KeyListModel<K, V, O> subList(int fromIndex, int toIndex) {
+		public List<V> subList(int fromIndex, int toIndex) {
 			lock.readLock().lock();
 			try {
 				return delegate.subList(fromIndex, toIndex);
