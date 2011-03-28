@@ -9,28 +9,28 @@ package com.dwarfeng.dutil.basic.prog;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public class ProcessFailedException extends Exception {
+public class ProcessException extends Exception {
 
 	private static final long serialVersionUID = -7882535182191168599L;
 
-	public ProcessFailedException() {
+	public ProcessException() {
 		super();
 	}
 
-	public ProcessFailedException(String message, Throwable cause, boolean enableSuppression,
+	public ProcessException(String message, Throwable cause, boolean enableSuppression,
 			boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
 	}
 
-	public ProcessFailedException(String message, Throwable cause) {
+	public ProcessException(String message, Throwable cause) {
 		super(message, cause);
 	}
 
-	public ProcessFailedException(String message) {
+	public ProcessException(String message) {
 		super(message);
 	}
 
-	public ProcessFailedException(Throwable cause) {
+	public ProcessException(Throwable cause) {
 		super(cause);
 	}
 
