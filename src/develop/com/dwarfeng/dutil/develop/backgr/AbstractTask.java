@@ -1,11 +1,14 @@
 package com.dwarfeng.dutil.develop.backgr;
 
 import java.util.Collections;
+import java.util.Objects;
 import java.util.Set;
 import java.util.WeakHashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import com.dwarfeng.dutil.develop.backgr.obv.TaskObverser;
@@ -27,8 +30,9 @@ public abstract class AbstractTask<O extends TaskObverser> implements Task<O> {
 	protected final Set<O> obversers = Collections.newSetFromMap(new WeakHashMap<>());
 	/** 同步读写锁 */
 	protected final ReadWriteLock lock = new ReentrantReadWriteLock();
-	/** 写锁的Condition */
-	protected final Condition condition = lock.writeLock().newCondition();
+
+	private final Lock runningLock = new ReentrantLock();
+	private final Condition runningCondition = runningLock.newCondition();
 
 	private boolean finishFlag = false;
 	private boolean startFlag = false;
@@ -126,8 +130,48 @@ public abstract class AbstractTask<O extends TaskObverser> implements Task<O> {
 	 */
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		// 置位开始标志，并且通知观察器。
+		lock.writeLock().lock();
+		try {
+			startFlag = true;
+		} finally {
+			lock.writeLock().unlock();
+		}
+		fireStarted();
+		// 运行 todo 方法。
+		try {
+			todo();
+		} catch (Exception e) {
+			exception = e;
+		}
+		// 置位结束标志，并且通知观察器。
+		lock.writeLock().lock();
+		try {
+			finishFlag = true;
+		} finally {
+			lock.writeLock().unlock();
+		}
+		fireFinished();
+	}
 
+	/**
+	 * 通知观察器任务开始。
+	 */
+	protected void fireStarted() {
+		for (TaskObverser obverser : obversers) {
+			if (Objects.nonNull(obverser))
+				obverser.fireStarted();
+		}
+	}
+
+	/**
+	 * 通知观察器任务结束。
+	 */
+	protected void fireFinished() {
+		for (TaskObverser obverser : obversers) {
+			if (Objects.nonNull(obverser))
+				obverser.fireFinished();
+		}
 	}
 
 	/*
@@ -182,8 +226,13 @@ public abstract class AbstractTask<O extends TaskObverser> implements Task<O> {
 	 */
 	@Override
 	public void awaitFinish() throws InterruptedException {
-		while (!finishFlag) {
-			condition.await();
+		runningLock.lock();
+		try {
+			while (!finishFlag) {
+				runningCondition.await();
+			}
+		} finally {
+			runningLock.unlock();
 		}
 	}
 
@@ -195,14 +244,19 @@ public abstract class AbstractTask<O extends TaskObverser> implements Task<O> {
 	 */
 	@Override
 	public boolean awaitFinish(long timeout, TimeUnit unit) throws InterruptedException {
-		long nanosTimeout = unit.toNanos(timeout);
-		while (!finishFlag) {
-			if (nanosTimeout > 0)
-				nanosTimeout = condition.awaitNanos(nanosTimeout);
-			else
-				return false;
+		runningLock.lock();
+		try {
+			long nanosTimeout = unit.toNanos(timeout);
+			while (!finishFlag) {
+				if (nanosTimeout > 0)
+					nanosTimeout = runningCondition.awaitNanos(nanosTimeout);
+				else
+					return false;
+			}
+			return true;
+		} finally {
+			runningLock.unlock();
 		}
-		return true;
 	}
 
 }

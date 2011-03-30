@@ -2,7 +2,6 @@ package com.dwarfeng.dutil.develop.backgr;
 
 import java.util.Collection;
 import java.util.Set;
-import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 import com.dwarfeng.dutil.basic.prog.ObverserSet;
@@ -21,7 +20,7 @@ import com.dwarfeng.dutil.develop.backgr.obv.TaskObverser;
  * 当任务被提交的时候，则该规则便立即适用。
  * 
  * <p>
- * 应该为该后台提供一个“清理器”，及时清理后台中已经完成的任务，以免过多的任务被保留在完成队列中。
+ * 当提交的任务完成后，后台会立即将该任务移除，这个过程是自动的。
  * 
  * @author DwArFeng
  * @since 0.1.0-beta
@@ -33,9 +32,14 @@ public interface BackGround<O extends BackGroundObverser> extends ExternalReadWr
 	 * <p>
 	 * 只有非 <code>null</code> 且还未开始的任务才可提交成功。
 	 * 
+	 * <p>
+	 * 试图向正在关闭的后台中提交任务会抛出异常。
+	 * 
 	 * @param task
 	 *            指定的任务。
 	 * @return 该任务是否被提交。
+	 * @throws IllegalStateException
+	 *             试图向正在关闭的后台中提交任务。
 	 */
 	public boolean submit(Task<? extends TaskObverser> task);
 
@@ -45,13 +49,25 @@ public interface BackGround<O extends BackGroundObverser> extends ExternalReadWr
 	 * <p>
 	 * 只有非 <code>null</code> 且还未开始的任务才可提交成功。 TODO
 	 * 
+	 * <p>
+	 * 试图向正在关闭的后台中提交任务会抛出异常。
+	 * 
 	 * @param c
 	 *            指定的<code>collection</code>。
 	 * @return 如果至少一个任务被提交，则返回 <code>true</code>。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
+	 * @throws IllegalStateException
+	 *             试图向正在关闭的后台中提交任务。
 	 */
 	public boolean submitAll(Collection<? extends Task<? extends TaskObverser>> c);
+
+	/**
+	 * 关闭后台。
+	 * <p>
+	 * 当后台关闭时，后台会拒绝后续的任务提交，已提交的任务则不受影响。 <o> 当已提交的所有任务执行完毕后，后台则会被终结。
+	 */
+	public void shutdown();
 
 	/**
 	 * 如果此后台已关闭，则返回 <code>true</code>。
@@ -97,17 +113,5 @@ public interface BackGround<O extends BackGroundObverser> extends ExternalReadWr
 	 * @return 由后台中的所有任务组成的集合。
 	 */
 	public Set<Task<? extends TaskObverser>> tasks();
-
-	/**
-	 * 获取由后台中所有已经完成的任务组成的阻塞队列。
-	 * <p>
-	 * 该队列由后台中所有已经完成的任务组成，在队列最前方的任务是最早完成的任务。 <br>
-	 * 该阻塞队列可以调用移除方法和取出方法，当任务从队列中被移除或取出，或从迭代器中被移除时，
-	 * 它们同时也会反映到后台上，即这些元素也会从后台中被取出。<br>
-	 * 该队列禁止使用添加方法。
-	 * 
-	 * @return 由后台中所有已经完成的任务组成的阻塞队列。
-	 */
-	public BlockingQueue<Task<? extends TaskObverser>> finishedQueue();
 
 }
