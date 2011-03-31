@@ -6,8 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import com.dwarfeng.dutil.basic.prog.ObverserSet;
 import com.dwarfeng.dutil.basic.threads.ExternalReadWriteThreadSafe;
-import com.dwarfeng.dutil.develop.backgr.obv.BackGroundObverser;
-import com.dwarfeng.dutil.develop.backgr.obv.TaskObverser;
+import com.dwarfeng.dutil.develop.backgr.obv.BackgroundObverser;
 
 /**
  * 后台接口。
@@ -25,7 +24,7 @@ import com.dwarfeng.dutil.develop.backgr.obv.TaskObverser;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public interface BackGround<O extends BackGroundObverser> extends ExternalReadWriteThreadSafe, ObverserSet<O> {
+public interface Background<O extends BackgroundObverser> extends ExternalReadWriteThreadSafe, ObverserSet<O> {
 
 	/**
 	 * 向后台中提交指定的任务。
@@ -41,7 +40,7 @@ public interface BackGround<O extends BackGroundObverser> extends ExternalReadWr
 	 * @throws IllegalStateException
 	 *             试图向正在关闭的后台中提交任务。
 	 */
-	public boolean submit(Task<? extends TaskObverser> task);
+	public boolean submit(Task task);
 
 	/**
 	 * 向后台中提交指定 <code>collection</code> 中的所有任务。
@@ -60,7 +59,7 @@ public interface BackGround<O extends BackGroundObverser> extends ExternalReadWr
 	 * @throws IllegalStateException
 	 *             试图向正在关闭的后台中提交任务。
 	 */
-	public boolean submitAll(Collection<? extends Task<? extends TaskObverser>> c);
+	public boolean submitAll(Collection<? extends Task> c);
 
 	/**
 	 * 关闭后台。
@@ -112,6 +111,6 @@ public interface BackGround<O extends BackGroundObverser> extends ExternalReadWr
 	 * 
 	 * @return 由后台中的所有任务组成的集合。
 	 */
-	public Set<Task<? extends TaskObverser>> tasks();
+	public Set<Task> tasks();
 
 }

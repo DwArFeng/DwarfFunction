@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Objects;
+import java.util.Set;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
@@ -19,8 +20,28 @@ import com.dwarfeng.dutil.basic.prog.WithKey;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public class DelegateKeyListModel<K, V extends WithKey<K>, O extends ListObverser<V>> extends DelegateListModel<V, O>
-		implements KeyListModel<K, V, O> {
+public class DelegateKeyListModel<K, V extends WithKey<K>> extends DelegateListModel<V> implements KeyListModel<K, V> {
+
+	/**
+	 * 生成一个默认的代理键值列表模型。
+	 */
+	public DelegateKeyListModel() {
+		super();
+	}
+
+	/**
+	 * 生成一个具有指定的代理，指定的观察器列表的代理键值列表模型。
+	 * 
+	 * @param delegate
+	 *            指定的代理。
+	 * @param obversers
+	 *            指定的观察器列表。
+	 * @throws NullPointerException
+	 *             入口参数为 null。
+	 */
+	public DelegateKeyListModel(List<V> delegate, Set<ListObverser<V>> obversers) {
+		super(delegate, obversers);
+	}
 
 	/*
 	 * (non-Javadoc)

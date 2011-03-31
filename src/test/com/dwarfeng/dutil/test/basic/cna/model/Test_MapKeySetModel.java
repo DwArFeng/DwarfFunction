@@ -15,12 +15,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dwarfeng.dutil.basic.cna.model.MapKeySetModel;
-import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
 
 public class Test_MapKeySetModel {
 
-	private final MapKeySetModel<String, TestWithKey, SetObverser<TestWithKey>> model = new MapKeySetModel<>(
-			new LinkedHashMap<>(), Collections.newSetFromMap(new WeakHashMap<>()));
+	private final MapKeySetModel<String, TestWithKey> model = new MapKeySetModel<>(new LinkedHashMap<>(),
+			Collections.newSetFromMap(new WeakHashMap<>()));
 	private final TestSetObverser<TestWithKey> obv = new TestSetObverser<TestWithKey>();
 
 	@Before

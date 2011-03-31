@@ -130,7 +130,7 @@ public class Test_DefaultExconfigModel {
 	private final Obv1 obv1 = new Obv1();
 	private final Obv2 obv2 = new Obv2();
 
-	private final DefaultExconfigModel<ExconfigObverser> model = new DefaultExconfigModel<ExconfigObverser>();
+	private final DefaultExconfigModel model = new DefaultExconfigModel();
 
 	@Before
 	public void setUp() throws Exception {
@@ -144,7 +144,7 @@ public class Test_DefaultExconfigModel {
 
 	@Test
 	public final void testConstructors() {
-		ExconfigModel<?> foo = new DefaultExconfigModel<ExconfigObverser>(Arrays.asList(ExconfigEntries.values()));
+		ExconfigModel foo = new DefaultExconfigModel(Arrays.asList(ExconfigEntries.values()));
 		assertEquals(4, foo.size());
 	}
 

@@ -30,12 +30,12 @@ import com.dwarfeng.dutil.develop.backgr.obv.TaskObverser;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public interface Task<O extends TaskObverser> extends Runnable, ExternalReadWriteThreadSafe, ObverserSet<O> {
+public interface Task extends Runnable, ExternalReadWriteThreadSafe, ObverserSet<TaskObverser> {
 
 	/**
 	 * 获取任务是否已经开始执行。
 	 * 
-	 * @return
+	 * @return 任务是否已经开始执行。
 	 */
 	public boolean isStarted();
 
@@ -44,7 +44,7 @@ public interface Task<O extends TaskObverser> extends Runnable, ExternalReadWrit
 	 * 
 	 * @return 是否执行完毕。
 	 */
-	public boolean isFinish();
+	public boolean isFinished();
 
 	/**
 	 * 获取任务的异常。

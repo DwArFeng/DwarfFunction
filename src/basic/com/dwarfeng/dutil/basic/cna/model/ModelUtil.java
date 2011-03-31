@@ -42,17 +42,17 @@ public final class ModelUtil {
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public static <E, O extends ListObverser<E>> SyncListModel<E, O> syncListModel(ListModel<E, O> listModel) {
+	public static <E> SyncListModel<E> syncListModel(ListModel<E> listModel) {
 		Objects.requireNonNull(listModel, DwarfUtil.getStringField(StringFieldKey.MODELUTIL_0));
 		return new SyncListModelImpl<>(listModel);
 	}
 
-	private static class SyncListModelImpl<E, O extends ListObverser<E>> implements SyncListModel<E, O> {
+	private static class SyncListModelImpl<E> implements SyncListModel<E> {
 
-		private final ListModel<E, O> delegate;
+		private final ListModel<E> delegate;
 		private final ReadWriteLock lock = new ReentrantReadWriteLock();
 
-		public SyncListModelImpl(ListModel<E, O> delegate) {
+		public SyncListModelImpl(ListModel<E> delegate) {
 			this.delegate = delegate;
 		}
 
@@ -74,7 +74,7 @@ public final class ModelUtil {
 		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
 		 */
 		@Override
-		public Set<O> getObversers() {
+		public Set<ListObverser<E>> getObversers() {
 			lock.readLock().lock();
 			try {
 				return delegate.getObversers();
@@ -91,7 +91,7 @@ public final class ModelUtil {
 		 * dutil.basic.prog.Obverser)
 		 */
 		@Override
-		public boolean addObverser(O obverser) {
+		public boolean addObverser(ListObverser<E> obverser) {
 			lock.writeLock().lock();
 			try {
 				return delegate.addObverser(obverser);
@@ -108,7 +108,7 @@ public final class ModelUtil {
 		 * .dutil.basic.prog.Obverser)
 		 */
 		@Override
-		public boolean removeObverser(O obverser) {
+		public boolean removeObverser(ListObverser<E> obverser) {
 			lock.writeLock().lock();
 			try {
 				return delegate.removeObverser(obverser);
@@ -522,17 +522,17 @@ public final class ModelUtil {
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public static <E, O extends SetObverser<E>> SyncSetModel<E, O> syncSetMdel(SyncSetModel<E, O> setModel) {
+	public static <E> SyncSetModel<E> syncSetMdel(SyncSetModel<E> setModel) {
 		Objects.requireNonNull(setModel, DwarfUtil.getStringField(StringFieldKey.MODELUTIL_1));
 		return new SyncSetModelImpl<>(setModel);
 	}
 
-	private static class SyncSetModelImpl<E, O extends SetObverser<E>> implements SyncSetModel<E, O> {
+	private static class SyncSetModelImpl<E> implements SyncSetModel<E> {
 
-		private final SetModel<E, O> delegate;
+		private final SetModel<E> delegate;
 		private final ReadWriteLock lock = new ReentrantReadWriteLock();
 
-		public SyncSetModelImpl(SetModel<E, O> delegate) {
+		public SyncSetModelImpl(SetModel<E> delegate) {
 			this.delegate = delegate;
 		}
 
@@ -554,7 +554,7 @@ public final class ModelUtil {
 		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
 		 */
 		@Override
-		public Set<O> getObversers() {
+		public Set<SetObverser<E>> getObversers() {
 			lock.readLock().lock();
 			try {
 				return delegate.getObversers();
@@ -571,7 +571,7 @@ public final class ModelUtil {
 		 * dutil.basic.prog.Obverser)
 		 */
 		@Override
-		public boolean addObverser(O obverser) {
+		public boolean addObverser(SetObverser<E> obverser) {
 			lock.writeLock().lock();
 			try {
 				return delegate.addObverser(obverser);
@@ -588,7 +588,7 @@ public final class ModelUtil {
 		 * .dutil.basic.prog.Obverser)
 		 */
 		@Override
-		public boolean removeObverser(O obverser) {
+		public boolean removeObverser(SetObverser<E> obverser) {
 			lock.writeLock().lock();
 			try {
 				return delegate.removeObverser(obverser);
@@ -854,18 +854,17 @@ public final class ModelUtil {
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public static <K, V, O extends MapObverser<K, V>> SyncMapModel<K, V, O> syncMapModel(
-			SyncMapModel<K, V, O> mapModel) {
+	public static <K, V> SyncMapModel<K, V> syncMapModel(SyncMapModel<K, V> mapModel) {
 		Objects.requireNonNull(mapModel, DwarfUtil.getStringField(StringFieldKey.MODELUTIL_2));
 		return new SyncMapModelImpl<>(mapModel);
 	}
 
-	private static class SyncMapModelImpl<K, V, O extends MapObverser<K, V>> implements SyncMapModel<K, V, O> {
+	private static class SyncMapModelImpl<K, V> implements SyncMapModel<K, V> {
 
-		private final MapModel<K, V, O> delegate;
+		private final MapModel<K, V> delegate;
 		private final ReadWriteLock lock = new ReentrantReadWriteLock();
 
-		public SyncMapModelImpl(MapModel<K, V, O> delegate) {
+		public SyncMapModelImpl(MapModel<K, V> delegate) {
 			this.delegate = delegate;
 		}
 
@@ -887,7 +886,7 @@ public final class ModelUtil {
 		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
 		 */
 		@Override
-		public Set<O> getObversers() {
+		public Set<MapObverser<K, V>> getObversers() {
 			lock.readLock().lock();
 			try {
 				return delegate.getObversers();
@@ -904,7 +903,7 @@ public final class ModelUtil {
 		 * dutil.basic.prog.Obverser)
 		 */
 		@Override
-		public boolean addObverser(O obverser) {
+		public boolean addObverser(MapObverser<K, V> obverser) {
 			lock.writeLock().lock();
 			try {
 				return delegate.addObverser(obverser);
@@ -921,7 +920,7 @@ public final class ModelUtil {
 		 * .dutil.basic.prog.Obverser)
 		 */
 		@Override
-		public boolean removeObverser(O obverser) {
+		public boolean removeObverser(MapObverser<K, V> obverser) {
 			lock.writeLock().lock();
 			try {
 				return delegate.removeObverser(obverser);
@@ -1172,19 +1171,17 @@ public final class ModelUtil {
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public static <K, V extends WithKey<K>, O extends ListObverser<V>> SyncKeyListModel<K, V, O> syncKeyListModel(
-			KeyListModel<K, V, O> keyListModel) {
+	public static <K, V extends WithKey<K>> SyncKeyListModel<K, V> syncKeyListModel(KeyListModel<K, V> keyListModel) {
 		Objects.requireNonNull(keyListModel, DwarfUtil.getStringField(StringFieldKey.MODELUTIL_3));
 		return new SyncKeyListModelImpl<>(keyListModel);
 	}
 
-	private static class SyncKeyListModelImpl<K, V extends WithKey<K>, O extends ListObverser<V>>
-			implements SyncKeyListModel<K, V, O> {
+	private static class SyncKeyListModelImpl<K, V extends WithKey<K>> implements SyncKeyListModel<K, V> {
 
-		private final KeyListModel<K, V, O> delegate;
+		private final KeyListModel<K, V> delegate;
 		private final ReadWriteLock lock = new ReentrantReadWriteLock();
 
-		public SyncKeyListModelImpl(KeyListModel<K, V, O> delegate) {
+		public SyncKeyListModelImpl(KeyListModel<K, V> delegate) {
 			this.delegate = delegate;
 		}
 
@@ -1206,7 +1203,7 @@ public final class ModelUtil {
 		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
 		 */
 		@Override
-		public Set<O> getObversers() {
+		public Set<ListObverser<V>> getObversers() {
 			lock.readLock().lock();
 			try {
 				return delegate.getObversers();
@@ -1223,7 +1220,7 @@ public final class ModelUtil {
 		 * dutil.basic.prog.Obverser)
 		 */
 		@Override
-		public boolean addObverser(O obverser) {
+		public boolean addObverser(ListObverser<V> obverser) {
 			lock.writeLock().lock();
 			try {
 				return delegate.addObverser(obverser);
@@ -1240,7 +1237,7 @@ public final class ModelUtil {
 		 * .dutil.basic.prog.Obverser)
 		 */
 		@Override
-		public boolean removeObverser(O obverser) {
+		public boolean removeObverser(ListObverser<V> obverser) {
 			lock.writeLock().lock();
 			try {
 				return delegate.removeObverser(obverser);
@@ -1775,19 +1772,19 @@ public final class ModelUtil {
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public static <K, V extends WithKey<K>, O extends SetObverser<V>> SyncKeySetModel<K, V, O> syncKeySetModel(
-			KeySetModel<K, V, O> keySetModel) {
+	public static <K, V extends WithKey<K>> SyncKeySetModel<K, V> syncKeySetModel(
+			KeySetModel<K, V> keySetModel) {
 		Objects.requireNonNull(keySetModel, DwarfUtil.getStringField(StringFieldKey.MODELUTIL_4));
 		return new SyncKeySetModelImpl<>(keySetModel);
 	}
 
-	private static class SyncKeySetModelImpl<K, V extends WithKey<K>, O extends SetObverser<V>>
-			implements SyncKeySetModel<K, V, O> {
+	private static class SyncKeySetModelImpl<K, V extends WithKey<K>>
+			implements SyncKeySetModel<K, V> {
 
-		private final KeySetModel<K, V, O> delegate;
+		private final KeySetModel<K, V> delegate;
 		private final ReadWriteLock lock = new ReentrantReadWriteLock();
 
-		public SyncKeySetModelImpl(KeySetModel<K, V, O> delegate) {
+		public SyncKeySetModelImpl(KeySetModel<K, V> delegate) {
 			this.delegate = delegate;
 		}
 
@@ -1809,7 +1806,7 @@ public final class ModelUtil {
 		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
 		 */
 		@Override
-		public Set<O> getObversers() {
+		public Set<SetObverser<V>> getObversers() {
 			lock.readLock().lock();
 			try {
 				return delegate.getObversers();
@@ -1826,7 +1823,7 @@ public final class ModelUtil {
 		 * dutil.basic.prog.Obverser)
 		 */
 		@Override
-		public boolean addObverser(O obverser) {
+		public boolean addObverser(SetObverser<V> obverser) {
 			lock.writeLock().lock();
 			try {
 				return delegate.addObverser(obverser);
@@ -1843,7 +1840,7 @@ public final class ModelUtil {
 		 * .dutil.basic.prog.Obverser)
 		 */
 		@Override
-		public boolean removeObverser(O obverser) {
+		public boolean removeObverser(SetObverser<V> obverser) {
 			lock.writeLock().lock();
 			try {
 				return delegate.removeObverser(obverser);

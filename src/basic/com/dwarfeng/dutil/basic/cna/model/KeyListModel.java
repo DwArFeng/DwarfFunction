@@ -3,7 +3,6 @@ package com.dwarfeng.dutil.basic.cna.model;
 import java.util.Collection;
 import java.util.List;
 
-import com.dwarfeng.dutil.basic.cna.model.obv.ListObverser;
 import com.dwarfeng.dutil.basic.prog.WithKey;
 
 /**
@@ -18,7 +17,7 @@ import com.dwarfeng.dutil.basic.prog.WithKey;
  *            泛型V，代表元素的类型。
  * @since 0.1.0-beta
  */
-public interface KeyListModel<K, V extends WithKey<K>, O extends ListObverser<V>> extends ListModel<V, O> {
+public interface KeyListModel<K, V extends WithKey<K>> extends ListModel<V> {
 
 	/**
 	 * 如果列表包含指定的键，则返回 <code>true</code>。

@@ -16,12 +16,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dwarfeng.dutil.basic.cna.model.DelegateKeySetModel;
-import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
 
 public class Test_DelegateKeySetModel {
 
-	private final DelegateKeySetModel<String, TestWithKey, SetObverser<TestWithKey>> model = new DelegateKeySetModel<>(
-			new LinkedHashSet<>(), Collections.newSetFromMap(new WeakHashMap<>()));
+	private final DelegateKeySetModel<String, TestWithKey> model = new DelegateKeySetModel<>(new LinkedHashSet<>(),
+			Collections.newSetFromMap(new WeakHashMap<>()));
 	private final TestSetObverser<TestWithKey> obv = new TestSetObverser<>();
 
 	@Before

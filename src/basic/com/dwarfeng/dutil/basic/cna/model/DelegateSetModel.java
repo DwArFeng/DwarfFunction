@@ -20,7 +20,7 @@ import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public class DelegateSetModel<E, O extends SetObverser<E>> extends AbstractSetModel<E, O> {
+public class DelegateSetModel<E> extends AbstractSetModel<E> {
 
 	/** 该集合模型的代理。 */
 	protected final Set<E> delegate;
@@ -42,7 +42,7 @@ public class DelegateSetModel<E, O extends SetObverser<E>> extends AbstractSetMo
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public DelegateSetModel(Set<E> delegate, Set<O> obversers) {
+	public DelegateSetModel(Set<E> delegate, Set<SetObverser<E>> obversers) {
 		super(obversers);
 		Objects.requireNonNull(delegate, DwarfUtil.getStringField(StringFieldKey.DELEGATESETMODEL_0));
 		this.delegate = delegate;

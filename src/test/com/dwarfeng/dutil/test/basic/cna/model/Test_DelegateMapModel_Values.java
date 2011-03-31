@@ -14,12 +14,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dwarfeng.dutil.basic.cna.model.DelegateMapModel;
-import com.dwarfeng.dutil.basic.cna.model.obv.MapObverser;
 
 public class Test_DelegateMapModel_Values {
 
-	private final DelegateMapModel<String, String, MapObverser<String, String>> model = new DelegateMapModel<>(
-			new LinkedHashMap<>(), Collections.newSetFromMap(new WeakHashMap<>()));
+	private final DelegateMapModel<String, String> model = new DelegateMapModel<>(new LinkedHashMap<>(),
+			Collections.newSetFromMap(new WeakHashMap<>()));
 	private final TestMapObverser obv = new TestMapObverser();
 	private Collection<String> values;
 

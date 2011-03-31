@@ -19,10 +19,10 @@ import com.dwarfeng.dutil.basic.cna.model.obv.MapObverser;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public abstract class AbstractMapModel<K, V, O extends MapObverser<K, V>> implements MapModel<K, V, O> {
+public abstract class AbstractMapModel<K, V> implements MapModel<K, V> {
 
 	/** 抽象集合模型的侦听器集合。 */
-	private final Set<O> obversers;
+	private final Set<MapObverser<K, V>> obversers;
 
 	/**
 	 * 生成一个默认的抽象映射模型。
@@ -39,7 +39,7 @@ public abstract class AbstractMapModel<K, V, O extends MapObverser<K, V>> implem
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public AbstractMapModel(Set<O> obversers) {
+	public AbstractMapModel(Set<MapObverser<K, V>> obversers) {
 		Objects.requireNonNull(obversers, DwarfUtil.getStringField(StringFieldKey.ABSTRACTMAPMODEL_0));
 		this.obversers = obversers;
 	}
@@ -50,7 +50,7 @@ public abstract class AbstractMapModel<K, V, O extends MapObverser<K, V>> implem
 	 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
 	 */
 	@Override
-	public Set<O> getObversers() {
+	public Set<MapObverser<K, V>> getObversers() {
 		return Collections.unmodifiableSet(obversers);
 	}
 
@@ -62,7 +62,7 @@ public abstract class AbstractMapModel<K, V, O extends MapObverser<K, V>> implem
 	 * basic.prog.Obverser)
 	 */
 	@Override
-	public boolean addObverser(O obverser) {
+	public boolean addObverser(MapObverser<K, V> obverser) {
 		return obversers.add(obverser);
 	}
 
@@ -74,7 +74,7 @@ public abstract class AbstractMapModel<K, V, O extends MapObverser<K, V>> implem
 	 * dutil.basic.prog.Obverser)
 	 */
 	@Override
-	public boolean removeObverser(O obverser) {
+	public boolean removeObverser(MapObverser<K, V> obverser) {
 		return obversers.remove(obverser);
 	}
 

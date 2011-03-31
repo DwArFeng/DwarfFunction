@@ -16,7 +16,7 @@ import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public interface ExconfigModel<O extends ExconfigObverser> extends CurrentValueContainer, ObverserSet<O> {
+public interface ExconfigModel extends CurrentValueContainer, ObverserSet<ExconfigObverser> {
 
 	/**
 	 * 清空配置模型中的所有记录（可选操作）。

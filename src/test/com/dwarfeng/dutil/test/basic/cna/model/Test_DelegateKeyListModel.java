@@ -14,11 +14,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dwarfeng.dutil.basic.cna.model.DelegateKeyListModel;
-import com.dwarfeng.dutil.basic.cna.model.obv.ListObverser;
 
 public class Test_DelegateKeyListModel {
 
-	private final DelegateKeyListModel<String, TestWithKey, ListObverser<TestWithKey>> model = new DelegateKeyListModel<>();
+	private final DelegateKeyListModel<String, TestWithKey> model = new DelegateKeyListModel<>();
 	private final TestListObverser<TestWithKey> obv = new TestListObverser<>();
 
 	@Before

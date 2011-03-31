@@ -16,6 +16,6 @@ import com.dwarfeng.dutil.basic.prog.ObverserSet;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public interface MapModel<K, V, O extends MapObverser<K, V>> extends Map<K, V>, ObverserSet<O> {
+public interface MapModel<K, V> extends Map<K, V>, ObverserSet<MapObverser<K, V>> {
 
 }

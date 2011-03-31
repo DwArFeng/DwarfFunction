@@ -12,11 +12,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dwarfeng.dutil.basic.cna.model.DelegateListModel;
-import com.dwarfeng.dutil.basic.cna.model.obv.ListObverser;
 
 public class Test_DelegateListModel {
 
-	private final DelegateListModel<String, ListObverser<String>> model = new DelegateListModel<>();
+	private final DelegateListModel<String> model = new DelegateListModel<>();
 	private final TestListObverser<String> obv = new TestListObverser<>();
 
 	@Before

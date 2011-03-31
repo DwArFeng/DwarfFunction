@@ -20,7 +20,7 @@ import com.dwarfeng.dutil.basic.cna.model.obv.MapObverser;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public class DelegateMapModel<K, V, O extends MapObverser<K, V>> extends AbstractMapModel<K, V, O> {
+public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 
 	/** 该映射模型的代理。 */
 	protected final Map<K, V> delegate;
@@ -42,7 +42,7 @@ public class DelegateMapModel<K, V, O extends MapObverser<K, V>> extends Abstrac
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public DelegateMapModel(Map<K, V> delegate, Set<O> obversers) {
+	public DelegateMapModel(Map<K, V> delegate, Set<MapObverser<K, V>> obversers) {
 		super(obversers);
 		Objects.requireNonNull(delegate, DwarfUtil.getStringField(StringFieldKey.DELEGATEMAPMODEL_0));
 		this.delegate = delegate;

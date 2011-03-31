@@ -24,10 +24,10 @@ import com.dwarfeng.dutil.develop.backgr.obv.TaskObverser;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public abstract class AbstractTask<O extends TaskObverser> implements Task<O> {
+public abstract class AbstractTask implements Task {
 
 	/** 观察器集合。 */
-	protected final Set<O> obversers = Collections.newSetFromMap(new WeakHashMap<>());
+	protected final Set<TaskObverser> obversers = Collections.newSetFromMap(new WeakHashMap<>());
 	/** 同步读写锁 */
 	protected final ReadWriteLock lock = new ReentrantReadWriteLock();
 
@@ -65,7 +65,7 @@ public abstract class AbstractTask<O extends TaskObverser> implements Task<O> {
 	 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
 	 */
 	@Override
-	public Set<O> getObversers() {
+	public Set<TaskObverser> getObversers() {
 		lock.readLock().lock();
 		try {
 			return obversers;
@@ -82,7 +82,7 @@ public abstract class AbstractTask<O extends TaskObverser> implements Task<O> {
 	 * basic.prog.Obverser)
 	 */
 	@Override
-	public boolean addObverser(O obverser) {
+	public boolean addObverser(TaskObverser obverser) {
 		lock.writeLock().lock();
 		try {
 			return obversers.add(obverser);
@@ -99,7 +99,7 @@ public abstract class AbstractTask<O extends TaskObverser> implements Task<O> {
 	 * dutil.basic.prog.Obverser)
 	 */
 	@Override
-	public boolean removeObverser(O obverser) {
+	public boolean removeObverser(TaskObverser obverser) {
 		lock.writeLock().lock();
 		try {
 			return obversers.remove(obverser);
@@ -152,6 +152,13 @@ public abstract class AbstractTask<O extends TaskObverser> implements Task<O> {
 			lock.writeLock().unlock();
 		}
 		fireFinished();
+		// 唤醒等待线程
+		runningLock.lock();
+		try {
+			runningCondition.signalAll();
+		} finally {
+			runningLock.unlock();
+		}
 	}
 
 	/**
@@ -195,7 +202,7 @@ public abstract class AbstractTask<O extends TaskObverser> implements Task<O> {
 	 * @see com.dwarfeng.dutil.develop.backgr.Task#isFinish()
 	 */
 	@Override
-	public boolean isFinish() {
+	public boolean isFinished() {
 		lock.readLock().lock();
 		try {
 			return finishFlag;
@@ -257,6 +264,15 @@ public abstract class AbstractTask<O extends TaskObverser> implements Task<O> {
 		} finally {
 			runningLock.unlock();
 		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "AbstractTask [finishFlag=" + finishFlag + ", startFlag=" + startFlag + ", exception=" + exception + "]";
 	}
 
 }

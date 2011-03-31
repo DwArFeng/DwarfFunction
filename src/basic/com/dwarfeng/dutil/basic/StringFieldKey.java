@@ -411,30 +411,43 @@ public enum StringFieldKey implements Name {
 	DELEGATELISTMODEL_0(new DefaultName("DelegateListModel.0")),
 	/** DelegateListModel类第1号文本字段 */
 	DELEGATELISTMODEL_1(new DefaultName("DelegateListModel.1")),
-	
+
 	/** DelegateSetModel类第0号文本字段 */
 	DELEGATESETMODEL_0(new DefaultName("DelegateSetModel.0")),
 	/** DelegateSetModel类第1号文本字段 */
 	DELEGATESETMODEL_1(new DefaultName("DelegateSetModel.1")),
-	
+
 	/** DelegateMapModel类第0号文本字段 */
 	DELEGATEMAPMODEL_0(new DefaultName("DelegateMapModel.0")),
 	/** DelegateMapModel类第1号文本字段 */
 	DELEGATEMAPMODEL_1(new DefaultName("DelegateMapModel.1")),
 	/** DelegateMapModel类第2号文本字段 */
 	DELEGATEMAPMODEL_2(new DefaultName("DelegateMapModel.2")),
-	
+
 	/** DelegateKeyListModel类第0号文本字段 */
 	DELEGATEKEYLISTMODEL_0(new DefaultName("DelegateKeyListModel.0")),
-	
+
 	/** MapKeySetModel类第0号文本字段 */
 	MAPKEYSETMODEL_0(new DefaultName("MapKeySetModel.0")),
 	/** MapKeySetModel类第1号文本字段 */
 	MAPKEYSETMODEL_1(new DefaultName("MapKeySetModel.1")),
-	
+
 	/** DelegateKeySetModel类第0号文本字段 */
-	DELEGATEKEYSETMODEL_0(new DefaultName("DelegateKeySetModel.0"))
-	
+	DELEGATEKEYSETMODEL_0(new DefaultName("DelegateKeySetModel.0")),
+
+	/** AbstractBackground类第0号文本字段 */
+	ABSTRACTBACKGROUND_0(new DefaultName("AbstractBackground.0")),
+
+	/** ExecutorServiceBackground类第0号文本字段 */
+	EXECUTORSERVICEBACKGROUND_0(new DefaultName("ExecutorServiceBackground.0")),
+	/** ExecutorServiceBackground类第1号文本字段 */
+	EXECUTORSERVICEBACKGROUND_1(new DefaultName("ExecutorServiceBackground.1")),
+	/** ExecutorServiceBackground类第2号文本字段 */
+	EXECUTORSERVICEBACKGROUND_2(new DefaultName("ExecutorServiceBackground.2")),
+
+	/** Backgrounds类第0号文本字段 */
+	BACKGROUNDS_0(new DefaultName("Backgrounds.0")),
+
 	;
 
 	private final Name name;

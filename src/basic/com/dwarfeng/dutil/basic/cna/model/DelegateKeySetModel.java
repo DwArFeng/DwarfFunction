@@ -18,8 +18,7 @@ import com.dwarfeng.dutil.basic.prog.WithKey;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public class DelegateKeySetModel<K, V extends WithKey<K>, O extends SetObverser<V>> extends DelegateSetModel<V, O>
-		implements KeySetModel<K, V, O> {
+public class DelegateKeySetModel<K, V extends WithKey<K>> extends DelegateSetModel<V> implements KeySetModel<K, V> {
 
 	/**
 	 * 生成一个默认的代理键值集合模型。
@@ -38,7 +37,7 @@ public class DelegateKeySetModel<K, V extends WithKey<K>, O extends SetObverser<
 	 * @throws NullPointerException
 	 *             入口参数为 null。
 	 */
-	public DelegateKeySetModel(Set<V> delegate, Set<O> obversers) {
+	public DelegateKeySetModel(Set<V> delegate, Set<SetObverser<V>> obversers) {
 		super(delegate, obversers);
 	}
 

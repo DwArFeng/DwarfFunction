@@ -18,10 +18,10 @@ import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public abstract class AbstractExconfigModel<O extends ExconfigObverser> implements ExconfigModel<O> {
+public abstract class AbstractExconfigModel implements ExconfigModel {
 
 	/** 观察器集合 */
-	protected final Set<O> obversers;
+	protected final Set<ExconfigObverser> obversers;
 
 	/**
 	 * 生成一个默认的抽象Ex配置模型。
@@ -38,7 +38,7 @@ public abstract class AbstractExconfigModel<O extends ExconfigObverser> implemen
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public AbstractExconfigModel(Set<O> obversers) {
+	public AbstractExconfigModel(Set<ExconfigObverser> obversers) {
 		Objects.requireNonNull(obversers, DwarfUtil.getStringField(StringFieldKey.ABSTRACTEXCONFIGMODEL_0));
 		this.obversers = obversers;
 	}
@@ -49,7 +49,7 @@ public abstract class AbstractExconfigModel<O extends ExconfigObverser> implemen
 	 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
 	 */
 	@Override
-	public Set<O> getObversers() {
+	public Set<ExconfigObverser> getObversers() {
 		return Collections.unmodifiableSet(obversers);
 	}
 
@@ -61,7 +61,7 @@ public abstract class AbstractExconfigModel<O extends ExconfigObverser> implemen
 	 * basic.prog.Obverser)
 	 */
 	@Override
-	public boolean addObverser(O obverser) {
+	public boolean addObverser(ExconfigObverser obverser) {
 		if (Objects.isNull(obverser))
 			return false;
 		return obversers.add(obverser);
@@ -75,7 +75,7 @@ public abstract class AbstractExconfigModel<O extends ExconfigObverser> implemen
 	 * dutil.basic.prog.Obverser)
 	 */
 	@Override
-	public boolean removeObverser(O obverser) {
+	public boolean removeObverser(ExconfigObverser obverser) {
 		return obversers.remove(obverser);
 	}
 

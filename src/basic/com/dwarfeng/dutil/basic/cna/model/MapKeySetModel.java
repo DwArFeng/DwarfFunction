@@ -23,8 +23,7 @@ import com.dwarfeng.dutil.basic.prog.WithKey;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public class MapKeySetModel<K, V extends WithKey<K>, O extends SetObverser<V>> extends AbstractSetModel<V, O>
-		implements KeySetModel<K, V, O> {
+public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V> implements KeySetModel<K, V> {
 
 	/** 负责处理列表的映射。 */
 	protected final Map<K, V> map;
@@ -46,7 +45,7 @@ public class MapKeySetModel<K, V extends WithKey<K>, O extends SetObverser<V>> e
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public MapKeySetModel(Map<K, V> map, Set<O> obversers) {
+	public MapKeySetModel(Map<K, V> map, Set<SetObverser<V>> obversers) {
 		super(obversers);
 		Objects.requireNonNull(map, DwarfUtil.getStringField(StringFieldKey.MAPKEYSETMODEL_0));
 		this.map = map;
@@ -226,7 +225,7 @@ public class MapKeySetModel<K, V extends WithKey<K>, O extends SetObverser<V>> e
 		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.MAPKEYSETMODEL_1));
 		return batchRemove(c, true);
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -324,22 +323,20 @@ public class MapKeySetModel<K, V extends WithKey<K>, O extends SetObverser<V>> e
 		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.MAPKEYSETMODEL_1));
 		return batchRemoveKey(c, false);
 	}
-	
-	
 
 	private boolean batchRemoveKey(Collection<?> c, boolean aFlag) {
 		boolean result = false;
-	
+
 		for (Iterator<V> i = map.values().iterator(); i.hasNext();) {
 			V element = i.next();
-	
+
 			if (c.contains(element == null ? null : element.getKey()) == aFlag) {
 				i.remove();
 				fireRemoved(element);
 				result = true;
 			}
 		}
-	
+
 		return result;
 	}
 

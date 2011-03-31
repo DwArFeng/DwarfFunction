@@ -22,7 +22,7 @@ import com.dwarfeng.dutil.basic.cna.model.obv.ListObverser;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public class DelegateListModel<E, O extends ListObverser<E>> extends AbstractListModel<E, O> {
+public class DelegateListModel<E> extends AbstractListModel<E> {
 
 	/** 该列表模型的代理。 */
 	protected final List<E> delegate;
@@ -44,7 +44,7 @@ public class DelegateListModel<E, O extends ListObverser<E>> extends AbstractLis
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public DelegateListModel(List<E> delegate, Set<O> obversers) {
+	public DelegateListModel(List<E> delegate, Set<ListObverser<E>> obversers) {
 		super(obversers);
 		Objects.requireNonNull(delegate, DwarfUtil.getStringField(StringFieldKey.DELEGATELISTMODEL_0));
 		this.delegate = delegate;

@@ -19,10 +19,10 @@ import com.dwarfeng.dutil.basic.cna.model.obv.ListObverser;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public abstract class AbstractListModel<E, O extends ListObverser<E>> implements ListModel<E, O> {
+public abstract class AbstractListModel<E> implements ListModel<E> {
 
 	/** 抽象列表模型的侦听器集合。 */
-	protected final Set<O> obversers;
+	protected final Set<ListObverser<E>> obversers;
 
 	/**
 	 * 生成一个默认的抽象列表模型。
@@ -39,7 +39,7 @@ public abstract class AbstractListModel<E, O extends ListObverser<E>> implements
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public AbstractListModel(Set<O> obversers) {
+	public AbstractListModel(Set<ListObverser<E>> obversers) {
 		Objects.requireNonNull(obversers, DwarfUtil.getStringField(StringFieldKey.ABSTRACTLISTMODEL_0));
 		this.obversers = obversers;
 	}
@@ -50,7 +50,7 @@ public abstract class AbstractListModel<E, O extends ListObverser<E>> implements
 	 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
 	 */
 	@Override
-	public Set<O> getObversers() {
+	public Set<ListObverser<E>> getObversers() {
 		return Collections.unmodifiableSet(obversers);
 	}
 
@@ -62,7 +62,7 @@ public abstract class AbstractListModel<E, O extends ListObverser<E>> implements
 	 * basic.prog.Obverser)
 	 */
 	@Override
-	public boolean addObverser(O obverser) {
+	public boolean addObverser(ListObverser<E> obverser) {
 		return obversers.add(obverser);
 	}
 
@@ -74,7 +74,7 @@ public abstract class AbstractListModel<E, O extends ListObverser<E>> implements
 	 * dutil.basic.prog.Obverser)
 	 */
 	@Override
-	public boolean removeObverser(O obverser) {
+	public boolean removeObverser(ListObverser<E> obverser) {
 		return obversers.remove(obverser);
 	}
 

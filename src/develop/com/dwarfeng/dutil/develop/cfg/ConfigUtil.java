@@ -425,17 +425,17 @@ public final class ConfigUtil {
 	 *            Ex配置模型注册的侦听器类型。
 	 * @return 由指定Ex配置模型生成的线程安全的Ex配置模型。
 	 */
-	public static <O extends ExconfigObverser> SyncExconfigModel<O> syncExconfigModel(ExconfigModel<O> exconfigModel) {
+	public static SyncExconfigModel syncExconfigModel(ExconfigModel exconfigModel) {
 		Objects.requireNonNull(exconfigModel, DwarfUtil.getStringField(StringFieldKey.CONFIGUTIL_1));
-		return new SyncExconfigModelImpl<>(exconfigModel);
+		return new SyncExconfigModelImpl(exconfigModel);
 	}
 
-	private static class SyncExconfigModelImpl<O extends ExconfigObverser> implements SyncExconfigModel<O> {
+	private static class SyncExconfigModelImpl implements SyncExconfigModel {
 
-		private final ExconfigModel<O> delegate;
+		private final ExconfigModel delegate;
 		private final ReadWriteLock lock = new ReentrantReadWriteLock();
 
-		public SyncExconfigModelImpl(ExconfigModel<O> delegate) {
+		public SyncExconfigModelImpl(ExconfigModel delegate) {
 			this.delegate = delegate;
 		}
 
@@ -457,7 +457,7 @@ public final class ConfigUtil {
 		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
 		 */
 		@Override
-		public Set<O> getObversers() {
+		public Set<ExconfigObverser> getObversers() {
 			lock.readLock().lock();
 			try {
 				return delegate.getObversers();
@@ -474,7 +474,7 @@ public final class ConfigUtil {
 		 * dutil.basic.prog.Obverser)
 		 */
 		@Override
-		public boolean addObverser(O obverser) {
+		public boolean addObverser(ExconfigObverser obverser) {
 			lock.writeLock().lock();
 			try {
 				return delegate.addObverser(obverser);
@@ -491,7 +491,7 @@ public final class ConfigUtil {
 		 * .dutil.basic.prog.Obverser)
 		 */
 		@Override
-		public boolean removeObverser(O obverser) {
+		public boolean removeObverser(ExconfigObverser obverser) {
 			lock.writeLock().lock();
 			try {
 				return delegate.removeObverser(obverser);
@@ -1336,17 +1336,16 @@ public final class ConfigUtil {
 	 *            Ex配置模型注册的侦听器类型。
 	 * @return 不可编辑的Ex配置模型。
 	 */
-	public static <O extends ExconfigObverser> ExconfigModel<O> unmodifiableExconfigModel(
-			ExconfigModel<O> exconfigModel) {
+	public static ExconfigModel unmodifiableExconfigModel(ExconfigModel exconfigModel) {
 		Objects.requireNonNull(exconfigModel, DwarfUtil.getStringField(StringFieldKey.CONFIGUTIL_1));
-		return new UnmodifiableExconfigModel<>(exconfigModel);
+		return new UnmodifiableExconfigModel(exconfigModel);
 	}
 
-	private static class UnmodifiableExconfigModel<O extends ExconfigObverser> implements ExconfigModel<O> {
+	private static class UnmodifiableExconfigModel implements ExconfigModel {
 
-		private final ExconfigModel<O> delegate;
+		private final ExconfigModel delegate;
 
-		public UnmodifiableExconfigModel(ExconfigModel<O> delegate) {
+		public UnmodifiableExconfigModel(ExconfigModel delegate) {
 			this.delegate = delegate;
 		}
 
@@ -1368,7 +1367,7 @@ public final class ConfigUtil {
 		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
 		 */
 		@Override
-		public Set<O> getObversers() {
+		public Set<ExconfigObverser> getObversers() {
 			return delegate.getObversers();
 		}
 
@@ -1380,7 +1379,7 @@ public final class ConfigUtil {
 		 * dutil.basic.prog.Obverser)
 		 */
 		@Override
-		public boolean addObverser(O obverser) {
+		public boolean addObverser(ExconfigObverser obverser) {
 			throw new UnsupportedOperationException();
 		}
 
@@ -1403,7 +1402,7 @@ public final class ConfigUtil {
 		 * .dutil.basic.prog.Obverser)
 		 */
 		@Override
-		public boolean removeObverser(O obverser) {
+		public boolean removeObverser(ExconfigObverser obverser) {
 			throw new UnsupportedOperationException();
 		}
 

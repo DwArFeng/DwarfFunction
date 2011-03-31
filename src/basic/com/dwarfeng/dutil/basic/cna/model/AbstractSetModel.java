@@ -19,10 +19,10 @@ import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public abstract class AbstractSetModel<E, O extends SetObverser<E>> implements SetModel<E, O> {
+public abstract class AbstractSetModel<E> implements SetModel<E> {
 
 	/** 抽象集合模型的侦听器集合。 */
-	private final Set<O> obversers;
+	private final Set<SetObverser<E>> obversers;
 
 	/**
 	 * 生成一个默认的抽象集合模型。
@@ -39,7 +39,7 @@ public abstract class AbstractSetModel<E, O extends SetObverser<E>> implements S
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public AbstractSetModel(Set<O> obversers) {
+	public AbstractSetModel(Set<SetObverser<E>> obversers) {
 		Objects.requireNonNull(obversers, DwarfUtil.getStringField(StringFieldKey.ABSTRACTSETMODEL_0));
 		this.obversers = obversers;
 	}
@@ -50,7 +50,7 @@ public abstract class AbstractSetModel<E, O extends SetObverser<E>> implements S
 	 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
 	 */
 	@Override
-	public Set<O> getObversers() {
+	public Set<SetObverser<E>> getObversers() {
 		return Collections.unmodifiableSet(obversers);
 	}
 
@@ -62,7 +62,7 @@ public abstract class AbstractSetModel<E, O extends SetObverser<E>> implements S
 	 * basic.prog.Obverser)
 	 */
 	@Override
-	public boolean addObverser(O obverser) {
+	public boolean addObverser(SetObverser<E> obverser) {
 		return obversers.add(obverser);
 	}
 
@@ -74,7 +74,7 @@ public abstract class AbstractSetModel<E, O extends SetObverser<E>> implements S
 	 * dutil.basic.prog.Obverser)
 	 */
 	@Override
-	public boolean removeObverser(O obverser) {
+	public boolean removeObverser(SetObverser<E> obverser) {
 		return obversers.remove(obverser);
 	}
 

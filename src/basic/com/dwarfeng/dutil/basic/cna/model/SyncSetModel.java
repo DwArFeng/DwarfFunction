@@ -2,7 +2,6 @@ package com.dwarfeng.dutil.basic.cna.model;
 
 import java.util.concurrent.locks.ReadWriteLock;
 
-import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
 import com.dwarfeng.dutil.basic.threads.ExternalReadWriteThreadSafe;
 
 /**
@@ -31,6 +30,6 @@ import com.dwarfeng.dutil.basic.threads.ExternalReadWriteThreadSafe;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public interface SyncSetModel<E, O extends SetObverser<E>> extends SetModel<E, O>, ExternalReadWriteThreadSafe {
+public interface SyncSetModel<E> extends SetModel<E>, ExternalReadWriteThreadSafe {
 
 }

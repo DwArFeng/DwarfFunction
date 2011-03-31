@@ -17,11 +17,10 @@ import org.junit.Test;
 
 import com.dwarfeng.dutil.basic.cna.model.DelegateSetModel;
 import com.dwarfeng.dutil.basic.cna.model.SetModel;
-import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
 
 public class Test_DelegateSetModel {
 
-	private final SetModel<String, SetObverser<String>> model = new DelegateSetModel<>(new LinkedHashSet<>(),
+	private final SetModel<String> model = new DelegateSetModel<>(new LinkedHashSet<>(),
 			Collections.newSetFromMap(new WeakHashMap<>()));
 	private final TestSetObverser<String> obv = new TestSetObverser<String>();
 
