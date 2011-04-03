@@ -28,6 +28,8 @@ public interface ValueParser {
 	 * @return 解析成的 {@link Object} 对象。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
+	 * @throws IllegalArgumentException
+	 *             指定的字符串无法解析。
 	 */
 	public Object parseValue(String value);
 
@@ -42,6 +44,8 @@ public interface ValueParser {
 	 * @return 由指定对象解析成的字符串。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
+	 * @throws IllegalArgumentException
+	 *             指定的对象无法解析为字符串。
 	 */
 	public String parseObject(Object object);
 

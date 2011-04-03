@@ -72,6 +72,8 @@ public interface Task extends Runnable, ExternalReadWriteThreadSafe, ObverserSet
 	 *            指定的时间数值。
 	 * @param unit
 	 *            指定的时间单位。
+	 * @return 如果线程是因为任务执行完毕而终止等待，则返回 <code>true</code>；如果是应为超时而结束等待则返回
+	 *         <code>false</code>。
 	 * @throws InterruptedException
 	 *             线程在阻塞的时候被中断。
 	 */

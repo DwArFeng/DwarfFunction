@@ -1,10 +1,5 @@
 package com.dwarfeng.dutil.develop.backgr;
 
-import java.util.Objects;
-
-import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
-
 /**
  * 有关后台的工具包。
  * <p>
@@ -12,6 +7,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
  * <p>
  * 由于是只含有静态方法的工具包，所以该类无法被继承。
  * 
+ * @deprecated 由于该类不符合命名规范，已经由 {@link BackgroundUtil}代替。
  * @author DwArFeng
  * @since 0.1.0-beta
  */
@@ -27,28 +23,7 @@ public final class Backgrounds {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static Task newTaskFromRunnable(Runnable runnable) {
-		Objects.requireNonNull(runnable, DwarfUtil.getStringField(StringFieldKey.BACKGROUNDS_0));
-		return new RunnableTask(runnable);
-	}
-
-	private final static class RunnableTask extends AbstractTask {
-
-		private final Runnable runnable;
-
-		public RunnableTask(Runnable runnable) {
-			this.runnable = runnable;
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.develop.backgr.AbstractTask#todo()
-		 */
-		@Override
-		protected void todo() throws Exception {
-			runnable.run();
-		}
-
+		return BackgroundUtil.newTaskFromRunnable(runnable);
 	}
 
 	private Backgrounds() {

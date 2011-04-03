@@ -445,9 +445,15 @@ public enum StringFieldKey implements Name {
 	/** ExecutorServiceBackground类第2号文本字段 */
 	EXECUTORSERVICEBACKGROUND_2(new DefaultName("ExecutorServiceBackground.2")),
 
-	/** Backgrounds类第0号文本字段 */
-	BACKGROUNDS_0(new DefaultName("Backgrounds.0")),
+	/** BackgroundUtil类第0号文本字段 */
+	BACKGROUNDUTIL_0(new DefaultName("BackgroundUtil.0")),
+	
+	/** ResourceUtil类第0号文本字段 */
+	RESOURCEUTIL_0(new DefaultName("ResourceUtil.0")),
 
+	/** DelegateResourceHandler类第0号文本字段 */
+	DELEGATERESOURCEHANDLER_0(new DefaultName("DelegateResourceHandler.0")),
+	
 	;
 
 	private final Name name;

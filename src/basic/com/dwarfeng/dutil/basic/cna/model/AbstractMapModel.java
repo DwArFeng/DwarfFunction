@@ -22,7 +22,7 @@ import com.dwarfeng.dutil.basic.cna.model.obv.MapObverser;
 public abstract class AbstractMapModel<K, V> implements MapModel<K, V> {
 
 	/** 抽象集合模型的侦听器集合。 */
-	private final Set<MapObverser<K, V>> obversers;
+	protected final Set<MapObverser<K, V>> obversers;
 
 	/**
 	 * 生成一个默认的抽象映射模型。

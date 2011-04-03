@@ -22,7 +22,7 @@ import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
 public abstract class AbstractSetModel<E> implements SetModel<E> {
 
 	/** 抽象集合模型的侦听器集合。 */
-	private final Set<SetObverser<E>> obversers;
+	protected final Set<SetObverser<E>> obversers;
 
 	/**
 	 * 生成一个默认的抽象集合模型。
