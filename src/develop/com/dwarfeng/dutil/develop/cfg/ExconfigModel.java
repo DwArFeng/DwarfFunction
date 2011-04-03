@@ -242,6 +242,8 @@ public interface ExconfigModel extends CurrentValueContainer, ObverserSet<Exconf
 	 * @return 指定的配置键对应的有效值的解析值。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
+	 * @throws IllegalArgumentException
+	 *             指定的配置键对应的实际值无法被解析为对象。
 	 */
 	public Object getParsedValue(ConfigKey configKey);
 
@@ -261,7 +263,24 @@ public interface ExconfigModel extends CurrentValueContainer, ObverserSet<Exconf
 	 *             入口参数为 <code>null</code>。
 	 * @throws ClassCastException
 	 *             类型转换异常。
+	 * @throws IllegalArgumentException
+	 *             指定的配置键对应的实际值无法被解析为对象。
 	 */
 	public <T> T getParsedValue(ConfigKey configKey, Class<T> clas);
+
+	/**
+	 * 设置模型中对应的配置键的对应的有效值。
+	 * <p>
+	 * 该方法使用解析器将对象解析为字符串，并将得到的字符串设置为当前值。
+	 * 
+	 * @param configKey
+	 *            指定的配置键。
+	 * @param obj
+	 *            指定的对象。
+	 * @return 是否设置成功。
+	 * @throws IllegalArgumentException
+	 *             指定的对象无法被解析器解析为字符串。
+	 */
+	public boolean setParsedValue(ConfigKey configKey, Object obj);
 
 }

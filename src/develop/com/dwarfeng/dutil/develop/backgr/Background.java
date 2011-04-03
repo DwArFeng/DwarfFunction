@@ -64,7 +64,9 @@ public interface Background extends ExternalReadWriteThreadSafe, ObverserSet<Bac
 	/**
 	 * 关闭后台。
 	 * <p>
-	 * 当后台关闭时，后台会拒绝后续的任务提交，已提交的任务则不受影响。 <o> 当已提交的所有任务执行完毕后，后台则会被终结。
+	 * 当后台关闭时，后台会拒绝后续的任务提交，已提交的任务则不受影响。
+	 * <p>
+	 * 当已提交的所有任务执行完毕后，后台则会被终结。
 	 */
 	public void shutdown();
 

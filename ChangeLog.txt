@@ -113,4 +113,6 @@ Beta_0.1.0
 	新增 dutil.basic.cna.model 包以及其子包
 		提供了大量的模型预设，可大大减少开发项目时的开发模型的工作量。
 		提供 ListModel, SetModel, MapModel, KeyListModel, KeySetModel 模型以及其实现，外加不可更改与线程安全的版本。
+	新增 dutil.develop.backgr 包，提供程序后台的实现
+	新增 dutil.basic.UnsafeGetter<T> 接口
 			

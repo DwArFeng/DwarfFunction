@@ -11,7 +11,7 @@ import com.dwarfeng.dutil.develop.cfg.parser.IntegerValueParser;
 import com.dwarfeng.dutil.develop.cfg.struct.ExconfigEntry;
 import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
-public enum ExconfigEntries implements ExconfigEntry, ConfigEntry{
+public enum TestExconfigEntries implements ExconfigEntry, ConfigEntry{
 	
 	//
 	FAIL_0(null, null, null, null, null),
@@ -36,7 +36,7 @@ public enum ExconfigEntries implements ExconfigEntry, ConfigEntry{
 	private final ValueParser valueParser;
 	private final String currentValue;
 
-	private ExconfigEntries(String keyString, ConfigChecker checker, String defaultValue, ValueParser valueParser,
+	private TestExconfigEntries(String keyString, ConfigChecker checker, String defaultValue, ValueParser valueParser,
 			String currentValue) {
 		this.keyString = keyString;
 		this.checker = checker;

@@ -4,7 +4,7 @@ import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
 /**
  * 整型数值解析器。
- * 
+ *  <p> 该解析器解析的是 <code>int</code> 对象。
  * @author DwArFeng
  * @since 0.1.0-beta
  */

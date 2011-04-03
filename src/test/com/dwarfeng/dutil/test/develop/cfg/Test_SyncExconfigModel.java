@@ -81,12 +81,12 @@ public class Test_SyncExconfigModel {
 
 	@Test
 	public void testAdd() {
-		model.add(ExconfigEntries.SUCC_0);
+		model.add(TestExconfigEntries.SUCC_0);
 	}
 
 	@Test
 	public void testAddAll() {
-		model.addAll(Arrays.asList(ExconfigEntries.values()));
+		model.addAll(Arrays.asList(TestExconfigEntries.values()));
 	}
 
 	@Test

@@ -4,6 +4,7 @@ import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
 /**
  * 双精度浮点数解析器。
+ * <p> 该解析器解析的是 <b>double</b> 对象。
  * 
  * @author DwArFeng
  * @since 0.1.0-beta

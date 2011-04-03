@@ -421,8 +421,6 @@ public final class ConfigUtil {
 	 * 
 	 * @param exconfigModel
 	 *            指定的Ex配置模型。
-	 * @param <O>
-	 *            Ex配置模型注册的侦听器类型。
 	 * @return 由指定Ex配置模型生成的线程安全的Ex配置模型。
 	 */
 	public static SyncExconfigModel syncExconfigModel(ExconfigModel exconfigModel) {
@@ -907,6 +905,22 @@ public final class ConfigUtil {
 			}
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#setParsedValue(com.
+		 * dwarfeng.dutil.develop.cfg.ConfigKey, java.lang.Object)
+		 */
+		@Override
+		public boolean setParsedValue(ConfigKey configKey, Object obj) {
+			lock.writeLock().lock();
+			try {
+				return false;
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
 	}
 
 	public static SyncConfigModel syncConfigModel(ConfigModel configModel) {
@@ -1332,8 +1346,6 @@ public final class ConfigUtil {
 	 * 
 	 * @param exconfigModel
 	 *            指定的配置模型。
-	 * @param <O>
-	 *            Ex配置模型注册的侦听器类型。
 	 * @return 不可编辑的Ex配置模型。
 	 */
 	public static ExconfigModel unmodifiableExconfigModel(ExconfigModel exconfigModel) {
@@ -1663,6 +1675,17 @@ public final class ConfigUtil {
 		@Override
 		public <T> T getParsedValue(ConfigKey configKey, Class<T> clas) {
 			return delegate.getParsedValue(configKey, clas);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#setParsedValue(com.
+		 * dwarfeng.dutil.develop.cfg.ConfigKey, java.lang.Object)
+		 */
+		@Override
+		public boolean setParsedValue(ConfigKey configKey, Object obj) {
+			throw new UnsupportedOperationException();
 		}
 
 	}

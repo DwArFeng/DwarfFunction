@@ -603,6 +603,27 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		return t;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#setParsedValue(com.dwarfeng.
+	 * dutil.develop.cfg.ConfigKey, java.lang.Object)
+	 */
+	@Override
+	public boolean setParsedValue(ConfigKey configKey, Object obj) {
+		if (Objects.isNull(obj))
+			return false;
+		if (Objects.isNull(configKey))
+			return false;
+
+		if (!containsKey(configKey))
+			return false;
+
+		ExconfigBean bean = delegate.get(configKey);
+		return setCurrentValue(configKey, bean.getValueParser().parseObject(obj));
+	}
+
 	private class CurrentValueMap implements Map<ConfigKey, String> {
 
 		/*

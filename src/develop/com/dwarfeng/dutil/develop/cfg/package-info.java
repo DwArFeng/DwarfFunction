@@ -15,7 +15,15 @@
  * 它负责与以上说明有关的功能的实现。
  * 用户可以在配置模型中注册配置键与固定配置属性，并且侦听它的变化，以对其变化做出即时的响应。io包中的对应的读写类则可以用来读取或保存
  * 指定的配置，以做到配置的持久化。 <br>
- * //TODO 新的说明——ExconfigModel
+ * 
+ * <p>
+ * 自beta-0.1.0版本以来，配置包中的核心结构增加了
+ * {@link com.dwarfeng.dutil.develop.cfg.ExconfigModel}。 <br>
+ * 该结构比 <code>ConfigModel</code> 更强大，同时结构也更简单，<code>ConfigModel</code>
+ * 的主要结构是三重映射，而 <code>ExConfigModel</code>只有一个映射：配置键与
+ * {@link com.dwarfeng.dutil.develop.cfg.DefaultExconfigModel.ExconfigBean}映射。
+ * 这种结构更稳定，也更好维护，在实现时只需要使用一个 {@link java.util.Map}作为代理即可，同时避免了
+ * <code>ConfigModel</code>的代理实现时不同映射表现不同的问题。
  * 
  * <p>
  * 在一般情况下，一个键下，值检查器负责检测某个特定的值是否有效，当当前值有效时，当前值在发挥作用；当当前值无效时，
