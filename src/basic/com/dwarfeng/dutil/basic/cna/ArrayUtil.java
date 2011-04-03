@@ -11,8 +11,11 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 
 /**
  * 有关于数组的工具包。
- * <p> 该包中包含关于对数组进行操作的常用方法。
- * <p> 由于是只含有静态方法的工具包，所以该类无法被继承。
+ * <p>
+ * 该包中包含关于对数组进行操作的常用方法。
+ * <p>
+ * 由于是只含有静态方法的工具包，所以该类无法被继承。
+ * 
  * @author DwArFeng
  * @since 0.0.2-beta
  */
@@ -96,8 +99,8 @@ public final class ArrayUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public static<T> T[] concat(T[] first, T[] second){
-		Objects.requireNonNull(first, DwarfUtil.getStringField(StringFieldKey.ArrayUtil_0));
-		Objects.requireNonNull(second, DwarfUtil.getStringField(StringFieldKey.ArrayUtil_1));
+		Objects.requireNonNull(first, DwarfUtil.getStringField(StringFieldKey.ARRAYUTIL_0));
+		Objects.requireNonNull(second, DwarfUtil.getStringField(StringFieldKey.ARRAYUTIL_1));
 		
 		int totalLength = first.length + second.length;
 		T[] result = Arrays.copyOf(first, totalLength);
@@ -117,7 +120,7 @@ public final class ArrayUtil {
 	 * @throws NullPointerException 入口参数 <code>rest</code>为 <code>null</code>。
 	 */
 	public static<T> T[] concat(T[] first,T[][] rest){
-		Objects.requireNonNull(first, DwarfUtil.getStringField(StringFieldKey.ArrayUtil_0));
+		Objects.requireNonNull(first, DwarfUtil.getStringField(StringFieldKey.ARRAYUTIL_0));
 		
 		if(Objects.isNull(rest)) return first;
 		
@@ -567,7 +570,7 @@ public final class ArrayUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public static<T> Iterable<T> array2Iterable(T[] array){
-		Objects.requireNonNull(array, DwarfUtil.getStringField(StringFieldKey.ArrayUtil_2));
+		Objects.requireNonNull(array, DwarfUtil.getStringField(StringFieldKey.ARRAYUTIL_2));
 		return new ArrayIterable<>(array);
 	}
 }

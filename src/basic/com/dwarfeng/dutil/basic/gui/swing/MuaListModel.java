@@ -41,7 +41,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E>{
 	 */
 	public MuaListModel(List<E> list){
 		super();
-		Objects.requireNonNull(list, DwarfUtil.getStringField(StringFieldKey.MuaListModel_0));
+		Objects.requireNonNull(list, DwarfUtil.getStringField(StringFieldKey.MUALISTMODEL_0));
 		this.delegate = list;
 	}
 	

@@ -93,7 +93,7 @@ public class QuickFothVariable extends AbstractMathObject implements FothVariabl
 	 */
 	@Override
 	public String getMathName() {
-		return DwarfUtil.getStringField(StringFieldKey.Algebra_Variable);
+		return DwarfUtil.getStringField(StringFieldKey.ALGEBRA_VARIABLE);
 	}
 
 	/*

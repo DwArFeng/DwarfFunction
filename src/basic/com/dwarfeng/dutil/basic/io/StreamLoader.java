@@ -7,12 +7,11 @@ import java.util.Objects;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
-import com.dwarfeng.dutil.basic.prog.Loader;
 
 /**
  * 流记读取器。
  * <p> 用流实现的读取器。
- * @author  DwArFeng
+ * @author DwArFeng
  * @since 0.0.3-beta
  */
 public abstract class StreamLoader<T> implements Closeable, Loader<T>{
@@ -26,7 +25,7 @@ public abstract class StreamLoader<T> implements Closeable, Loader<T>{
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public StreamLoader(InputStream in) {
-		Objects.requireNonNull(in, DwarfUtil.getStringField(StringFieldKey.StreamLoader_0));
+		Objects.requireNonNull(in, DwarfUtil.getStringField(StringFieldKey.STREAMLOADER_0));
 		this.in = in;
 	}
 

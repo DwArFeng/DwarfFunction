@@ -68,7 +68,7 @@ Beta_0.0.2_20170115_build_B
 	为 dutil.develop.cfg.DefaultConfigModel 增加了默认的构造器方法。
 	从此版本开始，所有的 release 将加上版本号。
 	
-Beta_0.0.3	
+Beta_0.0.3_20170128_build_A
 	新增 dutil.basic.threads.NumberedThreadFactory，用于提供自动编号的线程。
 	新增 dutil.basic.gui.swing.JExConsole，用于替代老的 JConsole。
 	新增 dutil.basic.prog.Loader<T>; dutil.basic.prog.Saver<T>，用于对指定对象进行读取和保存。
@@ -78,3 +78,41 @@ Beta_0.0.3
 	新增 dutil.basic.cna.insert(List<T> list, T obj, Comparator<? super T> c) 方法，用于在已排序的列表中插入元素。
 	新增 dutil.basic.prog.RuntimeState，用于指示程序的运行状态。
 	新增 dutil.basic.prog.Checker<T> 用于指示类型 T 是否合法。	
+	
+	新增 protected 域：dutil.basic.gui.swing.JExconsole.popup 用于指示控制台的右键菜单。
+	
+Beta_0.1.0
+	调整 dutil.basic.prog.Saver 与 Loader
+		将这两个类移动到更加符合其功能的 dutil.basic.io 包中，并过时 prog 包中的相应接口。
+		为Saver 和 Loader 接口提供另一种读写方式：连续读写方式。
+	调整 dutil.develop.cfg.DefaultConfigModel 
+		增加了新的构造器方法，现在用户可以分别指定模型中 键-当前值映射 和 键-固定属性映射的 Map 代理。
+		其中的设置当前值与固定属性的方法，在现在的设置方法中，即使新值与旧值相等，仍然会触发观察器。
+	调整 dutil.develop.cfg.io.PropConfigLoader 与 PropConfigSaver 中的方法，实现了其接口新增的方法。
+	新增 dutil.basic.prog.ProcessFailedException，用于指示在方法处理过程中因为别的异常导致的处理过程失败。
+	调整 dutil.basic.gui.swing.JExconsole
+		将 popup-右键菜单类设置为可更改的，这样，用户在编程的时候，可以随时改变 popup。
+		新增取消控制台输入功能，当控制台输入框打开的时候，可以调用方法取消本次输入。
+	新增 dutil.basic.prog.ElementWithKey 接口，该接口指示实现此接口的类拥有一个可辨识的主键。
+	新增 dutil.basic.str.DefaultName 类，为 dutil.basic.str.Name 接口的默认实现。
+	新增 dutil.test 包，用于存储调试用的代码，该包不在 release 版本发布。
+	对 dutil.develop.cfg 包进行了重大升级
+		引入 Exconfig 架构，对配置模型的处理能力进行了一次升级：
+			该架构下的配置模型 ExconfigModel 可以将配置的有效值直接转化为用户需要的格式，并且可以方便的扩展观察器。
+		新增 dutil.develop.cfg.ExconfigModel
+		新增 dutil.develop.cfg.SyncExconfigModel
+		新增 dutil.develop.cfg.SyncConfigModel
+		新增 dutil.develop.cfg.struct 包
+			新增 dutil.develop.cfg.ExconfigEntry
+			新增 dutil.develop.cfg.struct.ValueParser
+		新增 dutil.develop.cfg.struct.parser包
+			新增 dutil.develop.cfg.parse.IntegerValueParser
+		新增 dutil.develop.cfg.struct.obv包
+			新增 dutil.develop.cfg.parse.ExconfigObverser
+			新增 dutil.develop.cfg.parse.ExconfigAdapter
+	新增 dutil.basic.cna.model 包以及其子包
+		提供了大量的模型预设，可大大减少开发项目时的开发模型的工作量。
+		提供 ListModel, SetModel, MapModel, KeyListModel, KeySetModel 模型以及其实现，外加不可更改与线程安全的版本。
+	新增 dutil.develop.backgr 包，提供程序后台的实现
+	新增 dutil.basic.UnsafeGetter<T> 接口
+			

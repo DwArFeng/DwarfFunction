@@ -5,7 +5,7 @@ import java.util.Comparator;
 /**
  * 字符串比较器。
  * <p> 根据字符串默认的排序算法（字典排序）进行排序的字符串比较器。
- * @author  DwArFeng
+ * @author DwArFeng
  * @since 0.0.3-beta
  */
 public class StringComparator implements Comparator<String> {

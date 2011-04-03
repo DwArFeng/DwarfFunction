@@ -125,7 +125,7 @@ public class EventListenerWeakSet implements Set<EventListener>{
 	 */
 	@Override
 	public boolean add(EventListener e) {
-		if(e == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.EventListenerWeakSet_0));
+		if(e == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.EVENTLISTENERWEAKSET_0));
 		return set.add(e);
 	}
 

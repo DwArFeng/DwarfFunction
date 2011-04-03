@@ -10,7 +10,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 /**
  * 提供一些使用String作为入口参数的工厂方法。
  * <p> 由于是只含有静态方法的工具包，所以该类无法被继承。
- * @author  DwArFeng
+ * @author DwArFeng
  * @since 0.0.2-beta
  */
 public final class FactoriesByString {

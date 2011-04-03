@@ -1,5 +1,5 @@
 /**
- * 用于调试的工具类包。
+ * 实现测、测试的工具包。
  * @author DwArFeng
  * @since 0.0.2-beta
  */

@@ -17,7 +17,7 @@ import com.dwarfeng.dutil.basic.prog.Buildable;
  * <p> 迭代器不接受 <code>null</code>元素，如果在构造器中使用 <code>null</code>元素进行构造，则会被积极的拒绝。
  * <p> 为了防止潜在的堆污染，该类的构造方式由构造器完成。
  * <p> 如果只是合并两个迭代器，则 {@link CollectionUtil}提供了便捷方法，请查看 {@link CollectionUtil#contactIterator(Iterator, Iterator)}。
- * @author  DwArFeng
+ * @author DwArFeng
  * @since 0.0.2-beta
  */
 public class JointIterator<T> implements Iterator<T> {

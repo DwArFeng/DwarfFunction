@@ -26,8 +26,8 @@ public class TagRunnable implements Runnable, Tag{
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public TagRunnable(Runnable runnable, Tag tag){
-		Objects.requireNonNull(runnable, DwarfUtil.getStringField(StringFieldKey.TagRunner_0));
-		Objects.requireNonNull(tag, DwarfUtil.getStringField(StringFieldKey.TagRunner_1));
+		Objects.requireNonNull(runnable, DwarfUtil.getStringField(StringFieldKey.TAGRUNNER_0));
+		Objects.requireNonNull(tag, DwarfUtil.getStringField(StringFieldKey.TAGRUNNER_1));
 		this.runnable = runnable;
 		this.tag = tag;
 	}
