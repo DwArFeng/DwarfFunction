@@ -141,7 +141,7 @@ public abstract class AbstractTask implements Task {
 		// 运行 todo 方法。
 		try {
 			todo();
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			throwable = e;
 		}
 		// 置位结束标志，并且通知观察器。
