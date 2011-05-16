@@ -915,7 +915,7 @@ public final class ConfigUtil {
 		public boolean setParsedValue(ConfigKey configKey, Object obj) {
 			lock.writeLock().lock();
 			try {
-				return false;
+				return delegate.setParsedValue(configKey, obj);
 			} finally {
 				lock.writeLock().unlock();
 			}

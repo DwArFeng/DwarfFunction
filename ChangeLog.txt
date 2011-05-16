@@ -160,3 +160,7 @@ Beta_0.1.2_20170504_build_A
 	
 Beta_0.1.2_20170505_build_B
 	修复 dutil.basic.threads.ThreadSafeUtil 中的一系列bug。
+	
+Beta_0.1.3
+	修复bug
+		修复 develop.cfg.ConfigUtil.SyncExconfigModelImpl.setParsedValue(ConfigKey, Object) 行为不正常的bug。
