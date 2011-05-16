@@ -8,6 +8,8 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 
 /**
  * 根据{@linkplain Name}对象的名称属性进行比较的比较器。
+ * 
+ * @deprecated 由于该类不符合命名规范，已经由 {@link NameableComparator} 代替。
  * @author DwArFeng
  * @since 0.0.2-beta
  */
@@ -15,6 +17,7 @@ public final class NameableComparator implements Comparator<Name> {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
 	 */
 	@Override
