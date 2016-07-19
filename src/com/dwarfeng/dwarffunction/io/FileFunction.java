@@ -13,8 +13,7 @@ import java.nio.channels.FileChannel;
  * @author DwArFeng
  * @since 1.8
  */
-public class FileFunction {
-
+public final class FileFunction {
 	
 	/**
 	 * 将一个文件复制到另一个文件。

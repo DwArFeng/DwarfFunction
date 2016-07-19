@@ -1,12 +1,10 @@
 package com.dwarfeng.dwarffunction.gui;
 
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.AbstractAction;
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 
 /**
@@ -14,9 +12,9 @@ import javax.swing.KeyStroke;
  * @author DwArFeng
  * @since 1.7
  */
-public class JMenuItemAction extends AbstractAction{
+public final class JMenuItemAction extends AbstractAction{
 
-	private static final long serialVersionUID = -4440718102049459705L;
+	private static final long serialVersionUID = 67574488277609694L;
 	
 	private ActionListener listener;
 	
@@ -101,71 +99,6 @@ public class JMenuItemAction extends AbstractAction{
 		public JMenuItemAction product(){
 			return new JMenuItemAction(icon, name, description, keyStroke, mnemonic, listener);
 		}
-	}
-	
-	/**
-	 * 新建一个默认的菜单项目动作。
-	 * @deprecated 由构造器取代。
-	 * 
-	 */
-	@Deprecated
-	public JMenuItemAction(){
-		this(null,null,null,null,null);
-	}
-	/**
-	 * 创建一个具有指定名字，指定描述，指定动作执行侦听的菜单项目动作。
-	 * @deprecated 由构造器取代。
-	 * @param name 指定的名字。
-	 * @param description 指定的描述。
-	 * @param listener 指定的动作执行侦听。
-	 */
-	@Deprecated
-	public JMenuItemAction(String name,String description,ActionListener listener) {
-		this(null,name,description,listener);
-	}
-	/**
-	 * 创建一个具有指定图标，指定名字，指定描述，指定动作执行侦听的菜单项目动作。
-	 * @deprecated 由构造器取代。
-	 * @param iconImage 指定的图标。
-	 * @param name 指定的名字。
-	 * @param description 指定的描述。
-	 * @param listener 指定的动作执行侦听。
-	 */
-	@Deprecated
-	public JMenuItemAction(Image iconImage,String name,String description,ActionListener listener){
-		this(iconImage,name,description,null,listener);
-	}
-	/**
-	 * 创建一个具有指定图标，指定名字，指定描述，指定快捷键，指定动作执行侦听的菜单项目动作。
-	 * @deprecated 由构造器取代。
-	 * @param iconImage 指定的图标。
-	 * @param name 指定的名字。
-	 * @param description 指定的描述。
-	 * @param keyStroke 指定的快捷键。
-	 * @param listener 指定的动作执行侦听。
-	 */
-	@Deprecated
-	public JMenuItemAction(Image iconImage,String name,String description,KeyStroke keyStroke,ActionListener listener){
-		this(iconImage,name,description,keyStroke,0,listener);
-	}
-	/**
-	 * 创建一个具有指定图标，指定名字，指定描述，指定快捷键，指定助记符，指定动作执行侦听的菜单项目动作。
-	 * @deprecated 由构造器取代。
-	 * @param iconImage 指定的图标。
-	 * @param name 指定的名字。
-	 * @param description 指定的描述。
-	 * @param keyStroke 指定的快捷键。
-	 * @param mnemonic 指定的助记符
-	 * @param listener 指定的动作执行侦听。
-	 */
-	@Deprecated
-	public JMenuItemAction(Image iconImage,String name,String description,KeyStroke keyStroke,int mnemonic,ActionListener listener){
-		if(listener != null) this.listener = listener;
-		if(iconImage != null)putValue(SMALL_ICON,new ImageIcon(iconImage));
-		if(name != null) putValue(NAME, name);
-		if(description != null) putValue(SHORT_DESCRIPTION, description);
-		if(keyStroke != null) putValue(ACCELERATOR_KEY,keyStroke);
-		putValue(MNEMONIC_KEY, mnemonic);
 	}
 	
 	private JMenuItemAction(Icon icon,String name,String description,KeyStroke keyStroke,int mnemonic,ActionListener listener ){

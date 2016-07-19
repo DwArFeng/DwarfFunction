@@ -24,21 +24,35 @@ import java.util.Set;
  */
 public class IDMap<T> {
 	
-	/**紧凑型编号*/
-	public final static int NUMBER_COMPACT = 1;
-	/**增量型编号*/
-	public final static int NUMBER_INCREASE = 2;
-	
-	private Map<Integer, T> map;
-	private int numberType;
-	
-	public IDMap(){
-		this(NUMBER_INCREASE);
+	/**
+	 * 用以表示
+	 * @author DwArFeng
+	 * @since 1.8
+	 */
+	public enum CodingType{
+		/**表示编码方式为紧凑型，这时的编码总是选择能够使用的最小的数来进行编码*/
+		COMPACT,
+		/**表示编码方式为增量型，这时的编码总是递增的，不管前面是否已经有Id失效*/
+		INCREASE;
 	}
 	
-	public IDMap(int numberType){
+	private Map<Integer, T> map;
+	private CodingType codingType;
+	
+	/**
+	 * 生成一个默认的，使用增量编码的ID号映射对象。
+	 */
+	public IDMap(){
+		this(CodingType.INCREASE);
+	}
+	
+	/**
+	 * 生成一个具有指定编码形式的ID号映射对象。
+	 * @param codingType 编码的形式。
+	 */
+	public IDMap(CodingType codingType){
 		//设置编号方式
-		setNumberType(numberType);
+		setCodingType(codingType);
 		//初始化成员变量
 		this.map = new HashMap<Integer, T>();
 	}
@@ -47,19 +61,16 @@ public class IDMap<T> {
 	 * 返回该ID映射表的编号方式。
 	 * @return 该ID映射表的编号方式。
 	 */
-	public int getNumberType(){return this.numberType;}
+	public CodingType getNumberType(){return this.codingType;}
+	
 	/**
 	 * 设置该ID映射表的编号方式。
-	 * @param numberType 最大的编号方式，为<code>NUMBER_COMPACT,NUMBER_INCREASE</code>，中的一个。
-	 * @throws IllegalArgumentException 入口参数非法。
-	 * @see IDMap#NUMBER_COMPACT
-	 * @see IDMap#NUMBER_INCREASE
+	 * @param codingType 最大的编号方式。
 	 */
-	public void setNumberType(int numberType){
-		if(numberType != NUMBER_COMPACT && numberType != NUMBER_INCREASE) 
-			throw new IllegalArgumentException("numberType must be the one of : NUMBER_COMPACT,NUMBER_INCREASE");
-		this.numberType = numberType;
+	public void setCodingType(CodingType codingType){
+		this.codingType = codingType;
 	}
+	
 	/**
 	 * 返回Id映射表中已经注册的所有的Id值。<p>
 	 * 这些值以升序的方式进行排列。
@@ -72,6 +83,7 @@ public class IDMap<T> {
 		Arrays.sort(is);
 		return is;
 	}
+	
 	/**
 	 * 返回指定id指示的元素。
 	 * @param id 指定的id。
@@ -80,6 +92,7 @@ public class IDMap<T> {
 	public T get(int id){
 		return map.get(new Integer(id));
 	}
+	
 	/**
 	 * 查询指定对象的id值。
 	 * @param t 指定的对象。
@@ -94,6 +107,7 @@ public class IDMap<T> {
 		}
 		return -1;
 	}
+	
 	/**
 	 * 向该ID映射表中注册一个对象，并返回这个对象的id值。
 	 * @param t 需要注册的对象。
@@ -105,6 +119,7 @@ public class IDMap<T> {
 		map.put(new Integer(id), t);
 		return id;
 	}
+	
 	/**
 	 * 向该ID映射表中添加具有指定ID的对象。
 	 * <p> 该方法会试图向ID映射表中添加指定的ID，一旦发现该ID已经被占用，则会抛出异常。
@@ -116,6 +131,7 @@ public class IDMap<T> {
 		if(map.containsKey(new Integer(id))) throw new DuplicateIdException(id);
 		map.put(new Integer(id), t);
 	}
+	
 	/**
 	 * 向ID映射表中强制写入指定的映射，当该ID映射表中指定的ID已经含有映射时，这样做会破坏原始映射而
 	 * 强制建立新的映射。
@@ -128,6 +144,7 @@ public class IDMap<T> {
 		map.put(new Integer(id), t);
 		return flag;
 	}
+	
 	/**
 	 * 从该ID映射表中删除指定ID对应的元素。
 	 * <p>如果指定的ID不在注册列表中，则不进行操作。
@@ -137,6 +154,7 @@ public class IDMap<T> {
 	public T remove(int id){
 		return map.remove(new Integer(id));
 	}
+	
 	/**
 	 * 试图从该ID映射表中移除指定元素。
 	 * <p>如果元素存在的话，则移除元素，并返回该元素与之对应的ID，否则，返回<code>-1</code>，且不执行任何移除操作。
@@ -148,6 +166,7 @@ public class IDMap<T> {
 		if(id >= 0) map.remove(new Integer(id));
 		return id;
 	}
+	
 	/**
 	 * 获取该映射表中所有的值。
 	 * @return 该映射表所有的值组成的集合。
@@ -160,8 +179,8 @@ public class IDMap<T> {
 		int[] ids = getAllIDs();
 		//如果没有任何id注册，则直接返回0
 		if(ids.length == 0) return 0;
-		switch (numberType) {
-		case NUMBER_COMPACT:
+		switch (codingType) {
+		case COMPACT:
 			//如果id数组中最小的一个比0大，则返回最小的数还要再小的那个。
 			if(ids[0] > 0) return ids[0] - 1;
 			for(int i = 0 ; i < ids.length -1 ; i++){

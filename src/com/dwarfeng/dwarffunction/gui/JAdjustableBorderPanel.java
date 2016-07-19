@@ -14,6 +14,9 @@ import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import com.dwarfeng.dwarffunction.Setting;
+import com.dwarfeng.dwarffunction.Setting.ExceptionSfKey;
+
 /**
  * 可调整的边界布局面板。
  * <p>该面板的布局类似于边界布局样式中的布局，不过边界与边界之前有拖动条。通过拖动这些拖动条
@@ -203,7 +206,7 @@ public class JAdjustableBorderPanel extends JPanel{
 	 * @param component 需要向该控件中添加的组件。
 	 * @param constraints 约束条件，只能是{@code BorderLayout.EAST}，{@code BorderLayout.WEST}，{@code BorderLayout.NORTH}，
 	 * {@code BorderLayout.SOUTH}，{@code BorderLayout.CENTER} 中的一个。
-	 * @throws IllegalArgumentException 当约不等于{@code BorderLayout}中的任何一个约束时抛出该异常。
+	 * @throws IllegalArgumentException 当约束不等于{@code BorderLayout}中的任何一个约束时抛出该异常。
 	 */
 	@Override
 	public void add(Component component,Object constraints) throws IllegalArgumentException{
@@ -227,7 +230,7 @@ public class JAdjustableBorderPanel extends JPanel{
 			setCenter(component);
 			return;
 		}
-		throw new IllegalArgumentException("Constraints must be one of the BorderLayout's constraint");
+		throw new IllegalArgumentException(Setting.getExceptionString(ExceptionSfKey.JAdjustableBorderPanel_0));
 	}
 	/**
 	 * 获取该控件的北方组件。

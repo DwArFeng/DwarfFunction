@@ -3,7 +3,7 @@ package com.dwarfeng.dwarffunction.cna;
 import java.util.Collection;
 import java.util.Vector;
 
-public class ArraysFunction {
+public final class ArraysFunction {
 	
 	/**
 	 * 判断数组中是否包含某个元素。

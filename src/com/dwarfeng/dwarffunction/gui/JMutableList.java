@@ -9,7 +9,7 @@ import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 
 import com.dwarfeng.dwarffunction.cna.ArraysFunction;
-import com.dwarfeng.dwarffunction.comp.toStringComparator;
+import com.dwarfeng.dwarffunction.comp.ToStringComparator;
 
 /**
  * 可变列表对象。<p>
@@ -140,7 +140,7 @@ public class JMutableList<T> extends JList<T> {
 		//如果要自动排序，则先把已经存在的元素排序
 		if(insertMode == INSERT_SORT){
 			Object[] os = model.toArray();
-			Arrays.sort(os,new toStringComparator<Object>());
+			Arrays.sort(os,new ToStringComparator<Object>());
 			model.clear();
 			for(int i = 0 ; i < os.length ; i++){model.addElement((T) os[i]);}
 		}
@@ -164,7 +164,7 @@ public class JMutableList<T> extends JList<T> {
 	private boolean insert(T object){
 		if(object == null) return false;
 		//使用排序法插入元素
-		Comparator<T> cp = new toStringComparator<T>();
+		Comparator<T> cp = new ToStringComparator<T>();
 		//一些特殊的情况，当modal中没有元素时，直接插入在0位
 		if(model.size() == 0) {
 			model.insertElementAt(object, 0);

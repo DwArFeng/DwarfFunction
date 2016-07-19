@@ -1,5 +1,8 @@
 package com.dwarfeng.dwarffunction.cna;
 
+import com.dwarfeng.dwarffunction.Setting;
+import com.dwarfeng.dwarffunction.Setting.ExceptionSfKey;
+
 /**
  * ID重复异常。
  * <p>当某些类中包含一些具有ID值的集合，且不允许其ID值重复。当向这些类中试图添加已经存在的ID时通常
@@ -7,7 +10,7 @@ package com.dwarfeng.dwarffunction.cna;
  * @author DwArFeng
  * @since 1.8
  */
-public class DuplicateIdException extends Exception {
+public final class DuplicateIdException extends Exception {
 
 	private static final long serialVersionUID = -122201342919712293L;
 	
@@ -62,7 +65,7 @@ public class DuplicateIdException extends Exception {
 	@Override
 	public String getMessage(){
 		if(super.getMessage() == null || super.getMessage().equals(""))
-			return "ID duplicated : " + getID();
+			return Setting.getExceptionString(ExceptionSfKey.DuplicateIdException_0) + getID();
 		return super.getMessage();
 	}
 }
