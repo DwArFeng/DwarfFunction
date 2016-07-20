@@ -5,7 +5,7 @@ package com.dwarfeng.dwarffunction.program;
  * @author DwArFeng
  * @since 1.8
  */
-public enum VersionType {
+public enum PVersionType {
 
 	/**ÄÚ²â°æ±¾*/
 	ALPHA("alpha"),
@@ -18,7 +18,7 @@ public enum VersionType {
 	
 	private final String label;
 	
-	VersionType(String label){
+	PVersionType(String label){
 		this.label = label;
 	}
 	

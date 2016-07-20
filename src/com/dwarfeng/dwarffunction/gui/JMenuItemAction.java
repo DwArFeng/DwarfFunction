@@ -9,6 +9,7 @@ import javax.swing.KeyStroke;
 
 /**
  * 菜单项目动作类，用该类可以快速的建立一个具有指定属性的菜单项目。
+ * <p> 由于该类已经完全完成了<code>Action</code>的所有属性，因此该类不能被继承。
  * @author DwArFeng
  * @since 1.7
  */
