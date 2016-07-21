@@ -10,13 +10,13 @@ import com.dwarfeng.dwarffunction.interfaces.Nameable;
 public enum PVersionType implements Nameable{
 
 	/**内测版本*/
-	ALPHA("alpha"),
+	ALPHA("Alpha"),
 	/**公测版本*/
-	BETA("beta"),
+	BETA("Beta"),
 	/**发布版本*/
-	RELEASE("release"),
+	RELEASE("Release"),
 	/**预览版本*/
-	SNAPSHOTS("snapshots");
+	SNAPSHOTS("Snapshots");
 	
 	private final String name;
 	

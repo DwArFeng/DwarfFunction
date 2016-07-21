@@ -1,5 +1,6 @@
 package com.dwarfeng.dwarffunction.program;
 
+
 /**
  * 默认的版本实现形式。
  * <p> 这是我最常用的版本形式。
@@ -127,7 +128,7 @@ public class PDefaultVersion implements PVersion {
 		this.secondVersion = secondVersion;
 		this.thirdVersion = thirdVersion;
 		this.buildDate = buildDate;
-		this.buildVersion = buildVersion;
+		this.buildVersion = Character.toUpperCase(buildVersion);
 	}
 	
 	/*
@@ -147,7 +148,7 @@ public class PDefaultVersion implements PVersion {
 	public String getLongName() {
 		return 
 				type.getName() + FIELD_SEP +
-				firstVersion + VERSION_SEP + secondVersion + VERSION_SEP + thirdVersion + VERSION_SEP + 
+				firstVersion + VERSION_SEP + secondVersion + VERSION_SEP + thirdVersion + FIELD_SEP +
 				buildDate + FIELD_SEP + BUILD_TEXT + FIELD_SEP + buildVersion;
 	}
 
@@ -159,7 +160,7 @@ public class PDefaultVersion implements PVersion {
 	public String getShortName() {
 		return 
 				type.getName() + FIELD_SEP +
-				firstVersion + VERSION_SEP + secondVersion + VERSION_SEP + thirdVersion + VERSION_SEP;
+				firstVersion + VERSION_SEP + secondVersion + VERSION_SEP + thirdVersion;
 	}
 	
 	/*
