@@ -7,7 +7,7 @@ import com.dwarfeng.dwarffunction.interfaces.Nameable;
  * @author DwArFeng
  * @since 1.8
  */
-public enum PVersionType implements Nameable{
+public enum VersionType implements Nameable{
 
 	/**ÄÚ²â°æ±¾*/
 	ALPHA("Alpha"),
@@ -20,7 +20,7 @@ public enum PVersionType implements Nameable{
 	
 	private final String name;
 	
-	PVersionType(String name){
+	VersionType(String name){
 		this.name = name;
 	}
 

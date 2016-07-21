@@ -1,12 +1,12 @@
 package com.dwarfeng.dwarffunction.program;
 
-public interface PVersion {
+public interface Version {
 	
 	/**
 	 * 返回这个版本的类型。
 	 * @return 这个版本的类型。
 	 */
-	public PVersionType getVersionType();
+	public VersionType getVersionType();
 	
 	/**
 	 * 返回这个版本的长名称。

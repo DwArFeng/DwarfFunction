@@ -8,7 +8,7 @@ package com.dwarfeng.dwarffunction.program;
  * @author DwArFeng
  * @since 1.8
  */
-public class PDefaultVersion implements PVersion {
+public class DefaultVersion implements Version {
 
 	/**表示编译版本的字段*/
 	protected static final String BUILD_TEXT = "build";
@@ -18,7 +18,7 @@ public class PDefaultVersion implements PVersion {
 	protected static final char FIELD_SEP = '_';
 	
 	/**版本的类型*/
-	protected final PVersionType type;
+	protected final VersionType type;
 	/**第一个版本号*/
 	protected final byte firstVersion;
 	/***/
@@ -34,7 +34,7 @@ public class PDefaultVersion implements PVersion {
 	 */
 	public static class Productor{
 		
-		private PVersionType type = PVersionType.RELEASE;
+		private VersionType type = VersionType.RELEASE;
 		private byte firstVersion = 0;
 		private byte secondVersion = 0;
 		private byte thirdVersion = 0;
@@ -51,7 +51,7 @@ public class PDefaultVersion implements PVersion {
 		 * @param val 指定的版本类型。
 		 * @return 构造器自身。
 		 */
-		public Productor type(PVersionType val){
+		public Productor type(VersionType val){
 			this.type = val;
 			return this;
 		}
@@ -110,13 +110,13 @@ public class PDefaultVersion implements PVersion {
 		 * 根据构造器中设置的参数构造版本。
 		 * @return 构造的版本。
 		 */
-		public PDefaultVersion product(){
-			return new PDefaultVersion(type, firstVersion, secondVersion, thirdVersion, buildDate, buildVersion);
+		public DefaultVersion product(){
+			return new DefaultVersion(type, firstVersion, secondVersion, thirdVersion, buildDate, buildVersion);
 		}
 	}
 	
-	private PDefaultVersion(
-			PVersionType type,
+	private DefaultVersion(
+			VersionType type,
 			byte firstVersion,
 			byte secondVersion,
 			byte thirdVersion,
@@ -136,7 +136,7 @@ public class PDefaultVersion implements PVersion {
 	 * @see com.dwarfeng.dwarffunction.program.PVersion#getVersionType()
 	 */
 	@Override
-	public PVersionType getVersionType() {
+	public VersionType getVersionType() {
 		return this.type;
 	}
 

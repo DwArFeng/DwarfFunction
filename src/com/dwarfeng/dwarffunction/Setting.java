@@ -4,6 +4,9 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import com.dwarfeng.dwarffunction.io.CT;
+import com.dwarfeng.dwarffunction.program.DefaultVersion;
+import com.dwarfeng.dwarffunction.program.Version;
+import com.dwarfeng.dwarffunction.program.VersionType;
 
 /**
  * 有关于这个工具包的一些设置，主要是语言设置。
@@ -13,6 +16,11 @@ import com.dwarfeng.dwarffunction.io.CT;
 public final class Setting {
 	
 	private static final String exceptionSfPath = "resource/lang/exceptionSf";
+	
+	private static final Version version = new DefaultVersion.Productor()
+			.type(VersionType.ALPHA).firstVersion((byte) 0).secondVersion((byte) 0).thirdVersion((byte) 0)
+			.buildDate("20160721").buildVersion('A')
+			.product();
 	
 	/**
 	 * 关于这个工具包的所有异常文本字段的主键枚举。
@@ -53,9 +61,12 @@ public final class Setting {
 		}
 	}
 	
-	public static void main(String[] args){
-		
+	public static Version getVersion(){
+		return version;
 	}
+	
+	//不可见的构造器方法
+	private Setting(){}
 	
 }
 
