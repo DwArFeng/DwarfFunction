@@ -1,11 +1,13 @@
 package com.dwarfeng.dwarffunction.program;
 
+import com.dwarfeng.dwarffunction.interfaces.Nameable;
+
 /**
  * 编程中常见的版本类型。
  * @author DwArFeng
  * @since 1.8
  */
-public enum PVersionType {
+public enum PVersionType implements Nameable{
 
 	/**内测版本*/
 	ALPHA("alpha"),
@@ -16,17 +18,18 @@ public enum PVersionType {
 	/**预览版本*/
 	SNAPSHOTS("snapshots");
 	
-	private final String label;
+	private final String name;
 	
-	PVersionType(String label){
-		this.label = label;
+	PVersionType(String name){
+		this.name = name;
 	}
-	
-	/**
-	 * 返回版本的标签。
-	 * @return 版本的标签。
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dwarffunction.interfaces.Nameable#getName()
 	 */
-	public String getLabel(){
-		return this.label;
+	@Override
+	public String getName() {
+		return this.name;
 	}
 }

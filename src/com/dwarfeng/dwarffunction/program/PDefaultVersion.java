@@ -146,7 +146,7 @@ public class PDefaultVersion implements PVersion {
 	@Override
 	public String getLongName() {
 		return 
-				type.getLabel() + FIELD_SEP +
+				type.getName() + FIELD_SEP +
 				firstVersion + VERSION_SEP + secondVersion + VERSION_SEP + thirdVersion + VERSION_SEP + 
 				buildDate + FIELD_SEP + BUILD_TEXT + FIELD_SEP + buildVersion;
 	}
@@ -158,7 +158,7 @@ public class PDefaultVersion implements PVersion {
 	@Override
 	public String getShortName() {
 		return 
-				type.getLabel() + FIELD_SEP +
+				type.getName() + FIELD_SEP +
 				firstVersion + VERSION_SEP + secondVersion + VERSION_SEP + thirdVersion + VERSION_SEP;
 	}
 	
