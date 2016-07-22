@@ -42,7 +42,9 @@ public final class DwarfFunction {
 		/**ToStringComparator类第0号文本字段*/
 		ToStringComparator_0,
 		/**JAdjustableBorderPanel类第0号文本字段*/
-		JAdjustableBorderPanel_0
+		JAdjustableBorderPanel_0,
+		/**NadeRuner类第0号文本字段*/
+		NadeRuner_0
 		
 	}
 	

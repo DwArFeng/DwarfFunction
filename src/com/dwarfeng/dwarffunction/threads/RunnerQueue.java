@@ -16,26 +16,26 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * @author DwArFeng
  * @since 1.8
  */
-public class RunnerQueue extends InnerThread {
+public class RunnerQueue<T extends Runnable> extends InnerThread {
 
 	/**线程的名称*/
 	private final static String THREAD_NAME = "RunnerQueue";
 	
 	/**Runnable 队列*/
-	private static Queue<Runnable> queue;
+	private Queue<T> queue;
 	/**线程同步锁*/
-	private static Lock threadLock;
+	private Lock threadLock;
 	/**线程状态*/
-	private static Condition threadCondition;
+	private Condition threadCondition;
 	/**队列读写锁*/
-	private static ReadWriteLock queueLock;
+	private ReadWriteLock queueLock;
 	
 	/**
 	 * 生成一个新的运行队列。
 	 */
 	public RunnerQueue(){
 		super(THREAD_NAME);
-		queue = new ArrayDeque<Runnable>();
+		queue = new ArrayDeque<T>();
 		threadLock = new ReentrantLock();
 		threadCondition = threadLock.newCondition();
 		queueLock = new ReentrantReadWriteLock();
@@ -45,7 +45,7 @@ public class RunnerQueue extends InnerThread {
 	 * 向维护队列中添加一个新的Runnable。
 	 * @param runnable 指定的Runnable。
 	 */
-	public void invoke(Runnable runnable){
+	public void invoke(T runnable){
 		boolean flag = getQueueSize() == 0;
 		offer(runnable);
 		if(flag){
@@ -72,10 +72,23 @@ public class RunnerQueue extends InnerThread {
 	}
 	
 	/**
+	 * 获取待执行的队列。
+	 * @return 等待执行的队列。
+	 */
+	public Queue<T> getWaitingQueue(){
+		queueLock.readLock().lock();
+		try{
+			return new ArrayDeque<T>(this.queue);
+		}finally{
+			queueLock.readLock().unlock();
+		}
+	}
+	
+	/**
 	 * 向队列的末尾添加指定的Runnable。
 	 * @param runnable 指定的Runnable。
 	 */
-	private void offer(Runnable runnable){
+	private void offer(T runnable){
 		queueLock.writeLock().lock();
 		try{
 			queue.offer(runnable);
