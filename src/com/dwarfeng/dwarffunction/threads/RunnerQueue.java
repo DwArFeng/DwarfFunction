@@ -31,10 +31,18 @@ public class RunnerQueue<T extends Runnable> extends InnerThread {
 	private ReadWriteLock queueLock;
 	
 	/**
-	 * 生成一个新的运行队列。
+	 * 生成一个默认的运行队列，不是守护线程。
 	 */
 	public RunnerQueue(){
-		super(THREAD_NAME);
+		this(false);
+	}
+	
+	/**
+	 * 生成一个指定是否为守护线程的运行队列。
+	 * @param isDaemon 是否为守护线程。
+	 */
+	public RunnerQueue(boolean isDaemon){
+		super(THREAD_NAME,isDaemon);
 		queue = new ArrayDeque<T>();
 		threadLock = new ReentrantLock();
 		threadCondition = threadLock.newCondition();
