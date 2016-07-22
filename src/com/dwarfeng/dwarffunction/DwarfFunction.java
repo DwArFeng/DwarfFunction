@@ -4,6 +4,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import com.dwarfeng.dwarffunction.io.CT;
+import com.dwarfeng.dwarffunction.io.CT.OutputType;
 import com.dwarfeng.dwarffunction.program.DefaultVersion;
 import com.dwarfeng.dwarffunction.program.Version;
 import com.dwarfeng.dwarffunction.program.VersionType;
@@ -13,13 +14,18 @@ import com.dwarfeng.dwarffunction.program.VersionType;
  * @author DwArFeng
  * @since 1.8
  */
-public final class Setting {
+public final class DwarfFunction {
 	
-	private static final String exceptionSfPath = "resource/lang/exceptionSf";
+	public static void main(String[] args){
+		CT.setOutputType(OutputType.NO_DATE);
+		CT.trace(DwarfFunction.getWelcomeString());
+	}
+	
+	private static final String exceptionSfPath = "resource/lang/stringField";
 	
 	private static final Version version = new DefaultVersion.Productor()
-			.type(VersionType.ALPHA).firstVersion((byte) 0).secondVersion((byte) 0).thirdVersion((byte) 0)
-			.buildDate("20160721").buildVersion('A')
+			.type(VersionType.ALPHA).firstVersion((byte) 0).secondVersion((byte) 0).thirdVersion((byte) 1)
+			.buildDate("20160722").buildVersion('A')
 			.product();
 	
 	/**
@@ -27,8 +33,10 @@ public final class Setting {
 	 * @author DwArFeng
 	 * @since 1.8
 	 */
-	public enum ExceptionSfKey{
+	public enum StringFiledKey{
 		
+		/**欢迎文本字段*/
+		WelcomeString,
 		/**DuplicateIdException类第0号文本字段*/
 		DuplicateIdException_0 ,
 		/**ToStringComparator类第0号文本字段*/
@@ -44,7 +52,7 @@ public final class Setting {
 	 * 将异常的文本字段语言设置为指定语言。
 	 * @param locale 指定的语言。
 	 */
-	public static void setExceptionSfLocale(Locale locale){
+	public static void setLocale(Locale locale){
 		exceptionSf =  ResourceBundle.getBundle(exceptionSfPath,locale,CT.class.getClassLoader());
 	}
 	
@@ -53,7 +61,7 @@ public final class Setting {
 	 * @param key 异常文本字段主键枚举。
 	 * @return 主键对应的文本。
 	 */
-	public static String getExceptionString(ExceptionSfKey key){
+	public static String getStringField(StringFiledKey key){
 		try{
 			return exceptionSf.getString(key.toString());
 		}catch(Exception e){
@@ -61,12 +69,20 @@ public final class Setting {
 		}
 	}
 	
+	/**
+	 * 返回该工具包的版本。
+	 * @return 该工具包的版本。
+	 */
 	public static Version getVersion(){
 		return version;
 	}
 	
+	public static String getWelcomeString(){
+		return getStringField(StringFiledKey.WelcomeString) + getVersion().getLongName();
+	}
+	
 	//不可见的构造器方法
-	private Setting(){}
+	private DwarfFunction(){}
 	
 }
 

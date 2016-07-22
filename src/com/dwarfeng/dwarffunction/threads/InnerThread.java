@@ -96,6 +96,10 @@ public abstract class InnerThread implements Nameable {
 		while(isAlive());
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dwarffunction.interfaces.Nameable#getName()
+	 */
 	@Override
 	public String getName(){return this.name;}
 	

@@ -1,7 +1,7 @@
 package com.dwarfeng.dwarffunction.cna;
 
-import com.dwarfeng.dwarffunction.Setting;
-import com.dwarfeng.dwarffunction.Setting.ExceptionSfKey;
+import com.dwarfeng.dwarffunction.DwarfFunction;
+import com.dwarfeng.dwarffunction.DwarfFunction.StringFiledKey;
 
 /**
  * ID÷ÿ∏¥“Ï≥£°£
@@ -65,7 +65,7 @@ public final class DuplicateIdException extends Exception {
 	@Override
 	public String getMessage(){
 		if(super.getMessage() == null || super.getMessage().equals(""))
-			return Setting.getExceptionString(ExceptionSfKey.DuplicateIdException_0) + getID();
+			return DwarfFunction.getStringField(StringFiledKey.DuplicateIdException_0) + getID();
 		return super.getMessage();
 	}
 }

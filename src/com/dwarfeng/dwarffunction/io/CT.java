@@ -24,7 +24,7 @@ public final class CT {
 	 * @author DwArFeng
 	 * @since 1.8
 	 */
-	public static enum TraceType{
+	public static enum OutputType{
 		/**不输出系统时间*/
 		NO_DATE,
 		/**输出简要系统时间（时分秒）*/
@@ -33,22 +33,22 @@ public final class CT {
 		FULL_DATE;
 	}
 	
-	private static TraceType traceType = TraceType.HALF_DATE;
+	private static OutputType outputType = OutputType.HALF_DATE;
 	
 	/**
 	 * 返回输出类型。
 	 * @return 输出类型。
 	 */
-	public static TraceType getTraceType() {
-		return traceType;
+	public static OutputType getOutputType() {
+		return outputType;
 	}
 	
 	/**
 	 * 设置输出类型。
-	 * @param traceType 指定的输出类型。
+	 * @param outputType 指定的输出类型。
 	 */
-	public static void setTraceType(TraceType traceType) {
-		CT.traceType = traceType;
+	public static void setOutputType(OutputType outputType) {
+		CT.outputType = outputType;
 	}
 	
 	/**
@@ -200,7 +200,7 @@ public final class CT {
 		
 		Calendar C;
 		
-		switch (traceType) {
+		switch (outputType) {
 			case FULL_DATE:
 				C = Calendar.getInstance();
 				return 
