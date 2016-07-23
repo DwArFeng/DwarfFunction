@@ -44,7 +44,13 @@ public final class DwarfFunction {
 		/**JAdjustableBorderPanel类第0号文本字段*/
 		JAdjustableBorderPanel_0,
 		/**NadeRuner类第0号文本字段*/
-		NadeRuner_0
+		NadeRuner_0,
+		/**MvcProgram类第0号文本字段*/
+		MvcProgram_0,
+		/**MvcProgram类第1号文本字段*/
+		MvcProgram_1,
+		/**MvcProgram类第2号文本字段*/
+		MvcProgram_2
 		
 	}
 	
