@@ -8,7 +8,7 @@ package com.dwarfeng.dwarffunction.program.mvc;
  * @author DwArFeng
  * @since 1.8
  */
-public interface ViewManager<V extends ViewControlPort, C extends ControlPort> {
+public interface ViewManager<V extends ViewControlPort, C extends ControlPort, O extends ProgramConstField> {
 	
 	/**
 	 * 获取视图控制器中的视图控制站点。
@@ -27,5 +27,18 @@ public interface ViewManager<V extends ViewControlPort, C extends ControlPort> {
 	 * @param controlPort 指定的控制器。
 	 */
 	public void setControlPort(C controlPort);
+	
+	/**
+	 * 返回模型管理器中的程序常量。
+	 * @return 程序常量。
+	 */
+	public O getProgramConstField();
+	
+	/**
+	 * 设置模型管理器中的程序常量。
+	 * @param programConstField 程序常量。
+	 */
+	public void setProgramConstField(O programConstField);
+	
 	
 }

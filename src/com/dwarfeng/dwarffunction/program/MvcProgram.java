@@ -6,6 +6,7 @@ import com.dwarfeng.dwarffunction.program.mvc.ControlManager;
 import com.dwarfeng.dwarffunction.program.mvc.ControlPort;
 import com.dwarfeng.dwarffunction.program.mvc.ModuleControlPort;
 import com.dwarfeng.dwarffunction.program.mvc.ModuleManager;
+import com.dwarfeng.dwarffunction.program.mvc.ProgramConstField;
 import com.dwarfeng.dwarffunction.program.mvc.ProgramControlPort;
 import com.dwarfeng.dwarffunction.program.mvc.ProgramManager;
 import com.dwarfeng.dwarffunction.program.mvc.ViewControlPort;
@@ -18,12 +19,15 @@ import com.dwarfeng.dwarffunction.program.mvc.ViewManager;
  * @author DwArFeng
  * @since 1.8
  */
-public abstract class MvcProgram<P extends ProgramControlPort, M extends ModuleControlPort, V extends ViewControlPort, C extends ControlPort> 
-implements ProgramManager<P>{
+public abstract class MvcProgram<P extends ProgramControlPort, M extends ModuleControlPort, V extends ViewControlPort, C extends ControlPort,
+O extends ProgramConstField> implements ProgramManager<P,O>{
 	
-	private final ModuleManager<M> moduleManager;
-	private final ViewManager<V, C> viewManager;
-	private final ControlManager<P,M,V,C> controlManager;
+	/**程序的模型管理器*/
+	protected final ModuleManager<M, O> moduleManager;
+	/**程序的视图管理器*/
+	protected final ViewManager<V, C, O> viewManager;
+	/**程序的控制管理器*/
+	protected final ControlManager<P, M, V, C> controlManager;
 	
 	/**
 	 * 生成一个具有指定模型管理器，指定视图管理器，指定控制管理器的MVC框架程序。
@@ -32,7 +36,7 @@ implements ProgramManager<P>{
 	 * @param controlManager 指定的控制管理器。
 	 * @throws NullPointerException 三个入口参数至少一个为<code>null</code>时抛出。
 	 */
-	public MvcProgram(ModuleManager<M> moduleManager, ViewManager<V, C> viewManager,
+	public MvcProgram(ModuleManager<M, O> moduleManager, ViewManager<V, C, O> viewManager,
 	ControlManager<P,M,V,C> controlManager){
 		
 		//判断null异常。
@@ -50,14 +54,11 @@ implements ProgramManager<P>{
 		this.controlManager.setViewControlPort(this.viewManager.getViewControlPort());
 		this.controlManager.setProgramControlPort(this.getProgramControlPort());
 		this.viewManager.setControlPort(this.controlManager.getControlPort());
+		this.viewManager.setProgramConstField(getProgramConstField());
+		this.moduleManager.setProgramConstField(getProgramConstField());
 		
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dwarffunction.program.mvc.ProgramManager#getProgramControlPort()
-	 */
-	@Override
-	public abstract P getProgramControlPort();
+	
 	
 }
