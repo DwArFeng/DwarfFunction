@@ -50,7 +50,9 @@ public final class DwarfFunction {
 		/**MvcProgram类第1号文本字段*/
 		MvcProgram_1,
 		/**MvcProgram类第2号文本字段*/
-		MvcProgram_2
+		MvcProgram_2,
+		/**CycledBuffer类第0号文本字段*/
+		CycledBuffer_0
 		
 	}
 	
