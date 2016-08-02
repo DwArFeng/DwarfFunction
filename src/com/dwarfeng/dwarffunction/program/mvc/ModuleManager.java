@@ -7,7 +7,7 @@ package com.dwarfeng.dwarffunction.program.mvc;
  * @author DwArFeng
  * @since 1.8
  */
-public interface ModuleManager<M extends ModuleControlPort, O extends ProgramConstField> {
+public interface ModuleManager<M extends ModuleControlPort, A extends ProgramAttrSet> {
 
 	/**
 	 * 获取模型管理器中的模型控制站点。
@@ -19,12 +19,12 @@ public interface ModuleManager<M extends ModuleControlPort, O extends ProgramCon
 	 * 返回模型管理器中的程序常量。
 	 * @return 程序常量。
 	 */
-	public O getProgramConstField();
+	public A getProgramAttrSet();
 	
 	/**
 	 * 设置模型管理器中的程序常量。
-	 * @param programConstField 程序常量。
+	 * @param programAttrSet 程序常量。
 	 */
-	public void setProgramConstField(O programConstField);
+	public void setProgramAttrSet(A programAttrSet);
 	
 }

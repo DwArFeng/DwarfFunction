@@ -9,7 +9,7 @@ package com.dwarfeng.dwarffunction.program.mvc;
  * @author DwArFeng
  * @since 1.8
  */
-public interface ProgramManager<P extends ProgramControlPort, O extends ProgramConstField> {
+public interface ProgramManager<P extends ProgramControlPort, A extends ProgramAttrSet> {
 
 	/**
 	 * 获取程序管理器中的程序控制站点。
@@ -18,9 +18,9 @@ public interface ProgramManager<P extends ProgramControlPort, O extends ProgramC
 	public P getProgramControlPort();
 	
 	/**
-	 * 获取程序的常量字段。
-	 * @return 程序级常量字段。
+	 * 获取程序的常量集合。
+	 * @return 程序级常量集合。
 	 */
-	public O getProgramConstField();
+	public A getProgramAttrSet();
 	
 }

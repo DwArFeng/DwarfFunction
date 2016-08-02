@@ -6,7 +6,7 @@ import com.dwarfeng.dwarffunction.program.mvc.ControlManager;
 import com.dwarfeng.dwarffunction.program.mvc.ControlPort;
 import com.dwarfeng.dwarffunction.program.mvc.ModuleControlPort;
 import com.dwarfeng.dwarffunction.program.mvc.ModuleManager;
-import com.dwarfeng.dwarffunction.program.mvc.ProgramConstField;
+import com.dwarfeng.dwarffunction.program.mvc.ProgramAttrSet;
 import com.dwarfeng.dwarffunction.program.mvc.ProgramControlPort;
 import com.dwarfeng.dwarffunction.program.mvc.ProgramManager;
 import com.dwarfeng.dwarffunction.program.mvc.ViewControlPort;
@@ -20,12 +20,12 @@ import com.dwarfeng.dwarffunction.program.mvc.ViewManager;
  * @since 1.8
  */
 public abstract class MvcProgram<P extends ProgramControlPort, M extends ModuleControlPort, V extends ViewControlPort, C extends ControlPort,
-O extends ProgramConstField> implements ProgramManager<P,O>{
+A extends ProgramAttrSet> implements ProgramManager<P,A>{
 	
 	/**程序的模型管理器*/
-	protected final ModuleManager<M, O> moduleManager;
+	protected final ModuleManager<M, A> moduleManager;
 	/**程序的视图管理器*/
-	protected final ViewManager<V, C, O> viewManager;
+	protected final ViewManager<V, C, A> viewManager;
 	/**程序的控制管理器*/
 	protected final ControlManager<P, M, V, C> controlManager;
 	
@@ -36,7 +36,7 @@ O extends ProgramConstField> implements ProgramManager<P,O>{
 	 * @param controlManager 指定的控制管理器。
 	 * @throws NullPointerException 三个入口参数至少一个为<code>null</code>时抛出。
 	 */
-	public MvcProgram(ModuleManager<M, O> moduleManager, ViewManager<V, C, O> viewManager,
+	public MvcProgram(ModuleManager<M, A> moduleManager, ViewManager<V, C, A> viewManager,
 	ControlManager<P,M,V,C> controlManager){
 		
 		//判断null异常。
@@ -54,8 +54,8 @@ O extends ProgramConstField> implements ProgramManager<P,O>{
 		this.controlManager.setViewControlPort(this.viewManager.getViewControlPort());
 		this.controlManager.setProgramControlPort(this.getProgramControlPort());
 		this.viewManager.setControlPort(this.controlManager.getControlPort());
-		this.viewManager.setProgramConstField(getProgramConstField());
-		this.moduleManager.setProgramConstField(getProgramConstField());
+		this.viewManager.setProgramAttrSet(getProgramAttrSet());
+		this.moduleManager.setProgramAttrSet(getProgramAttrSet());
 		
 	}
 
