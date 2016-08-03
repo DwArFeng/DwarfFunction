@@ -1,12 +1,9 @@
 package com.dwarfeng.dwarffunction.cna;
 
 import java.util.Iterator;
-import java.util.Scanner;
 
 import com.dwarfeng.dwarffunction.DwarfFunction;
 import com.dwarfeng.dwarffunction.DwarfFunction.StringFiledKey;
-import com.dwarfeng.dwarffunction.io.CT;
-import com.sun.xml.internal.ws.dump.LoggingDumpTube.Position;
 
 /**
  * Ñ­»·»º³å¡£
@@ -257,19 +254,6 @@ public class CycledBuffer<T> implements Iterable<T> {
 			i += objs.length;
 		}
 		return i;
-	}
-	
-	public static void main(String[] args){
-		CycledBuffer<String> cb = new CycledBuffer<String>(5,IteratorDirection.NEGATIVE);
-		Scanner sc = new Scanner(System.in);
-		while(true){
-			cb.append(sc.nextLine());
-			StringBuilder sb = new StringBuilder();
-			for(String str : cb){
-				sb.append(str);
-			}
-			CT.trace(sb.toString());
-		}
 	}
 
 	/*
