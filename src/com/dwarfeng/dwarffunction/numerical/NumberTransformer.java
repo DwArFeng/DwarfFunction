@@ -7,7 +7,7 @@ import java.nio.ByteBuffer;
  * @author DwArFeng
  * @since 1.8
  */
-public final class NumberTransform {
+public final class NumberTransformer {
 
 	/**
 	 * 将int数据类型转化为byte数组。
@@ -144,6 +144,6 @@ public final class NumberTransform {
 	}
 	
 	//不能进行实例化
-	private NumberTransform(){}
+	private NumberTransformer(){}
 	
 }
