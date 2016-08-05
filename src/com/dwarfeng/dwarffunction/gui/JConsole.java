@@ -80,9 +80,28 @@ public class JConsole extends JPanel{
 		}
 		
 	}
-	private final class Out extends PrintStream{
+	
+	private final OutputStream outputStream = new OutputStream() {
 		
-	}
+		/*
+		 * (non-Javadoc)
+		 * @see java.io.OutputStream#flush()
+		 */
+		@Override
+		public void flush(){
+			
+		}
+		
+		/*
+		 * (non-Javadoc)
+		 * @see java.io.OutputStream#write(int)
+		 */
+		@Override
+		public void write(int b) throws IOException {
+			// TODO Auto-generated method stub
+			
+		}
+	};
 	
 	public InputStream getIn(){
 		// TODO ´øÍêÉÆ
