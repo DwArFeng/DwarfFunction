@@ -1,20 +1,24 @@
 package com.dwarfeng.dwarffunction.gui;
 
+import java.awt.BorderLayout;
 import java.awt.Font;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
-
-import javax.swing.JPanel;
-
-import java.awt.BorderLayout;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import javax.swing.JFrame;
-import javax.swing.JTextField;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
+import com.dwarfeng.dwarffunction.cna.ArrayPackFunction;
+import com.dwarfeng.dwarffunction.io.CT;
+import com.dwarfeng.dwarffunction.numerical.NumberTransformer;
 import com.dwarfeng.dwarffunction.str.CycledSlsBuffer;
 
 /**
@@ -30,14 +34,23 @@ import com.dwarfeng.dwarffunction.str.CycledSlsBuffer;
  */
 public class JConsole extends JPanel{
 	
-	public static void main(String[] args){
+	public static void main(String[] args) throws IOException{
 		JFrame jf = new JFrame();
-		jf.setLayout(new BorderLayout());
+		jf.getContentPane().setLayout(new BorderLayout());
 		JConsole jc = new JConsole();
-		jf.add(jc,BorderLayout.CENTER);
+		jf.getContentPane().add(jc,BorderLayout.CENTER);
 		jf.setSize(400, 300);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.setVisible(true);
+		
+		System.setOut(jc.getOut());
+		long l = -  System.currentTimeMillis();
+		for(int i = 0 ; i < 100 ; i ++){
+			CT.trace("GUI 控制台");
+		}
+		l += System.currentTimeMillis();
+		CT.trace(l);
+		
 	}
 	
 	//---静态常量
@@ -45,11 +58,9 @@ public class JConsole extends JPanel{
 	
 	//---与界面有关的变量
 	private JTextArea textArea;
-	private JAdjustableBorderPanel adjust;
 	
 	//---其它变量
 	private final CycledSlsBuffer csb;
-	private final ConsoleOutPutStream cops;
 	
 	
 	public JConsole() {
@@ -65,23 +76,24 @@ public class JConsole extends JPanel{
 		init();
 	}
 	
+	/**
+	 * 获取该控制台的输出流。
+	 * @return 该控制台的输出流。
+	 */
 	public PrintStream getOut(){
-		// TODO 待完善
-		return null;
+		return printStream;
 	}
-	
-	private final class ConsoleOutPutStream extends OutputStream{
-
+	private final OutputStream outputStream = 
+	/*
+	 * 匿名输出流类。
+	 * 该匿名类与控制台的输出面板相关联，向这个输出流写入数据会改变控制台的显示内容。
+	 */
+	new OutputStream() {
 		
-		@Override
-		public void write(int b) throws IOException {
-			// TODO Auto-generated method stub
-			
-		}
 		
-	}
-	
-	private final OutputStream outputStream = new OutputStream() {
+		private final CycledSlsBuffer csb = new CycledSlsBuffer(BUFFER_CAPACITY);
+		private final ArrayList<Byte> listSource = new ArrayList<Byte>();
+		private final List<Byte> byteList = Collections.synchronizedList(listSource);
 		
 		/*
 		 * (non-Javadoc)
@@ -89,7 +101,29 @@ public class JConsole extends JPanel{
 		 */
 		@Override
 		public void flush(){
-			
+			String str = new String(ArrayPackFunction.unpack(byteList.toArray(new Byte[0])));
+			int lastIndex = str.lastIndexOf("\n");
+			if(lastIndex == -1){
+				textArea.setText(csb.toString() + str);
+			}else{
+				byteList.clear();
+				String str0 = str.substring(0, lastIndex);
+				String str1 = "";
+				if(lastIndex < str.length() - 1){
+					str1 = str.substring(lastIndex + 1, str.length());
+				}
+				csb.add(str0);
+				textArea.setText(csb.toString() + str1);
+				byte[] bs = str1.getBytes();
+				for(byte b : bs){
+					byteList.add(b);
+				}
+			}
+			textArea.setCaretPosition(textArea.getText().length());
+			//最后，让列表释放多余的空间。
+			synchronized (listSource) {
+				listSource.trimToSize();
+			}
 		}
 		
 		/*
@@ -98,10 +132,10 @@ public class JConsole extends JPanel{
 		 */
 		@Override
 		public void write(int b) throws IOException {
-			// TODO Auto-generated method stub
-			
+			byteList.add(NumberTransformer.cutInt2Byte(b));
 		}
 	};
+	private final PrintStream printStream = new PrintStream(outputStream,true);
 	
 	public InputStream getIn(){
 		// TODO 带完善
@@ -126,7 +160,7 @@ public class JConsole extends JPanel{
 	}
 	
 	private void append(String str){
-		this.csb.append(str);
+		this.csb.add(str);
 		textArea.setText(this.csb.toString());
 	}
 	
@@ -137,19 +171,15 @@ public class JConsole extends JPanel{
 	private void init(){
 		setLayout(new BorderLayout(0, 0));
 		
-		adjust = new JAdjustableBorderPanel();
-		adjust.setSeperatorThickness(5);
-		adjust.setSouthEnabled(true);
-		add(adjust);
-		
 		JTextField inputField = new JTextField();
-		adjust.add(inputField, BorderLayout.SOUTH);
+		add(inputField, BorderLayout.SOUTH);
 		inputField.setColumns(10);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		adjust.add(scrollPane, BorderLayout.CENTER);
+		add(scrollPane, BorderLayout.CENTER);
 		
 		textArea = new JTextArea();
+		textArea.setEditable(false);
 		scrollPane.setViewportView(textArea);
 	}
 

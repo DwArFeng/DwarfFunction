@@ -3,7 +3,8 @@ package com.dwarfeng.dwarffunction.numerical;
 import java.nio.ByteBuffer;
 
 /**
- * 数据转换类。提供常用的数据结构与byte数组相互转换的方法。
+ * 数据转换类。
+ * <p> 提供常用的数据转换方法与常用的数据结构与byte数组相互转换的方法。
  * @author DwArFeng
  * @since 1.8
  */
@@ -14,7 +15,7 @@ public final class NumberTransformer {
 	 * @param i 指定的int数据类型。
 	 * @return 转换后的byte数组。
 	 */
-	public static byte[] Int2Byte(int i){
+	public static byte[] int2Byte(int i){
 		
 		ByteBuffer buffer = ByteBuffer.allocate(4);
 		buffer.putInt(i);
@@ -26,7 +27,7 @@ public final class NumberTransformer {
 	 * @param bytes 指定的byte数组。
 	 * @return 转换后的int数据类型。
 	 */
-	public static int Byte2Int(byte[] bytes){
+	public static int byte2Int(byte[] bytes){
 		ByteBuffer buffer = ByteBuffer.allocate(4);
 		buffer.put(TrimToSize(bytes, 4)).flip();
 		return buffer.getInt();
@@ -36,7 +37,7 @@ public final class NumberTransformer {
 	 * @param l 指定的long数据类型。
 	 * @return 转换后的byte数组。
 	 */
-	public static byte[] Long2Byte(long l){
+	public static byte[] long2Byte(long l){
 		ByteBuffer buffer = ByteBuffer.allocate(8);
 		buffer.putLong(l);
 		return buffer.array();
@@ -47,7 +48,7 @@ public final class NumberTransformer {
 	 * @param bytes 指定的byte数组。
 	 * @return 转换后的long数据类型。
 	 */
-	public static long Byte2Long(byte[] bytes){
+	public static long byte2Long(byte[] bytes){
 		ByteBuffer buffer = ByteBuffer.allocate(8);
 		buffer.put(TrimToSize(bytes, 8)).flip();
 		return buffer.getLong();
@@ -57,7 +58,7 @@ public final class NumberTransformer {
 	 * @param f 指定的float数据类型。
 	 * @return 转换后的byte数组。
 	 */
-	public static byte[] Float2Byte(float f){
+	public static byte[] float2Byte(float f){
 		ByteBuffer buffer = ByteBuffer.allocate(4);
 		buffer.putFloat(f);
 		return buffer.array();
@@ -68,7 +69,7 @@ public final class NumberTransformer {
 	 * @param bytes 指定的byte数组。
 	 * @return 转换后的float数据类型。
 	 */
-	public static float Byte2Float(byte[] bytes){
+	public static float byte2Float(byte[] bytes){
 		ByteBuffer buffer = ByteBuffer.allocate(4);
 		buffer.put(TrimToSize(bytes, 4)).flip();
 		return buffer.getFloat();
@@ -78,7 +79,7 @@ public final class NumberTransformer {
 	 * @param d 指定的double数据类型。
 	 * @return 转换后的byte数组。
 	 */
-	public static byte[] Double2Byte(double d){
+	public static byte[] double2Byte(double d){
 		ByteBuffer buffer = ByteBuffer.allocate(8);
 		buffer.putDouble(d);
 		return buffer.array();
@@ -89,7 +90,7 @@ public final class NumberTransformer {
 	 * @param bytes 指定的byte数组。
 	 * @return 转换后的double数据类型。
 	 */
-	public static double Byte2Double(byte[] bytes){
+	public static double byte2Double(byte[] bytes){
 		ByteBuffer buffer = ByteBuffer.allocate(8);
 		buffer.put(TrimToSize(bytes, 8)).flip();
 		return buffer.getDouble();
@@ -99,7 +100,7 @@ public final class NumberTransformer {
 	 * @param s 指定的short数据类型。
 	 * @return 转换后的byte数组。
 	 */
-	public static byte[] Short2Double(short s){
+	public static byte[] short2Double(short s){
 		ByteBuffer buffer = ByteBuffer.allocate(2);
 		buffer.putShort(s);
 		return buffer.array();
@@ -110,7 +111,7 @@ public final class NumberTransformer {
 	 * @param bytes 指定的byte数组。
 	 * @return 转换后的short数据类型。
 	 */
-	public static short Byte2Short(byte[] bytes){
+	public static short byte2Short(byte[] bytes){
 		ByteBuffer buffer = ByteBuffer.allocate(2);
 		buffer.put(TrimToSize(bytes, 2)).flip();
 		return buffer.getShort();
@@ -141,6 +142,15 @@ public final class NumberTransformer {
 			}
 			return target;
 		}
+	}
+	
+	/**
+	 * 将一个整型数截取低八位后，输出其byte形式。
+	 * @param b 指定的整型数。
+	 * @return 截取低八位后的byte形式。
+	 */
+	public static byte cutInt2Byte(int b){
+		return (byte) (b & 0xFF);
 	}
 	
 	//不能进行实例化

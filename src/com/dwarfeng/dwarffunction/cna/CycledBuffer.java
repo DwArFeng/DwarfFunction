@@ -190,7 +190,7 @@ public class CycledBuffer<T> implements Iterable<T> {
 	 * @param t 指定的元素。
 	 * @return 返回的旧元素，如果没有，则返回<code>null</code>。
 	 */
-	public T append(T t){
+	public T add(T t){
 		int i = pRolls(index, count);
 		//由于数组objs只能存放T类型的元素，因此此处转换类型安全。
 		@SuppressWarnings("unchecked")
