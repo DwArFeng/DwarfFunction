@@ -54,7 +54,13 @@ public final class DwarfFunction {
 		/**CycledBuffer类第0号文本字段*/
 		CycledBuffer_0,
 		/**ArrayPackFunction类第0号文本字段*/
-		ArrayPackFunction_0
+		ArrayPackFunction_0,
+		/**CodeTimer类第0号文本字段*/
+		CodeTimer_0,
+		/**CodeTimer类第1号文本字段*/
+		CodeTimer_1,
+		/**CodeTimer类第2号文本字段*/
+		CodeTimer_2
 		
 	}
 	
