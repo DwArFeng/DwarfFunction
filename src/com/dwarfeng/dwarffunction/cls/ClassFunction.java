@@ -54,7 +54,7 @@ public final class ClassFunction {
 	}
 	
 	/**
-	 * 获取一个类所实现的所有接口，包括父类实现的所有接口。
+	 * 获取一个类所实现的所有接口，包括自身以及父类实现的所有接口。
 	 * @param cl 指定的类。
 	 * @return 该类以及父类实现的所有接口组成的集合。
 	 */
@@ -62,6 +62,9 @@ public final class ClassFunction {
 		Collection<Class<?>> superClasses = getAllSuperClassesCollection(cl);
 		Collection<Class<?>> allInterfaces = new HashSet<Class<?>>();
 		Iterator<Class<?>> iterator = superClasses.iterator();
+		for(Class<?> cla:cl.getInterfaces()){
+			allInterfaces.add(cla);
+		}
 		while(iterator.hasNext()){
 			for(Class<?> clas : iterator.next().getInterfaces()) allInterfaces.add(clas);
 		}
