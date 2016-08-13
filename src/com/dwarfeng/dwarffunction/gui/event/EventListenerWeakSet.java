@@ -8,6 +8,8 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.WeakHashMap;
 
+import com.dwarfeng.dwarffunction.DwarfFunction;
+import com.dwarfeng.dwarffunction.DwarfFunction.StringFiledKey;
 import com.dwarfeng.dwarffunction.cls.ClassFunction;
 
 /**
@@ -118,12 +120,14 @@ public class EventListenerWeakSet implements Set<EventListener>{
 		return set.toArray(a);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.util.Set#add(java.lang.Object)
+	/**
+	 * 向集合中添加事件侦听。
+	 * @param e 指定的侦听。
+	 * @throws NullPointerException 如果入口参数<code>e</code>为<code>null</code>。
 	 */
 	@Override
 	public boolean add(EventListener e) {
+		if(e == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.EventListenerWeakSet_0));
 		return set.add(e);
 	}
 

@@ -1,7 +1,6 @@
 package com.dwarfeng.dwarffunction.gui;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -10,25 +9,19 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.event.EventListenerList;
 import javax.swing.text.BadLocationException;
 
 import com.dwarfeng.dwarffunction.cna.ArrayPackFunction;
-import com.dwarfeng.dwarffunction.debugtool.CodeTimer;
+import com.dwarfeng.dwarffunction.gui.event.ConsoleInputEvent;
 import com.dwarfeng.dwarffunction.gui.event.ConsoleInputEventListener;
 import com.dwarfeng.dwarffunction.gui.event.EventListenerWeakSet;
-import com.dwarfeng.dwarffunction.gui.event.ConsoleInputEvent;
-import com.dwarfeng.dwarffunction.io.CT;
 import com.dwarfeng.dwarffunction.numerical.NumberTransformer;
 
 /**
@@ -39,51 +32,15 @@ import com.dwarfeng.dwarffunction.numerical.NumberTransformer;
  * <br> 控制台提供大致的行数保证，它允许文本达到一个最大的行数，当文本超过最大的行数时，控制台会按照一定的比例删掉
  * 最早输出的一部分行数，以控制行数不超过最大值。
  * 被删除。这个行数成为能被显示的最大行数，最大行数在构造器中被指定，一旦被指定就不能更改。
+ * <br> 控制台提供两个流：输入流和输出流，其中输出流是线程安全的，可以多个线程同时向输入流中输出字节，但是输入流是线程
+ * 不安全的，它只能用于单线程输入，不管是不是加入了外部同步机制。
  * 
  * @author DwArFeng
  * @since 1.8
  */
 public class JConsole extends JPanel{
 	
-	public static void main(String[] args) throws Exception{
-//		JFrame jf = new JFrame();
-//		jf.getContentPane().setLayout(new BorderLayout());
-//		JConsole jc = new JConsole();
-//		jf.getContentPane().add(jc,BorderLayout.CENTER);
-//		jf.setSize(400, 300);
-//		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		jf.setVisible(true);
-//		
-//		jc.susFlag = true;
-//		
-//		System.setOut(jc.getOut());
-//		System.setIn(jc.getIn());
-//		
-//		Scanner scanner = new Scanner(System.in);
-//		CT.trace(scanner.nextLine());
-		Runnable runnable = new Runnable() {
-			
-			@Override
-			public void run() {
-				JFrame jf = new JFrame();
-				jf.getContentPane().setLayout(new BorderLayout());
-				JConsole jc = new JConsole();
-				jf.getContentPane().add(jc,BorderLayout.CENTER);
-				jf.setSize(400, 300);
-				jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				jf.setVisible(true);
-				
-				jc.susFlag = true;
-				
-				System.setOut(jc.getOut());
-				System.setIn(jc.getIn());
-				
-				Scanner scanner = new Scanner(System.in);
-				CT.trace(scanner.nextLine());
-			}
-		};
-		EventQueue.invokeLater(runnable);
-	}
+	private static final long serialVersionUID = 220703214689642912L;
 	
 	//---静态常量
 	private final static int DEFAULT_MAX_LINE = 3000;
@@ -99,10 +56,8 @@ public class JConsole extends JPanel{
 	//---同步与线程
 	private final Lock outLock = new ReentrantLock();
 	private final Lock inLock = new ReentrantLock();
-	private final Condition inCondition = inLock.newCondition();
 	
 	//---其它变量
-	private boolean susFlag = false;
 	private int maxLine = DEFAULT_MAX_LINE;
 	private String inputString = null;
 	private byte[] bytesForString;
@@ -267,12 +222,6 @@ public class JConsole extends JPanel{
 		public int read() throws IOException {
 			inLock.lock();
 			try{
-				while(susFlag && available() == 0){
-					try {
-						inCondition.await();
-					} catch (InterruptedException e) {}
-				}
-				susFlag = false;
 				if(available() == 0) return -1;
 				return bytesForString[mark++];
 			}finally{
@@ -280,6 +229,32 @@ public class JConsole extends JPanel{
 			}
 		}
 	};
+	
+	/**
+	 * 向控制台中添加控制台输入事件侦听。
+	 * <p> 当入口参数<code>e</code>为<code>null</code>的时候，什么也不做。
+	 * @param e 控制台输入事件侦听。
+	 */
+	public void addConsoleInputEventListener(ConsoleInputEventListener e){
+		if(e == null) return;
+		eSet.add(e);
+	}
+	
+	/**
+	 * 向控制台中移除输入事件侦听。
+	 * @param e 指定的控制台输入事件侦听。
+	 * @return 该移除操作是否成功移除了指定的事件侦听。
+	 */
+	public boolean removeConsoleInputEventListener(ConsoleInputEventListener e){
+		return eSet.remove(e);
+	}
+	
+	/**
+	 * 移除所有的事件侦听。
+	 */
+	public void removeAllListeners(){
+		eSet.clear();
+	}
 	
 	/**
 	 * 获得该控制台对象的字体。
@@ -308,6 +283,38 @@ public class JConsole extends JPanel{
 	}
 	
 	/**
+	 * 返回输入框是否启用。
+	 * @return 输入框是否被启用。
+	 */
+	public boolean isInputFieldEnabled(){
+		return inputField.isEnabled();
+	}
+	
+	/**
+	 * 设置输入框是否被启用。
+	 * @param flag 指定的启用标识。
+	 */
+	public void setInputFieldEnabled(boolean flag){
+		inputField.setEnabled(flag);
+	}
+	
+	/**
+	 * 返回输入框是否被显示。
+	 * @return 输入框是否被显示。
+	 */
+	public boolean isInputFieldVisible(){
+		return inputField.isVisible();
+	}
+	
+	/**
+	 * 设置输入框是否被显示。
+	 * @param flag 指定的显示标识。
+	 */
+	public void setInputFieldVisible(boolean flag){
+		inputField.setVisible(flag);
+	}
+	
+	/**
 	 * 提供界面的初始化。
 	 */
 	private void init(){
@@ -324,7 +331,6 @@ public class JConsole extends JPanel{
 						bytesForString = inputString.getBytes();
 						mark = 0;
 						lastMark = 0;
-						inCondition.signalAll();
 						ConsoleInputEvent event = new ConsoleInputEvent(this, inputString, getIn());
 						fireConsoleInputEvent(event);
 						inputField.setText("");

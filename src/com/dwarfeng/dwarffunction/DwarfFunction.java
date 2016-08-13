@@ -60,7 +60,9 @@ public final class DwarfFunction {
 		/**CodeTimer类第1号文本字段*/
 		CodeTimer_1,
 		/**CodeTimer类第2号文本字段*/
-		CodeTimer_2
+		CodeTimer_2,
+		/**EventListenerWeakSet类第0号文本字段*/
+		EventListenerWeakSet_0
 		
 	}
 	

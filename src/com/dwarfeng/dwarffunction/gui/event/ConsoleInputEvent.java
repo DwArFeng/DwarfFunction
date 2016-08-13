@@ -38,10 +38,24 @@ public class ConsoleInputEvent {
 
 	/**
 	 * 获取与输入事件有关的文本。
+	 * <p> 在通常情况下，该文本的结尾有换行符，如果想要没有换行符的文本，请使用
+	 * {@linkplain ConsoleInputEvent#getNlInputString()}方法。
 	 * @return 有关文本。
 	 */
 	public String getInputString() {
 		return inputString;
+	}
+	
+	/**
+	 * 返回去除尾部换行符的文本。
+	 * @return 去除尾部换行符的文本。
+	 */
+	public String getNlInputString(){
+		if(inputString.endsWith("\n")){
+			return inputString.substring(0, inputString.length() - 1);
+		}else{
+			return inputString;
+		}
 	}
 
 	/**
@@ -51,4 +65,6 @@ public class ConsoleInputEvent {
 	public InputStream getInputStream() {
 		return inputStream;
 	}
+	
+	
 }
