@@ -20,7 +20,7 @@ public class ConsoleInputEvent {
 	 * 生成一个默认的控制台输入事件，该时间具有指定的事件源、指定的输出流以及指定的输入文本。
 	 * @param source 指定的输入源。
 	 * @param inputString 指定的输入文本。
-	 * @param inputStream 
+	 * @param inputStream 指定的输入流。
 	 */
 	public ConsoleInputEvent(Object source, String inputString, InputStream inputStream){
 		this.source = source;
