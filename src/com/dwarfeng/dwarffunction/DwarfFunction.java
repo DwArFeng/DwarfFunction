@@ -25,7 +25,7 @@ public final class DwarfFunction {
 	
 	private static final Version version = new DefaultVersion.Productor()
 			.type(VersionType.ALPHA).firstVersion((byte) 0).secondVersion((byte) 0).thirdVersion((byte) 6)
-			.buildDate("20160814").buildVersion('A')
+			.buildDate("20160814").buildVersion('B')
 			.product();
 	
 	/**
