@@ -7,6 +7,8 @@ import javax.swing.AbstractAction;
 import javax.swing.Icon;
 import javax.swing.KeyStroke;
 
+import com.dwarfeng.dwarffunction.interfaces.Buildable;
+
 /**
  * 菜单项目动作类，用该类可以快速的建立一个具有指定属性的菜单项目。
  * <p> 由于该类已经完全完成了<code>Action</code>的所有属性，因此该类不能被继承。
@@ -24,7 +26,7 @@ public final class JMenuItemAction extends AbstractAction{
 	 * @author DwArFeng
 	 * @since 1.8
 	 */
-	public static class Productor{
+	public static class Builder implements Buildable<JMenuItemAction>{
 		
 		private Icon icon = null;
 		private String name = null;
@@ -38,7 +40,7 @@ public final class JMenuItemAction extends AbstractAction{
 		 * @param val 动作的图标。
 		 * @return 构造器自身。
 		 */
-		public Productor icon(Icon val){
+		public Builder icon(Icon val){
 			this.icon = val;
 			return this;
 		}
@@ -48,7 +50,7 @@ public final class JMenuItemAction extends AbstractAction{
 		 * @param val 动作的名称。
 		 * @return 构造器自身。
 		 */
-		public Productor name(String val){
+		public Builder name(String val){
 			this.name = val;
 			return this;
 		}
@@ -58,7 +60,7 @@ public final class JMenuItemAction extends AbstractAction{
 		 * @param val 动作的描述。
 		 * @return 构造器自身。
 		 */
-		public Productor description(String val){
+		public Builder description(String val){
 			this.description = val;
 			return this;
 		}
@@ -68,7 +70,7 @@ public final class JMenuItemAction extends AbstractAction{
 		 * @param val 设定动作的组合键。
 		 * @return 构造器自身。
 		 */
-		public Productor keyStorke(KeyStroke val){
+		public Builder keyStorke(KeyStroke val){
 			this.keyStroke = val;
 			return this;
 		}
@@ -78,7 +80,7 @@ public final class JMenuItemAction extends AbstractAction{
 		 * @param val 动作的助记符。
 		 * @return 构造器自身。
 		 */
-		public Productor mnemonic(int val){
+		public Builder mnemonic(int val){
 			this.mnemonic = val;
 			return this;
 		}
@@ -88,16 +90,17 @@ public final class JMenuItemAction extends AbstractAction{
 		 * @param val 动作的动作侦听。
 		 * @return 构造器自身。
 		 */
-		public Productor listener(ActionListener val){
+		public Builder listener(ActionListener val){
 			this.listener = val;
 			return this;
 		}
 		
-		/**
-		 * 由构造器构造的菜单项目动作。
-		 * @return 由构造器构造的菜单项目动作。
+		/*
+		 * (non-Javadoc)
+		 * @see com.dwarfeng.dwarffunction.interfaces.Builder#build()
 		 */
-		public JMenuItemAction product(){
+		@Override
+		public JMenuItemAction build(){
 			return new JMenuItemAction(icon, name, description, keyStroke, mnemonic, listener);
 		}
 	}
