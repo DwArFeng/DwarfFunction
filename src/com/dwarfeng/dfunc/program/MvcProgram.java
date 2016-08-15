@@ -53,6 +53,7 @@ A extends ProgramAttrSet> implements ProgramManager<P, A>{
 		this.controlManager.setModuleControlPort(this.moduleManager.getModuleControlPort());
 		this.controlManager.setViewControlPort(this.viewManager.getViewControlPort());
 		this.controlManager.setProgramControlPort(this.getProgramControlPort());
+		this.controlManager.setProgramAttrSet(this.getProgramAttrSet());
 		this.viewManager.setControlPort(this.controlManager.getControlPort());
 		this.viewManager.setProgramAttrSet(getProgramAttrSet());
 		this.moduleManager.setProgramAttrSet(getProgramAttrSet());
