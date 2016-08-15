@@ -1,5 +1,7 @@
 package com.dwarfeng.dwarffunction.program.mvc;
 
+import com.dwarfeng.dwarffunction.program.MvcProgram;
+
 /**
  * 程序管理器。
  * <p>程序管理器是用来管理程序级的方法而设计的，比如有些程序拥有后台线程以及对应的方法，这种功能既不属于显示层，也不属于模型层，
@@ -19,6 +21,7 @@ public interface ProgramManager<P extends ProgramControlPort, A extends ProgramA
 	
 	/**
 	 * 获取程序的常量集合。
+	 *  <p> 该方法由{@linkplain MvcProgram}的初始化方法调用，请保证在其它任意地方都不要调用此方法。
 	 * @return 程序级常量集合。
 	 */
 	public A getProgramAttrSet();

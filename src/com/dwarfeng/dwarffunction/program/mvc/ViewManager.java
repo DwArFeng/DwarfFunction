@@ -1,5 +1,7 @@
 package com.dwarfeng.dwarffunction.program.mvc;
 
+import com.dwarfeng.dwarffunction.program.MvcProgram;
+
 /**
  * 视图控制器。
  * <p> 视图控制器是用来控制程序的表示层的，它应该包含一个视图控制站点，这个控制站点应该能完成程序在视图方法预期的所有功能，比如视图渲染、更新、与用户交互等。
@@ -36,6 +38,7 @@ public interface ViewManager<V extends ViewControlPort, C extends ControlPort, A
 	
 	/**
 	 * 设置模型管理器中的程序常量。
+	 *  <p> 该方法由{@linkplain MvcProgram}的初始化方法调用，请保证在其它任意地方都不要调用此方法。
 	 * @param programAttrSet 程序常量。
 	 */
 	public void setProgramAttrSet(A programAttrSet);

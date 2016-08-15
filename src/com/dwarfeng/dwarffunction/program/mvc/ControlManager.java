@@ -1,5 +1,7 @@
 package com.dwarfeng.dwarffunction.program.mvc;
 
+import com.dwarfeng.dwarffunction.program.MvcProgram;
+
 /**
  * 控制管理器。
  * <p> 用来维护程序的控制层。
@@ -27,6 +29,7 @@ public interface ControlManager<P extends ProgramControlPort, M extends ModuleCo
 	
 	/**
 	 * 设置控制管理器中的模型控制站点。
+	 * <p> 该方法由{@linkplain MvcProgram}的初始化方法调用，请保证在其它任意地方都不要调用此方法。
 	 * @param moduleControlPort 指定的模型控制站点。
 	 */
 	public void setModuleControlPort(M moduleControlPort);
@@ -39,6 +42,7 @@ public interface ControlManager<P extends ProgramControlPort, M extends ModuleCo
 	
 	/**
 	 * 设置控制管理器中的视图控制站点。
+	 *  <p> 该方法由{@linkplain MvcProgram}的初始化方法调用，请保证在其它任意地方都不要调用此方法。
 	 * @param viewControlPort 指定的视图控制站点。
 	 */
 	public void setViewControlPort(V viewControlPort);
@@ -51,6 +55,7 @@ public interface ControlManager<P extends ProgramControlPort, M extends ModuleCo
 	
 	/**
 	 * 设置控制管理器中的程序控制站点。
+	 *  <p> 该方法由{@linkplain MvcProgram}的初始化方法调用，请保证在其它任意地方都不要调用此方法。
 	 * @param programControlPort 指定的程序控制站点。
 	 */
 	public void setProgramControlPort(P programControlPort);

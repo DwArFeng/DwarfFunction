@@ -58,7 +58,5 @@ A extends ProgramAttrSet> implements ProgramManager<P,A>{
 		this.moduleManager.setProgramAttrSet(getProgramAttrSet());
 		
 	}
-
-	
 	
 }

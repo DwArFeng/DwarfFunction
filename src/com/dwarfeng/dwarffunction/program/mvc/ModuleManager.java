@@ -1,5 +1,7 @@
 package com.dwarfeng.dwarffunction.program.mvc;
 
+import com.dwarfeng.dwarffunction.program.MvcProgram;
+
 /**
  * 模型管理器。
  * <p> 用来管理模型的管理器。
@@ -23,6 +25,7 @@ public interface ModuleManager<M extends ModuleControlPort, A extends ProgramAtt
 	
 	/**
 	 * 设置模型管理器中的程序常量。
+	 *  <p> 该方法由{@linkplain MvcProgram}的初始化方法调用，请保证在其它任意地方都不要调用此方法。
 	 * @param programAttrSet 程序常量。
 	 */
 	public void setProgramAttrSet(A programAttrSet);
