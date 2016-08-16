@@ -28,6 +28,8 @@ A extends ProgramAttrSet>{
 	protected final ViewManager<V, C, A> viewManager;
 	/**程序的控制管理器*/
 	protected final ControlManager<P, M, V, C, A> controlManager;
+	/**程序的程序管理器*/
+	protected final ProgramManager<P, A> programManager;
 	
 	/**
 	 * 生成一个具有指定模型管理器，指定视图管理器，指定控制管理器的MVC框架程序。
@@ -37,26 +39,28 @@ A extends ProgramAttrSet>{
 	 * @throws NullPointerException 三个入口参数至少一个为<code>null</code>时抛出。
 	 */
 	public MvcProgram(ModuleManager<M, A> moduleManager, ViewManager<V, C, A> viewManager,
-	ControlManager<P, M, V, C, A> controlManager){
+	ControlManager<P, M, V, C, A> controlManager, ProgramManager<P, A> programManager){
 		
 		//判断null异常。
 		if(moduleManager == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.MvcProgram_0));
 		if(viewManager == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.MvcProgram_1));
 		if(controlManager == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.MvcProgram_2));
+		if(programManager == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.MvcProgram_3));
 		
 		//为常量赋初值
 		this.moduleManager = moduleManager;
 		this.viewManager = viewManager;
 		this.controlManager = controlManager;
+		this.programManager = programManager;
 		
 		//建立引用网络
 		this.controlManager.setModuleControlPort(this.moduleManager.getModuleControlPort());
 		this.controlManager.setViewControlPort(this.viewManager.getViewControlPort());
-		this.controlManager.setProgramControlPort(this.getProgramControlPort());
-		this.controlManager.setProgramAttrSet(this.getProgramAttrSet());
+		this.controlManager.setProgramControlPort(programManager.getProgramControlPort());
+		this.controlManager.setProgramAttrSet(programManager.getProgramAttrSet());
 		this.viewManager.setControlPort(this.controlManager.getControlPort());
-		this.viewManager.setProgramAttrSet(getProgramAttrSet());
-		this.moduleManager.setProgramAttrSet(getProgramAttrSet());
+		this.viewManager.setProgramAttrSet(programManager.getProgramAttrSet());
+		this.moduleManager.setProgramAttrSet(programManager.getProgramAttrSet());
 		
 	}
 	
