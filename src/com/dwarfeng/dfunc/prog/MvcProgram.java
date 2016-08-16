@@ -32,10 +32,11 @@ A extends ProgramAttrSet>{
 	protected final ProgramManager<P, A> programManager;
 	
 	/**
-	 * 生成一个具有指定模型管理器，指定视图管理器，指定控制管理器的MVC框架程序。
+	 * 生成一个具有指定模型管理器，指定视图管理器，指定控制管理器，指定的程序管理器的MVC框架程序。
 	 * @param moduleManager 指定的模型管理器。
 	 * @param viewManager 指定的视图管理器。
 	 * @param controlManager 指定的控制管理器。
+	 * @param programManager 指定的程序管理器。
 	 * @throws NullPointerException 三个入口参数至少一个为<code>null</code>时抛出。
 	 */
 	public MvcProgram(ModuleManager<M, A> moduleManager, ViewManager<V, C, A> viewManager,
