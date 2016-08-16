@@ -1,16 +1,16 @@
-package com.dwarfeng.dfunc.program;
+package com.dwarfeng.dfunc.prog;
 
 import com.dwarfeng.dfunc.DwarfFunction;
 import com.dwarfeng.dfunc.DwarfFunction.StringFiledKey;
-import com.dwarfeng.dfunc.program.mvc.ControlManager;
-import com.dwarfeng.dfunc.program.mvc.ControlPort;
-import com.dwarfeng.dfunc.program.mvc.ModuleControlPort;
-import com.dwarfeng.dfunc.program.mvc.ModuleManager;
-import com.dwarfeng.dfunc.program.mvc.ProgramAttrSet;
-import com.dwarfeng.dfunc.program.mvc.ProgramControlPort;
-import com.dwarfeng.dfunc.program.mvc.ProgramManager;
-import com.dwarfeng.dfunc.program.mvc.ViewControlPort;
-import com.dwarfeng.dfunc.program.mvc.ViewManager;
+import com.dwarfeng.dfunc.prog.mvc.ControlManager;
+import com.dwarfeng.dfunc.prog.mvc.ControlPort;
+import com.dwarfeng.dfunc.prog.mvc.ModuleControlPort;
+import com.dwarfeng.dfunc.prog.mvc.ModuleManager;
+import com.dwarfeng.dfunc.prog.mvc.ProgramAttrSet;
+import com.dwarfeng.dfunc.prog.mvc.ProgramControlPort;
+import com.dwarfeng.dfunc.prog.mvc.ProgramManager;
+import com.dwarfeng.dfunc.prog.mvc.ViewControlPort;
+import com.dwarfeng.dfunc.prog.mvc.ViewManager;
 
 /**
  * MVC框架程序。
@@ -20,7 +20,7 @@ import com.dwarfeng.dfunc.program.mvc.ViewManager;
  * @since 1.8
  */
 public abstract class MvcProgram<P extends ProgramControlPort, M extends ModuleControlPort, V extends ViewControlPort, C extends ControlPort,
-A extends ProgramAttrSet> implements ProgramManager<P, A>{
+A extends ProgramAttrSet>{
 	
 	/**程序的模型管理器*/
 	protected final ModuleManager<M, A> moduleManager;

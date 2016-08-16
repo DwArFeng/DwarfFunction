@@ -1,4 +1,4 @@
-package com.dwarfeng.dfunc.program;
+package com.dwarfeng.dfunc.prog;
 
 import com.dwarfeng.dfunc.infs.Nameable;
 

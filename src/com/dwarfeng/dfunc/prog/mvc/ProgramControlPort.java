@@ -1,4 +1,4 @@
-package com.dwarfeng.dfunc.program.mvc;
+package com.dwarfeng.dfunc.prog.mvc;
 
 /**
  * ³ÌÐò¿ØÖÆÆ÷¡£

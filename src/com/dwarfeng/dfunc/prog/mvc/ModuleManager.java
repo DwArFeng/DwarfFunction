@@ -1,6 +1,6 @@
-package com.dwarfeng.dfunc.program.mvc;
+package com.dwarfeng.dfunc.prog.mvc;
 
-import com.dwarfeng.dfunc.program.MvcProgram;
+import com.dwarfeng.dfunc.prog.MvcProgram;
 
 /**
  * 模型管理器。

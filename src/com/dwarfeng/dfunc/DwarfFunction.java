@@ -5,9 +5,9 @@ import java.util.ResourceBundle;
 
 import com.dwarfeng.dfunc.io.CT;
 import com.dwarfeng.dfunc.io.CT.OutputType;
-import com.dwarfeng.dfunc.program.DefaultVersion;
-import com.dwarfeng.dfunc.program.Version;
-import com.dwarfeng.dfunc.program.VersionType;
+import com.dwarfeng.dfunc.prog.DefaultVersion;
+import com.dwarfeng.dfunc.prog.Version;
+import com.dwarfeng.dfunc.prog.VersionType;
 
 /**
  * 有关于这个工具包的一些设置，主要是语言设置。
