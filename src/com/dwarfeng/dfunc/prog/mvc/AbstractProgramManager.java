@@ -1,8 +1,5 @@
-package com.dwarfeng.dfunc.prog;
+package com.dwarfeng.dfunc.prog.mvc;
 
-import com.dwarfeng.dfunc.prog.mvc.ProgramAttrSet;
-import com.dwarfeng.dfunc.prog.mvc.ProgramControlPort;
-import com.dwarfeng.dfunc.prog.mvc.ProgramManager;
 
 /**
  * 抽象程序管理器。
