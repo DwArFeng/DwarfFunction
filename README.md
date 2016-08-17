@@ -6,16 +6,16 @@ DwarfFunction (DwArFeng's java func) ÊÇDwArFengÔÚ±àÐ´Java³ÌÐòÊ±×Ü½áµÄÒ»Ð©¹¤¾ß·½·
 
 ## DwarfFunction°üº¬ÄÄÐ©ÄÚÈÝ£¿
 
->dfunc Õû¸öDwarfFunction°ü
->>cls ÓëClassÓÐ¹ØµÄ·½·¨»òÀà¡£
->>cna Óë¼¯ºÏ»òÊý×éÓÐ¹ØµÄ·½·¨»òÀà¡£
->>comp ³£ÓÃµÄ±È½ÏÆ÷¡£
->>dt µ÷ÊÔ¹¤¾ß¡£
->>gui Óë½çÃæÓÐ¹ØµÄÀà¡£
->>infs ³£ÓÃ½Ó¿Ú¶¨Òå¡£
->>io ÊäÈë/Êä³öÓÐ¹Ø¡£
->>num ÓëÊý×Ö·½·¨ÓÐ¹Ø¡£
->>prog Óë³ÌÐò¿ò¼ÜÓÐ¹Ø¡£
->>> mvc ÓëMVC³ÌÐò¹¹¼ÜÓÐ¹Ø¡£
->>str Óë×Ö·û´®ÓÐ¹Ø¡£
->>threads ÓëÏß³ÌÓÐ¹Ø¡£
+>dfunc Õû¸öDwarfFunction°ü <br>
+>>cls ÓëClassÓÐ¹ØµÄ·½·¨»òÀà¡£<br>
+>>cna Óë¼¯ºÏ»òÊý×éÓÐ¹ØµÄ·½·¨»òÀà¡£<br>
+>>comp ³£ÓÃµÄ±È½ÏÆ÷¡£<br>
+>>dt µ÷ÊÔ¹¤¾ß¡£<br>
+>>gui Óë½çÃæÓÐ¹ØµÄÀà¡£<br>
+>>infs ³£ÓÃ½Ó¿Ú¶¨Òå¡£<br>
+>>io ÊäÈë/Êä³öÓÐ¹Ø¡£<br>
+>>num ÓëÊý×Ö·½·¨ÓÐ¹Ø¡£<br>
+>>prog Óë³ÌÐò¿ò¼ÜÓÐ¹Ø¡£<br>
+>>> mvc ÓëMVC³ÌÐò¹¹¼ÜÓÐ¹Ø¡£<br>
+>>str Óë×Ö·û´®ÓÐ¹Ø¡£<br>
+>>threads ÓëÏß³ÌÓÐ¹Ø¡£<br>
