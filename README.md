@@ -16,6 +16,5 @@ DwarfFunction (DwArFeng's java func) สวDwArFengิฺฑเะดJavaณฬะ๒สฑืÜฝแตฤาปะฉนคพ฿ทฝท
 >>io สไศ๋/สไณ๖ำะนุกฃ<br>
 >>num ำ๋สýืึทฝทจำะนุกฃ<br>
 >>prog ำ๋ณฬะ๒ฟ๒ผÜำะนุกฃ<br>
->>>mvc ำ๋MVCณฬะ๒นนผÜำะนุกฃ<br>
 >>str ำ๋ืึท๛ดฎำะนุกฃ<br>
 >>threads ำ๋ฯ฿ณฬำะนุกฃ<br>
