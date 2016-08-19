@@ -18,3 +18,7 @@ DwarfFunction (DwArFeng's java func) 是DwArFeng在编写Java程序时总结的�
 >>prog 与程序框架有关。<br>
 >>str 与字符串有关。<br>
 >>threads 与线程有关。<br>
+
+##更新记录  
+
+请参考ChangeLog.txt
