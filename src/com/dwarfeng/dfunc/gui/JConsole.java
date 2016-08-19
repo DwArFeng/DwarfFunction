@@ -22,7 +22,7 @@ import com.dwarfeng.dfunc.cna.ArrayPackFunction;
 import com.dwarfeng.dfunc.gui.event.ConsoleInputEvent;
 import com.dwarfeng.dfunc.gui.event.ConsoleInputEventListener;
 import com.dwarfeng.dfunc.gui.event.EventListenerWeakSet;
-import com.dwarfeng.dfunc.num.NumberTransformer;
+import com.dwarfeng.dfunc.num.NumTrans;
 
 /**
  * øÿ÷∆Ã®¿‡°£
@@ -132,7 +132,7 @@ public class JConsole extends JPanel{
 		public void write(int b) throws IOException {
 			outLock.lock();
 			try{
-				byteList.add(NumberTransformer.cutInt2Byte(b));
+				byteList.add(NumTrans.cutInt2Byte(b));
 			}finally{
 				outLock.unlock();
 			}
