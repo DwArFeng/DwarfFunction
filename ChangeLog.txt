@@ -1,3 +1,7 @@
 ﻿Alpha_0.0.9_20160819_build_A
 	增加Valueable接口，实现该接口意味着实现类能够转换成某一具体值。
 	增加单位换算工具类。
+Alpha_0.0.10
+	增加了重量的单位换算。
+	增加了时间的单位换算
+	prog.MvcProgram增加了返回.prog.mvc.ControlPort的方法。

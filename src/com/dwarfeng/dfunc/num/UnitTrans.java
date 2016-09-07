@@ -13,7 +13,7 @@ import com.dwarfeng.dfunc.infs.Valueable;
  * @since 1.8
  */
 public final class UnitTrans {
-	
+
 	/**
 	 * 将指定的值由一个单位转换为另一个单位。
 	 * @param val 待转换的值。
@@ -51,7 +51,7 @@ public final class UnitTrans {
 			 */
 			@Override
 			public double doubleValue() {
-				return val/(u1.doubleValue())*(u2.doubleValue());
+				return ((double)val)/(u1.doubleValue())*(u2.doubleValue());
 			}
 		};
 	}
@@ -93,7 +93,7 @@ public final class UnitTrans {
 			 */
 			@Override
 			public double doubleValue() {
-				return val/(u1.doubleValue())*(u2.doubleValue());
+				return ((double)val)/(u1.doubleValue())*(u2.doubleValue());
 			}
 		};
 	}
@@ -114,7 +114,7 @@ public final class UnitTrans {
 			 */
 			@Override
 			public double doubleValue() {
-				return val/(u1.doubleValue())*(u2.doubleValue());
+				return ((double)val)/(u1.doubleValue())*(u2.doubleValue());
 			}
 		};
 	}
@@ -135,7 +135,7 @@ public final class UnitTrans {
 			 */
 			@Override
 			public double doubleValue() {
-				return val/(u1.doubleValue())*(u2.doubleValue());
+				return ((double)val)/(u1.doubleValue())*(u2.doubleValue());
 			}
 		};
 	}
@@ -156,7 +156,7 @@ public final class UnitTrans {
 			 */
 			@Override
 			public double doubleValue() {
-				return val/(u1.doubleValue())*(u2.doubleValue());
+				return ((double)val)/(u1.doubleValue())*(u2.doubleValue());
 			}
 		};
 	}
@@ -190,6 +190,85 @@ public final class UnitTrans {
 			return val;
 		}
 		
+	}
+	
+	/**
+	 * 时间枚举。
+	 * @author DwArFeng
+	 * @since 1.8
+	 */
+	public enum Time implements Valueable{
+		
+		/**纳秒*/
+		NS(86400000000000d),
+		/**微秒*/
+		US(86400000000d),
+		/**毫秒*/
+		MS(86400000d),
+		/**秒*/
+		SEC(86400d),
+		/**分钟*/
+		MIN(1440d),
+		/**小时*/
+		HOR(24d),
+		/**天*/
+		DAY(1d);
+
+		private final double val;
+		
+		private Time(double val) {
+			this.val = val;
+		}
+		
+		/*
+		 * (non-Javadoc)
+		 * @see com.dwarfeng.dfunc.infs.Valueable#doubleValue()
+		 */
+		@Override
+		public double doubleValue() {
+			return this.val;
+		}
+
+	}
+	
+	/**
+	 * 重量枚举。
+	 * @author DwArFeng
+	 * @since 1.8
+	 */
+	public enum Weight implements Valueable{
+		
+		/**吨*/
+		T(1d),
+		/**千克*/
+		KG(1000d),
+		/**克*/
+		G(1000000d),
+		/**毫克*/
+		MG(1000000000d),
+		/**盎司*/
+		OZ(35273.96194958d),
+		/**磅*/
+		LB(2204.62262185d),
+		/**打兰*/
+		DR(564383.39119329d)
+		;
+
+		private final double val;
+		
+		private Weight(double val) {
+			this.val = val;
+		}
+		
+		/*
+		 * (non-Javadoc)
+		 * @see com.dwarfeng.dfunc.infs.Valueable#doubleValue()
+		 */
+		@Override
+		public double doubleValue() {
+			return this.val;
+		}
+
 	}
 	
 	//不能进行实例化
