@@ -5,3 +5,6 @@ Alpha_0.0.10
 	增加了重量的单位换算。
 	增加了时间的单位换算
 	prog.MvcProgram增加了返回.prog.mvc.ControlPort的方法。
+Alpha_0.0.11_20160907_build_A
+	ArraysFunction增加了将数组转换为集合的方法。
+	ArraysFunction类方法完善，增强健壮性。
