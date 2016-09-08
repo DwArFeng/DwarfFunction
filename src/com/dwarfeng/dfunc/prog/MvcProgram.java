@@ -65,12 +65,4 @@ A extends ProgramAttrSet>{
 		
 	}
 	
-	/**
-	 * 获取程序的控制站点。
-	 * @return 程序的控制站点。
-	 */
-	public C getControlPort(){
-		return controlManager.getControlPort();
-	}
-	
 }
