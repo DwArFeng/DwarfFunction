@@ -1,4 +1,4 @@
-package com.dwarfeng.dfunc.gui;
+package com.dwarfeng.dfunc.gui.swing;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -19,8 +19,6 @@ import javax.swing.JTextField;
 import javax.swing.text.BadLocationException;
 
 import com.dwarfeng.dfunc.cna.ArrayPackFunction;
-import com.dwarfeng.dfunc.gui.event.ConsoleInputEvent;
-import com.dwarfeng.dfunc.gui.event.ConsoleInputEventListener;
 import com.dwarfeng.dfunc.gui.event.EventListenerWeakSet;
 import com.dwarfeng.dfunc.num.NumTrans;
 

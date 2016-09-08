@@ -1,4 +1,4 @@
-package com.dwarfeng.dfunc.gui.event;
+package com.dwarfeng.dfunc.gui.swing;
 
 import java.util.EventListener;
 

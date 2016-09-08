@@ -177,7 +177,7 @@ public final class ArrayPackFunction {
 	 * @param target 指定的long数组。
 	 * @return 打包后得到的封包数组。
 	 */
-	public static Long[] Pack(long[] target){
+	public static Long[] pack(long[] target){
 		
 		if(target == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.ArrayPackFunction_0));
 		

@@ -1,4 +1,4 @@
-package com.dwarfeng.dfunc.gui;
+package com.dwarfeng.dfunc.gui.swing;
 
 import java.awt.Image;
 
