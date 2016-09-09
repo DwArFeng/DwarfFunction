@@ -78,6 +78,7 @@ public final class ArrayFunction {
 	 * 首个数组不能为 <code>null</code>。
 	 * @param first 第一个数组。
 	 * @param rest 第二个或更多个数组。
+	 * @param <T> 泛型T。
 	 * @return 所有数组按先后顺序合并后得到的数组。
 	 * @throws NullPointerException 入口参数 <code>rest</code>为 <code>null</code>。
 	 */

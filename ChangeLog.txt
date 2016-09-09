@@ -3,7 +3,7 @@
 	增加单位换算工具类。
 	
 	
-Alpha_0.0.10
+Alpha_0.0.10_20160907_build_A
 	增加了重量的单位换算。
 	增加了时间的单位换算
 	prog.MvcProgram增加了返回.prog.mvc.ControlPort的方法。
@@ -28,3 +28,7 @@ Alpha_0.0.13_20160908_build_A
 	删除方法ArraysFuntion.toCollection(T[] object)，因为java.util.Arrays中有类似的方法。
 	增加方法dfunc.cna.ArraysFunction.concat(T[] first,T[]... rest)，用于对多个数组进行合并。
 	为了统一命名结构，将dfunc.cna.ArraysFunction 改名为 dfunc.cna.ArrayFunction。
+	
+Alpha_0.0.14_20160909_build_A
+	dfunc.dt.CodeTimer输出方式改善，并且增加了返回时间长度的方法。
+	dfunc.num.UnitTrans新增加了数据单位接口，提供数据大小的定义。
