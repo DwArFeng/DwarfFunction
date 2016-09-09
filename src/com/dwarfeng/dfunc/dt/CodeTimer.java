@@ -5,6 +5,8 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import com.dwarfeng.dfunc.DwarfFunction;
 import com.dwarfeng.dfunc.DwarfFunction.StringFiledKey;
+import com.dwarfeng.dfunc.num.UnitTrans;
+import com.dwarfeng.dfunc.num.UnitTrans.Time;
 
 /**
  * 代码计时器。
@@ -76,11 +78,38 @@ public final class CodeTimer {
 				System.err.println(DwarfFunction.getStringField(StringFiledKey.CodeTimer_0));
 				break;
 			default:
-				System.err.println(
-						DwarfFunction.getStringField(StringFiledKey.CodeTimer_1) + ((long)l/1000000) + 
-						DwarfFunction.getStringField(StringFiledKey.CodeTimer_2)
+				System.err.printf(
+						DwarfFunction.getStringField(StringFiledKey.CodeTimer_1),
+						UnitTrans.trans(l, Time.NS, Time.MS).doubleValue()
 				);
 				break;
+		}
+	}
+	
+	/**
+	 * 获取该代码计时器的时间，以纳秒为单位。
+	 * @return 该代码计时器的时间。
+	 */
+	public long getTime(){
+		switch (status) {
+			case TIMING:
+				return 0;
+			default:
+				return l;
+		}
+	}
+	
+	/**
+	 * 获取该代码计时器的时间，以指定的时间为单位。
+	 * @param type 时间单位。
+	 * @return 代码计时器的时间。
+	 */
+	public double getTime(Time type){
+		switch (status) {
+			case TIMING:
+				return 0;
+			default:
+				return UnitTrans.trans(l, Time.NS, type).doubleValue();
 		}
 	}
 	
