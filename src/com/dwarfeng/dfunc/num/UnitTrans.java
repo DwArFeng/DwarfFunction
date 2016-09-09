@@ -271,46 +271,6 @@ public final class UnitTrans {
 
 	}
 	
-	/**
-	 * 数据大小枚举。
-	 * @author DwArFeng
-	 * @since 1.8
-	 */
-	public enum DataSize implements Valueable{
-		
-		/**EB*/
-		EB(1d),
-		/**PB*/
-		PB(1024d),
-		/**TB*/
-		TB(1048576d),
-		/**GB*/
-		GB(1073741824d),
-		/**MB*/
-		MB(1099511627776d),
-		/**KB*/
-		KB(1125899906842624d),
-		/**BYTE*/
-		BYTE(1152921504606846976d),
-		/**BITS*/
-		BITS(9223372036854775808d)
-		;
-		
-		private final double val;
-		
-		private DataSize(double val) {
-			this.val = val;
-		}
-		
-		/*
-		 * (non-Javadoc)
-		 * @see com.dwarfeng.dfunc.infs.Valueable#doubleValue()
-		 */
-		@Override
-		public double doubleValue() {
-			return this.val;
-		}
-	}
 	//不能进行实例化
 	private UnitTrans() {}
 }
