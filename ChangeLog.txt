@@ -1,16 +1,30 @@
 ﻿Alpha_0.0.9_20160819_build_A
 	增加Valueable接口，实现该接口意味着实现类能够转换成某一具体值。
 	增加单位换算工具类。
+	
+	
 Alpha_0.0.10
 	增加了重量的单位换算。
 	增加了时间的单位换算
 	prog.MvcProgram增加了返回.prog.mvc.ControlPort的方法。
 	增加单位换算工具类。
+	
+	
 Alpha_0.0.11_20160907_build_A
-	ArraysFunction增加了将数组转换为集合的方法。
+	ArraysFunction增加了将数组转换为集合的方法：ArraysFuntion.toCollection(T[] object)。
 	ArraysFunction类方法完善，增强健壮性。
+	
+	
 Alpha_0.0.12_20160908_build_A
 	dfunc.gui包结构更改，导致该版本与前版本不兼容。
 	增加dfunc.swing包，将之前在gui包中的swing组件转移到该包中。
 	修正ArraysFuntion.toCollection(T[] object)方法。
 	ArrayPackFunction中的Pack方法改为pack，导致该版本与前版本不兼容。
+	
+	
+Alpha_0.0.13_20160908_build_A
+	该版本与之前的版本不兼容。
+	增加dfunc.io.StringBuilderOutputStream类，用以将数据流输出到字符串构造器中。
+	删除方法ArraysFuntion.toCollection(T[] object)，因为java.util.Arrays中有类似的方法。
+	增加方法dfunc.cna.ArraysFunction.concat(T[] first,T[]... rest)，用于对多个数组进行合并。
+	为了统一命名结构，将dfunc.cna.ArraysFunction 改名为 dfunc.cna.ArrayFunction。

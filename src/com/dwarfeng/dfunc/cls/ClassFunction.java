@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 
-import com.dwarfeng.dfunc.cna.ArraysFunction;
+import com.dwarfeng.dfunc.cna.ArrayFunction;
 
 /**
  * 类功能包。
@@ -104,7 +104,7 @@ public final class ClassFunction {
 	public static boolean isSubClass(Class<?> source,Class<?> target){
 		Class<?>[] superClasses = ClassFunction.getAllSuperClassesArray(source);
 		Class<?>[] superInterfaces = ClassFunction.getAllInterfacesArray(source);
-		return ArraysFunction.contains(superClasses, target) || ArraysFunction.contains(superInterfaces, target);
+		return ArrayFunction.contains(superClasses, target) || ArrayFunction.contains(superInterfaces, target);
 	}
 	
 	//该类无法实例化
