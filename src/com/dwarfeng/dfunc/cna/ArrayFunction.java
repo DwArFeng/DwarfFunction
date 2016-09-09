@@ -1,10 +1,14 @@
 package com.dwarfeng.dfunc.cna;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.Vector;
 
-public final class ArraysFunction {
+import com.dwarfeng.dfunc.DwarfFunction;
+import com.dwarfeng.dfunc.DwarfFunction.StringFiledKey;
+
+public final class ArrayFunction {
 	
 	/**
 	 * 判断数组中是否包含某个元素。
@@ -29,7 +33,7 @@ public final class ArraysFunction {
 	 * @param source 源数组。
 	 * @param target 目标数组。
 	 * @return 源数组是否包含目标数组的全部元素。
-	 * @see ArraysFunction#contains(Object[], Object)
+	 * @see ArrayFunction#contains(Object[], Object)
 	 */
 	public static boolean containsAll(Object[] source,Object[] target){
 		if(Objects.isNull(target)) return false;
@@ -69,21 +73,36 @@ public final class ArraysFunction {
 	}
 	
 	/**
-	 * 将一个数组转换成 {@link Collection}并返回。
-	 * <p> 如果元素数组为 <code>null</code> 则返回一个空的集合。
-	 * <p> 返回的集合与源数组拥有相同的顺序，且具有相同的元素。
-	 * @param object 指定的数组。
-	 * @return 转换后的 {@link Collection}。
+	 * 将两个或多个数组合并。
+	 * <p> 如果数组为 <code>null</code>，则被当做不含有任何元素的数组。
+	 * 首个数组不能为 <code>null</code>。
+	 * @param first 第一个数组。
+	 * @param rest 第二个或更多个数组。
+	 * @return 所有数组按先后顺序合并后得到的数组。
+	 * @throws NullPointerException 入口参数 <code>rest</code>为 <code>null</code>。
 	 */
-	public static<T> Collection<T> toCollection(T[] object){
-		Collection<T> col = new Vector<T>();
-		if(Objects.nonNull(object)){
-			for(T t:object) col.add(t);
+	@SafeVarargs
+	public static<T> T[] concat(T[] first,T[]... rest){
+		Objects.requireNonNull(first, DwarfFunction.getStringField(StringFiledKey.ArraysFunction_0));
+		
+		if(Objects.isNull(rest)) return first;
+		
+		int totalLength = first.length;
+		for(T[] array : rest){
+			totalLength += array.length;
 		}
-		return col;
+		T[] result = Arrays.copyOf(first, totalLength);
+		int offset = first.length;
+		for(T[] array : rest){
+			if(Objects.nonNull(array)){
+				System.arraycopy(array, 0, result, offset, array.length);
+				offset += array.length;
+			}
+		}
+		return result;
 	}
 	
-	private ArraysFunction(){
+	private ArrayFunction(){
 		//不允许实例化。
 	}
 }
