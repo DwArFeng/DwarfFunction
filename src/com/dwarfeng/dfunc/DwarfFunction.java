@@ -21,11 +21,11 @@ public final class DwarfFunction {
 		CT.trace(DwarfFunction.getWelcomeString());
 	}
 	
-	private static final String exceptionSfPath = "resource/lang/stringField";
+	private static final String exceptionSfPath = "lang/stringField";
 	
 	private static final Version version = new DefaultVersion.Productor()
-			.type(VersionType.ALPHA).firstVersion((byte) 0).secondVersion((byte) 0).thirdVersion((byte) 14)
-			.buildDate("20160909").buildVersion('A')
+			.type(VersionType.ALPHA).firstVersion((byte) 0).secondVersion((byte) 0).thirdVersion((byte) 15)
+			.buildDate("20160911").buildVersion('A')
 			.product();
 	
 	/**
