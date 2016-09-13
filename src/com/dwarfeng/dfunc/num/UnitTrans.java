@@ -173,7 +173,13 @@ public final class UnitTrans {
 		/**弧度*/
 		RAD(Math.PI),
 		/**百分度*/
-		GRAD(200);
+		GRAD(200),
+		/**分*/
+		MIN(10800),
+		/**秒*/
+		SEC(648000),
+		;
+		
 		
 		private final double val;
 		

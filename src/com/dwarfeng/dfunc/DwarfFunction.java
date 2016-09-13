@@ -24,8 +24,8 @@ public final class DwarfFunction {
 	private static final String exceptionSfPath = "lang/stringField";
 	
 	private static final Version version = new DefaultVersion.Productor()
-			.type(VersionType.ALPHA).firstVersion((byte) 0).secondVersion((byte) 0).thirdVersion((byte) 15)
-			.buildDate("20160911").buildVersion('A')
+			.type(VersionType.ALPHA).firstVersion((byte) 0).secondVersion((byte) 0).thirdVersion((byte) 16)
+			.buildDate("20160913").buildVersion('B')
 			.product();
 	
 	/**
@@ -66,7 +66,11 @@ public final class DwarfFunction {
 		/**MuaListModel类第0号文本字段*/
 		MuaListModel_0,
 		/**StringBuilderOutputStream类第0号文本字段*/
-		StringBuilderOutputStream_0,
+		StringOutputStream_0,
+		/**StringBuilderInputStream类第0号文本字段*/
+		StringInputStream_0,
+		/**StringBuilderInputStream类第0号文本字段*/
+		StringInputStream_1,
 		/**ArraysFunction类第0号文本字段*/
 		ArraysFunction_0,
 		

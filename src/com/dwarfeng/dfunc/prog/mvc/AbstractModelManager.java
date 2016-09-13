@@ -10,25 +10,25 @@ import com.dwarfeng.dfunc.prog.MvcProgram;
  * @author DwArFeng
  * @since 1.8
  */
-public abstract class AbstractModuleManager<M extends ModuleControlPort, A extends ProgramAttrSet> 
-implements ModuleManager<M, A> {
+public abstract class AbstractModelManager<M extends ModelControlPort, A extends ProgramAttrSet> 
+implements ModelManager<M, A> {
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dwarffunction.program.mvc.ModuleManager#getModuleControlPort()
+	 * @see com.dwarfeng.dwarffunction.program.mvc.ModelManager#getModelControlPort()
 	 */
 	@Override
-	public abstract M getModuleControlPort();
+	public abstract M getModelControlPort();
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dwarffunction.program.mvc.ModuleManager#getProgramAttrSet()
+	 * @see com.dwarfeng.dwarffunction.program.mvc.ModelManager#getProgramAttrSet()
 	 */
 	@Override
 	public A getProgramAttrSet() {return programAttrSet;}
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dwarffunction.program.mvc.ModuleManager#setProgramAttrSet(com.dwarfeng.dwarffunction.program.mvc.ProgramAttrSet)
+	 * @see com.dwarfeng.dwarffunction.program.mvc.ModelManager#setProgramAttrSet(com.dwarfeng.dwarffunction.program.mvc.ProgramAttrSet)
 	 */
 	@Override
 	public void setProgramAttrSet(A programAttrSet) {this.programAttrSet = programAttrSet;}

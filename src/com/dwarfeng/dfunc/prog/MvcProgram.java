@@ -4,8 +4,8 @@ import com.dwarfeng.dfunc.DwarfFunction;
 import com.dwarfeng.dfunc.DwarfFunction.StringFiledKey;
 import com.dwarfeng.dfunc.prog.mvc.ControlManager;
 import com.dwarfeng.dfunc.prog.mvc.ControlPort;
-import com.dwarfeng.dfunc.prog.mvc.ModuleControlPort;
-import com.dwarfeng.dfunc.prog.mvc.ModuleManager;
+import com.dwarfeng.dfunc.prog.mvc.ModelControlPort;
+import com.dwarfeng.dfunc.prog.mvc.ModelManager;
 import com.dwarfeng.dfunc.prog.mvc.ProgramAttrSet;
 import com.dwarfeng.dfunc.prog.mvc.ProgramControlPort;
 import com.dwarfeng.dfunc.prog.mvc.ProgramManager;
@@ -19,11 +19,11 @@ import com.dwarfeng.dfunc.prog.mvc.ViewManager;
  * @author DwArFeng
  * @since 1.8
  */
-public abstract class MvcProgram<P extends ProgramControlPort, M extends ModuleControlPort, V extends ViewControlPort, C extends ControlPort,
+public abstract class MvcProgram<P extends ProgramControlPort, M extends ModelControlPort, V extends ViewControlPort, C extends ControlPort,
 A extends ProgramAttrSet>{
 	
 	/**程序的模型管理器*/
-	protected final ModuleManager<M, A> moduleManager;
+	protected final ModelManager<M, A> modelManager;
 	/**程序的视图管理器*/
 	protected final ViewManager<V, C, A> viewManager;
 	/**程序的控制管理器*/
@@ -33,35 +33,35 @@ A extends ProgramAttrSet>{
 	
 	/**
 	 * 生成一个具有指定模型管理器，指定视图管理器，指定控制管理器，指定的程序管理器的MVC框架程序。
-	 * @param moduleManager 指定的模型管理器。
+	 * @param modelManager 指定的模型管理器。
 	 * @param viewManager 指定的视图管理器。
 	 * @param controlManager 指定的控制管理器。
 	 * @param programManager 指定的程序管理器。
 	 * @throws NullPointerException 三个入口参数至少一个为<code>null</code>时抛出。
 	 */
-	public MvcProgram(ModuleManager<M, A> moduleManager, ViewManager<V, C, A> viewManager,
+	public MvcProgram(ModelManager<M, A> modelManager, ViewManager<V, C, A> viewManager,
 	ControlManager<P, M, V, C, A> controlManager, ProgramManager<P, A> programManager){
 		
 		//判断null异常。
-		if(moduleManager == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.MvcProgram_0));
+		if(modelManager == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.MvcProgram_0));
 		if(viewManager == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.MvcProgram_1));
 		if(controlManager == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.MvcProgram_2));
 		if(programManager == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.MvcProgram_3));
 		
 		//为常量赋初值
-		this.moduleManager = moduleManager;
+		this.modelManager = modelManager;
 		this.viewManager = viewManager;
 		this.controlManager = controlManager;
 		this.programManager = programManager;
 		
 		//建立引用网络
-		this.controlManager.setModuleControlPort(this.moduleManager.getModuleControlPort());
+		this.controlManager.setModelControlPort(this.modelManager.getModelControlPort());
 		this.controlManager.setViewControlPort(this.viewManager.getViewControlPort());
 		this.controlManager.setProgramControlPort(programManager.getProgramControlPort());
 		this.controlManager.setProgramAttrSet(programManager.getProgramAttrSet());
 		this.viewManager.setControlPort(this.controlManager.getControlPort());
 		this.viewManager.setProgramAttrSet(programManager.getProgramAttrSet());
-		this.moduleManager.setProgramAttrSet(programManager.getProgramAttrSet());
+		this.modelManager.setProgramAttrSet(programManager.getProgramAttrSet());
 		
 	}
 	

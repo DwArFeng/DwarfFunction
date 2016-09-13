@@ -19,7 +19,7 @@ import com.dwarfeng.dfunc.num.NumTrans;
  * @author DwArFeng
  * @since 1.8
  */
-public class StringBuilderOutputStream extends OutputStream {
+public class StringOutputStream extends OutputStream {
 	
 	/**字符串构造器*/
 	protected final StringBuilder stringBuilder;
@@ -31,7 +31,7 @@ public class StringBuilderOutputStream extends OutputStream {
 	/**
 	 * 生成一个默认的字符串构造输出流。
 	 */
-	public StringBuilderOutputStream() {
+	public StringOutputStream() {
 		this(Charset.defaultCharset());
 	}
 	
@@ -41,8 +41,8 @@ public class StringBuilderOutputStream extends OutputStream {
 	 * @param charset 指定的字符集合。
 	 * @throws NullPointerException 入口参数charset 为 <code>null</code>。
 	 */
-	public StringBuilderOutputStream(Charset charset){
-		Objects.requireNonNull(charset, DwarfFunction.getStringField(StringFiledKey.StringBuilderOutputStream_0));
+	public StringOutputStream(Charset charset){
+		Objects.requireNonNull(charset, DwarfFunction.getStringField(StringFiledKey.StringOutputStream_0));
 		this.charset = charset;
 		stringBuilder = new StringBuilder();
 		buffer = new ArrayList<Byte>();

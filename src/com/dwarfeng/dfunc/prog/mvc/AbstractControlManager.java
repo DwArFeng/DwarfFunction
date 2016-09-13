@@ -10,7 +10,7 @@ import com.dwarfeng.dfunc.prog.MvcProgram;
  * @author DwArFeng
  * @since 1.8
  */
-public abstract class AbstractControlManager<P extends ProgramControlPort, M extends ModuleControlPort, 
+public abstract class AbstractControlManager<P extends ProgramControlPort, M extends ModelControlPort, 
 V extends ViewControlPort, C extends ControlPort, A extends ProgramAttrSet> 
 implements ControlManager<P, M, V, C, A> {
 
@@ -19,20 +19,20 @@ implements ControlManager<P, M, V, C, A> {
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dwarffunction.program.mvc.ControlManager#getModuleControlPort()
+	 * @see com.dwarfeng.dwarffunction.program.mvc.ControlManager#getModelControlPort()
 	 */
 	@Override
-	public M getModuleControlPort() {return moduleControlPort;}
+	public M getModelControlPort() {return modelControlPort;}
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dwarffunction.program.mvc.ControlManager#setModuleControlPort(com.dwarfeng.dwarffunction.program.mvc.ModuleControlPort)
+	 * @see com.dwarfeng.dwarffunction.program.mvc.ControlManager#setModelControlPort(com.dwarfeng.dwarffunction.program.mvc.ModelControlPort)
 	 */
 	@Override
-	public void setModuleControlPort(M moduleControlPort) {this.moduleControlPort = moduleControlPort;}
+	public void setModelControlPort(M modelControlPort) {this.modelControlPort = modelControlPort;}
 	/**
 	 * 该对象的模型控制站。
 	 */
-	protected M moduleControlPort;
+	protected M modelControlPort;
 
 	/*
 	 * (non-Javadoc)

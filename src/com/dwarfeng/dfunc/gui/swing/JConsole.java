@@ -142,6 +142,7 @@ public class JConsole extends JPanel{
 		 */
 		private void append(String str){
 			textArea.append(str);
+			textArea.setCaretPosition(textArea.getText().length());
 			ensureMaxLine();
 		}
 		

@@ -37,3 +37,12 @@ Alpha_0.0.14_20160909_build_A
 Alpha_0.0.15_20160911_build_A
 	更改了lang包的位置，从resource.lang该为lang。
 	删除resource文件夹。
+	
+Alpha_0.0.16_20160913_build_A
+	将错误拼写Module改为Model，导致该版本与前版本不兼容。
+	dfunc.num.UnitTrans类ANGLE枚举新增加了分和秒。
+	dfunc.io.StringBuilderOutputStream 改名为StringOutputStream，导致该版本与前版本不兼容。
+	新增类dunc.io.StringInputStream。以指定字符串与字符集构造输入流，读取由这些字符串组成的字节。
+	
+Alpha_0.0.16_20160913_build_B
+	修正了dfunc.gui.swing.JConsole在追加文本时不能始终显示最新文本的问题。
