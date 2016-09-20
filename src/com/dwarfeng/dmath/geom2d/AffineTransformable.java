@@ -13,6 +13,7 @@ public interface AffineTransformable<T extends Shape2d> {
 	 * @param from 原始坐标。
 	 * @param to 目标坐标。
 	 * @return 变换后得到的图形。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public T transform(DCoordinate2d from, DCoordinate2d to);
 	

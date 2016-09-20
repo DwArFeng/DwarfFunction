@@ -1,7 +1,5 @@
 package com.dwarfeng.dmath.geom2d;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.util.Objects;
 
 import com.dwarfeng.dmath.AbstractDMath;

@@ -1,5 +1,9 @@
 package com.dwarfeng.dfunc.threads;
 
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 import com.dwarfeng.dfunc.infs.Nameable;
 
 /**
@@ -13,10 +17,13 @@ import com.dwarfeng.dfunc.infs.Nameable;
  */
 public abstract class InnerThread implements Nameable {
 	
-	private Thread t;
-	private boolean runFlag;
-	private boolean isDaemon;
-	private String name;
+	protected Thread t;
+	protected boolean runFlag;
+	protected boolean isDaemon;
+	protected final String name;
+	protected final Lock lock;
+	protected final Condition condition;
+	private boolean runCheck;
 	
 	/**
 	 * 生成一个默认的内部线程类。该内部线程不是守护线程，且线程名为空。
@@ -43,6 +50,9 @@ public abstract class InnerThread implements Nameable {
 		this.runFlag = false;
 		this.isDaemon = isDaemon;
 		this.name = name;
+		this.lock = new ReentrantLock();
+		this.condition = lock.newCondition();
+		this.runCheck = true;
 	}
 	
 	/**
@@ -69,10 +79,11 @@ public abstract class InnerThread implements Nameable {
 	 * <p>如果在此之前，内部线程已经被启动，且仍未停止，则该方法无效。
 	 * <p>该方法会丢弃旧的线程，指定新的线程。
 	 */
-	public void runThread(){
+	public void start(){
 		if(isAlive()) return;
 		t = createThread();
 		runFlag = true;
+		runCheck = true;
 		t.start();
 	}
 	/**
@@ -81,19 +92,37 @@ public abstract class InnerThread implements Nameable {
 	 * 尝试唤醒该线程，并且将其的运行标志设为<code>false</code>。该线程会在执行最后
 	 * 一次循环后停止。
 	 * <br>如果在此之前，线程还未启动，则该方法无效。
+	 * <br>一定不要在该类中的内部线程调用此方法，即不要在重写的
+	 * {@link InnerThread#threadStartMethod()}、{@link InnerThread#threadRunMethod()}、{@link InnerThread#threadStopMethod()}
+	 * 中调用此方法，否则可能会引起死锁。
 	 */
-	public void stopThread(){
+	public void stop(){
 		this.runFlag = false;
 		if(t != null) t.interrupt();
 	}
+	
 	/**
 	 * 停止线程并阻塞。
-	 * <p>该方法会尝试结束当前线程，并且在该线程停止之前会一直阻塞该方法。
+	 * <p>该方法会尝试结束当前线程，并且在该线程的 {@link InnerThread#threadStopMethod()} 停止之前会一直阻塞该方法。
 	 * <br>如果在停止之前，线程还未启动，则该方法无效。
+	 * <br>一定不要在该类中的内部线程调用此方法，即不要在重写的
+	 * {@link InnerThread#threadStartMethod()}、{@link InnerThread#threadRunMethod()}、{@link InnerThread#threadStopMethod()}
+	 * 中调用此方法，否则可能会引起死锁。
 	 */
-	public void stopThreadAndBlock(){
-		this.stopThread();
-		while(isAlive());
+	public void stopAndBlock(){
+		this.stop();
+		lock.lock();
+		try{
+			while(runCheck){
+				try {
+					condition.await();
+				} catch (InterruptedException e) {
+					//DO NOTHING
+				}
+			}
+		}finally{
+			lock.unlock();
+		}
 	}
 	
 	/*
@@ -105,35 +134,57 @@ public abstract class InnerThread implements Nameable {
 	
 	/**
 	 * 线程的启动方法。
-	 * <p>该方法会在该内部线程类执行<code>runThread()</code>方法之后首先进行调用。在
+	 * <p>该方法会在该内部线程类执行<code>start()</code>方法之后首先进行调用。在
 	 * 线程的整个生命周期内，该方法仅被调用一次。
 	 */
 	protected abstract void threadStartMethod();
 	/**
 	 * 线程的循环方法。
-	 * <p>该方法会在该内部线程类执行<code>runThread()</code>方法之后，在执行完
-	 * <code>threadStartMethod()</code>方法之后循环调用。
-	 * <br>当该内部线程类执行<code>stopThread()</code>方法之后，会在结束完当前的循环放方法（如果
-	 * 此时的方法没有执行完毕时）停止循环，并在其后执行<code>threadStopMethod()</code>方法。
+	 * <p>该方法会在该内部线程类执行<code>start()</code>方法之后，在执行完
+	 * {@link InnerThread#threadStartMethod()}方法之后循环调用。
+	 * <br>当该内部线程类执行<code>stop()</code>方法之后，会在结束完当前的循环放方法（如果
+	 * 此时的方法没有执行完毕时）停止循环，并在其后执行 {@link InnerThread#threadStopMethod()}方法。
 	 */
 	protected abstract void threadRunMethod();
 	/**
 	 * 线程的停止方法。
-	 * <p>该方法会在该内部线程类执行<code>stopThread()</code>方法之后，在该内部线程执行完
+	 * <p>该方法会在该内部线程类执行<code>stop()</code>方法之后，在该内部线程执行完
 	 * 之后作为最后一个被执行的方法执行。该程序在整个程序的生命周期内仅仅被执行一次。
 	 */
 	protected abstract void threadStopMethod();
 	
+	
+	/*
+	 * 创造一个新的线程。
+	 */
 	private Thread createThread(){
 		t = new Thread(new Runnable() {
 			
+			/*
+			 * (non-Javadoc)
+			 * @see java.lang.Runnable#run()
+			 */
 			@Override
 			public void run() {
-				threadStartMethod();
-				while(runFlag){
-					threadRunMethod();
+				try{
+					//启动线程
+					threadStartMethod();
+					while(runFlag){
+						//循环执行
+						threadRunMethod();
+					}
+					//停止
+					threadStopMethod();
+				}finally{
+					runCheck = false;
+					//唤醒由于stopAndBlock()方法阻塞的线程（如果存在）。
+					lock.lock();
+					try{
+						condition.signalAll();
+					}finally{
+						lock.unlock();
+					}
 				}
-				threadStopMethod();
 			}
 		});
 		if(getName() != null && getName() != "") t.setName(getName());

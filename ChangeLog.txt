@@ -48,7 +48,12 @@ Alpha_0.0.16_20160913_build_B
 	修正了dfunc.gui.swing.JConsole在追加文本时不能始终显示最新文本的问题。
 	
 Alpha_0.1.0_20160919_build_A
+	该版本与之前的版本不兼容。
 	新增了 dmath, dphic 包，分别提供数学和物理上的支持。
 	新增接口 dmath.Region<T> 代表数学意义上的域。
 	新增包 dmath.geom2d 提供二维几何学的支持。
-	新增包 dmath.algebra 提供代数学的支持。
+	新增包 dmath.algebra 提供代数学的支持。	
+	修改dfunc.threads.InnerThread.runThread() 为 dfunc.threads.InnerThread.start() 这导致该版本与之前不兼容。
+	修改dfunc.threads.InnerThread.stopThread() 为 dfunc.threads.InnerThread.stop() 这导致该版本与之前不兼容。
+	修改dfunc.threads.InnerThread.stopThreadAndBlock() 为 dfunc.threads.InnerThread.stopAndBlock() 这导致该版本与之前不兼容。
+	优化了dfunc.thread.InnerThread.stopAndBlock方法，它现在使用await()来进行阻塞，而不是while(isAlive()){}进行阻塞，并且，现在这个方法只需要内部线程的threadStopMethod()方法结束后就能解除阻塞，而不是无意义地等到内部线程完全停止。
