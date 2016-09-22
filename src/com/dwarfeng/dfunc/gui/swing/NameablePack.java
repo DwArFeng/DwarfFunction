@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.dwarfeng.dfunc.comp.NameableComparator;
 import com.dwarfeng.dfunc.infs.Nameable;
+import com.dwarfeng.dfunc.str.NameableComparator;
 
 
 /**

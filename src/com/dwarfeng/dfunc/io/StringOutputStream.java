@@ -10,7 +10,7 @@ import java.util.Objects;
 
 import com.dwarfeng.dfunc.DwarfFunction;
 import com.dwarfeng.dfunc.DwarfFunction.StringFiledKey;
-import com.dwarfeng.dfunc.cna.ArrayPackUtil;
+import com.dwarfeng.dfunc.cna.ArrayUtil;
 import com.dwarfeng.dfunc.num.NumTrans;
 
 /**
@@ -73,7 +73,7 @@ public class StringOutputStream extends OutputStream {
 	 */
 	@Override
 	public void write(byte[] b) throws IOException {
-		Byte[] bs = ArrayPackUtil.pack(b);
+		Byte[] bs = ArrayUtil.pack(b);
 		buffer.addAll(Arrays.asList(bs));
 	}
 	
@@ -83,7 +83,7 @@ public class StringOutputStream extends OutputStream {
 	 */
 	@Override
 	public void flush() throws IOException {
-		String str = new String(ArrayPackUtil.unpack(buffer.toArray(new Byte[0])));
+		String str = new String(ArrayUtil.unpack(buffer.toArray(new Byte[0])));
 		stringBuilder.append(str);
 		buffer.clear();
 	}

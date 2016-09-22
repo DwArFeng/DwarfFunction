@@ -9,7 +9,7 @@ import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 
 import com.dwarfeng.dfunc.cna.ArrayUtil;
-import com.dwarfeng.dfunc.comp.ToStringComparator;
+import com.dwarfeng.dfunc.str.ToStringComparator;
 
 /**
  * 可变列表对象。<p>

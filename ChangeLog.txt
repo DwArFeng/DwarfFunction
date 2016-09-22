@@ -59,3 +59,6 @@ Alpha_0.1.0_20160919_build_A
 	优化了dfunc.thread.InnerThread.stopAndBlock方法，它现在使用await()来进行阻塞，而不是while(isAlive()){}进行阻塞，并且，现在这个方法只需要内部线程的threadStopMethod()方法结束后就能解除阻塞，而不是无意义地等到内部线程完全停止。
 	为了符合命名规范，将所有工具类的结尾单词从Function改为Util。这导致该版本与之前不兼容。
 	新增工具类 dmath.algebra.AlgebraUtil。
+	新增工具类 dfunc.cna.CollectionUtil。
+	将 dfunc.cna.ArrayPackUtil 中的方法转移到 dfunc.cna.ArrayUtil中，这导致该版本与之前版本不兼容。
+	移除dfunc.comp包，将其中的类 NameableComparator 与 ToStringComparator移动至dfunc.str中。

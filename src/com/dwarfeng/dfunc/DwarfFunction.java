@@ -3,8 +3,6 @@ package com.dwarfeng.dfunc;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import com.dwarfeng.dfunc.cna.ArrayPackUtil;
-import com.dwarfeng.dfunc.cna.ArrayUtil;
 import com.dwarfeng.dfunc.io.CT;
 import com.dwarfeng.dfunc.io.CT.OutputType;
 import com.dwarfeng.dfunc.prog.DefaultVersion;
@@ -76,7 +74,32 @@ public final class DwarfFunction {
 		StringInputStream_1,
 		/**ArrayUtil类第0号文本字段*/
 		ArrayUtil_0,
-		
+		/**AlgebraUtill类第0号文本字段*/
+		AlgebraUtil_0,
+		/**Algebra包RealNumber字段*/
+		Algebra_RealNumber,
+		/**CollectionUtil类第0号文本字段*/
+		CollectionUtil_0,
+		/**CollectionUtil类第1号文本字段*/
+		CollectionUtil_1,
+		/**CollectionUtil类第2号文本字段*/
+		CollectionUtil_2,
+		/**CollectionUtil类第3号文本字段*/
+		CollectionUtil_3,
+		/**CollectionUtil类第4号文本字段*/
+		CollectionUtil_4,
+		/**CollectionUtil类第5号文本字段*/
+		CollectionUtil_5,
+		/**CollectionUtil类第6号文本字段*/
+		CollectionUtil_6,
+		/**CollectionUtil类第7号文本字段*/
+		CollectionUtil_7,
+		/**CollectionUtil类第8号文本字段*/
+		CollectionUtil_8,
+		/**NameableComparator类第0号文本字段*/
+		NameableComparator_0,
+		/**ValueableComparator类第0号文本字段*/
+		ValueableComparator_0,
 	}
 	
 	private static ResourceBundle exceptionSf = ResourceBundle.getBundle(exceptionSfPath,Locale.getDefault(),CT.class.getClassLoader());
