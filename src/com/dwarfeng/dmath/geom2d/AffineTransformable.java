@@ -1,12 +1,14 @@
 package com.dwarfeng.dmath.geom2d;
 
+import com.dwarfeng.dmath.DMath;
+
 /**
  * 可仿射变换对象。
  * <p> 表示一个对象可以进行仿射变换。
  * @author DwArFeng
  * @since 1.8
  */
-public interface AffineTransformable<T extends Shape2d> {
+public interface AffineTransformable<T extends Shape2d> extends DMath{
 
 	/**
 	 * 表示将对象从<code>from</code>坐标系放射变换到<code>to</code>坐标系后得到的图形。

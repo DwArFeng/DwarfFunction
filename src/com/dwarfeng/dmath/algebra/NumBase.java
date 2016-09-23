@@ -1,5 +1,7 @@
 package com.dwarfeng.dmath.algebra;
 
+import com.dwarfeng.dmath.DMath;
+
 /**
  * 数基接口。
  * <p> 实现该接口的类都是以数字为基础的，或者其中有关键性的数字字段，改变这些数字的会造成
@@ -10,7 +12,7 @@ package com.dwarfeng.dmath.algebra;
  * @author DwArFeng
  * @since 1.8
  */
-public interface NumBase {
+public interface NumBase extends DMath{
 	
 	/**
 	 * 返回一个对象的变量空间。

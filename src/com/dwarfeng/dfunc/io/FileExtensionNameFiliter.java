@@ -1,7 +1,6 @@
 package com.dwarfeng.dfunc.io;
 
 import java.io.File;
-
 import java.io.FileFilter;
 
 /**

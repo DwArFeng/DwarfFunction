@@ -99,7 +99,7 @@ public class Variable extends AbstractDMath implements VariableValue {
 	 */
 	@Override
 	public String getExpression() {
-		return new StringBuilder().append(val).toString();
+		return getName();
 	}
 
 	/*
@@ -109,6 +109,21 @@ public class Variable extends AbstractDMath implements VariableValue {
 	@Override
 	public VariableSpace getVariableSpace() {
 		return new VariableSpace(this);
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dmath.AbstractDMath#toString()
+	 */
+	@Override
+	public String toString() {
+		return new StringBuilder()
+				.append(getMathName())
+				.append(" : ")
+				.append(getExpression())
+				.append(" = ")
+				.append(val)
+				.toString();
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.dwarfeng.dmath.linalge;
 
+import java.util.Formatter;
 import java.util.Objects;
 
 import com.dwarfeng.dfunc.DwarfFunction;
@@ -11,6 +12,7 @@ import com.dwarfeng.dmath.algebra.NumBase;
 import com.dwarfeng.dmath.algebra.Valueable;
 import com.dwarfeng.dmath.algebra.VariableConflictException;
 import com.dwarfeng.dmath.algebra.VariableSpace;
+import com.dwarfeng.dmath.algebra.VariableValue;
 import com.dwarfeng.dmath.algebra.VariableSpace.VariableEntry;
 
 /**
@@ -97,8 +99,15 @@ public class RowVector extends AbstractDMath implements MatArray, NumBase {
 	 */
 	@Override
 	public String getExpression() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("[");
+		for(Valueable val : vals){
+			sb		.append(val.getExpression())
+					.append(", ");
+		}
+		sb.delete(sb.length()-2, sb.length()).append("]");
+		return sb.toString();
 	}
 	
 	/*

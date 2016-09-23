@@ -188,12 +188,12 @@ Iterable<VariableValue>, Region<VariableValue>{
 		if(size() == 0) return "¦µ";
 		
 		StringBuilder sb = new StringBuilder();
-		Formatter formatter = new Formatter();
+		Formatter formatter = new Formatter(sb);
 		
 		try{
 			sb.append("[");
 			for(VariableValue var : vars){
-				sb.append(formatter.format("%s = %.4f, ", var.getName(), var.value()));
+				formatter.format("%s = %.4f, ", var.getName(), var.value());
 			}
 			
 			sb.delete(sb.length()-2, sb.length()).append("]");
