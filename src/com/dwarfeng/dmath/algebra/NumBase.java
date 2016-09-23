@@ -1,6 +1,8 @@
 package com.dwarfeng.dmath.algebra;
 
 import com.dwarfeng.dmath.DMath;
+import com.dwarfeng.dmath.MayChange;
+import com.dwarfeng.dmath.Region;
 
 /**
  * 数基接口。
@@ -12,23 +14,32 @@ import com.dwarfeng.dmath.DMath;
  * @author DwArFeng
  * @since 1.8
  */
-public interface NumBase extends DMath{
+public interface NumBase extends DMath, Region<VariableValue>, MayChange{
 	
 	/**
 	 * 返回一个对象的变量空间。
+	 * <p> 注意：请务必不要让此方法返回 <code>null</code>，如果一个数基对象没有任何变量的话，请返回空集，
+	 * 即 {@link AlgebraUtil#emptyVariableSpace()}。
 	 * @return 对象的变量空间。
 	 */
 	public VariableSpace getVariableSpace();
 	
-	/**
-	 * 判断这个数基对象是不是一个常量。
-	 * <p> 所谓的常量，是指这个对象的变量空间元素数量为0，也就是其中不含有可变的数。
-	 * @return 数基对象是否是一个常量。
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dmath.MayChange#canModify()
 	 */
-	public default boolean isConstant(){
+	@Override
+	public default boolean canModify(){
 		return getVariableSpace().size() == 0;
 	}
 	
-	
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dmath.Region#contains(java.lang.Object)
+	 */
+	@Override
+	public default boolean contains(VariableValue t){
+		return getVariableSpace().contains(t);
+	}
 
 }

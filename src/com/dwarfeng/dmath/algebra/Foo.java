@@ -1,7 +1,7 @@
 package com.dwarfeng.dmath.algebra;
 
 import com.dwarfeng.dfunc.io.CT;
-import com.dwarfeng.dmath.linalge.RowVector;
+import com.dwarfeng.dmath.linalge.RankVector;
 
 final class Foo {
 
@@ -17,10 +17,10 @@ final class Foo {
 		
 		CT.trace(x);
 		
-		RowVector rv = null;
+		RankVector rv = null;
 		
 		try {
-			rv = new RowVector(new Valueable[]{new QuickValueable(0.3),z,y,x});
+			rv = new RankVector(new Valueable[]{new QuickValueable(0.3),z,y,x});
 		} catch (VariableConflictException e) {
 			e.printStackTrace();
 		}
@@ -28,6 +28,8 @@ final class Foo {
 		rv.getVariableSpace();
 		
 		CT.trace(rv);
+		
+		CT.trace(rv.getVariableSpace());
 		
 	}
 

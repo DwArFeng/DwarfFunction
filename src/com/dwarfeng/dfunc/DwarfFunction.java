@@ -90,6 +90,8 @@ public final class DwarfFunction {
 		
 		/**Linalge包RowVector字段*/
 		Linalge_RowVector,
+		/**Linalge包RankVector字段*/
+		Linalge_RankVector,
 		
 		/**CollectionUtil类第0号文本字段*/
 		CollectionUtil_0,
@@ -137,6 +139,13 @@ public final class DwarfFunction {
 		RowVector_1,
 		/**RowVector类第2号文本字段*/
 		RowVector_2,
+		
+		/**RankVector类第0号文本字段*/
+		RankVector_0,
+		/**RankVector类第1号文本字段*/
+		RankVector_1,
+		/**RankVector类第2号文本字段*/
+		RankVector_2,
 	}
 	
 	private static ResourceBundle exceptionSf = ResourceBundle.getBundle(exceptionSfPath,Locale.getDefault(),CT.class.getClassLoader());

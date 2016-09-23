@@ -13,13 +13,13 @@ import com.dwarfeng.dmath.algebra.VariableSpace;
 import com.dwarfeng.dmath.algebra.VariableSpace.VariableEntry;
 
 /**
- * 行向量。
+ * 列向量。
  * <p> 该对类接受可变对象，传入其中的值对象都会直接存储，其中变量发生变化的话，该对象也会发生变化。
- * <p> 行向量与数组不一样的地方在于，行向量不允许具有0个元素，因为0个元素的行向量完全没有意义。
+ * <p> 列向量与数组不一样的地方在于，列向量不允许具有0个元素，因为0个元素的列向量完全没有意义。
  * @author DwArFeng
  * @since 1.8
  */
-public class RowVector extends AbstractDMath implements MatArray{
+public class RankVector extends AbstractDMath implements MatArray{
 	
 	protected final Valueable[] vals;
 	protected final VariableSpace vs;
@@ -31,10 +31,10 @@ public class RowVector extends AbstractDMath implements MatArray{
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 元素数组无效。
 	 */
-	public RowVector(double[] vals) {
-		Objects.requireNonNull(vals, DwarfFunction.getStringField(StringFiledKey.RowVector_1));
+	public RankVector(double[] vals) {
+		Objects.requireNonNull(vals, DwarfFunction.getStringField(StringFiledKey.RankVector_1));
 		if(vals.length < 1){
-			throw new IllegalArgumentException(DwarfFunction.getStringField(StringFiledKey.RowVector_0));
+			throw new IllegalArgumentException(DwarfFunction.getStringField(StringFiledKey.RankVector_0));
 		}
 		
 		this.vals = AlgebraUtil.toValueables(vals);
@@ -49,10 +49,10 @@ public class RowVector extends AbstractDMath implements MatArray{
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 值接口数组无效。 
 	 */
-	public RowVector(Valueable[] valueables) throws VariableConflictException {
-		ArrayUtil.requireNotContainsNull(valueables, DwarfFunction.getStringField(StringFiledKey.RowVector_2));
+	public RankVector(Valueable[] valueables) throws VariableConflictException {
+		ArrayUtil.requireNotContainsNull(valueables, DwarfFunction.getStringField(StringFiledKey.RankVector_2));
 		if(valueables.length < 1){
-			throw new IllegalArgumentException(DwarfFunction.getStringField(StringFiledKey.RowVector_0));
+			throw new IllegalArgumentException(DwarfFunction.getStringField(StringFiledKey.RankVector_0));
 		}
 		
 		this.vals = valueables;
@@ -69,7 +69,7 @@ public class RowVector extends AbstractDMath implements MatArray{
 	 */
 	@Override
 	public int rows() {
-		return 1;
+		return vals.length;
 	}
 
 	/*
@@ -78,7 +78,7 @@ public class RowVector extends AbstractDMath implements MatArray{
 	 */
 	@Override
 	public int ranks() {
-		return vals.length;
+		return 1;
 	}
 
 	/*
@@ -87,7 +87,7 @@ public class RowVector extends AbstractDMath implements MatArray{
 	 */
 	@Override
 	public String getMathName() {
-		return DwarfFunction.getStringField(StringFiledKey.Linalge_RowVector);
+		return DwarfFunction.getStringField(StringFiledKey.Linalge_RankVector);
 	}
 
 	/*
@@ -103,7 +103,9 @@ public class RowVector extends AbstractDMath implements MatArray{
 			sb		.append(val.getExpression())
 					.append(", ");
 		}
-		sb.delete(sb.length()-2, sb.length()).append("]");
+		sb		.delete(sb.length()-2, sb.length())
+				.append("]")
+				.append("T");
 		return sb.toString();
 	}
 	
