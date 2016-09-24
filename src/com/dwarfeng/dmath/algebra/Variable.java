@@ -111,7 +111,13 @@ public class Variable extends AbstractDMath implements VariableValue {
 	 */
 	@Override
 	public VariableSpace getVariableSpace() {
-		return new VariableSpace(this);
+		VariableSpace.Builder builder = new VariableSpace.Builder();
+		try {
+			builder.add(this);
+		} catch (VariableConflictException e) {
+			//由于只有一个变量，所以绝对不会抛出异常。
+		}
+		return builder.build();
 	}
 	
 	/*

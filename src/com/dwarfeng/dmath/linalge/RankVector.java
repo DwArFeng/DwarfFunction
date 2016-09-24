@@ -10,7 +10,6 @@ import com.dwarfeng.dmath.algebra.AlgebraUtil;
 import com.dwarfeng.dmath.algebra.Valueable;
 import com.dwarfeng.dmath.algebra.VariableConflictException;
 import com.dwarfeng.dmath.algebra.VariableSpace;
-import com.dwarfeng.dmath.algebra.VariableSpace.Entry;
 
 /**
  * ¡–œÚ¡ø°£
@@ -56,11 +55,11 @@ public class RankVector extends AbstractDMath implements MatArray{
 		}
 		
 		this.vals = valueables;
-		Entry entry = new Entry();
+		VariableSpace.Builder builder = new VariableSpace.Builder();
 		for(Valueable valueable : valueables){
-			entry.add(valueable.getVariableSpace());
+			builder.add(valueable.getVariableSpace());
 		}
-		this.vs = new VariableSpace(entry);
+		this.vs = builder.build();
 	}
 
 	/*

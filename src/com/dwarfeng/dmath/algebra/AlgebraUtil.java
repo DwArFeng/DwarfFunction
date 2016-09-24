@@ -61,11 +61,10 @@ public final class AlgebraUtil {
 		return v1 != v2 && v1.getName().equals(v2.getName());
 	}
 	
-	private static final VariableSpace EMPTYS_VARIABLE_SPACE = new VariableSpace();
+	private static final VariableSpace EMPTYS_VARIABLE_SPACE = new VariableSpace.Builder().build();
 	
 	/**
 	 * 获取一个空的变量空间。
-	 * <p> 该方法的优先度要高于变量控件的构造器方法 {@link VariableSpace#VariableSpace()}。
 	 * @return 获取一个空的变量控件。
 	 */
 	public static VariableSpace emptyVariableSpace(){

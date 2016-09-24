@@ -10,7 +10,6 @@ import com.dwarfeng.dmath.algebra.AlgebraUtil;
 import com.dwarfeng.dmath.algebra.Valueable;
 import com.dwarfeng.dmath.algebra.VariableConflictException;
 import com.dwarfeng.dmath.algebra.VariableSpace;
-import com.dwarfeng.dmath.algebra.VariableSpace.Entry;
 
 /**
  * 行向量。
@@ -49,18 +48,18 @@ public class RowVector extends AbstractDMath implements MatArray{
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 值接口数组无效。 
 	 */
-	public RowVector(Valueable[] valueables) throws VariableConflictException {
+	public RowVector(Valueable[] valueables) throws VariableConflictException{
 		ArrayUtil.requireNotContainsNull(valueables, DwarfFunction.getStringField(StringFiledKey.RowVector_2));
 		if(valueables.length < 1){
 			throw new IllegalArgumentException(DwarfFunction.getStringField(StringFiledKey.RowVector_0));
 		}
 		
 		this.vals = valueables;
-		Entry entry = new Entry();
+		VariableSpace.Builder builder = new VariableSpace.Builder();
 		for(Valueable valueable : valueables){
-			entry.add(valueable.getVariableSpace());
+			builder.add(valueable.getVariableSpace());
 		}
-		this.vs = new VariableSpace(entry);
+		this.vs = builder.build();
 	}
 
 	/*
