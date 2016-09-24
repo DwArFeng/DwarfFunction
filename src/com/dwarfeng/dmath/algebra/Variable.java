@@ -22,6 +22,7 @@ public class Variable extends AbstractDMath implements VariableValue {
 	
 	/**
 	 * 生成一个默认的，值为0的变量。
+	 * @param name 变量的名称。
 	 */
 	public Variable(String name) {
 		this(name, 0d);
@@ -29,7 +30,8 @@ public class Variable extends AbstractDMath implements VariableValue {
 	
 	/**
 	 * 生成一个值为指定值接口的当前值的变量。
-	 * @param valueable
+	 * @param name 变量的名称。
+	 * @param valueable 指定的值接口。
 	 * @throws IllegalArgumentException name参数为 <code>null</code>或非法。
 	 * @throws NullPointerException 入口参数为 <code>null</code>时抛出异常。
 	 */
@@ -45,6 +47,7 @@ public class Variable extends AbstractDMath implements VariableValue {
 	
 	/**
 	 * 生成一个值为指定值的变量。
+	 * @param name 变量的名称。
 	 * @param d 指定的值。
 	 * @throws IllegalArgumentException name参数为 <code>null</code> 或非法。
 	 */

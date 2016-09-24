@@ -10,7 +10,7 @@ import com.dwarfeng.dmath.algebra.AlgebraUtil;
 import com.dwarfeng.dmath.algebra.Valueable;
 import com.dwarfeng.dmath.algebra.VariableConflictException;
 import com.dwarfeng.dmath.algebra.VariableSpace;
-import com.dwarfeng.dmath.algebra.VariableSpace.VariableEntry;
+import com.dwarfeng.dmath.algebra.VariableSpace.Entry;
 
 /**
  * ¡–œÚ¡ø°£
@@ -56,38 +56,11 @@ public class RankVector extends AbstractDMath implements MatArray{
 		}
 		
 		this.vals = valueables;
-		VariableEntry entry = new VariableEntry();
+		Entry entry = new Entry();
 		for(Valueable valueable : valueables){
 			entry.add(valueable.getVariableSpace());
 		}
 		this.vs = new VariableSpace(entry);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dmath.linalge.MatArray#rows()
-	 */
-	@Override
-	public int rows() {
-		return vals.length;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dmath.linalge.MatArray#ranks()
-	 */
-	@Override
-	public int ranks() {
-		return 1;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dmath.AbstractDMath#getMathName()
-	 */
-	@Override
-	public String getMathName() {
-		return DwarfFunction.getStringField(StringFiledKey.Linalge_RankVector);
 	}
 
 	/*
@@ -108,7 +81,16 @@ public class RankVector extends AbstractDMath implements MatArray{
 				.append("T");
 		return sb.toString();
 	}
-	
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dmath.AbstractDMath#getMathName()
+	 */
+	@Override
+	public String getMathName() {
+		return DwarfFunction.getStringField(StringFiledKey.Linalge_RankVector);
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.dwarfeng.dmath.algebra.NumBase#getVariableSpace()
@@ -117,5 +99,24 @@ public class RankVector extends AbstractDMath implements MatArray{
 	public VariableSpace getVariableSpace() {
 		return vs;
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dmath.linalge.MatArray#ranks()
+	 */
+	@Override
+	public int ranks() {
+		return 1;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dmath.linalge.MatArray#rows()
+	 */
+	@Override
+	public int rows() {
+		return vals.length;
+	}
+	
 
 }

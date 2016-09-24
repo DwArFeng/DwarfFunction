@@ -146,6 +146,16 @@ public final class DwarfFunction {
 		RankVector_1,
 		/**RankVector类第2号文本字段*/
 		RankVector_2,
+		
+		/**LinalgeUtil类第0号文本字段*/
+		LinalgeUtil_0,
+		/**LinalgeUtil类第1号文本字段*/
+		LinalgeUtil_1,
+		/**LinalgeUtil类第2号文本字段*/
+		LinalgeUtil_2,
+		
+		/**Valueable类第0号文本字段*/
+		Valueable_0,
 	}
 	
 	private static ResourceBundle exceptionSf = ResourceBundle.getBundle(exceptionSfPath,Locale.getDefault(),CT.class.getClassLoader());

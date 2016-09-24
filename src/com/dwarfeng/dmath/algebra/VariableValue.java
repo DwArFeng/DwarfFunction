@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.dwarfeng.dfunc.DwarfFunction;
 import com.dwarfeng.dfunc.DwarfFunction.StringFiledKey;
 import com.dwarfeng.dfunc.infs.Nameable;
+import com.dwarfeng.dmath.DMath;
 
 /**
  * 可设置数据接口。
@@ -14,7 +15,7 @@ import com.dwarfeng.dfunc.infs.Nameable;
  * @author DwArFeng
  * @since 1.8
  */
-public interface VariableValue extends Valueable, Nameable{
+public interface VariableValue extends DMath, Valueable, Nameable{
 
 	/**
 	 * 设置该接口的数值。

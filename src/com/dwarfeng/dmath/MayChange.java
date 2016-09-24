@@ -8,7 +8,7 @@ package com.dwarfeng.dmath;
  * @author DwArFeng
  * @since 1.8
  */
-public interface MayChange {
+public interface MayChange extends DMath{
 
 	/**
 	 * 指示一个可变对象是否能够被编辑。

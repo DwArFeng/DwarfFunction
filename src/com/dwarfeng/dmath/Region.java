@@ -6,7 +6,7 @@ package com.dwarfeng.dmath;
  * @author DwArFeng
  * @since 1.8
  */
-public interface Region<T> {
+public interface Region<T> extends DMath{
 
 	/**
 	 * 判断域是否包含指定元素。

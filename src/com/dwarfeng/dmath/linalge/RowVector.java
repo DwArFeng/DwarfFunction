@@ -10,7 +10,7 @@ import com.dwarfeng.dmath.algebra.AlgebraUtil;
 import com.dwarfeng.dmath.algebra.Valueable;
 import com.dwarfeng.dmath.algebra.VariableConflictException;
 import com.dwarfeng.dmath.algebra.VariableSpace;
-import com.dwarfeng.dmath.algebra.VariableSpace.VariableEntry;
+import com.dwarfeng.dmath.algebra.VariableSpace.Entry;
 
 /**
  * ––œÚ¡ø°£
@@ -56,38 +56,11 @@ public class RowVector extends AbstractDMath implements MatArray{
 		}
 		
 		this.vals = valueables;
-		VariableEntry entry = new VariableEntry();
+		Entry entry = new Entry();
 		for(Valueable valueable : valueables){
 			entry.add(valueable.getVariableSpace());
 		}
 		this.vs = new VariableSpace(entry);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dmath.linalge.MatArray#rows()
-	 */
-	@Override
-	public int rows() {
-		return 1;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dmath.linalge.MatArray#ranks()
-	 */
-	@Override
-	public int ranks() {
-		return vals.length;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dmath.AbstractDMath#getMathName()
-	 */
-	@Override
-	public String getMathName() {
-		return DwarfFunction.getStringField(StringFiledKey.Linalge_RowVector);
 	}
 
 	/*
@@ -106,7 +79,16 @@ public class RowVector extends AbstractDMath implements MatArray{
 		sb.delete(sb.length()-2, sb.length()).append("]");
 		return sb.toString();
 	}
-	
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dmath.AbstractDMath#getMathName()
+	 */
+	@Override
+	public String getMathName() {
+		return DwarfFunction.getStringField(StringFiledKey.Linalge_RowVector);
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.dwarfeng.dmath.algebra.NumBase#getVariableSpace()
@@ -114,6 +96,31 @@ public class RowVector extends AbstractDMath implements MatArray{
 	@Override
 	public VariableSpace getVariableSpace() {
 		return vs;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dmath.linalge.MatArray#ranks()
+	 */
+	@Override
+	public int ranks() {
+		return vals.length;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dmath.linalge.MatArray#rows()
+	 */
+	@Override
+	public int rows() {
+		return 1;
+	}
+	
+	public void mutiply(double d){
+		double[] ds = new double[vals.length];
+		for(int i = 0 ; i < ds.length ; i ++){
+			ds[i] = vals[i].value() * d;
+		}
 	}
 
 }

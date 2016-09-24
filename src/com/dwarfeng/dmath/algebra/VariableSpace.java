@@ -22,7 +22,7 @@ import com.dwarfeng.dmath.Region;
  * <p> 所谓的变量冲突，是指含有相同名称的不同变量。由于变量控件中变量的顺序是由其字典顺序决定的，
  * 如果存在同名变量，则无法从文本上对变量进行区别，从而会导致进一步的错误。
  * <p> 变量空间用于存放变量的数组是不可变的，然而，有些数基对象获取变量空间的算法
- * 是动态查询与添加，为了避免时间上和空间上的浪费， 内部入口类{@link VariableEntry}可以提供能够进行改变的
+ * 是动态查询与添加，为了避免时间上和空间上的浪费， 内部入口类{@link Entry}可以提供能够进行改变的
  * 列表。 
  * @author DwArFeng
  * @since 1.8
@@ -35,14 +35,14 @@ Iterable<VariableValue>, Region<VariableValue>{
 	 * @author DwArFeng
 	 * @since 1.8
 	 */
-	public static final class VariableEntry{
+	public static final class Entry{
 		
 		private final Set<VariableValue> set;
 		
 		/**
 		 * 生成一个变量空间的入口。
 		 */
-		public VariableEntry() {
+		public Entry() {
 			set = CollectionUtil.nonNullSet(new HashSet<VariableValue>());
 		}
 		
@@ -122,7 +122,7 @@ Iterable<VariableValue>, Region<VariableValue>{
 	 * @throws VariableConflictException 变量冲突异常。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public VariableSpace(VariableEntry entry) throws VariableConflictException {
+	public VariableSpace(Entry entry) throws VariableConflictException {
 		Objects.requireNonNull(entry, DwarfFunction.getStringField(StringFiledKey.VariableSpace_1));
 		VariableValue[] vars = entry.set.toArray(new VariableValue[0]);
 		checkConlictAndSort(vars);

@@ -14,11 +14,15 @@ import com.dwarfeng.dmath.AbstractDMath;
  */
 public class QuickValueable extends AbstractDMath implements Valueable {
 
+	/**代表0*/
+	public static final QuickValueable ZERO = new QuickValueable();
+	
 	/**对象的值*/
 	protected final double val;
 	
 	/**
 	 * 生成一个值为0的快速值对象。
+	 * <p> 字段 {@link QuickValueable#ZERO}优先级要高于该构造方法。
 	 */
 	public QuickValueable() {
 		this(0);
