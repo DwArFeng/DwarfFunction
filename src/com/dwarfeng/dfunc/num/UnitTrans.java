@@ -1,7 +1,6 @@
 package com.dwarfeng.dfunc.num;
 
 import com.dwarfeng.dfunc.infs.MusValueable;
-import com.dwarfeng.dmath.algebra.Valueable;
 
 /**
  * 单位换算工具类。
@@ -22,7 +21,7 @@ public final class UnitTrans {
 	 * @param u2 目标单位的权重。
 	 * @return 该值在目标单位下的值。
 	 */
-	public static MusValueable trans(Valueable val, MusValueable u1, MusValueable u2){
+	public static MusValueable trans(MusValueable val, MusValueable u1, MusValueable u2){
 		
 		return new MusValueable() {
 			/*
@@ -31,7 +30,7 @@ public final class UnitTrans {
 			 */
 			@Override
 			public double doubleValue() {
-				return (val.value())/(u1.doubleValue())*(u2.doubleValue());
+				return (val.doubleValue())/(u1.doubleValue())*(u2.doubleValue());
 			}
 		};
 	}

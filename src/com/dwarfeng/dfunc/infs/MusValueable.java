@@ -1,7 +1,5 @@
 package com.dwarfeng.dfunc.infs;
 
-import com.dwarfeng.dmath.algebra.NumBase;
-import com.dwarfeng.dmath.algebra.Valueable;
 
 /**
  * 多态值接口。
