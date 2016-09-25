@@ -3,13 +3,14 @@ package com.dwarfeng.dmath.linalge;
 import java.util.Objects;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.StringFiledKey;
+import com.dwarfeng.dfunc.StringFieldKey;
 import com.dwarfeng.dfunc.cna.ArrayUtil;
 import com.dwarfeng.dmath.AbstractDMath;
 import com.dwarfeng.dmath.algebra.AlgebraUtil;
 import com.dwarfeng.dmath.algebra.Valueable;
 import com.dwarfeng.dmath.algebra.VariableConflictException;
 import com.dwarfeng.dmath.algebra.VariableSpace;
+import com.dwarfeng.dmath.algebra.VariableValue;
 
 /**
  * 列向量。
@@ -31,9 +32,9 @@ public class RankVector extends AbstractDMath implements MatArray{
 	 * @throws IllegalArgumentException 元素数组无效。
 	 */
 	public RankVector(double[] vals) {
-		Objects.requireNonNull(vals, DwarfFunction.getStringField(StringFiledKey.RankVector_1));
+		Objects.requireNonNull(vals, DwarfFunction.getStringField(StringFieldKey.RankVector_1));
 		if(vals.length < 1){
-			throw new IllegalArgumentException(DwarfFunction.getStringField(StringFiledKey.RankVector_0));
+			throw new IllegalArgumentException(DwarfFunction.getStringField(StringFieldKey.RankVector_0));
 		}
 		
 		this.vals = AlgebraUtil.toValueables(vals);
@@ -49,9 +50,9 @@ public class RankVector extends AbstractDMath implements MatArray{
 	 * @throws IllegalArgumentException 值接口数组无效。 
 	 */
 	public RankVector(Valueable[] valueables) throws VariableConflictException {
-		ArrayUtil.requireNotContainsNull(valueables, DwarfFunction.getStringField(StringFiledKey.RankVector_2));
+		ArrayUtil.requireNotContainsNull(valueables, DwarfFunction.getStringField(StringFieldKey.RankVector_2));
 		if(valueables.length < 1){
-			throw new IllegalArgumentException(DwarfFunction.getStringField(StringFiledKey.RankVector_0));
+			throw new IllegalArgumentException(DwarfFunction.getStringField(StringFieldKey.RankVector_0));
 		}
 		
 		this.vals = valueables;
@@ -87,7 +88,7 @@ public class RankVector extends AbstractDMath implements MatArray{
 	 */
 	@Override
 	public String getMathName() {
-		return DwarfFunction.getStringField(StringFiledKey.Linalge_RankVector);
+		return DwarfFunction.getStringField(StringFieldKey.Linalge_RankVector);
 	}
 
 	/*
@@ -117,5 +118,4 @@ public class RankVector extends AbstractDMath implements MatArray{
 		return vals.length;
 	}
 	
-
 }

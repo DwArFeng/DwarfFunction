@@ -6,7 +6,7 @@ import java.nio.charset.Charset;
 import java.util.Objects;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.StringFiledKey;
+import com.dwarfeng.dfunc.StringFieldKey;
 
 /**
  * 字符串输入流。
@@ -36,8 +36,8 @@ public class StringInputStream extends InputStream {
 	 * @throws NullPointerException 入口参数 <code>charset</code> 为 <code>null</code>。
 	 */
 	public StringInputStream(String string, Charset charset){
-		Objects.requireNonNull(string, DwarfFunction.getStringField(StringFiledKey.StringInputStream_0));
-		Objects.requireNonNull(charset, DwarfFunction.getStringField(StringFiledKey.StringInputStream_1));
+		Objects.requireNonNull(string, DwarfFunction.getStringField(StringFieldKey.StringInputStream_0));
+		Objects.requireNonNull(charset, DwarfFunction.getStringField(StringFieldKey.StringInputStream_1));
 		this.bytes = string.getBytes(charset);
 	}
 

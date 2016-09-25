@@ -3,7 +3,7 @@ package com.dwarfeng.dmath.algebra;
 import java.util.Objects;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.StringFiledKey;
+import com.dwarfeng.dfunc.StringFieldKey;
 import com.dwarfeng.dfunc.cna.ArrayUtil;
 
 /**
@@ -21,7 +21,7 @@ public final class AlgebraUtil {
 	 * @throws NullPointerException 入口数组为 <code>null</code> 或者其中含有 <code>null</code>元素。
 	 */
 	public static double[] takeValues(Valueable[] vals){
-		ArrayUtil.requireNotContainsNull(vals, DwarfFunction.getStringField(StringFiledKey.AlgebraUtil_0));
+		ArrayUtil.requireNotContainsNull(vals, DwarfFunction.getStringField(StringFieldKey.AlgebraUtil_0));
 		double[] dous = new double[vals.length];
 		for(int i = 0 ; i < dous.length ; i ++){
 			dous[i] = vals[i].value();
@@ -37,7 +37,7 @@ public final class AlgebraUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public static Valueable[] toValueables(double[] ds){
-		Objects.requireNonNull(ds, DwarfFunction.getStringField(StringFiledKey.AlgebraUtil_1));
+		Objects.requireNonNull(ds, DwarfFunction.getStringField(StringFieldKey.AlgebraUtil_1));
 		
 		Valueable[] valueables = new Valueable[ds.length];
 		for(int i = 0 ; i < ds.length ; i ++){
@@ -55,8 +55,8 @@ public final class AlgebraUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public static boolean checkConflict(VariableValue v1, VariableValue v2){
-		Objects.requireNonNull(v1, DwarfFunction.getStringField(StringFiledKey.AlgebraUtil_2));
-		Objects.requireNonNull(v2, DwarfFunction.getStringField(StringFiledKey.AlgebraUtil_2));
+		Objects.requireNonNull(v1, DwarfFunction.getStringField(StringFieldKey.AlgebraUtil_2));
+		Objects.requireNonNull(v2, DwarfFunction.getStringField(StringFieldKey.AlgebraUtil_2));
 		
 		return v1 != v2 && v1.getName().equals(v2.getName());
 	}

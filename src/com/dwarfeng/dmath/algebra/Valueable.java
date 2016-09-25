@@ -3,7 +3,7 @@ package com.dwarfeng.dmath.algebra;
 import java.util.Objects;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.StringFiledKey;
+import com.dwarfeng.dfunc.StringFieldKey;
 import com.dwarfeng.dfunc.infs.MusValueable;
 import com.dwarfeng.dfunc.num.QuickMusValueable;
 
@@ -29,7 +29,7 @@ public interface Valueable extends NumBase {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public default Valueable add(Valueable val){
-		Objects.requireNonNull(val, DwarfFunction.getStringField(StringFiledKey.Valueable_0));
+		Objects.requireNonNull(val, DwarfFunction.getStringField(StringFieldKey.Valueable_0));
 		return new QuickValueable(val.value() + value());
 	}
 	
@@ -41,7 +41,7 @@ public interface Valueable extends NumBase {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public default Valueable minus(Valueable val){
-		Objects.requireNonNull(val, DwarfFunction.getStringField(StringFiledKey.Valueable_0));
+		Objects.requireNonNull(val, DwarfFunction.getStringField(StringFieldKey.Valueable_0));
 		return new QuickValueable(val.value() - value());
 	}
 	
@@ -53,7 +53,7 @@ public interface Valueable extends NumBase {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public default Valueable mul(Valueable val){
-		Objects.requireNonNull(val, DwarfFunction.getStringField(StringFiledKey.Valueable_0));
+		Objects.requireNonNull(val, DwarfFunction.getStringField(StringFieldKey.Valueable_0));
 		return new QuickValueable(val.value() * value());
 	}
 	
@@ -66,7 +66,7 @@ public interface Valueable extends NumBase {
 	 * @throws ArithmeticException 当val为0是抛出异常。
 	 */
 	public default Valueable div(Valueable val){
-		Objects.requireNonNull(val, DwarfFunction.getStringField(StringFiledKey.Valueable_0));
+		Objects.requireNonNull(val, DwarfFunction.getStringField(StringFieldKey.Valueable_0));
 		return new QuickValueable(val.value() / value());
 	}
 	

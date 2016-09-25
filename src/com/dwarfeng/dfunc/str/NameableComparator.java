@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.Objects;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.StringFiledKey;
+import com.dwarfeng.dfunc.StringFieldKey;
 import com.dwarfeng.dfunc.infs.Nameable;
 
 /**
@@ -20,8 +20,8 @@ public final class NameableComparator implements Comparator<Nameable> {
 	 */
 	@Override
 	public int compare(Nameable o1, Nameable o2) {
-		Objects.requireNonNull(o1, DwarfFunction.getStringField(StringFiledKey.NameableComparator_0));
-		Objects.requireNonNull(o2, DwarfFunction.getStringField(StringFiledKey.NameableComparator_0));
+		Objects.requireNonNull(o1, DwarfFunction.getStringField(StringFieldKey.NameableComparator_0));
+		Objects.requireNonNull(o2, DwarfFunction.getStringField(StringFieldKey.NameableComparator_0));
 		return o1.getName().compareTo(o2.getName());
 	}
 

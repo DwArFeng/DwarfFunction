@@ -9,7 +9,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.StringFiledKey;
+import com.dwarfeng.dfunc.StringFieldKey;
 
 /**
  * 有关于集合的工具包。
@@ -33,9 +33,9 @@ public final class CollectionUtil {
 	 * @throws IllegalArgumentException 当入口的参数不是空的时候抛出该异常。
 	 */
 	public static<T> Set<T> nonNullSet(Set<T> set){
-		Objects.requireNonNull(set, DwarfFunction.getStringField(StringFiledKey.CollectionUtil_0));
+		Objects.requireNonNull(set, DwarfFunction.getStringField(StringFieldKey.CollectionUtil_0));
 		if(!set.isEmpty()){
-			throw new IllegalArgumentException(DwarfFunction.getStringField(StringFiledKey.CollectionUtil_8));
+			throw new IllegalArgumentException(DwarfFunction.getStringField(StringFieldKey.CollectionUtil_8));
 		}
 		return new NonNullSet<T>(set);
 	}
@@ -108,7 +108,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean add(E e) {
-			Objects.requireNonNull(e, DwarfFunction.getStringField(StringFiledKey.CollectionUtil_1));
+			Objects.requireNonNull(e, DwarfFunction.getStringField(StringFieldKey.CollectionUtil_1));
 			return set.add(e);
 		}
 
@@ -136,10 +136,10 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean addAll(Collection<? extends E> c) {
-			Objects.requireNonNull(c, DwarfFunction.getStringField(StringFiledKey.CollectionUtil_1));
+			Objects.requireNonNull(c, DwarfFunction.getStringField(StringFieldKey.CollectionUtil_1));
 			if(CollectionUtil.conatinsNull(c)){
 				throw new NullPointerException(
-						DwarfFunction.getStringField(StringFiledKey.CollectionUtil_3));
+						DwarfFunction.getStringField(StringFieldKey.CollectionUtil_3));
 			}
 			return set.addAll(c);
 		}
@@ -194,9 +194,9 @@ public final class CollectionUtil {
 	 * @throws IllegalArgumentException 当入口的参数不是空的时候抛出该异常。
 	 */
 	public static<T> List<T> nonNullList(List<T> list){
-		Objects.requireNonNull(list, DwarfFunction.getStringField(StringFiledKey.CollectionUtil_4));
+		Objects.requireNonNull(list, DwarfFunction.getStringField(StringFieldKey.CollectionUtil_4));
 		if(!list.isEmpty()){
-			throw new IllegalArgumentException(DwarfFunction.getStringField(StringFiledKey.CollectionUtil_8));
+			throw new IllegalArgumentException(DwarfFunction.getStringField(StringFieldKey.CollectionUtil_8));
 		}
 		return new NonNullList<T>(list);
 	}
@@ -269,7 +269,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean add(E e) {
-			Objects.requireNonNull(e, DwarfFunction.getStringField(StringFiledKey.CollectionUtil_1));
+			Objects.requireNonNull(e, DwarfFunction.getStringField(StringFieldKey.CollectionUtil_1));
 			return list.add(e);
 		}
 
@@ -297,10 +297,10 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean addAll(Collection<? extends E> c) {
-			Objects.requireNonNull(c, DwarfFunction.getStringField(StringFiledKey.CollectionUtil_1));
+			Objects.requireNonNull(c, DwarfFunction.getStringField(StringFieldKey.CollectionUtil_1));
 			if(CollectionUtil.conatinsNull(c)){
 				throw new NullPointerException(
-						DwarfFunction.getStringField(StringFiledKey.CollectionUtil_3));
+						DwarfFunction.getStringField(StringFieldKey.CollectionUtil_3));
 			}
 			return list.addAll(c);
 		}
@@ -311,10 +311,10 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean addAll(int index, Collection<? extends E> c) {
-			Objects.requireNonNull(c, DwarfFunction.getStringField(StringFiledKey.CollectionUtil_1));
+			Objects.requireNonNull(c, DwarfFunction.getStringField(StringFieldKey.CollectionUtil_1));
 			if(CollectionUtil.conatinsNull(c)){
 				throw new NullPointerException(
-						DwarfFunction.getStringField(StringFiledKey.CollectionUtil_3));
+						DwarfFunction.getStringField(StringFieldKey.CollectionUtil_3));
 			}
 			return list.addAll(index, c);
 		}
@@ -361,7 +361,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public E set(int index, E element) {
-			Objects.requireNonNull(element, DwarfFunction.getStringField(StringFiledKey.CollectionUtil_1));
+			Objects.requireNonNull(element, DwarfFunction.getStringField(StringFieldKey.CollectionUtil_1));
 			return list.set(index, element);
 		}
 
@@ -371,7 +371,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public void add(int index, E element) {
-			Objects.requireNonNull(element, DwarfFunction.getStringField(StringFiledKey.CollectionUtil_1));
+			Objects.requireNonNull(element, DwarfFunction.getStringField(StringFieldKey.CollectionUtil_1));
 			list.add(index, element);
 		}
 
@@ -454,9 +454,9 @@ public final class CollectionUtil {
 	 * @throws IllegalArgumentException 当入口的参数不是空的时候抛出该异常。
 	 */
 	public static<K, V> Map<K, V> nonNullMap(Map<K, V> map){
-		Objects.requireNonNull(map, DwarfFunction.getStringField(StringFiledKey.CollectionUtil_5));
+		Objects.requireNonNull(map, DwarfFunction.getStringField(StringFieldKey.CollectionUtil_5));
 		if(!map.isEmpty()){
-			throw new IllegalArgumentException(DwarfFunction.getStringField(StringFiledKey.CollectionUtil_8));
+			throw new IllegalArgumentException(DwarfFunction.getStringField(StringFieldKey.CollectionUtil_8));
 		}
 		return new NonNullMap<K, V>(map);
 	}
@@ -520,7 +520,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public V put(K key, V value) {
-			Objects.requireNonNull(key, DwarfFunction.getStringField(StringFiledKey.CollectionUtil_6));
+			Objects.requireNonNull(key, DwarfFunction.getStringField(StringFieldKey.CollectionUtil_6));
 			return map.put(key, value);
 		}
 
@@ -539,10 +539,10 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public void putAll(Map<? extends K, ? extends V> m) {
-			Objects.requireNonNull(m, DwarfFunction.getStringField(StringFiledKey.CollectionUtil_7));
+			Objects.requireNonNull(m, DwarfFunction.getStringField(StringFieldKey.CollectionUtil_7));
 			if(CollectionUtil.conatinsNull(m.keySet())){
 				throw new NullPointerException(
-						DwarfFunction.getStringField(StringFiledKey.CollectionUtil_6));
+						DwarfFunction.getStringField(StringFieldKey.CollectionUtil_6));
 			}
 			map.putAll(m);
 		}
@@ -592,7 +592,7 @@ public final class CollectionUtil {
 	 * @throws NullPointerException 当入口参数为 <code>null</code>时。
 	 */
 	public static boolean conatinsNull(Collection<?> collection){
-		Objects.requireNonNull(collection, DwarfFunction.getStringField(StringFiledKey.CollectionUtil_2));
+		Objects.requireNonNull(collection, DwarfFunction.getStringField(StringFieldKey.CollectionUtil_2));
 		for(Object obj : collection){
 			if(Objects.isNull(obj)) return true;
 		}

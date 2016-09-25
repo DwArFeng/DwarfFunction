@@ -3,7 +3,7 @@ package com.dwarfeng.dmath.algebra;
 import java.util.Objects;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.StringFiledKey;
+import com.dwarfeng.dfunc.StringFieldKey;
 import com.dwarfeng.dfunc.infs.Nameable;
 import com.dwarfeng.dmath.DMath;
 
@@ -29,7 +29,7 @@ public interface VariableValue extends DMath, Valueable, Nameable{
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public default void setValue(Valueable valueable){
-		Objects.requireNonNull(valueable, DwarfFunction.getStringField(StringFiledKey.VariableValue_0));
+		Objects.requireNonNull(valueable, DwarfFunction.getStringField(StringFieldKey.VariableValue_0));
 		setValue(valueable.value());
 	}
 	
@@ -49,7 +49,7 @@ public interface VariableValue extends DMath, Valueable, Nameable{
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public default void offset(Valueable valueable){
-		Objects.requireNonNull(valueable, DwarfFunction.getStringField(StringFiledKey.VariableValue_0));
+		Objects.requireNonNull(valueable, DwarfFunction.getStringField(StringFieldKey.VariableValue_0));
 		setValue(value() + valueable.value());
 	}
 	

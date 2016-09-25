@@ -1,7 +1,7 @@
 package com.dwarfeng.dfunc.threads;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.StringFiledKey;
+import com.dwarfeng.dfunc.StringFieldKey;
 import com.dwarfeng.dfunc.infs.Describeable;
 import com.dwarfeng.dfunc.infs.Nameable;
 
@@ -44,7 +44,7 @@ public class NadeRunner implements Runnable,Nameable,Describeable{
 	 * @throws NullPointerException 当<code>runnable</code>属性为null时抛出此异常。
 	 */
 	public NadeRunner(Runnable runnable,String name,String describe) {
-		if(runnable == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.NadeRuner_0));
+		if(runnable == null) throw new NullPointerException(DwarfFunction.getStringField(StringFieldKey.NadeRuner_0));
 		this.runnable = runnable;
 		this.name = name;
 		this.describe = describe;

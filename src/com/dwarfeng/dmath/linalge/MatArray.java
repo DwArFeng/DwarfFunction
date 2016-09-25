@@ -2,6 +2,7 @@ package com.dwarfeng.dmath.linalge;
 
 import com.dwarfeng.dmath.DMath;
 import com.dwarfeng.dmath.algebra.NumBase;
+import com.dwarfeng.dmath.algebra.Valueable;
 
 /**
  * 矩阵阵列。
@@ -23,5 +24,29 @@ public interface MatArray extends DMath, NumBase{
 	 * @return 该阵列的列数。
 	 */
 	public int ranks();
+	
+	/**
+	 * 返回指定的行列出所对应的元素。
+	 * @param row 指定的行。
+	 * @param rank 指定的列。
+	 * @return 指定的行列处对应的元素。
+	 */
+	public Valueable getValueable(int row, int rank);
+	
+	/**
+	 * 返回指定行对应的行向量。
+	 * @param row 指定行。
+	 * @return 指定行对应的行向量。
+	 */
+	public RowVector getRowVector(int row);
+	
+	/**
+	 * 返回指定列对应的列向量。
+	 * @param rank 指定的列。
+	 * @return 指定的列所对应的列向量。
+	 */
+	public RankVector getRankVector(int rank);
+	
+	
 	
 }

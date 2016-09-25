@@ -4,7 +4,7 @@ import java.util.Formatter;
 import java.util.Objects;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.StringFiledKey;
+import com.dwarfeng.dfunc.StringFieldKey;
 
 /**
  * 有关于线性代数的工具包。
@@ -24,8 +24,8 @@ public final class LinalgeUtil {
 	 * @return 两个矩阵阵列能否相乘。
 	 */
 	public static boolean checkForMutiply(MatArray m1, MatArray m2){
-		Objects.requireNonNull(m1, DwarfFunction.getStringField(StringFiledKey.LinalgeUtil_0));
-		Objects.requireNonNull(m2, DwarfFunction.getStringField(StringFiledKey.LinalgeUtil_0));
+		Objects.requireNonNull(m1, DwarfFunction.getStringField(StringFieldKey.LinalgeUtil_0));
+		Objects.requireNonNull(m2, DwarfFunction.getStringField(StringFieldKey.LinalgeUtil_0));
 		
 		return m1.rows() == m2.ranks();
 	}
@@ -41,14 +41,14 @@ public final class LinalgeUtil {
 	 * @throws IllegalArgumentException 指定的矩阵行列数不符合要求。
 	 */
 	public static void requireSpecificSize(MatArray mat, int row, int rank){
-		Objects.requireNonNull(mat, DwarfFunction.getStringField(StringFiledKey.LinalgeUtil_1));
+		Objects.requireNonNull(mat, DwarfFunction.getStringField(StringFieldKey.LinalgeUtil_1));
 		
 		if(mat.rows() != row || mat.ranks() != rank){
 			StringBuilder sb = new StringBuilder();
 			Formatter formatter = new Formatter(sb);
 			try{
 				formatter.format(DwarfFunction.getStringField(
-						StringFiledKey.LinalgeUtil_2),
+						StringFieldKey.LinalgeUtil_2),
 						row, rank, mat.rows(), mat.ranks()
 				);
 			}finally{

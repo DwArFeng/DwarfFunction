@@ -3,7 +3,7 @@ package com.dwarfeng.dfunc.cna;
 import java.util.Iterator;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.StringFiledKey;
+import com.dwarfeng.dfunc.StringFieldKey;
 
 /**
  * 循环缓冲。
@@ -156,7 +156,7 @@ public class CycledBuffer<T> implements Iterable<T> {
 	 * @throws IllegalArgumentException 当<code>capacity</code>不是正数时抛出异常。
 	 */
 	public CycledBuffer(int capacity, IteratorDirection direction){
-		if(capacity <= 0) throw new IllegalArgumentException(DwarfFunction.getStringField(StringFiledKey.CycledBuffer_0));
+		if(capacity <= 0) throw new IllegalArgumentException(DwarfFunction.getStringField(StringFieldKey.CycledBuffer_0));
 		this.objs = new Object[capacity];
 		this.direction = direction;
 	}

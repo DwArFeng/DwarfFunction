@@ -43,7 +43,7 @@ public final class DwarfFunction {
 	 * @param key 异常文本字段主键枚举。
 	 * @return 主键对应的文本。
 	 */
-	public static String getStringField(StringFiledKey key){
+	public static String getStringField(StringFieldKey key){
 		try{
 			return sf.getString(key.toString());
 		}catch(Exception e){
@@ -64,7 +64,7 @@ public final class DwarfFunction {
 	 * @return 该包的欢迎 
 	 */
 	public static String getWelcomeString(){
-		return getStringField(StringFiledKey.WelcomeString) + getVersion().getLongName();
+		return getStringField(StringFieldKey.WelcomeString) + getVersion().getLongName();
 	}
 	
 	//禁止外部实例化

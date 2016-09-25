@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.WeakHashMap;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.StringFiledKey;
+import com.dwarfeng.dfunc.StringFieldKey;
 import com.dwarfeng.dfunc.cls.ClassUtil;
 
 /**
@@ -127,7 +127,7 @@ public class EventListenerWeakSet implements Set<EventListener>{
 	 */
 	@Override
 	public boolean add(EventListener e) {
-		if(e == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.EventListenerWeakSet_0));
+		if(e == null) throw new NullPointerException(DwarfFunction.getStringField(StringFieldKey.EventListenerWeakSet_0));
 		return set.add(e);
 	}
 

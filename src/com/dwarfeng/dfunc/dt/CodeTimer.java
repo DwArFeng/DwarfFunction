@@ -4,7 +4,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.StringFiledKey;
+import com.dwarfeng.dfunc.StringFieldKey;
 import com.dwarfeng.dfunc.num.UnitTrans;
 import com.dwarfeng.dfunc.num.UnitTrans.Time;
 
@@ -75,11 +75,11 @@ public final class CodeTimer {
 	public void print(){
 		switch (status) {
 			case TIMING:
-				System.err.println(DwarfFunction.getStringField(StringFiledKey.CodeTimer_0));
+				System.err.println(DwarfFunction.getStringField(StringFieldKey.CodeTimer_0));
 				break;
 			default:
 				System.err.printf(
-						DwarfFunction.getStringField(StringFiledKey.CodeTimer_1),
+						DwarfFunction.getStringField(StringFieldKey.CodeTimer_1),
 						UnitTrans.trans(l, Time.NS, Time.MS).doubleValue()
 				);
 				break;

@@ -4,7 +4,6 @@ package com.dwarfeng.dfunc.infs;
 /**
  * 多态值接口。
  * <p> 该接口意味着实现类能够转化为某个值，并且可以将该值以任何一种基本数据类型返回。
- * 但是该值不像 {@link Valueable} 接口那样，需要实现 {@link NumBase}中的方法。
  * @author DwArFeng
  * @since 1.8
  */

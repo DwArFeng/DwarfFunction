@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.StringFiledKey;
+import com.dwarfeng.dfunc.StringFieldKey;
 import com.dwarfeng.dfunc.cna.ArrayUtil;
 import com.dwarfeng.dfunc.num.NumTrans;
 
@@ -42,7 +42,7 @@ public class StringOutputStream extends OutputStream {
 	 * @throws NullPointerException 入口参数charset 为 <code>null</code>。
 	 */
 	public StringOutputStream(Charset charset){
-		Objects.requireNonNull(charset, DwarfFunction.getStringField(StringFiledKey.StringOutputStream_0));
+		Objects.requireNonNull(charset, DwarfFunction.getStringField(StringFieldKey.StringOutputStream_0));
 		this.charset = charset;
 		stringBuilder = new StringBuilder();
 		buffer = new ArrayList<Byte>();

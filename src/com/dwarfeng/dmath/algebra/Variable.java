@@ -3,7 +3,7 @@ package com.dwarfeng.dmath.algebra;
 import java.util.Objects;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.StringFiledKey;
+import com.dwarfeng.dfunc.StringFieldKey;
 import com.dwarfeng.dmath.AbstractDMath;
 
 /**
@@ -37,9 +37,9 @@ public class Variable extends AbstractDMath implements VariableValue {
 	 */
 	public Variable(String name, Valueable valueable) {
 		if(Objects.isNull(name) || name.equals("")){
-			throw new IllegalArgumentException(DwarfFunction.getStringField(StringFiledKey.Variable_1));
+			throw new IllegalArgumentException(DwarfFunction.getStringField(StringFieldKey.Variable_1));
 		}
-		Objects.requireNonNull(valueable, DwarfFunction.getStringField(StringFiledKey.Variable_0));
+		Objects.requireNonNull(valueable, DwarfFunction.getStringField(StringFieldKey.Variable_0));
 		
 		this.name = name;
 		this.val = valueable.value();
@@ -53,7 +53,7 @@ public class Variable extends AbstractDMath implements VariableValue {
 	 */
 	public Variable(String name, double d) {
 		if(Objects.isNull(name) || name.equals("")){
-			throw new IllegalArgumentException(DwarfFunction.getStringField(StringFiledKey.Variable_1));
+			throw new IllegalArgumentException(DwarfFunction.getStringField(StringFieldKey.Variable_1));
 		}
 		
 		this.name = name;
@@ -93,7 +93,7 @@ public class Variable extends AbstractDMath implements VariableValue {
 	 */
 	@Override
 	public String getMathName() {
-		return DwarfFunction.getStringField(StringFiledKey.Algebra_Variable);
+		return DwarfFunction.getStringField(StringFieldKey.Algebra_Variable);
 	}
 
 	/*

@@ -284,18 +284,18 @@ public final class UnitTrans {
 	 */
 	public enum DataSize implements MusValueable{
 		
-		/**EB*/
-		EB(1d),
-		/**PB*/
-		PB(1024d),
-		/**TB*/
-		TB(1048576d),
-		/**GB*/
-		GB(1073741824d),
-		/**MB*/
-		MB(1099511627776d),
-		/**KB*/
-		KB(1125899906842624d),
+		/**EIB*/
+		EIB(1d),
+		/**PIB*/
+		PIB(1024d),
+		/**TIB*/
+		TIB(1048576d),
+		/**GIB*/
+		GIB(1073741824d),
+		/**MIB*/
+		MIB(1099511627776d),
+		/**KIB*/
+		KIB(1125899906842624d),
 		/**BYTE*/
 		BYTE(1152921504606846976d),
 		/**BITS*/

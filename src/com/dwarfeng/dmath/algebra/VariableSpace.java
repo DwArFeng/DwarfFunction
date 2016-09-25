@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.StringFiledKey;
+import com.dwarfeng.dfunc.StringFieldKey;
 import com.dwarfeng.dfunc.cna.ArrayUtil;
 import com.dwarfeng.dfunc.cna.CollectionUtil;
 import com.dwarfeng.dfunc.infs.Buildable;
@@ -148,7 +148,7 @@ Iterable<VariableValue>, Region<VariableValue>{
 	 */
 	@Override
 	public String getMathName() {
-		return DwarfFunction.getStringField(StringFiledKey.Algebra_VariableSpace);
+		return DwarfFunction.getStringField(StringFieldKey.Algebra_VariableSpace);
 	}
 	
 	/**

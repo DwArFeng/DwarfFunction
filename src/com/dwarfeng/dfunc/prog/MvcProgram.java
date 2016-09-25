@@ -1,7 +1,7 @@
 package com.dwarfeng.dfunc.prog;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.StringFiledKey;
+import com.dwarfeng.dfunc.StringFieldKey;
 import com.dwarfeng.dfunc.prog.mvc.ControlManager;
 import com.dwarfeng.dfunc.prog.mvc.ControlPort;
 import com.dwarfeng.dfunc.prog.mvc.ModelControlPort;
@@ -43,10 +43,10 @@ A extends ProgramAttrSet>{
 	ControlManager<P, M, V, C, A> controlManager, ProgramManager<P, A> programManager){
 		
 		//判断null异常。
-		if(modelManager == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.MvcProgram_0));
-		if(viewManager == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.MvcProgram_1));
-		if(controlManager == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.MvcProgram_2));
-		if(programManager == null) throw new NullPointerException(DwarfFunction.getStringField(StringFiledKey.MvcProgram_3));
+		if(modelManager == null) throw new NullPointerException(DwarfFunction.getStringField(StringFieldKey.MvcProgram_0));
+		if(viewManager == null) throw new NullPointerException(DwarfFunction.getStringField(StringFieldKey.MvcProgram_1));
+		if(controlManager == null) throw new NullPointerException(DwarfFunction.getStringField(StringFieldKey.MvcProgram_2));
+		if(programManager == null) throw new NullPointerException(DwarfFunction.getStringField(StringFieldKey.MvcProgram_3));
 		
 		//为常量赋初值
 		this.modelManager = modelManager;

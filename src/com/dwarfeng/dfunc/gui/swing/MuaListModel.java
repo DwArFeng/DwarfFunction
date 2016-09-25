@@ -11,7 +11,7 @@ import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.StringFiledKey;
+import com.dwarfeng.dfunc.StringFieldKey;
 
 /**
  * 多重操作列表模型。
@@ -41,7 +41,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E>{
 	 */
 	public MuaListModel(List<E> list){
 		super();
-		Objects.requireNonNull(list, DwarfFunction.getStringField(StringFiledKey.MuaListModel_0));
+		Objects.requireNonNull(list, DwarfFunction.getStringField(StringFieldKey.MuaListModel_0));
 		this.delegate = list;
 	}
 	

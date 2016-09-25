@@ -1,7 +1,7 @@
 package com.dwarfeng.dmath.algebra;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.StringFiledKey;
+import com.dwarfeng.dfunc.StringFieldKey;
 import com.dwarfeng.dmath.AbstractDMath;
 
 /**
@@ -51,7 +51,7 @@ public class QuickValueable extends AbstractDMath implements Valueable {
 	 */
 	@Override
 	public String getMathName() {
-		return DwarfFunction.getStringField(StringFiledKey.Algebra_RealNumber);
+		return DwarfFunction.getStringField(StringFieldKey.Algebra_RealNumber);
 	}
 
 	/*

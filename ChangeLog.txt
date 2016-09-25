@@ -62,3 +62,5 @@ Alpha_0.1.0_20160919_build_A
 	新增工具类 dfunc.cna.CollectionUtil。
 	将 dfunc.cna.ArrayPackUtil 中的方法转移到 dfunc.cna.ArrayUtil中，这导致该版本与之前版本不兼容。
 	移除dfunc.comp包，将其中的类 NameableComparator 与 ToStringComparator移动至dfunc.str中。
+	将枚举 dfunc.DwarfFunction.StringFieldKey移动到 dfunc.StringFieldKey中。 这导致该版本与之前版本不兼容。
+	更改接口 com.dwarfeng.dfunc.num.UnitTrans.DataSize中的字段名称，将之前错误的GB, TB 等改成正确的GIB, TIB等。

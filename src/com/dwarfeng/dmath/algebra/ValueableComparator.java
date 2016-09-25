@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.Objects;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.StringFiledKey;
+import com.dwarfeng.dfunc.StringFieldKey;
 
 /**
  * Öµ±È½ÏÆ÷¡£
@@ -20,8 +20,8 @@ public class ValueableComparator implements Comparator<Valueable> {
 	 */
 	@Override
 	public int compare(Valueable o1, Valueable o2) {
-		Objects.requireNonNull(o1, DwarfFunction.getStringField(StringFiledKey.ValueableComparator_0));
-		Objects.requireNonNull(o2, DwarfFunction.getStringField(StringFiledKey.ValueableComparator_0));
+		Objects.requireNonNull(o1, DwarfFunction.getStringField(StringFieldKey.ValueableComparator_0));
+		Objects.requireNonNull(o2, DwarfFunction.getStringField(StringFieldKey.ValueableComparator_0));
 		return Double.compare(o1.value(), o2.value());
 	}
 

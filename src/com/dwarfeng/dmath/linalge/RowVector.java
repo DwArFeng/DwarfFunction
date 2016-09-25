@@ -3,13 +3,14 @@ package com.dwarfeng.dmath.linalge;
 import java.util.Objects;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.StringFiledKey;
+import com.dwarfeng.dfunc.StringFieldKey;
 import com.dwarfeng.dfunc.cna.ArrayUtil;
 import com.dwarfeng.dmath.AbstractDMath;
 import com.dwarfeng.dmath.algebra.AlgebraUtil;
 import com.dwarfeng.dmath.algebra.Valueable;
 import com.dwarfeng.dmath.algebra.VariableConflictException;
 import com.dwarfeng.dmath.algebra.VariableSpace;
+import com.dwarfeng.dmath.algebra.VariableValue;
 
 /**
  * 行向量。
@@ -31,9 +32,9 @@ public class RowVector extends AbstractDMath implements MatArray{
 	 * @throws IllegalArgumentException 元素数组无效。
 	 */
 	public RowVector(double[] vals) {
-		Objects.requireNonNull(vals, DwarfFunction.getStringField(StringFiledKey.RowVector_1));
+		Objects.requireNonNull(vals, DwarfFunction.getStringField(StringFieldKey.RowVector_1));
 		if(vals.length < 1){
-			throw new IllegalArgumentException(DwarfFunction.getStringField(StringFiledKey.RowVector_0));
+			throw new IllegalArgumentException(DwarfFunction.getStringField(StringFieldKey.RowVector_0));
 		}
 		
 		this.vals = AlgebraUtil.toValueables(vals);
@@ -49,9 +50,9 @@ public class RowVector extends AbstractDMath implements MatArray{
 	 * @throws IllegalArgumentException 值接口数组无效。 
 	 */
 	public RowVector(Valueable[] valueables) throws VariableConflictException{
-		ArrayUtil.requireNotContainsNull(valueables, DwarfFunction.getStringField(StringFiledKey.RowVector_2));
+		ArrayUtil.requireNotContainsNull(valueables, DwarfFunction.getStringField(StringFieldKey.RowVector_2));
 		if(valueables.length < 1){
-			throw new IllegalArgumentException(DwarfFunction.getStringField(StringFiledKey.RowVector_0));
+			throw new IllegalArgumentException(DwarfFunction.getStringField(StringFieldKey.RowVector_0));
 		}
 		
 		this.vals = valueables;
@@ -85,7 +86,7 @@ public class RowVector extends AbstractDMath implements MatArray{
 	 */
 	@Override
 	public String getMathName() {
-		return DwarfFunction.getStringField(StringFiledKey.Linalge_RowVector);
+		return DwarfFunction.getStringField(StringFieldKey.Linalge_RowVector);
 	}
 
 	/*
@@ -121,5 +122,5 @@ public class RowVector extends AbstractDMath implements MatArray{
 			ds[i] = vals[i].value() * d;
 		}
 	}
-
+	
 }
