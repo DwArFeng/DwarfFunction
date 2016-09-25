@@ -4,7 +4,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.DwarfFunction.StringFiledKey;
+import com.dwarfeng.dfunc.StringFiledKey;
 import com.dwarfeng.dfunc.num.UnitTrans;
 import com.dwarfeng.dfunc.num.UnitTrans.Time;
 

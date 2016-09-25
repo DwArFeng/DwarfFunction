@@ -11,7 +11,7 @@ import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.DwarfFunction.StringFiledKey;
+import com.dwarfeng.dfunc.StringFiledKey;
 
 /**
  * 多重操作列表模型。

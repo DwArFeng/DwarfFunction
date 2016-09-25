@@ -1,7 +1,7 @@
 package com.dwarfeng.dfunc.cna;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.DwarfFunction.StringFiledKey;
+import com.dwarfeng.dfunc.StringFiledKey;
 
 /**
  * ID÷ÿ∏¥“Ï≥£°£

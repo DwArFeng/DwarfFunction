@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.Objects;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.DwarfFunction.StringFiledKey;
+import com.dwarfeng.dfunc.StringFiledKey;
 
 /**
  * 对象的toString比较器，以两个对象的<code>toString()</code>方法比较其大小。

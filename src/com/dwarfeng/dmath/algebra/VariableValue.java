@@ -3,7 +3,7 @@ package com.dwarfeng.dmath.algebra;
 import java.util.Objects;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.DwarfFunction.StringFiledKey;
+import com.dwarfeng.dfunc.StringFiledKey;
 import com.dwarfeng.dfunc.infs.Nameable;
 import com.dwarfeng.dmath.DMath;
 

@@ -9,7 +9,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.DwarfFunction.StringFiledKey;
+import com.dwarfeng.dfunc.StringFiledKey;
 
 /**
  * 有关于集合的工具包。

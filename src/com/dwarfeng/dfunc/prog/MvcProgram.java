@@ -1,7 +1,7 @@
 package com.dwarfeng.dfunc.prog;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.DwarfFunction.StringFiledKey;
+import com.dwarfeng.dfunc.StringFiledKey;
 import com.dwarfeng.dfunc.prog.mvc.ControlManager;
 import com.dwarfeng.dfunc.prog.mvc.ControlPort;
 import com.dwarfeng.dfunc.prog.mvc.ModelControlPort;

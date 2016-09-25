@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.Vector;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.DwarfFunction.StringFiledKey;
+import com.dwarfeng.dfunc.StringFiledKey;
 
 /**
  * 有关于数组的工具包。

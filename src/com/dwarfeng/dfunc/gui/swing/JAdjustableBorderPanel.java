@@ -15,7 +15,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.DwarfFunction.StringFiledKey;
+import com.dwarfeng.dfunc.StringFiledKey;
 
 /**
  * 可调整的边界布局面板。

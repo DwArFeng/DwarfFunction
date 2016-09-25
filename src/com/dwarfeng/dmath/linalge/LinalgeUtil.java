@@ -4,7 +4,7 @@ import java.util.Formatter;
 import java.util.Objects;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.DwarfFunction.StringFiledKey;
+import com.dwarfeng.dfunc.StringFiledKey;
 
 /**
  * 有关于线性代数的工具包。

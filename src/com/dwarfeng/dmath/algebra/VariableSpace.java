@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.DwarfFunction.StringFiledKey;
+import com.dwarfeng.dfunc.StringFiledKey;
 import com.dwarfeng.dfunc.cna.ArrayUtil;
 import com.dwarfeng.dfunc.cna.CollectionUtil;
 import com.dwarfeng.dfunc.infs.Buildable;

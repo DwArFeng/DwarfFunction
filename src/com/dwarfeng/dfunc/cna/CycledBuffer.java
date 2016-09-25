@@ -3,7 +3,7 @@ package com.dwarfeng.dfunc.cna;
 import java.util.Iterator;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.DwarfFunction.StringFiledKey;
+import com.dwarfeng.dfunc.StringFiledKey;
 
 /**
  * Ñ­»·»º³å¡£

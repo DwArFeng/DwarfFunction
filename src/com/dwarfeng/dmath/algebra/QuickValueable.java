@@ -1,7 +1,7 @@
 package com.dwarfeng.dmath.algebra;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.DwarfFunction.StringFiledKey;
+import com.dwarfeng.dfunc.StringFiledKey;
 import com.dwarfeng.dmath.AbstractDMath;
 
 /**

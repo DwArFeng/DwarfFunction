@@ -1,7 +1,7 @@
 package com.dwarfeng.dfunc.threads;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.DwarfFunction.StringFiledKey;
+import com.dwarfeng.dfunc.StringFiledKey;
 import com.dwarfeng.dfunc.infs.Describeable;
 import com.dwarfeng.dfunc.infs.Nameable;
 

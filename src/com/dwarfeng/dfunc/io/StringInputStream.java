@@ -6,7 +6,7 @@ import java.nio.charset.Charset;
 import java.util.Objects;
 
 import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.DwarfFunction.StringFiledKey;
+import com.dwarfeng.dfunc.StringFiledKey;
 
 /**
  * ×Ö·û´®ÊäÈëÁ÷¡£
