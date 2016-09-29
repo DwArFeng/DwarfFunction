@@ -148,8 +148,8 @@ public enum StringFieldKey{
 	/**LinalgeUtil类第4号文本字段*/
 	LinalgeUtil_4,
 	
-	/**Valueable类第0号文本字段*/
-	Valueable_0,
+	/**FVal类第0号文本字段*/
+	FVal_0,
 	
 	/**Matrix类第0号文本字段*/
 	Matrix_0,

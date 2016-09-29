@@ -2,8 +2,8 @@ package com.dwarfeng.dfoth.linalge;
 
 import java.util.Objects;
 
-import com.dwarfeng.dfoth.algebra.QuickValueable;
-import com.dwarfeng.dfoth.algebra.Valueable;
+import com.dwarfeng.dfoth.algebra.QuickFVal;
+import com.dwarfeng.dfoth.algebra.FValue;
 import com.dwarfeng.dfoth.algebra.VariableSpace;
 import com.dwarfeng.dfunc.DwarfFunction;
 import com.dwarfeng.dfunc.StringFieldKey;
@@ -19,7 +19,7 @@ import com.dwarfeng.dmath.AbstractDMath;
 public class Matrix extends AbstractDMath implements MatArray{
 	
 	/**矩阵的值*/
-	protected final Valueable[][] vals;
+	protected final FValue[][] vals;
 	/**矩阵的变量空间*/
 	protected final VariableSpace vs;
 
@@ -39,22 +39,22 @@ public class Matrix extends AbstractDMath implements MatArray{
 			Objects.requireNonNull(ds, DwarfFunction.getStringField(StringFieldKey.Matrix_0));
 		}
 		
-		Valueable[][] valueables = new Valueable[vals.length][vals[0].length];
+		FValue[][] valueables = new FValue[vals.length][vals[0].length];
 		for(int i = 0 ; i < vals.length ; i ++){
 			for(int j = 0 ; j < vals[i].length ; i ++){
-				valueables[i][j] = new QuickValueable(vals[i][j]);
+				valueables[i][j] = new QuickFVal(vals[i][j]);
 			}
 		}
 		this.vals = valueables;
 		this.vs = VariableSpace.EMPTY;
 	}
 	
-	public Matrix(Valueable[][] vals) {
+	public Matrix(FValue[][] vals) {
 		Objects.requireNonNull(vals, DwarfFunction.getStringField(StringFieldKey.Matrix_0));
 		if(vals.length == 0 || vals[0].length == 0){
 			throw new IllegalAccessError(DwarfFunction.getStringField(StringFieldKey.Matrix_1));
 		}
-		for(Valueable[] ds : vals){
+		for(FValue[] ds : vals){
 			ArrayUtil.requireNotContainsNull(ds, DwarfFunction.getStringField(StringFieldKey.Matrix_0));
 		}
 		
@@ -118,7 +118,7 @@ public class Matrix extends AbstractDMath implements MatArray{
 	}
 
 	@Override
-	public Valueable getValueable(int row, int rank) {
+	public FValue getValueable(int row, int rank) {
 		// TODO Auto-generated method stub
 		return null;
 	}

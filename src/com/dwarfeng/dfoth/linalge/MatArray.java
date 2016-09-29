@@ -1,7 +1,7 @@
 package com.dwarfeng.dfoth.linalge;
 
-import com.dwarfeng.dfoth.algebra.NumBase;
-import com.dwarfeng.dfoth.algebra.Valueable;
+import com.dwarfeng.dfoth.algebra.NumBased;
+import com.dwarfeng.dfoth.algebra.FValue;
 import com.dwarfeng.dmath.DMath;
 
 /**
@@ -11,7 +11,7 @@ import com.dwarfeng.dmath.DMath;
  * @author DwArFeng
  * @since 1.8
  */
-public interface MatArray extends DMath, NumBase{
+public interface MatArray extends DMath, NumBased{
 
 	/**
 	 * 返回该阵列的行数。
@@ -31,7 +31,7 @@ public interface MatArray extends DMath, NumBase{
 	 * @param rank 指定的列。
 	 * @return 指定的行列处对应的元素。
 	 */
-	public Valueable getValueable(int row, int rank);
+	public FValue getValueable(int row, int rank);
 	
 	/**
 	 * 返回指定行对应的行向量。

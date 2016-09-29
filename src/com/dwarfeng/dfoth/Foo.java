@@ -1,7 +1,7 @@
 package com.dwarfeng.dfoth;
 
-import com.dwarfeng.dfoth.algebra.QuickValueable;
-import com.dwarfeng.dfoth.algebra.Valueable;
+import com.dwarfeng.dfoth.algebra.QuickFVal;
+import com.dwarfeng.dfoth.algebra.FValue;
 import com.dwarfeng.dfoth.linalge.RankVector;
 import com.dwarfeng.dfoth.linalge.RowVector;
 import com.dwarfeng.dfunc.dt.CodeTimer;
@@ -17,8 +17,8 @@ final class Foo {
 	public void run(){
 		CodeTimer ct = new CodeTimer();
 		
-		Valueable v1 = new QuickValueable(124500);
-		Valueable v2 = new QuickValueable(124500);
+		FValue v1 = new QuickFVal(124500);
+		FValue v2 = new QuickFVal(124500);
 		
 		ct.start();
 		for(int i = 0 ; i < 1000000 ; i ++){

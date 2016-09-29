@@ -1,4 +1,4 @@
-package com.dwarfeng.dfoth.algebra;
+package com.dwarfeng.dmath.algebra;
 
 import java.util.Comparator;
 import java.util.Objects;

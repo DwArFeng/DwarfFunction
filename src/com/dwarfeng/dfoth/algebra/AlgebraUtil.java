@@ -22,7 +22,7 @@ public final class AlgebraUtil {
 	 * @return 转换成的double数组。
 	 * @throws NullPointerException 入口数组为 <code>null</code> 或者其中含有 <code>null</code>元素。
 	 */
-	public static double[] takeValues(Valueable[] vals){
+	public static double[] takeValues(FValue[] vals){
 		ArrayUtil.requireNotContainsNull(vals, DwarfFunction.getStringField(StringFieldKey.AlgebraUtil_0));
 		double[] dous = new double[vals.length];
 		for(int i = 0 ; i < dous.length ; i ++){
@@ -36,7 +36,7 @@ public final class AlgebraUtil {
 	 * @return 转换成的多态值接口。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public static MusValueable toMusValueable(Valueable val){
+	public static MusValueable toMusValueable(FValue val){
 		
 		
 		return new QuickMusValueable(val.value());
@@ -49,12 +49,12 @@ public final class AlgebraUtil {
 	 * @return 值数组。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public static Valueable[] toValueables(double[] ds){
+	public static FValue[] toValueables(double[] ds){
 		Objects.requireNonNull(ds, DwarfFunction.getStringField(StringFieldKey.AlgebraUtil_1));
 		
-		Valueable[] valueables = new Valueable[ds.length];
+		FValue[] valueables = new FValue[ds.length];
 		for(int i = 0 ; i < ds.length ; i ++){
-			valueables[i] = new QuickValueable(ds[i]);
+			valueables[i] = new QuickFVal(ds[i]);
 		}
 		return valueables;
 	}

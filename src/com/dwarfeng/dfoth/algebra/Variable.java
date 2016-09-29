@@ -35,7 +35,7 @@ public class Variable extends AbstractDMath implements VariableValue {
 	 * @throws IllegalArgumentException name参数为 <code>null</code>或非法。
 	 * @throws NullPointerException 入口参数为 <code>null</code>时抛出异常。
 	 */
-	public Variable(String name, Valueable valueable) {
+	public Variable(String name, FValue valueable) {
 		if(Objects.isNull(name) || name.equals("")){
 			throw new IllegalArgumentException(DwarfFunction.getStringField(StringFieldKey.Variable_1));
 		}

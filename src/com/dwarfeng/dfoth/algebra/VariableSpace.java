@@ -91,7 +91,7 @@ Iterable<VariableValue>, Region<VariableValue>{
 		 * @throws VariableConflictException 当值对象中的变量与构造器中的至少一个变量冲突。
 		 * @throws NullPointerException 入口参数为 <code>null</code> 或者值对象中的变量空间为 <code>null</code>。
 		 */
-		public Builder add(Valueable valueable){
+		public Builder add(FValue valueable){
 			add(valueable.getVariableSpace());
 			return this;
 		}

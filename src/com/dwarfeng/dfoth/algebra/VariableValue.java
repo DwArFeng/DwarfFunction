@@ -15,7 +15,7 @@ import com.dwarfeng.dmath.DMath;
  * @author DwArFeng
  * @since 1.8
  */
-public interface VariableValue extends DMath, Valueable, Nameable{
+public interface VariableValue extends DMath, FValue, Nameable{
 
 	/**
 	 * 设置该接口的数值。
@@ -28,7 +28,7 @@ public interface VariableValue extends DMath, Valueable, Nameable{
 	 * @param valueable 指定的值接口。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public default void setValue(Valueable valueable){
+	public default void setValue(FValue valueable){
 		Objects.requireNonNull(valueable, DwarfFunction.getStringField(StringFieldKey.VariableValue_0));
 		setValue(valueable.value());
 	}
@@ -48,7 +48,7 @@ public interface VariableValue extends DMath, Valueable, Nameable{
 	 * @param valueable 指定的值接口。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public default void offset(Valueable valueable){
+	public default void offset(FValue valueable){
 		Objects.requireNonNull(valueable, DwarfFunction.getStringField(StringFieldKey.VariableValue_0));
 		setValue(value() + valueable.value());
 	}

@@ -1,16 +1,16 @@
-package com.dwarfeng.dfoth.linalge;
+package com.dwarfeng.dmath.linalge;
 
 import java.util.Objects;
 
-import com.dwarfeng.dfoth.algebra.AlgebraUtil;
-import com.dwarfeng.dfoth.algebra.QuickFVal;
-import com.dwarfeng.dfoth.algebra.FValue;
-import com.dwarfeng.dfoth.algebra.VariableConflictException;
-import com.dwarfeng.dfoth.algebra.VariableSpace;
 import com.dwarfeng.dfunc.DwarfFunction;
 import com.dwarfeng.dfunc.StringFieldKey;
 import com.dwarfeng.dfunc.cna.ArrayUtil;
 import com.dwarfeng.dmath.AbstractDMath;
+import com.dwarfeng.dmath.algebra.AlgebraUtil;
+import com.dwarfeng.dmath.algebra.QuickValueable;
+import com.dwarfeng.dmath.algebra.Valueable;
+import com.dwarfeng.dmath.algebra.VariableConflictException;
+import com.dwarfeng.dmath.algebra.VariableSpace;
 
 /**
  * 列向量。
@@ -21,7 +21,7 @@ import com.dwarfeng.dmath.AbstractDMath;
  */
 public class RankVector extends AbstractDMath implements MatArray{
 	
-	protected final FValue[] vals;
+	protected final Valueable[] vals;
 	protected final VariableSpace vs;
 	
 	/**
@@ -38,7 +38,7 @@ public class RankVector extends AbstractDMath implements MatArray{
 		}
 		
 		this.vals = AlgebraUtil.toValueables(vals);
-		this.vs = VariableSpace.EMPTY;
+		this.vs = AlgebraUtil.emptyVariableSpace();
 	}
 	
 	/**
@@ -49,7 +49,7 @@ public class RankVector extends AbstractDMath implements MatArray{
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 值接口数组无效。 
 	 */
-	public RankVector(FValue[] valueables){
+	public RankVector(Valueable[] valueables){
 		ArrayUtil.requireNotContainsNull(valueables, DwarfFunction.getStringField(StringFieldKey.RankVector_2));
 		if(valueables.length < 1){
 			throw new IllegalArgumentException(DwarfFunction.getStringField(StringFieldKey.RankVector_0));
@@ -57,7 +57,7 @@ public class RankVector extends AbstractDMath implements MatArray{
 		
 		this.vals = valueables;
 		VariableSpace.Builder builder = new VariableSpace.Builder();
-		for(FValue valueable : valueables){
+		for(Valueable valueable : valueables){
 			builder.add(valueable.getVariableSpace());
 		}
 		this.vs = builder.build();
@@ -72,7 +72,7 @@ public class RankVector extends AbstractDMath implements MatArray{
 		
 		StringBuilder sb = new StringBuilder();
 		sb.append("[");
-		for(FValue val : vals){
+		for(Valueable val : vals){
 			sb		.append(val.getExpression())
 					.append(", ");
 		}
@@ -123,7 +123,7 @@ public class RankVector extends AbstractDMath implements MatArray{
 	 * @see com.dwarfeng.dmath.linalge.MatArray#getValueable(int, int)
 	 */
 	@Override
-	public FValue getValueable(int row, int rank) {
+	public Valueable getValueable(int row, int rank) {
 		LinalgeUtil.requrieRowInBound(this, row);
 		LinalgeUtil.requireRankInBound(this, rank);
 		return vals[row];
@@ -136,7 +136,7 @@ public class RankVector extends AbstractDMath implements MatArray{
 	@Override
 	public RowVector getRowVector(int row) {
 		LinalgeUtil.requrieRowInBound(this, row);
-		return new RowVector(new FValue[]{vals[row]});
+		return new RowVector(new Valueable[]{vals[row]});
 	}
 
 	/*
@@ -161,7 +161,7 @@ public class RankVector extends AbstractDMath implements MatArray{
 		Objects.requireNonNull(rankVector, DwarfFunction.getStringField(StringFieldKey.RankVector_3));
 		LinalgeUtil.requireSpecificSize(rankVector, rows(), ranks(), DwarfFunction.getStringField(StringFieldKey.RankVector_4));
 
-		FValue[] vs = new FValue[vals.length];
+		Valueable[] vs = new Valueable[vals.length];
 		for(int i = 0 ; i < vs.length ; i ++){
 			vs[i] = vals[i].add(rankVector.vals[i]);
 		}
@@ -180,7 +180,7 @@ public class RankVector extends AbstractDMath implements MatArray{
 		Objects.requireNonNull(rankVector, DwarfFunction.getStringField(StringFieldKey.RankVector_3));
 		LinalgeUtil.requireSpecificSize(rankVector, rows(), ranks(), DwarfFunction.getStringField(StringFieldKey.RankVector_4));
 
-		FValue[] vs = new FValue[vals.length];
+		Valueable[] vs = new Valueable[vals.length];
 		for(int i = 0 ; i < vs.length ; i ++){
 			vs[i] = vals[i].minus(rankVector.vals[i]);
 		}
@@ -194,10 +194,10 @@ public class RankVector extends AbstractDMath implements MatArray{
 	 * @return 指定的值域该列向量相乘得到的列向量。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public RankVector mul(FValue val){
+	public RankVector mul(Valueable val){
 		Objects.requireNonNull(val, DwarfFunction.getStringField(StringFieldKey.RankVector_5));
 		
-		FValue[] vs = new FValue[vals.length];
+		Valueable[] vs = new Valueable[vals.length];
 		for(int i = 0 ; i < vs.length ; i ++){
 			vs[i] = getValueable(i, 0).mul(val);
 		}
@@ -211,16 +211,7 @@ public class RankVector extends AbstractDMath implements MatArray{
 	 * @return 指定的值域该列向量相处得到的列向量。
 	 */
 	public RankVector mul(double d){
-		return mul(new QuickFVal(d));
-	}
-	
-	/**
-	 * 返回该列向量的转置行向量。
-	 * <p> 该转置操作不破坏结构。
-	 * @return 转置行向量。
-	 */
-	public RowVector trans(){
-		return new RowVector(vals);
+		return mul(new QuickValueable(d));
 	}
 	
 }
