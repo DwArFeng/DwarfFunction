@@ -97,45 +97,45 @@ public enum StringFieldKey{
 	/**Variable类第1号文本字段*/
 	Variable_1,
 	
-	/**VariableValue类第0号文本字段*/
-	VariableValue_0,
+	/**FVariable类第0号文本字段*/
+	FVariable_0,
 	
-	/**VariableSpace类第0号文本字段*/
-	VariableSpace_0,
-	/**VariableSpace类第1号文本字段*/
-	VariableSpace_1,
-	/**VariableSpace类第2号文本字段*/
-	VariableSpace_2,
+	/**FVariableSpace类第0号文本字段*/
+	FVariableSpace_0,
+	/**FVariableSpace类第1号文本字段*/
+	FVariableSpace_1,
+	/**FVariableSpace类第2号文本字段*/
+	FVariableSpace_2,
 	
-	/**RowVector类第0号文本字段*/
-	RowVector_0,
-	/**RowVector类第1号文本字段*/
-	RowVector_1,
-	/**RowVector类第2号文本字段*/
-	RowVector_2,
-	/**RowVector类第3号文本字段*/
-	RowVector_3,
-	/**RowVector类第4号文本字段*/
-	RowVector_4,
-	/**RowVector类第5号文本字段*/
-	RowVector_5,
-	/**RowVector类第6号文本字段*/
-	RowVector_6,
-	/**RowVector类第7号文本字段*/
-	RowVector_7,
+	/**FRowVector类第0号文本字段*/
+	FRowVector_0,
+	/**FRowVector类第1号文本字段*/
+	FRowVector_1,
+	/**FRowVector类第2号文本字段*/
+	FRowVector_2,
+	/**FRowVector类第3号文本字段*/
+	FRowVector_3,
+	/**FRowVector类第4号文本字段*/
+	FRowVector_4,
+	/**FRowVector类第5号文本字段*/
+	FRowVector_5,
+	/**FRowVector类第6号文本字段*/
+	FRowVector_6,
+	/**FRowVector类第7号文本字段*/
+	FRowVector_7,
 	
-	/**RankVector类第0号文本字段*/
-	RankVector_0,
-	/**RankVector类第1号文本字段*/
-	RankVector_1,
-	/**RankVector类第2号文本字段*/
-	RankVector_2,
-	/**RankVector类第3号文本字段*/
-	RankVector_3,
-	/**RankVector类第4号文本字段*/
-	RankVector_4,
-	/**RankVector类第5号文本字段*/
-	RankVector_5,
+	/**FRankVector类第0号文本字段*/
+	FRankVector_0,
+	/**FRankVector类第1号文本字段*/
+	FRankVector_1,
+	/**FRankVector类第2号文本字段*/
+	FRankVector_2,
+	/**FRankVector类第3号文本字段*/
+	FRankVector_3,
+	/**FRankVector类第4号文本字段*/
+	FRankVector_4,
+	/**FRankVector类第5号文本字段*/
+	FRankVector_5,
 	
 	/**LinalgeUtil类第0号文本字段*/
 	LinalgeUtil_0,
@@ -148,11 +148,13 @@ public enum StringFieldKey{
 	/**LinalgeUtil类第4号文本字段*/
 	LinalgeUtil_4,
 	
-	/**FVal类第0号文本字段*/
-	FVal_0,
+	/**FValue类第0号文本字段*/
+	FValue_0,
 	
-	/**Matrix类第0号文本字段*/
-	Matrix_0,
-	/**Matrix类第1号文本字段*/
-	Matrix_1,
+	/**FMatrix类第0号文本字段*/
+	FMatrix_0,
+	/**FMatrix类第1号文本字段*/
+	FMatrix_1,
+	/**FMatrix类第2号文本字段*/
+	FMatrix_2,
 }

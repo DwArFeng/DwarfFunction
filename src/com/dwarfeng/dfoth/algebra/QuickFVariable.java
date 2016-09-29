@@ -13,7 +13,7 @@ import com.dwarfeng.dmath.AbstractDMath;
  * @author DwArFeng
  * @since 1.8
  */
-public class Variable extends AbstractDMath implements VariableValue {
+public class QuickFVariable extends AbstractDMath implements FVariable {
 	
 	/**变量的值*/
 	protected double val;
@@ -24,7 +24,7 @@ public class Variable extends AbstractDMath implements VariableValue {
 	 * 生成一个默认的，值为0的变量。
 	 * @param name 变量的名称。
 	 */
-	public Variable(String name) {
+	public QuickFVariable(String name) {
 		this(name, 0d);
 	}
 	
@@ -35,7 +35,7 @@ public class Variable extends AbstractDMath implements VariableValue {
 	 * @throws IllegalArgumentException name参数为 <code>null</code>或非法。
 	 * @throws NullPointerException 入口参数为 <code>null</code>时抛出异常。
 	 */
-	public Variable(String name, FValue valueable) {
+	public QuickFVariable(String name, FValue valueable) {
 		if(Objects.isNull(name) || name.equals("")){
 			throw new IllegalArgumentException(DwarfFunction.getStringField(StringFieldKey.Variable_1));
 		}
@@ -51,7 +51,7 @@ public class Variable extends AbstractDMath implements VariableValue {
 	 * @param d 指定的值。
 	 * @throws IllegalArgumentException name参数为 <code>null</code> 或非法。
 	 */
-	public Variable(String name, double d) {
+	public QuickFVariable(String name, double d) {
 		if(Objects.isNull(name) || name.equals("")){
 			throw new IllegalArgumentException(DwarfFunction.getStringField(StringFieldKey.Variable_1));
 		}
@@ -110,8 +110,8 @@ public class Variable extends AbstractDMath implements VariableValue {
 	 * @see com.dwarfeng.dmath.algebra.NumBase#getVariableSpace()
 	 */
 	@Override
-	public VariableSpace getVariableSpace() {
-		return new VariableSpace.Builder().add(this).build();
+	public FVariableSpace getVariableSpace() {
+		return new FVariableSpace.Builder().add(this).build();
 	}
 	
 	/*

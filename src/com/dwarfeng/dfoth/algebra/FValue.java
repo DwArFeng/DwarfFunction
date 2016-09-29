@@ -22,8 +22,8 @@ public interface FValue extends NumBased, Valueable {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public default FValue add(FValue val){
-		Objects.requireNonNull(val, DwarfFunction.getStringField(StringFieldKey.FVal_0));
-		return new QuickFVal(val.value() + value());
+		Objects.requireNonNull(val, DwarfFunction.getStringField(StringFieldKey.FValue_0));
+		return new QuickFValue(val.value() + value());
 	}
 	
 	/**
@@ -34,8 +34,8 @@ public interface FValue extends NumBased, Valueable {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public default FValue minus(FValue val){
-		Objects.requireNonNull(val, DwarfFunction.getStringField(StringFieldKey.FVal_0));
-		return new QuickFVal(val.value() - value());
+		Objects.requireNonNull(val, DwarfFunction.getStringField(StringFieldKey.FValue_0));
+		return new QuickFValue(val.value() - value());
 	}
 	
 	/**
@@ -46,8 +46,8 @@ public interface FValue extends NumBased, Valueable {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public default FValue mul(FValue val){
-		Objects.requireNonNull(val, DwarfFunction.getStringField(StringFieldKey.FVal_0));
-		return new QuickFVal(val.value() * value());
+		Objects.requireNonNull(val, DwarfFunction.getStringField(StringFieldKey.FValue_0));
+		return new QuickFValue(val.value() * value());
 	}
 	
 	/**
@@ -59,8 +59,8 @@ public interface FValue extends NumBased, Valueable {
 	 * @throws ArithmeticException 当val为0是抛出异常。
 	 */
 	public default FValue div(FValue val){
-		Objects.requireNonNull(val, DwarfFunction.getStringField(StringFieldKey.FVal_0));
-		return new QuickFVal(val.value() / value());
+		Objects.requireNonNull(val, DwarfFunction.getStringField(StringFieldKey.FValue_0));
+		return new QuickFValue(val.value() / value());
 	}
 	
 }

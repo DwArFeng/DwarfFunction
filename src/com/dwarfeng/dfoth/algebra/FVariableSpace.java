@@ -17,7 +17,7 @@ import com.dwarfeng.dmath.Region;
 
 /**
  * 变量空间。
- * <p> 变量空间是指由一组 {@link VariableValue} 组成的空间。
+ * <p> 变量空间是指由一组 {@link FVariable} 组成的空间。
  * <br> 该空间中的对象的顺序按照字典顺序排序，相互冲突的变量不能进入同组向量空间。
  * <p> 所谓的变量冲突，是指含有相同名称的不同变量。由于变量控件中变量的顺序是由其字典顺序决定的，
  * 如果存在同名变量，则无法从文本上对变量进行区别，从而会导致进一步的错误。
@@ -31,26 +31,26 @@ import com.dwarfeng.dmath.Region;
  * @author DwArFeng
  * @since 1.8
  */
-public class VariableSpace extends AbstractDMath implements
-Iterable<VariableValue>, Region<VariableValue>{
+public class FVariableSpace extends AbstractDMath implements
+Iterable<FVariable>, Region<FVariable>{
 
 	/**空的变量集合*/
-	public static final VariableSpace EMPTY = new Builder().build();
+	public static final FVariableSpace EMPTY = new Builder().build();
 	
 	/**
 	 * 变量空间的构造器。
 	 * @author DwArFeng
 	 * @since 1.8
 	 */
-	public static class Builder implements Buildable<VariableSpace>{
+	public static class Builder implements Buildable<FVariableSpace>{
 
-		private final Set<VariableValue> set;
+		private final Set<FVariable> set;
 		
 		/**
 		 * 生成一个变量空间构造器。
 		 */
 		public Builder() {
-			this.set = CollectionUtil.nonNullSet(new HashSet<VariableValue>());
+			this.set = CollectionUtil.nonNullSet(new HashSet<FVariable>());
 		}
 		
 		/**
@@ -60,8 +60,8 @@ Iterable<VariableValue>, Region<VariableValue>{
 		 * @throws VariableConflictException 当添加的元素与构造器中的至少一个元素冲突。
 		 * @throws NullPointerException 入口参数为 <code>null</code> 时抛出异常。
 		 */
-		public Builder add(VariableValue var){
-			for(VariableValue vv : set){
+		public Builder add(FVariable var){
+			for(FVariable vv : set){
 				if(AlgebraUtil.checkConflict(vv, var)){
 					throw new VariableConflictException(vv.getName());
 				}
@@ -77,8 +77,8 @@ Iterable<VariableValue>, Region<VariableValue>{
 		 * @throws VariableConflictException 当添加的元素与构造器中的至少一个元素冲突。
 		 * @throws NullPointerException 当入口元素为 <code>null</code>时抛出异常。
 		 */
-		public Builder add(VariableSpace variableSpace){
-			for(VariableValue vv : variableSpace){
+		public Builder add(FVariableSpace variableSpace){
+			for(FVariable vv : variableSpace){
 				add(vv);
 			}
 			return this;
@@ -111,17 +111,17 @@ Iterable<VariableValue>, Region<VariableValue>{
 		 * @see com.dwarfeng.dfunc.infs.Buildable#build()
 		 */
 		@Override
-		public VariableSpace build() {
-			VariableValue[] vars = set.toArray(new VariableValue[0]);
+		public FVariableSpace build() {
+			FVariable[] vars = set.toArray(new FVariable[0]);
 			Arrays.sort(vars, new NameableComparator());
-			return new VariableSpace(vars);
+			return new FVariableSpace(vars);
 		}
 		
 	}
 	
-	protected final VariableValue[] vars;
+	protected final FVariable[] vars;
 	
-	private VariableSpace(VariableValue[] vars){
+	private FVariableSpace(FVariable[] vars){
 		this.vars = vars;
 	}
 	
@@ -130,11 +130,11 @@ Iterable<VariableValue>, Region<VariableValue>{
 	 * @see java.lang.Iterable#iterator()
 	 */
 	@Override
-	public Iterator<VariableValue> iterator() {
+	public Iterator<FVariable> iterator() {
 		return new VsIterator();
 	}
 	
-	private final class VsIterator implements Iterator<VariableValue>{
+	private final class VsIterator implements Iterator<FVariable>{
 
 		private int i = 0;
 		
@@ -152,7 +152,7 @@ Iterable<VariableValue>, Region<VariableValue>{
 		 * @see java.util.Iterator#next()
 		 */
 		@Override
-		public VariableValue next() {
+		public FVariable next() {
 			return vars[i++];
 		}
 		
@@ -188,7 +188,7 @@ Iterable<VariableValue>, Region<VariableValue>{
 		
 		try{
 			sb.append("[");
-			for(VariableValue var : vars){
+			for(FVariable var : vars){
 				formatter.format("%s = %.4f, ", var.getName(), var.value());
 			}
 			
@@ -205,7 +205,7 @@ Iterable<VariableValue>, Region<VariableValue>{
 	 * @see com.dwarfeng.dmath.Region#contains(java.lang.Object)
 	 */
 	@Override
-	public boolean contains(VariableValue t) {
+	public boolean contains(FVariable t) {
 		return ArrayUtil.contains(vars, t);
 	}
 

@@ -12,19 +12,19 @@ import com.dwarfeng.dmath.AbstractDMath;
  * @author DwArFeng
  * @since 1.8
  */
-public class QuickFVal extends AbstractDMath implements FValue {
+public class QuickFValue extends AbstractDMath implements FValue {
 
 	/**代表0*/
-	public static final QuickFVal ZERO = new QuickFVal();
+	public static final QuickFValue ZERO = new QuickFValue();
 	
 	/**对象的值*/
 	protected final double val;
 	
 	/**
 	 * 生成一个值为0的快速值对象。
-	 * <p> 字段 {@link QuickFVal#ZERO}优先级要高于该构造方法。
+	 * <p> 字段 {@link QuickFValue#ZERO}优先级要高于该构造方法。
 	 */
-	public QuickFVal() {
+	public QuickFValue() {
 		this(0);
 	}
 	
@@ -32,7 +32,7 @@ public class QuickFVal extends AbstractDMath implements FValue {
 	 * 生成一个快速值对象。
 	 * @param val 对象的值。
 	 */
-	public QuickFVal(double val) {
+	public QuickFValue(double val) {
 		this.val = val;
 	}
 	
@@ -68,8 +68,8 @@ public class QuickFVal extends AbstractDMath implements FValue {
 	 * @see com.dwarfeng.dmath.algebra.NumBase#getVariableSpace()
 	 */
 	@Override
-	public VariableSpace getVariableSpace() {
-		return VariableSpace.EMPTY;
+	public FVariableSpace getVariableSpace() {
+		return FVariableSpace.EMPTY;
 	}
 
 }

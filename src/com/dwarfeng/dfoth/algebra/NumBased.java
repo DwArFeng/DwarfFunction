@@ -14,7 +14,7 @@ import com.dwarfeng.dmath.Region;
  * @author DwArFeng
  * @since 1.8
  */
-public interface NumBased extends DMath, Region<VariableValue>, DFoth{
+public interface NumBased extends DMath, Region<FVariable>, DFoth{
 	
 	/**
 	 * 返回一个对象的变量空间。
@@ -22,7 +22,7 @@ public interface NumBased extends DMath, Region<VariableValue>, DFoth{
 	 * 即 {@link AlgebraUtil#emptyVariableSpace()}。
 	 * @return 对象的变量空间。
 	 */
-	public VariableSpace getVariableSpace();
+	public FVariableSpace getVariableSpace();
 	
 	/*
 	 * (non-Javadoc)
@@ -38,7 +38,7 @@ public interface NumBased extends DMath, Region<VariableValue>, DFoth{
 	 * @see com.dwarfeng.dmath.Region#contains(java.lang.Object)
 	 */
 	@Override
-	public default boolean contains(VariableValue t){
+	public default boolean contains(FVariable t){
 		return getVariableSpace().contains(t);
 	}
 

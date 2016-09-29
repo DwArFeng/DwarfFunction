@@ -2,7 +2,7 @@ package com.dwarfeng.dfoth.algebra;
 
 /**
  * 变量冲突异常。
- * <p> 该异常指示变量冲突。所谓变量冲突的定义，请参考 {@link VariableSpace}。
+ * <p> 该异常指示变量冲突。所谓变量冲突的定义，请参考 {@link FVariableSpace}。
  * @author DwArFeng
  * @since 1.8
  */

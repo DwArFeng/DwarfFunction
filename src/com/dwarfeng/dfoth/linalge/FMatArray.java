@@ -11,7 +11,7 @@ import com.dwarfeng.dmath.DMath;
  * @author DwArFeng
  * @since 1.8
  */
-public interface MatArray extends DMath, NumBased{
+public interface FMatArray extends DMath, NumBased{
 
 	/**
 	 * 返回该阵列的行数。
@@ -39,14 +39,14 @@ public interface MatArray extends DMath, NumBased{
 	 * @return 指定行对应的行向量。
 	 * @throws IndexOutOfBoundsException 指定的行号超界。
 	 */
-	public RowVector getRowVector(int row);
+	public FRowVector getRowVector(int row);
 	/**
 	 * 返回指定列对应的列向量。
 	 * @param rank 指定的列。
 	 * @return 指定的列所对应的列向量。
 	 * @throws 指定的列号超界。
 	 */
-	public RankVector getRankVector(int rank);
+	public FRankVector getRankVector(int rank);
 	
 	
 	
