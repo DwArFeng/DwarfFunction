@@ -28,6 +28,7 @@ public final class ClassUtil {
 		}
 		return collection;
 	}
+	
 	/**
 	 * 获取一个实例的类中的除了{@link Object}以外的所有父类。
 	 * @param o 指定的实例。
@@ -36,6 +37,7 @@ public final class ClassUtil {
 	public static Collection<Class<?>> getAllSuperClassesCollection(Object o){
 		return getAllSuperClassesCollection(o.getClass());
 	}
+	
 	/**
 	 * 	获取一个实例的类中的除了{@link Object}以外的所有父类。
 	 * @param o 指定的实例。
@@ -44,6 +46,7 @@ public final class ClassUtil {
 	public static Class<?>[] getAllSuperClassesArray(Object o){
 		return getAllSuperClassesCollection(o).toArray(new Class<?>[0]);
 	}
+	
 	/**
 	 * 	获取一个类中的除了{@link Object}以外的所有父类。
 	 * @param cl 指定的类。
@@ -70,6 +73,7 @@ public final class ClassUtil {
 		}
 		return allInterfaces;
 	}
+	
 	/**
 	 * 获取一个实例的类所实现的所有接口，包括父类实现的所有接口。
 	 * @param o 指定的实例。
@@ -78,6 +82,7 @@ public final class ClassUtil {
 	public static Collection<Class<?>> getAllInterfacesCollection(Object o){
 		return getAllInterfacesCollection(o.getClass());
 	}
+	
 	/**
 	 * 获取一个类所实现的所有接口，包括父类实现的所有接口。
 	 * @param cl 指定的类。
@@ -86,6 +91,7 @@ public final class ClassUtil {
 	public static Class<?>[] getAllInterfacesArray(Class<?> cl){
 		return getAllInterfacesCollection(cl).toArray(new Class<?>[0]);
 	}
+	
 	/**
 	 * 获取一个实例的类所实现的所有接口，包括父类实现的所有接口。
 	 * @param o 指定的实例。

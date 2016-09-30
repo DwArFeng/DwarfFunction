@@ -10,7 +10,13 @@ import com.dwarfeng.dutil.basic.prog.Version;
 import com.dwarfeng.dutil.basic.prog.VersionType;
 
 /**
- * 有关于这个工具包的一些设置，主要是语言设置。
+ * DwarfUtil工具包的主类。
+ * <p>该类是DwarfUtil工具包的主类与信息类。该工具包中的各种根级信息（如版本信息）都可以在这个类中获得；
+ * 同时，该工具包的所用包级设置也通过该类的方法来设置。
+ * 
+ * <p>该包是工具包，所有的方法皆为静态方法，由于该包的性质，该包不允许外部实例化，不允许继承。
+ * 
+ * <p> 该包中的方法都是线程不安全的，如果需要多线程调用该包中的方法，请使用外部同步代码。
  * @author DwArFeng
  * @since 1.8
  */

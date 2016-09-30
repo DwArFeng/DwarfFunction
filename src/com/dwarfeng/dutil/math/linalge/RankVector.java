@@ -2,10 +2,9 @@ package com.dwarfeng.dutil.math.linalge;
 
 import java.util.Objects;
 
-import com.dwarfeng.dfoth.algebra.FValue;
-import com.dwarfeng.dfunc.DwarfFunction;
-import com.dwarfeng.dfunc.StringFieldKey;
-import com.dwarfeng.dmath.AbstractDMath;
+import com.dwarfeng.dutil.basic.DwarfUtil;
+import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.math.AbstractDMath;
 
 /**
  * 列向量。
@@ -21,9 +20,15 @@ public class RankVector extends AbstractDMath implements MatArray{
 	 * 生成一个值为指定数组的列向量。
 	 * @param vals 指定的值数组。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 * @throws IllegalArgumentException 数组的大小小于1。
 	 */
 	public RankVector(double[] vals) {
-		Objects.requireNonNull(vals, )
+		Objects.requireNonNull(vals, DwarfUtil.getStringField(StringFieldKey.RankVector_0));
+		if(vals.length ==0){
+			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.RankVector_1));
+		}
+		
+		this.vals = vals;
 	}
 	
 	/*
@@ -44,22 +49,35 @@ public class RankVector extends AbstractDMath implements MatArray{
 		return 1;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dutil.math.linalge.MatArray#valueableAt(int, int)
+	 */
 	@Override
 	public double valueableAt(int row, int rank) {
-		// TODO Auto-generated method stub
-		return 0;
+		LinalgeUtil.requrieRowInBound(this, row);
+		LinalgeUtil.requireRankInBound(this, rank);
+		return vals[row];
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dutil.math.linalge.MatArray#rowVectorAt(int)
+	 */
 	@Override
 	public RowVector rowVectorAt(int row) {
-		// TODO Auto-generated method stub
-		return null;
+		LinalgeUtil.requrieRowInBound(this, row);
+		return new RowVector(new double[]{vals[row]});
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dutil.math.linalge.MatArray#rankVectorAt(int)
+	 */
 	@Override
 	public RankVector rankVectorAt(int rank) {
-		// TODO Auto-generated method stub
-		return null;
+		LinalgeUtil.requireRankInBound(this, rank);
+		return this;
 	}
 
 	/*
@@ -68,7 +86,7 @@ public class RankVector extends AbstractDMath implements MatArray{
 	 */
 	@Override
 	public String getMathName() {
-		return DwarfFunction.getStringField(StringFieldKey.Linalge_RankVector);
+		return DwarfUtil.getStringField(StringFieldKey.Linalge_RankVector);
 	}
 
 	/*

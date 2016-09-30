@@ -4,7 +4,6 @@ import java.util.Objects;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
-import com.dwarfeng.dutil.math.algebra.Valueable;
 
 /**
  * 值接口。
@@ -12,7 +11,13 @@ import com.dwarfeng.dutil.math.algebra.Valueable;
  * @author DwArFeng
  * @since 1.8
  */
-public interface FValue extends NumBased, Valueable {
+public interface FValueable extends FNumBased{
+	
+	/**
+	 * 返回对象的值。
+	 * @return 对象的值。
+	 */
+	public double value();
 	
 	/**
 	 * 与指定的值对象相加。
@@ -21,7 +26,7 @@ public interface FValue extends NumBased, Valueable {
 	 * @return 该值对象与指定值对象相加得到的值对象。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public default FValue add(FValue val){
+	public default FValueable add(FValueable val){
 		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FValue_0));
 		return new QuickFValue(val.value() + value());
 	}
@@ -33,7 +38,7 @@ public interface FValue extends NumBased, Valueable {
 	 * @return 该值对象与指定值对象相减得到的值对象。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public default FValue minus(FValue val){
+	public default FValueable minus(FValueable val){
 		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FValue_0));
 		return new QuickFValue(val.value() - value());
 	}
@@ -45,7 +50,7 @@ public interface FValue extends NumBased, Valueable {
 	 * @return 该值对象与指定值对象相乘得到的值对象。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public default FValue mul(FValue val){
+	public default FValueable mul(FValueable val){
 		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FValue_0));
 		return new QuickFValue(val.value() * value());
 	}
@@ -58,7 +63,7 @@ public interface FValue extends NumBased, Valueable {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws ArithmeticException 当val为0是抛出异常。
 	 */
-	public default FValue div(FValue val){
+	public default FValueable div(FValueable val){
 		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FValue_0));
 		return new QuickFValue(val.value() / value());
 	}

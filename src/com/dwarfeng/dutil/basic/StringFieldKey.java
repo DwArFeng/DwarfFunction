@@ -9,14 +9,19 @@ public enum StringFieldKey{
 	
 	/**欢迎文本字段*/
 	WelcomeString,
+	
 	/**DuplicateIdException类第0号文本字段*/
 	DuplicateIdException_0 ,
+	
 	/**ToStringComparator类第0号文本字段*/
 	ToStringComparator_0,
+	
 	/**JAdjustableBorderPanel类第0号文本字段*/
 	JAdjustableBorderPanel_0,
+	
 	/**NadeRuner类第0号文本字段*/
 	NadeRuner_0,
+	
 	/**MvcProgram类第0号文本字段*/
 	MvcProgram_0,
 	/**MvcProgram类第1号文本字段*/
@@ -137,10 +142,10 @@ public enum StringFieldKey{
 	/**FRankVector类第5号文本字段*/
 	FRankVector_5,
 	
-	/**FLinalgeUtil类第0号文本字段*/
-	FLinalgeUtil_0,
-	/**FLinalgeUtil类第1号文本字段*/
-	FLinalgeUtil_1,
+	/**LinalgeUtil类第0号文本字段*/
+	LinalgeUtil_0,
+	/**LinalgeUtil类第1号文本字段*/
+	LinalgeUtil_1,
 	
 	/**FValue类第0号文本字段*/
 	FValue_0,
@@ -151,4 +156,26 @@ public enum StringFieldKey{
 	FMatrix_1,
 	/**FMatrix类第2号文本字段*/
 	FMatrix_2,
+	/**FMatrix类第3号文本字段*/
+	FMatrix_3,
+	/**FMatrix类第4号文本字段*/
+	FMatrix_4,
+	
+	/**RankVecotr类第0号文本字段*/
+	RankVector_0,
+	/**RankVecotr类第1号文本字段*/
+	RankVector_1,
+	
+	/**RowVecotr类第0号文本字段*/
+	RowVector_0,
+	/**RowVecotr类第1号文本字段*/
+	RowVector_1,
+	/**RowVecotr类第2号文本字段*/
+	RowVector_2,
+	/**RowVecotr类第3号文本字段*/
+	RowVector_3,
+	/**RowVecotr类第4号文本字段*/
+	RowVector_4,
+	/**RowVecotr类第5号文本字段*/
+	RowVector_5,
 }

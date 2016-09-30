@@ -22,7 +22,7 @@ public final class FAlgebraUtil {
 	 * @return 转换成的double数组。
 	 * @throws NullPointerException 入口数组为 <code>null</code> 或者其中含有 <code>null</code>元素。
 	 */
-	public static double[] takeValues(FValue[] vals){
+	public static double[] takeValues(FValueable[] vals){
 		ArrayUtil.requireNotContainsNull(vals, DwarfUtil.getStringField(StringFieldKey.FAlgebraUtil_0));
 		double[] dous = new double[vals.length];
 		for(int i = 0 ; i < dous.length ; i ++){
@@ -36,7 +36,7 @@ public final class FAlgebraUtil {
 	 * @return 转换成的多态值接口。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public static MusValueable toMusValueable(FValue val){
+	public static MusValueable toMusValueable(FValueable val){
 		return new QuickMusValueable(val.value());
 	}
 	
@@ -47,10 +47,10 @@ public final class FAlgebraUtil {
 	 * @return 值数组。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public static FValue[] toValueables(double[] ds){
+	public static FValueable[] toValueables(double[] ds){
 		Objects.requireNonNull(ds, DwarfUtil.getStringField(StringFieldKey.FAlgebraUtil_1));
 		
-		FValue[] valueables = new FValue[ds.length];
+		FValueable[] valueables = new FValueable[ds.length];
 		for(int i = 0 ; i < ds.length ; i ++){
 			valueables[i] = new QuickFValue(ds[i]);
 		}

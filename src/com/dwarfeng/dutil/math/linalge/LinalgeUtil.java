@@ -1,4 +1,4 @@
-package com.dwarfeng.dutil.foth.linalge;
+package com.dwarfeng.dutil.math.linalge;
 
 import java.util.Objects;
 
@@ -12,7 +12,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
  * @author DwArFeng
  * @since 1.8
  */
-public final class FLinalgeUtil {
+public final class LinalgeUtil {
 
 	
 	/**
@@ -23,9 +23,9 @@ public final class FLinalgeUtil {
 	 * @return 两个矩阵阵列能否相乘，<code>true</code>为可以相乘。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public static boolean checkForMutiply(FMatArray m1, FMatArray m2){
-		Objects.requireNonNull(m1, DwarfUtil.getStringField(StringFieldKey.FLinalgeUtil_0));
-		Objects.requireNonNull(m2, DwarfUtil.getStringField(StringFieldKey.FLinalgeUtil_0));
+	public static boolean checkForMutiply(MatArray m1, MatArray m2){
+		Objects.requireNonNull(m1, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_0));
+		Objects.requireNonNull(m2, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_0));
 		
 		return m1.rows() == m2.ranks();
 	}
@@ -38,9 +38,9 @@ public final class FLinalgeUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 两个矩阵无法相乘。
 	 */
-	public static void requireForMutiply(FMatArray m1, FMatArray m2){
-		Objects.requireNonNull(m1, DwarfUtil.getStringField(StringFieldKey.FLinalgeUtil_0));
-		Objects.requireNonNull(m2, DwarfUtil.getStringField(StringFieldKey.FLinalgeUtil_0));
+	public static void requireForMutiply(MatArray m1, MatArray m2){
+		Objects.requireNonNull(m1, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_0));
+		Objects.requireNonNull(m2, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_0));
 		
 		if(m1.rows() != m2.ranks()) throw new IllegalArgumentException();
 	}
@@ -54,9 +54,9 @@ public final class FLinalgeUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 两个矩阵无法相乘。
 	 */
-	public static void requireForMutiply(FMatArray m1, FMatArray m2, String message){
-		Objects.requireNonNull(m1, DwarfUtil.getStringField(StringFieldKey.FLinalgeUtil_0));
-		Objects.requireNonNull(m2, DwarfUtil.getStringField(StringFieldKey.FLinalgeUtil_0));
+	public static void requireForMutiply(MatArray m1, MatArray m2, String message){
+		Objects.requireNonNull(m1, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_0));
+		Objects.requireNonNull(m2, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_0));
 		
 		if(m1.rows() != m2.ranks()) throw new IllegalArgumentException(message);
 	}
@@ -71,8 +71,8 @@ public final class FLinalgeUtil {
 	 * @throws NullPointerException 入口参数<code>mat</code>为 <code>null</code>。
 	 * @throws IllegalArgumentException 指定的矩阵行列数不符合要求。
 	 */
-	public static void requireSpecificSize(FMatArray mat, int row, int rank){
-		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.FLinalgeUtil_1));
+	public static void requireSpecificSize(MatArray mat, int row, int rank){
+		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_1));
 		
 		if(mat.rows() != row || mat.ranks() != rank){
 			throw new IllegalArgumentException();
@@ -90,8 +90,8 @@ public final class FLinalgeUtil {
 	 * @throws NullPointerException 入口参数<code>mat</code>为 <code>null</code>。
 	 * @throws IllegalArgumentException 指定的矩阵行列数不符合要求。
 	 */
-	public static void requireSpecificSize(FMatArray mat, int row, int rank, String message){
-		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.FLinalgeUtil_1));
+	public static void requireSpecificSize(MatArray mat, int row, int rank, String message){
+		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_1));
 		
 		if(mat.rows() != row || mat.ranks() != rank){
 			throw new IllegalArgumentException(message);
@@ -108,8 +108,8 @@ public final class FLinalgeUtil {
 	 * @throws NullPointerException 指定的矩阵为 <code>null</code>。
 	 * @throws IndexOutOfBoundsException 指定的行号越界。
 	 */
-	public static void requrieRowInBound(FMatArray mat, int row){
-		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.FLinalgeUtil_1));
+	public static void requrieRowInBound(MatArray mat, int row){
+		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_1));
 
 		if(row < 0 || row >= mat.rows()){
 			throw new IndexOutOfBoundsException();
@@ -125,8 +125,8 @@ public final class FLinalgeUtil {
 	 * @throws NullPointerException 指定的矩阵为 <code>null</code>。
 	 * @throws IndexOutOfBoundsException 指定的行号越界。
 	 */
-	public static void requrieRowInBound(FMatArray mat, int row, String message){
-		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.FLinalgeUtil_1));
+	public static void requrieRowInBound(MatArray mat, int row, String message){
+		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_1));
 
 		if(row < 0 || row >= mat.rows()){
 			throw new IndexOutOfBoundsException(message);
@@ -141,8 +141,8 @@ public final class FLinalgeUtil {
 	 * @throws NullPointerException 指定的矩阵为 <code>null</code>。
 	 * @throws IndexOutOfBoundsException 指定的列号越界。
 	 */
-	public static void requireRankInBound(FMatArray mat, int rank){
-		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.FLinalgeUtil_1));
+	public static void requireRankInBound(MatArray mat, int rank){
+		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_1));
 
 		if(rank < 0 || rank >= mat.ranks()){
 			throw new IndexOutOfBoundsException();
@@ -158,8 +158,8 @@ public final class FLinalgeUtil {
 	 * @throws NullPointerException 指定的矩阵为 <code>null</code>。
 	 * @throws IndexOutOfBoundsException 指定的列号越界。
 	 */
-	public static void requireRankInBound(FMatArray mat, int rank, String message){
-		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.FLinalgeUtil_1));
+	public static void requireRankInBound(MatArray mat, int rank, String message){
+		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_1));
 
 		if(rank < 0 || rank >= mat.ranks()){
 			throw new IndexOutOfBoundsException(message);
@@ -167,6 +167,6 @@ public final class FLinalgeUtil {
 	}
 	
 	//禁止外部实例化。
-	private FLinalgeUtil() {}
+	private LinalgeUtil() {}
 
 }
