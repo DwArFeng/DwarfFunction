@@ -27,7 +27,7 @@ public final class LinalgeUtil {
 		Objects.requireNonNull(m1, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_0));
 		Objects.requireNonNull(m2, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_0));
 		
-		return m1.rows() == m2.ranks();
+		return m1.rows() == m2.columns();
 	}
 	
 	/**
@@ -42,7 +42,7 @@ public final class LinalgeUtil {
 		Objects.requireNonNull(m1, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_0));
 		Objects.requireNonNull(m2, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_0));
 		
-		if(m1.rows() != m2.ranks()) throw new IllegalArgumentException();
+		if(m1.rows() != m2.columns()) throw new IllegalArgumentException();
 	}
 	
 	/**
@@ -58,7 +58,7 @@ public final class LinalgeUtil {
 		Objects.requireNonNull(m1, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_0));
 		Objects.requireNonNull(m2, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_0));
 		
-		if(m1.rows() != m2.ranks()) throw new IllegalArgumentException(message);
+		if(m1.rows() != m2.columns()) throw new IllegalArgumentException(message);
 	}
 	
 	/**
@@ -67,14 +67,14 @@ public final class LinalgeUtil {
 	 * 如果不是，则抛出 {@link IllegalArgumentException}。
 	 * @param mat 指定的矩阵。
 	 * @param row 指定的行数。
-	 * @param rank 指定的列数。
+	 * @param column 指定的列数。
 	 * @throws NullPointerException 入口参数<code>mat</code>为 <code>null</code>。
 	 * @throws IllegalArgumentException 指定的矩阵行列数不符合要求。
 	 */
-	public static void requireSpecificSize(MatArray mat, int row, int rank){
+	public static void requireSpecificSize(MatArray mat, int row, int column){
 		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_1));
 		
-		if(mat.rows() != row || mat.ranks() != rank){
+		if(mat.rows() != row || mat.columns() != column){
 			throw new IllegalArgumentException();
 		}
 	}
@@ -85,15 +85,15 @@ public final class LinalgeUtil {
 	 * 如果不是，则抛出具有指定描述文本的 {@link IllegalArgumentException}。
 	 * @param mat 指定的矩阵。
 	 * @param row 指定的行数。
-	 * @param rank 指定的列数。
+	 * @param column 指定的列数。
 	 * @param message 指定的描述文本。
 	 * @throws NullPointerException 入口参数<code>mat</code>为 <code>null</code>。
 	 * @throws IllegalArgumentException 指定的矩阵行列数不符合要求。
 	 */
-	public static void requireSpecificSize(MatArray mat, int row, int rank, String message){
+	public static void requireSpecificSize(MatArray mat, int row, int column, String message){
 		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_1));
 		
-		if(mat.rows() != row || mat.ranks() != rank){
+		if(mat.rows() != row || mat.columns() != column){
 			throw new IllegalArgumentException(message);
 		}
 	}
@@ -137,14 +137,14 @@ public final class LinalgeUtil {
 	 * 要求矩阵的列有没有越界。
 	 * <p> 如果越界，则抛出 {@link IndexOutOfBoundsException}
 	 * @param mat 指定的矩阵。
-	 * @param rank 列号。
+	 * @param column 列号。
 	 * @throws NullPointerException 指定的矩阵为 <code>null</code>。
 	 * @throws IndexOutOfBoundsException 指定的列号越界。
 	 */
-	public static void requireRankInBound(MatArray mat, int rank){
+	public static void requireColumnInBound(MatArray mat, int column){
 		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_1));
 
-		if(rank < 0 || rank >= mat.ranks()){
+		if(column < 0 || column >= mat.columns()){
 			throw new IndexOutOfBoundsException();
 		}
 	}
@@ -153,15 +153,15 @@ public final class LinalgeUtil {
 	 * 要求矩阵的列有没有越界。
 	 * <p> 如果越界，则抛出具有指定描述文本的 {@link IndexOutOfBoundsException}
 	 * @param mat 指定的矩阵。
-	 * @param rank 列号。
+	 * @param column 列号。
 	 * @param message 指定的描述文本。
 	 * @throws NullPointerException 指定的矩阵为 <code>null</code>。
 	 * @throws IndexOutOfBoundsException 指定的列号越界。
 	 */
-	public static void requireRankInBound(MatArray mat, int rank, String message){
+	public static void requireColumnInBound(MatArray mat, int column, String message){
 		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_1));
 
-		if(rank < 0 || rank >= mat.ranks()){
+		if(column < 0 || column >= mat.columns()){
 			throw new IndexOutOfBoundsException(message);
 		}
 	}

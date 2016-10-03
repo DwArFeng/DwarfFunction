@@ -4,7 +4,7 @@ import com.dwarfeng.dutil.foth.algebra.FValueable;
 import com.dwarfeng.dutil.foth.algebra.FNumBased;
 import com.dwarfeng.dutil.math.DMath;
 import com.dwarfeng.dutil.math.linalge.MatArray;
-import com.dwarfeng.dutil.math.linalge.RankVector;
+import com.dwarfeng.dutil.math.linalge.ColVector;
 import com.dwarfeng.dutil.math.linalge.RowVector;
 
 /**
@@ -21,8 +21,8 @@ public interface FMatArray extends DMath, FNumBased, MatArray{
 	 * @see com.dwarfeng.dutil.math.linalge.MatArray#valueableAt(int, int)
 	 */
 	@Override
-	public default double valueableAt(int row, int rank){
-		return fValueableAt(row, rank).value();
+	public default double valueableAt(int row, int column){
+		return fValueableAt(row, column).value();
 	}
 	
 	/*
@@ -31,7 +31,7 @@ public interface FMatArray extends DMath, FNumBased, MatArray{
 	 */
 	@Override
 	public default RowVector rowVectorAt(int row){
-		double[] ds = new double[ranks()];
+		double[] ds = new double[columns()];
 		for(int i = 0 ; i < ds.length; i ++){
 			ds[i] = valueableAt(row, i);
 		}
@@ -40,24 +40,24 @@ public interface FMatArray extends DMath, FNumBased, MatArray{
 	
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.math.linalge.MatArray#rankVectorAt(int)
+	 * @see com.dwarfeng.dutil.math.linalge.MatArray#colVectorAt(int)
 	 */
 	@Override
-	public default RankVector rankVectorAt(int rank) {
+	public default ColVector colVectorAt(int column) {
 		double[] ds = new double[rows()];
 		for(int i = 0 ; i < ds.length; i ++){
-			ds[i] = valueableAt(i, rank);
+			ds[i] = valueableAt(i, column);
 		}
-		return new RankVector(ds);	
+		return new ColVector(ds);	
 	}
 	
 	/**
 	 * 返回指定的行列出所对应的元素。
 	 * @param row 指定的行。
-	 * @param rank 指定的列。
+	 * @param column 指定的列。
 	 * @return 指定的行列处对应的元素。
 	 */
-	public FValueable fValueableAt(int row, int rank);
+	public FValueable fValueableAt(int row, int column);
 	
 	/**
 	 * 返回指定行对应的行向量。
@@ -68,11 +68,11 @@ public interface FMatArray extends DMath, FNumBased, MatArray{
 	public FRowVector fRowVectorAt(int row);
 	/**
 	 * 返回指定列对应的列向量。
-	 * @param rank 指定的列。
+	 * @param column 指定的列。
 	 * @return 指定的列所对应的列向量。
 	 * @throws 指定的列号超界。
 	 */
-	public FRankVector fRankVectorAt(int rank);
+	public FColVector fColVectorAt(int column);
 	
 	
 	

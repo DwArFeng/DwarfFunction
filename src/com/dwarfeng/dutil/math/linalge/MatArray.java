@@ -21,16 +21,16 @@ public interface MatArray extends DMath{
 	 * 返回该阵列的列数。
 	 * @return 该阵列的列数。
 	 */
-	public int ranks();
+	public int columns();
 	
 	/**
 	 * 返回指定的行列出所对应的元素。
 	 * @param row 指定的行。
-	 * @param rank 指定的列。
+	 * @param column 指定的列。
 	 * @return 指定的行列处对应的元素。
 	 * @throws IndexOutOfBoundsException 行列号超界。
 	 */
-	public double valueableAt(int row, int rank);
+	public double valueableAt(int row, int column);
 	
 	/**
 	 * 返回指定行对应的行向量。
@@ -41,11 +41,11 @@ public interface MatArray extends DMath{
 	public RowVector rowVectorAt(int row);
 	/**
 	 * 返回指定列对应的列向量。
-	 * @param rank 指定的列。
+	 * @param column 指定的列。
 	 * @return 指定的列所对应的列向量。
 	 * @throws IndexOutOfBoundsException 指定的列号超界。
 	 */
-	public RankVector rankVectorAt(int rank);
+	public ColVector colVectorAt(int column);
 	
 	
 	

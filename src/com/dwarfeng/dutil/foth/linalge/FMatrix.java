@@ -93,27 +93,27 @@ public class FMatrix extends AbstractDMath implements FMatArray{
 		/**
 		 * 生成一个具有指定行列的双精度矩阵构造器。
 		 * @param row 指定的行。
-		 * @param rank 指定的列。
+		 * @param column 指定的列。
 		 * @throws IllegalArgumentException 指定的行或者列小于1。
 		 */
-		public DoubleBuilder(int row, int rank) {
-			if(row < 1 || rank < 1){
+		public DoubleBuilder(int row, int column) {
+			if(row < 1 || column < 1){
 				throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.FMatrix_2));
 			}
-			this.vals = new double[row][rank];
+			this.vals = new double[row][column];
 		}
 		
 		/**
 		 * 为指定行列处的位置赋值。
 		 * @param row 指定的行。
-		 * @param rank 指定的列。
+		 * @param column 指定的列。
 		 * @param val 指定的值。
 		 * @return 构造器自身。
 		 * @throws IndexOutOfBoundsException 行列号超界。
 		 */
-		public DoubleBuilder setVal(int row, int rank, double val){
-			
-			vals[row][rank] = val;
+		public DoubleBuilder setVal(int row, int column, double val){
+			//TODO FMatrix.setVal();
+			vals[row][column] = val;
 			return this;
 		}
 		
@@ -150,16 +150,16 @@ public class FMatrix extends AbstractDMath implements FMatArray{
 		/**
 		 * 构造一个具有指定行列数的值对象矩阵构造器。
 		 * @param row 指定的行。
-		 * @param rank 指定的列。
+		 * @param column 指定的列。
 		 * @throws IllegalArgumentException 指定的行或者列小于1。
 		 */
-		public ValueableBuilder(int row, int rank) {
-			if(row < 1 || rank < 1){
+		public ValueableBuilder(int row, int column) {
+			if(row < 1 || column < 1){
 				throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.FMatrix_2));
 			}
 			
 			builder = new FVariableSpace.Builder();
-			this.vals = new FValueable[rank][row];
+			this.vals = new FValueable[column][row];
 			
 			for(int i = 0 ; i < vals.length ; i ++){
 				for(int j = 0 ; j < vals[0].length ; j ++){
@@ -171,17 +171,17 @@ public class FMatrix extends AbstractDMath implements FMatArray{
 		/**
 		 * 为指定行列处的位置赋值。
 		 * @param row 指定的行。
-		 * @param rank 指定的列。
+		 * @param column 指定的列。
 		 * @param val 指定的值。
 		 * @return 构造器自身。
 		 * @throws IndexOutOfBoundsException 行列号超界。
 		 */
-		public ValueableBuilder setVal(int row, int rank, FValueable val){
+		public ValueableBuilder setVal(int row, int column, FValueable val){
 			
-			FValueable value = vals[row][rank];
+			FValueable value = vals[row][column];
 			this.builder.remove(value);
 			this.builder.add(val);
-			this.vals[row][rank] = val;
+			this.vals[row][column] = val;
 			
 			return this;
 		}
@@ -248,10 +248,10 @@ public class FMatrix extends AbstractDMath implements FMatArray{
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dmath.linalge.MatArray#ranks()
+	 * @see com.dwarfeng.dutil.math.linalge.MatArray#columns()
 	 */
 	@Override
-	public int ranks() {
+	public int columns() {
 		return vals[0].length;
 	}
 
@@ -260,10 +260,10 @@ public class FMatrix extends AbstractDMath implements FMatArray{
 	 * @see com.dwarfeng.dfoth.linalge.FMatArray#fValueAt(int, int)
 	 */
 	@Override
-	public FValueable fValueableAt(int row, int rank) {
+	public FValueable fValueableAt(int row, int column) {
 		LinalgeUtil.requrieRowInBound(this, row, DwarfUtil.getStringField(StringFieldKey.FMatrix_3));
-		LinalgeUtil.requireRankInBound(this, rank, DwarfUtil.getStringField(StringFieldKey.FMatrix_4));
-		return vals[row][rank];
+		LinalgeUtil.requireColumnInBound(this, column, DwarfUtil.getStringField(StringFieldKey.FMatrix_4));
+		return vals[row][column];
 	}
 
 	/*
@@ -278,17 +278,17 @@ public class FMatrix extends AbstractDMath implements FMatArray{
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dmath.linalge.MatArray#getRankVector(int)
+	 * @see com.dwarfeng.dutil.foth.linalge.FMatArray#fColVectorAt(int)
 	 */
 	@Override
-	public FRankVector fRankVectorAt(int rank) {
-		LinalgeUtil.requireRankInBound(this, rank, DwarfUtil.getStringField(StringFieldKey.FMatrix_4));
+	public FColVector fColVectorAt(int column) {
+		LinalgeUtil.requireColumnInBound(this, column, DwarfUtil.getStringField(StringFieldKey.FMatrix_4));
 		
 		FValueable[] valueables = new FValueable[rows()];
 		for(int i = 0 ; i < valueables.length ; i ++){
-			valueables[i] = vals[i][rank];
+			valueables[i] = vals[i][column];
 		}
-		return new FRankVector(valueables);
+		return new FColVector(valueables);
 	}
 
 }

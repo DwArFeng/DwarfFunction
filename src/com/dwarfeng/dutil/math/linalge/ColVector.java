@@ -11,7 +11,7 @@ import com.dwarfeng.dutil.math.AbstractDMath;
  * @author DwArFeng
  * @since 1.8
  */
-public class RankVector extends AbstractDMath implements MatArray{
+public class ColVector extends AbstractDMath implements MatArray{
 
 	/**存储列向量的值的数组*/
 	protected final double[] vals;
@@ -22,10 +22,10 @@ public class RankVector extends AbstractDMath implements MatArray{
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 数组的大小小于1。
 	 */
-	public RankVector(double[] vals) {
-		Objects.requireNonNull(vals, DwarfUtil.getStringField(StringFieldKey.RankVector_0));
+	public ColVector(double[] vals) {
+		Objects.requireNonNull(vals, DwarfUtil.getStringField(StringFieldKey.ColVector_0));
 		if(vals.length ==0){
-			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.RankVector_1));
+			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.ColVector_1));
 		}
 		
 		this.vals = vals;
@@ -42,10 +42,10 @@ public class RankVector extends AbstractDMath implements MatArray{
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dmath.linalge.MatArray#ranks()
+	 * @see com.dwarfeng.dutil.math.linalge.MatArray#columns()
 	 */
 	@Override
-	public int ranks() {
+	public int columns() {
 		return 1;
 	}
 
@@ -54,9 +54,9 @@ public class RankVector extends AbstractDMath implements MatArray{
 	 * @see com.dwarfeng.dutil.math.linalge.MatArray#valueableAt(int, int)
 	 */
 	@Override
-	public double valueableAt(int row, int rank) {
+	public double valueableAt(int row, int column) {
 		LinalgeUtil.requrieRowInBound(this, row);
-		LinalgeUtil.requireRankInBound(this, rank);
+		LinalgeUtil.requireColumnInBound(this, column);
 		return vals[row];
 	}
 
@@ -72,11 +72,11 @@ public class RankVector extends AbstractDMath implements MatArray{
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.math.linalge.MatArray#rankVectorAt(int)
+	 * @see com.dwarfeng.dutil.math.linalge.MatArray#colVectorAt(int)
 	 */
 	@Override
-	public RankVector rankVectorAt(int rank) {
-		LinalgeUtil.requireRankInBound(this, rank);
+	public ColVector colVectorAt(int column) {
+		LinalgeUtil.requireColumnInBound(this, column);
 		return this;
 	}
 
@@ -86,7 +86,7 @@ public class RankVector extends AbstractDMath implements MatArray{
 	 */
 	@Override
 	public String getMathName() {
-		return DwarfUtil.getStringField(StringFieldKey.Linalge_RankVector);
+		return DwarfUtil.getStringField(StringFieldKey.Linalge_ColVector);
 	}
 
 	/*

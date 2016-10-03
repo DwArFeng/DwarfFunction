@@ -42,10 +42,10 @@ public class RowVector extends AbstractDMath implements MatArray{
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.math.linalge.MatArray#ranks()
+	 * @see com.dwarfeng.dutil.math.linalge.MatArray#columns()
 	 */
 	@Override
-	public int ranks() {
+	public int columns() {
 		return vals.length;
 	}
 
@@ -54,10 +54,10 @@ public class RowVector extends AbstractDMath implements MatArray{
 	 * @see com.dwarfeng.dutil.math.linalge.MatArray#valueableAt(int, int)
 	 */
 	@Override
-	public double valueableAt(int row, int rank) {
+	public double valueableAt(int row, int column) {
 		LinalgeUtil.requrieRowInBound(this, row);
-		LinalgeUtil.requireRankInBound(this, rank);
-		return vals[rank];
+		LinalgeUtil.requireColumnInBound(this, column);
+		return vals[column];
 	}
 
 	/*
@@ -72,12 +72,12 @@ public class RowVector extends AbstractDMath implements MatArray{
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.math.linalge.MatArray#rankVectorAt(int)
+	 * @see com.dwarfeng.dutil.math.linalge.MatArray#colVectorAt(int)
 	 */
 	@Override
-	public RankVector rankVectorAt(int rank) {
-		LinalgeUtil.requrieRowInBound(this, rank);
-		return new RankVector(new double[]{vals[rank]});
+	public ColVector colVectorAt(int column) {
+		LinalgeUtil.requrieRowInBound(this, column);
+		return new ColVector(new double[]{vals[column]});
 	}
 
 	/*
@@ -115,7 +115,7 @@ public class RowVector extends AbstractDMath implements MatArray{
 	 */
 	public RowVector add(RowVector rowVector){
 		Objects.requireNonNull(rowVector, DwarfUtil.getStringField(StringFieldKey.RowVector_2));
-		LinalgeUtil.requireSpecificSize(rowVector, rows(), ranks(), DwarfUtil.getStringField(StringFieldKey.RowVector_3));
+		LinalgeUtil.requireSpecificSize(rowVector, rows(), columns(), DwarfUtil.getStringField(StringFieldKey.RowVector_3));
 		
 		double[] vs = new double[vals.length];
 		for(int i = 0 ; i < vs.length ; i ++){
@@ -134,7 +134,7 @@ public class RowVector extends AbstractDMath implements MatArray{
 	 */
 	public RowVector minus(RowVector rowVector){
 		Objects.requireNonNull(rowVector, DwarfUtil.getStringField(StringFieldKey.RowVector_2));
-		LinalgeUtil.requireSpecificSize(rowVector, rows(), ranks(), DwarfUtil.getStringField(StringFieldKey.RowVector_3));
+		LinalgeUtil.requireSpecificSize(rowVector, rows(), columns(), DwarfUtil.getStringField(StringFieldKey.RowVector_3));
 		
 		double[] vs = new double[vals.length];
 		for(int i = 0 ; i < vs.length ; i ++){
@@ -147,19 +147,19 @@ public class RowVector extends AbstractDMath implements MatArray{
 	 * 该行向量与指定的列向量相乘。
 	 * <p> 注意：列向量必须要能够与该行向量相乘，即列向量的列数要与该行向量的行数相等。
 	 * <p> 注意：该运算是值运算，所得到的结果是结构破坏性的。
-	 * @param rankVector 指定地点列向量。
+	 * @param colVector 指定地点列向量。
 	 * @return 运算后得到的值。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 指定的列向量不能与该行向量相乘。
 	 */
-	public double mul(RankVector rankVector){
-		Objects.requireNonNull(rankVector, DwarfUtil.getStringField(StringFieldKey.RowVector_4));
-		LinalgeUtil.requireForMutiply(this, rankVector, DwarfUtil.getStringField(StringFieldKey.RowVector_5));
+	public double mul(ColVector colVector){
+		Objects.requireNonNull(colVector, DwarfUtil.getStringField(StringFieldKey.RowVector_4));
+		LinalgeUtil.requireForMutiply(this, colVector, DwarfUtil.getStringField(StringFieldKey.RowVector_5));
 		
 		double sum = 0;
-		for(int i = 0 ; i < ranks() ; i ++){
+		for(int i = 0 ; i < columns() ; i ++){
 			double v1 = this.valueableAt(0, i);
-			double v2 = rankVector.valueableAt(i, 0);
+			double v2 = colVector.valueableAt(i, 0);
 			sum = sum + (v1 *v2);
 		}
 		
@@ -185,7 +185,7 @@ public class RowVector extends AbstractDMath implements MatArray{
 	 * <p> 该转置操作不破坏结构。
 	 * @return 转置列向量。
 	 */
-	public RankVector trans(){
-		return new RankVector(vals);
+	public ColVector trans(){
+		return new ColVector(vals);
 	}
 }

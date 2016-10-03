@@ -20,7 +20,7 @@ import com.dwarfeng.dutil.math.linalge.LinalgeUtil;
  * @author DwArFeng
  * @since 1.8
  */
-public class FRankVector extends AbstractDMath implements FMatArray{
+public class FColVector extends AbstractDMath implements FMatArray{
 	
 	protected final FValueable[] vals;
 	protected final FVariableSpace vs;
@@ -32,10 +32,10 @@ public class FRankVector extends AbstractDMath implements FMatArray{
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 元素数组无效。
 	 */
-	public FRankVector(double[] vals) {
-		Objects.requireNonNull(vals, DwarfUtil.getStringField(StringFieldKey.FRankVector_1));
+	public FColVector(double[] vals) {
+		Objects.requireNonNull(vals, DwarfUtil.getStringField(StringFieldKey.FColVector_1));
 		if(vals.length < 1){
-			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.FRankVector_0));
+			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.FColVector_0));
 		}
 		
 		this.vals = FAlgebraUtil.toValueables(vals);
@@ -50,10 +50,10 @@ public class FRankVector extends AbstractDMath implements FMatArray{
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 值接口数组无效。 
 	 */
-	public FRankVector(FValueable[] valueables){
-		ArrayUtil.requireNotContainsNull(valueables, DwarfUtil.getStringField(StringFieldKey.FRankVector_2));
+	public FColVector(FValueable[] valueables){
+		ArrayUtil.requireNotContainsNull(valueables, DwarfUtil.getStringField(StringFieldKey.FColVector_2));
 		if(valueables.length < 1){
-			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.FRankVector_0));
+			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.FColVector_0));
 		}
 		
 		this.vals = valueables;
@@ -89,7 +89,7 @@ public class FRankVector extends AbstractDMath implements FMatArray{
 	 */
 	@Override
 	public String getMathName() {
-		return DwarfUtil.getStringField(StringFieldKey.Linalge_RankVector);
+		return DwarfUtil.getStringField(StringFieldKey.Linalge_ColVector);
 	}
 
 	/*
@@ -103,10 +103,10 @@ public class FRankVector extends AbstractDMath implements FMatArray{
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dmath.linalge.MatArray#ranks()
+	 * @see com.dwarfeng.dutil.math.linalge.MatArray#columns()
 	 */
 	@Override
-	public int ranks() {
+	public int columns() {
 		return 1;
 	}
 	
@@ -121,12 +121,12 @@ public class FRankVector extends AbstractDMath implements FMatArray{
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dmath.linalge.MatArray#getValueable(int, int)
+	 * @see com.dwarfeng.dutil.foth.linalge.FMatArray#fValueableAt(int, int)
 	 */
 	@Override
-	public FValueable fValueableAt(int row, int rank) {
+	public FValueable fValueableAt(int row, int column) {
 		LinalgeUtil.requrieRowInBound(this, row);
-		LinalgeUtil.requireRankInBound(this, rank);
+		LinalgeUtil.requireColumnInBound(this, column);
 		return vals[row];
 	}
 
@@ -142,50 +142,50 @@ public class FRankVector extends AbstractDMath implements FMatArray{
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dmath.linalge.MatArray#getRankVector(int)
+	 * @see com.dwarfeng.dutil.foth.linalge.FMatArray#fColVectorAt(int)
 	 */
 	@Override
-	public FRankVector fRankVectorAt(int rank) {
-		LinalgeUtil.requireRankInBound(this, rank);
+	public FColVector fColVectorAt(int column) {
+		LinalgeUtil.requireColumnInBound(this, column);
 		return this;
 	}
 	
 	/**
 	 * 该列向量与另一个列向量相加。
 	 * <p> 注意，该运算是值运算，所得到的结果是结构破坏性的。
-	 * @param rankVector 指定的列向量。
+	 * @param colVector 指定的列向量。
 	 * @return 运算得出的新的列向量。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 入口列向量尺寸不匹配。
 	 */
-	public FRankVector add(FRankVector rankVector){
-		Objects.requireNonNull(rankVector, DwarfUtil.getStringField(StringFieldKey.FRankVector_3));
-		LinalgeUtil.requireSpecificSize(rankVector, rows(), ranks(), DwarfUtil.getStringField(StringFieldKey.FRankVector_4));
+	public FColVector add(FColVector colVector){
+		Objects.requireNonNull(colVector, DwarfUtil.getStringField(StringFieldKey.FColVector_3));
+		LinalgeUtil.requireSpecificSize(colVector, rows(), columns(), DwarfUtil.getStringField(StringFieldKey.FColVector_4));
 
 		FValueable[] vs = new FValueable[vals.length];
 		for(int i = 0 ; i < vs.length ; i ++){
-			vs[i] = vals[i].add(rankVector.vals[i]);
+			vs[i] = vals[i].add(colVector.vals[i]);
 		}
-		return new FRankVector(vs);
+		return new FColVector(vs);
 	}
 	
 	/**
 	 * 该列向量与另一个列向量相减。
 	 * <p> 注意，该运算是值运算，所得到的结果是结构破坏性的。
-	 * @param rankVector 指定的列向量。
+	 * @param colVector 指定的列向量。
 	 * @return 运算得出的新的列向量。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 入口列向量尺寸不匹配。
 	 */
-	public FRankVector minus(FRankVector rankVector){
-		Objects.requireNonNull(rankVector, DwarfUtil.getStringField(StringFieldKey.FRankVector_3));
-		LinalgeUtil.requireSpecificSize(rankVector, rows(), ranks(), DwarfUtil.getStringField(StringFieldKey.FRankVector_4));
+	public FColVector minus(FColVector colVector){
+		Objects.requireNonNull(colVector, DwarfUtil.getStringField(StringFieldKey.FColVector_3));
+		LinalgeUtil.requireSpecificSize(colVector, rows(), columns(), DwarfUtil.getStringField(StringFieldKey.FColVector_4));
 
 		FValueable[] vs = new FValueable[vals.length];
 		for(int i = 0 ; i < vs.length ; i ++){
-			vs[i] = vals[i].minus(rankVector.vals[i]);
+			vs[i] = vals[i].minus(colVector.vals[i]);
 		}
-		return new FRankVector(vs);
+		return new FColVector(vs);
 	}
 	
 	/**
@@ -195,14 +195,14 @@ public class FRankVector extends AbstractDMath implements FMatArray{
 	 * @return 指定的值域该列向量相乘得到的列向量。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public FRankVector mul(FValueable val){
-		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FRankVector_5));
+	public FColVector mul(FValueable val){
+		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FColVector_5));
 		
 		FValueable[] vs = new FValueable[vals.length];
 		for(int i = 0 ; i < vs.length ; i ++){
 			vs[i] = fValueableAt(i, 0).mul(val);
 		}
-		return new FRankVector(vs);
+		return new FColVector(vs);
 	}
 	
 	/**
@@ -211,7 +211,7 @@ public class FRankVector extends AbstractDMath implements FMatArray{
 	 * @param d 指定的值。
 	 * @return 指定的值域该列向量相处得到的列向量。
 	 */
-	public FRankVector mul(double d){
+	public FColVector mul(double d){
 		return mul(new QuickFValue(d));
 	}
 	

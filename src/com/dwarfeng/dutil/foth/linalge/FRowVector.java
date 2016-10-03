@@ -99,13 +99,13 @@ public class FRowVector extends AbstractDMath implements FMatArray{
 	public FVariableSpace variableSpace() {
 		return vs;
 	}
-
+	
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dmath.linalge.MatArray#ranks()
+	 * @see com.dwarfeng.dutil.math.linalge.MatArray#columns()
 	 */
 	@Override
-	public int ranks() {
+	public int columns() {
 		return vals.length;
 	}
 	
@@ -123,10 +123,10 @@ public class FRowVector extends AbstractDMath implements FMatArray{
 	 * @see com.dwarfeng.dmath.linalge.MatArray#getValueable(int, int)
 	 */
 	@Override
-	public FValueable fValueableAt(int row, int rank) {
+	public FValueable fValueableAt(int row, int column) {
 		LinalgeUtil.requrieRowInBound(this, row);
-		LinalgeUtil.requireRankInBound(this, rank);
-		return vals[rank];
+		LinalgeUtil.requireColumnInBound(this, column);
+		return vals[column];
 	}
 
 	/*
@@ -141,12 +141,12 @@ public class FRowVector extends AbstractDMath implements FMatArray{
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dmath.linalge.MatArray#getRankVector(int)
+	 * @see com.dwarfeng.dutil.foth.linalge.FMatArray#fColVectorAt(int)
 	 */
 	@Override
-	public FRankVector fRankVectorAt(int rank) {
-		LinalgeUtil.requrieRowInBound(this, rank);
-		return new FRankVector(new FValueable[]{vals[rank]});
+	public FColVector fColVectorAt(int column) {
+		LinalgeUtil.requrieRowInBound(this, column);
+		return new FColVector(new FValueable[]{vals[column]});
 	}
 	
 	/**
@@ -159,7 +159,7 @@ public class FRowVector extends AbstractDMath implements FMatArray{
 	 */
 	public FRowVector add(FRowVector rowVector){
 		Objects.requireNonNull(rowVector, DwarfUtil.getStringField(StringFieldKey.FRowVector_3));
-		LinalgeUtil.requireSpecificSize(rowVector, rows(), ranks(), DwarfUtil.getStringField(StringFieldKey.FRowVector_5));
+		LinalgeUtil.requireSpecificSize(rowVector, rows(), columns(), DwarfUtil.getStringField(StringFieldKey.FRowVector_5));
 		
 		FValueable vs[] = new FValueable[vals.length];
 		for(int i = 0 ; i < vs.length ; i ++){
@@ -178,7 +178,7 @@ public class FRowVector extends AbstractDMath implements FMatArray{
 	 */
 	public FRowVector minus(FRowVector rowVector){
 		Objects.requireNonNull(rowVector, DwarfUtil.getStringField(StringFieldKey.FRowVector_3));
-		LinalgeUtil.requireSpecificSize(rowVector, rows(), ranks(), DwarfUtil.getStringField(StringFieldKey.FRowVector_5));
+		LinalgeUtil.requireSpecificSize(rowVector, rows(), columns(), DwarfUtil.getStringField(StringFieldKey.FRowVector_5));
 		
 		FValueable vs[] = new FValueable[vals.length];
 		for(int i = 0 ; i < vs.length ; i ++){
@@ -191,19 +191,19 @@ public class FRowVector extends AbstractDMath implements FMatArray{
 	 * 该行向量与指定的列向量相乘。
 	 * <p> 注意：列向量必须要能够与该行向量相乘，即列向量的列数要与该行向量的行数相等。
 	 * <p> 注意：该运算是值运算，所得到的结果是结构破坏性的。
-	 * @param rankVector 指定地点列向量。
+	 * @param colVector 指定地点列向量。
 	 * @return 运算后得到的值。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 指定的列向量不能与该行向量相乘。
 	 */
-	public FValueable mul(FRankVector rankVector){
-		Objects.requireNonNull(rankVector, DwarfUtil.getStringField(StringFieldKey.FRowVector_4));
-		LinalgeUtil.requireForMutiply(this, rankVector, DwarfUtil.getStringField(StringFieldKey.FRowVector_6));
+	public FValueable mul(FColVector colVector){
+		Objects.requireNonNull(colVector, DwarfUtil.getStringField(StringFieldKey.FRowVector_4));
+		LinalgeUtil.requireForMutiply(this, colVector, DwarfUtil.getStringField(StringFieldKey.FRowVector_6));
 		
 		FValueable sum = QuickFValue.ZERO;
-		for(int i = 0 ; i < ranks() ; i ++){
+		for(int i = 0 ; i < columns() ; i ++){
 			FValueable v1 = this.fValueableAt(0, i);
-			FValueable v2 = rankVector.fValueableAt(i, 0);
+			FValueable v2 = colVector.fValueableAt(i, 0);
 			sum = sum.add(v1.mul(v2));
 		}
 		
@@ -242,8 +242,8 @@ public class FRowVector extends AbstractDMath implements FMatArray{
 	 * <p> 该转置操作不破坏结构。
 	 * @return 转置列向量。
 	 */
-	public FRankVector trans(){
-		return new FRankVector(vals);
+	public FColVector trans(){
+		return new FColVector(vals);
 	}
 	
 }

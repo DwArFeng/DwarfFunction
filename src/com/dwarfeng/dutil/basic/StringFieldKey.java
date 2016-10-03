@@ -67,8 +67,8 @@ public enum StringFieldKey{
 	
 	/**Linalge包RowVector字段*/
 	Linalge_RowVector,
-	/**Linalge包RankVector字段*/
-	Linalge_RankVector,
+	/**Linalge包ColVector字段*/
+	Linalge_ColVector,
 	/**Linalge包Matrix字段*/
 	Linalge_Matrix,
 	
@@ -129,18 +129,18 @@ public enum StringFieldKey{
 	/**FRowVector类第7号文本字段*/
 	FRowVector_7,
 	
-	/**FRankVector类第0号文本字段*/
-	FRankVector_0,
-	/**FRankVector类第1号文本字段*/
-	FRankVector_1,
-	/**FRankVector类第2号文本字段*/
-	FRankVector_2,
-	/**FRankVector类第3号文本字段*/
-	FRankVector_3,
-	/**FRankVector类第4号文本字段*/
-	FRankVector_4,
-	/**FRankVector类第5号文本字段*/
-	FRankVector_5,
+	/**FColVector类第0号文本字段*/
+	FColVector_0,
+	/**FColVector类第1号文本字段*/
+	FColVector_1,
+	/**FColVector类第2号文本字段*/
+	FColVector_2,
+	/**FColVector类第3号文本字段*/
+	FColVector_3,
+	/**FColVector类第4号文本字段*/
+	FColVector_4,
+	/**FColVector类第5号文本字段*/
+	FColVector_5,
 	
 	/**LinalgeUtil类第0号文本字段*/
 	LinalgeUtil_0,
@@ -161,10 +161,10 @@ public enum StringFieldKey{
 	/**FMatrix类第4号文本字段*/
 	FMatrix_4,
 	
-	/**RankVecotr类第0号文本字段*/
-	RankVector_0,
-	/**RankVecotr类第1号文本字段*/
-	RankVector_1,
+	/**ColVector类第0号文本字段*/
+	ColVector_0,
+	/*ColVector类第1号文本字段*/
+	ColVector_1,
 	
 	/**RowVecotr类第0号文本字段*/
 	RowVector_0,
