@@ -1,6 +1,6 @@
 package com.dwarfeng.dutil.math.geom2d;
 
-import com.dwarfeng.dutil.math.DMath;
+import com.dwarfeng.dutil.math.MathObject;
 
 /**
  * 可仿射变换对象。
@@ -8,7 +8,7 @@ import com.dwarfeng.dutil.math.DMath;
  * @author DwArFeng
  * @since 1.8
  */
-public interface AffineTransformable<T extends Shape2d> extends DMath{
+public interface AffineTransformable<T extends Shape2d> extends MathObject{
 
 	/**
 	 * 表示将对象从<code>from</code>坐标系放射变换到<code>to</code>坐标系后得到的图形。

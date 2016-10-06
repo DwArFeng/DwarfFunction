@@ -13,7 +13,7 @@ import com.dwarfeng.dutil.basic.cna.ArrayUtil;
 import com.dwarfeng.dutil.basic.cna.CollectionUtil;
 import com.dwarfeng.dutil.basic.infs.Buildable;
 import com.dwarfeng.dutil.basic.str.NameableComparator;
-import com.dwarfeng.dutil.math.AbstractDMath;
+import com.dwarfeng.dutil.math.AbstractMathObject;
 import com.dwarfeng.dutil.math.Region;
 
 /**
@@ -32,7 +32,7 @@ import com.dwarfeng.dutil.math.Region;
  * @author DwArFeng
  * @since 1.8
  */
-public class FVariableSpace extends AbstractDMath implements
+public class FVariableSpace extends AbstractMathObject implements
 Iterable<FVariable>, Region<FVariable>{
 
 	/**空的变量集合*/
@@ -92,7 +92,7 @@ Iterable<FVariable>, Region<FVariable>{
 		 * @throws VariableConflictException 当值对象中的变量与构造器中的至少一个变量冲突。
 		 * @throws NullPointerException 入口参数为 <code>null</code> 或者值对象中的变量空间为 <code>null</code>。
 		 */
-		public Builder add(FValue valueable){
+		public Builder add(FormulaValue valueable){
 			add(valueable.variableSpace());
 			return this;
 		}
@@ -128,7 +128,7 @@ Iterable<FVariable>, Region<FVariable>{
 		 * @param val 指定的值对象。
 		 * @return 构造器自身。
 		 */
-		public Builder remove(FValue val){
+		public Builder remove(FormulaValue val){
 			if(Objects.nonNull(val)){
 				remove(val.variableSpace());			
 			}

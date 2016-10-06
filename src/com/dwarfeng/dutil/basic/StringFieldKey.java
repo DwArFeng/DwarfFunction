@@ -112,26 +112,24 @@ public enum StringFieldKey{
 	/**FVariableSpace类第2号文本字段*/
 	FVariableSpace_2,
 	
-	/**FRowVector类第0号文本字段*/
-	FRowVector_0,
-	/**FRowVector类第1号文本字段*/
-	FRowVector_1,
-	/**FRowVector类第2号文本字段*/
-	FRowVector_2,
-	/**FRowVector类第3号文本字段*/
-	FRowVector_3,
-	/**FRowVector类第4号文本字段*/
-	FRowVector_4,
-	/**FRowVector类第5号文本字段*/
-	FRowVector_5,
-	/**FRowVector类第6号文本字段*/
-	FRowVector_6,
-	/**FRowVector类第7号文本字段*/
-	FRowVector_7,
-	/**FRowVector类第8号文本字段*/
-	FRowVector_8,
-	/**FRowVector类第9号文本字段*/
-	FRowVector_9,
+	/**DefaultFormulaRowVector类第0号文本字段*/
+	DefaultFormulaRowVector_0,
+	/**DefaultFormulaRowVector类第1号文本字段*/
+	DefaultFormulaRowVector_1,
+	/**DefaultFormulaRowVector类第2号文本字段*/
+	DefaultFormulaRowVector_2,
+	/**DefaultFormulaRowVector类第3号文本字段*/
+	DefaultFormulaRowVector_3,
+	/**DefaultFormulaRowVector类第4号文本字段*/
+	DefaultFormulaRowVector_4,
+	/**DefaultFormulaRowVector类第5号文本字段*/
+	DefaultFormulaRowVector_5,
+	/**DefaultFormulaRowVector类第6号文本字段*/
+	DefaultFormulaRowVector_6,
+	/**DefaultFormulaRowVector类第7号文本字段*/
+	DefaultFormulaRowVector_7,
+	/**DefaultFormulaRowVector类第8号文本字段*/
+	DefaultFormulaRowVector_8,
 	
 	/**FColVector类第0号文本字段*/
 	FColVector_0,
@@ -154,9 +152,15 @@ public enum StringFieldKey{
 	LinalgeUtil_0,
 	/**LinalgeUtil类第1号文本字段*/
 	LinalgeUtil_1,
+	/**LinalgeUtil类第2号文本字段*/
+	LinalgeUtil_2,
+	/**LinalgeUtil类第3号文本字段*/
+	LinalgeUtil_3,
+	/**LinalgeUtil类第4号文本字段*/
+	LinalgeUtil_4,
 	
-	/**FValue类第0号文本字段*/
-	FValue_0,
+	/**FormulaValue类第0号文本字段*/
+	FormulaValue_0,
 	
 	/**FMatrix类第0号文本字段*/
 	FMatrix_0,
@@ -169,33 +173,38 @@ public enum StringFieldKey{
 	/**FMatrix类第4号文本字段*/
 	FMatrix_4,
 	
-	/**ColVector类第0号文本字段*/
-	ColVector_0,
-	/*ColVector类第1号文本字段*/
-	ColVector_1,
-	/*ColVector类第2号文本字段*/
-	ColVector_2,
-	/*ColVector类第3号文本字段*/
-	ColVector_3,
-	/*ColVector类第4号文本字段*/
-	ColVector_4,
-	/*ColVector类第5号文本字段*/
-	ColVector_5,
+	/**DefaultColumnVector类第0号文本字段*/
+	DefaultColumnVector_0,
+	/*DefaultColumnVector类第1号文本字段*/
+	DefaultColumnVector_1,
+	/*DefaultColumnVector类第2号文本字段*/
+	DefaultColumnVector_2,
+	/*DefaultColumnVector类第3号文本字段*/
+	DefaultColumnVector_3,
+	/*DefaultColumnVector类第4号文本字段*/
+	DefaultColumnVector_4,
 	
-	/**RowVecotr类第0号文本字段*/
-	RowVector_0,
-	/**RowVecotr类第1号文本字段*/
-	RowVector_1,
-	/**RowVecotr类第2号文本字段*/
-	RowVector_2,
-	/**RowVecotr类第3号文本字段*/
-	RowVector_3,
-	/**RowVecotr类第4号文本字段*/
-	RowVector_4,
-	/**RowVecotr类第5号文本字段*/
-	RowVector_5,
-	/**RowVecotr类第6号文本字段*/
-	RowVector_6,
-	/**RowVecotr类第7号文本字段*/
-	RowVector_7,
+	/**DefaultRowVector类第0号文本字段*/
+	DefaultRowVector_0,
+	/**DefaultRowVector类第1号文本字段*/
+	DefaultRowVector_1,
+	/**DefaultRowVector类第2号文本字段*/
+	DefaultRowVector_2,
+	/**DefaultRowVector类第3号文本字段*/
+	DefaultRowVector_3,
+	/**DefaultRowVector类第4号文本字段*/
+	DefaultRowVector_4,
+	/**DefaultRowVector类第5号文本字段*/
+	DefaultRowVector_5,
+	/**DefaultRowVector类第6号文本字段*/
+	DefaultRowVector_6,
+	
+	/**DefaultMatrix类第0号文本字段*/
+	DefaultMatrix_0,
+	/**DefaultMatrix类第1号文本字段*/
+	DefaultMatrix_1,
+	/**DefaultMatrix类第2号文本字段*/
+	DefaultMatrix_2,
+	/**DefaultMatrix类第3号文本字段*/
+	DefaultMatrix_3,
 }

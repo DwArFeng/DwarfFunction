@@ -2,14 +2,14 @@ package com.dwarfeng.dutil.math.geom2d;
 
 import java.util.Objects;
 
-import com.dwarfeng.dutil.math.AbstractDMath;
+import com.dwarfeng.dutil.math.AbstractMathObject;
 
 /**
  * 二维点。
  * @author DwArFeng
  * @since 1.8
  */
-public class Point2d extends AbstractDMath implements Dimension2d, Shape2d{
+public class Point2d extends AbstractMathObject implements Dimension2d, Shape2d{
 
 	/**点的x坐标*/
 	protected final double x;

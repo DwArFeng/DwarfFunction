@@ -1,7 +1,8 @@
 package com.dwarfeng.dutil.foth;
 
 import com.dwarfeng.dutil.basic.io.CT;
-import com.dwarfeng.dutil.foth.linalge.FMatrix;
+import com.dwarfeng.dutil.foth.linalge.DefaultFormulaRowVector;
+import com.dwarfeng.dutil.math.linalge.DefaultRowVector;
 
 final class Foo {
 
@@ -12,11 +13,13 @@ final class Foo {
 	
 	public void run(){
 		
-		FMatrix matrix = new FMatrix(new double[][]{{1,2,3},{4,5,6},{7,8,9}});
+		DefaultRowVector cv = new DefaultRowVector(new double[]{1,2,4,5,0});
+		CT.trace(cv);
 		
-		CT.trace(matrix);
-		CT.trace(matrix.fValueAt(0, 0));
+		DefaultFormulaRowVector fcv = new DefaultFormulaRowVector(cv);
+		CT.trace(fcv);
 		
+		CT.trace(fcv.toRowVector());
 	}
 
 }

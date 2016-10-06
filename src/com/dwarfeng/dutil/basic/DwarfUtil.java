@@ -27,7 +27,7 @@ public final class DwarfUtil {
 		CT.trace(DwarfUtil.getWelcomeString());
 	}
 	
-	private static final String sfPath = "res/lang/stringField";
+	private static final String sfPath = "resource/lang/stringField";
 	
 	private static final Version version = new DefaultVersion.Productor()
 			.type(VersionType.ALPHA).firstVersion((byte) 0).secondVersion((byte) 1).thirdVersion((byte) 0)

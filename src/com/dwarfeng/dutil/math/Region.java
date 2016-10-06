@@ -6,7 +6,7 @@ package com.dwarfeng.dutil.math;
  * @author DwArFeng
  * @since 1.8
  */
-public interface Region<T> extends DMath{
+public interface Region<T> extends MathObject{
 
 	/**
 	 * 判断域是否包含指定元素。

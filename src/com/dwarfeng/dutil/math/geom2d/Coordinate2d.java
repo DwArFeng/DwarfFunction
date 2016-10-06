@@ -1,13 +1,13 @@
 package com.dwarfeng.dutil.math.geom2d;
 
-import com.dwarfeng.dutil.math.AbstractDMath;
+import com.dwarfeng.dutil.math.AbstractMathObject;
 
 /**
  * ¶þÎ¬µÑ¿¨¶û×ø±êÏµ¡£
  * @author DwArFeng
  * @since 1.8
  */
-public class Coordinate2d extends AbstractDMath{
+public class Coordinate2d extends AbstractMathObject{
 
 	/*
 	 * (non-Javadoc)

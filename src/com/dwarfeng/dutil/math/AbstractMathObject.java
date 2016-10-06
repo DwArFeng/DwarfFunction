@@ -6,7 +6,7 @@ package com.dwarfeng.dutil.math;
  * @author DwArFeng
  * @since 1.8
  */
-public abstract class AbstractDMath implements DMath{
+public abstract class AbstractMathObject implements MathObject{
 
 	/*
 	 * (non-Javadoc)

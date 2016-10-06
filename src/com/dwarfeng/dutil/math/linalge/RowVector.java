@@ -1,186 +1,57 @@
 package com.dwarfeng.dutil.math.linalge;
 
-import java.util.Objects;
-
-import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
-import com.dwarfeng.dutil.math.AbstractDMath;
+import com.dwarfeng.dutil.math.MathObject;
 
 /**
- * 行向量。
+ * 代表行向量的接口。
  * @author DwArFeng
  * @since 1.8
  */
-public class RowVector extends AbstractDMath implements MatArray{
-
-	/**存储行向量值的数组*/
-	protected final double[] vals;
+public interface RowVector extends MathObject, LinalgeVector{
 	
 	/**
-	 * 生成一个值为指定数组的行向量。
-	 * @param vals 指定的值数组。
-	 * @throws NullPointerException 入口参数为 <code>null</code>。
-	 * @throws IllegalArgumentException 数组的大小小于1。
-	 */
-	public RowVector(double[] vals) {
-		Objects.requireNonNull(vals, DwarfUtil.getStringField(StringFieldKey.RowVector_0));
-		if(vals.length < 1){
-			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.RowVector_1));
-		}
-		
-		this.vals = vals;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.math.linalge.MatArray#rows()
-	 */
-	@Override
-	public int rows() {
-		return 1;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.math.linalge.MatArray#columns()
-	 */
-	@Override
-	public int columns() {
-		return vals.length;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.math.linalge.MatArray#valueableAt(int, int)
-	 */
-	@Override
-	public double valueAt(int row, int column) {
-		LinalgeUtil.requrieRowInBound(this, row, DwarfUtil.getStringField(StringFieldKey.RowVector_6));
-		LinalgeUtil.requireColumnInBound(this, column, DwarfUtil.getStringField(StringFieldKey.RowVector_7));
-		return vals[column];
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.math.linalge.MatArray#rowVectorAt(int)
-	 */
-	@Override
-	public RowVector rowVectorAt(int row) {
-		LinalgeUtil.requrieRowInBound(this, row, DwarfUtil.getStringField(StringFieldKey.RowVector_6));
-		return this;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.math.linalge.MatArray#colVectorAt(int)
-	 */
-	@Override
-	public ColVector colVectorAt(int column) {
-		LinalgeUtil.requireColumnInBound(this, column, DwarfUtil.getStringField(StringFieldKey.RowVector_7));
-		return new ColVector(new double[]{vals[column]});
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.math.AbstractDMath#getMathName()
-	 */
-	@Override
-	public String getMathName() {
-		return DwarfUtil.getStringField(StringFieldKey.Linalge_RowVector);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.math.AbstractDMath#getExpression()
-	 */
-	@Override
-	public String getExpression() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("[");
-		for(double val : vals){
-			sb		.append(val)
-					.append(", ");
-		}
-		sb.delete(sb.length()-2, sb.length()).append("]");
-		return sb.toString();
-	}
-	
-	/**
-	 * 该行向量与另一个行向量相加。
+	 * 行向量的加法。
+	 * <p> 该行向量与指定的行向量相加。
 	 * @param rowVector 指定的行向量。
-	 * @return 运算得出的新的行向量。
+	 * @return 相加得到的新的行向量。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
-	 * @throws IllegalArgumentException 入口行向量的尺寸不匹配。
+	 * @throws IllegalArgumentException 行向量的大小不匹配。
 	 */
-	public RowVector add(RowVector rowVector){
-		Objects.requireNonNull(rowVector, DwarfUtil.getStringField(StringFieldKey.RowVector_2));
-		LinalgeUtil.requireSpecificSize(rowVector, rows(), columns(), DwarfUtil.getStringField(StringFieldKey.RowVector_3));
-		
-		double[] vs = new double[vals.length];
-		for(int i = 0 ; i < vs.length ; i ++){
-			vs[i] = vals[i] + rowVector.vals[i];
-		}
-		return new RowVector(vs);
-	}
+	public RowVector add(RowVector rowVector);
 	
 	/**
-	 * 该行向量与另一个行向量相减。
+	 * 行向量的减法。
+	 * <p> 该行向量与指定的行向量相减。
 	 * @param rowVector 指定的行向量。
-	 * @return 运算得出的新的行向量。
+	 * @return 相减得到的新的行向量。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
-	 * @throws IllegalArgumentException 入口行向量的尺寸不匹配。
+	 * @throws IllegalArgumentException 行向量的大小不匹配。
 	 */
-	public RowVector minus(RowVector rowVector){
-		Objects.requireNonNull(rowVector, DwarfUtil.getStringField(StringFieldKey.RowVector_2));
-		LinalgeUtil.requireSpecificSize(rowVector, rows(), columns(), DwarfUtil.getStringField(StringFieldKey.RowVector_3));
-		
-		double[] vs = new double[vals.length];
-		for(int i = 0 ; i < vs.length ; i ++){
-			vs[i] = vals[i] - rowVector.vals[i];
-		}
-		return new RowVector(vs);
-	}
+	public RowVector minus(RowVector rowVector);
 	
 	/**
-	 * 该行向量与指定的列向量相乘。
-	 * <p> 注意：列向量必须要能够与该行向量相乘，即列向量的列数要与该行向量的行数相等。
-	 * @param colVector 指定地点列向量。
-	 * @return 运算后得到的值。
+	 * 行向量的乘法。
+	 * <p> 该行向量与指定的列向量相乘。
+	 * @param columnVector 指定的列向量。
+	 * @return 相乘得到的新的列向量。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
-	 * @throws IllegalArgumentException 指定的列向量不能与该行向量相乘。
+	 * @throws IllegalArgumentException 列向量的大小不匹配。
 	 */
-	public double mul(ColVector colVector){
-		Objects.requireNonNull(colVector, DwarfUtil.getStringField(StringFieldKey.RowVector_4));
-		LinalgeUtil.requireForMutiply(this, colVector, DwarfUtil.getStringField(StringFieldKey.RowVector_5));
-		
-		double sum = 0;
-		for(int i = 0 ; i < columns() ; i ++){
-			double v1 = this.valueAt(0, i);
-			double v2 = colVector.valueAt(i, 0);
-			sum = sum + (v1 *v2);
-		}
-		
-		return sum;
-	}
+	public double mul(ColumnVector columnVector);
 	
 	/**
-	 * 该行向量与指定的值相乘。
-	 * @param d 指定的值。
-	 * @return 指定的值与该行向量相乘得到的行向量。
+	 * 行向量的缩放运算。
+	 * <p> 该行向量与指定的值相乘。
+	 * @param val 指定的值。
+	 * @return 缩放得到的新的行向量。
 	 */
-	public RowVector scale(double d){
-		double[] ds = new double[vals.length];
-		for(int i = 0 ; i  < ds.length ; i ++){
-			ds[i] = vals[i] * d;
-		}
-		return new RowVector(ds);
-	}
+	public RowVector scale(double val);
 	
 	/**
-	 * 返回该列向量的转置列向量。
-	 * @return 转置列向量。
+	 * 行向量的转置运算。
+	 * <p> 该行向量的转置。
+	 * @return 行向量转置得到的新的列向量。
 	 */
-	public ColVector trans(){
-		return new ColVector(vals);
-	}
+	public ColumnVector trans();
+	
 }

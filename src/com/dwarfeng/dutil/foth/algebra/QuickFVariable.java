@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
-import com.dwarfeng.dutil.math.AbstractDMath;
+import com.dwarfeng.dutil.math.AbstractMathObject;
 
 /**
  * 变量。
@@ -13,7 +13,7 @@ import com.dwarfeng.dutil.math.AbstractDMath;
  * @author DwArFeng
  * @since 1.8
  */
-public class QuickFVariable extends AbstractDMath implements FVariable {
+public class QuickFVariable extends AbstractMathObject implements FVariable {
 	
 	/**变量的值*/
 	protected double val;
@@ -35,7 +35,7 @@ public class QuickFVariable extends AbstractDMath implements FVariable {
 	 * @throws IllegalArgumentException name参数为 <code>null</code>或非法。
 	 * @throws NullPointerException 入口参数为 <code>null</code>时抛出异常。
 	 */
-	public QuickFVariable(String name, FValue valueable) {
+	public QuickFVariable(String name, FormulaValue valueable) {
 		if(Objects.isNull(name) || name.equals("")){
 			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.Variable_1));
 		}

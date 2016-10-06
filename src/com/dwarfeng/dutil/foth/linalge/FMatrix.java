@@ -6,10 +6,10 @@ import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.cna.ArrayUtil;
 import com.dwarfeng.dutil.basic.infs.Buildable;
-import com.dwarfeng.dutil.foth.algebra.FValue;
+import com.dwarfeng.dutil.foth.algebra.FormulaValue;
 import com.dwarfeng.dutil.foth.algebra.FVariableSpace;
 import com.dwarfeng.dutil.foth.algebra.QuickFValue;
-import com.dwarfeng.dutil.math.AbstractDMath;
+import com.dwarfeng.dutil.math.AbstractMathObject;
 import com.dwarfeng.dutil.math.linalge.LinalgeUtil;
 
 /**
@@ -18,10 +18,10 @@ import com.dwarfeng.dutil.math.linalge.LinalgeUtil;
  * @author DwArFeng
  * @since 1.8
  */
-public class FMatrix extends AbstractDMath implements FMatArray{
+public class FMatrix extends AbstractMathObject implements FormulaMatrixLike{
 	
 	/**矩阵的值*/
-	protected final FValue[][] vals;
+	protected final FormulaValue[][] vals;
 	/**矩阵的变量空间*/
 	protected final FVariableSpace vs;
 
@@ -41,7 +41,7 @@ public class FMatrix extends AbstractDMath implements FMatArray{
 			Objects.requireNonNull(ds, DwarfUtil.getStringField(StringFieldKey.FMatrix_0));
 		}
 		
-		FValue[][] valueables = new FValue[vals.length][vals[0].length];
+		FormulaValue[][] valueables = new FormulaValue[vals.length][vals[0].length];
 		for(int i = 0 ; i < vals.length ; i ++){
 			for(int j = 0 ; j < vals[i].length ; j ++){
 				valueables[i][j] = new QuickFValue(vals[i][j]);
@@ -57,12 +57,12 @@ public class FMatrix extends AbstractDMath implements FMatArray{
 	 * @throws NullPointerException 入口参数为 <code>null</code>，或其中含有 <code>null</code>元素。
 	 * @throws IllegalArgumentException 数组的行或列的大小为0。
 	 */
-	public FMatrix(FValue[][] vals) {
+	public FMatrix(FormulaValue[][] vals) {
 		Objects.requireNonNull(vals, DwarfUtil.getStringField(StringFieldKey.FMatrix_0));
 		if(vals.length == 0 || vals[0].length == 0){
 			throw new IllegalAccessError(DwarfUtil.getStringField(StringFieldKey.FMatrix_1));
 		}
-		for(FValue[] ds : vals){
+		for(FormulaValue[] ds : vals){
 			ArrayUtil.requireNotContainsNull(ds, DwarfUtil.getStringField(StringFieldKey.FMatrix_0));
 		}
 		
@@ -98,7 +98,7 @@ public class FMatrix extends AbstractDMath implements FMatArray{
 		 */
 		public DoubleBuilder(int row, int column) {
 			if(row < 1 || column < 1){
-				throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.FMatrix_2));
+				throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.FMatrix_1));
 			}
 			this.vals = new double[row][column];
 		}
@@ -112,7 +112,13 @@ public class FMatrix extends AbstractDMath implements FMatArray{
 		 * @throws IndexOutOfBoundsException 行列号超界。
 		 */
 		public DoubleBuilder setVal(int row, int column, double val){
-			//TODO FMatrix.setVal();
+			if(row < 1 || row >= vals.length){
+				throw new IndexOutOfBoundsException(DwarfUtil.getStringField(StringFieldKey.FMatrix_3));
+			}
+			if(column < 1 || column >= vals[0].length){
+				throw new IndexOutOfBoundsException(DwarfUtil.getStringField(StringFieldKey.FMatrix_4));
+			}
+			
 			vals[row][column] = val;
 			return this;
 		}
@@ -123,7 +129,7 @@ public class FMatrix extends AbstractDMath implements FMatArray{
 		 */
 		@Override
 		public FMatrix build() {
-			FValue[][] fValues = new FValue[vals.length][vals[0].length];
+			FormulaValue[][] fValues = new FormulaValue[vals.length][vals[0].length];
 			
 			for(int i = 0 ; i < vals.length ; i ++){
 				for(int j = 0 ; j < vals[0].length ; j ++){
@@ -142,10 +148,10 @@ public class FMatrix extends AbstractDMath implements FMatArray{
 	 * @author DwArFeng
 	 * @since 1.8
 	 */
-	public final static class ValueableBuilder implements Buildable<FMatrix>{
+	public final static class FValueBuilder implements Buildable<FMatrix>{
 		
 		private final FVariableSpace.Builder builder;
-		private final FValue[][] vals;
+		private final FormulaValue[][] vals;
 
 		/**
 		 * 构造一个具有指定行列数的值对象矩阵构造器。
@@ -153,13 +159,13 @@ public class FMatrix extends AbstractDMath implements FMatArray{
 		 * @param column 指定的列。
 		 * @throws IllegalArgumentException 指定的行或者列小于1。
 		 */
-		public ValueableBuilder(int row, int column) {
+		public FValueBuilder(int row, int column) {
 			if(row < 1 || column < 1){
-				throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.FMatrix_2));
+				throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.FMatrix_1));
 			}
 			
 			builder = new FVariableSpace.Builder();
-			this.vals = new FValue[column][row];
+			this.vals = new FormulaValue[column][row];
 			
 			for(int i = 0 ; i < vals.length ; i ++){
 				for(int j = 0 ; j < vals[0].length ; j ++){
@@ -175,10 +181,18 @@ public class FMatrix extends AbstractDMath implements FMatArray{
 		 * @param val 指定的值。
 		 * @return 构造器自身。
 		 * @throws IndexOutOfBoundsException 行列号超界。
+		 * @throws NullPointerException 入口参数 <code>val</code>为 <code>null</code>。
 		 */
-		public ValueableBuilder setVal(int row, int column, FValue val){
+		public FValueBuilder setVal(int row, int column, FormulaValue val){
+			Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FMatrix_2));
+			if(row < 1 || row >= vals.length){
+				throw new IndexOutOfBoundsException(DwarfUtil.getStringField(StringFieldKey.FMatrix_3));
+			}
+			if(column < 1 || column >= vals[0].length){
+				throw new IndexOutOfBoundsException(DwarfUtil.getStringField(StringFieldKey.FMatrix_4));
+			}
 			
-			FValue value = vals[row][column];
+			FormulaValue value = vals[row][column];
 			this.builder.remove(value);
 			this.builder.add(val);
 			this.vals[row][column] = val;
@@ -198,7 +212,7 @@ public class FMatrix extends AbstractDMath implements FMatArray{
 	}
 	
 	
-	private FMatrix(FValue[][] vals, FVariableSpace vs) {
+	private FMatrix(FormulaValue[][] vals, FVariableSpace vs) {
 		this.vals = vals;
 		this.vs = vs;
 	}
@@ -260,7 +274,7 @@ public class FMatrix extends AbstractDMath implements FMatArray{
 	 * @see com.dwarfeng.dfoth.linalge.FMatArray#fValueAt(int, int)
 	 */
 	@Override
-	public FValue fValueAt(int row, int column) {
+	public FormulaValue formulaValueAt(int row, int column) {
 		LinalgeUtil.requrieRowInBound(this, row, DwarfUtil.getStringField(StringFieldKey.FMatrix_3));
 		LinalgeUtil.requireColumnInBound(this, column, DwarfUtil.getStringField(StringFieldKey.FMatrix_4));
 		return vals[row][column];
@@ -271,9 +285,9 @@ public class FMatrix extends AbstractDMath implements FMatArray{
 	 * @see com.dwarfeng.dmath.linalge.MatArray#getRowVector(int)
 	 */
 	@Override
-	public FRowVector fRowVectorAt(int row) {
+	public DefaultFormulaRowVector fRowVectorAt(int row) {
 		LinalgeUtil.requrieRowInBound(this, row, DwarfUtil.getStringField(StringFieldKey.FMatrix_3));
-		return new FRowVector(vals[row]);
+		return new DefaultFormulaRowVector(vals[row]);
 	}
 
 	/*
@@ -281,14 +295,16 @@ public class FMatrix extends AbstractDMath implements FMatArray{
 	 * @see com.dwarfeng.dutil.foth.linalge.FMatArray#fColVectorAt(int)
 	 */
 	@Override
-	public FColVector fColVectorAt(int column) {
+	public DefalutFormulaColumnVector fColVectorAt(int column) {
 		LinalgeUtil.requireColumnInBound(this, column, DwarfUtil.getStringField(StringFieldKey.FMatrix_4));
 		
-		FValue[] valueables = new FValue[rows()];
+		FormulaValue[] valueables = new FormulaValue[rows()];
 		for(int i = 0 ; i < valueables.length ; i ++){
 			valueables[i] = vals[i][column];
 		}
-		return new FColVector(valueables);
+		return new DefalutFormulaColumnVector(valueables);
 	}
+	
+	
 
 }

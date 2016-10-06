@@ -5,7 +5,7 @@ import java.util.Objects;
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.infs.Nameable;
-import com.dwarfeng.dutil.math.DMath;
+import com.dwarfeng.dutil.math.MathObject;
 
 /**
  * 变量接口。
@@ -15,7 +15,7 @@ import com.dwarfeng.dutil.math.DMath;
  * @author DwArFeng
  * @since 1.8
  */
-public interface FVariable extends DMath, FValue, Nameable{
+public interface FVariable extends MathObject, FormulaValue, Nameable{
 
 	/**
 	 * 设置该接口的数值。
@@ -28,7 +28,7 @@ public interface FVariable extends DMath, FValue, Nameable{
 	 * @param valueable 指定的值接口。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public default void setValue(FValue valueable){
+	public default void setValue(FormulaValue valueable){
 		Objects.requireNonNull(valueable, DwarfUtil.getStringField(StringFieldKey.FVariable_0));
 		setValue(valueable.value());
 	}
@@ -48,7 +48,7 @@ public interface FVariable extends DMath, FValue, Nameable{
 	 * @param valueable 指定的值接口。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public default void offset(FValue valueable){
+	public default void offset(FormulaValue valueable){
 		Objects.requireNonNull(valueable, DwarfUtil.getStringField(StringFieldKey.FVariable_0));
 		setValue(value() + valueable.value());
 	}

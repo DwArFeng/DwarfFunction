@@ -1,6 +1,6 @@
 package com.dwarfeng.dutil.math.geom2d;
 
-import com.dwarfeng.dutil.math.DMath;
+import com.dwarfeng.dutil.math.MathObject;
 import com.dwarfeng.dutil.math.Region;
 
 /**
@@ -8,7 +8,7 @@ import com.dwarfeng.dutil.math.Region;
  * @author DwArFeng
  * @since 1.8
  */
-public interface Shape2d extends Region<Point2d>, DMath{
+public interface Shape2d extends Region<Point2d>, MathObject{
 
 	/**
 	 * 返回图形的面积。

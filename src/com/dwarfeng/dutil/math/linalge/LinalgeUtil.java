@@ -23,7 +23,7 @@ public final class LinalgeUtil {
 	 * @return 两个矩阵阵列能否相乘，<code>true</code>为可以相乘。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public static boolean checkForMutiply(MatArray m1, MatArray m2){
+	public static boolean checkForMutiply(MatrixLike m1, MatrixLike m2){
 		Objects.requireNonNull(m1, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_0));
 		Objects.requireNonNull(m2, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_0));
 		
@@ -38,7 +38,7 @@ public final class LinalgeUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 两个矩阵无法相乘。
 	 */
-	public static void requireForMutiply(MatArray m1, MatArray m2){
+	public static void requireForMutiply(MatrixLike m1, MatrixLike m2){
 		Objects.requireNonNull(m1, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_0));
 		Objects.requireNonNull(m2, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_0));
 		
@@ -54,11 +54,60 @@ public final class LinalgeUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 两个矩阵无法相乘。
 	 */
-	public static void requireForMutiply(MatArray m1, MatArray m2, String message){
+	public static void requireForMutiply(MatrixLike m1, MatrixLike m2, String message){
 		Objects.requireNonNull(m1, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_0));
 		Objects.requireNonNull(m2, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_0));
 		
 		if(m1.rows() != m2.columns()) throw new IllegalArgumentException(message);
+	}
+	
+	/**
+	 * 检测指定的行向量和列向量是否能够相乘。
+	 * @param rowVector 指定的行向量。
+	 * @param columnVector 指定的列向量。
+	 * @return 指定的行向量与指定的列向量是否能够相乘。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 */
+	public static boolean checkForMutiply(RowVector rowVector, ColumnVector columnVector){
+		Objects.requireNonNull(rowVector, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_2));
+		Objects.requireNonNull(columnVector, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_3));
+		
+		return rowVector.size() == columnVector.size();
+	}
+	
+	/**
+	 * 要求指定的行向量和指定的列向量能够相乘。
+	 * <p> 如果行向量和列向量不能相乘，则抛出 {@link IllegalArgumentException}。
+	 * @param rowVector 指定的行向量。
+	 * @param columnVector 指定的列向量。
+	 * @throws IllegalArgumentException 指定的行向量与列向量不能相乘。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 */
+	public static void requireForMutiply(RowVector rowVector, ColumnVector columnVector){
+		Objects.requireNonNull(rowVector, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_2));
+		Objects.requireNonNull(columnVector, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_3));
+		
+		if(rowVector.size() != columnVector.size()){
+			throw new IllegalArgumentException();
+		}
+	}
+	
+	/**
+	 * 要求指定的行向量与指定的列向量能够相乘。
+	 * <p> 如果行向量和列向量不能相乘，则抛出具有指定描述文本的 {@link IllegalArgumentException}。
+	 * @param rowVector 指定的行向量。
+	 * @param columnVector 指定的列向量。
+	 * @param message 指定的描述文本。
+	 * @throws IllegalArgumentException 指定的行向量与列向量不能相乘时抛出该异常。
+	 * @throws NullPointerException 入口参数为  <code>null</code>。
+	 */
+	public static void requireForMutiply(RowVector rowVector, ColumnVector columnVector, String message){
+		Objects.requireNonNull(rowVector, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_2));
+		Objects.requireNonNull(columnVector, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_3));
+		
+		if(rowVector.size() != columnVector.size()){
+			throw new IllegalArgumentException(message);
+		}
 	}
 	
 	/**
@@ -71,7 +120,7 @@ public final class LinalgeUtil {
 	 * @throws NullPointerException 入口参数<code>mat</code>为 <code>null</code>。
 	 * @throws IllegalArgumentException 指定的矩阵行列数不符合要求。
 	 */
-	public static void requireSpecificSize(MatArray mat, int row, int column){
+	public static void requireSpecificSize(MatrixLike mat, int row, int column){
 		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_1));
 		
 		if(mat.rows() != row || mat.columns() != column){
@@ -90,7 +139,7 @@ public final class LinalgeUtil {
 	 * @throws NullPointerException 入口参数<code>mat</code>为 <code>null</code>。
 	 * @throws IllegalArgumentException 指定的矩阵行列数不符合要求。
 	 */
-	public static void requireSpecificSize(MatArray mat, int row, int column, String message){
+	public static void requireSpecificSize(MatrixLike mat, int row, int column, String message){
 		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_1));
 		
 		if(mat.rows() != row || mat.columns() != column){
@@ -98,7 +147,40 @@ public final class LinalgeUtil {
 		}
 	}
 	
+	/**
+	 * 要求指定的向量具有特定的大小。
+	 * 	 * <p> 该方法会判断向量是否具有特定的大小，
+	 * 如果不是，则抛出 {@link IllegalArgumentException}。
+	 * @param vector 指定的向量。
+	 * @param size 指定的大小。
+	 * @throws IllegalArgumentException 指定的向量不符合特定的大小。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 */
+	public static void requireSpecificSize(LinalgeVector vector, int size){
+		Objects.requireNonNull(vector, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_4));
+		
+		if(vector.size() != size){
+			throw new IllegalArgumentException();
+		}
+	}
 	
+	/**
+	 * 要求指定的向量具有特定的大小。
+	 * <p> 该方法会判断向量是否具有特定的大小，
+	 * 如果不是，则抛出具有指定描述文本的 {@link IllegalArgumentException}。
+	 * @param vector 指定的向量。
+	 * @param size 指定的大小。
+	 * @param message 指定的描述文本。
+	 * @throws IllegalArgumentException 指定的向量不符合特定的大小。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 */
+	public static void requireSpecificSize(LinalgeVector vector, int size, String message){
+		Objects.requireNonNull(vector, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_4));
+
+		if(vector.size() != size){
+			throw new IllegalArgumentException(message);
+		}
+	}
 	
 	/**
 	 * 要求矩阵的行有没有越界。
@@ -108,7 +190,7 @@ public final class LinalgeUtil {
 	 * @throws NullPointerException 指定的矩阵为 <code>null</code>。
 	 * @throws IndexOutOfBoundsException 指定的行号越界。
 	 */
-	public static void requrieRowInBound(MatArray mat, int row){
+	public static void requrieRowInBound(MatrixLike mat, int row){
 		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_1));
 
 		if(row < 0 || row >= mat.rows()){
@@ -125,7 +207,7 @@ public final class LinalgeUtil {
 	 * @throws NullPointerException 指定的矩阵为 <code>null</code>。
 	 * @throws IndexOutOfBoundsException 指定的行号越界。
 	 */
-	public static void requrieRowInBound(MatArray mat, int row, String message){
+	public static void requrieRowInBound(MatrixLike mat, int row, String message){
 		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_1));
 
 		if(row < 0 || row >= mat.rows()){
@@ -141,7 +223,7 @@ public final class LinalgeUtil {
 	 * @throws NullPointerException 指定的矩阵为 <code>null</code>。
 	 * @throws IndexOutOfBoundsException 指定的列号越界。
 	 */
-	public static void requireColumnInBound(MatArray mat, int column){
+	public static void requireColumnInBound(MatrixLike mat, int column){
 		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_1));
 
 		if(column < 0 || column >= mat.columns()){
@@ -158,10 +240,43 @@ public final class LinalgeUtil {
 	 * @throws NullPointerException 指定的矩阵为 <code>null</code>。
 	 * @throws IndexOutOfBoundsException 指定的列号越界。
 	 */
-	public static void requireColumnInBound(MatArray mat, int column, String message){
+	public static void requireColumnInBound(MatrixLike mat, int column, String message){
 		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_1));
 
 		if(column < 0 || column >= mat.columns()){
+			throw new IndexOutOfBoundsException(message);
+		}
+	}
+	
+	/**
+	 * 要求指定序号没有越界。
+	 * <p> 如果越界，则抛出 {@link IndexOutOfBoundsException}
+	 * @param vector 指定的矩阵。
+	 * @param index 指定的序号。
+	 * @throws IndexOutOfBoundsException 指定的序号越界。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 */
+	public static void requireIndexInBound(LinalgeVector vector, int index){
+		Objects.requireNonNull(vector, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_4));
+		
+		if(index <0 || index >= vector.size()){
+			throw new IndexOutOfBoundsException();
+		}
+	}
+	
+	/**
+	 * 要求指定序号没有越界。
+	 * <p> 如果越界，则抛出具有指定描述文本的 {@link IndexOutOfBoundsException}
+	 * @param vector 指定的矩阵。
+	 * @param index 指定的序号。
+	 * @param message 指定的描述文本。
+	 * @throws IndexOutOfBoundsException 指定的序号越界。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 */
+	public static void requireIndexInBound(LinalgeVector vector, int index, String message){
+		Objects.requireNonNull(vector, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_4));
+		
+		if(index <0 || index >= vector.size()){
 			throw new IndexOutOfBoundsException(message);
 		}
 	}

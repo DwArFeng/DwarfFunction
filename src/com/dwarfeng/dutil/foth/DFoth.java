@@ -1,6 +1,6 @@
 package com.dwarfeng.dutil.foth;
 
-import com.dwarfeng.dutil.math.DMath;
+import com.dwarfeng.dutil.math.MathObject;
 
 /**
  * 可变接口。
@@ -10,7 +10,7 @@ import com.dwarfeng.dutil.math.DMath;
  * @author DwArFeng
  * @since 1.8
  */
-public interface DFoth extends DMath{
+public interface DFoth extends MathObject{
 
 	/**
 	 * 指示一个可变对象是否能够被编辑。

@@ -2,7 +2,7 @@ package com.dwarfeng.dutil.math.geom2d;
 
 import java.util.Objects;
 
-import com.dwarfeng.dutil.math.AbstractDMath;
+import com.dwarfeng.dutil.math.AbstractMathObject;
 
 /**
  * 二维平行矩形。
@@ -11,7 +11,7 @@ import com.dwarfeng.dutil.math.AbstractDMath;
  * @author DwArFeng
  * @since 1.8
  */
-public class Retangle2d extends AbstractDMath implements Shape2d{
+public class Retangle2d extends AbstractMathObject implements Shape2d{
 	
 	protected final Point2d point;
 	protected final double height;

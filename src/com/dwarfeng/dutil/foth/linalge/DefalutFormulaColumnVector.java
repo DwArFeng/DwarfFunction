@@ -6,11 +6,12 @@ import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.cna.ArrayUtil;
 import com.dwarfeng.dutil.foth.algebra.FAlgebraUtil;
-import com.dwarfeng.dutil.foth.algebra.FValue;
+import com.dwarfeng.dutil.foth.algebra.FormulaValue;
 import com.dwarfeng.dutil.foth.algebra.FVariableSpace;
 import com.dwarfeng.dutil.foth.algebra.QuickFValue;
 import com.dwarfeng.dutil.foth.algebra.VariableConflictException;
-import com.dwarfeng.dutil.math.AbstractDMath;
+import com.dwarfeng.dutil.math.AbstractMathObject;
+import com.dwarfeng.dutil.math.linalge.DefaultColumnVector;
 import com.dwarfeng.dutil.math.linalge.LinalgeUtil;
 
 /**
@@ -20,10 +21,29 @@ import com.dwarfeng.dutil.math.linalge.LinalgeUtil;
  * @author DwArFeng
  * @since 1.8
  */
-public class FColVector extends AbstractDMath implements FMatArray{
+public class DefalutFormulaColumnVector extends AbstractMathObject implements FormulaColumnVector{
 	
-	protected final FValue[] vals;
+	/**存储列向量值的数组*/
+	protected final FormulaValue[] vals;
+	/**列向量的变量空间*/
 	protected final FVariableSpace vs;
+	
+	/**
+	 * 生成一个与math包中的列向量的值一致的有结构列向量。
+	 * @param colVector math包中的列向量。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 */
+	public DefalutFormulaColumnVector(DefaultColumnVector colVector) {
+		Objects.requireNonNull(colVector, DwarfUtil.getStringField(StringFieldKey.FColVector_3));
+		
+		FormulaValue[] vals = new FormulaValue[colVector.rows()];
+		for(int i = 0 ; i < vals.length ; i ++){
+			vals[i] = new QuickFValue(colVector.valueAt(i, 0));
+		}
+		
+		this.vals = vals;
+		this.vs = FVariableSpace.EMPTY;
+	}
 	
 	/**
 	 * 生成一个拥有指定列元素的列向量。
@@ -32,13 +52,13 @@ public class FColVector extends AbstractDMath implements FMatArray{
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 元素数组无效。
 	 */
-	public FColVector(double[] vals) {
+	public DefalutFormulaColumnVector(double[] vals) {
 		Objects.requireNonNull(vals, DwarfUtil.getStringField(StringFieldKey.FColVector_1));
 		if(vals.length < 1){
 			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.FColVector_0));
 		}
 		
-		this.vals = FAlgebraUtil.toValueables(vals);
+		this.vals = FAlgebraUtil.toFValues(vals);
 		this.vs = FVariableSpace.EMPTY;
 	}
 	
@@ -50,7 +70,7 @@ public class FColVector extends AbstractDMath implements FMatArray{
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 值接口数组无效。 
 	 */
-	public FColVector(FValue[] valueables){
+	public DefalutFormulaColumnVector(FormulaValue[] valueables){
 		ArrayUtil.requireNotContainsNull(valueables, DwarfUtil.getStringField(StringFieldKey.FColVector_2));
 		if(valueables.length < 1){
 			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.FColVector_0));
@@ -58,7 +78,7 @@ public class FColVector extends AbstractDMath implements FMatArray{
 		
 		this.vals = valueables;
 		FVariableSpace.Builder builder = new FVariableSpace.Builder();
-		for(FValue valueable : valueables){
+		for(FormulaValue valueable : valueables){
 			builder.add(valueable.variableSpace());
 		}
 		this.vs = builder.build();
@@ -73,7 +93,7 @@ public class FColVector extends AbstractDMath implements FMatArray{
 		
 		StringBuilder sb = new StringBuilder();
 		sb.append("[");
-		for(FValue val : vals){
+		for(FormulaValue val : vals){
 			sb		.append(val.getExpression())
 					.append(", ");
 		}
@@ -103,28 +123,10 @@ public class FColVector extends AbstractDMath implements FMatArray{
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.math.linalge.MatArray#columns()
-	 */
-	@Override
-	public int columns() {
-		return 1;
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dmath.linalge.MatArray#rows()
-	 */
-	@Override
-	public int rows() {
-		return vals.length;
-	}
-
-	/*
-	 * (non-Javadoc)
 	 * @see com.dwarfeng.dutil.foth.linalge.FMatArray#fValueableAt(int, int)
 	 */
 	@Override
-	public FValue fValueAt(int row, int column) {
+	public FormulaValue formulaValueAt(int row, int column) {
 		LinalgeUtil.requrieRowInBound(this, row, DwarfUtil.getStringField(StringFieldKey.FColVector_6));
 		LinalgeUtil.requireColumnInBound(this, column, DwarfUtil.getStringField(StringFieldKey.FColVector_7));
 		return vals[row];
@@ -135,9 +137,9 @@ public class FColVector extends AbstractDMath implements FMatArray{
 	 * @see com.dwarfeng.dmath.linalge.MatArray#getRowVector(int)
 	 */
 	@Override
-	public FRowVector fRowVectorAt(int row) {
+	public DefaultFormulaRowVector fRowVectorAt(int row) {
 		LinalgeUtil.requrieRowInBound(this, row, DwarfUtil.getStringField(StringFieldKey.FColVector_6));
-		return new FRowVector(new FValue[]{vals[row]});
+		return new DefaultFormulaRowVector(new FormulaValue[]{vals[row]});
 	}
 
 	/*
@@ -145,7 +147,7 @@ public class FColVector extends AbstractDMath implements FMatArray{
 	 * @see com.dwarfeng.dutil.foth.linalge.FMatArray#fColVectorAt(int)
 	 */
 	@Override
-	public FColVector fColVectorAt(int column) {
+	public DefalutFormulaColumnVector fColVectorAt(int column) {
 		LinalgeUtil.requireColumnInBound(this, column, DwarfUtil.getStringField(StringFieldKey.FColVector_7));
 		return this;
 	}
@@ -158,15 +160,15 @@ public class FColVector extends AbstractDMath implements FMatArray{
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 入口列向量尺寸不匹配。
 	 */
-	public FColVector add(FColVector colVector){
+	public DefalutFormulaColumnVector add(DefalutFormulaColumnVector colVector){
 		Objects.requireNonNull(colVector, DwarfUtil.getStringField(StringFieldKey.FColVector_3));
 		LinalgeUtil.requireSpecificSize(colVector, rows(), columns(), DwarfUtil.getStringField(StringFieldKey.FColVector_4));
 
-		FValue[] vs = new FValue[vals.length];
+		FormulaValue[] vs = new FormulaValue[vals.length];
 		for(int i = 0 ; i < vs.length ; i ++){
 			vs[i] = vals[i].add(colVector.vals[i]);
 		}
-		return new FColVector(vs);
+		return new DefalutFormulaColumnVector(vs);
 	}
 	
 	/**
@@ -177,15 +179,15 @@ public class FColVector extends AbstractDMath implements FMatArray{
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 入口列向量尺寸不匹配。
 	 */
-	public FColVector minus(FColVector colVector){
+	public DefalutFormulaColumnVector minus(DefalutFormulaColumnVector colVector){
 		Objects.requireNonNull(colVector, DwarfUtil.getStringField(StringFieldKey.FColVector_3));
 		LinalgeUtil.requireSpecificSize(colVector, rows(), columns(), DwarfUtil.getStringField(StringFieldKey.FColVector_4));
 
-		FValue[] vs = new FValue[vals.length];
+		FormulaValue[] vs = new FormulaValue[vals.length];
 		for(int i = 0 ; i < vs.length ; i ++){
 			vs[i] = vals[i].minus(colVector.vals[i]);
 		}
-		return new FColVector(vs);
+		return new DefalutFormulaColumnVector(vs);
 	}
 	
 	/**
@@ -195,14 +197,14 @@ public class FColVector extends AbstractDMath implements FMatArray{
 	 * @return 指定的值域该列向量相乘得到的列向量。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public FColVector scale(FValue val){
+	public DefalutFormulaColumnVector scale(FormulaValue val){
 		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FColVector_5));
 		
-		FValue[] vs = new FValue[vals.length];
+		FormulaValue[] vs = new FormulaValue[vals.length];
 		for(int i = 0 ; i < vs.length ; i ++){
-			vs[i] = fValueAt(i, 0).mul(val);
+			vs[i] = formulaValueAt(i, 0).mul(val);
 		}
-		return new FColVector(vs);
+		return new DefalutFormulaColumnVector(vs);
 	}
 	
 	/**
@@ -211,7 +213,7 @@ public class FColVector extends AbstractDMath implements FMatArray{
 	 * @param d 指定的值。
 	 * @return 指定的值域该列向量相处得到的列向量。
 	 */
-	public FColVector scale(double d){
+	public DefalutFormulaColumnVector scale(double d){
 		return scale(new QuickFValue(d));
 	}
 	
@@ -220,8 +222,16 @@ public class FColVector extends AbstractDMath implements FMatArray{
 	 * <p> 该转置操作不破坏结构。
 	 * @return 转置行向量。
 	 */
-	public FRowVector trans(){
-		return new FRowVector(vals);
+	public DefaultFormulaRowVector trans(){
+		return new DefaultFormulaRowVector(vals);
+	}
+	
+	/**
+	 * 将该列向量转化成math包中相对应的列向量。
+	 * @return math包中相对应的列向量。
+	 */
+	public DefaultColumnVector toColVector(){
+		return new DefaultColumnVector(FAlgebraUtil.takeValues(vals));
 	}
 	
 }
