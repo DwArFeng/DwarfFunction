@@ -14,7 +14,7 @@ import com.dwarfeng.dutil.math.Region;
  * @author DwArFeng
  * @since 1.8
  */
-public interface NumberBased extends MathObject, Region<FVariable>, DFoth{
+public interface NumberBased extends MathObject, Region<FormulaVariable>, DFoth{
 	
 	/**
 	 * 返回一个对象的变量空间。
@@ -38,7 +38,7 @@ public interface NumberBased extends MathObject, Region<FVariable>, DFoth{
 	 * @see com.dwarfeng.dmath.Region#contains(java.lang.Object)
 	 */
 	@Override
-	public default boolean contains(FVariable t){
+	public default boolean contains(FormulaVariable t){
 		return variableSpace().contains(t);
 	}
 

@@ -114,20 +114,20 @@ public class DefaultMatrix extends AbstractMathObject implements Matrix{
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.math.linalge.MatArray#rowVectorAt(int)
+	 * @see com.dwarfeng.dutil.math.linalge.Matrix#rowVectorAt(int)
 	 */
 	@Override
 	public DefaultRowVector rowVectorAt(int row) {
-		LinalgeUtil.requrieRowInBound(this, row, DwarfUtil.getStringField(StringFieldKey.DefaultMatrix_2));
+		LinalgeUtil.requireRowInBound(this, row, DwarfUtil.getStringField(StringFieldKey.DefaultMatrix_2));
 		return new DefaultRowVector(vals[row]);
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.math.linalge.MatArray#colVectorAt(int)
+	 * @see com.dwarfeng.dutil.math.linalge.Matrix#columnVectorAt(int)
 	 */
 	@Override
-	public DefaultColumnVector colVectorAt(int column) {
+	public DefaultColumnVector columnVectorAt(int column) {
 		LinalgeUtil.requireColumnInBound(this, column, DwarfUtil.getStringField(StringFieldKey.DefaultMatrix_3));
 		
 		double[] valueables = new double[rows()];
@@ -137,4 +137,159 @@ public class DefaultMatrix extends AbstractMathObject implements Matrix{
 		return new DefaultColumnVector(valueables);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dutil.math.linalge.MatrixLike#rows()
+	 */
+	@Override
+	public int rows() {
+		return vals.length;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dutil.math.linalge.MatrixLike#columns()
+	 */
+	@Override
+	public int columns() {
+		return vals[0].length;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dutil.math.linalge.MatrixLike#valueAt(int, int)
+	 */
+	@Override
+	public double valueAt(int row, int column) {
+		LinalgeUtil.requireRowInBound(this, row, DwarfUtil.getStringField(StringFieldKey.DefaultMatrix_2));
+		LinalgeUtil.requireColumnInBound(this, column, DwarfUtil.getStringField(StringFieldKey.DefaultMatrix_3));
+		return vals[row][column];
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dutil.math.linalge.Matrix#add(com.dwarfeng.dutil.math.linalge.Matrix)
+	 */
+	@Override
+	public Matrix add(Matrix matrix) {
+		Objects.requireNonNull(matrix, DwarfUtil.getStringField(StringFieldKey.DefaultMatrix_5));
+		LinalgeUtil.requireSpecificSize(matrix, rows(), columns(), DwarfUtil.getStringField(StringFieldKey.DefaultMatrix_4));
+		
+		double ds[][] = new double[rows()][columns()];
+		for(int i = 0 ; i < ds.length ; i ++){
+			for(int j = 0 ; j < ds[0].length ; j ++){
+				ds[i][j] = vals[i][j] + matrix.valueAt(i, j);
+			}
+		}
+		return new DefaultMatrix(ds);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dutil.math.linalge.Matrix#minus(com.dwarfeng.dutil.math.linalge.Matrix)
+	 */
+	@Override
+	public Matrix minus(Matrix matrix) {
+		Objects.requireNonNull(matrix, DwarfUtil.getStringField(StringFieldKey.DefaultMatrix_5));
+		LinalgeUtil.requireSpecificSize(matrix, rows(), columns(), DwarfUtil.getStringField(StringFieldKey.DefaultMatrix_4));
+		
+		double ds[][] = new double[rows()][columns()];
+		for(int i = 0 ; i < ds.length ; i ++){
+			for(int j = 0 ; j < ds[0].length ; j ++){
+				ds[i][j] = vals[i][j] - matrix.valueAt(i, j);
+			}
+		}
+		return new DefaultMatrix(ds);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dutil.math.linalge.Matrix#mul(com.dwarfeng.dutil.math.linalge.Matrix)
+	 */
+	@Override
+	public Matrix mul(Matrix matrix) {
+		Objects.requireNonNull(matrix, DwarfUtil.getStringField(StringFieldKey.DefaultMatrix_5));
+		LinalgeUtil.requireForMutiply(this, matrix,  DwarfUtil.getStringField(StringFieldKey.DefaultMatrix_4));
+		
+		double ds[][] = new double[rows()][matrix.columns()];
+		for(int i = 0 ; i < ds.length ; i ++){
+			for(int j = 0 ; j < ds[0].length ; j ++){
+				double sum = 0;
+				for(int k = 0 ; k < columns() ; k ++){
+					sum += valueAt(i, k) * matrix.valueAt(k, j);
+				}
+				ds[i][j] = sum;
+			}
+		}
+		
+		return new DefaultMatrix(ds);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dutil.math.linalge.Matrix#scale(double)
+	 */
+	@Override
+	public Matrix scale(double val) {
+		double[][] ds = new double[rows()][columns()];
+		
+		for(int i = 0 ; i < ds.length ; i ++){
+			for(int j = 0 ; j < ds[0].length ; j ++){
+				ds[i][j] = vals[i][j] * val;
+			}
+		}
+		
+		return new DefaultMatrix(ds);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dutil.math.linalge.Matrix#trans()
+	 */
+	@Override
+	public Matrix trans() {
+		double[][] ds = new double[columns()][rows()];
+		
+		for(int i = 0 ; i < ds.length ; i ++){
+			for(int j = 0 ; j < ds[0].length ; j ++){
+				ds[i][j] = vals[j][i];
+			}
+		}
+		
+		return new DefaultMatrix(ds);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(Objects.isNull(obj)) return false;
+		if(obj == this) return true;
+		if(! (obj instanceof DefaultMatrix)) return false;
+		DefaultMatrix matrix = (DefaultMatrix) obj;
+		for(int i = 0 ; i < this.rows() ; i ++){
+			for(int j = 0 ; j < this.columns() ; j ++){
+				if(this.valueAt(i, j) != matrix.valueAt(i, j)) return false;
+			}
+		}
+		return true;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		for(int i = 0 ; i < vals.length ; i ++){
+			for(int j = 0 ; j < vals[0].length ; j ++){
+				hash += Double.hashCode(vals[i][j]) + 17;
+				hash *= 17;
+			}
+		}
+		return hash;
+	}
 }

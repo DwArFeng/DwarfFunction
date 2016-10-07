@@ -132,4 +132,33 @@ public class DefaultColumnVector extends AbstractMathObject implements ColumnVec
 		return new DefaultRowVector(vals);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(Objects.isNull(obj)) return false;
+		if(obj == this) return true;
+		if(! (obj instanceof DefaultColumnVector)) return false;
+		DefaultColumnVector columnVector = (DefaultColumnVector) obj;
+		for(int i = 0 ; i < this.size() ; i ++){
+			if(columnVector.valueAt(i) != this.valueAt(i)) return false;
+		}
+		return true;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		for(int i = 0 ; i < vals.length ; i ++){
+			hash += Double.hashCode(vals[i])+17;
+			hash *= 17;
+		}
+		return hash;
+	}
 }

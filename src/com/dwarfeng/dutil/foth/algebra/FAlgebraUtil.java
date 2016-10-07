@@ -52,20 +52,20 @@ public final class FAlgebraUtil {
 		
 		FormulaValue[] valueables = new FormulaValue[ds.length];
 		for(int i = 0 ; i < ds.length ; i ++){
-			valueables[i] = new QuickFValue(ds[i]);
+			valueables[i] = new QuickFormulaValue(ds[i]);
 		}
 		return valueables;
 	}
 	
 	/**
 	 * 判断两个变量是否冲突。
-	 * <p> 有关于冲突的概念，请参照 {@link FVariable}。
+	 * <p> 有关于冲突的概念，请参照 {@link FormulaVariable}。
 	 * @param v1 第一个变量。
 	 * @param v2 第二个变量。
 	 * @return 两个变量是否冲突。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public static boolean checkConflict(FVariable v1, FVariable v2){
+	public static boolean checkConflict(FormulaVariable v1, FormulaVariable v2){
 		Objects.requireNonNull(v1, DwarfUtil.getStringField(StringFieldKey.FAlgebraUtil_2));
 		Objects.requireNonNull(v2, DwarfUtil.getStringField(StringFieldKey.FAlgebraUtil_2));
 		

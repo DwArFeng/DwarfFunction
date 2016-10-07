@@ -94,8 +94,8 @@ public enum StringFieldKey{
 	/**NameableComparator类第0号文本字段*/
 	NameableComparator_0,
 	
-	/**ValueableComparator类第0号文本字段*/
-	ValueableComparator_0,
+	/**FormulaValueComparator类第0号文本字段*/
+	FormulaValueComparator_0,
 	
 	/**Variable类第0号文本字段*/
 	Variable_0,
@@ -131,22 +131,20 @@ public enum StringFieldKey{
 	/**DefaultFormulaRowVector类第8号文本字段*/
 	DefaultFormulaRowVector_8,
 	
-	/**FColVector类第0号文本字段*/
-	FColVector_0,
-	/**FColVector类第1号文本字段*/
-	FColVector_1,
-	/**FColVector类第2号文本字段*/
-	FColVector_2,
-	/**FColVector类第3号文本字段*/
-	FColVector_3,
-	/**FColVector类第4号文本字段*/
-	FColVector_4,
-	/**FColVector类第5号文本字段*/
-	FColVector_5,
-	/**FColVector类第6号文本字段*/
-	FColVector_6,
-	/**FColVector类第7号文本字段*/
-	FColVector_7,
+	/**DefaultFormulaColumnVector类第0号文本字段*/
+	DefaultFormulaColumnVector_0,
+	/**DefaultFormulaColumnVector类第1号文本字段*/
+	DefaultFormulaColumnVector_1,
+	/**DefaultFormulaColumnVector类第2号文本字段*/
+	DefaultFormulaColumnVector_2,
+	/**DefaultFormulaColumnVector类第3号文本字段*/
+	DefaultFormulaColumnVector_3,
+	/**DefaultFormulaColumnVector类第4号文本字段*/
+	DefaultFormulaColumnVector_4,
+	/**DefaultFormulaColumnVector类第5号文本字段*/
+	DefaultFormulaColumnVector_5,
+	/**DefaultFormulaColumnVector类第6号文本字段*/
+	DefaultFormulaColumnVector_6,
 	
 	/**LinalgeUtil类第0号文本字段*/
 	LinalgeUtil_0,
@@ -162,17 +160,21 @@ public enum StringFieldKey{
 	/**FormulaValue类第0号文本字段*/
 	FormulaValue_0,
 	
-	/**FMatrix类第0号文本字段*/
-	FMatrix_0,
-	/**FMatrix类第1号文本字段*/
-	FMatrix_1,
-	/**FMatrix类第2号文本字段*/
-	FMatrix_2,
-	/**FMatrix类第3号文本字段*/
-	FMatrix_3,
-	/**FMatrix类第4号文本字段*/
-	FMatrix_4,
-	
+	/**DefaultFormulaMatrix类第0号文本字段*/
+	DefaultFormulaMatrix_0,
+	/**DefaultFormulaMatrix类第1号文本字段*/
+	DefaultFormulaMatrix_1,
+	/**DefaultFormulaMatrix类第2号文本字段*/
+	DefaultFormulaMatrix_2,
+	/**DefaultFormulaMatrix类第3号文本字段*/
+	DefaultFormulaMatrix_3,
+	/**DefaultFormulaMatrix类第4号文本字段*/
+	DefaultFormulaMatrix_4,
+	/**DefaultFormulaMatrix类第5号文本字段*/
+	DefaultFormulaMatrix_5,
+	/**DefaultFormulaMatrix类第6号文本字段*/
+	DefaultFormulaMatrix_6,
+
 	/**DefaultColumnVector类第0号文本字段*/
 	DefaultColumnVector_0,
 	/*DefaultColumnVector类第1号文本字段*/
@@ -207,4 +209,14 @@ public enum StringFieldKey{
 	DefaultMatrix_2,
 	/**DefaultMatrix类第3号文本字段*/
 	DefaultMatrix_3,
+	/**DefaultMatrix类第4号文本字段*/
+	DefaultMatrix_4,
+	/**DefaultMatrix类第5号文本字段*/
+	DefaultMatrix_5,
+	
+	/**FormulaLinalgeUtil类第0号文本字段*/
+	FormulaLinalgeUtil_0,
+	/**FormulaLinalgeUtil类第1号文本字段*/
+	FormulaLinalgeUtil_1,
+	
 }

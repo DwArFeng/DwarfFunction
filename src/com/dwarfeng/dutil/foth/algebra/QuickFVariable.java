@@ -13,7 +13,7 @@ import com.dwarfeng.dutil.math.AbstractMathObject;
  * @author DwArFeng
  * @since 1.8
  */
-public class QuickFVariable extends AbstractMathObject implements FVariable {
+public class QuickFVariable extends AbstractMathObject implements FormulaVariable {
 	
 	/**变量的值*/
 	protected double val;

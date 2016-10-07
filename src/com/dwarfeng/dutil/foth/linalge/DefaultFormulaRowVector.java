@@ -6,10 +6,9 @@ import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.cna.ArrayUtil;
 import com.dwarfeng.dutil.foth.algebra.FAlgebraUtil;
-import com.dwarfeng.dutil.foth.algebra.FVariable;
 import com.dwarfeng.dutil.foth.algebra.FVariableSpace;
 import com.dwarfeng.dutil.foth.algebra.FormulaValue;
-import com.dwarfeng.dutil.foth.algebra.QuickFValue;
+import com.dwarfeng.dutil.foth.algebra.QuickFormulaValue;
 import com.dwarfeng.dutil.foth.algebra.VariableConflictException;
 import com.dwarfeng.dutil.math.AbstractMathObject;
 import com.dwarfeng.dutil.math.linalge.DefaultRowVector;
@@ -40,7 +39,7 @@ public class DefaultFormulaRowVector extends AbstractMathObject implements Formu
 		
 		FormulaValue[] vals = new FormulaValue[rowVector.size()];
 		for(int i = 0 ; i < vals.length ; i ++){
-			vals[i] = new QuickFValue(rowVector.valueAt(i));
+			vals[i] = new QuickFormulaValue(rowVector.valueAt(i));
 		}
 		
 		this.vals = vals;
@@ -176,14 +175,14 @@ public class DefaultFormulaRowVector extends AbstractMathObject implements Formu
 	 * @see com.dwarfeng.dutil.foth.linalge.FormulaRowVector#mul(com.dwarfeng.dutil.foth.linalge.FormulaColumnVector)
 	 */
 	@Override
-	public double mul(FormulaColumnVector columnVector) {
+	public FormulaValue mul(FormulaColumnVector columnVector) {
 		Objects.requireNonNull(columnVector, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaRowVector_4));
-		LinalgeUtil.requireForMutiply(this, columnVector, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaRowVector_6));
+		FormulaLinalgeUtil.requireForMutiply(this, columnVector, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaRowVector_6));
 		
-		FormulaValue sum = QuickFValue.ZERO;
-		for(int i = 0 ; i < columns() ; i ++){
-			FormulaValue v1 = this.formulaValueAt(0, i);
-			FormulaValue v2 = colVector.formulaValueAt(i, 0);
+		FormulaValue sum = QuickFormulaValue.ZERO;
+		for(int i = 0 ; i < vals.length ; i ++){
+			FormulaValue v1 = formulaValueAt(i);
+			FormulaValue v2 = columnVector.formulaValueAt(i);
 			sum = sum.add(v1.mul(v2));
 		}
 		

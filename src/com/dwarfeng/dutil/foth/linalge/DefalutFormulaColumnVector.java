@@ -8,9 +8,10 @@ import com.dwarfeng.dutil.basic.cna.ArrayUtil;
 import com.dwarfeng.dutil.foth.algebra.FAlgebraUtil;
 import com.dwarfeng.dutil.foth.algebra.FormulaValue;
 import com.dwarfeng.dutil.foth.algebra.FVariableSpace;
-import com.dwarfeng.dutil.foth.algebra.QuickFValue;
+import com.dwarfeng.dutil.foth.algebra.QuickFormulaValue;
 import com.dwarfeng.dutil.foth.algebra.VariableConflictException;
 import com.dwarfeng.dutil.math.AbstractMathObject;
+import com.dwarfeng.dutil.math.linalge.ColumnVector;
 import com.dwarfeng.dutil.math.linalge.DefaultColumnVector;
 import com.dwarfeng.dutil.math.linalge.LinalgeUtil;
 
@@ -30,19 +31,20 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 	
 	/**
 	 * 生成一个与math包中的列向量的值一致的有结构列向量。
-	 * @param colVector math包中的列向量。
+	 * @param columnVector math包中的列向量。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public DefalutFormulaColumnVector(DefaultColumnVector colVector) {
-		Objects.requireNonNull(colVector, DwarfUtil.getStringField(StringFieldKey.FColVector_3));
+	public DefalutFormulaColumnVector(ColumnVector columnVector) {
+		Objects.requireNonNull(columnVector, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_3));
 		
-		FormulaValue[] vals = new FormulaValue[colVector.rows()];
+		FormulaValue[] vals = new FormulaValue[columnVector.size()];
 		for(int i = 0 ; i < vals.length ; i ++){
-			vals[i] = new QuickFValue(colVector.valueAt(i, 0));
+			vals[i] = new QuickFormulaValue(columnVector.valueAt(i));
 		}
 		
 		this.vals = vals;
 		this.vs = FVariableSpace.EMPTY;
+		
 	}
 	
 	/**
@@ -53,9 +55,9 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 	 * @throws IllegalArgumentException 元素数组无效。
 	 */
 	public DefalutFormulaColumnVector(double[] vals) {
-		Objects.requireNonNull(vals, DwarfUtil.getStringField(StringFieldKey.FColVector_1));
+		Objects.requireNonNull(vals, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_1));
 		if(vals.length < 1){
-			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.FColVector_0));
+			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_0));
 		}
 		
 		this.vals = FAlgebraUtil.toFValues(vals);
@@ -71,9 +73,9 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 	 * @throws IllegalArgumentException 值接口数组无效。 
 	 */
 	public DefalutFormulaColumnVector(FormulaValue[] valueables){
-		ArrayUtil.requireNotContainsNull(valueables, DwarfUtil.getStringField(StringFieldKey.FColVector_2));
+		ArrayUtil.requireNotContainsNull(valueables, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_2));
 		if(valueables.length < 1){
-			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.FColVector_0));
+			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_0));
 		}
 		
 		this.vals = valueables;
@@ -114,7 +116,7 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dmath.algebra.NumBase#getVariableSpace()
+	 * @see com.dwarfeng.dutil.foth.algebra.NumberBased#variableSpace()
 	 */
 	@Override
 	public FVariableSpace variableSpace() {
@@ -123,114 +125,81 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.foth.linalge.FMatArray#fValueableAt(int, int)
+	 * @see com.dwarfeng.dutil.foth.linalge.FormulaLinalgeVector#formulaValueAt(int)
 	 */
 	@Override
-	public FormulaValue formulaValueAt(int row, int column) {
-		LinalgeUtil.requrieRowInBound(this, row, DwarfUtil.getStringField(StringFieldKey.FColVector_6));
-		LinalgeUtil.requireColumnInBound(this, column, DwarfUtil.getStringField(StringFieldKey.FColVector_7));
-		return vals[row];
+	public FormulaValue formulaValueAt(int index) {
+		LinalgeUtil.requireIndexInBound(this, index, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_6));
+		return vals[index];
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dmath.linalge.MatArray#getRowVector(int)
+	 * @see com.dwarfeng.dutil.math.linalge.LinalgeVector#size()
 	 */
 	@Override
-	public DefaultFormulaRowVector fRowVectorAt(int row) {
-		LinalgeUtil.requrieRowInBound(this, row, DwarfUtil.getStringField(StringFieldKey.FColVector_6));
-		return new DefaultFormulaRowVector(new FormulaValue[]{vals[row]});
+	public int size() {
+		return vals.length;
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.foth.linalge.FMatArray#fColVectorAt(int)
+	 * @see com.dwarfeng.dutil.foth.linalge.FormulaColumnVector#add(com.dwarfeng.dutil.foth.linalge.FormulaColumnVector)
 	 */
 	@Override
-	public DefalutFormulaColumnVector fColVectorAt(int column) {
-		LinalgeUtil.requireColumnInBound(this, column, DwarfUtil.getStringField(StringFieldKey.FColVector_7));
-		return this;
-	}
-	
-	/**
-	 * 该列向量与另一个列向量相加。
-	 * <p> 注意，该运算是值运算，所得到的结果是结构破坏性的。
-	 * @param colVector 指定的列向量。
-	 * @return 运算得出的新的列向量。
-	 * @throws NullPointerException 入口参数为 <code>null</code>。
-	 * @throws IllegalArgumentException 入口列向量尺寸不匹配。
-	 */
-	public DefalutFormulaColumnVector add(DefalutFormulaColumnVector colVector){
-		Objects.requireNonNull(colVector, DwarfUtil.getStringField(StringFieldKey.FColVector_3));
-		LinalgeUtil.requireSpecificSize(colVector, rows(), columns(), DwarfUtil.getStringField(StringFieldKey.FColVector_4));
+	public FormulaColumnVector add(FormulaColumnVector columnVector) {
+		Objects.requireNonNull(columnVector, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_3));
+		LinalgeUtil.requireSpecificSize(columnVector, size(), DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_4));
 
 		FormulaValue[] vs = new FormulaValue[vals.length];
 		for(int i = 0 ; i < vs.length ; i ++){
-			vs[i] = vals[i].add(colVector.vals[i]);
+			vs[i] = vals[i].add(columnVector.formulaValueAt(i));
+		}
+		return new DefalutFormulaColumnVector(vs);
+	}
+
+	@Override
+	public FormulaColumnVector minus(FormulaColumnVector columnVector) {
+		Objects.requireNonNull(columnVector, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_3));
+		LinalgeUtil.requireSpecificSize(columnVector, size(), DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_4));
+
+		FormulaValue[] vs = new FormulaValue[vals.length];
+		for(int i = 0 ; i < vs.length ; i ++){
+			vs[i] = vals[i].minus(columnVector.formulaValueAt(i));
 		}
 		return new DefalutFormulaColumnVector(vs);
 	}
 	
-	/**
-	 * 该列向量与另一个列向量相减。
-	 * <p> 注意，该运算是值运算，所得到的结果是结构破坏性的。
-	 * @param colVector 指定的列向量。
-	 * @return 运算得出的新的列向量。
-	 * @throws NullPointerException 入口参数为 <code>null</code>。
-	 * @throws IllegalArgumentException 入口列向量尺寸不匹配。
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dutil.foth.linalge.FormulaColumnVector#scale(com.dwarfeng.dutil.foth.algebra.FormulaValue)
 	 */
-	public DefalutFormulaColumnVector minus(DefalutFormulaColumnVector colVector){
-		Objects.requireNonNull(colVector, DwarfUtil.getStringField(StringFieldKey.FColVector_3));
-		LinalgeUtil.requireSpecificSize(colVector, rows(), columns(), DwarfUtil.getStringField(StringFieldKey.FColVector_4));
-
-		FormulaValue[] vs = new FormulaValue[vals.length];
-		for(int i = 0 ; i < vs.length ; i ++){
-			vs[i] = vals[i].minus(colVector.vals[i]);
-		}
-		return new DefalutFormulaColumnVector(vs);
-	}
-	
-	/**
-	 * 该列向量与指定的值相乘。
-	 * <p> 注意，该运算是值运算，所得到的结果是结构破坏性的。
-	 * @param val 指定的值。
-	 * @return 指定的值域该列向量相乘得到的列向量。
-	 * @throws NullPointerException 入口参数为 <code>null</code>。
-	 */
-	public DefalutFormulaColumnVector scale(FormulaValue val){
-		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FColVector_5));
+	@Override
+	public FormulaColumnVector scale(FormulaValue val){
+		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_5));
 		
 		FormulaValue[] vs = new FormulaValue[vals.length];
 		for(int i = 0 ; i < vs.length ; i ++){
-			vs[i] = formulaValueAt(i, 0).mul(val);
+			vs[i] = formulaValueAt(i).mul(val);
 		}
 		return new DefalutFormulaColumnVector(vs);
 	}
 	
-	/**
-	 * 该列向量与指定列向量相除。
-	 * <p> 注意，该运算是值运算，所得到的结果是结构破坏性的。
-	 * @param d 指定的值。
-	 * @return 指定的值域该列向量相处得到的列向量。
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dutil.foth.linalge.FormulaColumnVector#trans()
 	 */
-	public DefalutFormulaColumnVector scale(double d){
-		return scale(new QuickFValue(d));
-	}
-	
-	/**
-	 * 返回该列向量的转置行向量。
-	 * <p> 该转置操作不破坏结构。
-	 * @return 转置行向量。
-	 */
+	@Override
 	public DefaultFormulaRowVector trans(){
 		return new DefaultFormulaRowVector(vals);
 	}
-	
-	/**
-	 * 将该列向量转化成math包中相对应的列向量。
-	 * @return math包中相对应的列向量。
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dutil.foth.linalge.FormulaColumnVector#toColumnVector()
 	 */
-	public DefaultColumnVector toColVector(){
+	@Override
+	public ColumnVector toColumnVector() {
 		return new DefaultColumnVector(FAlgebraUtil.takeValues(vals));
 	}
 	

@@ -190,7 +190,7 @@ public final class LinalgeUtil {
 	 * @throws NullPointerException 指定的矩阵为 <code>null</code>。
 	 * @throws IndexOutOfBoundsException 指定的行号越界。
 	 */
-	public static void requrieRowInBound(MatrixLike mat, int row){
+	public static void requireRowInBound(MatrixLike mat, int row){
 		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_1));
 
 		if(row < 0 || row >= mat.rows()){
@@ -207,7 +207,7 @@ public final class LinalgeUtil {
 	 * @throws NullPointerException 指定的矩阵为 <code>null</code>。
 	 * @throws IndexOutOfBoundsException 指定的行号越界。
 	 */
-	public static void requrieRowInBound(MatrixLike mat, int row, String message){
+	public static void requireRowInBound(MatrixLike mat, int row, String message){
 		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_1));
 
 		if(row < 0 || row >= mat.rows()){

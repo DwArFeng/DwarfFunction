@@ -28,7 +28,7 @@ public interface FormulaValue extends NumberBased{
 	 */
 	public default FormulaValue add(FormulaValue val){
 		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FormulaValue_0));
-		return new QuickFValue(val.value() + value());
+		return new QuickFormulaValue(val.value() + value());
 	}
 	
 	/**
@@ -40,7 +40,7 @@ public interface FormulaValue extends NumberBased{
 	 */
 	public default FormulaValue minus(FormulaValue val){
 		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FormulaValue_0));
-		return new QuickFValue(val.value() - value());
+		return new QuickFormulaValue(val.value() - value());
 	}
 	
 	/**
@@ -52,7 +52,7 @@ public interface FormulaValue extends NumberBased{
 	 */
 	public default FormulaValue mul(FormulaValue val){
 		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FormulaValue_0));
-		return new QuickFValue(val.value() * value());
+		return new QuickFormulaValue(val.value() * value());
 	}
 	
 	/**
@@ -65,7 +65,7 @@ public interface FormulaValue extends NumberBased{
 	 */
 	public default FormulaValue div(FormulaValue val){
 		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FormulaValue_0));
-		return new QuickFValue(val.value() / value());
+		return new QuickFormulaValue(val.value() / value());
 	}
 	
 }

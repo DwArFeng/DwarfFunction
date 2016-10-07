@@ -23,40 +23,51 @@ public interface Matrix extends MathObject, MatrixLike{
 	 * @return 指定的列所对应的列向量。
 	 * @throws IndexOutOfBoundsException 指定的列号超界。
 	 */
-	public ColumnVector colVectorAt(int column);
+	public ColumnVector columnVectorAt(int column);
 	
 	/**
-	 * 
-	 * @param matrix
-	 * @return
+	 * 矩阵的加法。
+	 * <p> 该矩阵与指定的矩阵相加。
+	 * @param matrix 指定的矩阵。
+	 * @return 相加得到的新的矩阵。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 * @throws IllegalArgumentException 该矩阵与指定矩阵不能相乘。
 	 */
 	public Matrix add(Matrix matrix);
 	
 	/**
-	 * 
-	 * @param matrix
-	 * @return
+	 * 矩阵的减法。
+	 * <p> 该矩阵与指定矩阵相减。
+	 * @param matrix 指定的矩阵。
+	 * @return 相减得到的新的矩阵。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 * @throws IllegalArgumentException 该矩阵与指定矩阵不能相减。
 	 */
 	public Matrix minus(Matrix matrix);
 	
 	/**
-	 * 
-	 * @param matrix
-	 * @return
+	 * 矩阵的乘法。
+	 * <p> 该矩阵与指定的矩阵相乘。
+	 * @param matrix 指定的矩阵。
+	 * @return 相乘得到的新的矩阵。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 * @throws IllegalArgumentException 该矩阵与指定矩阵不能相减。
 	 */
 	public Matrix mul(Matrix matrix);
 	
 	/**
-	 * 
-	 * @param val
-	 * @return
+	 * 矩阵的缩放运算。
+	 * <p>该矩阵与指定的值相乘。
+	 * @param val 指定的值。
+	 * @return 缩放后得到的新的矩阵。
 	 */
 	public Matrix scale(double val);
 	
-	/**
-	 * 
-	 * @return
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dutil.math.linalge.MatrixLike#trans()
 	 */
+	@Override
 	public Matrix trans();
 	
 }

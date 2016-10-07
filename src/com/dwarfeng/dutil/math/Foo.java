@@ -14,7 +14,9 @@ final class Foo {
 
 class Test{
 	public void run(){
-		DefaultMatrix mat = new DefaultMatrix(new double[][] {{1,2,3}, {4,5,6}, {7,8,9}});
-		CT.trace(mat);
+		DefaultMatrix m1 = new DefaultMatrix(new double[][] {{1,5,9}, {4,6,6}, {7,2,3}, {6,9,1}});
+		DefaultMatrix m2 = new DefaultMatrix(new double[][]{{1,4,5,3}, {1,9,4,5}, {2,8,1,7}});
+		
+		CT.trace(m1.mul(m2));
 	}
 }

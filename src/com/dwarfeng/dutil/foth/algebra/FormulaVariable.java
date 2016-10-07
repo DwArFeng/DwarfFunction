@@ -15,7 +15,7 @@ import com.dwarfeng.dutil.math.MathObject;
  * @author DwArFeng
  * @since 1.8
  */
-public interface FVariable extends MathObject, FormulaValue, Nameable{
+public interface FormulaVariable extends MathObject, FormulaValue, Nameable{
 
 	/**
 	 * 设置该接口的数值。

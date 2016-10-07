@@ -1,5 +1,7 @@
 package com.dwarfeng.dutil.foth.algebra;
 
+import java.util.Objects;
+
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.math.AbstractMathObject;
@@ -12,19 +14,19 @@ import com.dwarfeng.dutil.math.AbstractMathObject;
  * @author DwArFeng
  * @since 1.8
  */
-public class QuickFValue extends AbstractMathObject implements FormulaValue {
+public class QuickFormulaValue extends AbstractMathObject implements FormulaValue {
 
 	/**代表0*/
-	public static final QuickFValue ZERO = new QuickFValue();
+	public static final QuickFormulaValue ZERO = new QuickFormulaValue();
 	
 	/**对象的值*/
 	protected final double val;
 	
 	/**
 	 * 生成一个值为0的快速值对象。
-	 * <p> 字段 {@link QuickFValue#ZERO}优先级要高于该构造方法。
+	 * <p> 字段 {@link QuickFormulaValue#ZERO}优先级要高于该构造方法。
 	 */
-	public QuickFValue() {
+	public QuickFormulaValue() {
 		this(0);
 	}
 	
@@ -32,7 +34,7 @@ public class QuickFValue extends AbstractMathObject implements FormulaValue {
 	 * 生成一个快速值对象。
 	 * @param val 对象的值。
 	 */
-	public QuickFValue(double val) {
+	public QuickFormulaValue(double val) {
 		this.val = val;
 	}
 	
@@ -70,6 +72,28 @@ public class QuickFValue extends AbstractMathObject implements FormulaValue {
 	@Override
 	public FVariableSpace variableSpace() {
 		return FVariableSpace.EMPTY;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(Objects.isNull(obj)) return false;
+		if(obj == this) return true;
+		if(! (obj instanceof QuickFormulaValue)) return false;
+		QuickFormulaValue formulaValue = (QuickFormulaValue) obj;
+		return formulaValue.val == this.val;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		return Double.hashCode(val) * 17;
 	}
 
 }
