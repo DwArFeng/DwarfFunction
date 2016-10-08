@@ -117,23 +117,6 @@ public final class TimeMeasurer {
 		}
 	}
 	
-//	/**
-//	 * 将计时的信息输出到系统的Err流中。
-//	 */
-//	public void print(){
-//		switch (status) {
-//			case TIMING:
-//				System.err.println(DwarfUtil.getStringField(StringFieldKey.CodeTimer_0));
-//				break;
-//			default:
-//				System.err.printf(
-//						DwarfUtil.getStringField(StringFieldKey.CodeTimer_1),
-//						UnitTrans.trans(l, Time.NS, Time.MS).doubleValue()
-//				);
-//				break;
-//		}
-//	}
-	
 	/**
 	 * 获取该计时器的时间，以纳秒为单位。
 	 * @return 该代码计时器的时间。
