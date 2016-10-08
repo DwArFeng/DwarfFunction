@@ -34,10 +34,20 @@ public enum StringFieldKey{
 	CycledBuffer_0,
 	/**ArrayPackUtil类第0号文本字段*/
 	ArrayPackUtil_0,
-	/**CodeTimer类第0号文本字段*/
-	CodeTimer_0,
-	/**CodeTimer类第1号文本字段*/
-	CodeTimer_1,
+	
+	/**TimeMeasurer类第0号文本字段*/
+	TimeMeasurer_0,
+	/**TimeMeasurer类第1号文本字段*/
+	TimeMeasurer_1,
+	/**TimeMeasurer类第2号文本字段*/
+	TimeMeasurer_2,
+	/**TimeMeasurer类第3号文本字段*/
+	TimeMeasurer_3,
+	/**TimeMeasurer类第4号文本字段*/
+	TimeMeasurer_4,
+	/**TimeMeasurer类第5号文本字段*/
+	TimeMeasurer_5,
+	
 	/**EventListenerWeakSet类第0号文本字段*/
 	EventListenerWeakSet_0,
 	/**MuaListModel类第0号文本字段*/

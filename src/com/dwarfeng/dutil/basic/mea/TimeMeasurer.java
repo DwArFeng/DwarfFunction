@@ -1,10 +1,12 @@
 package com.dwarfeng.dutil.basic.mea;
 
+import java.util.Formatter;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.num.MusValueable;
 import com.dwarfeng.dutil.basic.num.UnitTrans;
 import com.dwarfeng.dutil.basic.num.UnitTrans.Time;
 
@@ -34,7 +36,7 @@ public final class TimeMeasurer {
 		/**正在计时*/
 		TIMING,
 		/**计时结束*/
-		TIMED
+		STOPED
 	}
 
 	/**计时器的状态*/
@@ -58,94 +60,187 @@ public final class TimeMeasurer {
 	}
 	
 	/**
-	 * 获取计时器是否已经启动了。
-	 * @return 计时器是否已经启动。
+	 * 获取计时器是否还未启动。
+	 * @return 计时器是否还未启动。
 	 */
-	public boolean isStarted(){
-		if(status == Status.NOTSTART) return false;
-		return true;
+	public boolean isNotStart(){
+		return status == Status.NOTSTART;
+	}
+	
+	/**
+	 * 获取计时器是否正在计时。
+	 * @return 计时器是否正在计时。
+	 */
+	public boolean isTiming(){
+		return status == Status.TIMING;
+	}
+	
+	/**
+	 * 获取计时器是否已经停止计时。
+	 * @return 计时器是否已经停止计时。
+	 */
+	public boolean isStoped(){
+		return status == Status.STOPED;
 	}
 	
 	/**
 	 * 开始计时。
+	 * @throws IllegalStateException 计时器已经开始计时或者已经计时结束。
 	 */
 	public void start(){
 		lock.lock();
 		try{
+			if(!isNotStart()){
+				throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_0));
+			}
 			l =  - System.nanoTime();
-		}finally{
 			this.status = Status.TIMING;
+		}finally{
 			lock.unlock();
 		}
 	}
 	
 	/**
 	 * 停止计时。
+	 * @throws IllegalStateException 计时器还未开始计时或者已经计时结束。
 	 */
 	public void stop(){
 		lock.lock();
 		try{
-			if(status == Status.TIMED){
-				l = 0;
-			}else{
-				l += System.nanoTime();
+			if(!isTiming()){
+				throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_1));
 			}
+			l += System.nanoTime();
+			this.status = Status.STOPED;
 		}finally{
-			this.status = Status.TIMED;
 			lock.unlock();
 		}
 	}
 	
-	/**
-	 * 将计时的信息输出到系统的Err流中。
-	 */
-	public void print(){
-		switch (status) {
-			case TIMING:
-				System.err.println(DwarfUtil.getStringField(StringFieldKey.CodeTimer_0));
-				break;
-			default:
-				System.err.printf(
-						DwarfUtil.getStringField(StringFieldKey.CodeTimer_1),
-						UnitTrans.trans(l, Time.NS, Time.MS).doubleValue()
-				);
-				break;
-		}
-	}
+//	/**
+//	 * 将计时的信息输出到系统的Err流中。
+//	 */
+//	public void print(){
+//		switch (status) {
+//			case TIMING:
+//				System.err.println(DwarfUtil.getStringField(StringFieldKey.CodeTimer_0));
+//				break;
+//			default:
+//				System.err.printf(
+//						DwarfUtil.getStringField(StringFieldKey.CodeTimer_1),
+//						UnitTrans.trans(l, Time.NS, Time.MS).doubleValue()
+//				);
+//				break;
+//		}
+//	}
 	
 	/**
-	 * 获取该代码计时器的时间，以纳秒为单位。
+	 * 获取该计时器的时间，以纳秒为单位。
 	 * @return 该代码计时器的时间。
+	 * @throws IllegalStateException 计时器还未计时结束。
 	 */
-	public long getTime(){
-		switch (status) {
-			case TIMING:
-				return 0;
-			default:
-				return l;
+	public long getTimeNs(){
+		if(! isStoped()){
+			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_2));
+		}
+		return l;
+	}
+	
+	/**
+	 * 获取该计时器的时间，以毫秒为单位，并且元整为整数。
+	 * @return 该代码计时器的时间。
+	 * @throws IllegalStateException 计时器还未计时结束。
+	 */
+	public long getTimeMs(){
+		if(! isStoped()){
+			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_2));
+		}
+		return l/1000000;
+	}
+	
+	/**
+	 * 获取该计时器的时间，以秒为单位，并且元整为整数。
+	 * @return 该代码计时器的时间。
+	 * @throws IllegalStateException 计时器还未计时结束。
+	 */
+	public long getTimeSec(){
+		if(! isStoped()){
+			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_2));
+		}
+		return l/1000000000;
+	}
+	
+	/**
+	 * 获取该计时器的时间，以指定的等效权重为作为单位，返回双精度浮点值。
+	 * <p> 等效权重的取值方法为： <code> 86400000000000 / x ，其中 x 为1指定的单位对应的毫秒数。 </code>
+	 * <br> 有关于时间单位，请参阅 {@link Time}，其中包含了大部分常用的时间单位。
+	 * @param valueable 指定的单位的等效权重。
+	 * @return 该代码计时器的时间。
+	 * @throws IllegalStateException 计时器还未计时结束。
+	 */
+	public double getTime(MusValueable valueable){
+		if(! isStoped()){
+			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_2));
+		}
+		return UnitTrans.trans(l, Time.NS, valueable).doubleValue();
+	}
+	
+	/**
+	 * 返回计时器预设的计时的格式化字符串，单位为纳秒。
+	 * @return 预设的格式化字符串。
+	 * @throws IllegalStateException 计时器还未计时结束。
+	 */
+	public String formatStringNs(){
+		if(! isStoped()){
+			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_2));
+		}
+		StringBuilder sb = new StringBuilder();
+		Formatter formatter = new Formatter(sb);
+		try{
+			formatter.format(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_3), getTimeNs());
+			return sb.toString();
+		}finally {
+			formatter.close();
+		}
+
+	}
+	
+	/**
+	 * 返回计时器预设的计时的格式化字符串，单位为毫秒。
+	 * @return 预设的格式化字符串。
+	 * @throws IllegalStateException 计时器还未计时结束。
+	 */
+	public String formatStringMs(){
+		if(! isStoped()){
+			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_2));
+		}
+		StringBuilder sb = new StringBuilder();
+		Formatter formatter = new Formatter(sb);
+		try{
+			formatter.format(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_3), getTimeMs());
+			return sb.toString();
+		}finally {
+			formatter.close();
 		}
 	}
 	
 	/**
-	 * 获取该代码计时器的时间，以指定的时间为单位。
-	 * @param type 时间单位。
-	 * @return 代码计时器的时间。
+	 * 返回计时器预设的计时的格式化字符串，单位为秒。
+	 * @return 预设的格式化字符串。
+	 * @throws IllegalStateException 计时器还未计时结束。
 	 */
-	public double getTime(Time type){
-		switch (status) {
-			case TIMING:
-				return 0;
-			default:
-				return UnitTrans.trans(l, Time.NS, type).doubleValue();
+	public String formatStringSec(){
+		if(! isStoped()){
+			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_2));
 		}
-	}
-	
-	/**
-	 * 停止计时并且把计时信息输出到
-	 */
-	public void stopAndPrint(){
-		stop();
-		print();
+		StringBuilder sb = new StringBuilder();
+		Formatter formatter = new Formatter(sb);
+		try{
+			formatter.format(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_3), getTimeSec());
+			return sb.toString();
+		}finally {
+			formatter.close();
+		}
 	}
 	
 }
