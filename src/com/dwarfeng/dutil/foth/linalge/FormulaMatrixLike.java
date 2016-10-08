@@ -1,7 +1,7 @@
 package com.dwarfeng.dutil.foth.linalge;
 
 import com.dwarfeng.dutil.foth.algebra.NumberBased;
-import com.dwarfeng.dutil.foth.algebra.FormulaValue;
+import com.dwarfeng.dutil.foth.algebra.FothValue;
 import com.dwarfeng.dutil.math.MathObject;
 import com.dwarfeng.dutil.math.linalge.MatrixLike;
 
@@ -20,7 +20,7 @@ public interface FormulaMatrixLike extends MathObject, NumberBased, MatrixLike{
 	 */
 	@Override
 	public default double valueAt(int row, int column){
-		return formulaValueAt(row, column).value();
+		return fothValueAt(row, column).value();
 	}
 	
 	/**
@@ -29,7 +29,7 @@ public interface FormulaMatrixLike extends MathObject, NumberBased, MatrixLike{
 	 * @param column 指定的列。
 	 * @return 指定的行列处对应的元素。
 	 */
-	public FormulaValue formulaValueAt(int row, int column);
+	public FothValue fothValueAt(int row, int column);
 	
 	/*
 	 * (non-Javadoc)

@@ -6,9 +6,9 @@ import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.cna.ArrayUtil;
 import com.dwarfeng.dutil.basic.infs.Buildable;
-import com.dwarfeng.dutil.foth.algebra.FVariableSpace;
-import com.dwarfeng.dutil.foth.algebra.FormulaValue;
-import com.dwarfeng.dutil.foth.algebra.QuickFormulaValue;
+import com.dwarfeng.dutil.foth.algebra.FothVariableSpace;
+import com.dwarfeng.dutil.foth.algebra.FothValue;
+import com.dwarfeng.dutil.foth.algebra.QuickFothValue;
 import com.dwarfeng.dutil.math.AbstractMathObject;
 import com.dwarfeng.dutil.math.linalge.DefaultMatrix;
 import com.dwarfeng.dutil.math.linalge.LinalgeUtil;
@@ -23,9 +23,9 @@ import com.dwarfeng.dutil.math.linalge.Matrix;
 public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaMatrix{
 	
 	/**矩阵的值*/
-	protected final FormulaValue[][] vals;
+	protected final FothValue[][] vals;
 	/**矩阵的变量空间*/
-	protected final FVariableSpace vs;
+	protected final FothVariableSpace vs;
 
 	/**
 	 * 通过math包中的矩阵构造该矩阵。
@@ -39,15 +39,15 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.DefaultFormulaMatrix_1));
 		}
 		
-		FormulaValue[][] vals = new FormulaValue[matrix.rows()][matrix.columns()];
+		FothValue[][] vals = new FothValue[matrix.rows()][matrix.columns()];
 		for(int i = 0 ; i < vals.length ; i ++){
 			for(int j = 0 ; j < vals[0].length ; j ++){
-				vals[i][j] =new QuickFormulaValue( matrix.valueAt(i, j));
+				vals[i][j] =new QuickFothValue( matrix.valueAt(i, j));
 			}
 		}
 		
 		this.vals = vals;
-		this.vs = FVariableSpace.EMPTY;
+		this.vs = FothVariableSpace.EMPTY;
 	}
 	
 	/**
@@ -65,14 +65,14 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 			Objects.requireNonNull(ds, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaMatrix_0));
 		}
 		
-		FormulaValue[][] valueables = new FormulaValue[vals.length][vals[0].length];
+		FothValue[][] valueables = new FothValue[vals.length][vals[0].length];
 		for(int i = 0 ; i < vals.length ; i ++){
 			for(int j = 0 ; j < vals[i].length ; j ++){
-				valueables[i][j] = new QuickFormulaValue(vals[i][j]);
+				valueables[i][j] = new QuickFothValue(vals[i][j]);
 			}
 		}
 		this.vals = valueables;
-		this.vs = FVariableSpace.EMPTY;
+		this.vs = FothVariableSpace.EMPTY;
 	}
 	
 	/**
@@ -81,16 +81,16 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 	 * @throws NullPointerException 入口参数为 <code>null</code>，或其中含有 <code>null</code>元素。
 	 * @throws IllegalArgumentException 数组的行或列的大小为0。
 	 */
-	public DefaultFormulaMatrix(FormulaValue[][] vals) {
+	public DefaultFormulaMatrix(FothValue[][] vals) {
 		Objects.requireNonNull(vals, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaMatrix_0));
 		if(vals.length == 0 || vals[0].length == 0){
 			throw new IllegalAccessError(DwarfUtil.getStringField(StringFieldKey.DefaultFormulaMatrix_1));
 		}
-		for(FormulaValue[] ds : vals){
+		for(FothValue[] ds : vals){
 			ArrayUtil.requireNotContainsNull(ds, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaMatrix_0));
 		}
 		
-		FVariableSpace.Builder builder = new FVariableSpace.Builder();
+		FothVariableSpace.Builder builder = new FothVariableSpace.Builder();
 		for(int i = 0 ; i < vals.length ; i ++){
 			for(int j = 0 ; j < vals[i].length ; i ++){
 				builder.add(vals[i][j]);
@@ -111,7 +111,7 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 	 */
 	public final static class DoubleBuilder implements Buildable<DefaultFormulaMatrix>{
 		
-		private final FVariableSpace vs = FVariableSpace.EMPTY;
+		private final FothVariableSpace vs = FothVariableSpace.EMPTY;
 		private final double[][] vals;
 
 		/**
@@ -153,11 +153,11 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 		 */
 		@Override
 		public DefaultFormulaMatrix build() {
-			FormulaValue[][] fValues = new FormulaValue[vals.length][vals[0].length];
+			FothValue[][] fValues = new FothValue[vals.length][vals[0].length];
 			
 			for(int i = 0 ; i < vals.length ; i ++){
 				for(int j = 0 ; j < vals[0].length ; j ++){
-					fValues[i][j] = new QuickFormulaValue(vals[i][j]);
+					fValues[i][j] = new QuickFothValue(vals[i][j]);
 				}
 			}
 			return new DefaultFormulaMatrix(fValues, vs);
@@ -167,15 +167,15 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 	
 	/**
 	 * 矩阵的值对象构造器。
-	 * <p> 值对象构造器会初始化一个指定行或者列的二维值对象数组，其中的初始值为 {@link QuickFormulaValue#ZERO}。
+	 * <p> 值对象构造器会初始化一个指定行或者列的二维值对象数组，其中的初始值为 {@link QuickFothValue#ZERO}。
 	 * <br> 可以给构造器中的二维数组指定的位置赋值。
 	 * @author DwArFeng
 	 * @since 1.8
 	 */
 	public final static class FValueBuilder implements Buildable<DefaultFormulaMatrix>{
 		
-		private final FVariableSpace.Builder builder;
-		private final FormulaValue[][] vals;
+		private final FothVariableSpace.Builder builder;
+		private final FothValue[][] vals;
 
 		/**
 		 * 构造一个具有指定行列数的值对象矩阵构造器。
@@ -188,12 +188,12 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 				throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.DefaultFormulaMatrix_1));
 			}
 			
-			builder = new FVariableSpace.Builder();
-			this.vals = new FormulaValue[column][row];
+			builder = new FothVariableSpace.Builder();
+			this.vals = new FothValue[column][row];
 			
 			for(int i = 0 ; i < vals.length ; i ++){
 				for(int j = 0 ; j < vals[0].length ; j ++){
-					vals[i][j] = QuickFormulaValue.ZERO;
+					vals[i][j] = QuickFothValue.ZERO;
 				}
 			}
 		}
@@ -207,7 +207,7 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 		 * @throws IndexOutOfBoundsException 行列号超界。
 		 * @throws NullPointerException 入口参数 <code>val</code>为 <code>null</code>。
 		 */
-		public FValueBuilder setVal(int row, int column, FormulaValue val){
+		public FValueBuilder setVal(int row, int column, FothValue val){
 			Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaMatrix_2));
 			if(row < 1 || row >= vals.length){
 				throw new IndexOutOfBoundsException(DwarfUtil.getStringField(StringFieldKey.DefaultFormulaMatrix_3));
@@ -216,7 +216,7 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 				throw new IndexOutOfBoundsException(DwarfUtil.getStringField(StringFieldKey.DefaultFormulaMatrix_4));
 			}
 			
-			FormulaValue value = vals[row][column];
+			FothValue value = vals[row][column];
 			this.builder.remove(value);
 			this.builder.add(val);
 			this.vals[row][column] = val;
@@ -236,7 +236,7 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 	}
 	
 	
-	private DefaultFormulaMatrix(FormulaValue[][] vals, FVariableSpace vs) {
+	private DefaultFormulaMatrix(FothValue[][] vals, FothVariableSpace vs) {
 		this.vals = vals;
 		this.vs = vs;
 	}
@@ -271,7 +271,7 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 	 * @see com.dwarfeng.dfoth.algebra.NumBased#variableSpace()
 	 */
 	@Override
-	public FVariableSpace variableSpace() {
+	public FothVariableSpace variableSpace() {
 		return vs;
 	}
 
@@ -295,10 +295,10 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.foth.linalge.FormulaMatrixLike#formulaValueAt(int, int)
+	 * @see com.dwarfeng.dutil.foth.linalge.FormulaMatrixLike#fothValueAt(int, int)
 	 */
 	@Override
-	public FormulaValue formulaValueAt(int row, int column) {
+	public FothValue fothValueAt(int row, int column) {
 		LinalgeUtil.requireRowInBound(this, row, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaMatrix_3));
 		LinalgeUtil.requireColumnInBound(this, column, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaMatrix_4));
 		return vals[row][column];
@@ -322,7 +322,7 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 	public DefalutFormulaColumnVector formulaColumnVectorAt(int column) {
 		LinalgeUtil.requireColumnInBound(this, column, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaMatrix_4));
 		
-		FormulaValue[] valueables = new FormulaValue[rows()];
+		FothValue[] valueables = new FothValue[rows()];
 		for(int i = 0 ; i < valueables.length ; i ++){
 			valueables[i] = vals[i][column];
 		}

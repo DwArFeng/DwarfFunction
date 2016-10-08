@@ -5,10 +5,10 @@ import java.util.Objects;
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.cna.ArrayUtil;
-import com.dwarfeng.dutil.foth.algebra.FAlgebraUtil;
-import com.dwarfeng.dutil.foth.algebra.FormulaValue;
-import com.dwarfeng.dutil.foth.algebra.FVariableSpace;
-import com.dwarfeng.dutil.foth.algebra.QuickFormulaValue;
+import com.dwarfeng.dutil.foth.algebra.FothVariableSpace;
+import com.dwarfeng.dutil.foth.algebra.FothAlgebraUtil;
+import com.dwarfeng.dutil.foth.algebra.FothValue;
+import com.dwarfeng.dutil.foth.algebra.QuickFothValue;
 import com.dwarfeng.dutil.foth.algebra.VariableConflictException;
 import com.dwarfeng.dutil.math.AbstractMathObject;
 import com.dwarfeng.dutil.math.linalge.ColumnVector;
@@ -25,9 +25,9 @@ import com.dwarfeng.dutil.math.linalge.LinalgeUtil;
 public class DefalutFormulaColumnVector extends AbstractMathObject implements FormulaColumnVector{
 	
 	/**存储列向量值的数组*/
-	protected final FormulaValue[] vals;
+	protected final FothValue[] vals;
 	/**列向量的变量空间*/
-	protected final FVariableSpace vs;
+	protected final FothVariableSpace vs;
 	
 	/**
 	 * 生成一个与math包中的列向量的值一致的有结构列向量。
@@ -37,13 +37,13 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 	public DefalutFormulaColumnVector(ColumnVector columnVector) {
 		Objects.requireNonNull(columnVector, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_3));
 		
-		FormulaValue[] vals = new FormulaValue[columnVector.size()];
+		FothValue[] vals = new FothValue[columnVector.size()];
 		for(int i = 0 ; i < vals.length ; i ++){
-			vals[i] = new QuickFormulaValue(columnVector.valueAt(i));
+			vals[i] = new QuickFothValue(columnVector.valueAt(i));
 		}
 		
 		this.vals = vals;
-		this.vs = FVariableSpace.EMPTY;
+		this.vs = FothVariableSpace.EMPTY;
 		
 	}
 	
@@ -60,8 +60,8 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_0));
 		}
 		
-		this.vals = FAlgebraUtil.toFValues(vals);
-		this.vs = FVariableSpace.EMPTY;
+		this.vals = FothAlgebraUtil.toFothValues(vals);
+		this.vs = FothVariableSpace.EMPTY;
 	}
 	
 	/**
@@ -72,15 +72,15 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 值接口数组无效。 
 	 */
-	public DefalutFormulaColumnVector(FormulaValue[] valueables){
+	public DefalutFormulaColumnVector(FothValue[] valueables){
 		ArrayUtil.requireNotContainsNull(valueables, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_2));
 		if(valueables.length < 1){
 			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_0));
 		}
 		
 		this.vals = valueables;
-		FVariableSpace.Builder builder = new FVariableSpace.Builder();
-		for(FormulaValue valueable : valueables){
+		FothVariableSpace.Builder builder = new FothVariableSpace.Builder();
+		for(FothValue valueable : valueables){
 			builder.add(valueable.variableSpace());
 		}
 		this.vs = builder.build();
@@ -95,7 +95,7 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 		
 		StringBuilder sb = new StringBuilder();
 		sb.append("[");
-		for(FormulaValue val : vals){
+		for(FothValue val : vals){
 			sb		.append(val.getExpression())
 					.append(", ");
 		}
@@ -119,16 +119,16 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 	 * @see com.dwarfeng.dutil.foth.algebra.NumberBased#variableSpace()
 	 */
 	@Override
-	public FVariableSpace variableSpace() {
+	public FothVariableSpace variableSpace() {
 		return vs;
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.foth.linalge.FormulaLinalgeVector#formulaValueAt(int)
+	 * @see com.dwarfeng.dutil.foth.linalge.FormulaLinalgeVector#fothValueAt(int)
 	 */
 	@Override
-	public FormulaValue formulaValueAt(int index) {
+	public FothValue fothValueAt(int index) {
 		LinalgeUtil.requireIndexInBound(this, index, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_6));
 		return vals[index];
 	}
@@ -151,9 +151,9 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 		Objects.requireNonNull(columnVector, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_3));
 		LinalgeUtil.requireSpecificSize(columnVector, size(), DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_4));
 
-		FormulaValue[] vs = new FormulaValue[vals.length];
+		FothValue[] vs = new FothValue[vals.length];
 		for(int i = 0 ; i < vs.length ; i ++){
-			vs[i] = vals[i].add(columnVector.formulaValueAt(i));
+			vs[i] = vals[i].add(columnVector.fothValueAt(i));
 		}
 		return new DefalutFormulaColumnVector(vs);
 	}
@@ -163,24 +163,24 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 		Objects.requireNonNull(columnVector, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_3));
 		LinalgeUtil.requireSpecificSize(columnVector, size(), DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_4));
 
-		FormulaValue[] vs = new FormulaValue[vals.length];
+		FothValue[] vs = new FothValue[vals.length];
 		for(int i = 0 ; i < vs.length ; i ++){
-			vs[i] = vals[i].minus(columnVector.formulaValueAt(i));
+			vs[i] = vals[i].minus(columnVector.fothValueAt(i));
 		}
 		return new DefalutFormulaColumnVector(vs);
 	}
 	
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.foth.linalge.FormulaColumnVector#scale(com.dwarfeng.dutil.foth.algebra.FormulaValue)
+	 * @see com.dwarfeng.dutil.foth.linalge.FormulaColumnVector#scale(com.dwarfeng.dutil.foth.algebra.FothValue)
 	 */
 	@Override
-	public FormulaColumnVector scale(FormulaValue val){
+	public FormulaColumnVector scale(FothValue val){
 		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_5));
 		
-		FormulaValue[] vs = new FormulaValue[vals.length];
+		FothValue[] vs = new FothValue[vals.length];
 		for(int i = 0 ; i < vs.length ; i ++){
-			vs[i] = formulaValueAt(i).mul(val);
+			vs[i] = fothValueAt(i).mul(val);
 		}
 		return new DefalutFormulaColumnVector(vs);
 	}
@@ -200,7 +200,7 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 	 */
 	@Override
 	public ColumnVector toColumnVector() {
-		return new DefaultColumnVector(FAlgebraUtil.takeValues(vals));
+		return new DefaultColumnVector(FothAlgebraUtil.takeValues(vals));
 	}
 	
 }

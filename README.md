@@ -1,23 +1,20 @@
-﻿# DwarfFunction for Java - DwArFeng的Java功能代码
+﻿# DwarfUtil for Java - DwArFeng的Java功能代码
 
-## DwarfFunction 是干什么的？
+## DwarfUtil 是干什么的？
 
-DwarfFunction (DwArFeng's java func) 是DwArFeng在编写Java程序时总结的一些工具方法和一些常用的类。
+DwarfUtil (DwArFeng's java func) 是DwArFeng在编写Java程序时总结的一些工具方法和一些常用的类。
 
-## DwarfFunction包含哪些内容？
+## DwarfUtil包含哪些内容？
 
->dfunc 整个DwarfFunction包 <br>
->>cls 与Class有关的方法或类。<br>
->>cna 与集合或数组有关的方法或类。<br>
->>comp 常用的比较器。<br>
->>dt 调试工具。<br>
->>gui 与界面有关的类。<br>
->>infs 常用接口定义。<br>
->>io 输入/输出有关。<br>
->>num 与数字方法有关。<br>
->>prog 与程序框架有关。<br>
->>str 与字符串有关。<br>
->>threads 与线程有关。<br>
+DwarfUtil 包含一些基本的，用于各种程序中的快捷的或者具有功能性的工具包，也含有用于数学、物理学等其它方面的功能
+强大的工具包。
+
+该工具包中的子工具一览
+
+| 表头1  | 表头2|
+| ---------- | -----------|
+| 表格单元   | 表格单元   |
+| 表格单元   | 表格单元   |
 
 ##更新记录  
 

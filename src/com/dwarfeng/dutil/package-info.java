@@ -19,9 +19,8 @@
  * 包中，而每个工具子包都打包成相应的jar包。当用户想使用常用的工具包时，只需要导入dutil_basic.jar即可，当用户想使用特定的专用
  * 工具包时，只需导入工具包名和其所需的前置包即可。
  * 
- * <p><b> 常用的专用工具包名一览：</b>
- * <table cellpadding="0" cellspacing="3" border="0"
-*     style="text-align: left; width: 100%;">
+ * <table cellpadding="0" cellspacing="3" border="0" style="text-align: left; width: 100%;">
+ *   <caption><b> 常用的专用工具包名一览：</b></caption>
  *   <tbody>
  *     <tr>
  *       <th style="vertical-align: top; background-color: rgb(204, 204, 255);
@@ -32,7 +31,7 @@
  *       </th>
  *     </tr>
  *     <tr>
- *       <td style="vertical-align: middle;" width = "66%">
+ *       <td style="vertical-align: middle; width = 66%">
  *              <code> {@linkplain com.dwarfeng.dutil.math}<br></code>
  *       </td>
  *       <td style="vertical-align: middle;">

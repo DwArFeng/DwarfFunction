@@ -51,12 +51,12 @@ public enum StringFieldKey{
 	/**ArrayUtil类第0号文本字段*/
 	ArrayUtil_0,
 	
-	/**FAlgebraUtill类第0号文本字段*/
-	FAlgebraUtil_0,
-	/**FAlgebraUtill类第1号文本字段*/
-	FAlgebraUtil_1,
-	/**FAlgebraUtill类第2号文本字段*/
-	FAlgebraUtil_2,
+	/**FothAlgebraUtill类第0号文本字段*/
+	FothAlgebraUtil_0,
+	/**FothAlgebraUtill类第1号文本字段*/
+	FothAlgebraUtil_1,
+	/**FothAlgebraUtill类第2号文本字段*/
+	FothAlgebraUtil_2,
 	
 	/**Algebra包RealNumber字段*/
 	Algebra_RealNumber,
@@ -94,23 +94,16 @@ public enum StringFieldKey{
 	/**NameableComparator类第0号文本字段*/
 	NameableComparator_0,
 	
-	/**FormulaValueComparator类第0号文本字段*/
-	FormulaValueComparator_0,
+	/**FothValueComparator类第0号文本字段*/
+	FothValueComparator_0,
 	
-	/**Variable类第0号文本字段*/
-	Variable_0,
-	/**Variable类第1号文本字段*/
-	Variable_1,
+	/**QuickFothVariable类第0号文本字段*/
+	QuickFothVariable_0,
+	/**QuickFothVariable类第1号文本字段*/
+	QuickFothVariable_1,
 	
-	/**FVariable类第0号文本字段*/
-	FVariable_0,
-	
-	/**FVariableSpace类第0号文本字段*/
-	FVariableSpace_0,
-	/**FVariableSpace类第1号文本字段*/
-	FVariableSpace_1,
-	/**FVariableSpace类第2号文本字段*/
-	FVariableSpace_2,
+	/**FothVariable类第0号文本字段*/
+	FothVariable_0,
 	
 	/**DefaultFormulaRowVector类第0号文本字段*/
 	DefaultFormulaRowVector_0,
@@ -157,8 +150,8 @@ public enum StringFieldKey{
 	/**LinalgeUtil类第4号文本字段*/
 	LinalgeUtil_4,
 	
-	/**FormulaValue类第0号文本字段*/
-	FormulaValue_0,
+	/**FothValue类第0号文本字段*/
+	FothValue_0,
 	
 	/**DefaultFormulaMatrix类第0号文本字段*/
 	DefaultFormulaMatrix_0,
@@ -218,5 +211,10 @@ public enum StringFieldKey{
 	FormulaLinalgeUtil_0,
 	/**FormulaLinalgeUtil类第1号文本字段*/
 	FormulaLinalgeUtil_1,
+	
+	/**FothVariableSpace类第0号文本字段*/
+	FothVariableSpace_0,
+	/**FothVariableSpace类第1号文本字段*/
+	FothVariableSpace_1,
 	
 }

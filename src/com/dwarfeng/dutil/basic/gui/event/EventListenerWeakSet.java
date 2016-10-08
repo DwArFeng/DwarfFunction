@@ -25,8 +25,12 @@ import com.dwarfeng.dutil.basic.cls.ClassUtil;
  */
 public class EventListenerWeakSet implements Set<EventListener>{
 	
-	private final Set<EventListener> set = Collections.newSetFromMap(new WeakHashMap<EventListener, Boolean>());
+	/**用于存放侦听的弱引用集合*/
+	protected final Set<EventListener> set = Collections.newSetFromMap(new WeakHashMap<EventListener, Boolean>());
 
+	/**
+	 * 生成一个新的侦听器弱引用集合。
+	 */
 	public EventListenerWeakSet() {}
 	
 	/**

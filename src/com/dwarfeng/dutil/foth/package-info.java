@@ -25,7 +25,7 @@
  * 的变化而变化，但是，可变对象仅仅限于结构可变，无论如何，该式子不能变成<code>3 + x</code>也就是结构是无法变化的。
  * 不可变对象可变是指一个无论是结构还是值或者是其它的状态自构造起就永远不可变。<b>foth包中的所有实现类都是可变的。</b>
  * <br>接收可变对象的对象一定是可变对象，反之，只接收不可变对象的对象不一定是不可变对象。
- * <br>不过，可变对象并不是在任何时候都可编辑，比如一个可变对象接收 {@link com.dwarfeng.dutil.foth.algebra.FormulaValue}对象，
+ * <br>不过，可变对象并不是在任何时候都可编辑，比如一个可变对象接收 {@link com.dwarfeng.dutil.foth.algebra.FothValue}对象，
  * 所以这个对象是可变的对象，然而在传入参数时，却传入几个常量，这样，虽然这个对象是可变对象，却没有任何方法能够修改
  * 这个对象。因此，可变对象继承 {@link com.dwarfeng.dutil.foth.DFoth}接口，并且通过调用
  * {@link com.dwarfeng.dutil.foth.DFoth#canModify()}方法来查询这个类究竟是否可变，由于该包中的实现类都是可变的，所以
@@ -40,11 +40,11 @@
  * <br> 数学包中的运算分为算式运算和值运算。算式运算是通过算式类将不同的对象构造成一个算式，比如代数中的 TODO 算式
  * 算式运算是在保留原有的对象的结构上进行的运算，因此，如果原有对象中含有可变对象，则算式运算也是可变的。
  * 另一种运算是值运算，比如线性代数包中的 {@link com.dwarfeng.dutil.foth.linalge.DefaultFormulaRowVector}，该类具有行向量的运算方法，这些方法是封装在类的内部的
- * 在调用这些方法时，会对对象内在的 {@link com.dwarfeng.dutil.foth.algebra.FormulaValue} 对象进行取值，返回
+ * 在调用这些方法时，会对对象内在的 {@link com.dwarfeng.dutil.foth.algebra.FothValue} 对象进行取值，返回
  * 的新对象只保留运算之后的值，所以值运算时破坏性的，通过值运算返回的结果不在用于运算元素的特性，即使参与运算的
  * 对象时可变的，通过运算获得的结果对象也同样是不可修改的。
  * 
- * <p> 该包中的计算都是通过 {@link com.dwarfeng.dutil.foth.algebra.FormulaValue} 进行的，因此，在计算过程中，会对其中的double
+ * <p> 该包中的计算都是通过 {@link com.dwarfeng.dutil.foth.algebra.FothValue} 进行的，因此，在计算过程中，会对其中的double
  * 进行拆包和封包，造成效率的低下。因此说，这个包不是以运算速度为强项的，该包的意义在于对数学算式可以
  * 进行结构上的保持，并且可以提取变量空间，方便的进行赋值操作。
  * 

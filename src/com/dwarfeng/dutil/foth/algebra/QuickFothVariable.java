@@ -13,7 +13,7 @@ import com.dwarfeng.dutil.math.AbstractMathObject;
  * @author DwArFeng
  * @since 1.8
  */
-public class QuickFVariable extends AbstractMathObject implements FormulaVariable {
+public class QuickFothVariable extends AbstractMathObject implements FothVariable {
 	
 	/**变量的值*/
 	protected double val;
@@ -24,25 +24,25 @@ public class QuickFVariable extends AbstractMathObject implements FormulaVariabl
 	 * 生成一个默认的，值为0的变量。
 	 * @param name 变量的名称。
 	 */
-	public QuickFVariable(String name) {
+	public QuickFothVariable(String name) {
 		this(name, 0d);
 	}
 	
 	/**
 	 * 生成一个值为指定值接口的当前值的变量。
 	 * @param name 变量的名称。
-	 * @param valueable 指定的值接口。
+	 * @param val 指定的值接口。
 	 * @throws IllegalArgumentException name参数为 <code>null</code>或非法。
 	 * @throws NullPointerException 入口参数为 <code>null</code>时抛出异常。
 	 */
-	public QuickFVariable(String name, FormulaValue valueable) {
+	public QuickFothVariable(String name, FothValue val) {
 		if(Objects.isNull(name) || name.equals("")){
-			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.Variable_1));
+			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.QuickFothVariable_1));
 		}
-		Objects.requireNonNull(valueable, DwarfUtil.getStringField(StringFieldKey.Variable_0));
+		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.QuickFothVariable_0));
 		
 		this.name = name;
-		this.val = valueable.value();
+		this.val = val.value();
 	}
 	
 	/**
@@ -51,9 +51,9 @@ public class QuickFVariable extends AbstractMathObject implements FormulaVariabl
 	 * @param d 指定的值。
 	 * @throws IllegalArgumentException name参数为 <code>null</code> 或非法。
 	 */
-	public QuickFVariable(String name, double d) {
+	public QuickFothVariable(String name, double d) {
 		if(Objects.isNull(name) || name.equals("")){
-			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.Variable_1));
+			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.QuickFothVariable_1));
 		}
 		
 		this.name = name;
@@ -110,8 +110,8 @@ public class QuickFVariable extends AbstractMathObject implements FormulaVariabl
 	 * @see com.dwarfeng.dmath.algebra.NumBase#getVariableSpace()
 	 */
 	@Override
-	public FVariableSpace variableSpace() {
-		return new FVariableSpace.Builder().add(this).build();
+	public FothVariableSpace variableSpace() {
+		return new FothVariableSpace.Builder().add(this).build();
 	}
 	
 	/*

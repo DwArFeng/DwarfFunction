@@ -11,7 +11,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
  * @author DwArFeng
  * @since 1.8
  */
-public interface FormulaValue extends NumberBased{
+public interface FothValue extends NumberBased{
 	
 	/**
 	 * 返回对象的值。
@@ -26,9 +26,9 @@ public interface FormulaValue extends NumberBased{
 	 * @return 该值对象与指定值对象相加得到的值对象。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public default FormulaValue add(FormulaValue val){
-		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FormulaValue_0));
-		return new QuickFormulaValue(val.value() + value());
+	public default FothValue add(FothValue val){
+		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FothValue_0));
+		return new QuickFothValue(val.value() + value());
 	}
 	
 	/**
@@ -38,9 +38,9 @@ public interface FormulaValue extends NumberBased{
 	 * @return 该值对象与指定值对象相减得到的值对象。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public default FormulaValue minus(FormulaValue val){
-		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FormulaValue_0));
-		return new QuickFormulaValue(val.value() - value());
+	public default FothValue minus(FothValue val){
+		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FothValue_0));
+		return new QuickFothValue(val.value() - value());
 	}
 	
 	/**
@@ -50,9 +50,9 @@ public interface FormulaValue extends NumberBased{
 	 * @return 该值对象与指定值对象相乘得到的值对象。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public default FormulaValue mul(FormulaValue val){
-		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FormulaValue_0));
-		return new QuickFormulaValue(val.value() * value());
+	public default FothValue mul(FothValue val){
+		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FothValue_0));
+		return new QuickFothValue(val.value() * value());
 	}
 	
 	/**
@@ -63,9 +63,9 @@ public interface FormulaValue extends NumberBased{
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws ArithmeticException 当val为0是抛出异常。
 	 */
-	public default FormulaValue div(FormulaValue val){
-		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FormulaValue_0));
-		return new QuickFormulaValue(val.value() / value());
+	public default FothValue div(FothValue val){
+		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FothValue_0));
+		return new QuickFothValue(val.value() / value());
 	}
 	
 }

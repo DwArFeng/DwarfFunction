@@ -1,7 +1,7 @@
 package com.dwarfeng.dutil.foth.linalge;
 
-import com.dwarfeng.dutil.foth.algebra.FormulaValue;
-import com.dwarfeng.dutil.foth.algebra.QuickFormulaValue;
+import com.dwarfeng.dutil.foth.algebra.FothValue;
+import com.dwarfeng.dutil.foth.algebra.QuickFothValue;
 import com.dwarfeng.dutil.math.MathObject;
 import com.dwarfeng.dutil.math.linalge.RowVector;
 
@@ -43,7 +43,7 @@ public interface FormulaRowVector extends MathObject, FormulaLinalgeVector{
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 列向量的大小不匹配。
 	 */
-	public FormulaValue mul(FormulaColumnVector columnVector);
+	public FothValue mul(FormulaColumnVector columnVector);
 	
 	/**
 	 * 行向量的缩放运算。
@@ -53,7 +53,7 @@ public interface FormulaRowVector extends MathObject, FormulaLinalgeVector{
 	 * @return 缩放得到的新的行向量。
 	 */
 	public default FormulaRowVector scale(double val){
-		return scale(new QuickFormulaValue(val));
+		return scale(new QuickFothValue(val));
 	}
 	
 	/**
@@ -64,7 +64,7 @@ public interface FormulaRowVector extends MathObject, FormulaLinalgeVector{
 	 * @return 缩放得到的新的行向量。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public FormulaRowVector scale(FormulaValue val);
+	public FormulaRowVector scale(FothValue val);
 	
 	/**
 	 * 行向量的转置运算。

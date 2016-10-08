@@ -12,16 +12,16 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
  * @author DwArFeng
  * @since 1.8
  */
-public class FormulaValueableComparator implements Comparator<FormulaValue> {
+public class FothValueComparator implements Comparator<FothValue> {
 
 	/*
 	 * (non-Javadoc)
 	 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
 	 */
 	@Override
-	public int compare(FormulaValue o1, FormulaValue o2) {
-		Objects.requireNonNull(o1, DwarfUtil.getStringField(StringFieldKey.FormulaValueComparator_0));
-		Objects.requireNonNull(o2, DwarfUtil.getStringField(StringFieldKey.FormulaValueComparator_0));
+	public int compare(FothValue o1, FothValue o2) {
+		Objects.requireNonNull(o1, DwarfUtil.getStringField(StringFieldKey.FothValueComparator_0));
+		Objects.requireNonNull(o2, DwarfUtil.getStringField(StringFieldKey.FothValueComparator_0));
 		return Double.compare(o1.value(), o2.value());
 	}
 

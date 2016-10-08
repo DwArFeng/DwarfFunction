@@ -9,7 +9,7 @@ import com.dwarfeng.dutil.math.AbstractMathObject;
  * @author DwArFeng
  * @since 1.8
  */
-public class Point2d extends AbstractMathObject implements Dimension2d, Shape2d{
+public class Point2d extends AbstractMathObject implements Dimension2d{
 
 	/**µãµÄx×ø±ê*/
 	protected final double x;
@@ -31,24 +31,6 @@ public class Point2d extends AbstractMathObject implements Dimension2d, Shape2d{
 	public Point2d(double x, double y){
 		this.x = x;
 		this.y = y;
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dmath.geom2d.Shape2d#area()
-	 */
-	@Override
-	public double area() {
-		return 0;
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dmath.geom2d.Shape2d#contains(com.dwarfeng.dmath.geom2d.DPoint2d)
-	 */
-	@Override
-	public boolean contains(Point2d t) {
-		return this.equals(t);
 	}
 	
 	/*
@@ -96,19 +78,10 @@ public class Point2d extends AbstractMathObject implements Dimension2d, Shape2d{
 	public int hashCode() {
 		return Double.hashCode(x)*1777 + Double.hashCode(y);
 	}
-
+	
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dmath.geom2d.Shape2d#shapeCenter()
-	 */
-	@Override
-	public Point2d shapeCenter() {
-		return this;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dmath.geom2d.Dimension2d#x()
+	 * @see com.dwarfeng.dutil.math.geom2d.Dimension2d#x()
 	 */
 	@Override
 	public double x() {
@@ -117,7 +90,7 @@ public class Point2d extends AbstractMathObject implements Dimension2d, Shape2d{
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dmath.geom2d.Dimension2d#y()
+	 * @see com.dwarfeng.dutil.math.geom2d.Dimension2d#y()
 	 */
 	@Override
 	public double y() {

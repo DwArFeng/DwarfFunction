@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
@@ -106,23 +107,38 @@ public class PluginLoader<T>{
 		bk0:
 		for(int i = 0 ; i < jarFiles.length ; i ++){
 			Enumeration<JarEntry> je = null;	
-			//寻找Entry，出现异常直接放弃整个jar包，进行下一个jar包的调度。
-			try {je = new JarFile(jarFiles[i]).entries();} catch (IOException e) {
-				CT.trace("Exception occured while getting entries : " + jarFiles[i].getName());
-				continue bk0;
-			}
-			bk1:
-			while(je.hasMoreElements()){
-				JarEntry entry = je.nextElement();
-				if(entry.getName() != null && entry.getName().endsWith(".class")){
-					Class<?> c = null;
-					//分别把对应的插件列入注册表。出现异常放弃该class文件。
+			JarFile jf = null;
+			
+			try{
+				//寻找Entry，出现异常直接放弃整个jar包，进行下一个jar包的调度。
+				try {
+					jf = new JarFile(jarFiles[i]);
+					je = jf.entries();
+				} catch (IOException e) {
+					CT.trace("Exception occured while getting entries : " + jarFiles[i].getName());
+					continue bk0;
+				}
+				bk1:
+				while(je.hasMoreElements()){
+					JarEntry entry = je.nextElement();
+					if(entry.getName() != null && entry.getName().endsWith(".class")){
+						Class<?> c = null;
+						//分别把对应的插件列入注册表。出现异常放弃该class文件。
+						try{
+							 c = loader.loadClass(entry.getName().replace("/", ".").substring(0,entry.getName().length() - 6));
+							 if(ClassUtil.isSubClass(c,clas)) classCollection.add((Class<U>) c);
+						}catch(ClassNotFoundException e){
+							CT.trace("Exception occured while loading class : " + entry.getName());
+							continue bk1;
+						}
+					}
+				}
+			}finally {
+				if(Objects.nonNull(jf)){
 					try{
-						 c = loader.loadClass(entry.getName().replace("/", ".").substring(0,entry.getName().length() - 6));
-						 if(ClassUtil.isSubClass(c,clas)) classCollection.add((Class<U>) c);
-					}catch(ClassNotFoundException e){
-						CT.trace("Exception occured while loading class : " + entry.getName());
-						continue bk1;
+						jf.close();
+					}catch (IOException e) {
+						e.printStackTrace();
 					}
 				}
 			}

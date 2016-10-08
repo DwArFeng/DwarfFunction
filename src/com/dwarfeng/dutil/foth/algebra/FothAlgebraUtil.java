@@ -14,7 +14,7 @@ import com.dwarfeng.dutil.basic.num.QuickMusValueable;
  * @author DwArFeng
  * @since 1.8
  */
-public final class FAlgebraUtil {
+public final class FothAlgebraUtil {
 	
 	/**
 	 * 将指定的值对象数组转换为相应的double 数组。
@@ -22,8 +22,8 @@ public final class FAlgebraUtil {
 	 * @return 转换成的double数组。
 	 * @throws NullPointerException 入口数组为 <code>null</code> 或者其中含有 <code>null</code>元素。
 	 */
-	public static double[] takeValues(FormulaValue[] vals){
-		ArrayUtil.requireNotContainsNull(vals, DwarfUtil.getStringField(StringFieldKey.FAlgebraUtil_0));
+	public static double[] takeValues(FothValue[] vals){
+		ArrayUtil.requireNotContainsNull(vals, DwarfUtil.getStringField(StringFieldKey.FothAlgebraUtil_0));
 		double[] dous = new double[vals.length];
 		for(int i = 0 ; i < dous.length ; i ++){
 			dous[i] = vals[i].value();
@@ -33,10 +33,11 @@ public final class FAlgebraUtil {
 	
 	/**
 	 * 将该值接口转换为dfunc包中的多态值接口。
+	 * @param val 指定的值接口。
 	 * @return 转换成的多态值接口。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public static MusValueable toMusValueable(FormulaValue val){
+	public static MusValueable toMusValueable(FothValue val){
 		return new QuickMusValueable(val.value());
 	}
 	
@@ -47,32 +48,32 @@ public final class FAlgebraUtil {
 	 * @return 值数组。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public static FormulaValue[] toFValues(double[] ds){
-		Objects.requireNonNull(ds, DwarfUtil.getStringField(StringFieldKey.FAlgebraUtil_1));
+	public static FothValue[] toFothValues(double[] ds){
+		Objects.requireNonNull(ds, DwarfUtil.getStringField(StringFieldKey.FothAlgebraUtil_1));
 		
-		FormulaValue[] valueables = new FormulaValue[ds.length];
+		FothValue[] valueables = new FothValue[ds.length];
 		for(int i = 0 ; i < ds.length ; i ++){
-			valueables[i] = new QuickFormulaValue(ds[i]);
+			valueables[i] = new QuickFothValue(ds[i]);
 		}
 		return valueables;
 	}
 	
 	/**
 	 * 判断两个变量是否冲突。
-	 * <p> 有关于冲突的概念，请参照 {@link FormulaVariable}。
+	 * <p> 有关于冲突的概念，请参照 {@link FothVariable}。
 	 * @param v1 第一个变量。
 	 * @param v2 第二个变量。
 	 * @return 两个变量是否冲突。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public static boolean checkConflict(FormulaVariable v1, FormulaVariable v2){
-		Objects.requireNonNull(v1, DwarfUtil.getStringField(StringFieldKey.FAlgebraUtil_2));
-		Objects.requireNonNull(v2, DwarfUtil.getStringField(StringFieldKey.FAlgebraUtil_2));
+	public static boolean checkConflict(FothVariable v1, FothVariable v2){
+		Objects.requireNonNull(v1, DwarfUtil.getStringField(StringFieldKey.FothAlgebraUtil_2));
+		Objects.requireNonNull(v2, DwarfUtil.getStringField(StringFieldKey.FothAlgebraUtil_2));
 		
 		return v1 != v2 && v1.getName().equals(v2.getName());
 	}
 	
 	//禁止外部实例化。
-	private FAlgebraUtil(){}
+	private FothAlgebraUtil(){}
 
 }

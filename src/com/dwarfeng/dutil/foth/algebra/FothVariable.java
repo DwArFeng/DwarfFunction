@@ -9,13 +9,13 @@ import com.dwarfeng.dutil.math.MathObject;
 
 /**
  * 变量接口。
- * <p> 实现该接口意味着实现类是可以表示成数的，并且，这个数可以被直接更改（典型的例子就是 {@link QuickFVariable}）。
+ * <p> 实现该接口意味着实现类是可以表示成数的，并且，这个数可以被直接更改（典型的例子就是 {@link QuickFothVariable}）。
  * <br> 由于可以直接赋值的对象十分特殊，又十分有作用，因此，该接口继承 {@link Nameable}接口，及每个可以
  * 直接赋值的对象都具有一个名称标识，在数学中，这种对象的名称一般是x，y，z 等。
  * @author DwArFeng
  * @since 1.8
  */
-public interface FormulaVariable extends MathObject, FormulaValue, Nameable{
+public interface FothVariable extends MathObject, FothValue, Nameable{
 
 	/**
 	 * 设置该接口的数值。
@@ -25,12 +25,12 @@ public interface FormulaVariable extends MathObject, FormulaValue, Nameable{
 	
 	/**
 	 * 设置该接口的数值为指定值接口的当前值。
-	 * @param valueable 指定的值接口。
+	 * @param val 指定的值接口。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public default void setValue(FormulaValue valueable){
-		Objects.requireNonNull(valueable, DwarfUtil.getStringField(StringFieldKey.FVariable_0));
-		setValue(valueable.value());
+	public default void setValue(FothValue val){
+		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FothVariable_0));
+		setValue(val.value());
 	}
 	
 	/**
@@ -45,12 +45,12 @@ public interface FormulaVariable extends MathObject, FormulaValue, Nameable{
 	/**
 	 * 偏移当前值。
 	 * <p> 在当前基础上增加指定值接口中的当前值。
-	 * @param valueable 指定的值接口。
+	 * @param val 指定的值接口。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public default void offset(FormulaValue valueable){
-		Objects.requireNonNull(valueable, DwarfUtil.getStringField(StringFieldKey.FVariable_0));
-		setValue(value() + valueable.value());
+	public default void offset(FothValue val){
+		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FothVariable_0));
+		setValue(value() + val.value());
 	}
 	
 }

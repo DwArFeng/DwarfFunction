@@ -1,7 +1,7 @@
 package com.dwarfeng.dutil.foth.linalge;
 
-import com.dwarfeng.dutil.foth.algebra.FormulaValue;
-import com.dwarfeng.dutil.foth.algebra.QuickFormulaValue;
+import com.dwarfeng.dutil.foth.algebra.FothValue;
+import com.dwarfeng.dutil.foth.algebra.QuickFothValue;
 import com.dwarfeng.dutil.math.MathObject;
 import com.dwarfeng.dutil.math.linalge.ColumnVector;
 
@@ -42,7 +42,7 @@ public interface FormulaColumnVector extends MathObject, FormulaLinalgeVector{
 	 * @return 缩放得到的新的列向量。
 	 */
 	public default FormulaColumnVector scale(double val){
-		return scale(new QuickFormulaValue(val));
+		return scale(new QuickFothValue(val));
 	}
 	
 	/**
@@ -53,7 +53,7 @@ public interface FormulaColumnVector extends MathObject, FormulaLinalgeVector{
 	 * @return 缩放得到的新的列向量。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public FormulaColumnVector scale(FormulaValue val);
+	public FormulaColumnVector scale(FothValue val);
 	
 	/**
 	 * 列向量的转置运算。

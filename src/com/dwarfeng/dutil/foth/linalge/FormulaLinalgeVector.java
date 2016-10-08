@@ -1,6 +1,6 @@
 package com.dwarfeng.dutil.foth.linalge;
 
-import com.dwarfeng.dutil.foth.algebra.FormulaValue;
+import com.dwarfeng.dutil.foth.algebra.FothValue;
 import com.dwarfeng.dutil.foth.algebra.NumberBased;
 import com.dwarfeng.dutil.math.MathObject;
 import com.dwarfeng.dutil.math.linalge.LinalgeVector;
@@ -20,7 +20,7 @@ public interface FormulaLinalgeVector extends MathObject, LinalgeVector, NumberB
 	 */
 	@Override
 	public default double valueAt(int index){
-		return formulaValueAt(index).value();
+		return fothValueAt(index).value();
 	}
 	
 	/**
@@ -29,5 +29,5 @@ public interface FormulaLinalgeVector extends MathObject, LinalgeVector, NumberB
 	 * @return 指定的序列处对应的值。
 	 * @throws IndexOutOfBoundsException 行列号超界。
 	 */
-	public FormulaValue formulaValueAt(int index);
+	public FothValue fothValueAt(int index);
 }

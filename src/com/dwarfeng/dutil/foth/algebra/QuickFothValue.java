@@ -8,25 +8,25 @@ import com.dwarfeng.dutil.math.AbstractMathObject;
 
 /**
  * 快速值类。
- * <p> 该类对 {@link FormulaValue}接口进行了最简单的实现。
+ * <p> 该类对 {@link FothValue}接口进行了最简单的实现。
  * <p> 该类不接受可变对象，所有传入其中的值对象都会进行取值，以<code>double</code>。
  * 的形式存储。
  * @author DwArFeng
  * @since 1.8
  */
-public class QuickFormulaValue extends AbstractMathObject implements FormulaValue {
+public class QuickFothValue extends AbstractMathObject implements FothValue {
 
 	/**代表0*/
-	public static final QuickFormulaValue ZERO = new QuickFormulaValue();
+	public static final QuickFothValue ZERO = new QuickFothValue();
 	
 	/**对象的值*/
 	protected final double val;
 	
 	/**
 	 * 生成一个值为0的快速值对象。
-	 * <p> 字段 {@link QuickFormulaValue#ZERO}优先级要高于该构造方法。
+	 * <p> 字段 {@link QuickFothValue#ZERO}优先级要高于该构造方法。
 	 */
-	public QuickFormulaValue() {
+	public QuickFothValue() {
 		this(0);
 	}
 	
@@ -34,7 +34,7 @@ public class QuickFormulaValue extends AbstractMathObject implements FormulaValu
 	 * 生成一个快速值对象。
 	 * @param val 对象的值。
 	 */
-	public QuickFormulaValue(double val) {
+	public QuickFothValue(double val) {
 		this.val = val;
 	}
 	
@@ -70,8 +70,8 @@ public class QuickFormulaValue extends AbstractMathObject implements FormulaValu
 	 * @see com.dwarfeng.dmath.algebra.NumBase#getVariableSpace()
 	 */
 	@Override
-	public FVariableSpace variableSpace() {
-		return FVariableSpace.EMPTY;
+	public FothVariableSpace variableSpace() {
+		return FothVariableSpace.EMPTY;
 	}
 	
 	/*
@@ -82,9 +82,9 @@ public class QuickFormulaValue extends AbstractMathObject implements FormulaValu
 	public boolean equals(Object obj) {
 		if(Objects.isNull(obj)) return false;
 		if(obj == this) return true;
-		if(! (obj instanceof QuickFormulaValue)) return false;
-		QuickFormulaValue formulaValue = (QuickFormulaValue) obj;
-		return formulaValue.val == this.val;
+		if(! (obj instanceof QuickFothValue)) return false;
+		QuickFothValue fothValue = (QuickFothValue) obj;
+		return fothValue.val == this.val;
 	}
 	
 	/*

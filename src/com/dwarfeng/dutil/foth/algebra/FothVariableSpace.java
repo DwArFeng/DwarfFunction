@@ -18,7 +18,7 @@ import com.dwarfeng.dutil.math.Region;
 
 /**
  * 变量空间。
- * <p> 变量空间是指由一组 {@link FormulaVariable} 组成的空间。
+ * <p> 变量空间是指由一组 {@link FothVariable} 组成的空间。
  * <br> 该空间中的对象的顺序按照字典顺序排序，相互冲突的变量不能进入同组向量空间。
  * <p> 所谓的变量冲突，是指含有相同名称的不同变量。由于变量控件中变量的顺序是由其字典顺序决定的，
  * 如果存在同名变量，则无法从文本上对变量进行区别，从而会导致进一步的错误。
@@ -32,26 +32,26 @@ import com.dwarfeng.dutil.math.Region;
  * @author DwArFeng
  * @since 1.8
  */
-public class FVariableSpace extends AbstractMathObject implements
-Iterable<FormulaVariable>, Region<FormulaVariable>{
+public class FothVariableSpace extends AbstractMathObject implements
+Iterable<FothVariable>, Region<FothVariable>{
 
 	/**空的变量集合*/
-	public static final FVariableSpace EMPTY = new Builder().build();
+	public static final FothVariableSpace EMPTY = new Builder().build();
 	
 	/**
 	 * 变量空间的构造器。
 	 * @author DwArFeng
 	 * @since 1.8
 	 */
-	public static class Builder implements Buildable<FVariableSpace>{
+	public static class Builder implements Buildable<FothVariableSpace>{
 
-		private final Set<FormulaVariable> set;
+		private final Set<FothVariable> set;
 		
 		/**
 		 * 生成一个变量空间构造器。
 		 */
 		public Builder() {
-			this.set = CollectionUtil.nonNullSet(new HashSet<FormulaVariable>());
+			this.set = CollectionUtil.nonNullSet(new HashSet<FothVariable>());
 		}
 		
 		/**
@@ -61,9 +61,9 @@ Iterable<FormulaVariable>, Region<FormulaVariable>{
 		 * @throws VariableConflictException 当添加的元素与构造器中的至少一个元素冲突。
 		 * @throws NullPointerException 入口参数为 <code>null</code> 时抛出异常。
 		 */
-		public Builder add(FormulaVariable var){
-			for(FormulaVariable vv : set){
-				if(FAlgebraUtil.checkConflict(vv, var)){
+		public Builder add(FothVariable var){
+			for(FothVariable vv : set){
+				if(FothAlgebraUtil.checkConflict(vv, var)){
 					throw new VariableConflictException(vv.getName());
 				}
 			}
@@ -78,8 +78,8 @@ Iterable<FormulaVariable>, Region<FormulaVariable>{
 		 * @throws VariableConflictException 当添加的元素与构造器中的至少一个元素冲突。
 		 * @throws NullPointerException 当入口元素为 <code>null</code>时抛出异常。
 		 */
-		public Builder add(FVariableSpace variableSpace){
-			for(FormulaVariable vv : variableSpace){
+		public Builder add(FothVariableSpace variableSpace){
+			for(FothVariable vv : variableSpace){
 				add(vv);
 			}
 			return this;
@@ -92,7 +92,7 @@ Iterable<FormulaVariable>, Region<FormulaVariable>{
 		 * @throws VariableConflictException 当值对象中的变量与构造器中的至少一个变量冲突。
 		 * @throws NullPointerException 入口参数为 <code>null</code> 或者值对象中的变量空间为 <code>null</code>。
 		 */
-		public Builder add(FormulaValue valueable){
+		public Builder add(FothValue valueable){
 			add(valueable.variableSpace());
 			return this;
 		}
@@ -113,9 +113,9 @@ Iterable<FormulaVariable>, Region<FormulaVariable>{
 		 * @param variableSpace 指定的变量空间。
 		 * @return 构造器自身。
 		 */
-		public Builder remove(FVariableSpace variableSpace){
+		public Builder remove(FothVariableSpace variableSpace){
 			if(Objects.nonNull(variableSpace)){
-				for(FormulaVariable var : variableSpace){
+				for(FothVariable var : variableSpace){
 					remove(var);
 				}				
 			}
@@ -128,7 +128,7 @@ Iterable<FormulaVariable>, Region<FormulaVariable>{
 		 * @param val 指定的值对象。
 		 * @return 构造器自身。
 		 */
-		public Builder remove(FormulaValue val){
+		public Builder remove(FothValue val){
 			if(Objects.nonNull(val)){
 				remove(val.variableSpace());			
 			}
@@ -140,17 +140,17 @@ Iterable<FormulaVariable>, Region<FormulaVariable>{
 		 * @see com.dwarfeng.dfunc.infs.Buildable#build()
 		 */
 		@Override
-		public FVariableSpace build() {
-			FormulaVariable[] vars = set.toArray(new FormulaVariable[0]);
+		public FothVariableSpace build() {
+			FothVariable[] vars = set.toArray(new FothVariable[0]);
 			Arrays.sort(vars, new NameableComparator());
-			return new FVariableSpace(vars);
+			return new FothVariableSpace(vars);
 		}
 		
 	}
 	
-	protected final FormulaVariable[] vars;
+	protected final FothVariable[] vars;
 	
-	private FVariableSpace(FormulaVariable[] vars){
+	private FothVariableSpace(FothVariable[] vars){
 		this.vars = vars;
 	}
 	
@@ -159,11 +159,11 @@ Iterable<FormulaVariable>, Region<FormulaVariable>{
 	 * @see java.lang.Iterable#iterator()
 	 */
 	@Override
-	public Iterator<FormulaVariable> iterator() {
+	public Iterator<FothVariable> iterator() {
 		return new VsIterator();
 	}
 	
-	private final class VsIterator implements Iterator<FormulaVariable>{
+	private final class VsIterator implements Iterator<FothVariable>{
 
 		private int i = 0;
 		
@@ -181,7 +181,7 @@ Iterable<FormulaVariable>, Region<FormulaVariable>{
 		 * @see java.util.Iterator#next()
 		 */
 		@Override
-		public FormulaVariable next() {
+		public FothVariable next() {
 			return vars[i++];
 		}
 		
@@ -217,7 +217,7 @@ Iterable<FormulaVariable>, Region<FormulaVariable>{
 		
 		try{
 			sb.append("[");
-			for(FormulaVariable var : vars){
+			for(FothVariable var : vars){
 				formatter.format("%s = %.4f, ", var.getName(), var.value());
 			}
 			
@@ -234,8 +234,93 @@ Iterable<FormulaVariable>, Region<FormulaVariable>{
 	 * @see com.dwarfeng.dmath.Region#contains(java.lang.Object)
 	 */
 	@Override
-	public boolean contains(FormulaVariable t) {
+	public boolean contains(FothVariable t) {
 		return ArrayUtil.contains(vars, t);
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(Objects.isNull(obj)) return false;
+		if(obj == this) return true;
+		if(! (obj instanceof FothVariableSpace)) return false;
+		FothVariableSpace variableSpace = (FothVariableSpace) obj;
+		for(int i = 0 ; i < vars.length ; i ++){
+			if(!vars[i].equals(variableSpace.vars[i])) return false;
+		}
+		return true;
+	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		return Arrays.hashCode(vars) + 17;
+	}
+	
+	
+	/**
+	 * 给变量空间中的每个变量赋值。
+	 * @param vals 值数组。
+	 * @throws IllegalArgumentException 入口数组大小与变量空间中的变量个数不一致。
+	 */
+	public void setValue(double[] vals){
+		if(vals.length != vars.length){
+			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.FothValue_0));
+		}
+		for(int i = 0 ; i < vars.length ; i ++){
+			vars[i].setValue(vals[i]);
+		}
+	}
+	
+	/**
+	 * 给变量空间中的每个变量赋值。
+	 * @param vals 值数组。
+	 * @throws NullPointerException 入口参数为 <code>null</code>或其中含有 <code>null</code>元素。
+	 * @throws IllegalArgumentException 入口数组大小与变量空间中的变量个数不一致。
+	 */
+	public void setValue(FothValue[] vals){
+		ArrayUtil.requireNotContainsNull(vals, DwarfUtil.getStringField(StringFieldKey.FothVariableSpace_1));
+		if(vals.length != vars.length){
+			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.FothVariableSpace_0));
+		}
+		for(int i = 0 ; i < vars.length ; i ++){
+			vars[i].setValue(vals[i]);
+		}
+	}
+	
+	/**
+	 * 变量空间中的每个变量偏移。
+	 * @param vals 值数组。
+	 * @throws IllegalArgumentException 入口数组大小与变量空间中的变量个数不一致。
+	 */
+	public void offset(double[] vals){
+		if(vals.length != vars.length){
+			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.FothValue_0));
+		}
+		for(int i = 0 ; i < vars.length ; i ++){
+			vars[i].offset(vals[i]);
+		}
+	}
+	
+	/**
+	 * 变量空间中的每个变量偏移。
+	 * @param vals 值数组。
+	 * @throws NullPointerException 入口参数为 <code>null</code>或其中含有 <code>null</code>元素。
+	 * @throws IllegalArgumentException 入口数组大小与变量空间中的变量个数不一致。
+	 */
+	public void offset(FothValue[] vals){
+		ArrayUtil.requireNotContainsNull(vals, DwarfUtil.getStringField(StringFieldKey.FothVariableSpace_1));
+		if(vals.length != vars.length){
+			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.FothVariableSpace_0));
+		}
+		for(int i = 0 ; i < vars.length ; i ++){
+			vars[i].offset(vals[i]);
+		}
+	}
 }

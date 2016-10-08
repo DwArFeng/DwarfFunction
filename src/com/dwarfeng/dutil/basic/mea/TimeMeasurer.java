@@ -9,35 +9,62 @@ import com.dwarfeng.dutil.basic.num.UnitTrans;
 import com.dwarfeng.dutil.basic.num.UnitTrans.Time;
 
 /**
- * 代码计时器。
- * <p> 代码计时器是用来测量和记录一段代码的运行时间的。
- * <p> 代码计时器中的方法线程安全，可以并发的调用这些方法，但是这样做没有意义。
- * <p> 该代码计时器不可被继承，因为它不是为了继承而被设计的。
+ * 计时器。
+ * <p> 该计时器类似于现实中的秒表，可以用来测量一段有限的时间。
+ * <br> 该计时器拥有 {@link #start()} 和 {@link #stop()}两个方法，用来控制计时器开始计时和结束计时。在不同的时间调用
+ * 这两个方法，就能记录调用这两个方法的时间之差，从而记录这段时间。
+ * <br> 计时器的单位是纳秒，在不同平台上，精度可能会稍微有些差别，因此只能当做粗略的计时器而使用，并且，该计时器
+ * 会受到系统时间的改变造成的影响。
+ * <br> 由于长整形变量的存储限制，该计时器只能提供大约292年的计时长度。
+ * <p> 该计时器线程安全，可以通过任何一个线程启动，并且被任何一个线程终止。但是无论如何，整个计时器只能启动一次并且
+ * 在其后只能停止一次——也就是说这个计时器是一次性的，一次计时之后，需要新的实例进行下一次计时。
  * @author DwArFeng
  * @since 1.8
  */
-public final class CodeTimer {
+public final class TimeMeasurer {
 	
 	/**
 	 * 计时器的状态。
 	 * @author DwArFeng
 	 * @since 1.8
 	 */
-	private enum TimerStatus{
+	protected enum Status{
+		/**没有启动*/
+		NOTSTART,
 		/**正在计时*/
 		TIMING,
 		/**计时结束*/
 		TIMED
 	}
 
-	private TimerStatus status = TimerStatus.TIMED;;
+	/**计时器的状态*/
+	protected Status status = Status.NOTSTART;
+	/**时间统计(纳秒)*/
 	private long l;
-	private final Lock lock = new ReentrantLock();
+	/**同步锁*/
+	protected final Lock lock = new ReentrantLock();
 	
 	/**
 	 * 生成一个代码计时器。
 	 */
-	public CodeTimer() {}
+	public TimeMeasurer() {}
+	
+	/**
+	 * 获取该计时器的计时状态。
+	 * @return 该计时器的计时状态。
+	 */
+	protected Status getStatus(){
+		return this.status;
+	}
+	
+	/**
+	 * 获取计时器是否已经启动了。
+	 * @return 计时器是否已经启动。
+	 */
+	public boolean isStarted(){
+		if(status == Status.NOTSTART) return false;
+		return true;
+	}
 	
 	/**
 	 * 开始计时。
@@ -47,7 +74,7 @@ public final class CodeTimer {
 		try{
 			l =  - System.nanoTime();
 		}finally{
-			this.status = TimerStatus.TIMING;
+			this.status = Status.TIMING;
 			lock.unlock();
 		}
 	}
@@ -58,13 +85,13 @@ public final class CodeTimer {
 	public void stop(){
 		lock.lock();
 		try{
-			if(status == TimerStatus.TIMED){
+			if(status == Status.TIMED){
 				l = 0;
 			}else{
 				l += System.nanoTime();
 			}
 		}finally{
-			this.status = TimerStatus.TIMED;
+			this.status = Status.TIMED;
 			lock.unlock();
 		}
 	}
