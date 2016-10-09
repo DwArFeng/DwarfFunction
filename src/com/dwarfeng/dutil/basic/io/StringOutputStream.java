@@ -15,7 +15,7 @@ import com.dwarfeng.dutil.basic.num.NumTrans;
 
 /**
  * 字符串构造输出流。
- * <p> 该输出流将输出的数据存储到字符串构造器中。
+ * <p> 该输出流将输出的数据存储到字符串构造器中，是输出流与文本的桥梁。
  * @author DwArFeng
  * @since 1.8
  */

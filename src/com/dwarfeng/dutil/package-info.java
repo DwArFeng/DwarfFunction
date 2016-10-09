@@ -62,6 +62,14 @@
  *              <code>代码调试工具包<br></code>
  *       </td>
  *     </tr>
+ *     <tr>
+ *       <td style="vertical-align: middle;">
+ *              <code>{@linkplain com.dwarfeng.dutil.demo}<br></code>
+ *       </td>
+ *       <td style="vertical-align: middle;">
+ *              <code>示例包<br></code>
+ *       </td>
+ *     </tr>
  *   </tbody>
  * </table>
  * 

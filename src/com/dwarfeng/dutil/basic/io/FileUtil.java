@@ -19,7 +19,7 @@ public final class FileUtil {
 	 * 将一个文件复制到另一个文件。
 	 * @param source 需要复制的源文件。
 	 * @param target 需要复制到的目标文件。
-	 * @throws IOException 复制过程中IO发生异常是抛出的异常。
+	 * @throws IOException 复制过程中IO发生异常时抛出的异常。
 	 */
 	public static void FileCopy(File source,File target) throws IOException{
 		//如果target不存在，则创建target以及其目录（有必要的话）。

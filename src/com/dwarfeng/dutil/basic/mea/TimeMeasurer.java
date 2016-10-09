@@ -200,7 +200,7 @@ public final class TimeMeasurer {
 		StringBuilder sb = new StringBuilder();
 		Formatter formatter = new Formatter(sb);
 		try{
-			formatter.format(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_3), getTimeMs());
+			formatter.format(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_4), getTimeMs());
 			return sb.toString();
 		}finally {
 			formatter.close();
@@ -219,11 +219,26 @@ public final class TimeMeasurer {
 		StringBuilder sb = new StringBuilder();
 		Formatter formatter = new Formatter(sb);
 		try{
-			formatter.format(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_3), getTimeSec());
+			formatter.format(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_5), getTimeSec());
 			return sb.toString();
 		}finally {
 			formatter.close();
 		}
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return new StringBuilder()
+				.append("TimeMeasure [status = ")
+				.append(status.toString())
+				.append(", l = ")
+				.append(l)
+				.append("]")
+				.toString();
 	}
 	
 }
