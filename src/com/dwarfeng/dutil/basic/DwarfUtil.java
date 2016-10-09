@@ -17,7 +17,6 @@ import com.dwarfeng.dutil.basic.prog.VersionType;
  * <p>该包是工具包，所有的方法皆为静态方法，由于该包的性质，该包不允许外部实例化，不允许继承。
  * 
  * <p> 该包中的方法都是线程不安全的，如果需要多线程调用该包中的方法，请使用外部同步代码。
- * <p> 此条注释用来检验git_push FIXME 
  * @author DwArFeng
  * @since 1.8
  */
