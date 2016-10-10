@@ -10,7 +10,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 
 /**
  * 字符串输入流。
- * <p> 该输入流从指定的字符串中读入数据。
+ * <p> 该输入流从指定的字符串中读入数据，是文本与输入流之间的桥梁。
  * @author DwArFeng
  * @since 1.8
  */

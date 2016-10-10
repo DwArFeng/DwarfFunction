@@ -35,7 +35,7 @@ public class CycledBuffer<T> implements Iterable<T> {
 	public enum IteratorDirection{
 		/**正向（由旧到新）遍历*/
 		POSITIVE,
-		/**逆向（由新到就）遍历*/
+		/**逆向（由新到旧）遍历*/
 		NEGATIVE 
 	}
 	private IteratorDirection direction = IteratorDirection.POSITIVE;
