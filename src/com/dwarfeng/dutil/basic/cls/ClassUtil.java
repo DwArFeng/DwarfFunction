@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import com.dwarfeng.dutil.basic.DwarfUtil;
+import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.cna.ArrayUtil;
 
 /**
@@ -23,6 +25,7 @@ public final class ClassUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public static Collection<Class<?>> getSuperClasses(Class<?> cl){
+		Objects.requireNonNull(cl, DwarfUtil.getStringField(StringFieldKey.ClassUtil_0));
 		Collection<Class<?>> collection = new HashSet<Class<?>>();
 		Class<?> clas = cl.getSuperclass();
 		while(Objects.nonNull(clas)){
@@ -39,6 +42,7 @@ public final class ClassUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public static Collection<Class<?>> getSuperClasses(Object o){
+		Objects.requireNonNull(o, DwarfUtil.getStringField(StringFieldKey.ClassUtil_1));
 		return getSuperClasses(o.getClass());
 	}
 	
@@ -49,6 +53,7 @@ public final class ClassUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public static Class<?>[] getSuperClassArray(Object o){
+		Objects.requireNonNull(o, DwarfUtil.getStringField(StringFieldKey.ClassUtil_1));
 		return getSuperClasses(o).toArray(new Class<?>[0]);
 	}
 	
@@ -59,6 +64,7 @@ public final class ClassUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public static Class<?>[] getSuperClassArray(Class<?> cl){
+		Objects.requireNonNull(cl, DwarfUtil.getStringField(StringFieldKey.ClassUtil_0));
 		return getSuperClasses(cl).toArray(new Class<?>[0]);
 	}
 	
@@ -68,17 +74,8 @@ public final class ClassUtil {
 	 * @return 该类以及父类实现的所有接口组成的集合。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public static Collection<Class<?>> getAllInterfacesCollection(Class<?> cl){
-//		Collection<Class<?>> superClasses = getSuperClasses(cl);
-//		Collection<Class<?>> allInterfaces = new HashSet<Class<?>>();
-//		Iterator<Class<?>> iterator = superClasses.iterator();
-//		for(Class<?> cla:cl.getInterfaces()){
-//			allInterfaces.add(cla);
-//		}
-//		while(iterator.hasNext()){
-//			for(Class<?> clas : iterator.next().getInterfaces()) allInterfaces.add(clas);
-//		}
-//		return allInterfaces;
+	public static Collection<Class<?>> getImplInterfaces(Class<?> cl){
+		Objects.requireNonNull(cl, DwarfUtil.getStringField(StringFieldKey.ClassUtil_0));
 		
 		Collection<Class<?>> superIntr = new HashSet<Class<?>>();
 		Set<Class<?>> intrPool = new HashSet<Class<?>>();
@@ -107,8 +104,9 @@ public final class ClassUtil {
 	 * @return 该实例的类以及父类实现的所有接口组成的集合。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public static Collection<Class<?>> getAllInterfacesCollection(Object o){
-		return getAllInterfacesCollection(o.getClass());
+	public static Collection<Class<?>> getImplInterfaces(Object o){
+		Objects.requireNonNull(o, DwarfUtil.getStringField(StringFieldKey.ClassUtil_1));
+		return getImplInterfaces(o.getClass());
 	}
 	
 	/**
@@ -117,8 +115,9 @@ public final class ClassUtil {
 	 * @return 该类以及父类实现的所有接口组成的数组。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public static Class<?>[] getAllInterfacesArray(Class<?> cl){
-		return getAllInterfacesCollection(cl).toArray(new Class<?>[0]);
+	public static Class<?>[] getImplInterfacesArray(Class<?> cl){
+		Objects.requireNonNull(cl, DwarfUtil.getStringField(StringFieldKey.ClassUtil_0));
+		return getImplInterfaces(cl).toArray(new Class<?>[0]);
 	}
 	
 	/**
@@ -127,8 +126,9 @@ public final class ClassUtil {
 	 * @return 该实例的类以及父类实现的所有接口组成的数组。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public static Class<?>[] getAllInterfacesArray(Object o){
-		return getAllInterfacesCollection(o).toArray(new Class<?>[0]);
+	public static Class<?>[] getImplInterfacesArray(Object o){
+		Objects.requireNonNull(o, DwarfUtil.getStringField(StringFieldKey.ClassUtil_1));
+		return getImplInterfaces(o).toArray(new Class<?>[0]);
 	}
 	
 	/**
@@ -138,10 +138,23 @@ public final class ClassUtil {
 	 * @return 源类是否直接或间接继承了目标子类或目标接口。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public static boolean isSubClass(Class<?> source,Class<?> target){
-		Class<?>[] superClasses = ClassUtil.getSuperClassArray(source);
-		Class<?>[] superInterfaces = ClassUtil.getAllInterfacesArray(source);
-		return ArrayUtil.contains(superClasses, target) || ArrayUtil.contains(superInterfaces, target);
+	public static boolean isSubClass(Class<?> source, Class<?> target){
+		
+		Objects.requireNonNull(source, DwarfUtil.getStringField(StringFieldKey.ClassUtil_2));
+		Objects.requireNonNull(target, DwarfUtil.getStringField(StringFieldKey.ClassUtil_3));
+		
+		//针对几种特殊的情况进行优化
+		
+		//判断target是否是source的直接父类或接口
+		if(target.equals(source.getSuperclass())) return true;
+		if(ArrayUtil.contains(source.getInterfaces(), target)) return true;
+		
+		//判断一般情况。
+		if(getSuperClasses(source).contains(target)) return true;
+		if(getImplInterfaces(source).contains(target)) return true;
+		
+		return false;
+		
 	}
 	
 	//该类无法实例化

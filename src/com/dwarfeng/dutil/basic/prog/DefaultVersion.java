@@ -1,5 +1,7 @@
 package com.dwarfeng.dutil.basic.prog;
 
+import com.dwarfeng.dutil.basic.infs.Buildable;
+
 
 /**
  * 默认的版本实现形式。
@@ -32,7 +34,7 @@ public class DefaultVersion implements Version {
 	 * @author DwArFeng
 	 * @since 1.8
 	 */
-	public static class Productor{
+	public static class Builder implements Buildable<DefaultVersion>{
 		
 		private VersionType type = VersionType.RELEASE;
 		private byte firstVersion = 0;
@@ -44,14 +46,14 @@ public class DefaultVersion implements Version {
 		/**
 		 * 构造默认的版本构造者。
 		 */
-		public Productor(){}
+		public Builder(){}
 		
 		/**
 		 * 设置构造者中的版本类型。
 		 * @param val 指定的版本类型。
 		 * @return 构造器自身。
 		 */
-		public Productor type(VersionType val){
+		public Builder type(VersionType val){
 			this.type = val;
 			return this;
 		}
@@ -61,7 +63,7 @@ public class DefaultVersion implements Version {
 		 * @param val 指定的值。
 		 * @return 构造器自身。
 		 */
-		public Productor firstVersion(byte val){
+		public Builder firstVersion(byte val){
 			this.firstVersion = val;
 			return this;
 		}
@@ -71,7 +73,7 @@ public class DefaultVersion implements Version {
 		 * @param val 指定的值。
 		 * @return 构造器自身。
 		 */
-		public Productor secondVersion(byte val){
+		public Builder secondVersion(byte val){
 			this.secondVersion = val;
 			return this;
 		}
@@ -81,7 +83,7 @@ public class DefaultVersion implements Version {
 		 * @param val 指定的值。
 		 * @return 构造器自身。
 		 */
-		public Productor thirdVersion(byte val){
+		public Builder thirdVersion(byte val){
 			this.thirdVersion = val;
 			return this;
 		}
@@ -91,7 +93,7 @@ public class DefaultVersion implements Version {
 		 * @param val 指定的编译时间。
 		 * @return 构造器自身。
 		 */
-		public Productor buildDate(String val){
+		public Builder buildDate(String val){
 			this.buildDate = val;
 			return this;
 		}
@@ -101,18 +103,21 @@ public class DefaultVersion implements Version {
 		 * @param val 构造器中的编译版本号。
 		 * @return 构造器自身。
 		 */
-		public Productor buildVersion(char val){
+		public Builder buildVersion(char val){
 			this.buildVersion = val;
 			return this;
 		}
-		
-		/**
-		 * 根据构造器中设置的参数构造版本。
-		 * @return 构造的版本。
+
+		/*
+		 * (non-Javadoc)
+		 * @see com.dwarfeng.dutil.basic.infs.Buildable#build()
 		 */
-		public DefaultVersion product(){
+		@Override
+		public DefaultVersion build() {
 			return new DefaultVersion(type, firstVersion, secondVersion, thirdVersion, buildDate, buildVersion);
 		}
+		
+		
 	}
 	
 	private DefaultVersion(

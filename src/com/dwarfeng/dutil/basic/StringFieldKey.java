@@ -10,6 +10,15 @@ public enum StringFieldKey{
 	/**欢迎文本字段*/
 	WelcomeString,
 	
+	/**ClassUtil类第0号文本字段*/
+	ClassUtil_0 ,
+	/**ClassUtil类第1号文本字段*/
+	ClassUtil_1 ,
+	/**ClassUtil类第2号文本字段*/
+	ClassUtil_2 ,
+	/**ClassUtil类第3号文本字段*/
+	ClassUtil_3 ,
+	
 	/**DuplicateIdException类第0号文本字段*/
 	DuplicateIdException_0 ,
 	
