@@ -1,6 +1,5 @@
 package com.dwarfeng.dutil.basic.mea;
 
-import java.util.Formatter;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -177,15 +176,7 @@ public final class TimeMeasurer {
 		if(! isStoped()){
 			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_2));
 		}
-		StringBuilder sb = new StringBuilder();
-		Formatter formatter = new Formatter(sb);
-		try{
-			formatter.format(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_3), getTimeNs());
-			return sb.toString();
-		}finally {
-			formatter.close();
-		}
-
+		return String.format(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_3), getTimeNs());
 	}
 	
 	/**
@@ -197,14 +188,7 @@ public final class TimeMeasurer {
 		if(! isStoped()){
 			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_2));
 		}
-		StringBuilder sb = new StringBuilder();
-		Formatter formatter = new Formatter(sb);
-		try{
-			formatter.format(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_4), getTimeMs());
-			return sb.toString();
-		}finally {
-			formatter.close();
-		}
+		return String.format(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_4), getTimeMs());
 	}
 	
 	/**
@@ -216,14 +200,7 @@ public final class TimeMeasurer {
 		if(! isStoped()){
 			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_2));
 		}
-		StringBuilder sb = new StringBuilder();
-		Formatter formatter = new Formatter(sb);
-		try{
-			formatter.format(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_5), getTimeSec());
-			return sb.toString();
-		}finally {
-			formatter.close();
-		}
+		return String.format(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_5), getTimeSec());
 	}
 	
 	/*

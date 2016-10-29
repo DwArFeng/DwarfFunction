@@ -23,7 +23,7 @@ import com.dwarfeng.dutil.basic.gui.event.EventListenerWeakSet;
 import com.dwarfeng.dutil.basic.num.NumTrans;
 
 /**
- * 控制台类。
+ * swing控制台类。
  * <p>该类的表现行为类似控制台，用于替换重置之前版本的不完善的控制台，而重置之前版本的控制台将被移除。
  * <br> 这次的控制台不会主动覆盖<code>System.in</code>，因此，不必再担心使用控制台之后就会失去原有的系统输出流。
  * 控制台仍然提供一个输出流，当用户想重新定向输出流时，可以将提供的输出流重定向到<code>System.in</code>上。
@@ -32,35 +32,32 @@ import com.dwarfeng.dutil.basic.num.NumTrans;
  * 被删除。这个行数成为能被显示的最大行数，最大行数在构造器中被指定，一旦被指定就不能更改。
  * <br> 控制台提供两个流：输入流和输出流，其中输出流是线程安全的，可以多个线程同时向输入流中输出字节，但是输入流是线程
  * 不安全的，它只能用于单线程输入，不管是不是加入了外部同步机制。
+ * <br>需要注意的是，此控制台的效率远远低于系统控制台，在同等输出内容下，此控制台的花费时间大约为系统控制台的10倍。
  * 
  * @author DwArFeng
  * @since 1.8
  */
 public class JConsole extends JPanel{
 	
-	private static final long serialVersionUID = 220703214689642912L;
+	private static final long serialVersionUID = 4394657761909015686L;
 	
-	//---静态常量
-	private final static int DEFAULT_MAX_LINE = 3000;
-	private final static int LINE_RATIO = 10;
+	/**最大行数*/
+	protected final static int DEFAULT_MAX_LINE = 3000;
+	/**行删除比率*/
+	protected final static int LINE_RATIO = 10;
+
+	/**文本框*/
+	protected final JTextArea textArea;
+	/**输入框*/
+	protected final JTextField inputField;
 	
-	//---与界面有关的变量
-	private JTextArea textArea;
-	private JTextField inputField;
+	/**事件集合*/
+	protected final EventListenerWeakSet eSet = new EventListenerWeakSet();
 	
-	//---事件集合
-	private EventListenerWeakSet eSet = new EventListenerWeakSet();
-	
-	//---同步与线程
-	private final Lock outLock = new ReentrantLock();
-	private final Lock inLock = new ReentrantLock();
-	
-	//---其它变量
-	private int maxLine = DEFAULT_MAX_LINE;
-	private String inputString = null;
-	private byte[] bytesForString;
-	private int mark = 0;
-	private int lastMark = 0;
+	/**最大显示行数*/
+	protected int maxLine = DEFAULT_MAX_LINE;
+	/**是否回显标记*/
+	private boolean echoFlag = true;
 	
 	/**
 	 * 生成一个默认的控制台。
@@ -78,9 +75,11 @@ public class JConsole extends JPanel{
 	 * @param maxLine 最大的行数。
 	 */
 	public JConsole(int maxLine){
-		
 		//初始化常量
 		this.maxLine = Math.max(maxLine, 1);
+		
+		inputField = new JTextField();
+		textArea = new JTextArea();
 		
 		//初始化界面
 		init();
@@ -93,141 +92,13 @@ public class JConsole extends JPanel{
 	public PrintStream getOut(){
 		return printStream;
 	}
-	private final OutputStream outputStream = 
-	/*
-	 * 匿名输出流类。
-	 * 该匿名类与控制台的输出面板相关联，向这个输出流写入数据会改变控制台的显示内容。
-	 */
-	new OutputStream() {
-		
-		private final ArrayList<Byte> byteList = new ArrayList<Byte>();
-		
-		/*
-		 * (non-Javadoc)
-		 * @see java.io.OutputStream#flush()
-		 */
-		@Override
-		public void flush(){
-			outLock.lock();
-			try{
-				String str = new String(ArrayUtil.unpack(byteList.toArray(new Byte[0])));
-				if(textArea != null){
-					append(str);
-				}
-				byteList.clear();
-				//最后，让列表释放多余的空间。
-				byteList.trimToSize();
-			}finally{
-				outLock.unlock();
-			}
-		}
-		
-		/*
-		 * (non-Javadoc)
-		 * @see java.io.OutputStream#write(int)
-		 */
-		@Override
-		public void write(int b) throws IOException {
-			outLock.lock();
-			try{
-				byteList.add(NumTrans.cutInt2Byte(b));
-			}finally{
-				outLock.unlock();
-			}
-		}
-		
-		/**
-		 * 向控制台的输出窗口追加文本。
-		 * @param str 指定的追加文本。
-		 */
-		private void append(String str){
-			textArea.append(str);
-			textArea.setCaretPosition(textArea.getText().length());
-			ensureMaxLine();
-		}
-		
-		/**
-		 * 确保最大行。
-		 */
-		private void ensureMaxLine(){
-			int line = textArea.getLineCount();
-			if(line >= maxLine){
-				try{
-					textArea.replaceRange(
-							null, textArea.getLineStartOffset(0), 
-							textArea.getLineEndOffset(line - maxLine + maxLine/LINE_RATIO)
-					);
-				}catch(BadLocationException e){
-					//DO NOTHING
-				}
-			}
-		}
-	};
+	private final InnerOutputStream outputStream = new InnerOutputStream();
 	private final PrintStream printStream = new PrintStream(outputStream,true);
 	
 	public InputStream getIn(){
 		return this.inputStream;
 	}
-	private final InputStream inputStream = new InputStream() {
-		
-		/*
-		 * (non-Javadoc)
-		 * @see java.io.InputStream#markSupported()
-		 * 该输入流支持mark/reset
-		 */
-		@Override
-		public boolean markSupported(){
-			return true;
-		}
-		
-		/*
-		 * (non-Javadoc)
-		 * @see java.io.InputStream#mark(int)
-		 */
-		@Override
-		public synchronized void mark(int readlimit) {
-			int max = bytesForString == null ? 0 : bytesForString.length;
-			int min = 0;
-			readlimit = Math.max(min, readlimit);
-			readlimit = Math.min(max, readlimit);
-			lastMark = readlimit;
-			mark = readlimit;
-		}
-		
-		/*
-		 * (non-Javadoc)
-		 * @see java.io.InputStream#reset()
-		 * 此处的reset方法永远不会抛出异常。
-		 */
-		@Override
-	    public synchronized void reset() throws IOException {
-			mark = lastMark;
-	    }
-		
-		/*
-		 * (non-Javadoc)
-		 * @see java.io.InputStream#available()
-		 */
-	    @Override
-		public int available() throws IOException {
-	        return bytesForString == null ? 0 : Math.max(0, bytesForString.length - mark);
-	    }
-		
-		/*
-		 * (non-Javadoc)
-		 * @see java.io.InputStream#read()
-		 */
-		@Override
-		public int read() throws IOException {
-			inLock.lock();
-			try{
-				if(available() == 0) return -1;
-				return bytesForString[mark++];
-			}finally{
-				inLock.unlock();
-			}
-		}
-	};
+	private final InnerInputStream inputStream = new InnerInputStream();
 	
 	/**
 	 * 向控制台中添加控制台输入事件侦听。
@@ -314,28 +185,39 @@ public class JConsole extends JPanel{
 	}
 	
 	/**
+	 * 控制台输入是否回显。
+	 * @return 控制台输入是否回显。
+	 */
+	public boolean isEcho() {
+		return echoFlag;
+	}
+
+	/**
+	 * 设置控制台输入是否回显
+	 * @param 控制台输入是否回显。
+	 */
+	public void setEcho(boolean echoFlag) {
+		this.echoFlag = echoFlag;
+	}
+
+	/**
 	 * 提供界面的初始化。
 	 */
 	private void init(){
 		setLayout(new BorderLayout(0, 0));
 		
-		inputField = new JTextField();
 		inputField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_ENTER){
-					inLock.lock();
-					try{
-						inputString = inputField.getText() + "\n";
-						bytesForString = inputString.getBytes();
-						mark = 0;
-						lastMark = 0;
-						ConsoleInputEvent event = new ConsoleInputEvent(this, inputString, getIn());
-						fireConsoleInputEvent(event);
-						inputField.setText("");
-					}finally{
-						inLock.unlock();
+					String inputedText = inputField.getText();
+					inputStream.setText(inputedText + "\n");
+					ConsoleInputEvent event = new ConsoleInputEvent(this, inputedText + "\n", getIn());
+					fireConsoleInputEvent(event);
+					if(echoFlag){
+						printStream.println(inputedText);
 					}
+					inputField.setText("");
 				}
 			}
 		});
@@ -346,7 +228,6 @@ public class JConsole extends JPanel{
 		JScrollPane scrollPane = new JScrollPane();
 		add(scrollPane, BorderLayout.CENTER);
 		
-		textArea = new JTextArea();
 		textArea.setEditable(false);
 		scrollPane.setViewportView(textArea);
 	}
@@ -355,5 +236,152 @@ public class JConsole extends JPanel{
 		for(ConsoleInputEventListener listener : eSet.subSet(ConsoleInputEventListener.class)){
 			listener.onConsoleInput(event);
 		}
+	}
+	
+	
+	private final class InnerInputStream extends InputStream{
+		
+		private int mark = 0;
+		private int lastMark = 0;
+		private byte[] bytesForString;
+		private final Lock inLock = new ReentrantLock();
+		
+		public void setText(String text){
+			inLock.lock();
+			try{
+				bytesForString = (text).getBytes();
+				mark = 0;
+				lastMark = 0;
+			}finally{
+				inputStream.inLock.unlock();
+			}
+		}
+		
+		/*
+		 * (non-Javadoc)
+		 * @see java.io.InputStream#markSupported()
+		 * 该输入流支持mark/reset
+		 */
+		@Override
+		public boolean markSupported(){
+			return true;
+		}
+		
+		/*
+		 * (non-Javadoc)
+		 * @see java.io.InputStream#mark(int)
+		 */
+		@Override
+		public synchronized void mark(int readlimit) {
+			int max = bytesForString == null ? 0 : bytesForString.length;
+			int min = 0;
+			readlimit = Math.max(min, readlimit);
+			readlimit = Math.min(max, readlimit);
+			lastMark = readlimit;
+			mark = readlimit;
+		}
+		
+		/*
+		 * (non-Javadoc)
+		 * @see java.io.InputStream#reset()
+		 * 此处的reset方法永远不会抛出异常。
+		 */
+		@Override
+	    public synchronized void reset() throws IOException {
+			mark = lastMark;
+	    }
+		
+		/*
+		 * (non-Javadoc)
+		 * @see java.io.InputStream#available()
+		 */
+	    @Override
+		public int available() throws IOException {
+	        return bytesForString == null ? 0 : Math.max(0, bytesForString.length - mark);
+	    }
+		
+		/*
+		 * (non-Javadoc)
+		 * @see java.io.InputStream#read()
+		 */
+		@Override
+		public int read() throws IOException {
+			inLock.lock();
+			try{
+				if(available() == 0) return -1;
+				return bytesForString[mark++];
+			}finally{
+				inLock.unlock();
+			}
+		}
+		
+	}
+	
+	private final class InnerOutputStream extends OutputStream{
+
+		private final Lock outLock = new ReentrantLock();
+		private final ArrayList<Byte> byteList = new ArrayList<Byte>();
+		
+		/*
+		 * (non-Javadoc)
+		 * @see java.io.OutputStream#flush()
+		 */
+		@Override
+		public void flush(){
+			outLock.lock();
+			try{
+				String str = new String(ArrayUtil.unpack(byteList.toArray(new Byte[0])));
+				if(textArea != null){
+					append(str);
+				}
+				byteList.clear();
+				//最后，让列表释放多余的空间。
+				byteList.trimToSize();
+			}finally{
+				outLock.unlock();
+			}
+		}
+		
+		/*
+		 * (non-Javadoc)
+		 * @see java.io.OutputStream#write(int)
+		 */
+		@Override
+		public void write(int b) throws IOException {
+			outLock.lock();
+			try{
+				byteList.add(NumTrans.cutInt2Byte(b));
+			}finally{
+				outLock.unlock();
+			}
+		}
+		
+		/**
+		 * 向控制台的输出窗口追加文本。
+		 * @param str 指定的追加文本。
+		 */
+		private void append(String str){
+			textArea.append(str);
+			textArea.setCaretPosition(textArea.getText().length());
+			ensureMaxLine();
+		}
+		
+		/**
+		 * 确保最大行。
+		 */
+		private void ensureMaxLine(){
+			int line = textArea.getLineCount();
+			if(line >= maxLine){
+				try{
+					textArea.replaceRange(
+							null, textArea.getLineStartOffset(0), 
+							textArea.getLineEndOffset(line - maxLine + maxLine/LINE_RATIO)
+					);
+				}catch(BadLocationException e){
+					//DO NOTHING
+				}
+			}
+		}
+	
 	}
 }

@@ -7,7 +7,7 @@ import javax.swing.AbstractAction;
 import javax.swing.Icon;
 import javax.swing.KeyStroke;
 
-import com.dwarfeng.dutil.basic.infs.Buildable;
+import com.dwarfeng.dutil.basic.prog.Buildable;
 
 /**
  * 菜单项目动作类，用该类可以快速的建立一个具有指定属性的菜单项目。

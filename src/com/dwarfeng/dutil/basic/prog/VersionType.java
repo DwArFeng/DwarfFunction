@@ -1,13 +1,13 @@
 package com.dwarfeng.dutil.basic.prog;
 
-import com.dwarfeng.dutil.basic.infs.Nameable;
+import com.dwarfeng.dutil.basic.str.Name;
 
 /**
  * 编程中常见的版本类型。
  * @author DwArFeng
  * @since 1.8
  */
-public enum VersionType implements Nameable{
+public enum VersionType implements Name{
 
 	/**内测版本*/
 	ALPHA("Alpha"),

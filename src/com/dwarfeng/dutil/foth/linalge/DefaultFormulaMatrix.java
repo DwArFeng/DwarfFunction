@@ -5,7 +5,7 @@ import java.util.Objects;
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.cna.ArrayUtil;
-import com.dwarfeng.dutil.basic.infs.Buildable;
+import com.dwarfeng.dutil.basic.prog.Buildable;
 import com.dwarfeng.dutil.foth.algebra.FothVariableSpace;
 import com.dwarfeng.dutil.foth.algebra.FothValue;
 import com.dwarfeng.dutil.foth.algebra.QuickFothValue;

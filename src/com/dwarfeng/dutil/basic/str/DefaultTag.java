@@ -1,0 +1,50 @@
+package com.dwarfeng.dutil.basic.str;
+
+import java.util.Objects;
+
+import com.dwarfeng.dutil.basic.DwarfUtil;
+import com.dwarfeng.dutil.basic.StringFieldKey;
+
+/**
+ * 默认标签。
+ * @author DwArFeng
+ * @since 1.8
+ */
+public class DefaultTag implements Tag{
+
+	/**名称*/
+	protected final String name;
+	/**描述*/
+	protected final String description;
+	
+	/**
+	 * 新建一个具有指定名称，指定描述的默认标签。
+	 * @param name
+	 * @param description
+	 */
+	public DefaultTag(String name, String description) {
+		Objects.requireNonNull(name, DwarfUtil.getStringField(StringFieldKey.DefaultTag_0));
+		Objects.requireNonNull(name, DwarfUtil.getStringField(StringFieldKey.DefaultTag_1));
+		this.name = name;
+		this.description = description;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dutil.basic.str.Name#getName()
+	 */
+	@Override
+	public String getName() {
+		return this.name;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dutil.basic.str.Description#getDescription()
+	 */
+	@Override
+	public String getDescription() {
+		return this.description;
+	}
+
+}

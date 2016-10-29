@@ -2,8 +2,8 @@ package com.dwarfeng.dutil.basic.threads;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
-import com.dwarfeng.dutil.basic.infs.Describeable;
-import com.dwarfeng.dutil.basic.infs.Nameable;
+import com.dwarfeng.dutil.basic.str.Description;
+import com.dwarfeng.dutil.basic.str.Name;
 
 /**
  * 名称描述化运行器。
@@ -11,7 +11,7 @@ import com.dwarfeng.dutil.basic.infs.Nameable;
  * @author DwArFeng
  * @since 1.8
  */
-public class NadeRunner implements Runnable,Nameable,Describeable{
+public class NadeRunner implements Runnable,Name,Description{
 	
 	private final Runnable runnable;
 	private final String name;
@@ -63,7 +63,7 @@ public class NadeRunner implements Runnable,Nameable,Describeable{
 	 * @see com.dwarfeng.dwarffunction.interfaces.Describeable#getDescribe()
 	 */
 	@Override
-	public String getDescribe() {
+	public String getDescription() {
 		return this.name;
 	}
 	

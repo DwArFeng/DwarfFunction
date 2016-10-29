@@ -236,4 +236,9 @@ public enum StringFieldKey{
 	/**FothVariableSpace类第1号文本字段*/
 	FothVariableSpace_1,
 	
+	/**DefaultTag类第0号文本字段*/
+	DefaultTag_0,
+	/**DefaultTag类第1号文本字段*/
+	DefaultTag_1,
+	
 }

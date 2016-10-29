@@ -1,14 +1,14 @@
-package com.dwarfeng.dutil.basic.infs;
+package com.dwarfeng.dutil.basic.str;
 
 /**
  * 可描述接口。
  * @author DwArFeng
  * @since 1.7
  */
-public interface Describeable {
+public interface Description {
 	/**
 	 * 获取对象中的描述。
 	 * @return 对象的描述。
 	 */
-	public String getDescribe();
+	public String getDescription();
 }

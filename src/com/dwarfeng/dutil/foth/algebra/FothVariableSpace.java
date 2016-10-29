@@ -11,7 +11,7 @@ import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.cna.ArrayUtil;
 import com.dwarfeng.dutil.basic.cna.CollectionUtil;
-import com.dwarfeng.dutil.basic.infs.Buildable;
+import com.dwarfeng.dutil.basic.prog.Buildable;
 import com.dwarfeng.dutil.basic.str.NameableComparator;
 import com.dwarfeng.dutil.math.AbstractMathObject;
 import com.dwarfeng.dutil.math.Region;
@@ -37,6 +37,8 @@ Iterable<FothVariable>, Region<FothVariable>{
 
 	/**空的变量集合*/
 	public static final FothVariableSpace EMPTY = new Builder().build();
+	/**空集的字段*/
+	public static final String EMPTY_SPACE_NAME = "Φ";
 	
 	/**
 	 * 变量空间的构造器。
@@ -210,22 +212,17 @@ Iterable<FothVariable>, Region<FothVariable>{
 	 */
 	@Override
 	public String getExpression() {
-		if(size() == 0) return "Φ";
+		if(size() == 0) return EMPTY_SPACE_NAME;
 		
 		StringBuilder sb = new StringBuilder();
+		//因为链接的 StringBuilder 不是 Closeable对象，因此不需要关闭格式化对象。
+		@SuppressWarnings("resource")
 		Formatter formatter = new Formatter(sb);
-		
-		try{
-			sb.append("[");
-			for(FothVariable var : vars){
-				formatter.format("%s = %.4f, ", var.getName(), var.value());
-			}
-			
-			sb.delete(sb.length()-2, sb.length()).append("]");
-		}finally{
-			formatter.close();
+		sb.append("[");
+		for(FothVariable var : vars){
+			formatter.format("%s = %.4f, ", var.getName(), var.value());
 		}
-		
+		sb.delete(sb.length()-2, sb.length()).append("]");
 		return sb.toString();
 	}
 

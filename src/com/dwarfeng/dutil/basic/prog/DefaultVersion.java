@@ -1,8 +1,5 @@
 package com.dwarfeng.dutil.basic.prog;
 
-import com.dwarfeng.dutil.basic.infs.Buildable;
-
-
 /**
  * 默认的版本实现形式。
  * <p> 这是我最常用的版本形式。

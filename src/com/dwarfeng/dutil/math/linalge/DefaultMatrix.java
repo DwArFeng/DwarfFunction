@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
-import com.dwarfeng.dutil.basic.infs.Buildable;
+import com.dwarfeng.dutil.basic.prog.Buildable;
 import com.dwarfeng.dutil.math.AbstractMathObject;
 
 /**
@@ -105,7 +105,7 @@ public class DefaultMatrix extends AbstractMathObject implements Matrix{
 		StringBuilder sb = new StringBuilder();
 		sb.append("[");
 		for(int i = 0 ; i < rows() ; i ++){
-			sb		.append(rowVectorAt(i).getExpression())
+			sb	.append(rowVectorAt(i).getExpression())
 					.append(", ");
 		}
 		sb.delete(sb.length()-2, sb.length()).append("]");

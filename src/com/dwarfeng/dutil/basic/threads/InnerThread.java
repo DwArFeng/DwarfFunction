@@ -4,7 +4,7 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import com.dwarfeng.dutil.basic.infs.Nameable;
+import com.dwarfeng.dutil.basic.str.Name;
 
 /**
  * 内部线程类。
@@ -15,7 +15,7 @@ import com.dwarfeng.dutil.basic.infs.Nameable;
  * @author DwArFeng
  * @since 1.8
  */
-public abstract class InnerThread implements Nameable {
+public abstract class InnerThread implements Name {
 	
 	protected Thread t;
 	protected boolean runFlag;

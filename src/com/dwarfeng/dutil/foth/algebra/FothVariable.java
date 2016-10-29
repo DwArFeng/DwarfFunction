@@ -4,18 +4,18 @@ import java.util.Objects;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
-import com.dwarfeng.dutil.basic.infs.Nameable;
+import com.dwarfeng.dutil.basic.str.Name;
 import com.dwarfeng.dutil.math.MathObject;
 
 /**
  * 变量接口。
  * <p> 实现该接口意味着实现类是可以表示成数的，并且，这个数可以被直接更改（典型的例子就是 {@link QuickFothVariable}）。
- * <br> 由于可以直接赋值的对象十分特殊，又十分有作用，因此，该接口继承 {@link Nameable}接口，及每个可以
+ * <br> 由于可以直接赋值的对象十分特殊，又十分有作用，因此，该接口继承 {@link Name}接口，及每个可以
  * 直接赋值的对象都具有一个名称标识，在数学中，这种对象的名称一般是x，y，z 等。
  * @author DwArFeng
  * @since 1.8
  */
-public interface FothVariable extends MathObject, FothValue, Nameable{
+public interface FothVariable extends MathObject, FothValue, Name{
 
 	/**
 	 * 设置该接口的数值。
