@@ -19,8 +19,9 @@ public class DefaultTag implements Tag{
 	
 	/**
 	 * 新建一个具有指定名称，指定描述的默认标签。
-	 * @param name
-	 * @param description
+	 * @param name 指定的名称。
+	 * @param description 指定的描述。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public DefaultTag(String name, String description) {
 		Objects.requireNonNull(name, DwarfUtil.getStringField(StringFieldKey.DefaultTag_0));

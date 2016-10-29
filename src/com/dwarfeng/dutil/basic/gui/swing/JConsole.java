@@ -194,7 +194,7 @@ public class JConsole extends JPanel{
 
 	/**
 	 * 设置控制台输入是否回显
-	 * @param 控制台输入是否回显。
+	 * @param echoFlag 控制台输入是否回显。
 	 */
 	public void setEcho(boolean echoFlag) {
 		this.echoFlag = echoFlag;

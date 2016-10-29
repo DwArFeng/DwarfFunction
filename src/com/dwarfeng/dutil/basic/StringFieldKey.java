@@ -241,4 +241,11 @@ public enum StringFieldKey{
 	/**DefaultTag类第1号文本字段*/
 	DefaultTag_1,
 	
+	/**DefaultListItemModel类第0号文本字段*/
+	DefaultListItemModel_0,
+	/**DefaultListItemModel类第1号文本字段*/
+	DefaultListItemModel_1,
+	/**DefaultListItemModel类第2号文本字段*/
+	DefaultListItemModel_2,
+	
 }
