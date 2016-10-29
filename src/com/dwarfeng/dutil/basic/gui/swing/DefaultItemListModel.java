@@ -14,7 +14,6 @@ import javax.swing.DefaultListModel;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
-import com.sun.org.apache.xerces.internal.impl.dtd.models.DFAContentModel;
 
 /**
  * 具有默认条目的列表模型。
