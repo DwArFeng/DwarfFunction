@@ -24,6 +24,8 @@ import com.dwarfeng.dutil.basic.cna.CollectionUtil;
  * <br> 该列表模型由两个部分组成，默认条目和一般条目。虽然该模型不是一个直接的 {@link List}实现，但是其中的默认条目和一般条目均为 
  * {@link List}实现。在该模型中，默认条目和一般条目均有序，且默认条目始终在一般条目上方。
  * <br> 默认条目和一般条目均可以作为 {@link List}返回，并分别进行操作；该模型也提供了直接的操作方法，这些直接的操作方法仅能够操作一般条目。
+ * 如：添加操作只能对一般元素进行操作，如果向默认元素所在的区域进行插入操作，则会被积极拒绝；清空操作只能将一般元素清空，而默认元素则不会改变。
+ * <br> 操作默认元素的方法是，使用 {@link #getDefaultList()}获取默认元素所在的列表，然后对列表进行操作。
  * <p> 该类可以通过指定入口的参数来保证列表的不同实现，如用同步列表作为实现就可以保证其中方法的同步。
  * <p> 如果不指定任何默认元素，该模型等同于 {@link DefaultListModel}。
  * @author  DwArFeng
@@ -391,13 +393,28 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	}
 	
 	/**
-	 * 以正确顺序返回包含此列表中所有元素的数组。 
+	 * 以正确顺序返回包含默认列表以及一般列表中所有元素的数组。 
 	 * @return 包含列表元素的数组。
 	 */
 	public Object[] toArray(){
 		Object[] arr1 = defaultItemList.toArray();
-		Object[] arr2 = defaultItemList.toArray();
+		Object[] arr2 = normalItemList.toArray();
 		return ArrayUtil.concat(arr1, arr2);
+	}
+	
+	/**
+	 * 以正确顺序返回包含默认列表以及一般列表中所有元素的数组。
+	 * 返回数组的运行时类型是指定数组的运行时类型。如果指定的数组能容纳列表，则将该列表返回此处。
+	 * 否则，将分配一个具有指定数组的运行时类型和此列表大小的新数组。
+	 * <p> 如果指定的数组能容纳队列，并有剩余的空间（即数组的元素比队列多），那么会将数组中紧接 collection 尾部的元素设置为 null。
+	 * （仅 在调用者知道列表中不包含任何 null 元素时才能用此方法确定列表长度）。  
+	 * @param a  要在其中存储列表元素的数组（如果它足够大）；否则，为此分配一个具有相同运行时类型的新数组。 
+	 * @return 包含列表元素的数组。
+	 */
+	public<T> T[] toArray(T[] a){
+		T[] t1 = defaultItemList.toArray(a);
+		T[] t2 = normalItemList.toArray(a);
+		return ArrayUtil.concat(t1, t2);
 	}
 	
 	/*
@@ -420,10 +437,13 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 		}
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Iterable#iterator()
+	 */
 	@Override
 	public Iterator<E> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return CollectionUtil.contactIterator(defaultItemList.iterator(), normalItemList.iterator());
 	}
 
 	/**
@@ -438,7 +458,48 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	public int getFirstNormalItemIndex(){
 		return defaultItemList.size();
 	}
-
+	
+	/**
+	 * 查询一个元素是否是默认元素。
+	 * <p> 一个元素可能同时在默认列表和一般列表之间，因此存在这种可能性：
+	 * <br> <code> isDefaultItem(e) == isNormalItem(e) == true </code>。
+	 * @param element 指定的元素。
+	 * @return 指定的元素是否是默认元素。
+	 */
+	public boolean isDefaultItem(Object element){
+		return defaultItemList.contains(element);
+	}
+	
+	/**
+	 * 查询一个元素是否是一般元素。
+	 * <p> 一个元素可能同时在默认列表和一般列表之间，因此存在这种可能性：
+	 * <br> <code> isDefaultItem(e) == isNormalItem(e) == true </code>。
+	 * @param element 指定的元素。
+	 * @return 指定的元素是否是一般元素。
+	 */
+	public boolean isNormalItem(Object element){
+		return normalItemList.contains(element);
+	}
+	
+	/**
+	 * 获取默认元素列表。
+	 * <p> 对该列表进行更改可以将效果立即反映在视图中。但是，由该列表通过 {@link List#subList(int, int)}方法返回的
+	 * 子列表则无法提供这种立即反馈的效果。
+	 * @return 默认元素列表。
+	 */
+	public List<E> getDefaultList(){
+		return this.defaultItemList;
+	}
+	
+	/**
+	 * 获取一般元素列表。
+	 * <p> 对该列表进行更改可以将效果立即反映在视图中。但是，由该列表通过 {@link List#subList(int, int)}方法返回的
+	 * 子列表则无法提供这种立即反馈的效果。
+	 * @return 一般元素列表。
+	 */
+	public List<E> getNormalList(){
+		return this.normalItemList;
+	}
 
 	private final class NormalItemList implements List<E> {
 		
@@ -448,42 +509,64 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 			this.delegate = delegate;
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#size()
+		 */
 		@Override
 		public int size() {
-			// TODO Auto-generated method stub
-			return 0;
+			return delegate.size();
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#isEmpty()
+		 */
 		@Override
 		public boolean isEmpty() {
-			// TODO Auto-generated method stub
-			return false;
+			return delegate.isEmpty();
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#contains(java.lang.Object)
+		 */
 		@Override
 		public boolean contains(Object o) {
-			// TODO Auto-generated method stub
-			return false;
+			return delegate.contains(o);
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#iterator()
+		 */
 		@Override
 		public Iterator<E> iterator() {
-			// TODO Auto-generated method stub
-			return null;
+			return delegate.iterator();
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#toArray()
+		 */
 		@Override
 		public Object[] toArray() {
-			// TODO Auto-generated method stub
-			return null;
+			return delegate.toArray();
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#toArray(java.lang.Object[])
+		 */
 		@Override
 		public <T> T[] toArray(T[] a) {
-			// TODO Auto-generated method stub
-			return null;
+			return delegate.toArray(a);
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#add(java.lang.Object)
+		 */
 		@Override
 		public boolean add(E e) {
 			// TODO Auto-generated method stub
@@ -496,94 +579,147 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 			return false;
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#containsAll(java.util.Collection)
+		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
-			// TODO Auto-generated method stub
-			return false;
+			return delegate.containsAll(c);
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#addAll(java.util.Collection)
+		 */
 		@Override
 		public boolean addAll(Collection<? extends E> c) {
 			// TODO Auto-generated method stub
 			return false;
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#addAll(int, java.util.Collection)
+		 */
 		@Override
 		public boolean addAll(int index, Collection<? extends E> c) {
 			// TODO Auto-generated method stub
 			return false;
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#removeAll(java.util.Collection)
+		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
 			// TODO Auto-generated method stub
 			return false;
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#retainAll(java.util.Collection)
+		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
 			// TODO Auto-generated method stub
 			return false;
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#clear()
+		 */
 		@Override
 		public void clear() {
 			// TODO Auto-generated method stub
 
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#get(int)
+		 */
 		@Override
 		public E get(int index) {
-			// TODO Auto-generated method stub
-			return null;
+			return delegate.get(index);
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#set(int, java.lang.Object)
+		 */
 		@Override
 		public E set(int index, E element) {
 			// TODO Auto-generated method stub
 			return null;
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#add(int, java.lang.Object)
+		 */
 		@Override
 		public void add(int index, E element) {
 			// TODO Auto-generated method stub
 
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#remove(int)
+		 */
 		@Override
 		public E remove(int index) {
 			// TODO Auto-generated method stub
 			return null;
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#indexOf(java.lang.Object)
+		 */
 		@Override
 		public int indexOf(Object o) {
-			// TODO Auto-generated method stub
-			return 0;
+			return delegate.indexOf(o);
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#lastIndexOf(java.lang.Object)
+		 */
 		@Override
 		public int lastIndexOf(Object o) {
-			// TODO Auto-generated method stub
-			return 0;
+			return delegate.lastIndexOf(o);
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#listIterator()
+		 */
 		@Override
 		public ListIterator<E> listIterator() {
-			// TODO Auto-generated method stub
-			return null;
+			return delegate.listIterator();
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#listIterator(int)
+		 */
 		@Override
 		public ListIterator<E> listIterator(int index) {
-			// TODO Auto-generated method stub
-			return null;
+			return delegate.listIterator(index);
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#subList(int, int)
+		 */
 		@Override
 		public List<E> subList(int fromIndex, int toIndex) {
-			// TODO Auto-generated method stub
-			return null;
+			return delegate.subList(fromIndex, toIndex);
 		}
 
 	}
@@ -596,142 +732,221 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 			this.delegate = delegate;
 		}
 		
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#size()
+		 */
 		@Override
 		public int size() {
-			// TODO Auto-generated method stub
-			return 0;
+			return delegate.size();
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#isEmpty()
+		 */
 		@Override
 		public boolean isEmpty() {
-			// TODO Auto-generated method stub
-			return false;
+			return delegate.isEmpty();
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#contains(java.lang.Object)
+		 */
 		@Override
 		public boolean contains(Object o) {
-			// TODO Auto-generated method stub
-			return false;
+			return delegate.contains(o);
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#iterator()
+		 */
 		@Override
 		public Iterator<E> iterator() {
-			// TODO Auto-generated method stub
-			return null;
+			return delegate.iterator();
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#toArray()
+		 */
 		@Override
 		public Object[] toArray() {
-			// TODO Auto-generated method stub
-			return null;
+			return delegate.toArray();
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#toArray(java.lang.Object[])
+		 */
 		@Override
 		public <T> T[] toArray(T[] a) {
-			// TODO Auto-generated method stub
-			return null;
+			return delegate.toArray(a);
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#add(java.lang.Object)
+		 */
 		@Override
 		public boolean add(E e) {
 			// TODO Auto-generated method stub
 			return false;
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#remove(java.lang.Object)
+		 */
 		@Override
 		public boolean remove(Object o) {
 			// TODO Auto-generated method stub
 			return false;
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#containsAll(java.util.Collection)
+		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
-			// TODO Auto-generated method stub
-			return false;
+			return delegate.containsAll(c);
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#addAll(java.util.Collection)
+		 */
 		@Override
 		public boolean addAll(Collection<? extends E> c) {
 			// TODO Auto-generated method stub
 			return false;
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#addAll(int, java.util.Collection)
+		 */
 		@Override
 		public boolean addAll(int index, Collection<? extends E> c) {
 			// TODO Auto-generated method stub
 			return false;
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#removeAll(java.util.Collection)
+		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
 			// TODO Auto-generated method stub
 			return false;
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#retainAll(java.util.Collection)
+		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
 			// TODO Auto-generated method stub
 			return false;
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#clear()
+		 */
 		@Override
 		public void clear() {
 			// TODO Auto-generated method stub
 
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#get(int)
+		 */
 		@Override
 		public E get(int index) {
-			// TODO Auto-generated method stub
-			return null;
+			return delegate.get(index);
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#set(int, java.lang.Object)
+		 */
 		@Override
 		public E set(int index, E element) {
 			// TODO Auto-generated method stub
 			return null;
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#add(int, java.lang.Object)
+		 */
 		@Override
 		public void add(int index, E element) {
 			// TODO Auto-generated method stub
 
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#remove(int)
+		 */
 		@Override
 		public E remove(int index) {
 			// TODO Auto-generated method stub
 			return null;
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#indexOf(java.lang.Object)
+		 */
 		@Override
 		public int indexOf(Object o) {
-			// TODO Auto-generated method stub
-			return 0;
+			return delegate.indexOf(o);
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#lastIndexOf(java.lang.Object)
+		 */
 		@Override
 		public int lastIndexOf(Object o) {
-			// TODO Auto-generated method stub
-			return 0;
+			return delegate.lastIndexOf(o);
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#listIterator()
+		 */
 		@Override
 		public ListIterator<E> listIterator() {
-			// TODO Auto-generated method stub
-			return null;
+			return delegate.listIterator();
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#listIterator(int)
+		 */
 		@Override
 		public ListIterator<E> listIterator(int index) {
-			// TODO Auto-generated method stub
-			return null;
+			return delegate.listIterator(index);
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#subList(int, int)
+		 */
 		@Override
 		public List<E> subList(int fromIndex, int toIndex) {
-			// TODO Auto-generated method stub
-			return null;
+			return delegate.subList(fromIndex, toIndex);
 		}
 
 	}
