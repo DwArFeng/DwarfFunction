@@ -17,6 +17,10 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
  */
 public final class ArrayUtil {
 	
+	private ArrayUtil(){
+		//不允许实例化。
+	}
+	
 	/**
 	 * 判断数组中是否包含某个元素。
 	 * <p> 该方法会将目标数组中的每一个对象拿出来与目标对象进行equals比对，如果为true ，就返回true；如果全部元素为false 则返回false。
@@ -82,7 +86,26 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * 将两个或多个数组合并。
+	 * 将两个数组合并。
+	 * <p> 两个数组均不能为 null。;
+	 * @param first  第一个数组。
+	 * @param second 第二个数组。
+	 * @return 两个数组按照先后顺序合并后得到的数组。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 */
+	public static<T> T[] concat(T[] first, T[] second){
+		Objects.requireNonNull(first, DwarfUtil.getStringField(StringFieldKey.ArrayUtil_0));
+		Objects.requireNonNull(second, DwarfUtil.getStringField(StringFieldKey.ArrayUtil_1));
+		
+		int totalLength = first.length + second.length;
+		T[] result = Arrays.copyOf(first, totalLength);
+		System.arraycopy(second, 0, result, first.length, second.length);
+		
+		return result;
+	}
+	
+	/**
+	 * 将多个数组合并。
 	 * <p> 如果数组为 <code>null</code>，则被当做不含有任何元素的数组。
 	 * 首个数组不能为 <code>null</code>。
 	 * @param first 第一个数组。
@@ -91,8 +114,7 @@ public final class ArrayUtil {
 	 * @return 所有数组按先后顺序合并后得到的数组。
 	 * @throws NullPointerException 入口参数 <code>rest</code>为 <code>null</code>。
 	 */
-	@SafeVarargs
-	public static<T> T[] concat(T[] first,T[]... rest){
+	public static<T> T[] concat(T[] first,T[][] rest){
 		Objects.requireNonNull(first, DwarfUtil.getStringField(StringFieldKey.ArrayUtil_0));
 		
 		if(Objects.isNull(rest)) return first;
@@ -160,7 +182,7 @@ public final class ArrayUtil {
 	 */
 	public static byte[] unpack(Byte[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.ArrayPackUtil_0));
+		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.CollectionUtil_11));
 		
 		target = getNotNull(target, new Byte[0]);
 		
@@ -178,7 +200,7 @@ public final class ArrayUtil {
 	 */
 	public static short[] unpack(Short[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.ArrayPackUtil_0));
+		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.CollectionUtil_11));
 		
 		target = getNotNull(target, new Short[0]);
 		
@@ -196,7 +218,7 @@ public final class ArrayUtil {
 	 */
 	public static int[] unpack(Integer[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.ArrayPackUtil_0));
+		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.CollectionUtil_11));
 		
 		target = getNotNull(target, new Integer[0]);
 
@@ -214,7 +236,7 @@ public final class ArrayUtil {
 	 */
 	public static float[] unpack(Float[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.ArrayPackUtil_0));
+		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.CollectionUtil_11));
 		
 		target = getNotNull(target, new Float[0]);
 
@@ -232,7 +254,7 @@ public final class ArrayUtil {
 	 */
 	public static long[] unpack(Long[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.ArrayPackUtil_0));
+		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.CollectionUtil_11));
 		
 		target = getNotNull(target, new Long[0]);
 
@@ -250,7 +272,7 @@ public final class ArrayUtil {
 	 */
 	public static char[] unpack(Character[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.ArrayPackUtil_0));
+		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.CollectionUtil_11));
 		
 		target = getNotNull(target, new Character[0]);
 
@@ -268,7 +290,7 @@ public final class ArrayUtil {
 	 */
 	public static boolean[] unpack(Boolean[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.ArrayPackUtil_0));
+		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.CollectionUtil_11));
 		
 		target = getNotNull(target, new Boolean[0]);
 
@@ -286,7 +308,7 @@ public final class ArrayUtil {
 	 */
 	public static Byte[] pack(byte[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.ArrayPackUtil_0));
+		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.CollectionUtil_11));
 		
 		Byte[] bytes = new Byte[target.length];
 		for(int i = 0 ; i < target.length ; i ++){
@@ -302,7 +324,7 @@ public final class ArrayUtil {
 	 */
 	public static Short[] pack(short[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.ArrayPackUtil_0));
+		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.CollectionUtil_11));
 		
 		Short[] shorts = new Short[target.length];
 		for(int i = 0 ; i < target.length ; i ++){
@@ -318,7 +340,7 @@ public final class ArrayUtil {
 	 */
 	public static Integer[] pack(int[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.ArrayPackUtil_0));
+		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.CollectionUtil_11));
 		
 		Integer[] integers = new Integer[target.length];
 		for(int i = 0 ; i < target.length ; i ++){
@@ -334,7 +356,7 @@ public final class ArrayUtil {
 	 */
 	public static Long[] pack(long[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.ArrayPackUtil_0));
+		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.CollectionUtil_11));
 		
 		Long[] longs = new Long[target.length];
 		for(int i = 0 ; i < target.length ; i ++){
@@ -350,7 +372,7 @@ public final class ArrayUtil {
 	 */
 	public static Float[] Pack(float[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.ArrayPackUtil_0));
+		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.CollectionUtil_11));
 		
 		Float[] floats = new Float[target.length];
 		for(int i = 0 ; i < target.length ; i ++){
@@ -366,7 +388,7 @@ public final class ArrayUtil {
 	 */
 	public static Double[] Pack(double[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.ArrayPackUtil_0));
+		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.CollectionUtil_11));
 		
 		Double[] doubles = new Double[target.length];
 		for(int i = 0 ; i < target.length ; i ++){
@@ -382,7 +404,7 @@ public final class ArrayUtil {
 	 */
 	public static Character[] Pack(char[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.ArrayPackUtil_0));
+		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.CollectionUtil_11));
 		
 		Character[] characters = new Character[target.length];
 		for(int i = 0 ; i < target.length ; i ++){
@@ -398,7 +420,7 @@ public final class ArrayUtil {
 	 */
 	public static Boolean[] Pack(boolean[] target){
 		
-		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.ArrayPackUtil_0));
+		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.CollectionUtil_11));
 		
 		Boolean[] booleans = new Boolean[target.length];
 		for(int i = 0 ; i < target.length ; i ++){
@@ -442,7 +464,4 @@ public final class ArrayUtil {
 		}
 	}
 	
-	private ArrayUtil(){
-		//不允许实例化。
-	}
 }

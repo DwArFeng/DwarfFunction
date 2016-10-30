@@ -14,6 +14,8 @@ import javax.swing.DefaultListModel;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.cna.ArrayUtil;
+import com.dwarfeng.dutil.basic.cna.CollectionUtil;
 
 /**
  * 具有默认条目的列表模型。
@@ -27,7 +29,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
  * @author  DwArFeng
  * @since 1.8
  */
-public class DefaultItemListModel<E> extends AbstractListModel<E> {
+public class DefaultItemListModel<E> extends AbstractListModel<E> implements Iterable<E>{
 
 	/**默认条目列表*/
 	protected final DefalutItemList defaultItemList;
@@ -48,6 +50,8 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public DefaultItemListModel(List<E> defalutDelegate, List<E> normalDelegate) {
+		Objects.requireNonNull(defalutDelegate);
+		Objects.requireNonNull(normalDelegate);
 		this.defaultItemList = new DefalutItemList(defalutDelegate);
 		this.normalItemList = new NormalItemList(normalDelegate);
 	}
@@ -78,11 +82,17 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> {
 	/**
 	 * 在此列表的指定位置处插入指定的元素。
 	 *<p> 如果索引超出范围<code>（index < 0 || index > size()）</code>，则抛出 ArrayIndexOutOfBoundsException。
+	 *<p> 如果序号小于第一个一般条目的序号，则会抛出 {@link IllegalArgumentException};
 	 * @param index 指定元素的插入位置的索引。
 	 * @param element 要插入的元素。
 	 */
 	public void add(int index, E element){
-		//TODO
+		int defalutSize = defaultItemList.size();
+		if(index < defalutSize){
+			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.DefaultListItemModel_0));
+		}
+		normalItemList.delegate.add(index - defalutSize, element);
+		fireIntervalAdded(this, index, index);
 	}
 	
 	/**
@@ -90,7 +100,9 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> {
 	 * @param element 要添加的组件。
 	 */
 	public void addElement(E element){
-		//TODO
+		int index = getSize();
+		normalItemList.delegate.add(element);
+		fireIntervalAdded(this, index, index);
 	}
 	
 	/**
@@ -106,7 +118,10 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> {
 	 * 从此列表中移除所有一般元素。此调用返回后，一般元素列表将是空的，而默认元素列表将被保留（除非该调用抛出异常）。 
 	 */
 	public void clear(){
-		normalItemList.clear();
+		int index0 = defaultItemList.size();
+		int index1 = getSize() - 1;
+		normalItemList.delegate.clear();
+		fireIntervalRemoved(this, index0, index1);
 	}
 	
 	/**
@@ -123,7 +138,11 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> {
 	 * @param anArray 要将组件复制到其中的数组。
 	 */
 	public void copyInto(Object[] anArray){
-		//TODO
+		Objects.requireNonNull(anArray, DwarfUtil.getStringField(StringFieldKey.DefaultListItemModel_5));
+		Object[] def = defaultItemList.toArray();
+		Object[] nor = normalItemList.toArray();
+		System.arraycopy(def, 0, anArray, 0, def.length);
+		System.arraycopy(nor, 0, anArray, def.length, nor.length);
 	}
 	
 	/**
@@ -141,8 +160,7 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> {
 	 * @return 此列表的组件枚举。
 	 */
 	public Enumeration<E> elements(){
-		//TODO
-		return null;
+		return CollectionUtil.iterator2Enumeration(iterator());
 	}
 
 	/**
@@ -211,11 +229,7 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> {
 	 * @throws IllegalArgumentException 序号小于第一个一般条目的序号。
 	 */
 	public void insertElementAt(E obj, int index){
-		int defalutSize = defaultItemList.size();
-		if(index < defalutSize){
-			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.DefaultListItemModel_0));
-		}
-		normalItemList.add(index - defalutSize, obj);
+		add(index, obj);
 	}
 	
 	/**
@@ -276,7 +290,9 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> {
 		if(index < defaultSize){
 			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.DefaultListItemModel_1));
 		}
-		return normalItemList.remove(index - defaultSize);
+		E e = normalItemList.delegate.remove(index - defaultSize);
+		fireIntervalRemoved(this, index, index);
+		return e;
 	}
 	
 	/**
@@ -288,12 +304,17 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> {
 	}
 	
 	/**
-	 * 从此列表中移除参数的第一个（索引最小的）匹配项。 
+	 * 从一般列表中移除参数的第一个（索引最小的）匹配项。 
 	 * @param obj 要移除的组件 。
-	 * @return 如果该参数是此列表的一个组件，则返回 <code>true</code>；否则返回 <code>false</code>。
+	 * @return 如果该参数是一般列表的一个组件，则返回 <code>true</code>；否则返回 <code>false</code>。
 	 */
 	public boolean removeElement(Object obj){
-		return normalItemList.remove(obj);
+		int index = normalItemList.indexOf(obj);
+		boolean flag = normalItemList.remove(obj);
+		if(flag){
+			fireIntervalRemoved(this, index + defaultItemList.size(), index + defaultItemList.size());
+		}
+		return flag;
 	}
 	
 	/**
@@ -320,8 +341,9 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> {
 			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.DefaultListItemModel_1));
 		}
 		for(int i = fromIndex ; i <= toIndex ; i ++){
-			remove(i);
+			normalItemList.delegate.remove(i - defaultSize);
 		}
+		fireIntervalRemoved(this, fromIndex, toIndex);
 	}
 	
 	/**
@@ -337,16 +359,21 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> {
 		if(index < defaultSize){
 			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.DefaultListItemModel_2));
 		}
-		return normalItemList.set(index - defaultSize, element);
+		E e = normalItemList.delegate.set(index - defaultSize, element);
+		fireContentsChanged(this, index, index);
+		return e;
 	}
 	
 	/**
-	 * 
-	 * @param obj
-	 * @param index
+	 * 将此列表指定 index 处的组件设置为指定的对象。丢弃该位置以前的组件。 
+	 * <p> 如果索引无效，则抛出 ArrayIndexOutOfBoundsException。 
+	 * <p> 如果序号小于第一个一般条目的序号，则会抛出 {@link IllegalArgumentException};
+	 * <p> 注：尽管此方法未过时，但首选使用方法是 set(int,Object)，该方法实现 1.2 Collections 框架中定义的 List 接口。 
+	 * @param obj 组件的设置目标。
+	 * @param index 指定的索引。
 	 */
-	public void setElementAt(Object obj, int index){
-		//TODO
+	public void setElementAt(E obj, int index){
+		set(index, obj);
 	}
 	
 	/**
@@ -364,12 +391,13 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * 以正确顺序返回包含此列表中所有元素的数组。 
+	 * @return 包含列表元素的数组。
 	 */
 	public Object[] toArray(){
-		//TODO
-		return null;
+		Object[] arr1 = defaultItemList.toArray();
+		Object[] arr2 = defaultItemList.toArray();
+		return ArrayUtil.concat(arr1, arr2);
 	}
 	
 	/*
@@ -378,10 +406,26 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> {
 	 */
 	@Override
 	public String toString(){
-		//TODO
-		return "";
+		Iterator<E> it = iterator();
+        if (! it.hasNext()) return "[]";
+        
+		StringBuilder sb = new StringBuilder();
+		sb.append("[");
+		for(;;){
+			E e = it.next();
+            sb.append(e == this ? "(this Collection)" : e);
+            if (! it.hasNext())
+                return sb.append(']').toString();
+            sb.append(',').append(' ');
+		}
 	}
 	
+	@Override
+	public Iterator<E> iterator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	/**
 	 * 该方法不实现任何动作，实现这个方法是为了保证与 {@link DefaultListModel}中的方法一致。
 	 */

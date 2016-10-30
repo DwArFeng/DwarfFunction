@@ -17,9 +17,6 @@ public class ClassUtilDemo {
 		for(Class<?> clas : ClassUtil.getImplInterfaces(C.class)){
 			CT.trace("\t" + clas);
 		}
-		CT.trace("StringBuilder is instance of Object? : " + ClassUtil.isSubClass(StringBuilder.class, Object.class));
-		CT.trace("StringBuilder imlements of Appendable? : " + ClassUtil.isSubClass(StringBuilder.class, Appendable.class));
-		CT.trace("StringBuilder imlements of String? : " + ClassUtil.isSubClass(StringBuilder.class, String.class));
 	}
 	
 	

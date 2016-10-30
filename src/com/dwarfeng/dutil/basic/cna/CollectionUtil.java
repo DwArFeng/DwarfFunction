@@ -1,6 +1,7 @@
 package com.dwarfeng.dutil.basic.cna;
 
 import java.util.Collection;
+import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -19,6 +20,9 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
  * @since 1.8
  */
 public final class CollectionUtil {
+
+	//禁止外部实例化。
+	private  CollectionUtil() {}
 
 	/**
 	 * 在指定集合的基础上获得不允许含有 <code>null</code> 元素的集合。
@@ -598,4 +602,142 @@ public final class CollectionUtil {
 		}
 		return false;
 	}
+	
+	private static final class EnumerationIterator<T> implements Iterator<T>{
+
+		private final Enumeration<T> enumeration;
+		
+		public EnumerationIterator(Enumeration<T> enumeration) {
+			this.enumeration = enumeration;
+		}
+		
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.Iterator#hasNext()
+		 */
+		@Override
+		public boolean hasNext() {
+			return enumeration.hasMoreElements();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.Iterator#next()
+		 */
+		@Override
+		public T next() {
+			return enumeration.nextElement();
+		}
+		
+	}
+	
+	/**
+	 * 通过指定的 {@link Enumeration} 生成的 {@link Iterator}。
+	 * @param enumeration 指定的枚举。
+	 * @return 通过指定的枚举生成的迭代器。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 */
+	public static<T> Iterator<T> enumeration2Iterator(Enumeration<T> enumeration){
+		Objects.requireNonNull(enumeration, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_9));
+		return new EnumerationIterator<>(enumeration);
+	}
+	
+	private static final class IteratorEnumeration<T> implements Enumeration<T>{
+
+		private final Iterator<T> iterator;
+		
+		public IteratorEnumeration(Iterator<T> iterator) {
+			this.iterator = iterator;
+		}
+		
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.Enumeration#hasMoreElements()
+		 */
+		@Override
+		public boolean hasMoreElements() {
+			return iterator.hasNext();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.Enumeration#nextElement()
+		 */
+		@Override
+		public T nextElement() {
+			return iterator.next();
+		}
+		
+	}
+	
+	/**
+	 * 通过指定的 {@link Iterator} 生成的 {@link Enumeration}。
+	 * @param iterator 指定的迭代器。
+	 * @return 通过指定的迭代器生成的枚举。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 */
+	public static<T> Enumeration<T> iterator2Enumeration(Iterator<T> iterator){
+		Objects.requireNonNull(iterator, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_10));
+		return new IteratorEnumeration<>(iterator);
+	}
+	
+	private static final class ArrayIterator<T> implements Iterator<T>{
+		
+		private final T[] arr;
+		private int index = 0;
+		
+		public ArrayIterator(T[] arr) {
+			this.arr = arr;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.Iterator#hasNext()
+		 */
+		@Override
+		public boolean hasNext() {
+			return index < arr.length;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.Iterator#next()
+		 */
+		@Override
+		public T next() {
+			return arr[index ++];
+		}
+		
+	}
+	
+	/**
+	 * 将一个数组转化为一个迭代器。
+	 * <p> 虽然数组可以使用 for-each 循环，但是数组不可以作为 {@link Iterable} 对象进行参数传递，该方法为了解决这一问题，
+	 * 可以将一个数组转化为一个 {@link Iterator}对象，方便某些需要传入迭代器的场合。
+	 * @param array 指定的数组。
+	 * @return 由指定的数组转化而成的迭代器。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 */
+	public static<T> Iterator<T> array2Iterator(T[] array){
+		Objects.requireNonNull(array, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_11));
+		return new ArrayIterator<T>(array);
+	}
+	
+	/**
+	 * 用于连接两个迭代器。
+	 * <T> 新的迭代器首先迭代 <code>firstIterator</code>中的元素，当其中的元素迭代完之后，继续迭代
+	 * <code>secondIterator</code>中的元素，直至两个迭代器中的元素全部迭代完成。
+	 * @param firstIterator 第一个迭代器。
+	 * @param secondIterator 第二个迭代器。
+	 * @return 两个迭代器连接形成的迭代器。
+	 */
+	public static<T> Iterator<T> contactIterator(Iterator<T> firstIterator, Iterator<T> secondIterator){
+		Objects.requireNonNull(firstIterator, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_13));
+		Objects.requireNonNull(secondIterator, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_14));
+		return new JointIterator.Builder<T>()
+				.append(firstIterator)
+				.append(secondIterator)
+				.build();
+	}
+	
 }

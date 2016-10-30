@@ -39,10 +39,6 @@ public enum StringFieldKey{
 	MvcProgram_2,
 	/**MvcProgram类第3号文本字段*/
 	MvcProgram_3,
-	/**CycledBuffer类第0号文本字段*/
-	CycledBuffer_0,
-	/**ArrayPackUtil类第0号文本字段*/
-	ArrayPackUtil_0,
 	
 	/**TimeMeasurer类第0号文本字段*/
 	TimeMeasurer_0,
@@ -67,8 +63,11 @@ public enum StringFieldKey{
 	StringInputStream_0,
 	/**StringBuilderInputStream类第0号文本字段*/
 	StringInputStream_1,
+	
 	/**ArrayUtil类第0号文本字段*/
 	ArrayUtil_0,
+	/**ArrayUtil类第1号文本字段*/
+	ArrayUtil_1,
 	
 	/**FothAlgebraUtill类第0号文本字段*/
 	FothAlgebraUtil_0,
@@ -109,6 +108,18 @@ public enum StringFieldKey{
 	CollectionUtil_7,
 	/**CollectionUtil类第8号文本字段*/
 	CollectionUtil_8,
+	/**CollectionUtil类第9号文本字段*/
+	CollectionUtil_9,
+	/**CollectionUtil类第10号文本字段*/
+	CollectionUtil_10,
+	/**CollectionUtil类第11号文本字段*/
+	CollectionUtil_11,
+	/**CollectionUtil类第12号文本字段*/
+	CollectionUtil_12,
+	/**CollectionUtil类第13号文本字段*/
+	CollectionUtil_13,
+	/**CollectionUtil类第14号文本字段*/
+	CollectionUtil_14,
 	
 	/**NameableComparator类第0号文本字段*/
 	NameableComparator_0,
@@ -247,5 +258,18 @@ public enum StringFieldKey{
 	DefaultListItemModel_1,
 	/**DefaultListItemModel类第2号文本字段*/
 	DefaultListItemModel_2,
+	/**DefaultListItemModel类第3号文本字段*/
+	DefaultListItemModel_3,
+	/**DefaultListItemModel类第4号文本字段*/
+	DefaultListItemModel_4,
+	/**DefaultListItemModel类第5号文本字段*/
+	DefaultListItemModel_5,
 	
+	/**JointIterator类第0号文本字段*/
+	JointIterator_0,
+	/**JointIterator类第1号文本字段*/
+	JointIterator_1,
+	/**JointIterator类第2号文本字段*/
+	JointIterator_2,
+
 }

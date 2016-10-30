@@ -14,8 +14,6 @@ import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
-import com.dwarfeng.dutil.basic.cls.ClassUtil;
-
 /**
  * 插件读取类，用于读取指定位置下的指定类型的插件。
  * <p>插件读取类一经实例化，其读取路径便不能再被更改。
@@ -126,7 +124,7 @@ public class PluginLoader<T>{
 						//分别把对应的插件列入注册表。出现异常放弃该class文件。
 						try{
 							 c = loader.loadClass(entry.getName().replace("/", ".").substring(0,entry.getName().length() - 6));
-							 if(ClassUtil.isSubClass(c,clas)) classCollection.add((Class<U>) c);
+							 if(clas.isAssignableFrom(c)) classCollection.add((Class<U>) c);
 						}catch(ClassNotFoundException e){
 							CT.trace("Exception occured while loading class : " + entry.getName());
 							continue bk1;

@@ -8,7 +8,6 @@ import java.util.Set;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
-import com.dwarfeng.dutil.basic.cna.ArrayUtil;
 
 /**
  * 类功能包。
@@ -129,32 +128,6 @@ public final class ClassUtil {
 	public static Class<?>[] getImplInterfacesArray(Object o){
 		Objects.requireNonNull(o, DwarfUtil.getStringField(StringFieldKey.ClassUtil_1));
 		return getImplInterfaces(o).toArray(new Class<?>[0]);
-	}
-	
-	/**
-	 * 获取一个类是否直接或者间接继承某个子类或接口。
-	 * @param source 源类。
-	 * @param target 目标类。
-	 * @return 源类是否直接或间接继承了目标子类或目标接口。
-	 * @throws NullPointerException 入口参数为 <code>null</code>。
-	 */
-	public static boolean isSubClass(Class<?> source, Class<?> target){
-		
-		Objects.requireNonNull(source, DwarfUtil.getStringField(StringFieldKey.ClassUtil_2));
-		Objects.requireNonNull(target, DwarfUtil.getStringField(StringFieldKey.ClassUtil_3));
-		
-		//针对几种特殊的情况进行优化
-		
-		//判断target是否是source的直接父类或接口
-		if(target.equals(source.getSuperclass())) return true;
-		if(ArrayUtil.contains(source.getInterfaces(), target)) return true;
-		
-		//判断一般情况。
-		if(getSuperClasses(source).contains(target)) return true;
-		if(getImplInterfaces(source).contains(target)) return true;
-		
-		return false;
-		
 	}
 	
 	//该类无法实例化

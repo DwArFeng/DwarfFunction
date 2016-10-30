@@ -9,3 +9,7 @@ Alpha_0.1.0 与之前的版本不兼容
 	删除了几个名声不好的包： dutil.cna.CycledBuffer, dutil.str.CycledSlsBuffer, dtuil.gui.swing.NameablePack
 	新增 dutil.basic.str.Tag接口，将即含有名称又含有描述的对象统称为标签。
 	新增 dutil.basic.str.DefaultTag类，作为 Tag接口的默认实现。
+	新增 dutil.basic.gui.swing.DefaultItemListModel，为具有默认选项的swing列表模型。
+	修改 dutil.basic.cna.ArrayUtil中的 contact方法，之前的方法可能导致潜在的堆污染。
+	新增 dutil.basic.cna.ArrayUtil.contact(T[] first, T[] second)，为两个数组的拼接留出了新的方法。
+	删除 dtuil.basic.cls.ClassUtil 中的 isSubClass 方法，因为在Class类中就有类似的方法。
