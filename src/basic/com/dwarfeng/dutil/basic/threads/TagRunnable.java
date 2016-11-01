@@ -20,9 +20,10 @@ public class TagRunnable implements Runnable, Tag{
 	protected final Tag tag;
 	
 	/**
-	 * 生成一个默认的运行器。
-	 * @param runnable 指定的<code>Runnable</code>，该属性不能为null。
-	 * @throws NullPointerException 当<code>runnable</code>属性为null时抛出此异常。
+	 * 生成一个新的标签运行器。
+	 * @param runnable 指定的可运行对象。
+	 * @param tag 指定的标签。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public TagRunnable(Runnable runnable, Tag tag){
 		Objects.requireNonNull(runnable, DwarfUtil.getStringField(StringFieldKey.TagRunner_0));
