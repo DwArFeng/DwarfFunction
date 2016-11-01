@@ -1,7 +1,7 @@
 ﻿Alpha_0.1.0_20161010_build_A
 	Boom！
 
-Alpha_0.2.0 与之前的版本不兼容
+Alpha_0.2.0_20161101_build_A 与之前的版本不兼容
 	删除infs包，将其中的接口移动到其它的包中——没有必要为了某些接口设置一个单独的包。
 		Nameable 改名为 Name，并且移动到 dutil.basic.str中。
 		Describeable 改名为 Description，并且移动到 dutil.basic.str中。
