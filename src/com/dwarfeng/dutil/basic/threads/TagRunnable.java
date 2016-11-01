@@ -1,0 +1,60 @@
+package com.dwarfeng.dutil.basic.threads;
+
+import java.util.Objects;
+
+import com.dwarfeng.dutil.basic.DwarfUtil;
+import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.str.Tag;
+
+/**
+ * 标签运行器。
+ * <p> 该工具类对 {@link Runnable} 和 {@link Tag} 进行封装，使得一个可运行对象拥有名称和描述。
+ * @author DwArFeng
+ * @since 1.8
+ */
+public class TagRunnable implements Runnable, Tag{
+	
+	/**内部Runnable*/
+	protected final Runnable runnable;
+	/**内部Tag*/
+	protected final Tag tag;
+	
+	/**
+	 * 生成一个默认的运行器。
+	 * @param runnable 指定的<code>Runnable</code>，该属性不能为null。
+	 * @throws NullPointerException 当<code>runnable</code>属性为null时抛出此异常。
+	 */
+	public TagRunnable(Runnable runnable, Tag tag){
+		Objects.requireNonNull(runnable, DwarfUtil.getStringField(StringFieldKey.TagRunner_0));
+		Objects.requireNonNull(tag, DwarfUtil.getStringField(StringFieldKey.TagRunner_1));
+		this.runnable = runnable;
+		this.tag = tag;
+	}
+	
+	/*
+	 * @see java.lang.Runnable#run()
+	 */
+	@Override
+	public void run() {
+		runnable.run();
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dwarffunction.interfaces.Describeable#getDescribe()
+	 */
+	@Override
+	public String getDescription() {
+		return tag.getDescription();
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dwarffunction.interfaces.Nameable#getName()
+	 */
+	@Override
+	public String getName() {
+		return tag.getName();
+	}
+
+}
