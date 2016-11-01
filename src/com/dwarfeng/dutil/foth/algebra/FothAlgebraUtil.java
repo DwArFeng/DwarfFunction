@@ -5,8 +5,8 @@ import java.util.Objects;
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.cna.ArrayUtil;
-import com.dwarfeng.dutil.basic.num.MusValueable;
-import com.dwarfeng.dutil.basic.num.QuickMusValueable;
+import com.dwarfeng.dutil.basic.num.NumberValue;
+import com.dwarfeng.dutil.basic.num.QuickNumberValueable;
 
 /**
  * 代数包工具类。
@@ -37,8 +37,8 @@ public final class FothAlgebraUtil {
 	 * @return 转换成的多态值接口。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public static MusValueable toMusValueable(FothValue val){
-		return new QuickMusValueable(val.value());
+	public static NumberValue toMusValueable(FothValue val){
+		return new QuickNumberValueable(val.value());
 	}
 	
 	

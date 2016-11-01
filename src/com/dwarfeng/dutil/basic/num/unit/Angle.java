@@ -1,0 +1,40 @@
+package com.dwarfeng.dutil.basic.num.unit;
+
+import com.dwarfeng.dutil.basic.num.NumberValue;
+
+/**
+ * 角度枚举。
+ * @author DwArFeng
+ * @since 1.8
+ */
+public enum Angle implements NumberValue{
+	
+	/**角度*/
+	DEG(180),
+	/**弧度*/
+	RAD(Math.PI),
+	/**百分度*/
+	GRAD(200),
+	/**分*/
+	MIN(10800),
+	/**秒*/
+	SEC(648000),
+	;
+	
+	
+	private final double val;
+	
+	private Angle(double val){
+		this.val = val;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dmath.algebra.Valable#value()
+	 */
+	@Override
+	public double doubleValue() {
+		return val;
+	}
+	
+}

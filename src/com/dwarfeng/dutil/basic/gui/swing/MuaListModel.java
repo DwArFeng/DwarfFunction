@@ -125,7 +125,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E>{
 	public boolean add(E e) {
 		boolean aFlag = delegate.add(e);
 		int index = delegate.size();
-		 fireIntervalAdded(this, index, index);
+		if(aFlag) fireIntervalAdded(this, index, index);
 		 return aFlag;
 	}
 
@@ -206,6 +206,10 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E>{
 		return removeAll(col);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.util.List#clear()
+	 */
 	@Override
 	public void clear() {
         int index1 = delegate.size()-1;
@@ -242,8 +246,9 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E>{
 	 */
 	@Override
 	public void add(int index, E element) {
+		int size = size();
         delegate.add(index, element);
-        fireIntervalAdded(this, index, index);
+        if(size != getSize()) fireIntervalAdded(this, index, index);
 	}
 
 	/*
@@ -303,5 +308,4 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E>{
 		return subList(fromIndex, toIndex);
 	}
 
-	
 }

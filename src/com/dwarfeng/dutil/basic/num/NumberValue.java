@@ -2,12 +2,12 @@ package com.dwarfeng.dutil.basic.num;
 
 
 /**
- * 多态值接口。
+ * 数字值接口。
  * <p> 该接口意味着实现类能够转化为某个值，并且可以将该值以任何一种基本数据类型返回。
  * @author DwArFeng
  * @since 1.8
  */
-public interface MusValueable{
+public interface NumberValue{
 	
 	/**
 	 * 返回该值的double形式。

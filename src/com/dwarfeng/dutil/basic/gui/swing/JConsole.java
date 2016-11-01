@@ -20,7 +20,7 @@ import javax.swing.text.BadLocationException;
 
 import com.dwarfeng.dutil.basic.cna.ArrayUtil;
 import com.dwarfeng.dutil.basic.gui.event.EventListenerWeakSet;
-import com.dwarfeng.dutil.basic.num.NumTrans;
+import com.dwarfeng.dutil.basic.num.NumberUtil;
 
 /**
  * swingøÿ÷∆Ã®¿‡°£
@@ -350,7 +350,7 @@ public class JConsole extends JPanel{
 		public void write(int b) throws IOException {
 			outLock.lock();
 			try{
-				byteList.add(NumTrans.cutInt2Byte(b));
+				byteList.add(NumberUtil.cutInt2Byte(b));
 			}finally{
 				outLock.unlock();
 			}

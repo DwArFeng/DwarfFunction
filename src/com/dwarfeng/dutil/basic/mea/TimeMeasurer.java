@@ -5,9 +5,9 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
-import com.dwarfeng.dutil.basic.num.MusValueable;
-import com.dwarfeng.dutil.basic.num.UnitTrans;
-import com.dwarfeng.dutil.basic.num.UnitTrans.Time;
+import com.dwarfeng.dutil.basic.num.NumberUtil;
+import com.dwarfeng.dutil.basic.num.NumberValue;
+import com.dwarfeng.dutil.basic.num.unit.Time;
 
 /**
  * 计时器。
@@ -160,11 +160,11 @@ public final class TimeMeasurer {
 	 * @return 该代码计时器的时间。
 	 * @throws IllegalStateException 计时器还未计时结束。
 	 */
-	public double getTime(MusValueable valueable){
+	public double getTime(NumberValue valueable){
 		if(! isStoped()){
 			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_2));
 		}
-		return UnitTrans.trans(l, Time.NS, valueable).doubleValue();
+		return NumberUtil.unitTrans(l, Time.NS, valueable).doubleValue();
 	}
 	
 	/**

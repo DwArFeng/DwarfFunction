@@ -264,6 +264,8 @@ public enum StringFieldKey{
 	DefaultListItemModel_4,
 	/**DefaultListItemModel类第5号文本字段*/
 	DefaultListItemModel_5,
+	/**DefaultListItemModel类第6号文本字段*/
+	DefaultListItemModel_6,
 	
 	/**JointIterator类第0号文本字段*/
 	JointIterator_0,

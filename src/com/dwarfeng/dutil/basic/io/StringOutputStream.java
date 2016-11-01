@@ -11,7 +11,7 @@ import java.util.Objects;
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.cna.ArrayUtil;
-import com.dwarfeng.dutil.basic.num.NumTrans;
+import com.dwarfeng.dutil.basic.num.NumberUtil;
 
 /**
  * 字符串构造输出流。
@@ -54,7 +54,7 @@ public class StringOutputStream extends OutputStream {
 	 */
 	@Override
 	public void write(int b) throws IOException {
-		buffer.add(NumTrans.cutInt2Byte(b));
+		buffer.add(NumberUtil.cutInt2Byte(b));
 	}
 	
 	/*

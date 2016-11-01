@@ -13,3 +13,9 @@ Alpha_0.1.0 与之前的版本不兼容
 	修改 dutil.basic.cna.ArrayUtil中的 contact方法，之前的方法可能导致潜在的堆污染。
 	新增 dutil.basic.cna.ArrayUtil.contact(T[] first, T[] second)，为两个数组的拼接留出了新的方法。
 	删除 dtuil.basic.cls.ClassUtil 中的 isSubClass 方法，因为在Class类中就有类似的方法。
+	更改 dutil.basic.num.MusValueable 为 dtuil.basic.num.NumberValue。
+	更改 dutil.basic.num.NumTrans 为 dutil.basic.num.NumberUtil。
+	删除 dutil.basic.num.UnitTrans ，将其方法转移到 NumberUtil中；将其单位枚举转移到 dutil.basic.num.unit包中。
+	新建 dutil.basic.num.unit包，用于放置单位枚举。
+	更改 dutil.basic.num.MusValueable 为 dutil.basic.num.NumberValue。
+	新建 NumberValueFilter，即数字值过滤器。

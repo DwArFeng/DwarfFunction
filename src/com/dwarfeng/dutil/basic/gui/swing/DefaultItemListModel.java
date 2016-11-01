@@ -3,11 +3,13 @@ package com.dwarfeng.dutil.basic.gui.swing;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
@@ -32,7 +34,9 @@ import com.dwarfeng.dutil.basic.cna.CollectionUtil;
  * @since 1.8
  */
 public class DefaultItemListModel<E> extends AbstractListModel<E> implements Iterable<E>{
-
+	
+	private static final long serialVersionUID = 8547542339038946434L;
+	
 	/**默认条目列表*/
 	protected final DefalutItemList defaultItemList;
 	/**一般条目列表*/
@@ -73,6 +77,10 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	 */
 	@Override
 	public E getElementAt(int index) {
+		if(index <0 || index >= getSize()){
+			throw new IndexOutOfBoundsException(String.valueOf(index));
+		}
+		
 		int defaultSize = defaultItemList.size();
 		if(index < defaultSize){
 			return defaultItemList.get(index);
@@ -83,12 +91,18 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	
 	/**
 	 * 在此列表的指定位置处插入指定的元素。
-	 *<p> 如果索引超出范围<code>（index < 0 || index > size()）</code>，则抛出 ArrayIndexOutOfBoundsException。
+	 *<p> 如果索引超出范围<code>（index < 0 || index > size()）</code>，则抛出 IndexOutOfBoundsException。
 	 *<p> 如果序号小于第一个一般条目的序号，则会抛出 {@link IllegalArgumentException};
 	 * @param index 指定元素的插入位置的索引。
 	 * @param element 要插入的元素。
+	 * @throws IndexOutOfBoundsException 序号越界。
+	 * @throws IllegalArgumentException 试图在默认元素区间添加元素。
 	 */
 	public void add(int index, E element){
+		if(index < 0 || index > getSize()){
+			throw new IndexOutOfBoundsException(String.valueOf(index));
+		}
+		
 		int defalutSize = defaultItemList.size();
 		if(index < defalutSize){
 			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.DefaultListItemModel_0));
@@ -138,9 +152,13 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	/**
 	 * 将此列表的组件复制到指定数组中。数组必须足够大，能够保存此列表中的所有对象，否则抛出 IndexOutOfBoundsException。 
 	 * @param anArray 要将组件复制到其中的数组。
+	 * @throws IndexOutOfBoundsException 数组不够大，以至于不能放下所有对象。
 	 */
 	public void copyInto(Object[] anArray){
 		Objects.requireNonNull(anArray, DwarfUtil.getStringField(StringFieldKey.DefaultListItemModel_5));
+		if(anArray.length < getSize()){
+			throw new IndexOutOfBoundsException(DwarfUtil.getStringField(StringFieldKey.DefaultListItemModel_6));
+		}
 		Object[] def = defaultItemList.toArray();
 		Object[] nor = normalItemList.toArray();
 		System.arraycopy(def, 0, anArray, 0, def.length);
@@ -148,13 +166,13 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	}
 	
 	/**
-	 * 返回指定索引处的组件。如果索引为负或不小于列表的大小，则抛出 ArrayIndexOutOfBoundsException。 
+	 * 返回指定索引处的组件。如果索引为负或不小于列表的大小，则抛出 IndexOutOfBoundsException。 
 	 * <p> 注：尽管此方法未过时，但首选使用方法是 get(int)，该方法实现 1.2 Collections 框架中定义的 List 接口。
 	 * @param index 此列表中的一个索引。
 	 * @return 指定索引处的组件。
 	 */
 	public E elementAt(int index){
-		return get(index);
+		return getElementAt(index);
 	}
 	
 	/**
@@ -182,9 +200,10 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	
 	/**
 	 * 返回列表中指定位置处的元素。 
-	 * <p> 如果索引超出范围<code>（index < 0 || index >= size()）</code>，则抛出 ArrayIndexOutOfBoundsException。 
+	 * <p> 如果索引超出范围<code>（index < 0 || index >= size()）</code>，则抛出 IndexOutOfBoundsException。 
 	 * @param index 要返回的元素的索引。
 	 * @return 指定位置处的元素。
+	 * @throws IndexOutOfBoundsException 下标越界。
 	 */
 	public E get(int index){
 		return getElementAt(index);
@@ -223,12 +242,13 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	
 	/**
 	 * 将指定对象作为此列表中的组件插入到指定的 index 处。 
-	 * <p> 如果索引无效，则抛出 ArrayIndexOutOfBoundsException。 
+	 * <p> 如果索引无效，则抛出 IndexOutOfBoundsException。 
 	 * <p> 如果序号小于第一个一般条目的序号，则会抛出 {@link IllegalArgumentException};
 	 * <p> 注：尽管此方法未过时，但首选使用方法是 add(int,Object)，该方法实现 1.2 Collections 框架中定义的 List 接口。 
 	 * @param obj 要插入的组件。
 	 * @param index 插入新组件的位置 。
 	 * @throws IllegalArgumentException 序号小于第一个一般条目的序号。
+	 * @throws IndexOutOfBoundsException 下标越界。
 	 */
 	public void insertElementAt(E obj, int index){
 		add(index, obj);
@@ -257,7 +277,7 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	 * @return 列表中 elem 最后一次出现处的索引；如果没有找到该对象，则返回<code>-1</code>。
 	 */
 	public int lastIndexOf(Object elem){
-		for(int i = getSize() ; i >= 0 ; i--){
+		for(int i = getSize() - 1 ; i >= 0 ; i--){
 			Object o = getElementAt(i);
 			if(Objects.isNull(o) && Objects.isNull(elem)) return i;
 			if(Objects.nonNull(o) && o.equals(elem)) return i;
@@ -282,12 +302,16 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	
 	/**
 	 * 移除此列表中指定位置处的元素。返回从列表中移除的元素。
-	 * <p> 如果索引超出范围<code>（index < 0 || index >= size()）</code>>，则抛出 ArrayIndexOutOfBoundsException。
+	 * <p> 如果索引超出范围<code>（index < 0 || index >= size()）</code>>，则抛出 IndexOutOfBoundsException。
 	 * <p> 如果序号小于第一个一般条目的序号，则会抛出 {@link IllegalArgumentException};
 	 * @param index 要移除的元素的索引。
 	 * @return 返回的元素。
+	 * @throws IndexOutOfBoundsException 下标越界。
 	 */
 	public E remove(int index){
+		if(index < 0 || index >= getSize()){
+			throw new IndexOutOfBoundsException(String.valueOf(index));
+		}
 		int defaultSize = defaultItemList.size();
 		if(index < defaultSize){
 			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.DefaultListItemModel_1));
@@ -312,7 +336,7 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	 */
 	public boolean removeElement(Object obj){
 		int index = normalItemList.indexOf(obj);
-		boolean flag = normalItemList.remove(obj);
+		boolean flag = normalItemList.delegate.remove(obj);
 		if(flag){
 			fireIntervalRemoved(this, index + defaultItemList.size(), index + defaultItemList.size());
 		}
@@ -321,10 +345,12 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	
 	/**
 	 * 删除指定索引处的组件。 
-	 * <p> 如果索引无效，则抛出 ArrayIndexOutOfBoundsException。 
+	 * <p> 如果索引无效，则抛出 IndexOutOfBoundsException。 
 	 * <p> 如果序号小于第一个一般条目的序号，则会抛出 {@link IllegalArgumentException};
 	 * <p> 注：尽管此方法未过时，但首选使用方法是 remove(int)，该方法实现 1.2 Collections 框架中定义的 List 接口。 
 	 * @param index 要移除对象的索引
+	 * @throws IndexOutOfBoundsException 下标越界。
+	 * @throws IllegalArgumentException 下标落在默认条目区域。
 	 */
 	public void removeElementAt(int index){
 		remove(index);
@@ -332,31 +358,45 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	
 	/**
 	 * 删除指定索引范围中的组件。移除组件包括指定范围两个端点处的组件。
-	 * <p> 如果索引无效，则抛出 ArrayIndexOutOfBoundsException。如果 <code>fromIndex > toIndex</code>，则抛出 IllegalArgumentException。
+	 * <p> 如果索引无效，则抛出 IndexOutOfBoundsException。如果 <code>fromIndex > toIndex</code>，则抛出 IllegalArgumentException。
 	 * <p> 如果序号中包含小于第一个一般条目的序号，则会抛出 {@link IllegalArgumentException};
 	 * @param fromIndex 范围低端点的索引。
 	 * @param toIndex 范围高端点的索引。
+	 * @throws IndexOutOfBoundsException 下标越界
+	 * @throws IllegalArgumentException 下标区间中包含落在默认条目区域的下标。
 	 */
 	public void removeRange(int fromIndex, int toIndex){
 		int defaultSize = defaultItemList.size();
 		if(fromIndex < defaultSize){
 			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.DefaultListItemModel_1));
 		}
+		if(fromIndex < 0 ){
+			throw new IndexOutOfBoundsException(String.valueOf(fromIndex));
+		}
+		if(toIndex >= getSize()){
+			throw new IndexOutOfBoundsException(String.valueOf(toIndex));
+		}
 		for(int i = fromIndex ; i <= toIndex ; i ++){
-			normalItemList.delegate.remove(i - defaultSize);
+			normalItemList.delegate.remove(fromIndex - defaultSize);
 		}
 		fireIntervalRemoved(this, fromIndex, toIndex);
 	}
 	
 	/**
 	 * 使用指定元素替换此列表中指定位置上的元素。 
-	 * <p> 如果索引超出范围<code>（index < 0 || index >= size()）</code>，则抛出 ArrayIndexOutOfBoundsException。
+	 * <p> 如果索引超出范围<code>（index < 0 || index >= size()）</code>，则抛出 IndexOutOfBoundsException。
 	 * <p> 如果序号小于第一个一般条目的序号，则会抛出 {@link IllegalArgumentException};
 	 * @param index 要替换的元素的索引。
 	 * @param element 要存储在指定位置上的元素。
 	 * @return 以前在指定位置上的元素。
+	 * @throws IndexOutOfBoundsException 下标越界。
+	 * @throws IllegalArgumentException 下标落在默认条目区域。
+	 * @throws IndexOutOfBoundsException 下标越越界。
 	 */
 	public E set(int index,E element){
+		if(index < 0 || index >= getSize()){
+			throw new IndexOutOfBoundsException(String.valueOf(index));
+		}
 		int defaultSize = defaultItemList.size();
 		if(index < defaultSize){
 			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.DefaultListItemModel_2));
@@ -368,11 +408,13 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	
 	/**
 	 * 将此列表指定 index 处的组件设置为指定的对象。丢弃该位置以前的组件。 
-	 * <p> 如果索引无效，则抛出 ArrayIndexOutOfBoundsException。 
+	 * <p> 如果索引无效，则抛出 IndexOutOfBoundsException。 
 	 * <p> 如果序号小于第一个一般条目的序号，则会抛出 {@link IllegalArgumentException};
 	 * <p> 注：尽管此方法未过时，但首选使用方法是 set(int,Object)，该方法实现 1.2 Collections 框架中定义的 List 接口。 
 	 * @param obj 组件的设置目标。
 	 * @param index 指定的索引。
+	 * @throws IndexOutOfBoundsException 下标越界。
+	 * @throws IllegalArgumentException 下标落在默认条目区域。
 	 */
 	public void setElementAt(E obj, int index){
 		set(index, obj);
@@ -468,6 +510,19 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	 */
 	public boolean isDefaultItem(Object element){
 		return defaultItemList.contains(element);
+	}
+	
+	/**
+	 * 查询一个元素是否是默认元素。
+	 * @param index 元素的序号。
+	 * @return 序号指向的元素是否是默认元素。
+	 * @throws IndexOutOfBoundsException 下标越界。
+	 */
+	public boolean isDefaultItem(int index){
+		if(index < 0 || index >= getSize()){
+			throw new IndexOutOfBoundsException(String.valueOf(index));
+		}
+		return index < defaultItemList.size();
 	}
 	
 	/**
@@ -569,14 +624,22 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 		 */
 		@Override
 		public boolean add(E e) {
-			// TODO Auto-generated method stub
-			return false;
+			int index = size() + defaultItemList.size();
+			boolean flag = delegate.add(e);
+			if(flag) fireIntervalAdded(DefaultItemListModel.this, index, index);
+			return flag;
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.util.List#remove(java.lang.Object)
+		 */
 		@Override
 		public boolean remove(Object o) {
-			// TODO Auto-generated method stub
-			return false;
+			int index = defaultItemList.size() + indexOf(o);
+			boolean flag = delegate.remove(o);
+			if(flag) fireIntervalRemoved(DefaultItemListModel.this, index, index);
+			return flag;
 		}
 
 		/*
@@ -594,8 +657,11 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 		 */
 		@Override
 		public boolean addAll(Collection<? extends E> c) {
-			// TODO Auto-generated method stub
-			return false;
+			boolean flag = false;
+			for(E e : c){
+				if(add(e)) flag = true;
+			}
+			return flag;
 		}
 
 		/*
@@ -604,8 +670,13 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 		 */
 		@Override
 		public boolean addAll(int index, Collection<? extends E> c) {
-			// TODO Auto-generated method stub
-			return false;
+			int size = size();
+			int i = 0;
+			for(E e : c){
+				add(index + i, e);
+				i ++;
+			}
+			return size() != size;
 		}
 
 		/*
@@ -614,8 +685,11 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
-			// TODO Auto-generated method stub
-			return false;
+			boolean flag = false;
+			for(Object obj : c){
+				if(remove(obj)) flag = true;
+			}
+			return flag;
 		}
 
 		/*
@@ -624,8 +698,13 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
-			// TODO Auto-generated method stub
-			return false;
+			Set<E> set = new HashSet<E>();
+			for(E e : this){
+				if(!c.contains(e)){
+					set.add(e);
+				}
+			}
+			return removeAll(set);
 		}
 
 		/*
@@ -634,8 +713,9 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 		 */
 		@Override
 		public void clear() {
-			// TODO Auto-generated method stub
-
+			int lastIndex = defaultItemList.size() + size() - 1;
+			delegate.clear();
+			fireIntervalRemoved(DefaultItemListModel.this, 0, lastIndex);
 		}
 
 		/*
@@ -653,8 +733,10 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 		 */
 		@Override
 		public E set(int index, E element) {
-			// TODO Auto-generated method stub
-			return null;
+			int aIndex = index + defaultItemList.size();
+			E e = delegate.set(index, element);
+			fireContentsChanged(DefaultItemListModel.this, aIndex, aIndex);
+			return e;
 		}
 
 		/*
@@ -663,8 +745,10 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 		 */
 		@Override
 		public void add(int index, E element) {
-			// TODO Auto-generated method stub
-
+			int size = size();
+			int aIndex = index + defaultItemList.size();
+			delegate.add(index, element);
+			if(size() != size) fireIntervalAdded(DefaultItemListModel.this, aIndex, aIndex);
 		}
 
 		/*
@@ -673,8 +757,10 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 		 */
 		@Override
 		public E remove(int index) {
-			// TODO Auto-generated method stub
-			return null;
+			int aIndex = index + defaultItemList.size();
+			E e = delegate.remove(index);
+			fireIntervalRemoved(DefaultItemListModel.this, aIndex, aIndex);
+			return e;
 		}
 
 		/*
@@ -792,8 +878,10 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 		 */
 		@Override
 		public boolean add(E e) {
-			// TODO Auto-generated method stub
-			return false;
+			boolean flag = delegate.add(e);
+			int index = size();
+			if(flag) fireIntervalAdded(DefaultItemListModel.this, index, index);
+			return flag;
 		}
 
 		/*
@@ -802,8 +890,10 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 		 */
 		@Override
 		public boolean remove(Object o) {
-			// TODO Auto-generated method stub
-			return false;
+			int index = this.indexOf(o);
+			boolean flag = delegate.remove(o);
+			if(flag) fireIntervalRemoved(DefaultItemListModel.this, index, index);
+			return flag;
 		}
 
 		/*
@@ -821,8 +911,11 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 		 */
 		@Override
 		public boolean addAll(Collection<? extends E> c) {
-			// TODO Auto-generated method stub
-			return false;
+			boolean flag = false;
+			for(E e : c){
+				if(add(e)) flag = true;
+			}
+			return flag;
 		}
 
 		/*
@@ -831,8 +924,13 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 		 */
 		@Override
 		public boolean addAll(int index, Collection<? extends E> c) {
-			// TODO Auto-generated method stub
-			return false;
+			int size = size();
+			int i = 0;
+			for(E e : c){
+				add(index + i, e);
+				i ++;
+			}
+			return size() != size;
 		}
 
 		/*
@@ -841,8 +939,11 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
-			// TODO Auto-generated method stub
-			return false;
+			boolean flag = false;
+			for(Object obj : c){
+				if(remove(obj)) flag = true;
+			}
+			return flag;
 		}
 
 		/*
@@ -851,8 +952,13 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
-			// TODO Auto-generated method stub
-			return false;
+			Set<E> set = new HashSet<E>();
+			for(E e : this){
+				if(!c.contains(e)){
+					set.add(e);
+				}
+			}
+			return removeAll(set);
 		}
 
 		/*
@@ -861,8 +967,9 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 		 */
 		@Override
 		public void clear() {
-			// TODO Auto-generated method stub
-
+			int lastIndex = size() - 1;
+			delegate.clear();
+			fireIntervalRemoved(DefaultItemListModel.this, 0, lastIndex);
 		}
 
 		/*
@@ -880,8 +987,9 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 		 */
 		@Override
 		public E set(int index, E element) {
-			// TODO Auto-generated method stub
-			return null;
+			E e = delegate.set(index, element);
+			fireContentsChanged(DefaultItemListModel.this, index, index);
+			return e;
 		}
 
 		/*
@@ -890,8 +998,8 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 		 */
 		@Override
 		public void add(int index, E element) {
-			// TODO Auto-generated method stub
-
+			delegate.add(index, element);
+			fireIntervalAdded(DefaultItemListModel.this, index, index);
 		}
 
 		/*
@@ -900,8 +1008,9 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 		 */
 		@Override
 		public E remove(int index) {
-			// TODO Auto-generated method stub
-			return null;
+			E e = delegate.remove(index);
+			fireIntervalRemoved(DefaultItemListModel.this, index, index);
+			return e;
 		}
 
 		/*

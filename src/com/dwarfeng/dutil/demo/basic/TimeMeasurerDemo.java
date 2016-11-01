@@ -2,7 +2,7 @@ package com.dwarfeng.dutil.demo.basic;
 
 import com.dwarfeng.dutil.basic.io.CT;
 import com.dwarfeng.dutil.basic.mea.TimeMeasurer;
-import com.dwarfeng.dutil.basic.num.UnitTrans.Time;
+import com.dwarfeng.dutil.basic.num.unit.Time;
 
 /**
  * {@link TimeMeasurer} ÀàµÄÊ¾Àý¡£

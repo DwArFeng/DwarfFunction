@@ -7,18 +7,18 @@ package com.dwarfeng.dutil.basic.num;
  * @author DwArFeng
  * @since 1.8
  */
-public class QuickMusValueable implements MusValueable {
+public class QuickNumberValueable implements NumberValue {
 
-	public static final QuickMusValueable ZERO = new QuickMusValueable();
+	public static final QuickNumberValueable ZERO = new QuickNumberValueable();
 	
 	/**该多台值接口的值*/
 	protected final double val;
 	
 	/**
 	 * 生成一个大小为0的快速值接口。
-	 * <p> 该构造器方法的优先度小于静态字段 {@link QuickMusValueable#ZERO}。
+	 * <p> 该构造器方法的优先度小于静态字段 {@link QuickNumberValueable#ZERO}。
 	 */
-	public QuickMusValueable() {
+	public QuickNumberValueable() {
 		this(0);
 	}
 	
@@ -26,7 +26,7 @@ public class QuickMusValueable implements MusValueable {
 	 * 生成一个具有指定值的快速多态值接口对象。
 	 * @param val 指定的值。
 	 */
-	public QuickMusValueable(double val) {
+	public QuickNumberValueable(double val) {
 		this.val = val;
 	}
 
@@ -47,8 +47,8 @@ public class QuickMusValueable implements MusValueable {
 	public boolean equals(Object obj) {
 		if(obj == null) return false;
 		if(obj == this) return true;
-		if(!(obj instanceof QuickMusValueable)) return false;
-		QuickMusValueable v = (QuickMusValueable) obj;
+		if(!(obj instanceof QuickNumberValueable)) return false;
+		QuickNumberValueable v = (QuickNumberValueable) obj;
 		return v.val == val;
 	}
 	
@@ -67,6 +67,6 @@ public class QuickMusValueable implements MusValueable {
 	 */
 	@Override
 	public String toString() {
-		return val + "";
+		return String.valueOf(val);
 	}
 }
