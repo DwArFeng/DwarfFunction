@@ -91,7 +91,7 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	
 	/**
 	 * 在此列表的指定位置处插入指定的元素。
-	 *<p> 如果索引超出范围<code>（index < 0 || index > size()）</code>，则抛出 IndexOutOfBoundsException。
+	 *<p> 如果索引超出范围 <code>（index &lt; 0 || index &gt; size()）</code>，则抛出 IndexOutOfBoundsException。
 	 *<p> 如果序号小于第一个一般条目的序号，则会抛出 {@link IllegalArgumentException};
 	 * @param index 指定元素的插入位置的索引。
 	 * @param element 要插入的元素。
@@ -200,7 +200,7 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	
 	/**
 	 * 返回列表中指定位置处的元素。 
-	 * <p> 如果索引超出范围<code>（index < 0 || index >= size()）</code>，则抛出 IndexOutOfBoundsException。 
+	 * <p> 如果索引超出范围<code>（index &lt; 0 || index &gt;= size()）</code>，则抛出 IndexOutOfBoundsException。 
 	 * @param index 要返回的元素的索引。
 	 * @return 指定位置处的元素。
 	 * @throws IndexOutOfBoundsException 下标越界。
@@ -302,7 +302,7 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	
 	/**
 	 * 移除此列表中指定位置处的元素。返回从列表中移除的元素。
-	 * <p> 如果索引超出范围<code>（index < 0 || index >= size()）</code>>，则抛出 IndexOutOfBoundsException。
+	 * <p> 如果索引超出范围<code>（index &lt; 0 || index &gt;= size()）</code>，则抛出 IndexOutOfBoundsException。
 	 * <p> 如果序号小于第一个一般条目的序号，则会抛出 {@link IllegalArgumentException};
 	 * @param index 要移除的元素的索引。
 	 * @return 返回的元素。
@@ -358,7 +358,7 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	
 	/**
 	 * 删除指定索引范围中的组件。移除组件包括指定范围两个端点处的组件。
-	 * <p> 如果索引无效，则抛出 IndexOutOfBoundsException。如果 <code>fromIndex > toIndex</code>，则抛出 IllegalArgumentException。
+	 * <p> 如果索引无效，则抛出 IndexOutOfBoundsException。如果 <code>fromIndex &gt; toIndex</code>，则抛出 IllegalArgumentException。
 	 * <p> 如果序号中包含小于第一个一般条目的序号，则会抛出 {@link IllegalArgumentException};
 	 * @param fromIndex 范围低端点的索引。
 	 * @param toIndex 范围高端点的索引。
@@ -384,7 +384,7 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	
 	/**
 	 * 使用指定元素替换此列表中指定位置上的元素。 
-	 * <p> 如果索引超出范围<code>（index < 0 || index >= size()）</code>，则抛出 IndexOutOfBoundsException。
+	 * <p> 如果索引超出范围<code>（index &lt; 0 || index &gt;= size()）</code>，则抛出 IndexOutOfBoundsException。
 	 * <p> 如果序号小于第一个一般条目的序号，则会抛出 {@link IllegalArgumentException};
 	 * @param index 要替换的元素的索引。
 	 * @param element 要存储在指定位置上的元素。
@@ -450,7 +450,8 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	 * 否则，将分配一个具有指定数组的运行时类型和此列表大小的新数组。
 	 * <p> 如果指定的数组能容纳队列，并有剩余的空间（即数组的元素比队列多），那么会将数组中紧接 collection 尾部的元素设置为 null。
 	 * （仅 在调用者知道列表中不包含任何 null 元素时才能用此方法确定列表长度）。  
-	 * @param a  要在其中存储列表元素的数组（如果它足够大）；否则，为此分配一个具有相同运行时类型的新数组。 
+	 * @param a  要在其中存储列表元素的数组（如果它足够大）；否则，为此分配一个具有相同运行时类型的新数组。
+	 * @param <T> 泛型T。 
 	 * @return 包含列表元素的数组。
 	 */
 	public<T> T[] toArray(T[] a){

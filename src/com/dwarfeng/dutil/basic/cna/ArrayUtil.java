@@ -90,6 +90,7 @@ public final class ArrayUtil {
 	 * <p> 两个数组均不能为 null。;
 	 * @param first  第一个数组。
 	 * @param second 第二个数组。
+	 * @param <T> 泛型T。
 	 * @return 两个数组按照先后顺序合并后得到的数组。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */

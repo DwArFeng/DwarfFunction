@@ -634,6 +634,7 @@ public final class CollectionUtil {
 	/**
 	 * 通过指定的 {@link Enumeration} 生成的 {@link Iterator}。
 	 * @param enumeration 指定的枚举。
+	 * @param <T> 泛型T。
 	 * @return 通过指定的枚举生成的迭代器。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
@@ -673,6 +674,7 @@ public final class CollectionUtil {
 	/**
 	 * 通过指定的 {@link Iterator} 生成的 {@link Enumeration}。
 	 * @param iterator 指定的迭代器。
+	 * @param <T> 泛型T。
 	 * @return 通过指定的迭代器生成的枚举。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
@@ -715,6 +717,7 @@ public final class CollectionUtil {
 	 * <p> 虽然数组可以使用 for-each 循环，但是数组不可以作为 {@link Iterable} 对象进行参数传递，该方法为了解决这一问题，
 	 * 可以将一个数组转化为一个 {@link Iterator}对象，方便某些需要传入迭代器的场合。
 	 * @param array 指定的数组。
+	 * @param <T> 泛型T。
 	 * @return 由指定的数组转化而成的迭代器。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
@@ -725,10 +728,11 @@ public final class CollectionUtil {
 	
 	/**
 	 * 用于连接两个迭代器。
-	 * <T> 新的迭代器首先迭代 <code>firstIterator</code>中的元素，当其中的元素迭代完之后，继续迭代
+	 * <p> 新的迭代器首先迭代 <code>firstIterator</code>中的元素，当其中的元素迭代完之后，继续迭代
 	 * <code>secondIterator</code>中的元素，直至两个迭代器中的元素全部迭代完成。
 	 * @param firstIterator 第一个迭代器。
 	 * @param secondIterator 第二个迭代器。
+	 * @param <T> 泛型T。
 	 * @return 两个迭代器连接形成的迭代器。
 	 */
 	public static<T> Iterator<T> contactIterator(Iterator<T> firstIterator, Iterator<T> secondIterator){
