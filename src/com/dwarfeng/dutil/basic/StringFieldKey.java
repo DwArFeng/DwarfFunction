@@ -28,8 +28,10 @@ public enum StringFieldKey{
 	/**JAdjustableBorderPanel类第0号文本字段*/
 	JAdjustableBorderPanel_0,
 	
-	/**NadeRuner类第0号文本字段*/
-	NadeRuner_0,
+	/**TagRunner类第0号文本字段*/
+	TagRunner_0,
+	/**TagRunner类第1号文本字段*/
+	TagRunner_1,
 	
 	/**MvcProgram类第0号文本字段*/
 	MvcProgram_0,
