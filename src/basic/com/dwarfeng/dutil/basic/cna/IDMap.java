@@ -22,7 +22,7 @@ import java.util.Set;
  * @param <T> 对象的泛型。
  * 
  */
-public class IDMap<T> {
+class IDMap<T> {
 	
 	/**
 	 * 用以表示

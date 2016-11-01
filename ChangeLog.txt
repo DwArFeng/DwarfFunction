@@ -2,6 +2,7 @@
 	Boom！
 
 Alpha_0.2.0_20161101_build_A 与之前的版本不兼容
+	** 因为该版本存在时间过短，所有该版本没有留下 release文件。
 	删除infs包，将其中的接口移动到其它的包中——没有必要为了某些接口设置一个单独的包。
 		Nameable 改名为 Name，并且移动到 dutil.basic.str中。
 		Describeable 改名为 Description，并且移动到 dutil.basic.str中。
@@ -19,3 +20,7 @@ Alpha_0.2.0_20161101_build_A 与之前的版本不兼容
 	新建 dutil.basic.num.unit包，用于放置单位枚举。
 	更改 dutil.basic.num.MusValueable 为 dutil.basic.num.NumberValue。
 	新建 NumberValueFilter，即数字值过滤器。
+	删除 dutil.basic.cna.IDMap， 将会在之后以接口的方式重写。
+	删除 dtuil.basic.cna.DumplicateIdException 将会在将来以别的方式进行替代。
+Alpha_0.3.0_20161101_build_A
+	更新源文件结构（对于 release 文件来说没有任何影响。）

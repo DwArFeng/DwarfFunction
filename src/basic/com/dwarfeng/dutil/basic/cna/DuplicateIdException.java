@@ -10,9 +10,9 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
  * @author DwArFeng
  * @since 1.8
  */
-public final class DuplicateIdException extends Exception {
+class DuplicateIdException extends Exception {
 
-	private static final long serialVersionUID = -122201342919712293L;
+	private static final long serialVersionUID = -1961152389935867480L;
 	
 	private int id;
 	
