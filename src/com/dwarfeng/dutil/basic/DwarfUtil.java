@@ -30,8 +30,8 @@ public final class DwarfUtil {
 	private static final String sfPath = "resource/lang/stringField";
 	
 	private static final Version version = new DefaultVersion.Builder()
-			.type(VersionType.ALPHA).firstVersion((byte) 0).secondVersion((byte) 1).thirdVersion((byte) 0)
-			.buildDate("20161010").buildVersion('A')
+			.type(VersionType.ALPHA).firstVersion((byte) 0).secondVersion((byte) 2).thirdVersion((byte) 0)
+			.buildDate("20161101").buildVersion('A')
 			.build();
 	
 	private static ResourceBundle sf = ResourceBundle.getBundle(sfPath,Locale.getDefault(),CT.class.getClassLoader());
