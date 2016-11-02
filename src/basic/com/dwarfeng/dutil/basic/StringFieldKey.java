@@ -275,5 +275,11 @@ public enum StringFieldKey{
 	JointIterator_1,
 	/**JointIterator类第2号文本字段*/
 	JointIterator_2,
+	
+	/**NumberUtil类第0号文本字段*/
+	NumberUtil_0,
+	/**NumberUtil类第1号文本字段*/
+	NumberUtil_1,
+
 
 }

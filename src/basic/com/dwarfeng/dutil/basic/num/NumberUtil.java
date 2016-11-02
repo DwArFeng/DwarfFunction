@@ -1,7 +1,10 @@
 package com.dwarfeng.dutil.basic.num;
 
 import java.nio.ByteBuffer;
+import java.util.Objects;
 
+import com.dwarfeng.dutil.basic.DwarfUtil;
+import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.num.unit.Angle;
 
 /**
@@ -310,6 +313,82 @@ public final class NumberUtil {
 				return ((double)val)/(u1.doubleValue())*(u2.doubleValue());
 			}
 		};
+	}
+	
+	/**
+	 * 返回一组整型数据中的最大值。
+	 * <p> 如果不传入任何参数，则返回 <code>0</code>。
+	 * @param is 整型数组。
+	 * @return 最大值。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 */
+	public static int max(int... is){
+		Objects.requireNonNull(is, DwarfUtil.getStringField(StringFieldKey.NumberUtil_0));
+		if(is.length == 0) return 0;
+		if(is.length == 1) return is[0];
+		if(is.length == 2) return Math.max(is[0], is[1]);
+		int max = is[0];
+		for(int i = 1 ; i < is.length ; i ++){
+			max = Math.max(max, is[i]);
+		}
+		return max;
+	}
+	
+	/**
+	 * 返回一组整型数据中的最小值。
+	 * <p> 如果不传入任何参数，则返回 <code>0</code>。
+	 * @param is 整型数组。
+	 * @return 最小值。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 */
+	public static int min(int... is){
+		Objects.requireNonNull(is, DwarfUtil.getStringField(StringFieldKey.NumberUtil_0));
+		if(is.length == 0) return 0;
+		if(is.length == 1) return is[0];
+		if(is.length == 2) return Math.min(is[0], is[1]);
+		int min = is[0];
+		for(int i = 1 ; i < is.length ; i ++){
+			min = Math.min(min, is[i]);
+		}
+		return min;
+	}
+	
+	/**
+	 * 返回一组双精度浮点数据中的最大值。
+	 * <p> 如果不传入任何参数，则返回 <code>0</code>。
+	 * @param is 双精度浮点数组。
+	 * @return 最大值。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 */
+	public static double max(double... ds){
+		Objects.requireNonNull(ds, DwarfUtil.getStringField(StringFieldKey.NumberUtil_1));
+		if(ds.length == 0) return 0;
+		if(ds.length == 1) return ds[0];
+		if(ds.length == 2) return Math.max(ds[0], ds[1]);
+		double max = ds[0];
+		for(int i = 1 ; i < ds.length ; i ++){
+			max = Math.max(max, ds[i]);
+		}
+		return max;
+	}
+	
+	/**
+	 * 返回一组双精度浮点数据中的最小值。
+	 * <p> 如果不传入任何参数，则返回 <code>0</code>。
+	 * @param is 双精度浮点数组。
+	 * @return 最小值。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 */
+	public static double min(double... ds){
+		Objects.requireNonNull(ds, DwarfUtil.getStringField(StringFieldKey.NumberUtil_1));
+		if(ds.length == 0) return 0;
+		if(ds.length == 1) return ds[0];
+		if(ds.length == 2) return Math.min(ds[0], ds[1]);
+		double min = ds[0];
+		for(int i = 1 ; i < ds.length ; i ++){
+			min = Math.min(min, ds[i]);
+		}
+		return min;
 	}
 	
 }

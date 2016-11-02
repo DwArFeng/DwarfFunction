@@ -30,7 +30,7 @@ public final class DwarfUtil {
 	private static final String sfPath = "resource/lang/stringField";
 	
 	private static final Version version = new DefaultVersion.Builder()
-			.type(VersionType.ALPHA).firstVersion((byte) 0).secondVersion((byte) 3).thirdVersion((byte) 0)
+			.type(VersionType.ALPHA).firstVersion((byte) 0).secondVersion((byte) 4).thirdVersion((byte) 0)
 			.buildDate("20161101").buildVersion('A')
 			.build();
 	

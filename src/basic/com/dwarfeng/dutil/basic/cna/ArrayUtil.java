@@ -368,10 +368,22 @@ public final class ArrayUtil {
 	
 	/**
 	 * 对float数组进行打包。
+	 * <p> 该方法由于不符合命名规范，已经用 {@link #pack(float[])} 代替。
+	 * @param target 指定的float数组。
+	 * @return 打包后得到的封包数组。
+	 * @see #pack(float[])
+	 */
+	@Deprecated
+	public static Float[] Pack(float[] target){
+		return pack(target);
+	}
+	
+	/**
+	 * 对float数组进行打包。
 	 * @param target 指定的float数组。
 	 * @return 打包后得到的封包数组。
 	 */
-	public static Float[] Pack(float[] target){
+	public static Float[] pack(float[] target){
 		
 		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.CollectionUtil_11));
 		
@@ -380,6 +392,19 @@ public final class ArrayUtil {
 			floats[i] = target[i];
 		}
 		return floats;
+		
+	}
+	
+	/**
+	 * 对double数组进行打包。
+	 * <p> 由于该方法不符合命名规范，已经用 {@link #pack(double[])} 代替。
+	 * @param target 指定的double数组。
+	 * @return 打包后得到的封包数组。
+	 * @see #pack(double[])
+	 */
+	@Deprecated
+	public static Double[] Pack(double[] target){
+		return pack(target);
 	}
 	
 	/**
@@ -387,7 +412,7 @@ public final class ArrayUtil {
 	 * @param target 指定的double数组。
 	 * @return 打包后得到的封包数组。
 	 */
-	public static Double[] Pack(double[] target){
+	public static Double[] pack(double[] target){
 		
 		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.CollectionUtil_11));
 		
@@ -400,10 +425,22 @@ public final class ArrayUtil {
 	
 	/**
 	 * 对char数组进行打包。
+	 * <p> 由于该方法不符合命名规范，已经用 {@link #Pack(char[])} 代替。
+	 * @param target 指定的char数组。
+	 * @return 打包后得到的封包数组。
+	 * @see #pack(char[])
+	 */
+	@Deprecated
+	public static Character[] Pack(char[] target){
+		return pack(target);
+	}
+	
+	/**
+	 * 对char数组进行打包。
 	 * @param target 指定的char数组。
 	 * @return 打包后得到的封包数组。
 	 */
-	public static Character[] Pack(char[] target){
+	public static Character[] pack(char[] target){
 		
 		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.CollectionUtil_11));
 		
@@ -416,10 +453,22 @@ public final class ArrayUtil {
 	
 	/**
 	 * 对boolean数组进行打包。
+	 * <p> 由于该方法不符合命名规范，已经用 {@link #pack(boolean[])} 代替。
+	 * @param target 指定的boolean数组。
+	 * @return 打包后得到的封包数组。
+	 * @see #pack(boolean[])
+	 */
+	@Deprecated
+	public static Boolean[] Pack(boolean[] target){
+		return pack(target);
+	}
+	
+	/**
+	 * 对boolean数组进行打包。
 	 * @param target 指定的boolean数组。
 	 * @return 打包后得到的封包数组。
 	 */
-	public static Boolean[] Pack(boolean[] target){
+	public static Boolean[] pack(boolean[] target){
 		
 		if(target == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.CollectionUtil_11));
 		
@@ -429,7 +478,7 @@ public final class ArrayUtil {
 		}
 		return booleans;
 	}
-
+	
 	/**
 	 * 检测指定的序号是否落在数组的边界中。
 	 * @param objs 指定的数组。
