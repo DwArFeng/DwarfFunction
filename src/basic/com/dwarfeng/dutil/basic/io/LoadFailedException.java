@@ -1,0 +1,32 @@
+package com.dwarfeng.dutil.basic.io;
+
+/**
+ * ∂¡»° ß∞‹“Ï≥£°£
+ * @author  DwArFeng
+ * @since 1.8
+ */
+public class LoadFailedException extends Exception {
+
+	private static final long serialVersionUID = -1688596142629630154L;
+
+	public LoadFailedException() {
+		super();
+	}
+
+	public LoadFailedException(String message) {
+		super(message);
+	}
+
+	public LoadFailedException(Throwable cause) {
+		super(cause);
+	}
+
+	public LoadFailedException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	public LoadFailedException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
+	}
+
+}

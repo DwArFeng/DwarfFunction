@@ -8,6 +8,7 @@ import java.util.Map;
  * <p> 配置站点继承 {@link Map} 接口，并对映射的编辑进行了限制：第一套映射无法做任何变动，该配置站点不提供任何有可能造成
  * 第一套映射修改的方法；第二套映射则可对已有配置键的值进行修改，但是无法对配置键进行增删操作，任何视图增删配置键的行为都将
  * 抛出 {@link UnsupportedOperationException}。
+ * <p> 该配置站点可以在方法 {@link ConfigUtil#newConfigPort(Map)} 中得到默认实现。
  * @author DwArFeng
  * @since 1.8
  */
