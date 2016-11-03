@@ -280,6 +280,12 @@ public enum StringFieldKey{
 	NumberUtil_0,
 	/**NumberUtil类第1号文本字段*/
 	NumberUtil_1,
-
+	
+	/**ConfigUtil类第0号文本字段*/
+	ConfigUtil_0,
+	/**ConfigUtil类第1号文本字段*/
+	ConfigUtil_1,
+	/**ConfigUtil类第2号文本字段*/
+	ConfigUtil_2,
 
 }

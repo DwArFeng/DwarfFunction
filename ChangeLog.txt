@@ -25,7 +25,7 @@ Alpha_0.2.0_20161101_build_A 与之前的版本不兼容
 Alpha_0.3.0_20161101_build_A
 	更新源文件结构（对于 release 文件来说没有任何影响）。
 	从这个版本开始，每次 release 都会提供 chm 文件。
-Alpha_0.4.0_20161101_build_A
+Alpha_0.4.0
 	废弃数个dutil.basic.cna.ArrayUtil 中的不符合命名规范的方法，用符合规范的新方法代替。
 	新增 
 		int dutil.basic.num.max(int... is);
@@ -33,4 +33,6 @@ Alpha_0.4.0_20161101_build_A
 		double dutil.basic.num.max(double... ds);
 		double dutil.basic.num.min(double... ds);
 		用于判定多个整型或双精度浮点数中的最大值和最小值。
+		新增专用工具包 dutil.develop 用于封装编程开发时常用且高度重复的功能模块。
+		修改部分注释。
 	

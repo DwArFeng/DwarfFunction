@@ -356,7 +356,7 @@ public final class NumberUtil {
 	/**
 	 * 返回一组双精度浮点数据中的最大值。
 	 * <p> 如果不传入任何参数，则返回 <code>0</code>。
-	 * @param is 双精度浮点数组。
+	 * @param ds 双精度浮点数组。
 	 * @return 最大值。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
@@ -375,7 +375,7 @@ public final class NumberUtil {
 	/**
 	 * 返回一组双精度浮点数据中的最小值。
 	 * <p> 如果不传入任何参数，则返回 <code>0</code>。
-	 * @param is 双精度浮点数组。
+	 * @param ds 双精度浮点数组。
 	 * @return 最小值。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
