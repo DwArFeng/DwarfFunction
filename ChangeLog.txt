@@ -39,3 +39,4 @@ Alpha_0.4.0
 		修改部分注释。
 	新增 dutil.develop包，用于封装常用的且代码高度重复的开发模块。
 	新增 dutil.develop.cfg 包，用于程序的配置功能，具体功能请参阅API。
+	新增 dutil.basic.gui.swing.SwingUtil 提供swing工具的常用方法。

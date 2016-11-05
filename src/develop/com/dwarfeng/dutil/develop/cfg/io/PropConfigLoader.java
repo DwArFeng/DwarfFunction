@@ -9,7 +9,6 @@ import java.util.Properties;
 
 import com.dwarfeng.dutil.basic.io.LoadFailedException;
 import com.dwarfeng.dutil.develop.cfg.ConfigKey;
-import com.dwarfeng.dutil.develop.cfg.ConfigUtil;
 
 /**
  * Properties ≈‰÷√∂¡»°∆˜°£

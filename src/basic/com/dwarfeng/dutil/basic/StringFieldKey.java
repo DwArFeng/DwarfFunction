@@ -302,4 +302,7 @@ public enum StringFieldKey{
 	/**ConfigPort类第0号文本字段*/
 	ConfigPort_0,
 	
+	/**SwingUtil类第0号文本字段*/
+	SwingUtil_0,
+	
 }

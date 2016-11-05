@@ -1,7 +1,6 @@
 package com.dwarfeng.dutil.develop.cfg;
 
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
