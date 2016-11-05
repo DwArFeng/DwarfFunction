@@ -9,16 +9,16 @@ package com.dwarfeng.dutil.develop.cfg;
 public interface ConfigValueChecker {
 
 	/**
-	 * 检查指定的值是否合法。
+	 * 检查指定的值是否有效。
 	 * @param value 指定的值。
-	 * @return 指定的值是否合法。
+	 * @return 指定的值是否有效。
 	 */
 	public boolean isValid(String value);
 	
 	/**
-	 * 检查指定的值是否非法。
+	 * 检查指定的值是否无效。
 	 * @param value 指定的值。
-	 * @return 指定的值是否非法。
+	 * @return 指定的值是否无效。
 	 */
 	public default boolean nonValid(String value){
 		return ! isValid(value);

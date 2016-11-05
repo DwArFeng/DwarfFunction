@@ -683,37 +683,10 @@ public final class CollectionUtil {
 		return new IteratorEnumeration<>(iterator);
 	}
 	
-	private static final class ArrayIterator<T> implements Iterator<T>{
-		
-		private final T[] arr;
-		private int index = 0;
-		
-		public ArrayIterator(T[] arr) {
-			this.arr = arr;
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * @see java.util.Iterator#hasNext()
-		 */
-		@Override
-		public boolean hasNext() {
-			return index < arr.length;
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * @see java.util.Iterator#next()
-		 */
-		@Override
-		public T next() {
-			return arr[index ++];
-		}
-		
-	}
-	
 	/**
-	 * 将一个数组转化为一个迭代器。
+	 * <b> 已过时 </b>
+	 * 该方法已经被 {@link ArrayUtil#array2Iterator(Object[])} 代替。
+	 * <p>将一个数组转化为一个迭代器。
 	 * <p> 虽然数组可以使用 for-each 循环，但是数组不可以作为 {@link Iterable} 对象进行参数传递，该方法为了解决这一问题，
 	 * 可以将一个数组转化为一个 {@link Iterator}对象，方便某些需要传入迭代器的场合。
 	 * @param array 指定的数组。
@@ -721,9 +694,10 @@ public final class CollectionUtil {
 	 * @return 由指定的数组转化而成的迭代器。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
+	@Deprecated
 	public static<T> Iterator<T> array2Iterator(T[] array){
 		Objects.requireNonNull(array, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_11));
-		return new ArrayIterator<T>(array);
+		return ArrayUtil.array2Iterator(array);
 	}
 	
 	/**

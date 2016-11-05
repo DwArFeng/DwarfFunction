@@ -1,8 +1,8 @@
 package com.dwarfeng.dutil.develop.cfg;
 
-import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -10,6 +10,7 @@ import java.util.WeakHashMap;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.cna.ArrayUtil;
 
 /**
  * 配置工具包。
@@ -18,186 +19,191 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
  */
 public final class ConfigUtil {
 
+	
 	/**
-	 * 判断两个配置键是否相等。
-	 * @param configKey0 第一个配置键。
-	 * @param configKey1 第二个配置键。
-	 * @return 第一个配置键和第二个配置键是否相等。
+	 * 
+	 * @param entries
+	 * @return
 	 */
-	public static boolean equals(ConfigKey configKey0, ConfigKey configKey1){
-		if(configKey0 == configKey1) return true;
-		if(Objects.isNull(configKey0) || Objects.isNull(configKey1)) return false;
-		String name0 = configKey0.getName();
-		String name1 = configKey1.getName();
-		if(name0 == null && name1 == null) return true;
-		if(name0 == null || name1 == null) return false;
-		return name0.equals(name1);
+	public static ConfigPort newConfigPort(Iterable<ConfigEntry> entries){
+		Objects.requireNonNull(entries, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_0));
+		return newConfigPort(entries.iterator());
 	}
 	
 	/**
-	 * 返回配置键的哈希值。
-	 * @param configKey 指定的配置键。
-	 * @return 哈希值。
+	 * 
+	 * @param entries
+	 * @return
 	 */
-	public static int hashCode(ConfigKey configKey){
-		if(Objects.isNull(configKey)) return 0;
-		String name = configKey.getName();
-		if(Objects.isNull(name)) return 0;
-		return name.hashCode() * 17;
+	public static ConfigPort newConfigPort(ConfigEntry[] entries){
+		Objects.requireNonNull(entries, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_0));
+		return newConfigPort(ArrayUtil.array2Iterator(entries));
 	}
 	
 	/**
-	 * 通过默认的键值映射构造一个配置站点。
-	 * <p> 该配置映射的第一套映射是以入口参数 defaultMap为代理的不可变映射，第二套映射是 {@link HashMap}，
-	 * 其初始值与 defaultMap 一致。
-	 * <p> <b> 注意 ：</b> 当参与构造配置站点后，入口参数 defaultMap 不能再进行任何修改，如果对defaultMap进行修改，会破坏第一套映射，
-	 * 导致配置站点发生不可预知的行为。 
-	 * @param defaultMap 指定的默认值映射。
-	 * @return 
+	 * 生成配置站点。
+	 * <p> 生成的配置站点的配置键、默认值、值检查器均由配置入口指定，当前值为默认值。
+	 * <p> 为了方便某些依赖于顺序的功能，此配置站的方法中所有返回可迭代对象的方法的迭代顺序均与<code>entries</code>的迭代顺序一致。
+	 * @param entries 所有的配置入口。
+	 * @return 配置站点。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
-	 * @throws IllegalArgumentException 入口映射含有空键。
+	 * @throws IllegalArgumentException 配置入口中含有不合法元素。
 	 */
-	public static ConfigPort newConfigPort(Map<ConfigKey, String> defaultMap){
-		Objects.requireNonNull(defaultMap, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_0));
-		if(defaultMap.containsKey(null)){
-			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.ConfigUtil_1));
+	public static ConfigPort newConfigPort(Iterator<ConfigEntry> entries){
+		Objects.requireNonNull(entries, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_0));
+		checkValid(entries);
+		return new InnerConfigPort(entries);
+	}
+	
+	private static void checkValid(Iterator<ConfigEntry> entries){
+		for(;entries.hasNext();){
+			ConfigEntry entry = entries.next();
+			if(
+					Objects.isNull(entry.getConfigKey()) || 
+					Objects.isNull(entry.getConfigValueChecker()) ||
+					entry.getConfigValueChecker().nonValid(entry.getDefaultValue())
+			)
+				throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.ConfigUtil_1));
 		}
-		return new InnerConfigPort(defaultMap);
+	}
+	
+	private static class ConfigProps {
+		
+		public final String currentValue;
+		public final String defaultValue;
+		public final ConfigValueChecker configValueChecker;
+		
+		public ConfigProps(String currentValue, String defaultValue, ConfigValueChecker configValueChecker) {
+			this.currentValue = currentValue;
+			this.defaultValue = defaultValue;
+			this.configValueChecker = configValueChecker;
+		}
 		
 	}
 	
-	private static class InnerConfigPort implements ConfigPort{
+	private static final class InnerConfigPort implements ConfigPort{
 		
-		private final Set<ConfigObverser> obversers = Collections.newSetFromMap(new WeakHashMap<ConfigObverser, Boolean>());
-		private final Map<ConfigKey, String> defaultDelegate;
-		private final Map<ConfigKey, String> currentDeletage;
+		private final Set<ConfigObverser> obversers = Collections.newSetFromMap(new WeakHashMap<>());
+		private final Map<ConfigKey, ConfigProps> map;
 		
-		public InnerConfigPort(Map<ConfigKey, String> delegate) {
-			defaultDelegate = Collections.unmodifiableMap(delegate);
-			currentDeletage = new HashMap<ConfigKey, String>();
-			for(Map.Entry<ConfigKey, String> entry : defaultDelegate.entrySet()){
-				currentDeletage.put(entry.getKey(), entry.getValue());
+		public InnerConfigPort(Iterator<ConfigEntry> entries) {
+			map = new LinkedHashMap<>();
+			for(;entries.hasNext();){
+				ConfigEntry entry = entries.next();
+				ConfigKey configKey = entry.getConfigKey();
+				String defaultValue = entry.getDefaultValue();
+				ConfigValueChecker checker = entry.getConfigValueChecker();
+				map.put(configKey, new ConfigProps(defaultValue, defaultValue, checker));
 			}
 		}
 
 		/*
 		 * (non-Javadoc)
-		 * @see java.util.Map#size()
+		 * @see com.dwarfeng.dutil.develop.cfg.ConfigPort#getDefaultValueMap()
+		 */
+		@Override
+		public Map<ConfigKey, String> getDefaultValueMap() {
+			LinkedHashMap<ConfigKey, String> defaultValueMap = new LinkedHashMap<>();
+			for(Map.Entry<ConfigKey, ConfigProps> entry : map.entrySet()){
+				defaultValueMap.put(entry.getKey(), entry.getValue().defaultValue);
+			}
+			return Collections.unmodifiableMap(defaultValueMap);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * @see com.dwarfeng.dutil.develop.cfg.ConfigPort#getCurrentValueMap()
+		 */
+		@Override
+		public Map<ConfigKey, String> getCurrentValueMap() {
+			LinkedHashMap<ConfigKey, String> currentValueMap = new LinkedHashMap<>();
+			for(Map.Entry<ConfigKey, ConfigProps> entry : map.entrySet()){
+				currentValueMap.put(entry.getKey(), entry.getValue().currentValue);
+			}
+			return Collections.unmodifiableMap(currentValueMap);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * @see com.dwarfeng.dutil.develop.cfg.ConfigPort#getConfigValueCheckerMap()
+		 */
+		@Override
+		public Map<ConfigKey, ConfigValueChecker> getConfigValueCheckerMap() {
+			LinkedHashMap<ConfigKey, ConfigValueChecker> configValueCheckerMap = new LinkedHashMap<>();
+			for(Map.Entry<ConfigKey, ConfigProps> entry : map.entrySet()){
+				configValueCheckerMap.put(entry.getKey(), entry.getValue().configValueChecker);
+			}
+			return Collections.unmodifiableMap(configValueCheckerMap);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * @see com.dwarfeng.dutil.develop.cfg.ConfigPort#size()
 		 */
 		@Override
 		public int size() {
-			return currentDeletage.size();
+			return map.size();
 		}
-
+		
 		/*
 		 * (non-Javadoc)
-		 * @see java.util.Map#isEmpty()
+		 * @see com.dwarfeng.dutil.develop.cfg.ConfigPort#contains(com.dwarfeng.dutil.develop.cfg.ConfigKey)
 		 */
 		@Override
-		public boolean isEmpty() {
-			return currentDeletage.isEmpty();
+		public boolean contains(ConfigKey configKey) {
+			return map.containsKey(configKey);
 		}
 
 		/*
 		 * (non-Javadoc)
-		 * @see java.util.Map#containsKey(java.lang.Object)
-		 */
-		@Override
-		public boolean containsKey(Object key) {
-			return currentDeletage.containsKey(key);
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * @see java.util.Map#containsValue(java.lang.Object)
-		 */
-		@Override
-		public boolean containsValue(Object value) {
-			return currentDeletage.containsValue(value);
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * @see java.util.Map#get(java.lang.Object)
-		 */
-		@Override
-		public String get(Object key) {
-			return currentDeletage.get(key);
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * @see java.util.Map#put(java.lang.Object, java.lang.Object)
-		 */
-		@Override
-		public String put(ConfigKey key, String value) {
-			if(currentDeletage.containsKey(key)){
-				String oldValue =  currentDeletage.put(key, value);
-				for(ConfigObverser obverser : obversers){
-					if(Objects.nonNull(obverser) && obverser.isInteresedIn(key)){
-						obverser.fireConfigKeyChanged(key, oldValue, value);
-					}
-				}
-				return oldValue;
-			}else{
-				return null;
-			}
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * @see java.util.Map#remove(java.lang.Object)
-		 */
-		@Override
-		public String remove(Object key) {
-			throw new UnsupportedOperationException();
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * @see java.util.Map#putAll(java.util.Map)
-		 */
-		@Override
-		public void putAll(Map<? extends ConfigKey, ? extends String> m) {
-			for(java.util.Map.Entry<? extends ConfigKey, ? extends String> entry : m.entrySet()){
-				currentDeletage.put(entry.getKey(), entry.getValue());
-			}
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * @see java.util.Map#clear()
-		 */
-		@Override
-		public void clear() {
-			throw new UnsupportedOperationException();
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * @see java.util.Map#keySet()
+		 * @see com.dwarfeng.dutil.develop.cfg.ConfigPort#keySet()
 		 */
 		@Override
 		public Set<ConfigKey> keySet() {
-			return defaultDelegate.keySet();
+			return Collections.unmodifiableSet(map.keySet());
 		}
 
 		/*
 		 * (non-Javadoc)
-		 * @see java.util.Map#values()
+		 * @see com.dwarfeng.dutil.develop.cfg.ConfigPort#getCurrentValue(com.dwarfeng.dutil.develop.cfg.ConfigKey)
 		 */
 		@Override
-		public Collection<String> values() {
-			return Collections.unmodifiableCollection(currentDeletage.values());
+		public String getCurrentValue(ConfigKey configKey) {
+			Objects.requireNonNull(configKey, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_2));
+			if(! contains(configKey)) return null;
+			return map.get(configKey).currentValue;
 		}
-
+		
 		/*
 		 * (non-Javadoc)
-		 * @see java.util.Map#entrySet()
+		 * @see com.dwarfeng.dutil.develop.cfg.ConfigPort#getDefaultValue(com.dwarfeng.dutil.develop.cfg.ConfigKey)
 		 */
 		@Override
-		public Set<java.util.Map.Entry<ConfigKey, String>> entrySet() {
-			return Collections.unmodifiableSet(currentDeletage.entrySet());
+		public String getDefaultValue(ConfigKey configKey) {
+			Objects.requireNonNull(configKey, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_2));
+			if(! contains(configKey)) return null;
+			return map.get(configKey).defaultValue;
+		}
+		
+		/*
+		 * (non-Javadoc)
+		 * @see com.dwarfeng.dutil.develop.cfg.ConfigPort#set(com.dwarfeng.dutil.develop.cfg.ConfigKey, java.lang.String)
+		 */
+		@Override
+		public boolean set(ConfigKey configKey, String currentValue) {
+			Objects.requireNonNull(configKey, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_2));
+			if(! contains(configKey)) return false;
+			ConfigProps cp = map.get(configKey);
+			String oldValue = cp.currentValue;
+			if(oldValue == currentValue) return false;
+			if(Objects.nonNull(oldValue) && oldValue.equals(currentValue)) return false;
+			map.put(configKey, new ConfigProps(currentValue, cp.defaultValue, cp.configValueChecker));
+			for(ConfigObverser obverser : obversers){
+				if(Objects.nonNull(obverser) && obverser.isInteresedIn(configKey)){
+					obverser.fireConfigKeyChanged(configKey, oldValue, currentValue);
+				}
+			}
+			return true;
 		}
 
 		/*
@@ -206,7 +212,6 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public boolean addObverser(ConfigObverser obverser) {
-			if(Objects.isNull(obverser)) return false;
 			return obversers.add(obverser);
 		}
 
@@ -221,44 +226,13 @@ public final class ConfigUtil {
 
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigPort#clearObverser()
+		 * @see com.dwarfeng.dutil.develop.cfg.ConfigPort#clearObversers()
 		 */
 		@Override
-		public void clearObverser() {
+		public void clearObversers() {
 			obversers.clear();
 		}
-
-		/*
-		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigPort#isAllValueValid()
-		 */
-		@Override
-		public boolean isAllValueValid() {
-			for(Map.Entry<ConfigKey, String> entry : currentDeletage.entrySet()){
-				if(entry.getKey().getValueChecker().nonValid(entry.getValue())) return false;
-			}
-			return true;
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigPort#getDefaultValue(com.dwarfeng.dutil.develop.cfg.ConfigKey)
-		 */
-		@Override
-		public String getDefaultValue(ConfigKey configKey) {
-			return defaultDelegate.get(configKey);
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigPort#getValidValue(com.dwarfeng.dutil.develop.cfg.ConfigKey)
-		 */
-		@Override
-		public String getValidValue(ConfigKey configKey) {
-			if(Objects.isNull(configKey)) return null;
-			return isValid(configKey) ? get(configKey) : getDefaultValue(configKey);
-		}
-
+		
 		/*
 		 * (non-Javadoc)
 		 * @see com.dwarfeng.dutil.develop.cfg.ConfigPort#isValid(com.dwarfeng.dutil.develop.cfg.ConfigKey)
@@ -266,11 +240,11 @@ public final class ConfigUtil {
 		@Override
 		public boolean isValid(ConfigKey configKey) {
 			Objects.requireNonNull(configKey, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_2));
-			if(Objects.isNull(configKey.getValueChecker())) return false;
-			String value = get(configKey);
-			return configKey.getValueChecker().isValid(value);
+			if(! contains(configKey)) return false;
+			ConfigProps cp = map.get(configKey);
+			return cp.configValueChecker.isValid(cp.currentValue);
 		}
-
+		
 		/*
 		 * (non-Javadoc)
 		 * @see com.dwarfeng.dutil.develop.cfg.ConfigPort#nonValid(com.dwarfeng.dutil.develop.cfg.ConfigKey)
@@ -278,9 +252,20 @@ public final class ConfigUtil {
 		@Override
 		public boolean nonValid(ConfigKey configKey) {
 			Objects.requireNonNull(configKey, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_2));
-			if(Objects.isNull(configKey.getValueChecker())) return true;
-			String value = get(configKey);
-			return configKey.getValueChecker().nonValid(value);
+			if(! contains(configKey)) return true;
+			ConfigProps cp = map.get(configKey);
+			return cp.configValueChecker.isValid(cp.currentValue);
+		}
+		
+		/*
+		 * (non-Javadoc)
+		 * @see com.dwarfeng.dutil.develop.cfg.ConfigPort#checkValid(com.dwarfeng.dutil.develop.cfg.ConfigKey, java.lang.String)
+		 */
+		@Override
+		public boolean checkValid(ConfigKey configKey, String value) {
+			Objects.requireNonNull(configKey, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_2));
+			if(! contains(configKey)) return true;
+			return map.get(configKey).configValueChecker.isValid(value);
 		}
 		
 	}

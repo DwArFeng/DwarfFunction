@@ -17,6 +17,7 @@ public interface ConfigSaver {
 	 * 保存指定的配置。
 	 * @param configPort 指定的配置。
 	 * @throws IOException IO异常。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public void saveConfig(ConfigPort configPort) throws SaveFailedException;
 

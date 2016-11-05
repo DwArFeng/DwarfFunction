@@ -27,6 +27,7 @@ Alpha_0.3.0_20161101_build_A
 	从这个版本开始，每次 release 都会提供 chm 文件。
 Alpha_0.4.0
 	废弃数个dutil.basic.cna.ArrayUtil 中的不符合命名规范的方法，用符合规范的新方法代替。
+	废弃 dutil.basic.cna.CollectionUtil.array2Iterator(T[] array) 方法，用 dutil.basic.cna.ArrayUtil.array2Iterator(T[] array) 代替。
 	新增 
 		int dutil.basic.num.max(int... is);
 		int dutil.basic.num.min(int... is);
@@ -35,4 +36,5 @@ Alpha_0.4.0
 		用于判定多个整型或双精度浮点数中的最大值和最小值。
 		新增专用工具包 dutil.develop 用于封装编程开发时常用且高度重复的功能模块。
 		修改部分注释。
-	
+	新增 dutil.develop包，用于封装常用的且代码高度重复的开发模块。
+	新增 dutil.develop.cfg 包，用于程序的配置功能，具体功能请参阅API。

@@ -1,26 +1,73 @@
 package com.dwarfeng.dutil.develop.cfg;
 
+import java.util.Objects;
+
+import com.dwarfeng.dutil.basic.DwarfUtil;
+import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.str.Name;
 
 /**
  * 配置键。
- * <p> 该接口是配置映射体系下的键，用于标识不同的配置字段。
- * 同时，该键也提供对其值的检验功能，即可以用键来检测一个值是否适合该键。
- * <p> 键的唯一标识符是键名，键继承名称接口，必须返回一个永远不能变化且不能为 <code>null</code> 的键名。
- * 这个名称是判断两个键是否相等的依据。
- * <p> 通常来说，一个程序中的配置键是一定的，用枚举来实现该接口以定义这些键是最合理的。
- * <p> 注意：相同名称的配置键一定要相等，如有必要，请重写 {@link Object#equals(Object)}和 {@link Object#hashCode()} 方法
- * 来保证这一点 —— 用{@link ConfigUtil#equals(ConfigKey, ConfigKey)} 和 {@link ConfigUtil#hashCode(ConfigKey)}中的方法进行重写。 
- * 
+ * <p> 配置键是一个 {@link Name}对象，封装一个字符串。
  * @author DwArFeng
  * @since 1.8
  */
-public interface ConfigKey extends Name{
+public class ConfigKey implements Name{
+
+	/**配置键的名称*/
+	protected final String name;
 	
 	/**
-	 * 获取该配置键的配置值检查器。
-	 * @return 配置值检查器。
+	 * 新的配置键。
+	 * @param name 指定的名称。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public ConfigValueChecker getValueChecker();
+	public ConfigKey(String name) {
+		Objects.requireNonNull(name, DwarfUtil.getStringField(StringFieldKey.ConfigKey_0));
+		this.name = name;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dutil.basic.str.Name#getName()
+	 */
+	@Override
+	public final String getName() {
+		return this.name;
+	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(Objects.isNull(obj)) return false;
+		if(obj == this) return true;
+		if(! (obj instanceof ConfigKey)) return false;
+		ConfigKey configKey = (ConfigKey) obj;
+		return this.name.equals(configKey.name);
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		return name.hashCode() * 17;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return new StringBuilder()
+				.append("ConfigKey [name = ")
+				.append(name)
+				.append("]")
+				.toString();
+	}
 }

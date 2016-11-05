@@ -16,7 +16,7 @@ public interface ConfigLoader {
 	
 	/**
 	 * 读取指定的配置。
-	 * @return 指定配置的第二套映射。
+	 * @return 指定配置的当前值映射。
 	 * @throws IOException IO异常。
 	 */
 	public Map<ConfigKey, String> loadConfig() throws LoadFailedException;

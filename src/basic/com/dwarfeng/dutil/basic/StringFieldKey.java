@@ -70,6 +70,8 @@ public enum StringFieldKey{
 	ArrayUtil_0,
 	/**ArrayUtil类第1号文本字段*/
 	ArrayUtil_1,
+	/**ArrayUtil类第2号文本字段*/
+	ArrayUtil_2,
 	
 	/**FothAlgebraUtill类第0号文本字段*/
 	FothAlgebraUtil_0,
@@ -293,5 +295,11 @@ public enum StringFieldKey{
 	
 	/**StreamConfigSaver类第0号文本字段*/
 	StreamConfigSaver_0,
+	
+	/**ConfigKey类第0号文本字段*/
+	ConfigKey_0,
+	
+	/**ConfigPort类第0号文本字段*/
+	ConfigPort_0,
 	
 }

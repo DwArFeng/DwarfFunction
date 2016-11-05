@@ -1,88 +1,203 @@
 package com.dwarfeng.dutil.develop.cfg;
 
 import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+
+import com.dwarfeng.dutil.basic.DwarfUtil;
+import com.dwarfeng.dutil.basic.StringFieldKey;
 
 /**
  * 配置站点。
- * <p>配置站是整个配置映射体系的核心，配置映射体系的两套映射在该接口中实现。
- * <p> 配置站点继承 {@link Map} 接口，并对映射的编辑进行了限制：第一套映射无法做任何变动，该配置站点不提供任何有可能造成
- * 第一套映射修改的方法；第二套映射则可对已有配置键的值进行修改，但是无法对配置键进行增删操作，任何视图增删配置键的行为都将
- * 抛出 {@link UnsupportedOperationException}。
- * <p> 该配置站点可以在方法 {@link ConfigUtil#newConfigPort(Map)} 中得到默认实现。
+ * <p>配置站是整个配置映射体系的核心，配置映射体系在该接口中被实现。
+ * <br> 配置站点可以返回映射体系的三套映射，但是这些映射不可被更改。
+ * <p> 注意：配置站点禁止 null 配置键，多数试图使用 null 作为配置键的传入对象的行为
+ * 将会导致 <code> NullPointException </code>。
  * @author DwArFeng
  * @since 1.8
  */
-public interface ConfigPort extends Map<ConfigKey, String>{
-
-	/**
-	 * 向配置站点中设置指定配置键的映射值。
-	 * <p> 当该映射键存在于配置站点的第一套映射中时，将指定的值设置为第二套映射中配置键的值，
-	 * 否则不完成任何动作，直接返回 <code>null</code>。
-	 * <p> 当值被成功的设置后，不管新值是否与旧值相等，都会触发配置观察器对观察对象发起通知。
-	 * @param key 指定的配置键。
-	 * @param value 指定的值。
-	 */
-	@Override
-	public String put(ConfigKey key, String value);
+public interface ConfigPort{
 	
 	/**
-	 * 注册配置观察器。
-	 * @param obverser 配置观察器。
-	 * @return 是否成功注册。
+	 * 返回默认值映射。
+	 * <p> 映射不可更改。
+	 * <p> <b> 注意： </b> 该默认值映射的所有值<b>必须全部有效</b>。
+	 * @return 默认值映射。
+	 */
+	public Map<ConfigKey, String> getDefaultValueMap();
+	
+	/**
+	 * 获取当前值映射。
+	 * <p> 映射不可更改。
+	 * @return 当前值映射。
+	 */
+	public Map<ConfigKey, String> getCurrentValueMap();
+	
+	/**
+	 * 获取配置值检查器映射。
+	 * <p> 映射不可更改。
+	 * @return  配置值检查器映射。
+	 */
+	public Map<ConfigKey, ConfigValueChecker> getConfigValueCheckerMap();
+	
+	/**
+	 * 控制站点中配置键的数量。
+	 * <p> <b> 注意：</b> 该方法的默认实现效率较为低下，如有需要，请重写该方法以提高效率。
+	 * @return 配置键的数量。
+	 */
+	public default int size(){
+		return keySet().size();
+	}
+
+	/**
+	 * 控制站点中是否包含指定的配置键。
+	 * <p> 如果入口参数为 <code>null</code> ，将会返回 <code>false</code>。
+	 * @param configKey 指定的配置键。
+	 * @return 是否包含。
+	 */
+	public boolean contains(ConfigKey configKey);
+	
+	/**
+	 * 获取不可更改的配置键集合。
+	 * <p> 该集合是非空的，其中不含有 <code>null</code>元素。
+	 * @return 配置键集合。
+	 */
+	public Set<ConfigKey> keySet();
+	
+	/**
+	 * 获取对应配置键的当前值。
+	 * <p> 如果配置键不在该配置站点当中，则返回 <code>null</code>。
+	 * <p> <b> 注意：</b> 该方法的默认实现效率较为低下，如有需要，请重写该方法以提高效率。
+	 * @param configKey 指定的配置键。
+	 * @return 当前值。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 */
+	public default String getCurrentValue(ConfigKey configKey){
+		Objects.requireNonNull(configKey, DwarfUtil.getStringField(StringFieldKey.ConfigPort_0));
+		if(! contains(configKey)) return null;
+		return getCurrentValueMap().get(configKey);
+	}
+	
+	/**
+	 * 获取对应配置键的默认值。
+	 * <p> 如果配置键不在该配置站点中，则返回 <code>null</code>。
+	 * <p> <b> 注意：</b> 该方法的默认实现效率较为低下，如有需要，请重写该方法以提高效率。
+	 * @param configKey 指定的配置键。
+	 * @return 默认值。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 */
+	public default String getDefaultValue(ConfigKey configKey){
+		Objects.requireNonNull(configKey, DwarfUtil.getStringField(StringFieldKey.ConfigPort_0));
+		if(! contains(configKey)) return null;
+		return getDefaultValueMap().get(configKey);
+	}
+	
+	/**
+	 * 获取对应配置键的有效配置值。
+	 * <p> 当配置键的当前配置值无效时返回该配置键的默认配置值，否则返回当前配置值。
+	 * <p> 如果配置键不在该配置站点中，则返回 <code>null</code>。
+	 * @param configKey 指定的配置键。
+	 * @return 有效值。
+	 * @throws NullPointerException 入口参数为 <code>null</code>.。
+	 */
+	public default String getValidValue(ConfigKey configKey){
+		Objects.requireNonNull(configKey, DwarfUtil.getStringField(StringFieldKey.ConfigPort_0));
+		if(! contains(configKey)) return null;
+		if(isValid(configKey)) return getCurrentValue(configKey);
+		return getDefaultValue(configKey);
+	}
+	
+	/**
+	 * 设置指定配置键的当前值。
+	 * <p> 如果该配置站点不包含指定的配置键，那么什么也不做。
+	 * @param key 指定的配置键。
+	 * @param currentValue 新的当前值。
+	 * @return 该举动是否造成了对观察器的通知。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。 
+	 */
+	public boolean set(ConfigKey configKey, String currentValue);
+	
+	/**
+	 * 设定指定当前值映射中的所有配置键的当前值。
+	 * <p> 该方法会遍历映射中的键值，如果某个键值是该配置站点中包含的，那么则对其设置当前值，否则跳过。
+	 * @param currentValueMap 指定的当前值映射。
+	 * @return 该举动是否至少一次处触发对观察器的通知。
+	 */
+	public default boolean setAll(Map<ConfigKey, String> currentValueMap){
+		boolean result = false;
+		for(Map.Entry<ConfigKey, String> entry : currentValueMap.entrySet()){
+			if(contains(entry.getKey())){
+				if(set(entry.getKey(), entry.getValue())) result = true;
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * 向该配置站点添加观察器。
+	 * @param obverser 指定的观察器。
+	 * @return 是否成功的添加。
 	 */
 	public boolean addObverser(ConfigObverser obverser);
 	
 	/**
-	 * 移除配置观察器。
-	 * @param obverser 观察器。
-	 * @return 是否成功移除。
+	 * 从该配置站点移除观察器。
+	 * @param obverser 指定的观察器。
+	 * @return 是否成功的移除。
 	 */
 	public boolean removeObverser(ConfigObverser obverser);
 	
 	/**
-	 * 清空配置观察器。
+	 * 清空配置站点中的观察器。
 	 */
-	public void clearObverser();
+	public void clearObversers();
 	
 	/**
-	 * 判断映射中是否所有的值都有效。
-	 * @return 是否所有的值都有效。
-	 */
-	public boolean isAllValueValid();
-	
-	/**
-	 * 获取指定配置键中的默认值。
+	 * 查询指定的键的当前值是否有效。
+	 * <p> 如果配置键不在该配置站点中，则返回 <code>false</code>。
+	 * <p> <b> 注意：</b> 该方法的默认实现效率较为低下，如有需要，请重写该方法以提高效率。
 	 * @param configKey 指定的配置键。
-	 * @return 指定配置键中的默认值。
+	 * @return 指定配置键对应的当前值是否有效。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public String getDefaultValue(ConfigKey configKey);
+	public default boolean isValid(ConfigKey configKey){
+		Objects.requireNonNull(configKey, DwarfUtil.getStringField(StringFieldKey.ConfigPort_0));
+		if(! contains(configKey)) return false;
+		ConfigValueChecker checker = getConfigValueCheckerMap().get(configKey);
+		if(Objects.isNull(checker)) return false;
+		return checker.isValid(getCurrentValue(configKey));
+	}
 	
 	/**
-	 * 获取有效值。
-	 * <p> 该方法判断对应的配置键值是否有效，如果有效，则返回配置键值，
-	 * 否则返回预设的默认值。
-	 * <p> 如果入口参数中的配置键不在列表中，则返回 <code>null</code>。
+	 * 查询指定的键的当前值是否无效。
+	 * <p> 如果配置键不在该配置站点中，则返回 <code>true</code>。
+	 * <p> <b> 注意：</b> 该方法的默认实现效率较为低下，如有需要，请重写该方法以提高效率。
 	 * @param configKey 指定的配置键。
-	 * @return 有效值。
+	 * @return 指定的配置键对应的当前值是否无效。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public String getValidValue(ConfigKey configKey);
+	public default boolean nonValid(ConfigKey configKey){
+		Objects.requireNonNull(configKey, DwarfUtil.getStringField(StringFieldKey.ConfigPort_0));
+		if(! contains(configKey)) return true;
+		ConfigValueChecker checker = getConfigValueCheckerMap().get(configKey);
+		if(Objects.isNull(checker)) return true;
+		return checker.nonValid(getCurrentValue(configKey));
+	}
 	
 	/**
-	 * 查询指定配置键的值是否有效的快捷方法。
+	 * 测试指定的值对指定的键的有效性。
+	 * <p> 如果配置键不在该配置站点中，则返回 <code>false</code>。
+	 * <p> <b> 注意：</b> 该方法的默认实现效率较为低下，如有需要，请重写该方法以提高效率。
 	 * @param configKey 指定的配置键。
-	 * @return  指定的配置键的值是否有效。
+	 * @param value 指定的待测值。
+	 * @return 指定的待测值是否有效。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public boolean isValid(ConfigKey configKey);
-	
-	/**
-	 * 查询指定配置键的值是否无效的快捷方法。
-	 * @param configKey 指定的配置键。
-	 * @return  指定的配置键的值是否无效。
-	 * @throws NullPointerException 入口参数为 <code>null</code>。
-	 */
-	public boolean nonValid(ConfigKey configKey);
-	
+	public default boolean checkValid(ConfigKey configKey, String value){
+		Objects.requireNonNull(configKey, DwarfUtil.getStringField(StringFieldKey.ConfigPort_0));
+		if(! contains(configKey)) return false;
+		ConfigValueChecker checker = getConfigValueCheckerMap().get(configKey);
+		if(Objects.isNull(checker)) return false;
+		return checker.isValid(value);
+	}
 }
