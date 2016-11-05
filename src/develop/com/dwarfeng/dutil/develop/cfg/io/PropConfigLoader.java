@@ -26,13 +26,13 @@ import com.dwarfeng.dutil.develop.cfg.ConfigUtil;
  * @author  DwArFeng
  * @since 1.8
  */
-public class PropertiesConfigLoader extends StreamConfigLoader implements ConfigLoader {
+public class PropConfigLoader extends StreamConfigLoader implements ConfigLoader {
 
 	/**
 	 * 生成一个新的 Properties 配置读取器。
 	 * @param in 指定的输入流。
 	 */
-	public PropertiesConfigLoader(InputStream in) throws IOException {
+	public PropConfigLoader(InputStream in) throws IOException {
 		super(in);
 	}
 

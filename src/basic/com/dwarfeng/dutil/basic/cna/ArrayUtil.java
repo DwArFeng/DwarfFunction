@@ -515,47 +515,59 @@ public final class ArrayUtil {
 		}
 	}
 	
-	private static final class ArrayIterator<T> implements Iterator<T>{
+	private static final class ArrayIterable<T> implements Iterable<T>{
 		
 		private final T[] arr;
-		private int index = 0;
 		
-		public ArrayIterator(T[] arr) {
+		public ArrayIterable(T[] arr) {
 			this.arr = arr;
 		}
 
 		/*
 		 * (non-Javadoc)
-		 * @see java.util.Iterator#hasNext()
+		 * @see java.lang.Iterable#iterator()
 		 */
 		@Override
-		public boolean hasNext() {
-			return index < arr.length;
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * @see java.util.Iterator#next()
-		 */
-		@Override
-		public T next() {
-			return arr[index ++];
+		public Iterator<T> iterator() {
+			return new ArrayIterator();
 		}
 		
+		private final class ArrayIterator implements Iterator<T>{
+			
+			private int index = 0;
+
+			/*
+			 * (non-Javadoc)
+			 * @see java.util.Iterator#hasNext()
+			 */
+			@Override
+			public boolean hasNext() {
+				return index < arr.length;
+				}
+
+			/*
+			 * (non-Javadoc)
+			 * @see java.util.Iterator#next()
+			 */
+			@Override
+			public T next() {
+				return arr[index ++];
+				}
+			
+		}
 	}
 	
 	/**
-	 * 将一个数组转化为一个迭代器。
+	 * 将一个数组转化为一个可迭代对象。
 	 * <p> 虽然数组可以使用 for-each 循环，但是数组不可以作为 {@link Iterable} 对象进行参数传递，该方法为了解决这一问题，
-	 * 可以将一个数组转化为一个 {@link Iterator}对象，方便某些需要传入迭代器的场合。
+	 * 可以将一个数组转化为一个 {@link Iterable}对象，方便某些需要传入可迭代对象的场合。
 	 * @param array 指定的数组。
 	 * @param <T> 泛型T。
-	 * @return 由指定的数组转化而成的迭代器。
+	 * @return 由指定的数组转化而成的可迭代对象。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public static<T> Iterator<T> array2Iterator(T[] array){
+	public static<T> Iterable<T> array2Iterable(T[] array){
 		Objects.requireNonNull(array, DwarfUtil.getStringField(StringFieldKey.ArrayUtil_2));
-		return new ArrayIterator<T>(array);
+		return new ArrayIterable<>(array);
 	}
-	
 }

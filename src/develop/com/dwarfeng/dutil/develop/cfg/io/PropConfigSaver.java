@@ -5,6 +5,7 @@ import java.io.OutputStream;
 import java.util.Map;
 import java.util.Properties;
 
+import com.dwarfeng.dutil.basic.io.CT;
 import com.dwarfeng.dutil.basic.io.SaveFailedException;
 import com.dwarfeng.dutil.develop.cfg.ConfigKey;
 import com.dwarfeng.dutil.develop.cfg.ConfigPort;
@@ -24,13 +25,13 @@ import com.dwarfeng.dutil.develop.cfg.ConfigPort;
  * @author  DwArFeng
  * @since 1.8
  */
-public class PropertiesConfigSaver extends StreamConfigSaver implements ConfigSaver {
+public class PropConfigSaver extends StreamConfigSaver implements ConfigSaver {
 	
 	/**
 	 * 生成一个新的 Properties 配置保存器。
 	 * @param out 指定的输出流。
 	 */
-	public PropertiesConfigSaver(OutputStream out) {
+	public PropConfigSaver(OutputStream out) {
 		super(out);
 	}
 
@@ -43,6 +44,7 @@ public class PropertiesConfigSaver extends StreamConfigSaver implements ConfigSa
 		Properties properties = new Properties();
 		for(Map.Entry<ConfigKey, String> entry : configPort.getCurrentValueMap().entrySet()){
 			properties.put(entry.getKey().getName(), entry.getValue());
+			CT.trace(entry.getKey());
 		}
 		try {
 			properties.store(out, null);

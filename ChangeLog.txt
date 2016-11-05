@@ -27,7 +27,8 @@ Alpha_0.3.0_20161101_build_A
 	从这个版本开始，每次 release 都会提供 chm 文件。
 Alpha_0.4.0
 	废弃数个dutil.basic.cna.ArrayUtil 中的不符合命名规范的方法，用符合规范的新方法代替。
-	废弃 dutil.basic.cna.CollectionUtil.array2Iterator(T[] array) 方法，用 dutil.basic.cna.ArrayUtil.array2Iterator(T[] array) 代替。
+	废弃 dutil.basic.cna.CollectionUtil.array2Iterator(T[] array) 方法。
+	新增 dutil.basic.cna.ArrayUtil.array2Iterable(T[] array) 方法。
 	新增 
 		int dutil.basic.num.max(int... is);
 		int dutil.basic.num.min(int... is);

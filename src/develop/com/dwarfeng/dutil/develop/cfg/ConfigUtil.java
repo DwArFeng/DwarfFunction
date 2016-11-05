@@ -19,27 +19,6 @@ import com.dwarfeng.dutil.basic.cna.ArrayUtil;
  */
 public final class ConfigUtil {
 
-	
-	/**
-	 * 
-	 * @param entries
-	 * @return
-	 */
-	public static ConfigPort newConfigPort(Iterable<ConfigEntry> entries){
-		Objects.requireNonNull(entries, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_0));
-		return newConfigPort(entries.iterator());
-	}
-	
-	/**
-	 * 
-	 * @param entries
-	 * @return
-	 */
-	public static ConfigPort newConfigPort(ConfigEntry[] entries){
-		Objects.requireNonNull(entries, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_0));
-		return newConfigPort(ArrayUtil.array2Iterator(entries));
-	}
-	
 	/**
 	 * 生成配置站点。
 	 * <p> 生成的配置站点的配置键、默认值、值检查器均由配置入口指定，当前值为默认值。
@@ -49,15 +28,28 @@ public final class ConfigUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 配置入口中含有不合法元素。
 	 */
-	public static ConfigPort newConfigPort(Iterator<ConfigEntry> entries){
+	public static ConfigPort newConfigPort(Iterable<ConfigEntry> entries){
 		Objects.requireNonNull(entries, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_0));
 		checkValid(entries);
 		return new InnerConfigPort(entries);
 	}
 	
-	private static void checkValid(Iterator<ConfigEntry> entries){
-		for(;entries.hasNext();){
-			ConfigEntry entry = entries.next();
+	/**
+	 * 生成配置站点。
+	 * <p> 生成的配置站点的配置键、默认值、值检查器均由配置入口指定，当前值为默认值。
+	 * <p> 为了方便某些依赖于顺序的功能，此配置站的方法中所有返回可迭代对象的方法的迭代顺序均与<code>entries</code>的顺序一致。
+	 * @param entries 所有的配置入口。
+	 * @return 配置站点。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 * @throws IllegalArgumentException 配置入口中含有不合法元素。
+	 */
+	public static ConfigPort newConfigPort(ConfigEntry[] entries){
+		Objects.requireNonNull(entries, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_0));
+		return newConfigPort(ArrayUtil.array2Iterable(entries));
+	}
+	
+	private static void checkValid(Iterable<ConfigEntry> entries){
+		for(ConfigEntry entry : entries){
 			if(
 					Objects.isNull(entry.getConfigKey()) || 
 					Objects.isNull(entry.getConfigValueChecker()) ||
@@ -86,10 +78,9 @@ public final class ConfigUtil {
 		private final Set<ConfigObverser> obversers = Collections.newSetFromMap(new WeakHashMap<>());
 		private final Map<ConfigKey, ConfigProps> map;
 		
-		public InnerConfigPort(Iterator<ConfigEntry> entries) {
+		public InnerConfigPort(Iterable<ConfigEntry> entries) {
 			map = new LinkedHashMap<>();
-			for(;entries.hasNext();){
-				ConfigEntry entry = entries.next();
+			for(ConfigEntry entry : entries){
 				ConfigKey configKey = entry.getConfigKey();
 				String defaultValue = entry.getDefaultValue();
 				ConfigValueChecker checker = entry.getConfigValueChecker();
