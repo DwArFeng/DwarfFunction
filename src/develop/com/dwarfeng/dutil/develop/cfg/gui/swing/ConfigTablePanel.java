@@ -18,7 +18,6 @@ import com.dwarfeng.dutil.basic.LabelFieldKey;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.develop.cfg.ConfigKey;
 import com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModel;
-import com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModel.Entry;
 import com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModelObverser;
 
 /**

@@ -1,7 +1,6 @@
 package com.dwarfeng.dutil.detool.gui.swing;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.util.Objects;
 
 import javax.swing.JComponent;
@@ -9,8 +8,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import javafx.scene.layout.Border;
 
 /**
  * ×é¼þµ÷ÊÔÆ÷¡£

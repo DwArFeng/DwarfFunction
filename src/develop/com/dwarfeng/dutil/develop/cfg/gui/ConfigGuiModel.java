@@ -1,7 +1,5 @@
 package com.dwarfeng.dutil.develop.cfg.gui;
 
-import java.util.List;
-
 import com.dwarfeng.dutil.develop.cfg.ConfigKey;
 import com.dwarfeng.dutil.develop.cfg.ConfigValueChecker;
 
@@ -10,68 +8,83 @@ import com.dwarfeng.dutil.develop.cfg.ConfigValueChecker;
  * @author  DwArFeng
  * @since 1.8
  */
-public interface ConfigGuiModel extends List<ConfigGuiModel.Entry>{
+public interface ConfigGuiModel{
 
 	/**
-	 * 配置界面模型中的入口。
-	 * @author  DwArFeng
-	 * @since 1.8
+	 * 获取指定序号处的配置键。
+	 * @param index 指定的序号。
+	 * @return 指定序号处的配置键。
+	 * @throws IndexOutOfBoundsException 序号越界。
 	 */
-	public interface Entry{
-		
-		/**
-		 * 获取入口处的配置键。
-		 * @return 入口处的配置键。
-		 */
-		public ConfigKey getConfigKey();
-		
-		/**
-		 * 获取入口处的当前值。
-		 * @return 入口处的当前值。
-		 */
-		public String getCurrentValue();
-		
-		/**
-		 * 获取入口处的默认值。
-		 * @return 入口处的默认值。
-		 */
-		public String getDefaultValue();
-		
-		/**
-		 * 获取入口处的值检查器。
-		 * @return 入口处的值检查器。
-		 */
-		public ConfigValueChecker getConfigValueChecker();
-		
-	}
+	public ConfigKey getConfigKey(int index);
+	
+	/**
+	 * 获取指定序号处的当前值。
+	 * @param index 指定的序号。
+	 * @return 指定序号处的当前值。
+	 * @throws IndexOutOfBoundsException 序号越界。
+	 */
+	public String getCurrentValue(int index);
+	
+	/**
+	 * 获取指定序号处的默认值。
+	 * @param index 指定的序号。
+	 * @return 指定序号处的默认值。
+	 * @throws IndexOutOfBoundsException 序号越界。
+	 */
+	public String getDefaultValue(int index);
+	
+	/**
+	 * 获取指定序号处的值检查器。
+	 * @param index 指定的序号。
+	 * @return 指定序号处的值检查器。
+	 * @throws IndexOutOfBoundsException 序号越界。
+	 */
+	public ConfigValueChecker getConfigValueChecker(int index);
+	
+	/**
+	 * 返回该模型中的配置数量。
+	 * @return 配置数量。
+	 */
+	public int size();
 	
 	/**
 	 * 检测该模型中指定序号处的入口的当前值是否有效。
 	 * @param index 指定的序号。
 	 * @return 指定序号处的元素是否有效。
-	 * @throws 下标越界。
+	 * @throws IndexOutOfBoundsException 序号越界。
 	 */
 	public default boolean isValid(int index){
-		Entry entry = get(index);
-		return entry.getConfigValueChecker().isValid(entry.getCurrentValue());
+		return getConfigValueChecker(index).isValid(getCurrentValue(index));
 	}
 	
 	/**
 	 * 检测该模型中指定序号处的入口的当前值是否无效。
 	 * @param index 指定的序号。
 	 * @return 指定序号处的元素是否无效。
+	 * @throws IndexOutOfBoundsException 序号越界。
 	 */
 	public default boolean nonValid(int index){
-		Entry entry = get(index);
-		return entry.getConfigValueChecker().nonValid(entry.getCurrentValue());
+		return getConfigValueChecker(index).nonValid(getCurrentValue(index));
 	}
 	
+	public void addValue();
+	
 	/**
-	 * 将该模型中指定位置的值重置为默认值。
-	 * @param index
+	 * 设置该模型中指定序号处的当前值。
+	 * @param index 指定的序号。
+	 * @param value 新的当前值。
+	 * @throws IndexOutOfBoundsException 序号越界。
+	 */
+	public void setValue(int index, String value);
+	
+	/**
+	 * 重置指定序号处当前值为默认值。
+	 * @param index 指定的序号。
+	 * @throws IndexOutOfBoundsException 序号越界。
 	 */
 	public default void resetValue(int index){
-		
+		setValue(index, getDefaultValue(index));
 	}
 	
 	/**

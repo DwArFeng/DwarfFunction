@@ -1,7 +1,5 @@
 package com.dwarfeng.dutil.develop.cfg.gui;
 
-import com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModel.Entry;
-
 /**
  * 配置界面模型观察器。
  * @author  DwArFeng
