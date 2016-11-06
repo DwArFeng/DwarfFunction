@@ -17,6 +17,7 @@ import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.LabelFieldKey;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.develop.cfg.ConfigKey;
+import com.dwarfeng.dutil.develop.cfg.ConfigValueChecker;
 import com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModel;
 import com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModelObverser;
 
@@ -45,7 +46,7 @@ public class ConfigTablePanel extends JPanel {
 		 * @see com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModelObverser#fireEntryAdded(int, com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModel.Entry)
 		 */
 		@Override
-		public void fireEntryAdded(int index, Entry entry) {
+		public void fireEntryAdded(int index, ConfigKey configKey, ConfigValueChecker configValueChecker, String defaultValue, String currentValue) {
 			tableModel.fireTableRowsInserted(index, index);
 		}
 		
@@ -72,7 +73,7 @@ public class ConfigTablePanel extends JPanel {
 		 * @see com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModelObverser#fireEntryChanged(int, com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModel.Entry)
 		 */
 		@Override
-		public void fireEntryChanged(int index, Entry entry) {
+		public void fireEntryChanged(int index, ConfigKey configKey, ConfigValueChecker configValueChecker, String defaultValue, String currentValue) {
 			tableModel.fireTableCellUpdated(index, 0);
 			tableModel.fireTableCellUpdated(index, 1);
 			tableModel.fireTableCellUpdated(index, 2);
@@ -215,14 +216,13 @@ public class ConfigTablePanel extends JPanel {
 			if(columnIndex < 0 || columnIndex > 2)
 				throw new IndexOutOfBoundsException(String.format(DwarfUtil.getStringField(StringFieldKey.ConfigTablePanel_1), columnIndex));
 			
-			Entry entry = getModel().get(rowIndex);
 			switch(columnIndex){
 				case 0:
-					return entry.getConfigKey().getName();
+					return model.getConfigKey(rowIndex).getName();
 				case 1:
-					return entry.getConfigKey();
+					return model.getConfigKey(rowIndex);
 				case 2:
-					return entry.getCurrentValue();
+					return model.getCurrentValue(rowIndex);
 				default :
 					//参数只可能是 0, 1, 2， 不可能出现这个情况。
 					return null;
