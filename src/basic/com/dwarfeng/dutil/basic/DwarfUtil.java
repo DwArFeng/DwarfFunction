@@ -1,6 +1,9 @@
 package com.dwarfeng.dutil.basic;
 
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import com.dwarfeng.dutil.basic.io.CT;
@@ -27,34 +30,37 @@ public final class DwarfUtil {
 		CT.trace(DwarfUtil.getWelcomeString());
 	}
 	
-	private static final String sfPath = "resource/lang/stringField";
+	//禁止外部实例化
+	private DwarfUtil(){}
+
+	private static final String SF_PATH = "resource/lang/stringField";
 	
 	private static final Version version = new DefaultVersion.Builder()
 			.type(VersionType.ALPHA).firstVersion((byte) 0).secondVersion((byte) 4).thirdVersion((byte) 0)
 			.buildDate("20161101").buildVersion('A')
 			.build();
 	
-	private static ResourceBundle sf = ResourceBundle.getBundle(sfPath,Locale.getDefault(),CT.class.getClassLoader());
+	private static ResourceBundle sf = ResourceBundle.getBundle(SF_PATH,Locale.getDefault(),CT.class.getClassLoader());
 	
 	/**
 	 * 将异常的文本字段语言设置为指定语言。
+	 * <p> 如果 <code>local</code> 为 <code>null</code>，则使用 {@link Locale#getDefault()}
 	 * @param locale 指定的语言。
 	 */
 	public static void setLocale(Locale locale){
-		sf =  ResourceBundle.getBundle(sfPath,locale,CT.class.getClassLoader());
+		if(Objects.isNull(locale)) locale = Locale.getDefault();
+		sf =  ResourceBundle.getBundle(SF_PATH,locale,DwarfUtil.class.getClassLoader());
 	}
 	
 	/**
 	 * 根据异常文本字段主键枚举返回其主键对应的文本。
+	 * <p> 如果入口参数 <code>key</code> 为 <code>null</code>，则返回空字符串<code>""</code>。
 	 * @param key 异常文本字段主键枚举。
 	 * @return 主键对应的文本。
 	 */
 	public static String getStringField(StringFieldKey key){
-		try{
-			return sf.getString(key.toString());
-		}catch(Exception e){
-			return "";
-		}
+		if(Objects.isNull(key)) return "";
+		return sf.getString(key.toString());
 	}
 	
 	/**
@@ -73,8 +79,31 @@ public final class DwarfUtil {
 		return getStringField(StringFieldKey.WelcomeString) + getVersion().getLongName();
 	}
 	
-	//禁止外部实例化
-	private DwarfUtil(){}
+	private static final String LF_PATH = "resource/lang/labelField";
+	
+	private static final Map<Locale, ResourceBundle> labelFieldMap = new HashMap<>();
+	
+	/**
+	 * 获取指定语言环境下的标签字段。
+	 * <p> 如果入口参数 <code>key</code> 为 <code>null</code>，则返回空字符串<code>""</code>。
+	 * <p> 如果 <code>local</code> 为 <code>null</code>，则使用 {@link Locale#getDefault()}
+	 * @param key 指定的标签键。
+	 * @param locale 指定的语言环境。
+	 * @return 指定标签键和语言环境下的标签字段。
+	 */
+	public static String getLabelField(LabelFieldKey key, Locale locale){
+		if(Objects.isNull(key)) return "";
+		if(Objects.isNull(locale)) locale = Locale.getDefault();
+		
+		ResourceBundle rb = labelFieldMap.get(locale);
+		//延迟加载
+		if(Objects.isNull(rb)){
+			rb = ResourceBundle.getBundle(LF_PATH, locale, DwarfUtil.class.getClassLoader());
+			labelFieldMap.put(locale, rb);
+		}
+		
+		return rb.getString(key.toString());
+	}
 	
 }
 

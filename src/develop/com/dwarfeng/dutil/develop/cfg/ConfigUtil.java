@@ -27,7 +27,7 @@ public final class ConfigUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 配置入口中含有不合法元素。
 	 */
-	public static ConfigPort newConfigPort(Iterable<ConfigEntry> entries){
+	public static ConfigPort newConfigPort(Iterable<ConfigElements> entries){
 		Objects.requireNonNull(entries, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_0));
 		checkValid(entries);
 		return new InnerConfigPort(entries);
@@ -42,13 +42,13 @@ public final class ConfigUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 配置入口中含有不合法元素。
 	 */
-	public static ConfigPort newConfigPort(ConfigEntry[] entries){
+	public static ConfigPort newConfigPort(ConfigElements[] entries){
 		Objects.requireNonNull(entries, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_0));
 		return newConfigPort(ArrayUtil.array2Iterable(entries));
 	}
 	
-	private static void checkValid(Iterable<ConfigEntry> entries){
-		for(ConfigEntry entry : entries){
+	private static void checkValid(Iterable<ConfigElements> entries){
+		for(ConfigElements entry : entries){
 			if(
 					Objects.isNull(entry.getConfigKey()) || 
 					Objects.isNull(entry.getConfigValueChecker()) ||
@@ -77,9 +77,9 @@ public final class ConfigUtil {
 		private final Set<ConfigObverser> obversers = Collections.newSetFromMap(new WeakHashMap<>());
 		private final Map<ConfigKey, ConfigProps> map;
 		
-		public InnerConfigPort(Iterable<ConfigEntry> entries) {
+		public InnerConfigPort(Iterable<ConfigElements> entries) {
 			map = new LinkedHashMap<>();
-			for(ConfigEntry entry : entries){
+			for(ConfigElements entry : entries){
 				ConfigKey configKey = entry.getConfigKey();
 				String defaultValue = entry.getDefaultValue();
 				ConfigValueChecker checker = entry.getConfigValueChecker();

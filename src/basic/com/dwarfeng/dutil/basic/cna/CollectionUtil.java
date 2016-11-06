@@ -603,6 +603,33 @@ public final class CollectionUtil {
 		return false;
 	}
 	
+	/**
+	 * 要求指定的集合不能含有 <code>null</code>元素。
+	 * <p> 入口指定的 <code>collection</code>中含有 <code>null</code>元素，
+	 * 则抛出 {@link NullPointerException}。
+	 * @param collection  指定的集合元素。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 * @throws NullPointerException <code>collection</code> 中含有 <code>null</code>元素。
+	 */
+	public static void requireNotContainsNull(Collection<?> collection){
+		Objects.requireNonNull(collection, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_2));
+		if(conatinsNull(collection)) throw new NullPointerException();
+	}
+	
+	/**
+	 * 要求指定的集合不能含有 <code>null</code>元素。
+	 * <p> 入口指定的 <code>collection</code>中含有 <code>null</code>元素，
+	 * 则抛出拥有指定异常信息的 {@link NullPointerException}。
+	 * @param collection 指定的集合元素。
+	 * @param message 指定的异常信息。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 * @throws NullPointerException <code>collection</code> 中含有 <code>null</code>元素。
+	 */
+	public static void requireNotContainsNull(Collection<?> collection, String message){
+		Objects.requireNonNull(collection, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_2));
+		if(conatinsNull(collection)) throw new NullPointerException(message);
+	}
+	
 	private static final class EnumerationIterator<T> implements Iterator<T>{
 
 		private final Enumeration<T> enumeration;

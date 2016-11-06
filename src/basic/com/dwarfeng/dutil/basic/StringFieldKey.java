@@ -305,4 +305,9 @@ public enum StringFieldKey{
 	/**SwingUtil类第0号文本字段*/
 	SwingUtil_0,
 	
+	/**ConfigGuiModel类第0号文本字段*/
+	ConfigGuiModel_0,
+	/**ConfigGuiModel类第1号文本字段*/
+	ConfigGuiModel_1,
+	
 }

@@ -1,5 +1,7 @@
 package com.dwarfeng.dutil.develop.cfg.gui;
 
+import java.util.List;
+
 import com.dwarfeng.dutil.develop.cfg.ConfigKey;
 import com.dwarfeng.dutil.develop.cfg.ConfigValueChecker;
 
@@ -8,41 +10,61 @@ import com.dwarfeng.dutil.develop.cfg.ConfigValueChecker;
  * @author  DwArFeng
  * @since 1.8
  */
-public interface ConfigGuiModel {
+public interface ConfigGuiModel extends List<ConfigGuiModel.Entry>{
 
 	/**
-	 * 返回模型在指定序号处的默认值。
-	 * @param index 指定的序号。
-	 * @return 模型在指定序号处的默认值。
-	 * @throws IndexOutOfBoundsException 下标越界。
+	 * 配置界面模型中的入口。
+	 * @author  DwArFeng
+	 * @since 1.8
 	 */
-	public String getDefaultValueAt(int index);
+	public interface Entry{
+		
+		/**
+		 * 获取入口处的配置键。
+		 * @return 入口处的配置键。
+		 */
+		public ConfigKey getConfigKey();
+		
+		/**
+		 * 获取入口处的当前值。
+		 * @return 入口处的当前值。
+		 */
+		public String getCurrentValue();
+		
+		/**
+		 * 获取入口处的默认值。
+		 * @return 入口处的默认值。
+		 */
+		public String getDefaultValue();
+		
+		/**
+		 * 获取入口处的值检查器。
+		 * @return 入口处的值检查器。
+		 */
+		public ConfigValueChecker getConfigValueChecker();
+		
+	}
 	
 	/**
-	 * 返回模型在指定序号出的当前值。
+	 * 检测该模型中指定序号处的入口的当前值是否有效。
 	 * @param index 指定的序号。
-	 * @return 模型在指定序号处的当前值。
-	 * @throws IndexOutOfBoundsException 下标越界。
+	 * @return 指定序号处的元素是否有效。
+	 * @throws 下标越界。
 	 */
-	public String getCurrentValueAt(int index);
+	public default boolean isValid(int index){
+		Entry entry = get(index);
+		return entry.getConfigValueChecker().isValid(entry.getCurrentValue());
+	}
 	
 	/**
-	 * 返回模型在指定序号处的配置值检查器。
+	 * 检测该模型中指定序号处的入口的当前值是否无效。
 	 * @param index 指定的序号。
-	 * @return 模型在指定序号处的配置值检查器。
-	 * @throws IndexOutOfBoundsException 下标越界。
+	 * @return 指定序号处的元素是否无效。
 	 */
-	public ConfigValueChecker getConfigValueCheckerAt(int index);
-	
-	/**
-	 * 返回模型在指定序号处的配置键。
-	 * @param index 指定的序号。
-	 * @return 模型在指定序号处的配置键。
-	 * @throws IndexOutOfBoundsException 下标越界。
-	 */
-	public ConfigKey getConfigKeyAt(int index);
-	
-	
+	public default boolean nonValid(int index){
+		Entry entry = get(index);
+		return entry.getConfigValueChecker().nonValid(entry.getCurrentValue());
+	}
 	
 	/**
 	 * 增加观察器。
