@@ -31,7 +31,8 @@ public interface ConfigGuiModelObverser {
 	
 	/**
 	 * 通知视图模型清空元素。
+	 * @param 模型被清空之前含有的元素数量。
 	 */
-	public void fireEntryCleared();
+	public void fireEntryCleared(int size);
 	
 }

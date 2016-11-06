@@ -67,6 +67,14 @@ public interface ConfigGuiModel extends List<ConfigGuiModel.Entry>{
 	}
 	
 	/**
+	 * 将该模型中指定位置的值重置为默认值。
+	 * @param index
+	 */
+	public default void resetValue(int index){
+		
+	}
+	
+	/**
 	 * 增加观察器。
 	 * @param obverser 指定的配置界面观察器。
 	 * @return 是否增加成功。

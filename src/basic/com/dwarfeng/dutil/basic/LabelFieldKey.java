@@ -7,5 +7,12 @@ package com.dwarfeng.dutil.basic;
  * @since 1.8
  */
 public enum LabelFieldKey {
+	
+	/**ConfigTablePanel类第0号文本字段*/
+	ConfigTablePanel_0,
+	/**ConfigTablePanel类第1号文本字段*/
+	ConfigTablePanel_1,
+	/**ConfigTablePanel类第2号文本字段*/
+	ConfigTablePanel_2,
 
 }

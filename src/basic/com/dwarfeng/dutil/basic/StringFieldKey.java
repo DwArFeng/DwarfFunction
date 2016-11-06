@@ -310,4 +310,8 @@ public enum StringFieldKey{
 	/**ConfigGuiModel类第1号文本字段*/
 	ConfigGuiModel_1,
 	
+	/**ConfigTablePanel类第0号文本字段*/
+	ConfigTablePanel_0,
+	/**ConfigTablePanel类第1号文本字段*/
+	ConfigTablePanel_1,
 }
