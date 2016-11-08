@@ -289,6 +289,8 @@ public enum StringFieldKey{
 	ConfigUtil_1,
 	/**ConfigUtil类第2号文本字段*/
 	ConfigUtil_2,
+	/**ConfigUtil类第3号文本字段*/
+	ConfigUtil_3,
 
 	/**StreamConfigLoader类第0号文本字段*/
 	StreamConfigLoader_0,

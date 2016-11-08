@@ -1,5 +1,8 @@
 package com.dwarfeng.dutil.develop.cfg.gui;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.dwarfeng.dutil.develop.cfg.ConfigKey;
 import com.dwarfeng.dutil.develop.cfg.ConfigValueChecker;
 
@@ -68,8 +71,6 @@ public interface ConfigGuiModel{
 		return getConfigValueChecker(index).nonValid(getCurrentValue(index));
 	}
 	
-	public void addValue();
-	
 	/**
 	 * 设置该模型中指定序号处的当前值。
 	 * @param index 指定的序号。
@@ -85,6 +86,19 @@ public interface ConfigGuiModel{
 	 */
 	public default void resetValue(int index){
 		setValue(index, getDefaultValue(index));
+	}
+	
+	/**
+	 * 获取配置模型中的当前值映射。
+	 * <p> 该映射不遵守配置键在模型中的顺序，其迭代顺序是不确定的。
+	 * @return 当前值映射。
+	 */
+	public default Map<ConfigKey, String> getCurrentValueMap(){
+		Map<ConfigKey, String> currentValueMap = new HashMap<ConfigKey, String>();
+		for(int i = 0 ; i < size() ; i ++){
+			currentValueMap.put(getConfigKey(i), getCurrentValue(i));
+		}
+		return currentValueMap;
 	}
 	
 	/**

@@ -27,6 +27,6 @@ public interface ConfigObverser {
 	 * @param newValue 配置键的新值。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public void fireConfigKeyChanged(ConfigKey configKey, String oldValue, String newValue);
+	public void fireValueChanged(ConfigKey configKey, String oldValue, String newValue);
 	
 }

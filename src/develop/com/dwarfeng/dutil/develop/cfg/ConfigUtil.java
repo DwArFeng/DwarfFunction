@@ -1,7 +1,9 @@
 package com.dwarfeng.dutil.develop.cfg;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -10,6 +12,8 @@ import java.util.WeakHashMap;
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.cna.ArrayUtil;
+import com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModel;
+import com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModelObverser;
 
 /**
  * 配置工具包。
@@ -56,20 +60,6 @@ public final class ConfigUtil {
 			)
 				throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.ConfigUtil_1));
 		}
-	}
-	
-	private static class ConfigProps {
-		
-		public final String currentValue;
-		public final String defaultValue;
-		public final ConfigValueChecker configValueChecker;
-		
-		public ConfigProps(String currentValue, String defaultValue, ConfigValueChecker configValueChecker) {
-			this.currentValue = currentValue;
-			this.defaultValue = defaultValue;
-			this.configValueChecker = configValueChecker;
-		}
-		
 	}
 	
 	private static final class InnerConfigPort implements ConfigPort{
@@ -190,7 +180,7 @@ public final class ConfigUtil {
 			map.put(configKey, new ConfigProps(currentValue, cp.defaultValue, cp.configValueChecker));
 			for(ConfigObverser obverser : obversers){
 				if(Objects.nonNull(obverser) && obverser.isInteresedIn(configKey)){
-					obverser.fireConfigKeyChanged(configKey, oldValue, currentValue);
+					obverser.fireValueChanged(configKey, oldValue, currentValue);
 				}
 			}
 			return true;
@@ -258,8 +248,163 @@ public final class ConfigUtil {
 			return map.get(configKey).configValueChecker.isValid(value);
 		}
 		
+		private static class ConfigProps {
+			
+			public final String currentValue;
+			public final String defaultValue;
+			public final ConfigValueChecker configValueChecker;
+			
+			public ConfigProps(String currentValue, String defaultValue, ConfigValueChecker configValueChecker) {
+				this.currentValue = currentValue;
+				this.defaultValue = defaultValue;
+				this.configValueChecker = configValueChecker;
+			}
+			
+		}
+		
 	}
 	
+	/**
+	 * 通过控制站点生成配置界面模型。
+	 * <p> 生成的模型具有以下特点
+	 * <blockquote>
+	 * 		· 没有注册任何观察器。<br>
+	 * 		· 其中的元素均为控制站点的元素。<br>
+	 * 		· 元素的顺序与控制站点的迭代顺序相同。
+	 * </blockquote>
+	 * @param configPort 指定的控制站点。
+	 * @return 由指定的控制站点生成的配置界面模型。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 */
+	public static ConfigGuiModel newConfigGuiModel(ConfigPort configPort){
+		Objects.requireNonNull(configPort, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_3));
+		return new PortConfigGuiModel(configPort);
+	}
 	
+	private static class PortConfigGuiModel implements ConfigGuiModel{
+		
+		private final Set<ConfigGuiModelObverser> obversers = Collections.newSetFromMap(new WeakHashMap<>());
+		
+		private final List<ModelProps> list = new ArrayList<>();
+
+		public PortConfigGuiModel(ConfigPort configPort) {
+			for(ConfigKey configKey : configPort.keySet()){
+				ConfigValueChecker configValueChecker = configPort.getConfigValueCheckerMap().get(configKey);
+				String defaultValue = configPort.getDefaultValue(configKey);
+				String currentValue = configPort.getCurrentValue(configKey);
+				ModelProps modelProps = new ModelProps(configKey, configValueChecker, defaultValue, currentValue);
+				list.add(modelProps);
+			}
+		}
+		
+		/*
+		 * (non-Javadoc)
+		 * @see com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModel#getConfigKey(int)
+		 */
+		@Override
+		public ConfigKey getConfigKey(int index) {
+			return list.get(index).configKey;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * @see com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModel#getCurrentValue(int)
+		 */
+		@Override
+		public String getCurrentValue(int index) {
+			return list.get(index).currentValue;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * @see com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModel#getDefaultValue(int)
+		 */
+		@Override
+		public String getDefaultValue(int index) {
+			return list.get(index).defaultValue;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * @see com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModel#getConfigValueChecker(int)
+		 */
+		@Override
+		public ConfigValueChecker getConfigValueChecker(int index) {
+			return list.get(index).configValueChecker;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * @see com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModel#size()
+		 */
+		@Override
+		public int size() {
+			return list.size();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * @see com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModel#setValue(int, java.lang.String)
+		 */
+		@Override
+		public void setValue(int index, String value) {
+			ModelProps oldOne = list.get(index);
+			ModelProps newOne = new ModelProps(oldOne.configKey, oldOne.configValueChecker, oldOne.defaultValue, value);
+			list.set(index, newOne);
+			for(ConfigGuiModelObverser obverser : obversers){
+				if(Objects.nonNull(obverser)){
+					obverser.fireValueChanged(index, newOne.configKey, newOne.configValueChecker, newOne.defaultValue, newOne.currentValue);
+				}
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * @see com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModel#addObverser(com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModelObverser)
+		 */
+		@Override
+		public boolean addObverser(ConfigGuiModelObverser obverser) {
+			return obversers.add(obverser);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * @see com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModel#removeObverser(com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModelObverser)
+		 */
+		@Override
+		public boolean removeObverser(ConfigGuiModelObverser obverser) {
+			return obversers.remove(obverser);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * @see com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModel#clearObverser()
+		 */
+		@Override
+		public void clearObverser() {
+			obversers.clear();
+		}
+		
+		private static class ModelProps{
+			
+			public final ConfigKey configKey;
+			public final ConfigValueChecker configValueChecker;
+			public final String defaultValue;
+			public final String currentValue;
+			
+			public ModelProps(
+					ConfigKey configKey,
+					ConfigValueChecker configValueChecker,
+					String defaultValue,
+					String currentValue
+			){
+				this.configKey = configKey;
+				this.configValueChecker = configValueChecker;
+				this.defaultValue = defaultValue;
+				this.currentValue = currentValue;
+			}
+		}
+		
+	}
 	
 }

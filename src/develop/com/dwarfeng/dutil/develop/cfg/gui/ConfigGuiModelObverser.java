@@ -18,7 +18,7 @@ public interface ConfigGuiModelObverser {
 	 * @param defaultValue 添加元素的默认值。
 	 * @param currentValue 添加元素的当前值。
 	 */
-	public void fireEntryAdded(int index, ConfigKey configKey, ConfigValueChecker configValueChecker, String defaultValue, String currentValue);
+	public void fireValueAdded(int index, ConfigKey configKey, ConfigValueChecker configValueChecker, String defaultValue, String currentValue);
 	
 	/**
 	 * 通知视图模型变更元素。
@@ -28,18 +28,18 @@ public interface ConfigGuiModelObverser {
 	 * @param defaultValue 变更后新的默认值。
 	 * @param currentValue 变更后新的当前值。
 	 */
-	public void fireEntryChanged(int index, ConfigKey configKey, ConfigValueChecker configValueChecker, String defaultValue, String currentValue);
+	public void fireValueChanged(int index, ConfigKey configKey, ConfigValueChecker configValueChecker, String defaultValue, String currentValue);
 	
 	/**
 	 * 通知视图模型移除元素。
 	 * @param index 元素移除的位置。
 	 */
-	public void fireEntryRemoved(int index);
+	public void fireValueRemoved(int index);
 	
 	/**
 	 * 通知视图模型清空元素。
 	 * @param 模型被清空之前含有的元素数量。
 	 */
-	public void fireEntryCleared(int size);
+	public void fireValueCleared(int size);
 	
 }

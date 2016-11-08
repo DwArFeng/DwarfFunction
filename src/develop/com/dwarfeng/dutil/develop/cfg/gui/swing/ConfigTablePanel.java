@@ -46,7 +46,7 @@ public class ConfigTablePanel extends JPanel {
 		 * @see com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModelObverser#fireEntryAdded(int, com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModel.Entry)
 		 */
 		@Override
-		public void fireEntryAdded(int index, ConfigKey configKey, ConfigValueChecker configValueChecker, String defaultValue, String currentValue) {
+		public void fireValueAdded(int index, ConfigKey configKey, ConfigValueChecker configValueChecker, String defaultValue, String currentValue) {
 			tableModel.fireTableRowsInserted(index, index);
 		}
 		
@@ -55,7 +55,7 @@ public class ConfigTablePanel extends JPanel {
 		 * @see com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModelObverser#fireEntryRemoved(int)
 		 */
 		@Override
-		public void fireEntryRemoved(int index) {
+		public void fireValueRemoved(int index) {
 			tableModel.fireTableRowsDeleted(index, index);
 		}
 		
@@ -64,7 +64,7 @@ public class ConfigTablePanel extends JPanel {
 		 * @see com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModelObverser#fireEntryCleared()
 		 */
 		@Override
-		public void fireEntryCleared(int size) {
+		public void fireValueCleared(int size) {
 			tableModel.fireTableRowsDeleted(0, size - 1);
 		}
 		
@@ -73,7 +73,7 @@ public class ConfigTablePanel extends JPanel {
 		 * @see com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModelObverser#fireEntryChanged(int, com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModel.Entry)
 		 */
 		@Override
-		public void fireEntryChanged(int index, ConfigKey configKey, ConfigValueChecker configValueChecker, String defaultValue, String currentValue) {
+		public void fireValueChanged(int index, ConfigKey configKey, ConfigValueChecker configValueChecker, String defaultValue, String currentValue) {
 			tableModel.fireTableCellUpdated(index, 0);
 			tableModel.fireTableCellUpdated(index, 1);
 			tableModel.fireTableCellUpdated(index, 2);
