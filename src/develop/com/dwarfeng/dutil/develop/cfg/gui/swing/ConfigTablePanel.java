@@ -28,7 +28,6 @@ import com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModelObverser;
  */
 public class ConfigTablePanel extends JPanel {
 	
-	
 	/**配置表格*/
 	protected final JTable table = new JTable();
 	
@@ -81,7 +80,7 @@ public class ConfigTablePanel extends JPanel {
 		
 	};
 
-	private TableCellRenderer tableHeaderRenderer = new DefaultTableCellRenderer(){
+	private final TableCellRenderer tableHeaderRenderer = new DefaultTableCellRenderer(){
 		
 		private static final long serialVersionUID = -1854719520097517923L;
 
@@ -98,6 +97,22 @@ public class ConfigTablePanel extends JPanel {
 			return this;
 		};
 	};
+	
+	private TableCellRenderer keyRenderer = new DefaultTableCellRenderer(){
+		
+		/*
+		 * (non-Javadoc)
+		 * @see javax.swing.table.DefaultTableCellRenderer#getTableCellRendererComponent(javax.swing.JTable, java.lang.Object, boolean, boolean, int, int)
+		 */
+		@Override
+		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+			super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+			setText(model.getConfigKey(row).getName());
+			return this;
+		}
+	};
+	
+	
 		
 		
 
@@ -162,6 +177,8 @@ public class ConfigTablePanel extends JPanel {
 
 	private final class InnerTableModel extends AbstractTableModel{
 		
+		private static final long serialVersionUID = -4012998878556504575L;
+
 		/*
 		 * (non-Javadoc)
 		 * @see javax.swing.table.AbstractTableModel#getColumnClass(int)
@@ -170,18 +187,7 @@ public class ConfigTablePanel extends JPanel {
 		public Class<?> getColumnClass(int columnIndex) {
 			if(columnIndex < 0 || columnIndex > 2)
 				throw new IndexOutOfBoundsException(String.format(DwarfUtil.getStringField(StringFieldKey.ConfigTablePanel_1), columnIndex));
-			
-			switch (columnIndex) {
-				case 0:
-					return String.class;
-				case 1:
-					return ConfigKey.class;
-				case 2:
-					return String.class;
-				default :
-					//参数只可能是 0, 1, 2， 不可能出现这个情况。
-					return Object.class;
-			}
+			return ConfigKey.class;
 		}
 
 		/*
@@ -216,17 +222,7 @@ public class ConfigTablePanel extends JPanel {
 			if(columnIndex < 0 || columnIndex > 2)
 				throw new IndexOutOfBoundsException(String.format(DwarfUtil.getStringField(StringFieldKey.ConfigTablePanel_1), columnIndex));
 			
-			switch(columnIndex){
-				case 0:
-					return model.getConfigKey(rowIndex).getName();
-				case 1:
-					return model.getConfigKey(rowIndex);
-				case 2:
-					return model.getCurrentValue(rowIndex);
-				default :
-					//参数只可能是 0, 1, 2， 不可能出现这个情况。
-					return null;
-			}
+			return model.getConfigKey(rowIndex);
 		}
 		
 	}

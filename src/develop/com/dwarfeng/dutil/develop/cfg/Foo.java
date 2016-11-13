@@ -3,11 +3,16 @@ package com.dwarfeng.dutil.develop.cfg;
 import java.util.Locale;
 
 import com.dwarfeng.dutil.detool.gui.swing.JComponentTester;
+import com.dwarfeng.dutil.develop.cfg.checker.BooleanChecker;
+import com.dwarfeng.dutil.develop.cfg.checker.PositiveIntegerChecker;
+import com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModel;
 import com.dwarfeng.dutil.develop.cfg.gui.swing.ConfigTablePanel;
 
 final class Foo {
 
 	public enum Cfg implements ConfigElements{
+		CFG_0("Config.0", "FALSE", new BooleanChecker()),
+		CFG_1("Config.1", "12450", new PositiveIntegerChecker()),
 		
 		;
 		
@@ -55,9 +60,14 @@ final class Foo {
 	}
 	
 	public void test(){
+		ConfigPort cp = ConfigUtil.newConfigPort(Cfg.values());
+		
+		ConfigGuiModel model = ConfigUtil.newConfigGuiModel(cp);
+		
 		ConfigTablePanel panel = new ConfigTablePanel();
 		new JComponentTester(panel).setVisible(true);
 		panel.setLocale(Locale.ENGLISH);
+		panel.setModel(model);
 	}
 
 	public static void main(String[] args) {
