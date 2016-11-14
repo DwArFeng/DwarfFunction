@@ -55,8 +55,8 @@ public final class ConfigUtil {
 		for(ConfigElements entry : entries){
 			if(
 					Objects.isNull(entry.getConfigKey()) || 
-					Objects.isNull(entry.getConfigValueChecker()) ||
-					entry.getConfigValueChecker().nonValid(entry.getDefaultValue())
+					Objects.isNull(entry.getConfigChecker()) ||
+					entry.getConfigChecker().nonValid(entry.getDefaultValue())
 			)
 				throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.ConfigUtil_1));
 		}
@@ -72,7 +72,7 @@ public final class ConfigUtil {
 			for(ConfigElements entry : entries){
 				ConfigKey configKey = entry.getConfigKey();
 				String defaultValue = entry.getDefaultValue();
-				ConfigValueChecker checker = entry.getConfigValueChecker();
+				ConfigChecker checker = entry.getConfigChecker();
 				map.put(configKey, new ConfigProps(defaultValue, defaultValue, checker));
 			}
 		}
@@ -105,15 +105,15 @@ public final class ConfigUtil {
 
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigPort#getConfigValueCheckerMap()
+		 * @see com.dwarfeng.dutil.develop.cfg.ConfigPort#getConfigCheckerMap()
 		 */
 		@Override
-		public Map<ConfigKey, ConfigValueChecker> getConfigValueCheckerMap() {
-			LinkedHashMap<ConfigKey, ConfigValueChecker> configValueCheckerMap = new LinkedHashMap<>();
+		public Map<ConfigKey, ConfigChecker> getConfigCheckerMap() {
+			LinkedHashMap<ConfigKey, ConfigChecker> configCheckerMap = new LinkedHashMap<>();
 			for(Map.Entry<ConfigKey, ConfigProps> entry : map.entrySet()){
-				configValueCheckerMap.put(entry.getKey(), entry.getValue().configValueChecker);
+				configCheckerMap.put(entry.getKey(), entry.getValue().configChecker);
 			}
-			return Collections.unmodifiableMap(configValueCheckerMap);
+			return Collections.unmodifiableMap(configCheckerMap);
 		}
 
 		/*
@@ -177,7 +177,7 @@ public final class ConfigUtil {
 			String oldValue = cp.currentValue;
 			if(oldValue == currentValue) return false;
 			if(Objects.nonNull(oldValue) && oldValue.equals(currentValue)) return false;
-			map.put(configKey, new ConfigProps(currentValue, cp.defaultValue, cp.configValueChecker));
+			map.put(configKey, new ConfigProps(currentValue, cp.defaultValue, cp.configChecker));
 			for(ConfigObverser obverser : obversers){
 				if(Objects.nonNull(obverser) && obverser.isInteresedIn(configKey)){
 					obverser.fireValueChanged(configKey, oldValue, currentValue);
@@ -222,7 +222,7 @@ public final class ConfigUtil {
 			Objects.requireNonNull(configKey, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_2));
 			if(! contains(configKey)) return false;
 			ConfigProps cp = map.get(configKey);
-			return cp.configValueChecker.isValid(cp.currentValue);
+			return cp.configChecker.isValid(cp.currentValue);
 		}
 		
 		/*
@@ -234,7 +234,7 @@ public final class ConfigUtil {
 			Objects.requireNonNull(configKey, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_2));
 			if(! contains(configKey)) return true;
 			ConfigProps cp = map.get(configKey);
-			return cp.configValueChecker.isValid(cp.currentValue);
+			return cp.configChecker.isValid(cp.currentValue);
 		}
 		
 		/*
@@ -245,19 +245,19 @@ public final class ConfigUtil {
 		public boolean checkValid(ConfigKey configKey, String value) {
 			Objects.requireNonNull(configKey, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_2));
 			if(! contains(configKey)) return true;
-			return map.get(configKey).configValueChecker.isValid(value);
+			return map.get(configKey).configChecker.isValid(value);
 		}
 		
 		private static class ConfigProps {
 			
 			public final String currentValue;
 			public final String defaultValue;
-			public final ConfigValueChecker configValueChecker;
+			public final ConfigChecker configChecker;
 			
-			public ConfigProps(String currentValue, String defaultValue, ConfigValueChecker configValueChecker) {
+			public ConfigProps(String currentValue, String defaultValue, ConfigChecker configChecker) {
 				this.currentValue = currentValue;
 				this.defaultValue = defaultValue;
-				this.configValueChecker = configValueChecker;
+				this.configChecker = configChecker;
 			}
 			
 		}
@@ -289,10 +289,10 @@ public final class ConfigUtil {
 
 		public PortConfigGuiModel(ConfigPort configPort) {
 			for(ConfigKey configKey : configPort.keySet()){
-				ConfigValueChecker configValueChecker = configPort.getConfigValueCheckerMap().get(configKey);
+				ConfigChecker configChecker = configPort.getConfigCheckerMap().get(configKey);
 				String defaultValue = configPort.getDefaultValue(configKey);
 				String currentValue = configPort.getCurrentValue(configKey);
-				ModelProps modelProps = new ModelProps(configKey, configValueChecker, defaultValue, currentValue);
+				ModelProps modelProps = new ModelProps(configKey, configChecker, defaultValue, currentValue);
 				list.add(modelProps);
 			}
 		}
@@ -326,11 +326,11 @@ public final class ConfigUtil {
 
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModel#getConfigValueChecker(int)
+		 * @see com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModel#getConfigChecker(int)
 		 */
 		@Override
-		public ConfigValueChecker getConfigValueChecker(int index) {
-			return list.get(index).configValueChecker;
+		public ConfigChecker getConfigChecker(int index) {
+			return list.get(index).configChecker;
 		}
 
 		/*
@@ -349,11 +349,11 @@ public final class ConfigUtil {
 		@Override
 		public void setValue(int index, String value) {
 			ModelProps oldOne = list.get(index);
-			ModelProps newOne = new ModelProps(oldOne.configKey, oldOne.configValueChecker, oldOne.defaultValue, value);
+			ModelProps newOne = new ModelProps(oldOne.configKey, oldOne.configChecker, oldOne.defaultValue, value);
 			list.set(index, newOne);
 			for(ConfigGuiModelObverser obverser : obversers){
 				if(Objects.nonNull(obverser)){
-					obverser.fireValueChanged(index, newOne.configKey, newOne.configValueChecker, newOne.defaultValue, newOne.currentValue);
+					obverser.fireValueChanged(index, newOne.configKey, newOne.configChecker, newOne.defaultValue, newOne.currentValue);
 				}
 			}
 		}
@@ -388,18 +388,18 @@ public final class ConfigUtil {
 		private static class ModelProps{
 			
 			public final ConfigKey configKey;
-			public final ConfigValueChecker configValueChecker;
+			public final ConfigChecker configChecker;
 			public final String defaultValue;
 			public final String currentValue;
 			
 			public ModelProps(
 					ConfigKey configKey,
-					ConfigValueChecker configValueChecker,
+					ConfigChecker configChecker,
 					String defaultValue,
 					String currentValue
 			){
 				this.configKey = configKey;
-				this.configValueChecker = configValueChecker;
+				this.configChecker = configChecker;
 				this.defaultValue = defaultValue;
 				this.currentValue = currentValue;
 			}

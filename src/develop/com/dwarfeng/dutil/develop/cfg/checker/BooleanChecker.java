@@ -2,7 +2,7 @@ package com.dwarfeng.dutil.develop.cfg.checker;
 
 import java.util.Objects;
 
-import com.dwarfeng.dutil.develop.cfg.ConfigValueChecker;
+import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
 
 /**
  * ²¼¶ûÖµ¼ì²éÆ÷¡£
@@ -11,11 +11,11 @@ import com.dwarfeng.dutil.develop.cfg.ConfigValueChecker;
  * @author  DwArFeng
  * @since 1.8
  */
-public class BooleanChecker implements ConfigValueChecker {
+public class BooleanChecker implements ConfigChecker {
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.develop.cfg.ConfigValueChecker#isValid(java.lang.String)
+	 * @see com.dwarfeng.dutil.develop.cfg.ConfigChecker#isValid(java.lang.String)
 	 */
 	@Override
 	public boolean isValid(String value) {

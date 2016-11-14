@@ -38,7 +38,7 @@ public interface ConfigPort{
 	 * <p> 映射不可更改。
 	 * @return  配置值检查器映射。
 	 */
-	public Map<ConfigKey, ConfigValueChecker> getConfigValueCheckerMap();
+	public Map<ConfigKey, ConfigChecker> getConfigCheckerMap();
 	
 	/**
 	 * 控制站点中配置键的数量。
@@ -163,7 +163,7 @@ public interface ConfigPort{
 	public default boolean isValid(ConfigKey configKey){
 		Objects.requireNonNull(configKey, DwarfUtil.getStringField(StringFieldKey.ConfigPort_0));
 		if(! contains(configKey)) return false;
-		ConfigValueChecker checker = getConfigValueCheckerMap().get(configKey);
+		ConfigChecker checker = getConfigCheckerMap().get(configKey);
 		if(Objects.isNull(checker)) return false;
 		return checker.isValid(getCurrentValue(configKey));
 	}
@@ -179,7 +179,7 @@ public interface ConfigPort{
 	public default boolean nonValid(ConfigKey configKey){
 		Objects.requireNonNull(configKey, DwarfUtil.getStringField(StringFieldKey.ConfigPort_0));
 		if(! contains(configKey)) return true;
-		ConfigValueChecker checker = getConfigValueCheckerMap().get(configKey);
+		ConfigChecker checker = getConfigCheckerMap().get(configKey);
 		if(Objects.isNull(checker)) return true;
 		return checker.nonValid(getCurrentValue(configKey));
 	}
@@ -196,7 +196,7 @@ public interface ConfigPort{
 	public default boolean checkValid(ConfigKey configKey, String value){
 		Objects.requireNonNull(configKey, DwarfUtil.getStringField(StringFieldKey.ConfigPort_0));
 		if(! contains(configKey)) return false;
-		ConfigValueChecker checker = getConfigValueCheckerMap().get(configKey);
+		ConfigChecker checker = getConfigCheckerMap().get(configKey);
 		if(Objects.isNull(checker)) return false;
 		return checker.isValid(value);
 	}

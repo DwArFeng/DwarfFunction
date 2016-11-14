@@ -17,10 +17,10 @@ final class Foo {
 		;
 		
 		private final String name;
-		private final ConfigValueChecker checker;
+		private final ConfigChecker checker;
 		private final String value;
 		
-		private Cfg(String name, String value, ConfigValueChecker checker) {
+		private Cfg(String name, String value, ConfigChecker checker) {
 			this.name = name;
 			this.checker = checker;
 			this.value = value;
@@ -46,10 +46,10 @@ final class Foo {
 
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigElements#getConfigValueChecker()
+		 * @see com.dwarfeng.dutil.develop.cfg.ConfigElements#getConfigChecker()
 		 */
 		@Override
-		public ConfigValueChecker getConfigValueChecker() {
+		public ConfigChecker getConfigChecker() {
 			return checker;
 		}
 		

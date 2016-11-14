@@ -3,7 +3,7 @@ package com.dwarfeng.dutil.develop.cfg.checker;
 import java.util.Objects;
 
 import com.dwarfeng.dutil.basic.cna.ArrayUtil;
-import com.dwarfeng.dutil.develop.cfg.ConfigValueChecker;
+import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
 
 /**
  * 特定文本检测器。
@@ -11,7 +11,7 @@ import com.dwarfeng.dutil.develop.cfg.ConfigValueChecker;
  * @author  DwArFeng
  * @since 1.8
  */
-public class SpecificChecker implements ConfigValueChecker{
+public class SpecificChecker implements ConfigChecker{
 
 	private final String[] arr;
 	
@@ -40,7 +40,7 @@ public class SpecificChecker implements ConfigValueChecker{
 	
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.develop.cfg.ConfigValueChecker#isValid(java.lang.String)
+	 * @see com.dwarfeng.dutil.develop.cfg.ConfigChecker#isValid(java.lang.String)
 	 */
 	@Override
 	public boolean isValid(String value) {

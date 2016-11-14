@@ -29,6 +29,6 @@ public interface ConfigElements {
 	 * 获取配置值检查器。
 	 * @return 配置值检查器。
 	 */
-	public ConfigValueChecker getConfigValueChecker();
+	public ConfigChecker getConfigChecker();
 	
 }

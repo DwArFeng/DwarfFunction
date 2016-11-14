@@ -17,7 +17,7 @@ import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.LabelFieldKey;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.develop.cfg.ConfigKey;
-import com.dwarfeng.dutil.develop.cfg.ConfigValueChecker;
+import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
 import com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModel;
 import com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModelObverser;
 
@@ -45,7 +45,7 @@ public class ConfigTablePanel extends JPanel {
 		 * @see com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModelObverser#fireEntryAdded(int, com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModel.Entry)
 		 */
 		@Override
-		public void fireValueAdded(int index, ConfigKey configKey, ConfigValueChecker configValueChecker, String defaultValue, String currentValue) {
+		public void fireValueAdded(int index, ConfigKey configKey, ConfigChecker configChecker, String defaultValue, String currentValue) {
 			tableModel.fireTableRowsInserted(index, index);
 		}
 		
@@ -72,7 +72,7 @@ public class ConfigTablePanel extends JPanel {
 		 * @see com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModelObverser#fireEntryChanged(int, com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModel.Entry)
 		 */
 		@Override
-		public void fireValueChanged(int index, ConfigKey configKey, ConfigValueChecker configValueChecker, String defaultValue, String currentValue) {
+		public void fireValueChanged(int index, ConfigKey configKey, ConfigChecker configChecker, String defaultValue, String currentValue) {
 			tableModel.fireTableCellUpdated(index, 0);
 			tableModel.fireTableCellUpdated(index, 1);
 			tableModel.fireTableCellUpdated(index, 2);

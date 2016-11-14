@@ -12,7 +12,7 @@
  * <BLOCKQUOTE> 
  *		<code> Map&ltConfigKey. String&gt defaultValueMap</code> —— 默认值映射<br>
  * 		<code> Map&ltConfigKey, String&gt currentValueMap </code> —— 当前值映射 <br>
- * 		<code> Map&ltConfigKey, ConfigValueChecker&gt</code> —— 值检查器映射
+ * 		<code> Map&ltConfigKey, ConfigChecker&gt</code> —— 值检查器映射
  * </BLOCKQUOTE>
  * 这三个映射是整个配置体系的核心：在一般情况下，一个键下，值检查器负责检测某个特定的值是否有效，当当前值有效时，当前值在发挥作用；当当前值无效时，默认值
  * 发挥作用；默认值还可以作为复位或者初始配置使用。<b>默认值必须是有效的值，而当前值可以有效也可以无效。</b>

@@ -9,7 +9,7 @@ package com.dwarfeng.dutil.develop.cfg;
  * @author DwArFeng
  * @since 1.8
  */
-public interface ConfigValueChecker {
+public interface ConfigChecker {
 
 	/**
 	 * 检查指定的值是否有效。

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.dwarfeng.dutil.develop.cfg.ConfigKey;
-import com.dwarfeng.dutil.develop.cfg.ConfigValueChecker;
+import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
 
 /**
  * 配置界面模型。
@@ -43,7 +43,7 @@ public interface ConfigGuiModel{
 	 * @return 指定序号处的值检查器。
 	 * @throws IndexOutOfBoundsException 序号越界。
 	 */
-	public ConfigValueChecker getConfigValueChecker(int index);
+	public ConfigChecker getConfigChecker(int index);
 	
 	/**
 	 * 返回该模型中的配置数量。
@@ -58,7 +58,7 @@ public interface ConfigGuiModel{
 	 * @throws IndexOutOfBoundsException 序号越界。
 	 */
 	public default boolean isValid(int index){
-		return getConfigValueChecker(index).isValid(getCurrentValue(index));
+		return getConfigChecker(index).isValid(getCurrentValue(index));
 	}
 	
 	/**
@@ -68,7 +68,7 @@ public interface ConfigGuiModel{
 	 * @throws IndexOutOfBoundsException 序号越界。
 	 */
 	public default boolean nonValid(int index){
-		return getConfigValueChecker(index).nonValid(getCurrentValue(index));
+		return getConfigChecker(index).nonValid(getCurrentValue(index));
 	}
 	
 	/**
