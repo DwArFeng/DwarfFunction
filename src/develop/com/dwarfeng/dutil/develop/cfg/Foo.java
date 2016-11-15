@@ -3,16 +3,16 @@ package com.dwarfeng.dutil.develop.cfg;
 import java.util.Locale;
 
 import com.dwarfeng.dutil.detool.gui.swing.JComponentTester;
-import com.dwarfeng.dutil.develop.cfg.checker.BooleanChecker;
-import com.dwarfeng.dutil.develop.cfg.checker.PositiveIntegerChecker;
+import com.dwarfeng.dutil.develop.cfg.checker.BooleanConfigChecker;
+import com.dwarfeng.dutil.develop.cfg.checker.IntegerConfigChecker;
 import com.dwarfeng.dutil.develop.cfg.gui.ConfigGuiModel;
 import com.dwarfeng.dutil.develop.cfg.gui.swing.ConfigTablePanel;
 
 final class Foo {
 
 	public enum Cfg implements ConfigElements{
-		CFG_0("Config.0", "FALSE", new BooleanChecker()),
-		CFG_1("Config.1", "12450", new PositiveIntegerChecker()),
+		CFG_0("Config.0", "FALSE", new BooleanConfigChecker()),
+		CFG_1("Config.1", "12450", new IntegerConfigChecker()),
 		
 		;
 		

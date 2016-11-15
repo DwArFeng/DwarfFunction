@@ -11,7 +11,7 @@ import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
  * @author  DwArFeng
  * @since 1.8
  */
-public class SpecificChecker implements ConfigChecker{
+public class SpecificConfigChecker implements ConfigChecker{
 
 	private final String[] arr;
 	
@@ -19,7 +19,7 @@ public class SpecificChecker implements ConfigChecker{
 	 * 生成特定文本检测器。
 	 * @param arr 指定值数组。
 	 */
-	public SpecificChecker(String[] arr) {
+	public SpecificConfigChecker(String[] arr) {
 		this.arr = arr;
 	}
 	
@@ -27,7 +27,7 @@ public class SpecificChecker implements ConfigChecker{
 	 * 生成特定文本检测器。
 	 * @param arr 指定的对象数组，取对象的 <code>toString()</code>值。
 	 */
-	public SpecificChecker(Object[] arr) {
+	public SpecificConfigChecker(Object[] arr) {
 		if(Objects.isNull(arr)){
 			this.arr = null;
 		}else{
