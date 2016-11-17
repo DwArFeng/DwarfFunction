@@ -36,6 +36,7 @@ public class ConfigTablePanel extends JPanel {
 	/**´íÎóµÄÅäÖÃ×Ö¶ÎµÄÑÕÉ«*/
 	protected Color invalidConfigColor;
 	
+	
 	private final InnerTableModel tableModel = new InnerTableModel();
 	
 	private final ConfigGuiModelObverser obverser = new ConfigGuiModelObverser() {
@@ -98,23 +99,11 @@ public class ConfigTablePanel extends JPanel {
 		};
 	};
 	
-	private TableCellRenderer keyRenderer = new DefaultTableCellRenderer(){
+	private final TableCellRenderer tableRenderer = new DefaultTableCellRenderer(){
 		
-		/*
-		 * (non-Javadoc)
-		 * @see javax.swing.table.DefaultTableCellRenderer#getTableCellRendererComponent(javax.swing.JTable, java.lang.Object, boolean, boolean, int, int)
-		 */
-		@Override
-		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-			super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-			setText(model.getConfigKey(row).getName());
-			return this;
-		}
 	};
 	
 	
-		
-		
 
 	/**
 	 * Create the panel.
@@ -139,6 +128,7 @@ public class ConfigTablePanel extends JPanel {
 		table.getColumnModel().getColumn(2).setHeaderRenderer(tableHeaderRenderer);
 		table.getTableHeader().setReorderingAllowed(false);
 		scrollPane.setViewportView(table);
+		
 	}
 	
 	
