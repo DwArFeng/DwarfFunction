@@ -1,5 +1,7 @@
 package com.dwarfeng.dutil.develop.cfg;
 
+import com.dwarfeng.dutil.basic.prog.Obverser;
+
 /**
  * 配置观察器。
  * <p> 通常，程序中的一部分（甚至是所有）配置都是可以在程序中被修改的。而其中的很大一部分需要在
@@ -10,8 +12,7 @@ package com.dwarfeng.dutil.develop.cfg;
  * @author DwArFeng
  * @since 1.8
  */
-//TODO 在将来新建 Obverser接口，其应该继承 Obverser接口。
-public interface ConfigObverser {
+public interface ConfigObverser extends Obverser{
 	
 	/**
 	 * 返回该观察器是否对指定的配置键感兴趣。

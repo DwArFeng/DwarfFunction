@@ -66,7 +66,7 @@ final class Foo {
 		
 		ConfigTablePanel panel = new ConfigTablePanel();
 		new JComponentTester(panel).setVisible(true);
-		panel.setLocale(Locale.ENGLISH);
+		//panel.setLocale(Locale.ENGLISH);
 		panel.setModel(model);
 	}
 

@@ -120,6 +120,9 @@ public class ConfigTablePanel extends JPanel {
 		add(scrollPane, BorderLayout.CENTER);
 		
 		table.setModel(tableModel);
+		table.getColumnModel().getColumn(0).setCellRenderer(tableRenderer);
+		table.getColumnModel().getColumn(1).setCellRenderer(tableRenderer);
+		table.getColumnModel().getColumn(2).setCellRenderer(tableRenderer);
 		table.getColumnModel().getColumn(0).setHeaderValue(LabelFieldKey.ConfigTablePanel_0);
 		table.getColumnModel().getColumn(1).setHeaderValue(LabelFieldKey.ConfigTablePanel_1);
 		table.getColumnModel().getColumn(2).setHeaderValue(LabelFieldKey.ConfigTablePanel_2);
@@ -141,6 +144,10 @@ public class ConfigTablePanel extends JPanel {
 		return model;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.awt.Component#setLocale(java.util.Locale)
+	 */
 	@Override
 	public void setLocale(Locale l) {
 		super.setLocale(l);

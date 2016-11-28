@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.prog.ObverserSet;
 
 /**
  * 配置站点。
@@ -16,7 +17,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
  * @author DwArFeng
  * @since 1.8
  */
-public interface ConfigPort{
+public interface ConfigPort extends ObverserSet<ConfigObverser>{
 	
 	/**
 	 * 返回默认值映射。
@@ -132,25 +133,6 @@ public interface ConfigPort{
 		}
 		return result;
 	}
-	
-	/**
-	 * 向该配置站点添加观察器。
-	 * @param obverser 指定的观察器。
-	 * @return 是否成功的添加。
-	 */
-	public boolean addObverser(ConfigObverser obverser);
-	
-	/**
-	 * 从该配置站点移除观察器。
-	 * @param obverser 指定的观察器。
-	 * @return 是否成功的移除。
-	 */
-	public boolean removeObverser(ConfigObverser obverser);
-	
-	/**
-	 * 清空配置站点中的观察器。
-	 */
-	public void clearObversers();
 	
 	/**
 	 * 查询指定的键的当前值是否有效。

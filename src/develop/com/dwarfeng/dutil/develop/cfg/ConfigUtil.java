@@ -206,10 +206,19 @@ public final class ConfigUtil {
 
 		/*
 		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigPort#clearObversers()
+		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
 		 */
 		@Override
-		public void clearObversers() {
+		public Set<ConfigObverser> getObversers() {
+			return Collections.unmodifiableSet(obversers);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		 */
+		@Override
+		public void clearObverser() {
 			obversers.clear();
 		}
 		
