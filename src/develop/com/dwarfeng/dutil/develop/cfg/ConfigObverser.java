@@ -10,6 +10,7 @@ package com.dwarfeng.dutil.develop.cfg;
  * @author DwArFeng
  * @since 1.8
  */
+//TODO 在将来新建 Obverser接口，其应该继承 Obverser接口。
 public interface ConfigObverser {
 	
 	/**
