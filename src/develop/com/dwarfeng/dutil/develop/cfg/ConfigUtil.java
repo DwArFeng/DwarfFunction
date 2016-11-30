@@ -2,6 +2,7 @@ package com.dwarfeng.dutil.develop.cfg;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -129,28 +130,6 @@ public final class ConfigUtil {
 		public Set<ConfigKey> keySet() {
 			return Collections.unmodifiableSet(map.keySet());
 		}
-
-		/*
-		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigPerformModel#getCurrentValue(com.dwarfeng.dutil.develop.cfg.ConfigKey)
-		 */
-		@Override
-		public String getCurrentValue(ConfigKey configKey) {
-			Objects.requireNonNull(configKey, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_2));
-			if(! contains(configKey)) return null;
-			return map.get(configKey).currentValue;
-		}
-		
-		/*
-		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigPerformModel#getDefaultValue(com.dwarfeng.dutil.develop.cfg.ConfigKey)
-		 */
-		@Override
-		public String getDefaultValue(ConfigKey configKey) {
-			Objects.requireNonNull(configKey, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_2));
-			if(! contains(configKey)) return null;
-			return map.get(configKey).defaultValue;
-		}
 		
 		/*
 		 * (non-Javadoc)
@@ -205,41 +184,6 @@ public final class ConfigUtil {
 		@Override
 		public void clearObverser() {
 			obversers.clear();
-		}
-		
-		/*
-		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigPerformModel#isValid(com.dwarfeng.dutil.develop.cfg.ConfigKey)
-		 */
-		@Override
-		public boolean isValid(ConfigKey configKey) {
-			Objects.requireNonNull(configKey, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_2));
-			if(! contains(configKey)) return false;
-			ConfigProps cp = map.get(configKey);
-			return cp.configChecker.isValid(cp.currentValue);
-		}
-		
-		/*
-		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigPerformModel#nonValid(com.dwarfeng.dutil.develop.cfg.ConfigKey)
-		 */
-		@Override
-		public boolean nonValid(ConfigKey configKey) {
-			Objects.requireNonNull(configKey, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_2));
-			if(! contains(configKey)) return true;
-			ConfigProps cp = map.get(configKey);
-			return cp.configChecker.isValid(cp.currentValue);
-		}
-		
-		/*
-		 * (non-Javadoc)
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigPerformModel#checkValid(com.dwarfeng.dutil.develop.cfg.ConfigKey, java.lang.String)
-		 */
-		@Override
-		public boolean checkValid(ConfigKey configKey, String value) {
-			Objects.requireNonNull(configKey, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_2));
-			if(! contains(configKey)) return true;
-			return map.get(configKey).configChecker.isValid(value);
 		}
 		
 		private static class ConfigProps {
@@ -315,12 +259,6 @@ public final class ConfigUtil {
 		}
 
 		@Override
-		public int size() {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-
-		@Override
 		public Set<ConfigKey> keySet() {
 			// TODO Auto-generated method stub
 			return null;
@@ -334,12 +272,6 @@ public final class ConfigUtil {
 
 		@Override
 		public boolean set(ConfigKey configKey, String currentValue) {
-			// TODO Auto-generated method stub
-			return false;
-		}
-
-		@Override
-		public boolean setAll(Map<ConfigKey, String> currentValueMap) {
 			// TODO Auto-generated method stub
 			return false;
 		}
@@ -365,37 +297,50 @@ public final class ConfigUtil {
 		@Override
 		public void clearObverser() {
 			// TODO Auto-generated method stub
-
+			
 		}
 
 		@Override
-		public ConfigKey getConfigKey(int index) {
+		public List<ConfigKey> getConfigKeyList() {
 			// TODO Auto-generated method stub
 			return null;
 		}
 
 		@Override
-		public String getCurrentValue(int index) {
+		public List<ConfigChecker> getConfigCheckerList() {
 			// TODO Auto-generated method stub
 			return null;
 		}
 
 		@Override
-		public String getDefaultValue(int index) {
+		public List<String> getDefaultValueList() {
 			// TODO Auto-generated method stub
 			return null;
 		}
 
 		@Override
-		public ConfigChecker getConfigChecker(int index) {
+		public List<String> getCurrentValueList() {
 			// TODO Auto-generated method stub
 			return null;
 		}
 
 		@Override
-		public void setValue(int index, String value) {
+		public boolean add(int index, ConfigKey configKey, ConfigChecker checker, String defaultValue,
+				String currentValue) {
 			// TODO Auto-generated method stub
+			return false;
+		}
 
+		@Override
+		public boolean remove(int index) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public void clear() {
+			// TODO Auto-generated method stub
+			
 		}
 
 	}

@@ -39,10 +39,13 @@ public interface ConfigReflect {
 	
 	/**
 	 * 控制站点中配置键的数量。
+	 * <p> <b> 注意：</b> 该方法的默认实现效率较为低下，如有需要，请重写该方法以提高效率。
 	 * @return 配置键的数量。
 	 */
-	public int size();
-
+	public default int size(){
+		return keySet().size();
+	}
+	
 	/**
 	 * 获取不可更改的配置键集合。
 	 * <p> 该集合是非空的，其中不含有 <code>null</code>元素。
@@ -70,10 +73,19 @@ public interface ConfigReflect {
 	
 	/**
 	 * 设定指定当前值映射中的所有配置键的当前值。
+	 * <p> 该方法会遍历映射中的键值，如果某个键值是该配置表现模型中包含的，那么则对其设置当前值，否则跳过。
 	 * @param currentValueMap 指定的当前值映射。
 	 * @return 该举动是否至少一次处触发对观察器的通知。
 	 */
-	public boolean setAll(Map<ConfigKey, String> currentValueMap);
+	public default boolean setAll(Map<ConfigKey, String> currentValueMap){
+		boolean result = false;
+		for(Map.Entry<ConfigKey, String> entry : currentValueMap.entrySet()){
+			if(contains(entry.getKey())){
+				if(set(entry.getKey(), entry.getValue())) result = true;
+			}
+		}
+		return result;
+	}
 	
 	/**
 	 * 获取对应配置键的有效配置值。
@@ -81,13 +93,20 @@ public interface ConfigReflect {
 	 * <p> 如果配置键不在该配置表现模型中，则返回 <code>null</code>。
 	 * @param configKey 指定的配置键。
 	 * @return 有效值。
-	 * @throws NullPointerException 入口参数为 <code>null</code>.。
+	 * @throws NullPointerException 入口参数为 <code>null</code>，或是没有指定的配置值检查器。
 	 */
 	public default String getValidValue(ConfigKey configKey){
-		Objects.requireNonNull(configKey, DwarfUtil.getStringField(StringFieldKey.ConfigPerformModel_0));
+		Objects.requireNonNull(configKey, DwarfUtil.getStringField(StringFieldKey.ConfigReflect_0));
 		if(! contains(configKey)) return null;
-		if(isValid(configKey)) return getCurrentValue(configKey);
-		return getDefaultValue(configKey);
+		
+		String defaultValue = getDefaultValueMap().get(configKey);
+		String currentValue = getCurrentValueMap().get(configKey);
+		ConfigChecker checker = getConfigCheckerMap().get(configKey);
+		
+		Objects.requireNonNull(checker, DwarfUtil.getStringField(StringFieldKey.ConfigReflect_1));
+		
+		return checker.isValid(currentValue) ? currentValue : defaultValue;
 	}
+	
 
 }

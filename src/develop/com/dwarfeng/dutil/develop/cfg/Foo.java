@@ -1,12 +1,7 @@
 package com.dwarfeng.dutil.develop.cfg;
 
-import java.util.Map;
-import java.util.Set;
-
 import com.dwarfeng.dutil.develop.cfg.checker.BooleanConfigChecker;
 import com.dwarfeng.dutil.develop.cfg.checker.IntegerConfigChecker;
-import com.dwarfeng.dutil.develop.cfg.gui.ConfigViewModel;
-import com.dwarfeng.dutil.develop.cfg.gui.ConfigViewObverser;
 
 final class Foo {
 
