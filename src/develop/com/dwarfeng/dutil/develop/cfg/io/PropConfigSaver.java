@@ -42,9 +42,8 @@ public class PropConfigSaver extends StreamConfigSaver implements ConfigSaver {
 	@Override
 	public void saveConfig(ConfigReflect configReflect) throws SaveFailedException {
 		Properties properties = new Properties();
-		for(Map.Entry<ConfigKey, String> entry : configReflect.getCurrentValueMap().entrySet()){
+		for(ConfigReflect.ConfigEntry entry : configReflect.entrySet()){
 			properties.put(entry.getKey().getName(), entry.getValue());
-			CT.trace(entry.getKey());
 		}
 		try {
 			properties.store(out, null);

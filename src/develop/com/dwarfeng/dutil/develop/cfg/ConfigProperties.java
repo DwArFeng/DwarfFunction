@@ -1,6 +1,4 @@
-package com.dwarfeng.dutil.develop;
-
-import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
+package com.dwarfeng.dutil.develop.cfg;
 
 /**
  * ≈‰÷√ Ù–‘°£
@@ -31,6 +29,5 @@ public class ConfigProperties {
 		this.defaultValue = defaultValue;
 		this.configChecker = configChecker;
 	}
-
-
+	
 }
