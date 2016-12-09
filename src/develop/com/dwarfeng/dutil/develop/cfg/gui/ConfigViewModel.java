@@ -7,7 +7,7 @@ import com.dwarfeng.dutil.basic.prog.ObverserSet;
 import com.dwarfeng.dutil.develop.cfg.ConfigEntry;
 import com.dwarfeng.dutil.develop.cfg.ConfigKey;
 import com.dwarfeng.dutil.develop.cfg.ConfigProperties;
-import com.dwarfeng.dutil.develop.cfg.ConfigReflect;
+import com.dwarfeng.dutil.develop.cfg.ConfigModel;
 
 /**
  * 配置视图模型。
@@ -16,7 +16,7 @@ import com.dwarfeng.dutil.develop.cfg.ConfigReflect;
  * @author  DwArFeng
  * @since 1.8
  */
-public interface ConfigViewModel extends Iterable<ConfigEntry>, ConfigReflect, ObverserSet<ConfigViewObverser>{
+public interface ConfigViewModel extends Iterable<ConfigEntry>, ConfigModel, ObverserSet<ConfigViewObverser>{
 	
 	/**
 	 * 该模型中指定位置的配置入口。
@@ -60,13 +60,13 @@ public interface ConfigViewModel extends Iterable<ConfigEntry>, ConfigReflect, O
 	 * </pre>
 	 * @param index 指定的位置。
 	 * @param configKey 指定的配置键。
-	 * @param configProperties 指定的配置属性。
+	 * @param entry 配置入口。
 	 * @return 该操作是否对该配置映射造成了改变。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws UnsupportedOperationException 该配置映射不支持此操作。
 	 * @throws IndexOutOfBoundsException 位置越界。
 	 */
-	public boolean add(int index, ConfigKey configKey, ConfigProperties configProperties);
+	public boolean add(int index, ConfigEntry entry);
 	
 	/**
 	 * TODO 该注释未完善。

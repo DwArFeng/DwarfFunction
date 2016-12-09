@@ -33,7 +33,7 @@ public final class ConfigUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 配置入口中含有不合法元素。
 	 */
-	public static ConfigPerformModel newConfigPerformModel(Iterable<ConfigElements> entries){
+	public static MapConfigModel newConfigPerformModel(Iterable<ConfigElements> entries){
 		Objects.requireNonNull(entries, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_0));
 		checkValid(entries);
 		return new InnerConfigPerformModel(entries);
@@ -48,12 +48,12 @@ public final class ConfigUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 配置入口中含有不合法元素。
 	 */
-	public static ConfigPerformModel newConfigPerformModel(ConfigElements[] entries){
+	public static MapConfigModel newConfigPerformModel(ConfigElements[] entries){
 		Objects.requireNonNull(entries, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_0));
 		return newConfigPerformModel(ArrayUtil.array2Iterable(entries));
 	}
 	
-	private static final class InnerConfigPerformModel implements ConfigPerformModel{
+	private static final class InnerConfigPerformModel implements MapConfigModel{
 		
 		private final Set<ConfigPerformObverser> obversers = Collections.newSetFromMap(new WeakHashMap<>());
 		private final Map<ConfigKey, ConfigProperties> map;

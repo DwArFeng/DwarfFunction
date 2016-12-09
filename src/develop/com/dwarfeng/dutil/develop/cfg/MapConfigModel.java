@@ -8,16 +8,12 @@ import com.dwarfeng.dutil.basic.prog.ObverserSet;
 
 /**
  * 配置表现模型。
- * <p> 该模型注重性能，相应速度较快，且能够注册以表现为主的观察器。
- * <br> 该模型以松散的方式实现部分 Map 功能，但是其本身不属于 Map 。
- * <p> 配置站是整个配置映射体系的核心，配置映射体系在该接口中被实现。
- * <br> 配置表现模型可以返回映射体系的三套映射，但是这些映射不可被更改。
  * <p> 注意：配置表现模型禁止 null 配置键，多数试图使用 null 作为配置键的传入对象的行为
  * 将会导致 <code> NullPointException </code>。
  * @author DwArFeng
  * @since 1.8
  */
-public interface ConfigPerformModel extends ConfigReflect, ObverserSet<ConfigPerformObverser>{
+public interface MapConfigModel extends ConfigModel, ObverserSet<ConfigPerformObverser>{
 	
 	/**
 	 * 控制站点中是否包含指定的配置键。
@@ -26,13 +22,6 @@ public interface ConfigPerformModel extends ConfigReflect, ObverserSet<ConfigPer
 	 * @return 是否包含。
 	 */
 	public boolean containsKey(ConfigKey configKey);
-	
-	/**
-	 * 返回映射中包含映射关系的Set视图。
-	 * <p> 该Set视图是只读的，调用Set中的任意修改方法将会抛出 {@link UnsupportedOperationException}。
-	 * @return 映射中包含映射关系的Set视图。
-	 */
-	public Set<ConfigEntry> entrySet();
 	
 	/**
 	 * 获取配置的键集合。
