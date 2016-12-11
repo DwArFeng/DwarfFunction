@@ -35,23 +35,4 @@ public class PropConfigSaver extends StreamConfigSaver implements ConfigSaver {
 		super(out);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.develop.cfg.io.ConfigSaver#saveConfig(com.dwarfeng.dutil.develop.cfg.ConfigPerformModel)
-	 */
-	@Override
-	public void saveConfig(ConfigModel configReflect) throws SaveFailedException {
-		Properties properties = new Properties();
-		for(ConfigModel.ConfigEntry entry : configReflect.entrySet()){
-			properties.put(entry.getKey().getName(), entry.getValue());
-		}
-		try {
-			properties.store(out, null);
-		} catch (IOException e) {
-			SaveFailedException sfe = new SaveFailedException(e.getMessage());
-			sfe.setStackTrace(e.getStackTrace());
-			throw sfe;
-		}
-	}
-
 }

@@ -33,7 +33,7 @@ public final class ConfigUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 配置入口中含有不合法元素。
 	 */
-	public static MapConfigModel newConfigPerformModel(Iterable<ConfigElements> entries){
+	public static MapConfigModel newConfigPerformModel(Iterable<ConfigItem> entries){
 		Objects.requireNonNull(entries, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_0));
 		checkValid(entries);
 		return new InnerConfigPerformModel(entries);
@@ -48,7 +48,7 @@ public final class ConfigUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 配置入口中含有不合法元素。
 	 */
-	public static MapConfigModel newConfigPerformModel(ConfigElements[] entries){
+	public static MapConfigModel newConfigPerformModel(ConfigItem[] entries){
 		Objects.requireNonNull(entries, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_0));
 		return newConfigPerformModel(ArrayUtil.array2Iterable(entries));
 	}
@@ -58,9 +58,9 @@ public final class ConfigUtil {
 		private final Set<ConfigPerformObverser> obversers = Collections.newSetFromMap(new WeakHashMap<>());
 		private final Map<ConfigKey, ConfigProperties> map;
 		
-		public InnerConfigPerformModel(Iterable<ConfigElements> entries) {
+		public InnerConfigPerformModel(Iterable<ConfigItem> entries) {
 			map = new HashMap<>();
-			for(ConfigElements entry : entries){
+			for(ConfigItem entry : entries){
 				ConfigKey configKey = entry.getConfigKey();
 				String defaultValue = entry.getDefaultValue();
 				ConfigChecker checker = entry.getConfigChecker();
@@ -81,7 +81,7 @@ public final class ConfigUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 配置入口中含有不合法元素。
 	 */
-	public static ConfigViewModel newConfigViewModel(Iterable<ConfigElements> entries){
+	public static ConfigViewModel newConfigViewModel(Iterable<ConfigItem> entries){
 		Objects.requireNonNull(entries, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_0));
 		checkValid(entries);
 		return new InnerConfigViewModel(entries);
@@ -96,7 +96,7 @@ public final class ConfigUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException 配置入口中含有不合法元素。
 	 */
-	public static ConfigViewModel newConfigViewModell(ConfigElements[] entries){
+	public static ConfigViewModel newConfigViewModell(ConfigItem[] entries){
 		Objects.requireNonNull(entries, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_0));
 		return newConfigViewModel(ArrayUtil.array2Iterable(entries));
 	}
@@ -107,10 +107,10 @@ public final class ConfigUtil {
 		private final List<ConfigKey> ckList;
 		private final List<ConfigProperties> cpList;
 
-		public InnerConfigViewModel(Iterable<ConfigElements> entries) {
+		public InnerConfigViewModel(Iterable<ConfigItem> entries) {
 			this.ckList = new ArrayList<>();
 			this.cpList = new ArrayList<>();
-			for(ConfigElements entry : entries){
+			for(ConfigItem entry : entries){
 				ConfigKey configKey = entry.getConfigKey();
 				String defaultValue = entry.getDefaultValue();
 				ConfigChecker checker = entry.getConfigChecker();
@@ -125,8 +125,8 @@ public final class ConfigUtil {
 
 	
 	
-	private static void checkValid(Iterable<ConfigElements> entries){
-		for(ConfigElements entry : entries){
+	private static void checkValid(Iterable<ConfigItem> entries){
+		for(ConfigItem entry : entries){
 			if(
 					Objects.isNull(entry.getConfigKey()) || 
 					Objects.isNull(entry.getConfigChecker()) ||

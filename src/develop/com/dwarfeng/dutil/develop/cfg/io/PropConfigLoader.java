@@ -34,28 +34,5 @@ public class PropConfigLoader extends StreamConfigLoader implements ConfigLoader
 	public PropConfigLoader(InputStream in) throws IOException {
 		super(in);
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.develop.cfg.io.ConfigLoader#loadConfig()
-	 */
-	@Override
-	public Map<ConfigKey, String> loadConfig() throws LoadFailedException {
-		Properties properties = new Properties();
-		try {
-			properties.load(this.in);
-		} catch (IOException e) {
-			LoadFailedException lfe = new LoadFailedException(e.getMessage());
-			lfe.setStackTrace(e.getStackTrace());
-			throw lfe;
-		}
-		Map<ConfigKey, String> map = new LinkedHashMap<>();
-		for(Entry<Object, Object> entry : properties.entrySet()){
-			ConfigKey key = new ConfigKey(entry.getKey().toString());
-			String value = entry.getValue().toString();
-			map.put(key, value);
-		}
-		return map;
-	}
 	
 }
