@@ -11,7 +11,7 @@ import com.dwarfeng.dutil.basic.prog.ObverserSet;
  * @author  DwArFeng
  * @since 1.8
  */
-public interface ConfigModel extends ObverserSet<ConfigObverser>{
+public interface ConfigModel extends ObverserSet<ConfigModelObverser>{
 	
 	/**
 	 * 清空配置模型中的所有记录（可选操作）。
@@ -50,26 +50,26 @@ public interface ConfigModel extends ObverserSet<ConfigObverser>{
 	public Set<ConfigKey> configKeySet();
 	
 	/**
-	 * 向该模型中添加指定的配置条目（可选操作）。
-	 * <p> 当指定的配置条目不为 <code>null</code>且该配置条目中的配置键不存在于该模型时，可进行添加操作;
+	 * 向该模型中添加指定的配置入口（可选操作）。
+	 * <p> 当指定的配置入口不为 <code>null</code>且该配置入口中的配置键不存在于该模型时，可进行添加操作;
 	 * 否则不进行任何操作。
-	 * @param configItem 指定的配置条目。
+	 * @param configEntry 指定的配置入口。
 	 * @return 该操作是否对模型产生了变更。
 	 * @throws UnsupportedOperationException 如果配置模型不支持该操作。
 	 */
-	public boolean add(ConfigItem configItem);
+	public boolean add(ConfigEntry configEntry);
 	
 	/**
-	 * 向该模型中添加指定的配置条目（可选操作）。
-	 * <p> 当指定的配置条目不为 <code>null</code>且该配置条目中的配置键不存在于该模型时，可进行添加操作;
+	 * 向该模型中添加指定的配置入口（可选操作）。
+	 * <p> 当指定的配置入口不为 <code>null</code>且该配置入口中的配置键不存在于该模型时，可进行添加操作;
 	 * 否则不进行任何操作。
-	 * <p> 该方法会试图添加 Collection 中所有的配置条目。
-	 * @param configItems 指定的配置条目 Collection 。
+	 * <p> 该方法会试图添加 Collection 中所有的配置入口。
+	 * @param configEntries 指定的配置入口 Collection 。
 	 * @return 该操作是否对模型产生了变更。
 	 * @throws UnsupportedOperationException 如果配置模型不支持该操作。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public boolean addAll(Collection<ConfigItem> configItems);
+	public boolean addAll(Collection<ConfigEntry> configEntries);
 	
 	/**
 	 * 移除该模型中指定的配置键（可选操作）。

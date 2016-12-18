@@ -304,11 +304,6 @@ public enum StringFieldKey{
 	/**ConfigKey类第0号文本字段*/
 	ConfigKey_0,
 	
-	/**ConfigReflect类第0号文本字段*/
-	ConfigReflect_0,
-	/**ConfigReflect类第1号文本字段*/
-	ConfigReflect_1,
-	
 	/**SwingUtil类第0号文本字段*/
 	SwingUtil_0,
 	
@@ -321,4 +316,7 @@ public enum StringFieldKey{
 	ConfigTablePanel_0,
 	/**ConfigTablePanel类第1号文本字段*/
 	ConfigTablePanel_1,
+	
+	/**DefaultConfigModel类第0号文本字段*/
+	DefaultConfigModel_0,
 }

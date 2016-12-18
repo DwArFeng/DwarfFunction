@@ -5,7 +5,7 @@ import com.dwarfeng.dutil.develop.cfg.checker.IntegerConfigChecker;
 
 final class Foo {
 
-	public enum Cfg implements ConfigItem{
+	public enum Cfg implements ConfigEntry{
 		CFG_0("Config.0", "FALSE", new BooleanConfigChecker()),
 		CFG_1("Config.1", "12450", new IntegerConfigChecker()),
 		
