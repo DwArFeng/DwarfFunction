@@ -41,3 +41,4 @@ Alpha_0.4.0
 	新增 dutil.develop.cfg 包，用于程序的配置功能，具体功能请参阅API。
 	新增 dutil.basic.gui.swing.SwingUtil 提供swing工具的常用方法。
 	修改 dutil.demo.com.dwarfeng.dutil.demo.basic.ClassUtilDemo，将其实例子类封闭。
+	更改工具包中的资源位置，以避免潜在的资源路径冲突。

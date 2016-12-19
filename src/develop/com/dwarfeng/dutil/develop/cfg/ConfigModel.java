@@ -109,7 +109,7 @@ public interface ConfigModel extends ObverserSet<ConfigModelObverser>{
 	
 	/**
 	 * 判断一个值对于该模型来说是否合法。
-	 * <p> 如果指定的键为 <code>null</code>，或者
+	 * <p> 如果指定的键为 <code>null</code>，或者该模型中不存在指定的配置键，则返回 <code>false</code>。
 	 * @param configKey 指定的配置键。
 	 * @param value 指定的值。
 	 * @return 指定的值是否合适指定的配置键。
