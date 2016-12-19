@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+import com.dwarfeng.dutil.basic.cna.ArrayUtil;
 import com.dwarfeng.dutil.basic.io.CT;
 import com.dwarfeng.dutil.basic.io.CT.OutputType;
 import com.dwarfeng.dutil.basic.prog.DefaultVersion;
@@ -33,7 +34,7 @@ public final class DwarfUtil {
 	//禁止外部实例化
 	private DwarfUtil(){}
 
-	private static final String SF_PATH = "resource/lang/stringField";
+	private static final String SF_PATH = "com/dwarfeng/dutil/resource/lang/stringField";
 	
 	private static final Version version = new DefaultVersion.Builder()
 			.type(VersionType.ALPHA).firstVersion((byte) 0).secondVersion((byte) 4).thirdVersion((byte) 0)
