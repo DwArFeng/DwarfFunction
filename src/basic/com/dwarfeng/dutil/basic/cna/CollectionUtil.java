@@ -603,6 +603,33 @@ public final class CollectionUtil {
 		return false;
 	}
 	
+	/**
+	 * 要求指定的集合不能含有 <code>null</code>元素。
+	 * <p> 入口指定的 <code>collection</code>中含有 <code>null</code>元素，
+	 * 则抛出 {@link NullPointerException}。
+	 * @param collection  指定的集合元素。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 * @throws NullPointerException <code>collection</code> 中含有 <code>null</code>元素。
+	 */
+	public static void requireNotContainsNull(Collection<?> collection){
+		Objects.requireNonNull(collection, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_2));
+		if(conatinsNull(collection)) throw new NullPointerException();
+	}
+	
+	/**
+	 * 要求指定的集合不能含有 <code>null</code>元素。
+	 * <p> 入口指定的 <code>collection</code>中含有 <code>null</code>元素，
+	 * 则抛出拥有指定异常信息的 {@link NullPointerException}。
+	 * @param collection 指定的集合元素。
+	 * @param message 指定的异常信息。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 * @throws NullPointerException <code>collection</code> 中含有 <code>null</code>元素。
+	 */
+	public static void requireNotContainsNull(Collection<?> collection, String message){
+		Objects.requireNonNull(collection, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_2));
+		if(conatinsNull(collection)) throw new NullPointerException(message);
+	}
+	
 	private static final class EnumerationIterator<T> implements Iterator<T>{
 
 		private final Enumeration<T> enumeration;
@@ -683,37 +710,10 @@ public final class CollectionUtil {
 		return new IteratorEnumeration<>(iterator);
 	}
 	
-	private static final class ArrayIterator<T> implements Iterator<T>{
-		
-		private final T[] arr;
-		private int index = 0;
-		
-		public ArrayIterator(T[] arr) {
-			this.arr = arr;
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * @see java.util.Iterator#hasNext()
-		 */
-		@Override
-		public boolean hasNext() {
-			return index < arr.length;
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * @see java.util.Iterator#next()
-		 */
-		@Override
-		public T next() {
-			return arr[index ++];
-		}
-		
-	}
-	
 	/**
-	 * 将一个数组转化为一个迭代器。
+	 * <b> 已过时 </b>
+	 * 该方法的功能与该工具包的功能不符，已经停止使用，可以用类似的方法 {@link ArrayUtil#array2Iterable(Object[])}代替。
+	 * <p>将一个数组转化为一个迭代器。
 	 * <p> 虽然数组可以使用 for-each 循环，但是数组不可以作为 {@link Iterable} 对象进行参数传递，该方法为了解决这一问题，
 	 * 可以将一个数组转化为一个 {@link Iterator}对象，方便某些需要传入迭代器的场合。
 	 * @param array 指定的数组。
@@ -721,9 +721,10 @@ public final class CollectionUtil {
 	 * @return 由指定的数组转化而成的迭代器。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
+	@Deprecated
 	public static<T> Iterator<T> array2Iterator(T[] array){
 		Objects.requireNonNull(array, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_11));
-		return new ArrayIterator<T>(array);
+		return ArrayUtil.array2Iterable(array).iterator();
 	}
 	
 	/**

@@ -60,7 +60,7 @@ public class JointIterator<T> implements Iterator<T> {
 		 */
 		public Builder<T> append(T[] array){
 			Objects.requireNonNull(array, DwarfUtil.getStringField(StringFieldKey.JointIterator_2));
-			iteratorList.add(CollectionUtil.array2Iterator(array));
+			iteratorList.add(ArrayUtil.array2Iterable(array).iterator());
 			return this;
 		}
 		

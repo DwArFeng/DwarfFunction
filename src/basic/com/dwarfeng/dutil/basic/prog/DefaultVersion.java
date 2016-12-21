@@ -20,10 +20,13 @@ public class DefaultVersion implements Version {
 	protected final VersionType type;
 	/**第一个版本号*/
 	protected final byte firstVersion;
-	/***/
+	/**第二个版本号*/
 	protected final byte secondVersion;
+	/**第三个版本号*/
 	protected final byte thirdVersion;
+	/**创建日期*/
 	protected final String buildDate;
+	/**创建版本*/
 	protected final char buildVersion;
 	
 	/**

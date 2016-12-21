@@ -2,6 +2,9 @@ package com.dwarfeng.dutil.basic;
 
 /**
  * 关于这个工具包的所有异常文本字段的主键枚举。
+ * <p> 此枚举是对内使用的，它的主要作用是返回程序中所需要的一些字段（尤其是异常字段）。
+ * <br> 请不要在外部程序中调用此包的枚举，因为该包主要是对内使用，其本身不保证兼容性。
+ * <p> <b>注意：</b> 该包在设计的时候不考虑兼容性，当发生不向上兼容的改动时，作者没有义务在变更日志中说明。
  * @author DwArFeng
  * @since 1.8
  */
@@ -70,6 +73,8 @@ public enum StringFieldKey{
 	ArrayUtil_0,
 	/**ArrayUtil类第1号文本字段*/
 	ArrayUtil_1,
+	/**ArrayUtil类第2号文本字段*/
+	ArrayUtil_2,
 	
 	/**FothAlgebraUtill类第0号文本字段*/
 	FothAlgebraUtil_0,
@@ -275,5 +280,52 @@ public enum StringFieldKey{
 	JointIterator_1,
 	/**JointIterator类第2号文本字段*/
 	JointIterator_2,
+	
+	/**NumberUtil类第0号文本字段*/
+	NumberUtil_0,
+	/**NumberUtil类第1号文本字段*/
+	NumberUtil_1,
+	
+	/**ConfigUtil类第0号文本字段*/
+	ConfigUtil_0,
+	/**ConfigUtil类第1号文本字段*/
+	ConfigUtil_1,
+	/**ConfigUtil类第2号文本字段*/
+	ConfigUtil_2,
+	/**ConfigUtil类第3号文本字段*/
+	ConfigUtil_3,
 
+	/**StreamConfigLoader类第0号文本字段*/
+	StreamConfigLoader_0,
+	
+	/**StreamConfigSaver类第0号文本字段*/
+	StreamConfigSaver_0,
+	
+	/**ConfigKey类第0号文本字段*/
+	ConfigKey_0,
+	
+	/**SwingUtil类第0号文本字段*/
+	SwingUtil_0,
+	
+	/**ConfigViewModel类第0号文本字段*/
+	ConfigViewModel_0,
+	/**ConfigViewModel类第1号文本字段*/
+	ConfigViewModel_1,
+	
+	/**ConfigTablePanel类第0号文本字段*/
+	ConfigTablePanel_0,
+	/**ConfigTablePanel类第1号文本字段*/
+	ConfigTablePanel_1,
+	
+	/**DefaultConfigModel类第0号文本字段*/
+	DefaultConfigModel_0,
+	/**DefaultConfigModel类第1号文本字段*/
+	DefaultConfigModel_1,
+	/**DefaultConfigModel类第2号文本字段*/
+	DefaultConfigModel_2,
+	/**DefaultConfigModel类第3号文本字段*/
+	DefaultConfigModel_3,
+	
+	/**PropertiesConfigSaver类第0号文本字段*/
+	PropertiesConfigSaver_0,
 }
