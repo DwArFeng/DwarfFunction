@@ -144,7 +144,7 @@ public class ConfigModelDemo {
 					StreamConfigLoader loader = null;
 					try{
 						loader = new PropertiesConfigLoader(this.getClass().getResourceAsStream("/com/dwarfeng/dutil/resource/demo/ConfigModelDemo_1.properties"));
-						configModel.setAllCurrentValue(loader.loadConfig());
+						loader.loadConfig(configModel);
 					}catch (Exception e1) {
 						e1.printStackTrace();
 					}finally {
@@ -164,7 +164,7 @@ public class ConfigModelDemo {
 					StreamConfigLoader loader = null;
 					try{
 						loader = new PropertiesConfigLoader(this.getClass().getResourceAsStream("/com/dwarfeng/dutil/resource/demo/ConfigModelDemo_2.properties"));
-						configModel.setAllCurrentValue(loader.loadConfig());
+						loader.loadConfig(configModel);
 					}catch (Exception e1) {
 						e1.printStackTrace();
 					}finally {
@@ -184,7 +184,7 @@ public class ConfigModelDemo {
 					StreamConfigLoader loader = null;
 					try{
 						loader = new PropertiesConfigLoader(this.getClass().getResourceAsStream("/com/dwarfeng/dutil/resource/demo/ConfigModelDemo_3.properties"));
-						configModel.setAllCurrentValue(loader.loadConfig());
+						loader.loadConfig(configModel);
 					}catch (Exception e1) {
 						e1.printStackTrace();
 					}finally {
