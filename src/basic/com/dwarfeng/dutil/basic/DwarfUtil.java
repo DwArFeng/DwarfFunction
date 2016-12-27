@@ -36,8 +36,8 @@ public final class DwarfUtil {
 	private static final String SF_PATH = "com/dwarfeng/dutil/resource/lang/stringField";
 	
 	private static final Version version = new DefaultVersion.Builder()
-			.type(VersionType.BETA).firstVersion((byte) 0).secondVersion((byte) 0).thirdVersion((byte) 0)
-			.buildDate("20161221").buildVersion('A')
+			.type(VersionType.BETA).firstVersion((byte) 0).secondVersion((byte) 0).thirdVersion((byte) 1)
+			.buildDate("20161227").buildVersion('A')
 			.build();
 	
 	private static ResourceBundle sf = ResourceBundle.getBundle(SF_PATH,Locale.getDefault(),CT.class.getClassLoader());
