@@ -48,8 +48,10 @@ Beta_0.0.0_20161221_build_A
 Beta_0.0.1_20161227_build_A
 	废弃 dutil.develop.cfg.io.ConfigLoader 中 Map<ConfigKey, String> loadConfig() 方法。
 		将其改为 void loadConfig(ConfigModel)，以对齐同包中 ConfigSaver 的 void saveConfig(ConfigModel)方法。
-	增加 dutil.develop.cfg.ConfigUtil 中的方法 ConfigModel unmodifiableConfigModel(ConfigModel)，用于根据指定的配置模型生成一个不可更改的配置模型。
+	增加 dutil.develop.cfg.ConfigUtil 中的方法 ConfigModel unmodifiableConfigModel(ConfigModel):
+		用于根据指定的配置模型生成一个不可更改的配置模型。
 	更改 dtuil.demo 包中的部分代码。
+	从现在开始，api文档的格式将变成 dwarfutil-api-beta-0.0.1.a
 	
 	
 	
