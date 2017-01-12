@@ -13,7 +13,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 /**
  * ƒ¨»œ≈‰÷√ƒ£–Õ°£
  * @author  DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class DefaultConfigModel extends AbstractConfigModel {
 
@@ -238,6 +238,8 @@ public class DefaultConfigModel extends AbstractConfigModel {
 	@Override
 	public boolean isValueValid(ConfigKey configKey, String value) {
 		if(Objects.isNull(configKey)) return false;
+		if(Objects.isNull(value)) return false;
+		
 		if(! firmPropsMap.containsKey(configKey)) return false;
 		
 		String currentValue = getCurrentValue(configKey);
@@ -301,6 +303,8 @@ public class DefaultConfigModel extends AbstractConfigModel {
 	@Override
 	public boolean setCurrentValue(ConfigKey configKey, String currentValue) {
 		if(Objects.isNull(configKey)) return false;
+		if(Objects.isNull(currentValue)) return false;
+		
 		if(! containsKey(configKey)) return false;
 		
 		String oldOne = currentValueMap.get(configKey);

@@ -7,7 +7,7 @@ import com.dwarfeng.dutil.math.AbstractMathObject;
 /**
  * ¶þÎ¬µã¡£
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class Point2d extends AbstractMathObject implements Dimension2d{
 

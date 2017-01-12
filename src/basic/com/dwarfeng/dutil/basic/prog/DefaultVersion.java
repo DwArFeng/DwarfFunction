@@ -5,7 +5,7 @@ package com.dwarfeng.dutil.basic.prog;
  * <p> 这是我最常用的版本形式。
  * <br> 版本的形式如下：<code>alpha_0.3.2_160701_build_A</code>
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class DefaultVersion implements Version {
 
@@ -32,7 +32,7 @@ public class DefaultVersion implements Version {
 	/**
 	 * 默认版本的构造者。
 	 * @author DwArFeng
-	 * @since 1.8
+	 * @since 0.0.2-beta
 	 */
 	public static class Builder implements Buildable<DefaultVersion>{
 		

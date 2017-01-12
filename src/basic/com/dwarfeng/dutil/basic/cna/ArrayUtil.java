@@ -14,7 +14,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
  * <p> 该包中包含关于对数组进行操作的常用方法。
  * <p> 由于是只含有静态方法的工具包，所以该类无法被继承。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public final class ArrayUtil {
 	
@@ -369,7 +369,7 @@ public final class ArrayUtil {
 	
 	/**
 	 * 对float数组进行打包。
-	 * <p> 该方法由于不符合命名规范，已经用 {@link #pack(float[])} 代替。
+	 * @deprecated 该方法由于不符合命名规范，已经用 {@link #pack(float[])} 代替。
 	 * @param target 指定的float数组。
 	 * @return 打包后得到的封包数组。
 	 * @see #pack(float[])
@@ -398,7 +398,7 @@ public final class ArrayUtil {
 	
 	/**
 	 * 对double数组进行打包。
-	 * <p> 由于该方法不符合命名规范，已经用 {@link #pack(double[])} 代替。
+	 * @deprecated 由于该方法不符合命名规范，已经用 {@link #pack(double[])} 代替。
 	 * @param target 指定的double数组。
 	 * @return 打包后得到的封包数组。
 	 * @see #pack(double[])
@@ -426,7 +426,7 @@ public final class ArrayUtil {
 	
 	/**
 	 * 对char数组进行打包。
-	 * <p> 由于该方法不符合命名规范，已经用 {@link #Pack(char[])} 代替。
+	 * @deprecated 由于该方法不符合命名规范，已经用 {@link #Pack(char[])} 代替。
 	 * @param target 指定的char数组。
 	 * @return 打包后得到的封包数组。
 	 * @see #pack(char[])
@@ -454,7 +454,7 @@ public final class ArrayUtil {
 	
 	/**
 	 * 对boolean数组进行打包。
-	 * <p> 由于该方法不符合命名规范，已经用 {@link #pack(boolean[])} 代替。
+	 * @deprecated 由于该方法不符合命名规范，已经用 {@link #pack(boolean[])} 代替。
 	 * @param target 指定的boolean数组。
 	 * @return 打包后得到的封包数组。
 	 * @see #pack(boolean[])

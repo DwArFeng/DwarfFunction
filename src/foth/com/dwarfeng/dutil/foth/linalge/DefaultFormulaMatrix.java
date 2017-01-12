@@ -18,7 +18,7 @@ import com.dwarfeng.dutil.math.linalge.Matrix;
  * 矩阵类。
  * <p> {@link FormulaMatrix}的默认实现。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaMatrix{
 	
@@ -107,7 +107,7 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 	 * <p> 双精度浮点构造器会初始化一个指定行或者列的二维双精度浮点数组，其中的初始值为0。
 	 * <br> 可以给构造器中的二维数组指定的位置赋值。
 	 * @author DwArFeng
-	 * @since 1.8
+	 * @since 0.0.2-beta
 	 */
 	public final static class DoubleBuilder implements Buildable<DefaultFormulaMatrix>{
 		
@@ -170,7 +170,7 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 	 * <p> 值对象构造器会初始化一个指定行或者列的二维值对象数组，其中的初始值为 {@link QuickFothValue#ZERO}。
 	 * <br> 可以给构造器中的二维数组指定的位置赋值。
 	 * @author DwArFeng
-	 * @since 1.8
+	 * @since 0.0.2-beta
 	 */
 	public final static class FValueBuilder implements Buildable<DefaultFormulaMatrix>{
 		

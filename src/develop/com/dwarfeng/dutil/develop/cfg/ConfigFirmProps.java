@@ -4,7 +4,7 @@ package com.dwarfeng.dutil.develop.cfg;
  * 配置的固定属性。
  * <p> 该结构定义了一个配置应该拥有的所有固定属性，这些属性在配置生成开始，就不应该再发生改变。
  * @author  DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public interface ConfigFirmProps {
 

@@ -5,7 +5,7 @@ import com.dwarfeng.dutil.basic.str.Name;
 /**
  * 编程中常见的版本类型。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public enum VersionType implements Name{
 

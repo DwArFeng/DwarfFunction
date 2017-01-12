@@ -10,7 +10,7 @@ import com.dwarfeng.dutil.basic.str.Tag;
  * 标签运行器。
  * <p> 该工具类对 {@link Runnable} 和 {@link Tag} 进行封装，使得一个可运行对象拥有名称和描述。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class TagRunnable implements Runnable, Tag{
 	

@@ -10,7 +10,7 @@ import com.dwarfeng.dutil.math.linalge.MatrixLike;
  * <p> 其实现类可以被看做一个矩阵阵列。
  * <p>
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public interface FormulaMatrixLike extends MathObject, NumberBased, MatrixLike{
 	

@@ -3,7 +3,7 @@ package com.dwarfeng.dutil.basic.str;
 /**
  * ¿ÉÃèÊö½Ó¿Ú¡£
  * @author DwArFeng
- * @since 1.7
+ * @since 0.0.2-beta
  */
 public interface Description {
 	/**

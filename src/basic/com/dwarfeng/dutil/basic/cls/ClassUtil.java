@@ -13,7 +13,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
  * 类功能包。
  * <p>该包封装了一些{@link Class}包中没有的功能，比如列出一个包的所有直到{@link Object}的所有父类。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public final class ClassUtil {
 	

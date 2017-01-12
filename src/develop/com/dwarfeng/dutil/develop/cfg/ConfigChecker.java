@@ -7,12 +7,13 @@ package com.dwarfeng.dutil.develop.cfg;
  * {@link #nonValid(String)}， 如果重写这个方法，需要保证：对于任意的<code>String value</code>
  * 值（包括 <code>null</code> 值），需要<code>isValid(value) == ! nonValid(value)</code>。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public interface ConfigChecker {
 
 	/**
 	 * 检查指定的值是否有效。
+	 * <p> 该方法需要遵守约定： <code>null</code>值在任何情况下都返回 <code>false</code>。
 	 * @param value 指定的值。
 	 * @return 指定的值是否有效。
 	 */
@@ -20,6 +21,7 @@ public interface ConfigChecker {
 	
 	/**
 	 * 检查指定的值是否无效。
+	 * <p> 该方法需要遵守约定： <code>null</code>值在任何情况下都返回 <code>true</code>。
 	 * @param value 指定的值。
 	 * @return 指定的值是否无效。
 	 */

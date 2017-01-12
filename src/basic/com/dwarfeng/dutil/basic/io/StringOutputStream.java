@@ -17,7 +17,7 @@ import com.dwarfeng.dutil.basic.num.NumberUtil;
  * 字符串构造输出流。
  * <p> 该输出流将输出的数据存储到字符串构造器中，是输出流与文本的桥梁。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class StringOutputStream extends OutputStream {
 	

@@ -35,7 +35,7 @@ import com.dwarfeng.dutil.basic.num.NumberUtil;
  * <br>需要注意的是，此控制台的效率远远低于系统控制台，在同等输出内容下，此控制台的花费时间大约为系统控制台的10倍。
  * 
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class JConsole extends JPanel{
 	

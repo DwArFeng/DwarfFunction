@@ -10,7 +10,7 @@ import com.dwarfeng.dutil.basic.str.Name;
  * 配置键。
  * <p> 配置键是一个 {@link Name}对象，封装一个字符串。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class ConfigKey implements Name{
 

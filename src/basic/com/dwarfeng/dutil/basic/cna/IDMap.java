@@ -18,7 +18,7 @@ import java.util.Set;
  * 对于对象进行没有时间要求的区分。
  * <br>·自增型的增长方式则保证每次注册时ID按照严格的自增顺序进行增长，如果某个映射被删除，则该ID永远不会再使用，这种分配方式同时保证了空间和时间的唯一性。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  * @param <T> 对象的泛型。
  * 
  */
@@ -27,7 +27,7 @@ class IDMap<T> {
 	/**
 	 * 用以表示
 	 * @author DwArFeng
-	 * @since 1.8
+	 * @since 0.0.2-beta
 	 */
 	public enum CodingType{
 		/**表示编码方式为紧凑型，这时的编码总是选择能够使用的最小的数来进行编码*/

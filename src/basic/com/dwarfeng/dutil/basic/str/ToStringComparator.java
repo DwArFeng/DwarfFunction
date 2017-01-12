@@ -9,7 +9,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 /**
  * 对象的toString比较器，以两个对象的<code>toString()</code>方法比较其大小。
  * @author DwArFeng
- * @since 1.7
+ * @since 0.0.2-beta
  */
 public final class ToStringComparator<T> implements Comparator<T> {
 

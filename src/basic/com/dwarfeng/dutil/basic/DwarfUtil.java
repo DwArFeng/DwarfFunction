@@ -21,7 +21,7 @@ import com.dwarfeng.dutil.basic.prog.VersionType;
  * 
  * <p> 该包中的方法都是线程不安全的，如果需要多线程调用该包中的方法，请使用外部同步代码。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public final class DwarfUtil {
 	
@@ -36,7 +36,7 @@ public final class DwarfUtil {
 	private static final String SF_PATH = "com/dwarfeng/dutil/resource/lang/stringField";
 	
 	private static final Version version = new DefaultVersion.Builder()
-			.type(VersionType.BETA).firstVersion((byte) 0).secondVersion((byte) 0).thirdVersion((byte) 1)
+			.type(VersionType.BETA).firstVersion((byte) 0).secondVersion((byte) 0).thirdVersion((byte) 2)
 			.buildDate("20161227").buildVersion('A')
 			.build();
 	

@@ -25,14 +25,14 @@ import com.dwarfeng.dutil.develop.cfg.io.StreamConfigLoader;
  * {@link ConfigModel}的代码示例。
  * <p> 该示例将生成一个窗体，这个窗体的外观使用配置来记录。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class ConfigModelDemo {
 	
 	/**
 	 * 该配置是一个程序中，关于一个窗体的外观的配置。
 	 * @author DwArFeng
-	 * @since 1.8
+	 * @since 0.0.2-beta
 	 */
 	private enum ApperanceConfig implements ConfigEntry{
 		
@@ -144,7 +144,7 @@ public class ConfigModelDemo {
 					StreamConfigLoader loader = null;
 					try{
 						loader = new PropertiesConfigLoader(this.getClass().getResourceAsStream("/com/dwarfeng/dutil/resource/demo/ConfigModelDemo_1.properties"));
-						loader.loadConfig(configModel);
+						loader.load(configModel);
 					}catch (Exception e1) {
 						e1.printStackTrace();
 					}finally {
@@ -164,7 +164,7 @@ public class ConfigModelDemo {
 					StreamConfigLoader loader = null;
 					try{
 						loader = new PropertiesConfigLoader(this.getClass().getResourceAsStream("/com/dwarfeng/dutil/resource/demo/ConfigModelDemo_2.properties"));
-						loader.loadConfig(configModel);
+						loader.load(configModel);
 					}catch (Exception e1) {
 						e1.printStackTrace();
 					}finally {
@@ -184,7 +184,7 @@ public class ConfigModelDemo {
 					StreamConfigLoader loader = null;
 					try{
 						loader = new PropertiesConfigLoader(this.getClass().getResourceAsStream("/com/dwarfeng/dutil/resource/demo/ConfigModelDemo_3.properties"));
-						loader.loadConfig(configModel);
+						loader.load(configModel);
 					}catch (Exception e1) {
 						e1.printStackTrace();
 					}finally {

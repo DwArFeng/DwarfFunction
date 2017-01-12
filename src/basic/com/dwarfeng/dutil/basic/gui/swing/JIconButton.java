@@ -8,7 +8,7 @@ import javax.swing.JButton;
 /**
  * 构造一个具有指定图像的无文字按钮，图像一经指定，不能缩放。
  * @author DwArFeng
- * @since 1.7
+ * @since 0.0.2-beta
  */
 public class JIconButton extends JButton {
 	

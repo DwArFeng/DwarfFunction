@@ -13,7 +13,7 @@ import com.dwarfeng.dutil.basic.prog.Buildable;
  * 菜单项目动作类，用该类可以快速的建立一个具有指定属性的菜单项目。
  * <p> 由于该类已经完全完成了<code>Action</code>的所有属性，因此该类不能被继承。
  * @author DwArFeng
- * @since 1.7
+ * @since 0.0.2-beta
  */
 public final class JMenuItemAction extends AbstractAction{
 
@@ -24,7 +24,7 @@ public final class JMenuItemAction extends AbstractAction{
 	/**
 	 * 菜单项目动作构造器类。
 	 * @author DwArFeng
-	 * @since 1.8
+	 * @since 0.0.2-beta
 	 */
 	public static class Builder implements Buildable<JMenuItemAction>{
 		

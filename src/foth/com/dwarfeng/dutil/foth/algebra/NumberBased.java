@@ -12,7 +12,7 @@ import com.dwarfeng.dutil.math.Region;
  * 的对象也有可能是数基的，比如矩阵，虽然不能以具体的一个数字代替，但是改变其中的数值会对矩阵
  * 造成本质的影响，因此它也是数基的。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public interface NumberBased extends MathObject, Region<FothVariable>, DFoth{
 	

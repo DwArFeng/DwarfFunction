@@ -53,5 +53,10 @@ Beta_0.0.1_20161227_build_A
 	更改 dtuil.demo 包中的部分代码。
 	从现在开始，api文档的格式将变成 dwarfutil-api-beta-0.0.1.a
 	
+Beta_0.0.2_
+	将 dutil.develop.cfg.io 包中的 ConfigLoader 和 ConfigSaver 中的方法名称更改为符合命名规范的名称。
+	ConfigModel 将禁用值为 null 的配置值。
+	新增 DefaultConfigFirmProps 为 ConfigFirmProps 接口的默认实现。
+	新增 LocaleConfigChecker，用于检验一个字符串是否合乎标准国家/地区代码的规定。
 	
 	

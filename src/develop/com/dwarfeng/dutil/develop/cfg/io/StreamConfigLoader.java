@@ -12,7 +12,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
  * 流配置读取器。
  * <p> 使用输入流实现的配置读取器。
  * @author  DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public abstract class StreamConfigLoader implements ConfigLoader, Closeable{
 

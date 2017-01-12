@@ -13,8 +13,9 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * <p> 该类是一个用于运行后台方法的工具类。这个类提供的方法允许在其开辟的一个后台线程中按照FIFO的顺序运行
  * 指定的<code>Runnable</code>序列。线程在<code>Runnable</code>序列全部运行结束之后暂停运行
  * ，在添加新的序列后重新运行。
+ * @deprecated  <code>java.util.concurrent</code> 包中拥有远比此完善的工具类，该工具类在以后的版本中不再开发，并且不应该继续使用该工具类。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class RunnerQueue<T extends Runnable> extends InnerThread {
 

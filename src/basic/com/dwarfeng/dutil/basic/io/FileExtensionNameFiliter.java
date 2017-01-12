@@ -6,7 +6,7 @@ import java.io.FileFilter;
 /**
  * 根据扩展名进行文件筛选的文件筛选器。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public final class FileExtensionNameFiliter implements FileFilter {
 

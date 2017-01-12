@@ -5,7 +5,7 @@ import com.dwarfeng.dutil.basic.num.NumberValue;
 /**
  * 数据大小枚举。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public enum DataSize implements NumberValue{
 	

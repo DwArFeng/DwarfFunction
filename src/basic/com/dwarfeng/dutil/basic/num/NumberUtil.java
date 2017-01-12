@@ -17,7 +17,7 @@ import com.dwarfeng.dutil.basic.num.unit.Angle;
  * <br> 请注意，虽然换算方法中，<code>u1</code>和<code>u2</code>可以用不同枚举中的
  * 字段，但是这样是没有意义的，请不要这样做。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public final class NumberUtil {
 

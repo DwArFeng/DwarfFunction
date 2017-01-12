@@ -5,7 +5,7 @@ import com.dwarfeng.dutil.basic.prog.Obverser;
 /**
  * ≈‰÷√π€≤Ï∆˜°£
  * @author  DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public interface ConfigModelObverser extends Obverser{
 

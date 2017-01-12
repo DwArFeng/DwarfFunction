@@ -5,6 +5,6 @@
  * 而且作者不保证该包中的类与接口的兼容性。
  * <p> <b>注意：</b> 该包在设计的时候不考虑兼容性，当发生不向上兼容的改动时，作者没有义务在变更日志中说明。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 package com.dwarfeng.dutil.demo;

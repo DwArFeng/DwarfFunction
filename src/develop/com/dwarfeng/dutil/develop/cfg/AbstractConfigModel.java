@@ -8,7 +8,7 @@ import java.util.WeakHashMap;
 /**
  * 抽象配置模型实现。
  * @author  DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public abstract class AbstractConfigModel implements ConfigModel {
 	

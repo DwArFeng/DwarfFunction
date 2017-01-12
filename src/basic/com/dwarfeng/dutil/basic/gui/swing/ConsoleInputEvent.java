@@ -8,7 +8,7 @@ import java.io.InputStream;
  * 的侦听器。
  * <br> 控制台输入事件记录如下的信息：触发事件的源对象，触发事件时输入时相关的文本，与本次事件相关的输入流。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class ConsoleInputEvent {
 

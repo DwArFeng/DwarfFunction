@@ -10,7 +10,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
  * 值比较器。
  * <p> 该比较器可比较两个值对象的值大小。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class FothValueComparator implements Comparator<FothValue> {
 

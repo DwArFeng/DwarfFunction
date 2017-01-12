@@ -9,7 +9,7 @@ import com.dwarfeng.dutil.basic.io.StringOutputStream;
 /**
  * {@link StringOutputStream} µÄÊ¾Àý¡£
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class StringOutputStreamDemo {
 	

@@ -8,7 +8,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
  * <p>当某些类中包含一些具有ID值的集合，且不允许其ID值重复。当向这些类中试图添加已经存在的ID时通常
  * 会抛出该异常。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 class DuplicateIdException extends Exception {
 

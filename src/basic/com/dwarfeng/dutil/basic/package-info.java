@@ -95,6 +95,6 @@
  * 工具包的前置包。因此，当升级该工具包时，升级前置包在原则上不影响后置包的使用。
  * 
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 package com.dwarfeng.dutil.basic;

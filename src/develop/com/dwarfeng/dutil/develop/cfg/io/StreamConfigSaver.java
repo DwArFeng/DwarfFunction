@@ -8,7 +8,7 @@ import java.io.OutputStream;
  * 流配置保存器。
  * <p> 用输出流实现的配置保存器。
  * @author  DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public abstract class StreamConfigSaver implements ConfigSaver, Closeable{
 

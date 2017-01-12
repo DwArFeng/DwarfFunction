@@ -12,8 +12,9 @@ import com.dwarfeng.dutil.basic.str.Name;
  * <br>该类中定义了一个内部线程，并且可以对其线程调用其中的方法。
  * <br>该类中可以对其中的内部线程定义启动方法、循环方法、结束方法，并可以返回线程的状态，以及返回线程本身。
  * <br>该类的有关线程的操作方法均为线程不安全，如有必要，需要在外部进行同步方法编写。
+ * @deprecated  <code>java.util.concurrent</code> 包中拥有远比此完善的工具类，该工具类在以后的版本中不再开发，并且不应该继续使用该工具类。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public abstract class InnerThread implements Name {
 	

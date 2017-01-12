@@ -5,7 +5,7 @@ import com.dwarfeng.dutil.basic.num.NumberValue;
 /**
  * ÷ ¡ø√∂æŸ°£
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public enum Mass implements NumberValue{
 	

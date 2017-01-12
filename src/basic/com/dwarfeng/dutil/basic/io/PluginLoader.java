@@ -21,7 +21,7 @@ import java.util.jar.JarFile;
  * 要想关闭的话请调用{@link PluginLoader#close()}方法，该类被关闭以后，如果继续生成加载的类的实例的话
  * 则可能出现找不到资源的情况。因此，在确保不会有新的实例生成以后，再关闭此类。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class PluginLoader<T>{
 	

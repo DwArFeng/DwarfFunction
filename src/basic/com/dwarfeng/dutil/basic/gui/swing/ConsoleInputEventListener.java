@@ -5,7 +5,7 @@ import java.util.EventListener;
 /**
  * 控制台输入的侦听器。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public interface ConsoleInputEventListener extends EventListener {
 	

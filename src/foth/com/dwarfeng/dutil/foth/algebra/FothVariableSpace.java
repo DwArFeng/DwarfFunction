@@ -30,7 +30,7 @@ import com.dwarfeng.dutil.math.Region;
  * 调用 {@link Builder#build()}方法来构造变量空间。
  * <p>两个变量空间相等的前提条件是两个变量空间的所有元素均相等。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class FothVariableSpace extends AbstractMathObject implements
 Iterable<FothVariable>, Region<FothVariable>{
@@ -43,7 +43,7 @@ Iterable<FothVariable>, Region<FothVariable>{
 	/**
 	 * 变量空间的构造器。
 	 * @author DwArFeng
-	 * @since 1.8
+	 * @since 0.0.2-beta
 	 */
 	public static class Builder implements Buildable<FothVariableSpace>{
 

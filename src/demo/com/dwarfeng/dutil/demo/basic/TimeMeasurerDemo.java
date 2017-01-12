@@ -7,7 +7,7 @@ import com.dwarfeng.dutil.basic.num.unit.Time;
 /**
  * {@link TimeMeasurer} ÀàµÄÊ¾Àý¡£
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class TimeMeasurerDemo {
 

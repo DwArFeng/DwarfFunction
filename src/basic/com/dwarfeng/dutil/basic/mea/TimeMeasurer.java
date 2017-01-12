@@ -20,14 +20,14 @@ import com.dwarfeng.dutil.basic.num.unit.Time;
  * <p> 该计时器线程安全，可以通过任何一个线程启动，并且被任何一个线程终止。但是无论如何，整个计时器只能启动一次并且
  * 在其后只能停止一次——也就是说这个计时器是一次性的，一次计时之后，需要新的实例进行下一次计时。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public final class TimeMeasurer {
 	
 	/**
 	 * 计时器的状态。
 	 * @author DwArFeng
-	 * @since 1.8
+	 * @since 0.0.2-beta
 	 */
 	protected enum Status{
 		/**没有启动*/

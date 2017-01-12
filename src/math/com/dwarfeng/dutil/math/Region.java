@@ -4,7 +4,7 @@ package com.dwarfeng.dutil.math;
  * 域。
  * <p> 域接口表明了其实现类可表示为一个有关于泛型<code>T</code>的范围。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public interface Region<T> extends MathObject{
 

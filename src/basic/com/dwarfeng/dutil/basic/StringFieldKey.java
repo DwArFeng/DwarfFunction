@@ -6,7 +6,7 @@ package com.dwarfeng.dutil.basic;
  * <br> 请不要在外部程序中调用此包的枚举，因为该包主要是对内使用，其本身不保证兼容性。
  * <p> <b>注意：</b> 该类在设计的时候不考虑兼容性，当发生不向上兼容的改动时，作者没有义务在变更日志中说明。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public enum StringFieldKey{
 	
@@ -325,4 +325,16 @@ public enum StringFieldKey{
 	
 	/**ConfigUtil类第0号文本字段*/
 	ConfigUtil_0,
+	
+	/**DefaultConfigFirmProps类第0号文本字段*/
+	DefaultConfigFirmProps_0,
+	/**DefaultConfigFirmProps类第1号文本字段*/
+	DefaultConfigFirmProps_1,
+	/**DefaultConfigFirmProps类第2号文本字段*/
+	DefaultConfigFirmProps_2,
+	
+	/**FactoriesByString类第0号文本字段*/
+	FactoriesByString_0,
+	/**FactoriesByString类第1号文本字段*/
+	FactoriesByString_1,
 }

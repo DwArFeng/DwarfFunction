@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 /**
  * 图片界面类，生成的界面被指定的图片填充。
  * @author 来源于网络
- * @since 1.7
+ * @since 0.0.2-beta
  */
 public class JImagePanel extends JPanel {	
 	

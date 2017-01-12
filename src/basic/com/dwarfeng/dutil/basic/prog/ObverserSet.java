@@ -7,7 +7,7 @@ import java.util.Set;
  * <p> 实现该接口意味着能够向其中添加、移除、清除观察器，也可以遍历集合中的所有观察器。
  * <br> 观察器常常用在 mvc 模型中。模型层常常通过遍历在其注册的观察器来广播一系列事件。而该接口则定义了一个观察器的集合应该拥有的方法。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public interface ObverserSet<T extends Obverser>{
 

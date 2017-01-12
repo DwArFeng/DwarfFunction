@@ -26,7 +26,7 @@ import com.dwarfeng.dutil.develop.cfg.ConfigModel;
  * </blockquote>
  * 其中 等号左边的是键，等号右边的是值。
  * @author  DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class PropertiesConfigLoader extends StreamConfigLoader implements ConfigLoader {
 
@@ -66,6 +66,7 @@ public class PropertiesConfigLoader extends StreamConfigLoader implements Config
 	 * @see com.dwarfeng.dutil.develop.cfg.io.ConfigLoader#loadConfig(com.dwarfeng.dutil.develop.cfg.ConfigModel)
 	 */
 	@Override
+	@Deprecated
 	public void loadConfig(ConfigModel configModel) throws LoadFailedException {
 		Objects.requireNonNull(configModel, DwarfUtil.getStringField(StringFieldKey.PropertiesConfigLoader_0));
 		
@@ -83,6 +84,15 @@ public class PropertiesConfigLoader extends StreamConfigLoader implements Config
 			lfe.setStackTrace(e.getStackTrace());
 			throw lfe;
 		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dutil.develop.cfg.io.ConfigLoader#load(com.dwarfeng.dutil.develop.cfg.ConfigModel)
+	 */
+	@Override
+	public void load(ConfigModel configModel) throws LoadFailedException {
+		loadConfig(configModel);
 	}
 	
 }

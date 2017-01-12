@@ -8,7 +8,7 @@ import com.dwarfeng.dutil.math.linalge.RowVector;
 /**
  * 保留算式格式的行向量。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public interface FormulaRowVector extends MathObject, FormulaLinalgeVector{
 	

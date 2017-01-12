@@ -8,7 +8,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 /**
  * Ä¬ÈÏ±êÇ©¡£
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class DefaultTag implements Tag{
 

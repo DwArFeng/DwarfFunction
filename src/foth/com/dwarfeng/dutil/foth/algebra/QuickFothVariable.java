@@ -11,7 +11,7 @@ import com.dwarfeng.dutil.math.AbstractMathObject;
  * <p> 该类不接受可变对象，所有传入其中的值对象都会进行取值，以<code>double</code>。
  * 的形式存储。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class QuickFothVariable extends AbstractMathObject implements FothVariable {
 	

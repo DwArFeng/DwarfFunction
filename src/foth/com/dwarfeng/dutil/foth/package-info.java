@@ -49,6 +49,6 @@
  * 进行结构上的保持，并且可以提取变量空间，方便的进行赋值操作。
  * 
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 package com.dwarfeng.dutil.foth;

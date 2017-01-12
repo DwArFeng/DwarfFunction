@@ -9,7 +9,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 /**
  * 根据{@linkplain Name}对象的名称属性进行比较的比较器。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public final class NameableComparator implements Comparator<Name> {
 

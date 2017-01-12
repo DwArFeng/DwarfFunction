@@ -7,7 +7,7 @@ import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
  * <p> 该配置值检查器对于任意的值，均返回 <code>false</code>，换句话说，
  * 该配置值检查器拒绝一切值。
  * @author  DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class FalseConfigChecker implements ConfigChecker {
 

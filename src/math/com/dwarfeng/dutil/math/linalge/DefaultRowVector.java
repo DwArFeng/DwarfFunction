@@ -9,7 +9,7 @@ import com.dwarfeng.dutil.math.AbstractMathObject;
 /**
  * ––œÚ¡ø°£
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class DefaultRowVector extends AbstractMathObject implements RowVector{
 

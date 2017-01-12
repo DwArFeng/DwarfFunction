@@ -19,7 +19,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
  * 同时，这个类时一个真正的列表的实现。
  * <p> 该类可以通过指定入口的参数来保证列表的不同实现，如用同步列表作为实现就可以保证其中方法的同步。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class MuaListModel<E> extends AbstractListModel<E> implements List<E>{
 

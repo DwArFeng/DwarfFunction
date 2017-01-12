@@ -15,7 +15,7 @@ import javax.swing.border.EmptyBorder;
  * <br> 该界面的内容面板使用的是 {@link BorderLayout}，待调试的组件始终处于界面的中间。
  * <p> 该调试器窗口按下关闭按钮，程序即结束。
  * @author  DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class JComponentTester extends JFrame {
 

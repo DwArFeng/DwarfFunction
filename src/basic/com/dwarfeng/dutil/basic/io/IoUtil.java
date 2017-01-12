@@ -9,7 +9,7 @@ import java.io.OutputStream;
 /**
  * 与IO接口有关的一些功能。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public final class IoUtil {
 	

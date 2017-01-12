@@ -9,7 +9,7 @@ import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
  * <p> 只要待检测的文本转化为大写之后 ，为 <code>TRUE</code> 或者 <code>FALSE</code> 两者之一，
  * 即为有效。
  * @author  DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class BooleanConfigChecker implements ConfigChecker {
 

@@ -6,7 +6,7 @@ import com.dwarfeng.dutil.math.MathObject;
  * 矩阵接口。
  * <p> 实现该接口就意味着该对象是一个矩阵。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public interface Matrix extends MathObject, MatrixLike{
 

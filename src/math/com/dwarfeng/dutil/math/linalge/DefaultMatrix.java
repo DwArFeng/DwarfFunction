@@ -11,7 +11,7 @@ import com.dwarfeng.dutil.math.AbstractMathObject;
  * 矩阵类。
  * <p> 该类可以表示线性代数中的矩阵。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class DefaultMatrix extends AbstractMathObject implements Matrix{
 	
@@ -37,7 +37,7 @@ public class DefaultMatrix extends AbstractMathObject implements Matrix{
 	 * <p> 构造器会初始化一个指定行或者列的二维双精度浮点数组，其中的初始值为0。
 	 * <br> 可以给构造器中的二维数组指定的位置赋值。
 	 * @author DwArFeng
-	 * @since 1.8
+	 * @since 0.0.2-beta
 	 */
 	public static final class Builder implements Buildable<DefaultMatrix>{
 		

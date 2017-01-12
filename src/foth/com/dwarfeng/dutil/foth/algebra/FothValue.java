@@ -9,7 +9,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
  * 值接口。
  * <p> 该接口意味着其实现类可以转化为值。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public interface FothValue extends NumberBased{
 	

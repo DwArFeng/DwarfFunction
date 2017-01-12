@@ -10,7 +10,7 @@ import java.util.Calendar;
  * <br> 该类不能被继承。
  * @see PrintStream#println()
  * @author 丰沛
- * @since 1.7
+ * @since 0.0.2-beta
  */
 public final class CT {
 	
@@ -22,7 +22,7 @@ public final class CT {
 	/**
 	 * 输出工具的输出形式。
 	 * @author DwArFeng
-	 * @since 1.8
+	 * @since 0.0.2-beta
 	 */
 	public static enum OutputType{
 		/**不输出系统时间*/

@@ -1,6 +1,6 @@
 /**
  * basic包的代码示例。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 package com.dwarfeng.dutil.demo.basic;

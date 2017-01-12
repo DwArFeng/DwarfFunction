@@ -8,7 +8,7 @@ import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
  * 匹配值检查器。
  * <p> 用于检测目标值是否匹配指定的正则表达式。
  * @author  DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class MatchConfigChecker implements ConfigChecker{
 	

@@ -7,7 +7,7 @@ package com.dwarfeng.dutil.basic;
  * <br> 请不要在外部程序中调用此包的枚举，因为该包主要是对内使用，其本身不保证兼容性。
  * <p> <b>注意：</b> 该包在设计的时候不考虑兼容性，当发生不向上兼容的改动时，作者没有义务在变更日志中说明。
  * @author  DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public enum LabelFieldKey {
 	

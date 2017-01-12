@@ -10,7 +10,7 @@ import com.dwarfeng.dutil.basic.io.StringInputStream;
 /**
  * {@link StringInputStream} µÄÊ¾Àý¡£
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class StringInputStreamDemo {
 

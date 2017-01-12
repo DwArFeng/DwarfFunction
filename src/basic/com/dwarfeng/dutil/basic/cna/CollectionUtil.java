@@ -17,7 +17,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
  * <p> 该工具包中包含对集合进行的常见的操作
  * <p> 由于是只含有静态方法的工具包，所以该类无法被继承。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public final class CollectionUtil {
 
@@ -711,11 +711,10 @@ public final class CollectionUtil {
 	}
 	
 	/**
-	 * <b> 已过时 </b>
-	 * 该方法的功能与该工具包的功能不符，已经停止使用，可以用类似的方法 {@link ArrayUtil#array2Iterable(Object[])}代替。
 	 * <p>将一个数组转化为一个迭代器。
 	 * <p> 虽然数组可以使用 for-each 循环，但是数组不可以作为 {@link Iterable} 对象进行参数传递，该方法为了解决这一问题，
 	 * 可以将一个数组转化为一个 {@link Iterator}对象，方便某些需要传入迭代器的场合。
+	 * @deprecated 该方法的功能与该工具包的功能不符，已经停止使用，可以用类似的方法 {@link ArrayUtil#array2Iterable(Object[])}代替。
 	 * @param array 指定的数组。
 	 * @param <T> 泛型T。
 	 * @return 由指定的数组转化而成的迭代器。

@@ -5,7 +5,7 @@ package com.dwarfeng.dutil.math;
  * <p> dmath中的所有子接口都继承该接口，该接口是dmath包中所有接口的父类接口，
  * {@link AbstractMathObject} 是该接口的抽象实现，也就是说，所有的dmath包中的对象都继承这个接口，因此所有的对象都具有这个方法。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public interface MathObject {
 	

@@ -4,7 +4,7 @@ package com.dwarfeng.dutil.foth.algebra;
  * 变量冲突异常。
  * <p> 该异常指示变量冲突。所谓变量冲突的定义，请参考 {@link FothVariableSpace}。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class VariableConflictException extends RuntimeException {
 

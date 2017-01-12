@@ -3,15 +3,14 @@ package com.dwarfeng.dutil.develop.cfg.checker;
 import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
 
 /**
- * 恒真式配置值检查器。
- * <p> 该检查器对一个配置中的一切值的检查恒返回 <code>true</code>，换句话说，
- * 该配置值检查器允许一切值。
- * @deprecated 该检查器的定义与 {@link NonNullConfigChecker} 重复，不推荐使用此方法。
+ * 国家/地区配置值检查器。
+ * <p> 检查一个值是否符合标准的国家/地区规范。
  * @author  DwArFeng
  * @since 0.0.2-beta
  */
-@Deprecated
-public class TureConfigChecker implements ConfigChecker{
+public class LocaleConfigChecker implements ConfigChecker {
+	
+	private final MatchConfigChecker delegate = new MatchConfigChecker("[a-z]+(_[A-Z]+(_[a-zA-Z]+)?)?");
 
 	/*
 	 * (non-Javadoc)
@@ -19,7 +18,7 @@ public class TureConfigChecker implements ConfigChecker{
 	 */
 	@Override
 	public boolean isValid(String value) {
-		return true;
+		return delegate.isValid(value);
 	}
 
 }

@@ -6,7 +6,7 @@ import com.dwarfeng.dutil.math.Region;
 /**
  * 表示一个二维图形。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public interface Shape2d extends Region<Point2d>, MathObject{
 

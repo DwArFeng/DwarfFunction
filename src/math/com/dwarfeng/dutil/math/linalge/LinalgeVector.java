@@ -7,7 +7,7 @@ import com.dwarfeng.dutil.math.MathObject;
  * <p> 该接口代表着向量的一般接口。
  * <p> 由于<code>Vector</code>是个常用的名字，为了区分这个包中的<code>Vector</code>，故使用<code>LinalgeVector</code>。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public interface LinalgeVector extends MathObject{
 

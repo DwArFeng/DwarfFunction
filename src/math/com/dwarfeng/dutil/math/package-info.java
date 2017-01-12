@@ -23,6 +23,6 @@
  * <br> 该包中的所有的与值有关的字段都用double进行存储，因此该包的运算能力与double相同。
  * 
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 package com.dwarfeng.dutil.math;

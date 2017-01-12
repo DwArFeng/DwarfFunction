@@ -24,7 +24,7 @@ import com.dwarfeng.dutil.develop.cfg.ConfigModel;
  * </blockquote>
  * 其中 等号左边的是键，等号右边的是值。
  * @author  DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class PropertiesConfigSaver extends StreamConfigSaver implements ConfigSaver {
 	
@@ -41,6 +41,7 @@ public class PropertiesConfigSaver extends StreamConfigSaver implements ConfigSa
 	 * @see com.dwarfeng.dutil.develop.cfg.io.ConfigSaver#saveConfig(com.dwarfeng.dutil.develop.cfg.ConfigModel)
 	 */
 	@Override
+	@Deprecated
 	public void saveConfig(ConfigModel configModel) throws SaveFailedException {
 		Objects.requireNonNull(configModel, DwarfUtil.getStringField(StringFieldKey.PropertiesConfigSaver_0));
 		
@@ -55,6 +56,15 @@ public class PropertiesConfigSaver extends StreamConfigSaver implements ConfigSa
 			sfe.setStackTrace(e.getStackTrace());
 			throw sfe;
 		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dutil.develop.cfg.io.ConfigSaver#save(com.dwarfeng.dutil.develop.cfg.ConfigModel)
+	 */
+	@Override
+	public void save(ConfigModel configModel) throws SaveFailedException {
+		saveConfig(configModel);
 	}
 	
 }

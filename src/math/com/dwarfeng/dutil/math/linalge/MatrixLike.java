@@ -6,7 +6,7 @@ import com.dwarfeng.dutil.math.MathObject;
  * 代表着具有像是矩阵那样的结构的对象。
  * <p> 代表着实现类拥有着像是矩阵那样的，拥有行列方阵的结构。这种结构的特点是：行数和列数是明确的，而且可以根据行数和列数对应唯一一个值。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public interface MatrixLike extends MathObject{
 	

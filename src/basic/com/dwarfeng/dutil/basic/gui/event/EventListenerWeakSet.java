@@ -20,7 +20,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
  * 而绝对不是鼓励用户在使用该集合时不释放侦听。
  * <p> 该集合的操作是线程不安全的，如果涉及到同步操作，请使用外部同步代码。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class EventListenerWeakSet implements Set<EventListener>{
 	

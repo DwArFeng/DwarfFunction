@@ -11,7 +11,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 /**
  * 有关于配置包的一些常用方法。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public final class ConfigUtil {
 	
@@ -25,6 +25,7 @@ public final class ConfigUtil {
 	public static boolean isValid(ConfigFirmProps configFirmProps){
 		if(Objects.isNull(configFirmProps)) return false;
 		if(Objects.isNull(configFirmProps.getConfigChecker())) return false;
+		if(Objects.isNull(configFirmProps.getDefaultValue())) return false;
 		
 		return configFirmProps.getConfigChecker().isValid(configFirmProps.getDefaultValue());
 	}

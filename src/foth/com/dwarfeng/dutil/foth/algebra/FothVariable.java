@@ -13,7 +13,7 @@ import com.dwarfeng.dutil.math.MathObject;
  * <br> 由于可以直接赋值的对象十分特殊，又十分有作用，因此，该接口继承 {@link Name}接口，及每个可以
  * 直接赋值的对象都具有一个名称标识，在数学中，这种对象的名称一般是x，y，z 等。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public interface FothVariable extends MathObject, FothValue, Name{
 

@@ -5,7 +5,7 @@ import com.dwarfeng.dutil.math.MathObject;
 /**
  * 代表列向量的接口。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public interface ColumnVector extends MathObject, LinalgeVector{
 	

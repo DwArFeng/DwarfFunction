@@ -20,7 +20,7 @@ import com.dwarfeng.dutil.math.linalge.LinalgeUtil;
  * <p> 该对类接受可变对象，传入其中的值对象都会直接存储，其中变量发生变化的话，该对象也会发生变化。
  * <p> 列向量与数组不一样的地方在于，列向量不允许具有0个元素，因为0个元素的列向量完全没有意义。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class DefalutFormulaColumnVector extends AbstractMathObject implements FormulaColumnVector{
 	

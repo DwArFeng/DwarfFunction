@@ -5,7 +5,7 @@ package com.dwarfeng.dutil.basic.num;
  * 快速多态值接口。
  * <p> 该类是对多态值接口最简单、快速的实现。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public class QuickNumberValueable implements NumberValue {
 

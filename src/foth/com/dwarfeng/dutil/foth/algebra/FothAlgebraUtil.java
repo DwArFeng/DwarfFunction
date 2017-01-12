@@ -12,7 +12,7 @@ import com.dwarfeng.dutil.basic.num.QuickNumberValueable;
  * 代数包工具类。
  * <p> 该类提供一些在代数中需要使用的工具方法。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public final class FothAlgebraUtil {
 	

@@ -11,7 +11,7 @@ import java.nio.channels.FileChannel;
  * 实现文件操作的类。
  * <p>实现的文件操作目前为复制。
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public final class FileUtil {
 	

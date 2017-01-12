@@ -5,7 +5,7 @@ import com.dwarfeng.dutil.basic.num.NumberValue;
 /**
  * ½Ç¶ÈÃ¶¾Ù¡£
  * @author DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public enum Angle implements NumberValue{
 	

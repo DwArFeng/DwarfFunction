@@ -10,7 +10,7 @@ import com.dwarfeng.dutil.basic.prog.ObverserSet;
  * 配置模型。
  * 
  * @author  DwArFeng
- * @since 1.8
+ * @since 0.0.2-beta
  */
 public interface ConfigModel extends ObverserSet<ConfigModelObverser>{
 	
@@ -111,6 +111,7 @@ public interface ConfigModel extends ObverserSet<ConfigModelObverser>{
 	/**
 	 * 判断一个值对于该模型来说是否合法。
 	 * <p> 如果指定的键为 <code>null</code>，或者该模型中不存在指定的配置键，则返回 <code>false</code>。
+	 * <br> 如果指定的 value 为 <code>null</code>，则返回 <code>false</code>。
 	 * @param configKey 指定的配置键。
 	 * @param value 指定的值。
 	 * @return 指定的值是否合适指定的配置键。
@@ -150,6 +151,7 @@ public interface ConfigModel extends ObverserSet<ConfigModelObverser>{
 	/**
 	 * 设置模型中指定配置键的当前值。
 	 * <p> 当指定的配置键为 <code>null</code>，或指定的配置键不存在于当前的模型时，不进行任何操作。
+	 * <br> 当指定的 currentValue 为 <code>null</code>时，不进行任何操作。
 	 * @param configKey  指定的配置键。
 	 * @param currentValue 指定的当前值。
 	 * @return 该操作是否对模型产生了变更。
