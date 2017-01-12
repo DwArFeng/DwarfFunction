@@ -58,5 +58,6 @@ Beta_0.0.2_
 	ConfigModel 将禁用值为 null 的配置值。
 	新增 DefaultConfigFirmProps 为 ConfigFirmProps 接口的默认实现。
 	新增 LocaleConfigChecker，用于检验一个字符串是否合乎标准国家/地区代码的规定。
+	修改所有的类中的注释：@since 从java版本改为 dwarfutil版本。
 	
 	
