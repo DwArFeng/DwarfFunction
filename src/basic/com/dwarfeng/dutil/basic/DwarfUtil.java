@@ -37,7 +37,7 @@ public final class DwarfUtil {
 	
 	private static final Version version = new DefaultVersion.Builder()
 			.type(VersionType.BETA).firstVersion((byte) 0).secondVersion((byte) 0).thirdVersion((byte) 2)
-			.buildDate("20161227").buildVersion('A')
+			.buildDate("20170112").buildVersion('A')
 			.build();
 	
 	private static ResourceBundle sf = ResourceBundle.getBundle(SF_PATH,Locale.getDefault(),CT.class.getClassLoader());
