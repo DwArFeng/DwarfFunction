@@ -15,7 +15,7 @@ import com.dwarfeng.dutil.develop.cfg.ConfigEntry;
 import com.dwarfeng.dutil.develop.cfg.ConfigFirmProps;
 import com.dwarfeng.dutil.develop.cfg.ConfigKey;
 import com.dwarfeng.dutil.develop.cfg.ConfigModel;
-import com.dwarfeng.dutil.develop.cfg.ConfigModelObverser;
+import com.dwarfeng.dutil.develop.cfg.ConfigObverser;
 import com.dwarfeng.dutil.develop.cfg.DefaultConfigModel;
 import com.dwarfeng.dutil.develop.cfg.checker.IntegerConfigChecker;
 import com.dwarfeng.dutil.develop.cfg.io.PropertiesConfigLoader;
@@ -103,7 +103,7 @@ public class ConfigModelDemo {
 		
 		private static final long serialVersionUID = 1L;
 
-		private final ConfigModelObverser obverser = new ConfigModelObverser() {
+		private final ConfigObverser obverser = new ConfigObverser() {
 			
 			@Override
 			public void fireCurrentValueChanged(ConfigKey configKey, String oldValue, String newValue, String validValue) {

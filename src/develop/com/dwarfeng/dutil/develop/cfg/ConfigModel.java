@@ -12,7 +12,7 @@ import com.dwarfeng.dutil.basic.prog.ObverserSet;
  * @author  DwArFeng
  * @since 0.0.2-beta
  */
-public interface ConfigModel extends ObverserSet<ConfigModelObverser>{
+public interface ConfigModel extends ObverserSet<ConfigObverser>{
 	
 	/**
 	 * 清空配置模型中的所有记录（可选操作）。
