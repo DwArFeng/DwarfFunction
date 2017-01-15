@@ -24,6 +24,13 @@ public class DefaultConfigModel extends AbstractConfigModel {
 	protected final Map<ConfigKey, ConfigFirmProps> firmPropsMap = new HashMap<>();
 	
 	/**
+	 * 生成一个默认的，不包含任何配置条目的默认配置模型。
+	 */
+	public DefaultConfigModel() {
+		this(new ConfigEntry[0]);
+	}
+	
+	/**
 	 * 生成一个由指定配置条目数组成的默认配置模型。
 	 * <p> 生成的模型中，每个条目的现有值和默认值相等。
 	 * @param configEntries 指定的配置条目数组。
@@ -74,7 +81,7 @@ public class DefaultConfigModel extends AbstractConfigModel {
 	}
 	
 	private void fireConfigKeyCleared(){
-		for(ConfigModelObverser obverser : obversers){
+		for(ConfigObverser obverser : obversers){
 			obverser.fireConfigKeyCleared();
 		}
 	}
@@ -160,7 +167,7 @@ public class DefaultConfigModel extends AbstractConfigModel {
 	}
 	
 	private void fireConfigKeyAdded(ConfigKey configKey){
-		for(ConfigModelObverser obverser : obversers){
+		for(ConfigObverser obverser : obversers){
 			obverser.fireConfigKeyAdded(configKey);
 		}
 	}
@@ -217,7 +224,7 @@ public class DefaultConfigModel extends AbstractConfigModel {
 	}
 	
 	private void fireConfigKeyRemoved(ConfigKey configKey){
-		for(ConfigModelObverser obverser : obversers){
+		for(ConfigObverser obverser : obversers){
 			obverser.fireConfigKeyRemoved(configKey);
 		}
 	}
@@ -291,7 +298,7 @@ public class DefaultConfigModel extends AbstractConfigModel {
 	
 	private void fireConfigFirmPropsChanged(ConfigKey configKey, ConfigFirmProps oldValue,
 			ConfigFirmProps newValue) {		
-		for(ConfigModelObverser obverser : obversers){
+		for(ConfigObverser obverser : obversers){
 			obverser.fireConfigFirmPropsChanged(configKey, oldValue, newValue);
 		}
 	}
@@ -362,7 +369,7 @@ public class DefaultConfigModel extends AbstractConfigModel {
 	}
 	
 	private void fireCurrentValueChanged(ConfigKey configKey, String oldValue, String newValue, String validValue) {
-		for(ConfigModelObverser obverser : obversers){
+		for(ConfigObverser obverser : obversers){
 			obverser.fireCurrentValueChanged(configKey, oldValue, newValue, validValue);
 		}
 	}

@@ -13,14 +13,14 @@ import java.util.WeakHashMap;
 public abstract class AbstractConfigModel implements ConfigModel {
 	
 	/**¹Û²ìÆ÷¼¯ºÏ*/
-	protected final Set<ConfigModelObverser> obversers = Collections.newSetFromMap(new WeakHashMap<>());
+	protected final Set<ConfigObverser> obversers = Collections.newSetFromMap(new WeakHashMap<>());
 	
 	/*
 	 * (non-Javadoc)
 	 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
 	 */
 	@Override
-	public Set<ConfigModelObverser> getObversers() {
+	public Set<ConfigObverser> getObversers() {
 		return Collections.unmodifiableSet(obversers);
 	}
 
@@ -29,7 +29,7 @@ public abstract class AbstractConfigModel implements ConfigModel {
 	 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.dutil.basic.prog.Obverser)
 	 */
 	@Override
-	public boolean addObverser(ConfigModelObverser obverser) {
+	public boolean addObverser(ConfigObverser obverser) {
 		if(Objects.isNull(obverser)) return false;
 		return obversers.add(obverser);
 	}
@@ -39,7 +39,7 @@ public abstract class AbstractConfigModel implements ConfigModel {
 	 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng.dutil.basic.prog.Obverser)
 	 */
 	@Override
-	public boolean removeObverser(ConfigModelObverser obverser) {
+	public boolean removeObverser(ConfigObverser obverser) {
 		return obversers.remove(obverser);
 	}
 

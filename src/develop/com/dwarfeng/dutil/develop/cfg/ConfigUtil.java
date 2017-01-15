@@ -90,7 +90,7 @@ public final class ConfigUtil {
 		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
 		 */
 		@Override
-		public Set<ConfigModelObverser> getObversers() {
+		public Set<ConfigObverser> getObversers() {
 			return delegate.getObversers();
 		}
 
@@ -99,7 +99,7 @@ public final class ConfigUtil {
 		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.dutil.basic.prog.Obverser)
 		 */
 		@Override
-		public boolean addObverser(ConfigModelObverser obverser) {
+		public boolean addObverser(ConfigObverser obverser) {
 			return delegate.addObverser(obverser);
 		}
 
@@ -108,7 +108,7 @@ public final class ConfigUtil {
 		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng.dutil.basic.prog.Obverser)
 		 */
 		@Override
-		public boolean removeObverser(ConfigModelObverser obverser) {
+		public boolean removeObverser(ConfigObverser obverser) {
 			return delegate.removeObverser(obverser);
 		}
 

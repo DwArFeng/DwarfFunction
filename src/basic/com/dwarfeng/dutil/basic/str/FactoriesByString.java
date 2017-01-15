@@ -23,7 +23,7 @@ public final class FactoriesByString {
 	 * @throws NullPointerException 入口参数为 <code>null</code>
 	 * @throws IllegalArgumentException 入口参数不是标准的国家/地区代码格式。
 	 */
-	public Locale newLocale(String string){
+	public static Locale newLocale(String string){
 		Objects.requireNonNull(string, DwarfUtil.getStringField(StringFieldKey.FactoriesByString_0));
 		if(!string.matches("[a-z]+(_[A-Z]+(_[a-zA-Z]+)?)?")){
 			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.FactoriesByString_1));
