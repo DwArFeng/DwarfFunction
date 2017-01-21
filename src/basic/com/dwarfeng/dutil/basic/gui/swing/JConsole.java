@@ -34,6 +34,7 @@ import com.dwarfeng.dutil.basic.num.NumberUtil;
  * 不安全的，它只能用于单线程输入，不管是不是加入了外部同步机制。
  * <br>需要注意的是，此控制台的效率远远低于系统控制台，在同等输出内容下，此控制台的花费时间大约为系统控制台的10倍。
  * 
+ * @deprecated 该控制台不完善且效率低下，dutil 提供了更好的工具类：TODO
  * @author DwArFeng
  * @since 0.0.2-beta
  */

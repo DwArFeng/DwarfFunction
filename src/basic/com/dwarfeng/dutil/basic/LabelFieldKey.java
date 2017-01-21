@@ -11,11 +11,11 @@ package com.dwarfeng.dutil.basic;
  */
 public enum LabelFieldKey {
 	
-	/**ConfigTablePanel类第0号文本字段*/
-	ConfigTablePanel_0,
-	/**ConfigTablePanel类第1号文本字段*/
-	ConfigTablePanel_1,
-	/**ConfigTablePanel类第2号文本字段*/
-	ConfigTablePanel_2,
+	/**JExConsole类第0号文本字段*/
+	JExConsole_0,
+	/**JExConsole类第1号文本字段*/
+	JExConsole_1,
+	/**JExConsole类第2号文本字段*/
+	JExConsole_2,
 
 }

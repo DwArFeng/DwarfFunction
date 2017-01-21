@@ -337,4 +337,16 @@ public enum StringFieldKey{
 	FactoriesByString_0,
 	/**FactoriesByString类第1号文本字段*/
 	FactoriesByString_1,
+	
+	/**NumberedThreadFactory类第0号文本字段*/
+	NumberedThreadFactory_0,
+	
+	/**JExConsole类第0号文本字段*/
+	JExConsole_0,
+	/**JExConsole类第1号文本字段*/
+	JExConsole_1,
+	/**JExConsole类第2号文本字段*/
+	JExConsole_2, 
+	/**JExConsole类第3号文本字段*/
+	JExConsole_3,
 }
