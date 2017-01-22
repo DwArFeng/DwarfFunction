@@ -705,6 +705,8 @@ public class JExconsole extends JPanel {
 	}
 
 	private static void addPopup(Component component, final JPopupMenu popup) {
+		if(Objects.isNull(popup)) return;
+		
 		component.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
