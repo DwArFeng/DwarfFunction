@@ -349,4 +349,6 @@ public enum StringFieldKey{
 	JExConsole_2, 
 	/**JExConsole类第3号文本字段*/
 	JExConsole_3,
+	/**JExConsole类第4号文本字段*/
+	JExConsole_4,
 }

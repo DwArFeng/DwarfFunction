@@ -23,20 +23,20 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Queue;
-import java.util.Scanner;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JComponent;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
@@ -49,37 +49,39 @@ import com.dwarfeng.dutil.basic.LabelFieldKey;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.num.NumberUtil;
 import com.dwarfeng.dutil.basic.threads.NumberedThreadFactory;
-import com.dwarfeng.dutil.detool.gui.swing.JComponentTester;
 
 /**
- * TODO
+ * Swing 控制台。
+ * <p> 该控制台是 {@link JConsole} 的升级版，无论是定义的良好性还是输入输出的效率都远远好于前者。
+ * <br> 该控制台继承之前的特性：提供大致的行数保证，它允许文本达到一个最大的行数，当文本超过最大的行数时，控制台会按照一定的比例删掉
+ * 最早输出的一部分行数，以控制行数不超过最大值。
+ * <br> 控制台提供两个流：输入流和输出流，与 {@link JConsole}不同的是，输入流变为阻塞式的，当输入流没有数据时，不会立即返回 <code>-1</code>，
+ * 而是显示输入栏，等待用于的输入——这个特性与系统输入流完全一致。该控制台的输入再也不需要依赖于事件，您可以完全按照同系统控制台通信的格式
+ * 来编写该控制台的通信，同时不必担心无意识的调用流中的 <code>close()</code> 方法——因为该控制台的输入流和输出流的关闭不是通过 <code>close()</code> 方法，
+ * 而是通过 {@link #dispose()}方法。
+ * <br> 以下的例子完整的体现了上述的特性。
+ * <pre>
+ * JExconsole console = new JExconsole();
+ * 
+ * console.out.println("hello world"); //就像System.out.prinln(...)一样
+ * 
+ * Scanner scanner = new Scanner(console.in);
+ * try{
+ * 	console.out.println(scanner.nextLine());
+ * }finally{
+ * 	scanner.close(); //不用担心 Scanner 的 close()方法调用console.in.close()方法，因为控制台的输入流不响应该方法。
+ * }
+ * 
+ * console.dispose(); //该方法才会真正的关闭控制台的输入输出流。
+ * </pre>
+ * 经优化后，该控制台的效率可以达到 cmd 控制台的 6900%，是一个货真价实的高效控制台。
  * @author  DwArFeng
  * @since 0.0.3-beta
  */
 public class JExconsole extends JPanel {
 	
-	public static void main(String[] args) {
-		JExconsole console = new JExconsole();
-		console.setFont(new Font("新宋体", Font.PLAIN, 14));
-		new JComponentTester(console).setVisible(true);
-		
-//		int count = 0;
-//		while(count++ < 100){
-//			TimeMeasurer tm = new TimeMeasurer();
-//			tm.start();
-//			for(int i = 0 ; i < 3000 ; i ++){
-//				console.out.println(i);
-//			}
-//			tm.stop();
-//			System.out.println(tm.formatStringMs());
-//		}
-		
-		Scanner scanner = new Scanner(console.in);
-		while(true){
-			console.out.println("您输入的是：" + scanner.nextLine());
-		}
-	}
-	
+	private static final long serialVersionUID = 8565782090438599219L;
+
 	private final static ThreadFactory THREAD_FACTORY = new NumberedThreadFactory("jexconsole_cleaner");
 	
 	/**控制台的输入流*/
@@ -196,14 +198,13 @@ public class JExconsole extends JPanel {
 	private double cleanRatio;
 	private int maxRollback;
 	
-	private final JTextField textField;
-	private final JTextArea textArea;
-	private final JPopupMenu popupMenu;
-	private final JCheckBoxMenuItem lineWrap;
-	private final JSeparator separator;
-	private final JMenuItem selectAllMenuItem;
-	private final JMenuItem cleanScreenMenuItem;
-	
+	/**控制台的输入框*/
+	protected final JTextField textField;
+	/**控制台的显示框*/
+	protected final JTextArea textArea;
+
+	private final JPopupMenu popup;
+
 	/**
 	 * 生成一个默认的控制台。
 	 * <p> 控制台的最大行数为 <code>3000</code> 行，清除系数为 <code>0.1</code>，
@@ -302,73 +303,25 @@ public class JExconsole extends JPanel {
 		textArea.setForeground(null);
 		textArea.setWrapStyleWord(true);
 		
-		popupMenu = new JPopupMenu();
-		addPopup(textArea, popupMenu);
+		popup = createPopup();
+		addPopup(textArea, popup);
 		
-		selectAllMenuItem =popupMenu.add(
-				new JMenuItemAction.Builder()
-				.icon(new ImageIcon(DwarfUtil.class.getResource("/com/dwarfeng/dutil/resource/image/selectAll.png")))
-				.name(DwarfUtil.getLabelField(LabelFieldKey.JExConsole_0, getDefaultLocale()))
-				.keyStorke(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_DOWN_MASK))
-				.mnemonic('A')
-				.listener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						if(Objects.isNull(textArea)) return;
-						SwingUtilities.invokeLater(new Runnable() {
-							@Override
-							public void run() {
-								textArea.requestFocus();
-								textArea.select(0, textArea.getText().length());
-							}
-						});
-					}
-				})
-				.build()
-		);
-		popupMenu.add(selectAllMenuItem);
-		
-		cleanScreenMenuItem = popupMenu.add(
-				new JMenuItemAction.Builder()
-				.icon(new ImageIcon(DwarfUtil.class.getResource("/com/dwarfeng/dutil/resource/image/cleanScreen.png")))
-				.name(DwarfUtil.getLabelField(LabelFieldKey.JExConsole_1, getDefaultLocale()))
-				.keyStorke(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.CTRL_DOWN_MASK))
-				.mnemonic('D')
-				.listener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						if(Objects.isNull(textArea)) return;
-						SwingUtilities.invokeLater(new Runnable() {
-							@Override
-							public void run() {
-								textArea.setText("");
-							}
-						});
-					}
-				})
-				.build()
-		);
-		popupMenu.add(cleanScreenMenuItem);
-		
-		separator = new JSeparator();
-		popupMenu.add(separator);
-		
-		lineWrap = new JCheckBoxMenuItem(DwarfUtil.getLabelField(LabelFieldKey.JExConsole_2, getDefaultLocale()));
-		lineWrap.setIcon(new ImageIcon(DwarfUtil.class.getResource("/com/dwarfeng/dutil/resource/image/lineWrap.png")));
-		lineWrap.setMnemonic('W');
-		lineWrap.addActionListener(new ActionListener() {
+		textArea.getActionMap().put("cls", new AbstractAction() {
+			private static final long serialVersionUID = 1L;
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(Objects.isNull(textArea)) return;
 				SwingUtilities.invokeLater(new Runnable() {
 					@Override
 					public void run() {
-						textArea.setLineWrap(lineWrap.getState());
+						textArea.requestFocus();
+						textArea.setText("");
 					}
 				});
 			}
 		});
-		popupMenu.add(lineWrap);
+		textArea.getInputMap(JComponent.WHEN_FOCUSED)
+		.put(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_DOWN_MASK), "cls");
 		
 		renderer.start();
 	}
@@ -512,8 +465,17 @@ public class JExconsole extends JPanel {
 	 */
 	@Override
 	public void setLocale(Locale l) {
-		// TODO Auto-generated method stub
+		popup.setLocale(l);
 		super.setLocale(l);
+	}
+	
+	/**
+	 * 创建控制台的右键菜单。
+	 * <p> 该方法会在初始化的时候调用，用于控制台用的菜单。
+	 * @return 控制台的右键菜单。
+	 */
+	protected JPopupMenu createPopup(){
+		return new InnerPopupMenu();
 	}
 
 
@@ -652,6 +614,93 @@ public class JExconsole extends JPanel {
 		@Override
 		public void close() throws IOException {
 			//Do nothing
+		}
+	}
+	
+	private class InnerPopupMenu extends JPopupMenu{
+		
+		private static final long serialVersionUID = 5256502032514168869L;
+		
+		private final JMenuItem selectAllMenuItem;
+		private final JMenuItem cleanScreenMenuItem;
+		private final JCheckBoxMenuItem lineWrapMenuItem;
+
+		public InnerPopupMenu() {
+			super();
+			selectAllMenuItem = add(
+					new JMenuItemAction.Builder()
+					.icon(new ImageIcon(DwarfUtil.class.getResource("/com/dwarfeng/dutil/resource/image/selectAll.png")))
+					.name(DwarfUtil.getLabelField(LabelFieldKey.JExConsole_0, getDefaultLocale()))
+					.keyStorke(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_DOWN_MASK))
+					.mnemonic('A')
+					.listener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							if(Objects.isNull(textArea)) return;
+							SwingUtilities.invokeLater(new Runnable() {
+								@Override
+								public void run() {
+									textArea.requestFocus();
+									textArea.select(0, textArea.getText().length());
+								}
+							});
+						}
+					})
+					.build()
+			);
+			
+			cleanScreenMenuItem = add(
+					new JMenuItemAction.Builder()
+					.icon(new ImageIcon(DwarfUtil.class.getResource("/com/dwarfeng/dutil/resource/image/cleanScreen.png")))
+					.name(DwarfUtil.getLabelField(LabelFieldKey.JExConsole_1, getDefaultLocale()))
+					.keyStorke(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_DOWN_MASK))
+					.mnemonic('E')
+					.listener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							if(Objects.isNull(textArea)) return;
+							SwingUtilities.invokeLater(new Runnable() {
+								@Override
+								public void run() {
+									textArea.requestFocus();
+									textArea.setText("");
+								}
+							});
+						}
+					})
+					.build()
+			);
+			
+			addSeparator();
+			
+			lineWrapMenuItem = new JCheckBoxMenuItem(DwarfUtil.getLabelField(LabelFieldKey.JExConsole_2, getDefaultLocale()));
+			lineWrapMenuItem.setIcon(new ImageIcon(DwarfUtil.class.getResource("/com/dwarfeng/dutil/resource/image/lineWrap.png")));
+			lineWrapMenuItem.setMnemonic('W');
+			lineWrapMenuItem.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(Objects.isNull(textArea)) return;
+					SwingUtilities.invokeLater(new Runnable() {
+						@Override
+						public void run() {
+							textArea.setLineWrap(lineWrapMenuItem.getState());
+						}
+					});
+				}
+			});
+			add(lineWrapMenuItem);
+		}
+		
+		/*
+		 * (non-Javadoc)
+		 * @see java.awt.Component#setLocale(java.util.Locale)
+		 */
+		@Override
+		public void setLocale(Locale l) {
+			selectAllMenuItem.setText(DwarfUtil.getLabelField(LabelFieldKey.JExConsole_0, l));
+			cleanScreenMenuItem.setText(DwarfUtil.getLabelField(LabelFieldKey.JExConsole_1, l));
+			lineWrapMenuItem.setText(DwarfUtil.getLabelField(LabelFieldKey.JExConsole_2, l));
+			super.setLocale(l);
 		}
 	}
 
