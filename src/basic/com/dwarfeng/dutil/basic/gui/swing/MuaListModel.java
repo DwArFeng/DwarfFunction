@@ -16,7 +16,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 /**
  * 多重操作列表模型。
  * <p> 该列表模型具有 {@link DefaultListModel}的所有功能，同时优化了结构类型，并且对批量操作进行了优化。
- * 同时，这个类时一个真正的列表的实现。
+ * 同时，这个类是一个真正的列表的实现。
  * <p> 该类可以通过指定入口的参数来保证列表的不同实现，如用同步列表作为实现就可以保证其中方法的同步。
  * @author DwArFeng
  * @since 0.0.2-beta

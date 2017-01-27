@@ -221,9 +221,9 @@ public class JExconsole extends JPanel {
 	 * @throws IllegalArgumentException 入口参数不符合要求。
 	 */
 	public JExconsole(int maxLine, double cleanRatio, Integer maxRollback) {
-		if(maxLine <=  0) throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.JExConsole_1));
-		if(cleanRatio <= 0 || cleanRatio > 1) throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.JExConsole_2));
-		if(maxRollback < 0) throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.JExConsole_3));
+		if(maxLine <=  0) throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.JExconsole_1));
+		if(cleanRatio <= 0 || cleanRatio > 1) throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.JExconsole_2));
+		if(maxRollback < 0) throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.JExconsole_3));
 		
 		this.maxLine = maxLine;
 		this.cleanRatio = cleanRatio;
@@ -260,7 +260,7 @@ public class JExconsole extends JPanel {
 					inputLock.lock();
 					try{
 						if(disposeFlag.get()){
-							throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.JExConsole_0));
+							throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.JExconsole_0));
 						}
 						
 						InnerInputStream in = (InnerInputStream) JExconsole.this.in;
@@ -400,7 +400,7 @@ public class JExconsole extends JPanel {
 	 * @throws IllegalArgumentException 入口参数不符合要求。
 	 */
 	public void setMaxLine(int maxLine) {
-		if(maxLine <=  0) throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.JExConsole_1));
+		if(maxLine <=  0) throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.JExconsole_1));
 		
 		renderLock.lock();
 		try{
@@ -425,7 +425,7 @@ public class JExconsole extends JPanel {
 	 * @throws IllegalArgumentException 入口参数不符合要求。
 	 */
 	public void setCleanRatio(double cleanRatio) {
-		if(cleanRatio <= 0 || cleanRatio > 1) throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.JExConsole_2));
+		if(cleanRatio <= 0 || cleanRatio > 1) throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.JExconsole_2));
 		
 		renderLock.lock();
 		try{
@@ -450,7 +450,7 @@ public class JExconsole extends JPanel {
 	 * @throws IllegalArgumentException 入口参数不符合要求。
 	 */
 	public void setMaxRollback(int maxRollback) {
-		if(maxLine <=  0) throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.JExConsole_1));
+		if(maxLine <=  0) throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.JExconsole_1));
 		this.maxRollback = maxRollback;
 		if(rollbackStrings.size() > maxRollback){
 			for(int i = 0 ; i < maxRollback - rollbackStrings.size() ; i ++){
@@ -492,7 +492,7 @@ public class JExconsole extends JPanel {
 		@Override
 		public int read() throws IOException {
 			if(disposeFlag.get()){
-				throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.JExConsole_0));
+				throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.JExconsole_0));
 			}
 			
 			inputLock.lock();
@@ -558,7 +558,7 @@ public class JExconsole extends JPanel {
 		@Override
 		public void write(int b) throws IOException {
 			if(disposeFlag.get()){
-				throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.JExConsole_0));
+				throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.JExconsole_0));
 			}
 			
 			outputLock.lock();
@@ -582,7 +582,7 @@ public class JExconsole extends JPanel {
 		@Override
 		public void flush() throws IOException {
 			if(disposeFlag.get()){
-				throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.JExConsole_0));
+				throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.JExconsole_0));
 			}
 			
 			String str = null;
@@ -630,7 +630,7 @@ public class JExconsole extends JPanel {
 			selectAllMenuItem = add(
 					new JMenuItemAction.Builder()
 					.icon(new ImageIcon(DwarfUtil.class.getResource("/com/dwarfeng/dutil/resource/image/selectAll.png")))
-					.name(DwarfUtil.getLabelField(LabelFieldKey.JExConsole_0, getDefaultLocale()))
+					.name(DwarfUtil.getLabelField(LabelFieldKey.JExconsole_0, getDefaultLocale()))
 					.keyStorke(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_DOWN_MASK))
 					.mnemonic('A')
 					.listener(new ActionListener() {
@@ -652,7 +652,7 @@ public class JExconsole extends JPanel {
 			cleanScreenMenuItem = add(
 					new JMenuItemAction.Builder()
 					.icon(new ImageIcon(DwarfUtil.class.getResource("/com/dwarfeng/dutil/resource/image/cleanScreen.png")))
-					.name(DwarfUtil.getLabelField(LabelFieldKey.JExConsole_1, getDefaultLocale()))
+					.name(DwarfUtil.getLabelField(LabelFieldKey.JExconsole_1, getDefaultLocale()))
 					.keyStorke(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_DOWN_MASK))
 					.mnemonic('E')
 					.listener(new ActionListener() {
@@ -673,7 +673,7 @@ public class JExconsole extends JPanel {
 			
 			addSeparator();
 			
-			lineWrapMenuItem = new JCheckBoxMenuItem(DwarfUtil.getLabelField(LabelFieldKey.JExConsole_2, getDefaultLocale()));
+			lineWrapMenuItem = new JCheckBoxMenuItem(DwarfUtil.getLabelField(LabelFieldKey.JExconsole_2, getDefaultLocale()));
 			lineWrapMenuItem.setIcon(new ImageIcon(DwarfUtil.class.getResource("/com/dwarfeng/dutil/resource/image/lineWrap.png")));
 			lineWrapMenuItem.setMnemonic('W');
 			lineWrapMenuItem.addActionListener(new ActionListener() {
@@ -697,9 +697,9 @@ public class JExconsole extends JPanel {
 		 */
 		@Override
 		public void setLocale(Locale l) {
-			selectAllMenuItem.setText(DwarfUtil.getLabelField(LabelFieldKey.JExConsole_0, l));
-			cleanScreenMenuItem.setText(DwarfUtil.getLabelField(LabelFieldKey.JExConsole_1, l));
-			lineWrapMenuItem.setText(DwarfUtil.getLabelField(LabelFieldKey.JExConsole_2, l));
+			selectAllMenuItem.setText(DwarfUtil.getLabelField(LabelFieldKey.JExconsole_0, l));
+			cleanScreenMenuItem.setText(DwarfUtil.getLabelField(LabelFieldKey.JExconsole_1, l));
+			lineWrapMenuItem.setText(DwarfUtil.getLabelField(LabelFieldKey.JExconsole_2, l));
 			super.setLocale(l);
 		}
 	}

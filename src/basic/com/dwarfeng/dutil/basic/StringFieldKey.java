@@ -341,14 +341,20 @@ public enum StringFieldKey{
 	/**NumberedThreadFactory类第0号文本字段*/
 	NumberedThreadFactory_0,
 	
-	/**JExConsole类第0号文本字段*/
-	JExConsole_0,
-	/**JExConsole类第1号文本字段*/
-	JExConsole_1,
-	/**JExConsole类第2号文本字段*/
-	JExConsole_2, 
-	/**JExConsole类第3号文本字段*/
-	JExConsole_3,
-	/**JExConsole类第4号文本字段*/
-	JExConsole_4,
+	/**JExconsole类第0号文本字段*/
+	JExconsole_0,
+	/**JExconsole类第1号文本字段*/
+	JExconsole_1,
+	/**JExconsole类第2号文本字段*/
+	JExconsole_2, 
+	/**JExconsole类第3号文本字段*/
+	JExconsole_3,
+	/**JExconsole类第4号文本字段*/
+	JExconsole_4,
+	
+	/**StreamLoader类第0号文本字段*/
+	StreamLoader_0,
+	
+	/**StreamSaver类第0号文本字段*/
+	StreamSaver_0,
 }

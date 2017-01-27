@@ -69,7 +69,11 @@ Beta_0.0.2_20170115_build_B
 	从此版本开始，所有的 release 将加上版本号。
 	
 Beta_0.0.3	
-	新增 dutil.basic.gui.swing.JExConsole，用于替代老的 JConsole
-	
-	
+	新增 dutil.basic.threads.NumberedThreadFactory，用于提供自动编号的线程。
+	新增 dutil.basic.gui.swing.JExConsole，用于替代老的 JConsole。
+	新增 dutil.basic.prog.Loader<T>; dutil.basic.prog.Saver<T>，用于对指定对象进行读取和保存。
+	新增 dutil.basic.io.StreamLoader<T>; duitl.basic.io.StreamSaver<T> ，用于以流的方式对对象进行读取和保存。
+	调整 dutil.develop.cfg.io包中的结构，废弃了原来的结构，使用新的 Loader&Saver 结构构造新的类。
+	新增 dutil.basic.str.StringComparator<String> 提供文本的字典排序算法。
+	新增 dutil.basic.cna.insert(List<T> list, T obj, Comparator<? super T> c) 方法，用于在已排序的列表中插入元素。
 	
