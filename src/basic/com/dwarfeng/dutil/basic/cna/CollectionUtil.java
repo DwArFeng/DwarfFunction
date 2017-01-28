@@ -1,5 +1,7 @@
 package com.dwarfeng.dutil.basic.cna;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Enumeration;
@@ -12,6 +14,8 @@ import java.util.Set;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.io.CT;
+import com.dwarfeng.dutil.basic.str.StringComparator;
 
 /**
  * 有关于集合的工具包。
@@ -746,8 +750,8 @@ public final class CollectionUtil {
 	}
 	
 	/**
-	 * 将指定的对象插入到指定的表中。
-	 * <p> 该方法将用指定的比较器逐个比较指定的对象与列表中的对象，并将指定的对象插入到列表中<b>第一个</b>比其大的元素之前，
+	 * 将指定的对象按照顺序插入到指定的表中。
+	 * <p> 该方法将用指定的比较器逐个比较指定的对象与列表中的对象，并将指定的对象插入到列表中<b>第一个</b>大于等于其的元素之前，
 	 * 并返回插入的位置。
 	 * <br> 如果指定的列表在之前已经按照比较器的顺序排列好，那么调用该方法之后，此列表依然遵循比较器的顺序，
 	 * 事实上，该方法就是为此设计的——对一个没有排序的列表调用此方法是没有意义的。
@@ -759,8 +763,18 @@ public final class CollectionUtil {
 	 * @param c 指定的比较器。
 	 * @return 对象的插入位置。
 	 */
-	public static<T> int insert(List<T> list, T obj, Comparator<? super T> c){
-		//TODO 完善CollectionUtil.insert();
-		return -1;
+	public static<T> int insertByOrder(List<T> list, T obj, Comparator<? super T> c){
+		Objects.requireNonNull(list, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_15));
+		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_16));
+		
+		for(int i = 0 ; i < list.size() ; i ++){
+			T t = list.get(i);
+			if(c.compare(obj, t) <= 0){
+				list.add(i, obj);
+				return i;
+			}
+		}
+		list.add(obj);
+		return list.size() - 1;
 	}
 }

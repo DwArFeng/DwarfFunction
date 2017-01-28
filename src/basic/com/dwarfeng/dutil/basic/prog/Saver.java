@@ -11,8 +11,8 @@ import com.dwarfeng.dutil.basic.io.SaveFailedException;
 public interface Saver<T> {
 
 	/**
-	 * 从指定的多语言对象中保存数据。
-	 * @param mutilangModel 指定的多语言对象。
+	 * 将指定的对象中的内容进行保存。
+	 * @param obj 指定的对象。
 	 * @throws SaveFailedException 保存失败异常。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */

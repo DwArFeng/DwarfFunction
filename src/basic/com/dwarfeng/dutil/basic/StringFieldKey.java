@@ -127,6 +127,10 @@ public enum StringFieldKey{
 	CollectionUtil_13,
 	/**CollectionUtil类第14号文本字段*/
 	CollectionUtil_14,
+	/**CollectionUtil类第15号文本字段*/
+	CollectionUtil_15,
+	/**CollectionUtil类第16号文本字段*/
+	CollectionUtil_16,
 	
 	/**NameableComparator类第0号文本字段*/
 	NameableComparator_0,

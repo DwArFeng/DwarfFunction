@@ -76,4 +76,5 @@ Beta_0.0.3
 	调整 dutil.develop.cfg.io包中的结构，废弃了原来的结构，使用新的 Loader&Saver 结构构造新的类。
 	新增 dutil.basic.str.StringComparator<String> 提供文本的字典排序算法。
 	新增 dutil.basic.cna.insert(List<T> list, T obj, Comparator<? super T> c) 方法，用于在已排序的列表中插入元素。
-	
+	新增 dutil.basic.prog.RuntimeState，用于指示程序的运行状态。
+	新增 dutil.basic.prog.Checker<T> 用于指示类型 T 是否合法。	

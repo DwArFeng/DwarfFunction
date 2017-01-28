@@ -216,8 +216,9 @@ public class JExconsole extends JPanel {
 	
 	/**
 	 * 生成一个具有指定最大行数，指定的清除系数的控制台。
-	 * @param maxLine 指定的最大行数，需要 <code> 0 &lt maxLine</code>。
-	 * @param cleanRatio 指定的清除系数，需要<code> 0.0 &lt cleanRatio &lt= 1.0</code>。
+	 * @param maxLine 指定的最大行数，需要 <code> 0 &lt; maxLine</code>。
+	 * @param cleanRatio 指定的清除系数，需要<code> 0.0 &lt; cleanRatio &lt;= 1.0</code>。
+	 * @param maxRollback 最大的输入回滚数量。
 	 * @throws IllegalArgumentException 入口参数不符合要求。
 	 */
 	public JExconsole(int maxLine, double cleanRatio, Integer maxRollback) {
@@ -396,7 +397,7 @@ public class JExconsole extends JPanel {
 
 	/**
 	 * 设置控制台的最大显示行数。
-	 * @param maxLine 控制台的最大显示行数，需要 <code> 0 &lt maxLine</code>。
+	 * @param maxLine 控制台的最大显示行数，需要 <code> 0 &lt; maxLine</code>。
 	 * @throws IllegalArgumentException 入口参数不符合要求。
 	 */
 	public void setMaxLine(int maxLine) {
@@ -421,7 +422,7 @@ public class JExconsole extends JPanel {
 
 	/**
 	 * 设置控制台的删除比率。
-	 * @param cleanRatio 控制台的删除比率，需要<code> 0.0 &lt cleanRatio &lt= 1.0</code>。
+	 * @param cleanRatio 控制台的删除比率，需要<code> 0.0 &lt; cleanRatio &lt;= 1.0</code>。
 	 * @throws IllegalArgumentException 入口参数不符合要求。
 	 */
 	public void setCleanRatio(double cleanRatio) {
@@ -445,7 +446,7 @@ public class JExconsole extends JPanel {
 	}
 
 	/**
-	 * 设置控制台的最大回滚数量，需要 <code> 0 &lt= maxRollback</code>
+	 * 设置控制台的最大回滚数量，需要 <code> 0 &lt;= maxRollback</code>
 	 * @param maxRollback 指定的最大回滚数量。
 	 * @throws IllegalArgumentException 入口参数不符合要求。
 	 */

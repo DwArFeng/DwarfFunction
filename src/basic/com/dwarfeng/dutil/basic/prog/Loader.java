@@ -12,7 +12,7 @@ public interface Loader<T> {
 
 	/**
 	 * 向指定的对象中读取数据。
-	 * @param loggerModel 指定的对象
+	 * @param obj 指定的对象。
 	 * @throws LoadFailedException 读取失败异常。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
