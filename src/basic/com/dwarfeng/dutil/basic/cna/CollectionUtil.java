@@ -1,7 +1,5 @@
 package com.dwarfeng.dutil.basic.cna;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Enumeration;
@@ -14,8 +12,6 @@ import java.util.Set;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
-import com.dwarfeng.dutil.basic.io.CT;
-import com.dwarfeng.dutil.basic.str.StringComparator;
 
 /**
  * 有关于集合的工具包。
