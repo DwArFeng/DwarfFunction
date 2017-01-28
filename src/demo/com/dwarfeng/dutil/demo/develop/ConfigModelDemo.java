@@ -10,6 +10,7 @@ import java.util.Objects;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import com.dwarfeng.dutil.basic.io.StreamLoader;
 import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
 import com.dwarfeng.dutil.develop.cfg.ConfigEntry;
 import com.dwarfeng.dutil.develop.cfg.ConfigFirmProps;
@@ -18,8 +19,7 @@ import com.dwarfeng.dutil.develop.cfg.ConfigModel;
 import com.dwarfeng.dutil.develop.cfg.ConfigObverser;
 import com.dwarfeng.dutil.develop.cfg.DefaultConfigModel;
 import com.dwarfeng.dutil.develop.cfg.checker.IntegerConfigChecker;
-import com.dwarfeng.dutil.develop.cfg.io.PropertiesConfigLoader;
-import com.dwarfeng.dutil.develop.cfg.io.StreamConfigLoader;
+import com.dwarfeng.dutil.develop.cfg.io.PropConfigLoader;
 
 /**
  * {@link ConfigModel}µÄ´úÂëÊ¾Àý¡£
@@ -141,9 +141,9 @@ public class ConfigModelDemo {
 			jb1.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					StreamConfigLoader loader = null;
+					StreamLoader<ConfigModel> loader = null;
 					try{
-						loader = new PropertiesConfigLoader(this.getClass().getResourceAsStream("/com/dwarfeng/dutil/resource/demo/ConfigModelDemo_1.properties"));
+						loader = new PropConfigLoader(this.getClass().getResourceAsStream("/com/dwarfeng/dutil/resource/demo/ConfigModelDemo_1.properties"));
 						loader.load(configModel);
 					}catch (Exception e1) {
 						e1.printStackTrace();
@@ -161,9 +161,9 @@ public class ConfigModelDemo {
 			jb2.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					StreamConfigLoader loader = null;
+					StreamLoader<ConfigModel> loader = null;
 					try{
-						loader = new PropertiesConfigLoader(this.getClass().getResourceAsStream("/com/dwarfeng/dutil/resource/demo/ConfigModelDemo_2.properties"));
+						loader = new PropConfigLoader(this.getClass().getResourceAsStream("/com/dwarfeng/dutil/resource/demo/ConfigModelDemo_2.properties"));
 						loader.load(configModel);
 					}catch (Exception e1) {
 						e1.printStackTrace();
@@ -181,9 +181,9 @@ public class ConfigModelDemo {
 			jb3.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					StreamConfigLoader loader = null;
+					StreamLoader<ConfigModel> loader = null;
 					try{
-						loader = new PropertiesConfigLoader(this.getClass().getResourceAsStream("/com/dwarfeng/dutil/resource/demo/ConfigModelDemo_3.properties"));
+						loader = new PropConfigLoader(this.getClass().getResourceAsStream("/com/dwarfeng/dutil/resource/demo/ConfigModelDemo_3.properties"));
 						loader.load(configModel);
 					}catch (Exception e1) {
 						e1.printStackTrace();

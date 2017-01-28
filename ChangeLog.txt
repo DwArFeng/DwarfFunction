@@ -62,10 +62,19 @@ Beta_0.0.2_20170112_build_A
 	
 Beta_0.0.2_20170115_build_B
 	为了名称规范，新建 dutil.develop.cfg.ConfigObverser 以代替 ConfigModelObverser。
+		这可能导致该类与前版不兼容。
 	新增 dutil.develop.cfg.ConfigAdapter。
 	修复 FactoriesByString 类中的 bug。
 	为 dutil.develop.cfg.DefaultConfigModel 增加了默认的构造器方法。
 	从此版本开始，所有的 release 将加上版本号。
 	
-	
-	
+Beta_0.0.3	
+	新增 dutil.basic.threads.NumberedThreadFactory，用于提供自动编号的线程。
+	新增 dutil.basic.gui.swing.JExConsole，用于替代老的 JConsole。
+	新增 dutil.basic.prog.Loader<T>; dutil.basic.prog.Saver<T>，用于对指定对象进行读取和保存。
+	新增 dutil.basic.io.StreamLoader<T>; duitl.basic.io.StreamSaver<T> ，用于以流的方式对对象进行读取和保存。
+	调整 dutil.develop.cfg.io包中的结构，废弃了原来的结构，使用新的 Loader&Saver 结构构造新的类。
+	新增 dutil.basic.str.StringComparator<String> 提供文本的字典排序算法。
+	新增 dutil.basic.cna.insert(List<T> list, T obj, Comparator<? super T> c) 方法，用于在已排序的列表中插入元素。
+	新增 dutil.basic.prog.RuntimeState，用于指示程序的运行状态。
+	新增 dutil.basic.prog.Checker<T> 用于指示类型 T 是否合法。	

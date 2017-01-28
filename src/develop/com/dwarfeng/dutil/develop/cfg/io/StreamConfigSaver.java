@@ -4,8 +4,11 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import com.dwarfeng.dutil.basic.io.StreamSaver;
+
 /**
  * 流配置保存器。
+ * @deprecated 该类由 {@link StreamSaver} 替代。
  * <p> 用输出流实现的配置保存器。
  * @author  DwArFeng
  * @since 0.0.2-beta

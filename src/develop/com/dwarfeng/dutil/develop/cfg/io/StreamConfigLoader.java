@@ -7,9 +7,11 @@ import java.util.Objects;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.io.StreamLoader;
 
 /**
  * 流配置读取器。
+ * @deprecated 该类由 {@link StreamLoader} 替代。
  * <p> 使用输入流实现的配置读取器。
  * @author  DwArFeng
  * @since 0.0.2-beta

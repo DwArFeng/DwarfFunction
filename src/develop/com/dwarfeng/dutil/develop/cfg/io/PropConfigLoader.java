@@ -10,12 +10,12 @@ import java.util.Properties;
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.io.LoadFailedException;
+import com.dwarfeng.dutil.basic.io.StreamLoader;
 import com.dwarfeng.dutil.develop.cfg.ConfigKey;
 import com.dwarfeng.dutil.develop.cfg.ConfigModel;
 
 /**
  * Properties 配置读取器。
- * @deprecated 该类由 {@link PropConfigLoader} 代替。
  * <p> 该配置读取器假设待读取的文件格式符合 java 的 properties 文件格式。比如
  * <blockquote>
  * 		<code>
@@ -27,49 +27,25 @@ import com.dwarfeng.dutil.develop.cfg.ConfigModel;
  * </blockquote>
  * 其中 等号左边的是键，等号右边的是值。
  * @author  DwArFeng
- * @since 0.0.2-beta
+ * @since 0.0.3-beta
  */
-public class PropertiesConfigLoader extends StreamConfigLoader implements ConfigLoader {
+public class PropConfigLoader extends StreamLoader<ConfigModel> {
 
 	/**
 	 * 生成一个新的 Properties 配置读取器。
 	 * @param in 指定的输入流。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public PropertiesConfigLoader(InputStream in){
+	public PropConfigLoader(InputStream in) {
 		super(in);
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.develop.cfg.io.ConfigLoader#loadConfig()
+	 * @see com.dwarfeng.dutil.basic.prog.Loader#load(java.lang.Object)
 	 */
 	@Override
-	@Deprecated
-	public Map<ConfigKey, String> loadConfig() throws LoadFailedException {
-		Properties properties = new Properties();
-		try{
-			properties.load(in);
-			Map<ConfigKey, String> configMap = new HashMap<ConfigKey, String>();
-			for(String str : properties.stringPropertyNames()){
-				configMap.put(new ConfigKey(str), properties.getProperty(str));
-			}
-			return configMap;
-			
-		}catch (IOException e) {
-			LoadFailedException lfe = new LoadFailedException(e.getMessage(), e.getCause());
-			lfe.setStackTrace(e.getStackTrace());
-			throw lfe;
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.develop.cfg.io.ConfigLoader#loadConfig(com.dwarfeng.dutil.develop.cfg.ConfigModel)
-	 */
-	@Override
-	@Deprecated
-	public void loadConfig(ConfigModel configModel) throws LoadFailedException {
+	public void load(ConfigModel configModel) throws LoadFailedException {
 		Objects.requireNonNull(configModel, DwarfUtil.getStringField(StringFieldKey.PropertiesConfigLoader_0));
 		
 		Properties properties = new Properties();
@@ -88,13 +64,4 @@ public class PropertiesConfigLoader extends StreamConfigLoader implements Config
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.develop.cfg.io.ConfigLoader#load(com.dwarfeng.dutil.develop.cfg.ConfigModel)
-	 */
-	@Override
-	public void load(ConfigModel configModel) throws LoadFailedException {
-		loadConfig(configModel);
-	}
-	
 }

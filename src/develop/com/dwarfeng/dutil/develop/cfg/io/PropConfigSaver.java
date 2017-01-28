@@ -8,12 +8,12 @@ import java.util.Properties;
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.io.SaveFailedException;
+import com.dwarfeng.dutil.basic.io.StreamSaver;
 import com.dwarfeng.dutil.develop.cfg.ConfigKey;
 import com.dwarfeng.dutil.develop.cfg.ConfigModel;
 
 /**
  * Properties 配置保存器。
- * @deprecated 该类由 {@link PropConfigSaver} 代替。
  * <p> 该配置保存器假设待保存的文件格式符合 java 的 properties 文件格式。比如
  * <blockquote>
  * 		<code>
@@ -25,26 +25,25 @@ import com.dwarfeng.dutil.develop.cfg.ConfigModel;
  * </blockquote>
  * 其中 等号左边的是键，等号右边的是值。
  * @author  DwArFeng
- * @since 0.0.2-beta
+ * @since 0.0.3-beta
  */
-public class PropertiesConfigSaver extends StreamConfigSaver implements ConfigSaver {
-	
+public class PropConfigSaver extends StreamSaver<ConfigModel> {
+
 	/**
 	 * 生成一个新的 Properties 配置保存器。
 	 * @param out 指定的输出流。
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
-	public PropertiesConfigSaver(OutputStream out) {
+	public PropConfigSaver(OutputStream out) {
 		super(out);
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.develop.cfg.io.ConfigSaver#saveConfig(com.dwarfeng.dutil.develop.cfg.ConfigModel)
+	 * @see com.dwarfeng.dutil.basic.prog.Saver#save(java.lang.Object)
 	 */
 	@Override
-	@Deprecated
-	public void saveConfig(ConfigModel configModel) throws SaveFailedException {
+	public void save(ConfigModel configModel) throws SaveFailedException {
 		Objects.requireNonNull(configModel, DwarfUtil.getStringField(StringFieldKey.PropertiesConfigSaver_0));
 		
 		Properties properties = new Properties();
@@ -60,13 +59,4 @@ public class PropertiesConfigSaver extends StreamConfigSaver implements ConfigSa
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.develop.cfg.io.ConfigSaver#save(com.dwarfeng.dutil.develop.cfg.ConfigModel)
-	 */
-	@Override
-	public void save(ConfigModel configModel) throws SaveFailedException {
-		saveConfig(configModel);
-	}
-	
 }

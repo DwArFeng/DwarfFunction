@@ -127,6 +127,10 @@ public enum StringFieldKey{
 	CollectionUtil_13,
 	/**CollectionUtil类第14号文本字段*/
 	CollectionUtil_14,
+	/**CollectionUtil类第15号文本字段*/
+	CollectionUtil_15,
+	/**CollectionUtil类第16号文本字段*/
+	CollectionUtil_16,
 	
 	/**NameableComparator类第0号文本字段*/
 	NameableComparator_0,
@@ -337,4 +341,24 @@ public enum StringFieldKey{
 	FactoriesByString_0,
 	/**FactoriesByString类第1号文本字段*/
 	FactoriesByString_1,
+	
+	/**NumberedThreadFactory类第0号文本字段*/
+	NumberedThreadFactory_0,
+	
+	/**JExconsole类第0号文本字段*/
+	JExconsole_0,
+	/**JExconsole类第1号文本字段*/
+	JExconsole_1,
+	/**JExconsole类第2号文本字段*/
+	JExconsole_2, 
+	/**JExconsole类第3号文本字段*/
+	JExconsole_3,
+	/**JExconsole类第4号文本字段*/
+	JExconsole_4,
+	
+	/**StreamLoader类第0号文本字段*/
+	StreamLoader_0,
+	
+	/**StreamSaver类第0号文本字段*/
+	StreamSaver_0,
 }

@@ -79,7 +79,7 @@ public final class DwarfUtil {
 		return getStringField(StringFieldKey.WelcomeString) + getVersion().getLongName();
 	}
 	
-	private static final String LF_PATH = "resource/lang/labelField";
+	private static final String LF_PATH = "com/dwarfeng/dutil/resource/lang/labelField";
 	
 	private static final Map<Locale, ResourceBundle> labelFieldMap = new HashMap<>();
 	
