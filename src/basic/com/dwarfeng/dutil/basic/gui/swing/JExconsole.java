@@ -202,8 +202,8 @@ public class JExconsole extends JPanel {
 	protected final JTextField textField;
 	/**控制台的显示框*/
 	protected final JTextArea textArea;
-
-	private final JPopupMenu popup;
+	/**控制台的右键菜单*/
+	protected final JPopupMenu popup;
 
 	/**
 	 * 生成一个默认的控制台。

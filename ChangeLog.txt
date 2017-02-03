@@ -78,3 +78,5 @@ Beta_0.0.3
 	新增 dutil.basic.cna.insert(List<T> list, T obj, Comparator<? super T> c) 方法，用于在已排序的列表中插入元素。
 	新增 dutil.basic.prog.RuntimeState，用于指示程序的运行状态。
 	新增 dutil.basic.prog.Checker<T> 用于指示类型 T 是否合法。	
+	
+	新增 protected 域：dutil.basic.gui.swing.JExconsole.popup 用于指示控制台的右键菜单。
