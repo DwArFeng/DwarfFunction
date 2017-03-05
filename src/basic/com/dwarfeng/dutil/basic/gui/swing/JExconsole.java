@@ -2,7 +2,6 @@ package com.dwarfeng.dutil.basic.gui.swing;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -97,99 +96,8 @@ public class JExconsole extends JPanel {
 	private final Lock outputLock = new ReentrantLock();
 	private final List<String> rollbackStrings = new ArrayList<>();
 	
-	
-	private final Thread renderer = THREAD_FACTORY.newThread(new Runnable() {
-		
-		private StringBuilder sb = new StringBuilder();
-		private boolean appendFlag;
-		@Override
-		public void run() {
-			next:
-			while(! disposeFlag.get()){
-				
-				renderLock.lock();
-				try{
-					while(
-							string2Render.isEmpty()
-							&& ! disposeFlag.get()) {
-						try {
-							renderCondition.await();
-						} catch (InterruptedException e) {
-							//检查退出条件
-						}
-					}
-					
-					if(disposeFlag.get()) return;
-					
-					if(string2Render.isEmpty()) continue next;
-					
-					while(! string2Render.isEmpty()){
-						sb.append(string2Render.poll());
-					}
-					
-
-				}finally {
-					renderLock.unlock();
-				}
-				
-				appendFlag = true;
-				
-				checkAppend:
-				while(appendFlag){
-					try{
-						SwingUtilities.invokeAndWait(new Runnable() {
-							
-							/*
-							 * (non-Javadoc)
-							 * @see java.lang.Runnable#run()
-							 */
-							@Override
-							public void run() {
-								textArea.append(sb.toString());
-								appendFlag = false;
-								sb = new StringBuilder();
-							}
-						});
-					}catch (InterruptedException e) {
-						continue checkAppend;
-					} catch (InvocationTargetException ignore) {
-						// 该过程不可能发生异常。
-					}
-				}
-
-				if(textArea.getCaretPosition() < textArea.getText().length()){
-					int pos = textArea.getText().length();
-					SwingUtilities.invokeLater(new Runnable() {
-						@Override
-						public void run() {
-							textArea.setCaretPosition(pos);
-						}
-					});
-				}
-			
-				if(textArea.getLineCount() >  maxLine){
-					int pos = getLinePos();
-					SwingUtilities.invokeLater(new Runnable() {
-						@Override
-						public void run() {
-							textArea.replaceRange(null, 0, pos);
-						}
-					});
-				}
-
-			}
-		}
-
-		private int getLinePos() {
-			try {
-				return textArea.getLineEndOffset((int) (textArea.getLineCount() + maxLine * cleanRatio - maxLine));
-			} catch (BadLocationException ignore) {
-				//不可能抛出此异常
-				return 0;
-			}
-		}
-		
-	});
+	/**控制台的渲染线程*/
+	private final Thread renderer = THREAD_FACTORY.newThread(new RenderProcessor());
 	
 	private AtomicBoolean disposeFlag = new AtomicBoolean(false);
 	private int rollBackPos = -1;
@@ -203,7 +111,7 @@ public class JExconsole extends JPanel {
 	/**控制台的显示框*/
 	protected final JTextArea textArea;
 	/**控制台的右键菜单*/
-	protected final JPopupMenu popup;
+	protected JPopupMenu popup;
 
 	/**
 	 * 生成一个默认的控制台。
@@ -215,13 +123,27 @@ public class JExconsole extends JPanel {
 	}
 	
 	/**
-	 * 生成一个具有指定最大行数，指定的清除系数的控制台。
+	 * 生成一个具有指定最大行数，指定的清除系数，指定的最大回滚量的控制台。
 	 * @param maxLine 指定的最大行数，需要 <code> 0 &lt; maxLine</code>。
 	 * @param cleanRatio 指定的清除系数，需要<code> 0.0 &lt; cleanRatio &lt;= 1.0</code>。
 	 * @param maxRollback 最大的输入回滚数量。
 	 * @throws IllegalArgumentException 入口参数不符合要求。
 	 */
 	public JExconsole(int maxLine, double cleanRatio, Integer maxRollback) {
+		this(maxLine, cleanRatio, maxRollback, true);
+	}
+	
+	/**
+	 * 生成一个具有指定的最大行数，指定的清除系数，指定的最大回滚量，
+	 * 指定是否创建默认右键菜单的控制台。
+	 * @param maxLine 最大的行数。
+	 * @param cleanRatio 指定的清除系数。
+	 * @param maxRollback 指定的额最大回滚数量。
+	 * @param creatDefaultPopup 是否创建默认的右键菜单。
+	 * @param maxRollback 最大的输入回滚数量。
+	 * @throws IllegalArgumentException 入口参数不符合要求。
+	 */
+	public JExconsole(int maxLine, double cleanRatio, Integer maxRollback, boolean creatDefaultPopup){
 		if(maxLine <=  0) throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.JExconsole_1));
 		if(cleanRatio <= 0 || cleanRatio > 1) throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.JExconsole_2));
 		if(maxRollback < 0) throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.JExconsole_3));
@@ -304,8 +226,26 @@ public class JExconsole extends JPanel {
 		textArea.setForeground(null);
 		textArea.setWrapStyleWord(true);
 		
-		popup = createPopup();
-		addPopup(textArea, popup);
+		popup = creatDefaultPopup ? new InnerPopupMenu() : null;
+		
+		textArea.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					mayShowMenu(e);
+				}
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					mayShowMenu(e);
+				}
+			}
+			private void mayShowMenu(MouseEvent e) {
+				if(Objects.isNull(popup)) return;
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
 		
 		textArea.getActionMap().put("cls", new AbstractAction() {
 			private static final long serialVersionUID = 1L;
@@ -470,9 +410,83 @@ public class JExconsole extends JPanel {
 		super.setLocale(l);
 	}
 	
+	public JPopupMenu getPopup() {
+		return popup;
+	}
+
+	public void setPopup(JPopupMenu popup) {
+		this.popup = popup;
+	}
+
+	/**
+	 * 立即向该控制台的输入流中输入指定的字符串。
+	 * <p> 如果在调用此方法时，输入栏处于打开状态，则会清空输入栏中的字符，并且将其隐藏。
+	 * 使用该方法输入的字符串不会被记录到回滚队列中。
+	 * @param string 指定的字符串。
+	 */
+	public void input(String string){
+		inputLock.lock();
+		try{
+			if(disposeFlag.get()){
+				throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.JExconsole_0));
+			}
+			
+			InnerInputStream in = (InnerInputStream) JExconsole.this.in;
+			in.bs = string.getBytes();
+			in.pos = 0;
+			in.readFlag = true;
+			inputCondition.signalAll();
+			textField.setVisible(false);
+			textField.setText(null);
+			revalidate();
+		}finally {
+			inputLock.unlock();
+		}
+	}
+	
+	/**
+	 * 中断输入过程，并根据指定标志决定是否将已经输入的文本提交给输入流。
+	 * <p> 该过程只有在输入流读取数据时（此时输入流处于等待状态）有效，如果在调用该方法时，
+	 * 输入流没有读取数据（未处于等待状态），则该程序不做任何事情，直接返回。
+	 * <p> 如果需要提交已经输入的文本，则当前的文本会被加上 "\n" 提交到输入流中，就像正常输入那样。
+	 * @param submitExistingText 是否提交已经输入的文本。
+	 */
+	public void interruptInput(boolean submitExistingText){
+		inputLock.lock();
+		try{
+			if(disposeFlag.get()){
+				throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.JExconsole_0));
+			}
+			
+			InnerInputStream in = (InnerInputStream) JExconsole.this.in;
+			
+			if(! in.isBlocking()) return;
+			
+			if(submitExistingText){
+				in.bs = (textField.getText() + "\n").getBytes();
+				in.pos = 0;
+			}else{
+				in.bs = new byte[0];
+				in.pos = 0;
+			}
+			
+			in.readFlag = true;
+			inputCondition.signalAll();
+			
+			textField.setVisible(false);
+			textField.setText(null);
+			revalidate();
+		}finally {
+			inputLock.unlock();
+		}
+	}
+
 	/**
 	 * 创建控制台的右键菜单。
 	 * <p> 该方法会在初始化的时候调用，用于控制台用的菜单。
+	 * 此方法会创建一个默认的菜单，包括全选，清除屏幕以及是否自动换行。
+	 * <p>  如果不希望控制台显示默认的右键菜单，可以覆盖此方法，并且返回 <code>null</code>。
+	 * @deprecated 该方法已经废弃，现在控制台类中没有任何方法调用此方法。
 	 * @return 控制台的右键菜单。
 	 */
 	protected JPopupMenu createPopup(){
@@ -485,6 +499,7 @@ public class JExconsole extends JPanel {
 		private byte[] bs = new byte[1024];
 		private int pos = 0;
 		private boolean readFlag = false;
+		private boolean blockFlag= false;
 		
 		/*
 		 * (non-Javadoc)
@@ -510,11 +525,13 @@ public class JExconsole extends JPanel {
 								}
 							}
 						});
+						blockFlag = true;
 						inputCondition.await();
 					} catch (InterruptedException ignore) {
 						//重新检测
 					}
 				}
+				blockFlag = false;
 				
 				if(disposeFlag.get()) return -1;
 				if(pos == bs.length){
@@ -543,6 +560,15 @@ public class JExconsole extends JPanel {
 		@Override
 		public void close() throws IOException {
 			//Do nothing
+		}
+		
+		public boolean isBlocking(){
+			inputLock.lock();
+			try{
+				return blockFlag;
+			}finally {
+				inputLock.unlock();
+			}
 		}
 		
 	}
@@ -704,26 +730,99 @@ public class JExconsole extends JPanel {
 			super.setLocale(l);
 		}
 	}
-
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		if(Objects.isNull(popup)) return;
+	
+	private class RenderProcessor implements Runnable{
 		
-		component.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
+		private StringBuilder sb = new StringBuilder();
+		private boolean appendFlag;
+		
+		@Override
+		public void run() {
+			next:
+			while(! disposeFlag.get()){
+				
+				renderLock.lock();
+				try{
+					while(
+							string2Render.isEmpty()
+							&& ! disposeFlag.get()) {
+						try {
+							renderCondition.await();
+						} catch (InterruptedException e) {
+							//检查退出条件
+						}
+					}
+					
+					if(disposeFlag.get()) return;
+					
+					if(string2Render.isEmpty()) continue next;
+					
+					while(! string2Render.isEmpty()){
+						sb.append(string2Render.poll());
+					}
+					
+
+				}finally {
+					renderLock.unlock();
 				}
-			}
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
+				
+				appendFlag = true;
+				
+				checkAppend:
+				while(appendFlag){
+					try{
+						SwingUtilities.invokeAndWait(new Runnable() {
+							
+							/*
+							 * (non-Javadoc)
+							 * @see java.lang.Runnable#run()
+							 */
+							@Override
+							public void run() {
+								textArea.append(sb.toString());
+								appendFlag = false;
+								sb = new StringBuilder();
+							}
+						});
+					}catch (InterruptedException e) {
+						continue checkAppend;
+					} catch (InvocationTargetException ignore) {
+						// 该过程不可能发生异常。
+					}
 				}
+
+				if(textArea.getCaretPosition() < textArea.getText().length()){
+					int pos = textArea.getText().length();
+					SwingUtilities.invokeLater(new Runnable() {
+						@Override
+						public void run() {
+							textArea.setCaretPosition(pos);
+						}
+					});
+				}
+			
+				if(textArea.getLineCount() >  maxLine){
+					int pos = getLinePos();
+					SwingUtilities.invokeLater(new Runnable() {
+						@Override
+						public void run() {
+							textArea.replaceRange(null, 0, pos);
+						}
+					});
+				}
+
 			}
-			private void showMenu(MouseEvent e) {
-				popup.show(e.getComponent(), e.getX(), e.getY());
+		}
+
+		private int getLinePos() {
+			try {
+				return textArea.getLineEndOffset((int) (textArea.getLineCount() + maxLine * cleanRatio - maxLine));
+			} catch (BadLocationException ignore) {
+				//不可能抛出此异常
+				return 0;
 			}
-		});
+		}
+		
 	}
+
 }

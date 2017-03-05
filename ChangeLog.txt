@@ -90,3 +90,5 @@ Beta_0.1.0
 		其中的设置当前值与固定属性的方法，在现在的设置方法中，即使新值与旧值相等，仍然会触发观察器。
 	调整 dutil.develop.cfg.io.PropConfigLoader 与 PropConfigSaver 中的方法，实现了其接口新增的方法。
 	新增 dutil.basic.prog.ProcessFailedException，用于指示在方法处理过程中因为别的异常导致的处理过程失败。
+	调整 dutil.basic.gui.swing.JExconsole
+		将 popup-右键菜单类设置为可更改的，这样，用户在编程的时候，可以随时改变 popup。
