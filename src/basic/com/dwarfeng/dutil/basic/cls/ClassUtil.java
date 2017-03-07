@@ -24,7 +24,7 @@ public final class ClassUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public static Collection<Class<?>> getSuperClasses(Class<?> cl){
-		Objects.requireNonNull(cl, DwarfUtil.getStringField(StringFieldKey.ClassUtil_0));
+		Objects.requireNonNull(cl, DwarfUtil.getStringField(StringFieldKey.CLASSUTIL_0));
 		Collection<Class<?>> collection = new HashSet<Class<?>>();
 		Class<?> clas = cl.getSuperclass();
 		while(Objects.nonNull(clas)){
@@ -41,7 +41,7 @@ public final class ClassUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public static Collection<Class<?>> getSuperClasses(Object o){
-		Objects.requireNonNull(o, DwarfUtil.getStringField(StringFieldKey.ClassUtil_1));
+		Objects.requireNonNull(o, DwarfUtil.getStringField(StringFieldKey.CLASSUTIL_1));
 		return getSuperClasses(o.getClass());
 	}
 	
@@ -52,7 +52,7 @@ public final class ClassUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public static Class<?>[] getSuperClassArray(Object o){
-		Objects.requireNonNull(o, DwarfUtil.getStringField(StringFieldKey.ClassUtil_1));
+		Objects.requireNonNull(o, DwarfUtil.getStringField(StringFieldKey.CLASSUTIL_1));
 		return getSuperClasses(o).toArray(new Class<?>[0]);
 	}
 	
@@ -63,7 +63,7 @@ public final class ClassUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public static Class<?>[] getSuperClassArray(Class<?> cl){
-		Objects.requireNonNull(cl, DwarfUtil.getStringField(StringFieldKey.ClassUtil_0));
+		Objects.requireNonNull(cl, DwarfUtil.getStringField(StringFieldKey.CLASSUTIL_0));
 		return getSuperClasses(cl).toArray(new Class<?>[0]);
 	}
 	
@@ -74,7 +74,7 @@ public final class ClassUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public static Collection<Class<?>> getImplInterfaces(Class<?> cl){
-		Objects.requireNonNull(cl, DwarfUtil.getStringField(StringFieldKey.ClassUtil_0));
+		Objects.requireNonNull(cl, DwarfUtil.getStringField(StringFieldKey.CLASSUTIL_0));
 		
 		Collection<Class<?>> superIntr = new HashSet<Class<?>>();
 		Set<Class<?>> intrPool = new HashSet<Class<?>>();
@@ -104,7 +104,7 @@ public final class ClassUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public static Collection<Class<?>> getImplInterfaces(Object o){
-		Objects.requireNonNull(o, DwarfUtil.getStringField(StringFieldKey.ClassUtil_1));
+		Objects.requireNonNull(o, DwarfUtil.getStringField(StringFieldKey.CLASSUTIL_1));
 		return getImplInterfaces(o.getClass());
 	}
 	
@@ -115,7 +115,7 @@ public final class ClassUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public static Class<?>[] getImplInterfacesArray(Class<?> cl){
-		Objects.requireNonNull(cl, DwarfUtil.getStringField(StringFieldKey.ClassUtil_0));
+		Objects.requireNonNull(cl, DwarfUtil.getStringField(StringFieldKey.CLASSUTIL_0));
 		return getImplInterfaces(cl).toArray(new Class<?>[0]);
 	}
 	
@@ -126,7 +126,7 @@ public final class ClassUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public static Class<?>[] getImplInterfacesArray(Object o){
-		Objects.requireNonNull(o, DwarfUtil.getStringField(StringFieldKey.ClassUtil_1));
+		Objects.requireNonNull(o, DwarfUtil.getStringField(StringFieldKey.CLASSUTIL_1));
 		return getImplInterfaces(o).toArray(new Class<?>[0]);
 	}
 	

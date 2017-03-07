@@ -36,8 +36,8 @@ public class StringInputStream extends InputStream {
 	 * @throws NullPointerException 入口参数 <code>charset</code> 为 <code>null</code>。
 	 */
 	public StringInputStream(String string, Charset charset){
-		Objects.requireNonNull(string, DwarfUtil.getStringField(StringFieldKey.StringInputStream_0));
-		Objects.requireNonNull(charset, DwarfUtil.getStringField(StringFieldKey.StringInputStream_1));
+		Objects.requireNonNull(string, DwarfUtil.getStringField(StringFieldKey.STRINGINPUTSTREAM_0));
+		Objects.requireNonNull(charset, DwarfUtil.getStringField(StringFieldKey.STRINGINPUTSTREAM_1));
 		this.bytes = string.getBytes(charset);
 	}
 

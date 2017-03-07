@@ -94,3 +94,5 @@ Beta_0.1.0
 		将 popup-右键菜单类设置为可更改的，这样，用户在编程的时候，可以随时改变 popup。
 		新增取消控制台输入功能，当控制台输入框打开的时候，可以调用方法取消本次输入。
 	新增 dutil.basic.prog.ElementWithKey 接口，该接口指示实现此接口的类拥有一个可辨识的主键。
+	新增 dutil.basic.str.DefaultName 类，为 dutil.basic.str.Name 接口的默认实现。
+	新增 dutil.test 包，用于存储调试用的代码，该包不在 release 版本发布。

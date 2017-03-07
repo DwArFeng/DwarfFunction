@@ -25,7 +25,7 @@ public abstract class StreamSaver<T> implements Closeable, Saver<T> {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public StreamSaver(OutputStream out) {
-		Objects.requireNonNull(out, DwarfUtil.getStringField(StringFieldKey.StreamSaver_0));
+		Objects.requireNonNull(out, DwarfUtil.getStringField(StringFieldKey.STREAMSAVER_0));
 		this.out = out;
 	}
 

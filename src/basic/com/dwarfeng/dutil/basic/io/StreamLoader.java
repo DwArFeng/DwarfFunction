@@ -25,7 +25,7 @@ public abstract class StreamLoader<T> implements Closeable, Loader<T>{
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public StreamLoader(InputStream in) {
-		Objects.requireNonNull(in, DwarfUtil.getStringField(StringFieldKey.StreamLoader_0));
+		Objects.requireNonNull(in, DwarfUtil.getStringField(StringFieldKey.STREAMLOADER_0));
 		this.in = in;
 	}
 

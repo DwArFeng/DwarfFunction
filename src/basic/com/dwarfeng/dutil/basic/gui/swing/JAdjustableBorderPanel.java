@@ -230,7 +230,7 @@ public class JAdjustableBorderPanel extends JPanel{
 			setCenter(component);
 			return;
 		}
-		throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.JAdjustableBorderPanel_0));
+		throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.JADJUSTABLEBORDERPANEL_0));
 	}
 	/**
 	 * 获取该控件的北方组件。

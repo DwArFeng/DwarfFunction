@@ -22,7 +22,7 @@ import com.dwarfeng.dutil.basic.num.unit.Time;
  * @author DwArFeng
  * @since 0.0.2-beta
  */
-public final class TimeMeasurer {
+public class TimeMeasurer {
 	
 	/**
 	 * ¼ÆÊ±Æ÷µÄ×´Ì¬¡£
@@ -90,7 +90,7 @@ public final class TimeMeasurer {
 		lock.lock();
 		try{
 			if(!isNotStart()){
-				throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_0));
+				throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TIMEMEASURER_0));
 			}
 			l =  - System.nanoTime();
 			this.status = Status.TIMING;
@@ -107,7 +107,7 @@ public final class TimeMeasurer {
 		lock.lock();
 		try{
 			if(!isTiming()){
-				throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_1));
+				throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TIMEMEASURER_1));
 			}
 			l += System.nanoTime();
 			this.status = Status.STOPED;
@@ -123,7 +123,7 @@ public final class TimeMeasurer {
 	 */
 	public long getTimeNs(){
 		if(! isStoped()){
-			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_2));
+			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TIMEMEASURER_2));
 		}
 		return l;
 	}
@@ -135,7 +135,7 @@ public final class TimeMeasurer {
 	 */
 	public long getTimeMs(){
 		if(! isStoped()){
-			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_2));
+			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TIMEMEASURER_2));
 		}
 		return l/1000000;
 	}
@@ -147,7 +147,7 @@ public final class TimeMeasurer {
 	 */
 	public long getTimeSec(){
 		if(! isStoped()){
-			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_2));
+			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TIMEMEASURER_2));
 		}
 		return l/1000000000;
 	}
@@ -162,7 +162,7 @@ public final class TimeMeasurer {
 	 */
 	public double getTime(NumberValue valueable){
 		if(! isStoped()){
-			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_2));
+			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TIMEMEASURER_2));
 		}
 		return NumberUtil.unitTrans(l, Time.NS, valueable).doubleValue();
 	}
@@ -174,9 +174,9 @@ public final class TimeMeasurer {
 	 */
 	public String formatStringNs(){
 		if(! isStoped()){
-			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_2));
+			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TIMEMEASURER_2));
 		}
-		return String.format(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_3), getTimeNs());
+		return String.format(DwarfUtil.getStringField(StringFieldKey.TIMEMEASURER_3), getTimeNs());
 	}
 	
 	/**
@@ -186,9 +186,9 @@ public final class TimeMeasurer {
 	 */
 	public String formatStringMs(){
 		if(! isStoped()){
-			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_2));
+			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TIMEMEASURER_2));
 		}
-		return String.format(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_4), getTimeMs());
+		return String.format(DwarfUtil.getStringField(StringFieldKey.TIMEMEASURER_4), getTimeMs());
 	}
 	
 	/**
@@ -198,9 +198,9 @@ public final class TimeMeasurer {
 	 */
 	public String formatStringSec(){
 		if(! isStoped()){
-			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_2));
+			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.TIMEMEASURER_2));
 		}
-		return String.format(DwarfUtil.getStringField(StringFieldKey.TimeMeasurer_5), getTimeSec());
+		return String.format(DwarfUtil.getStringField(StringFieldKey.TIMEMEASURER_5), getTimeSec());
 	}
 	
 	/*

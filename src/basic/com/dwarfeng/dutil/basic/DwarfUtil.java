@@ -60,7 +60,7 @@ public final class DwarfUtil {
 	 */
 	public static String getStringField(StringFieldKey key){
 		if(Objects.isNull(key)) return "";
-		return sf.getString(key.toString());
+		return sf.getString(key.getName());
 	}
 	
 	/**
@@ -76,7 +76,7 @@ public final class DwarfUtil {
 	 * @return ¸Ã°üµÄ»¶Ó­ 
 	 */
 	public static String getWelcomeString(){
-		return getStringField(StringFieldKey.WelcomeString) + getVersion().getLongName();
+		return getStringField(StringFieldKey.WELCOME_STRING) + getVersion().getLongName();
 	}
 	
 	private static final String LF_PATH = "com/dwarfeng/dutil/resource/lang/labelField";
