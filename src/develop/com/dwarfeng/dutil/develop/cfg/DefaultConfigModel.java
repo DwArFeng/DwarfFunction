@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -15,7 +16,8 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 
 /**
  * 默认配置模型。
- * <p> 配置模型的默认实现。
+ * <p>
+ * 配置模型的默认实现。
  * 
  * @author DwArFeng
  * @since 0.0.2-beta
@@ -114,12 +116,6 @@ public class DefaultConfigModel extends AbstractConfigModel {
 		fireConfigKeyCleared();
 	}
 
-	private void fireConfigKeyCleared() {
-		for (ConfigObverser obverser : obversers) {
-			obverser.fireConfigKeyCleared();
-		}
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -136,8 +132,8 @@ public class DefaultConfigModel extends AbstractConfigModel {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.ConfigModel#getCurrentValue(com.dwarfeng.
-	 * dutil.develop.cfg.ConfigKey)
+	 * com.dwarfeng.dutil.develop.cfg.CurrentValueContainer#getCurrentValue(com.
+	 * dwarfeng.dutil.develop.cfg.ConfigKey)
 	 */
 	@Override
 	public String getCurrentValue(ConfigKey configKey) {
@@ -148,6 +144,17 @@ public class DefaultConfigModel extends AbstractConfigModel {
 			currentValueMap.put(configKey, result);
 			return result;
 		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.dwarfeng.dutil.develop.cfg.CurrentValueContainer#getAllCurrentValue()
+	 */
+	@Override
+	public Map<ConfigKey, String> getAllCurrentValue() {
+		return Collections.unmodifiableMap(currentValueMap);
 	}
 
 	/*
@@ -215,12 +222,6 @@ public class DefaultConfigModel extends AbstractConfigModel {
 		return aFlag;
 	}
 
-	private void fireConfigKeyAdded(ConfigKey configKey) {
-		for (ConfigObverser obverser : obversers) {
-			obverser.fireConfigKeyAdded(configKey);
-		}
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -248,16 +249,8 @@ public class DefaultConfigModel extends AbstractConfigModel {
 	 */
 	@Override
 	public boolean removeAll(Collection<ConfigKey> configKeys) {
-		Objects.requireNonNull(configKeys, DwarfUtil.getStringField(StringFieldKey.DefaultConfigModel_1));
-
-		boolean aFlag = false;
-
-		for (ConfigKey configKey : configKeys) {
-			if (remove(configKey))
-				aFlag = true;
-		}
-
-		return aFlag;
+		Objects.requireNonNull(configKeys, DwarfUtil.getStringField(StringFieldKey.DEFAULTEXCONFIGMODEL_2));
+		return batchRemove(configKeys, true);
 	}
 
 	/*
@@ -268,24 +261,26 @@ public class DefaultConfigModel extends AbstractConfigModel {
 	 */
 	@Override
 	public boolean retainAll(Collection<ConfigKey> configKeys) {
-		Objects.requireNonNull(configKeys, DwarfUtil.getStringField(StringFieldKey.DefaultConfigModel_1));
+		Objects.requireNonNull(configKeys, DwarfUtil.getStringField(StringFieldKey.DEFAULTEXCONFIGMODEL_2));
+		return batchRemove(configKeys, false);
+	}
 
-		boolean aFlag = false;
+	private boolean batchRemove(Collection<ConfigKey> configKeys, boolean aFlag) {
+		List<ConfigKey> key2Remove = new ArrayList<>();
+		boolean result = false;
 
-		for (ConfigKey configKey : firmPropsMap.keySet()) {
-			if (!configKeys.contains(configKey)) {
-				if (remove(configKey))
-					aFlag = true;
+		for (ConfigKey key : firmPropsMap.keySet()) {
+			if (configKeys.contains(key) == aFlag) {
+				key2Remove.add(key);
 			}
 		}
 
-		return aFlag;
-	}
-
-	private void fireConfigKeyRemoved(ConfigKey configKey) {
-		for (ConfigObverser obverser : obversers) {
-			obverser.fireConfigKeyRemoved(configKey);
+		for (ConfigKey configKey : key2Remove) {
+			if (remove(configKey))
+				result = true;
 		}
+
+		return result;
 	}
 
 	/*
@@ -370,18 +365,12 @@ public class DefaultConfigModel extends AbstractConfigModel {
 		return true;
 	}
 
-	private void fireConfigFirmPropsChanged(ConfigKey configKey, ConfigFirmProps oldValue, ConfigFirmProps newValue) {
-		for (ConfigObverser obverser : obversers) {
-			obverser.fireConfigFirmPropsChanged(configKey, oldValue, newValue);
-		}
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.ConfigModel#setCurrentValue(com.dwarfeng.
-	 * dutil.develop.cfg.ConfigKey, java.lang.String)
+	 * com.dwarfeng.dutil.develop.cfg.io.CurrentValueContainer#setCurrentValue(
+	 * com.dwarfeng.dutil.develop.cfg.ConfigKey, java.lang.String)
 	 */
 	@Override
 	public boolean setCurrentValue(ConfigKey configKey, String currentValue) {
@@ -405,9 +394,8 @@ public class DefaultConfigModel extends AbstractConfigModel {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.ConfigModel#setAllCurrentValue(java.util.
-	 * Map)
+	 * @see com.dwarfeng.dutil.develop.cfg.io.CurrentValueContainer#
+	 * setAllCurrentValue(java.util.Map)
 	 */
 	@Override
 	public boolean setAllCurrentValue(Map<ConfigKey, String> map) {
@@ -450,12 +438,6 @@ public class DefaultConfigModel extends AbstractConfigModel {
 		}
 
 		return aFlag;
-	}
-
-	private void fireCurrentValueChanged(ConfigKey configKey, String oldValue, String newValue, String validValue) {
-		for (ConfigObverser obverser : obversers) {
-			obverser.fireCurrentValueChanged(configKey, oldValue, newValue, validValue);
-		}
 	}
 
 }

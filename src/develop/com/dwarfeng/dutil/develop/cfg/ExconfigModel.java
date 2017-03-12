@@ -1,7 +1,6 @@
 package com.dwarfeng.dutil.develop.cfg;
 
 import java.util.Collection;
-import java.util.Map;
 import java.util.Set;
 
 import com.dwarfeng.dutil.basic.prog.ObverserSet;
@@ -17,7 +16,7 @@ import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public interface ExconfigModel extends ObverserSet<ExconfigObverser> {
+public interface ExconfigModel extends CurrentValueContainer, ObverserSet<ExconfigObverser> {
 
 	/**
 	 * 清空配置模型中的所有记录（可选操作）。
@@ -35,20 +34,6 @@ public interface ExconfigModel extends ObverserSet<ExconfigObverser> {
 	 * @return 此配置模型是否包含指定的配置键。
 	 */
 	public boolean containsKey(ConfigKey configKey);
-
-	/**
-	 * 获取配置模型中的当前值。
-	 * <p>
-	 * 当前值可能合法，也可能不合法，如果想要获得一个配置模型中指定配置键的合法值，请使用
-	 * {@link #getValidValue(ConfigKey)}。
-	 * <p>
-	 * 如果配置模型中不存在指定的配置键或者入口配置键为 <code>null</code>，则返回 <code>null</code>。
-	 * 
-	 * @param configKey
-	 *            指定的配置键。
-	 * @return 模型中指定配置键对应的当前值。
-	 */
-	public String getCurrentValue(ConfigKey configKey);
 
 	/**
 	 * 如果该配置模型中不包含任何记录，则返回 <code>true</code>。
@@ -207,35 +192,6 @@ public interface ExconfigModel extends ObverserSet<ExconfigObverser> {
 	public boolean setConfigFirmProps(ConfigKey configKey, ConfigFirmProps configFirmProps);
 
 	/**
-	 * 设置模型中指定配置键的当前值。
-	 * <p>
-	 * 当指定的配置键为 <code>null</code>，或指定的配置键不存在于当前的模型时，不进行任何操作。 <br>
-	 * 当指定的 currentValue 为 <code>null</code>时，不进行任何操作。
-	 * 
-	 * @param configKey
-	 *            指定的配置键。
-	 * @param currentValue
-	 *            指定的当前值。
-	 * @return 该操作是否对模型产生了变更。
-	 */
-	public boolean setCurrentValue(ConfigKey configKey, String currentValue);
-
-	/**
-	 * 设置模型中指定配置键的当前值。
-	 * <p>
-	 * 该操作试图将指定的映射中的所有的配置键-当前值设置到模型中。
-	 * <p>
-	 * 当指定的配置键为 <code>null</code>，或指定的配置键不存在于当前的模型时，不进行任何操作。
-	 * 
-	 * @param map
-	 *            指定的配置键-当前值映射。
-	 * @return 该操作是否对模型产生了改变。
-	 * @throws NullPointerException
-	 *             入口参数为 <code>null</code>。
-	 */
-	public boolean setAllCurrentValue(Map<ConfigKey, String> map);
-
-	/**
 	 * 将一个指定的配置键对应的当前值重置为默认值。
 	 * <p>
 	 * 如果指定的配置键不存在或者为 <code>null</code>，则不进行任何操作。
@@ -290,17 +246,6 @@ public interface ExconfigModel extends ObverserSet<ExconfigObverser> {
 	public Object getParsedValue(ConfigKey configKey);
 
 	/**
-	 * 获取模型中指定配置键的对应的默认值的解析值。
-	 * 
-	 * @param configKey
-	 *            指定的配置键。
-	 * @return 指定的配置键对应的默认值的解析值。
-	 * @throws NullPointerException
-	 *             入口参数为 <code>null</code>。
-	 */
-	public Object getParsedDefaultValue(ConfigKey configKey);
-
-	/**
 	 * 获取模型中指定配置键的对应的有效值的解析值。
 	 * <p>
 	 * 该解析值将被转换为指定的类型。
@@ -317,20 +262,4 @@ public interface ExconfigModel extends ObverserSet<ExconfigObverser> {
 	 */
 	public <T> T getParsedValue(ConfigKey configKey, Class<T> clas);
 
-	/**
-	 * 获取模型中指定配置键的对应的默认值的解析值。
-	 * <p>
-	 * 该解析值江北转换为指定的类型。
-	 * 
-	 * @param configKey
-	 *            指定的配置键。
-	 * @param clas
-	 *            指定的类型。
-	 * @return 被转换成指定类型的指定配置键对应的默认值的解析值。
-	 * @throws NullPointerException
-	 *             入口参数为 <code>null</code>。
-	 * @throws ClassCastException
-	 *             类型转换异常。
-	 */
-	public <T> T getParsedDefaultValue(ConfigKey configKey, Class<T> clas);
 }

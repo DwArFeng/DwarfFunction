@@ -3,6 +3,7 @@ package com.dwarfeng.dutil.develop.cfg.io;
 import com.dwarfeng.dutil.basic.io.SaveFailedException;
 import com.dwarfeng.dutil.basic.prog.Saver;
 import com.dwarfeng.dutil.develop.cfg.ConfigModel;
+import com.dwarfeng.dutil.develop.cfg.CurrentValueContainer;
 
 /**
  * ≈‰÷√±£¥Ê∆˜°£
@@ -16,9 +17,9 @@ import com.dwarfeng.dutil.develop.cfg.ConfigModel;
 public interface ConfigSaver {
 
 	@Deprecated
-	public void saveConfig(ConfigModel configModel) throws SaveFailedException;
+	public void saveConfig(CurrentValueContainer container) throws SaveFailedException;
 
 	@Deprecated
-	public void save(ConfigModel configModel) throws SaveFailedException;
+	public void save(CurrentValueContainer container) throws SaveFailedException;
 
 }

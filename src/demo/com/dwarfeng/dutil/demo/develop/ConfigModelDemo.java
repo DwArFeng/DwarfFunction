@@ -17,6 +17,7 @@ import com.dwarfeng.dutil.develop.cfg.ConfigFirmProps;
 import com.dwarfeng.dutil.develop.cfg.ConfigKey;
 import com.dwarfeng.dutil.develop.cfg.ConfigModel;
 import com.dwarfeng.dutil.develop.cfg.ConfigObverser;
+import com.dwarfeng.dutil.develop.cfg.CurrentValueContainer;
 import com.dwarfeng.dutil.develop.cfg.DefaultConfigModel;
 import com.dwarfeng.dutil.develop.cfg.checker.IntegerConfigChecker;
 import com.dwarfeng.dutil.develop.cfg.io.PropConfigLoader;
@@ -141,7 +142,7 @@ public class ConfigModelDemo {
 			jb1.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					StreamLoader<ConfigModel> loader = null;
+					StreamLoader<CurrentValueContainer> loader = null;
 					try{
 						loader = new PropConfigLoader(this.getClass().getResourceAsStream("/com/dwarfeng/dutil/resource/demo/ConfigModelDemo_1.properties"));
 						loader.load(configModel);
@@ -161,7 +162,7 @@ public class ConfigModelDemo {
 			jb2.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					StreamLoader<ConfigModel> loader = null;
+					StreamLoader<CurrentValueContainer> loader = null;
 					try{
 						loader = new PropConfigLoader(this.getClass().getResourceAsStream("/com/dwarfeng/dutil/resource/demo/ConfigModelDemo_2.properties"));
 						loader.load(configModel);
@@ -181,7 +182,7 @@ public class ConfigModelDemo {
 			jb3.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					StreamLoader<ConfigModel> loader = null;
+					StreamLoader<CurrentValueContainer> loader = null;
 					try{
 						loader = new PropConfigLoader(this.getClass().getResourceAsStream("/com/dwarfeng/dutil/resource/demo/ConfigModelDemo_3.properties"));
 						loader.load(configModel);

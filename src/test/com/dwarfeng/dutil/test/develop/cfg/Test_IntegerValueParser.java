@@ -14,9 +14,9 @@ public class Test_IntegerValueParser {
 
 	@Test
 	public void testParseString() {
-		assertEquals(255, dec_paraser.parseString("255"));
-		assertEquals(255, hex_paraser.parseString("ff"));
-		assertEquals(255, bin_paraser.parseString("11111111"));
+		assertEquals(255, dec_paraser.parseValue("255"));
+		assertEquals(255, hex_paraser.parseValue("ff"));
+		assertEquals(255, bin_paraser.parseValue("11111111"));
 	}
 
 	@Test

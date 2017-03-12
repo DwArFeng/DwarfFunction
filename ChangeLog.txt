@@ -100,6 +100,14 @@ Beta_0.1.0
 		引入 Exconfig 架构，对配置模型的处理能力进行了一次升级：
 			该架构下的配置模型 ExconfigModel 可以将配置的有效值直接转化为用户需要的格式。
 		新增 dutil.develop.cfg.ExconfigModel
+		新增 dutil.develop.cfg.SyncExconfigModel
+		新增 dutil.develop.cfg.SyncConfigModel
 		新增 dutil.develop.cfg.struct 包
 			新增 dutil.develop.cfg.ExconfigEntry
-			新增 dutil.develop.cfg.ValueParser
+			新增 dutil.develop.cfg.struct.ValueParser
+		新增 dutil.develop.cfg.struct.parser包
+			新增 dutil.develop.cfg.parse.IntegerValueParser
+		新增 dutil.develop.cfg.struct.obv包
+			新增 dutil.develop.cfg.parse.ExconfigObverser
+			新增 dutil.develop.cfg.parse.ExconfigAdapter
+			

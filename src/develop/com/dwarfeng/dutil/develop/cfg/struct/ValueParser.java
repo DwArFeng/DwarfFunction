@@ -29,7 +29,7 @@ public interface ValueParser {
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public Object parseString(String value);
+	public Object parseValue(String value);
 
 	/**
 	 * 将一个对象解析成字符串。

@@ -1,13 +1,18 @@
 package com.dwarfeng.dutil.develop.cfg;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.develop.cfg.obv.ExconfigObverser;
 import com.dwarfeng.dutil.develop.cfg.struct.ExconfigEntry;
+import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
 /**
  * 有关于配置包的一些常用方法。
@@ -93,7 +98,7 @@ public final class ConfigUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static ConfigModel unmodifiableConfigModel(ConfigModel configModel) {
-		Objects.requireNonNull(configModel, DwarfUtil.getStringField(StringFieldKey.ConfigUtil_0));
+		Objects.requireNonNull(configModel, DwarfUtil.getStringField(StringFieldKey.CONFIGUTIL_0));
 		return new UnmodifiableConfigModel(configModel);
 	}
 
@@ -156,7 +161,7 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public void clear() {
-			throw new UnsupportedOperationException("此配置模型不支持该方法");
+			throw new UnsupportedOperationException();
 		}
 
 		/*
@@ -174,12 +179,23 @@ public final class ConfigUtil {
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#getCurrentValue(com.
-		 * dwarfeng.dutil.develop.cfg.ConfigKey)
+		 * @see com.dwarfeng.dutil.develop.cfg.io.CurrentValueContainer#
+		 * getCurrentValue(com.dwarfeng.dutil.develop.cfg.ConfigKey)
 		 */
 		@Override
 		public String getCurrentValue(ConfigKey configKey) {
 			return delegate.getCurrentValue(configKey);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.CurrentValueContainer#
+		 * getAllCurrentValue()
+		 */
+		@Override
+		public Map<ConfigKey, String> getAllCurrentValue() {
+			return delegate.getAllCurrentValue();
 		}
 
 		/*
@@ -211,7 +227,7 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public boolean add(ConfigEntry configEntry) {
-			throw new UnsupportedOperationException("此配置模型不支持该方法");
+			throw new UnsupportedOperationException();
 		}
 
 		/*
@@ -222,7 +238,7 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public boolean addAll(Collection<ConfigEntry> configEntries) {
-			throw new UnsupportedOperationException("此配置模型不支持该方法");
+			throw new UnsupportedOperationException();
 		}
 
 		/*
@@ -234,7 +250,7 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public boolean remove(ConfigKey configKey) {
-			throw new UnsupportedOperationException("此配置模型不支持该方法");
+			throw new UnsupportedOperationException();
 		}
 
 		/*
@@ -245,7 +261,7 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public boolean removeAll(Collection<ConfigKey> configKeys) {
-			throw new UnsupportedOperationException("此配置模型不支持该方法");
+			throw new UnsupportedOperationException();
 		}
 
 		/*
@@ -256,7 +272,7 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public boolean retainAll(Collection<ConfigKey> configKeys) {
-			throw new UnsupportedOperationException("此配置模型不支持该方法");
+			throw new UnsupportedOperationException();
 		}
 
 		/*
@@ -315,14 +331,15 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public boolean setConfigFirmProps(ConfigKey configKey, ConfigFirmProps configFirmProps) {
-			throw new UnsupportedOperationException("此配置模型不支持该方法");
+			throw new UnsupportedOperationException();
 		}
 
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#setCurrentValue(com.
-		 * dwarfeng.dutil.develop.cfg.ConfigKey, java.lang.String)
+		 * @see com.dwarfeng.dutil.develop.cfg.io.CurrentValueContainer#
+		 * setCurrentValue(com.dwarfeng.dutil.develop.cfg.ConfigKey,
+		 * java.lang.String)
 		 */
 		@Override
 		public boolean setCurrentValue(ConfigKey configKey, String currentValue) {
@@ -332,9 +349,8 @@ public final class ConfigUtil {
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see
-		 * com.dwarfeng.dutil.develop.cfg.ConfigModel#setAllCurrentValue(java.
-		 * util.Map)
+		 * @see com.dwarfeng.dutil.develop.cfg.io.CurrentValueContainer#
+		 * setAllCurrentValue(java.util.Map)
 		 */
 		@Override
 		public boolean setAllCurrentValue(Map<ConfigKey, String> map) {
@@ -398,6 +414,1253 @@ public final class ConfigUtil {
 	 */
 	public static boolean nonValid(ExconfigEntry entry) {
 		return !isValid(entry);
+	}
+
+	/**
+	 * 由指定的Ex配置模型生成一个线程安全的Ex配置模型。
+	 * 
+	 * @param exconfigModel
+	 *            指定的Ex配置模型。
+	 * @return 由指定Ex配置模型生成的线程安全的Ex配置模型。
+	 */
+	public static SyncExconfigModel syncExconfigModel(ExconfigModel exconfigModel) {
+		Objects.requireNonNull(exconfigModel, DwarfUtil.getStringField(StringFieldKey.CONFIGUTIL_1));
+		return new SyncExconfigModelImpl(exconfigModel);
+	}
+
+	private static class SyncExconfigModelImpl implements SyncExconfigModel {
+
+		private final ExconfigModel delegate;
+		private final ReadWriteLock lock = new ReentrantReadWriteLock();
+
+		public SyncExconfigModelImpl(ExconfigModel delegate) {
+			this.delegate = delegate;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.threads.ExternalReadWriteThreadSafe#getLock(
+		 * )
+		 */
+		@Override
+		public ReadWriteLock getLock() {
+			return lock;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		 */
+		@Override
+		public Set<ExconfigObverser> getObversers() {
+			lock.readLock().lock();
+			try {
+				return delegate.getObversers();
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
+		 * dutil.basic.prog.Obverser)
+		 */
+		@Override
+		public boolean addObverser(ExconfigObverser obverser) {
+			lock.writeLock().lock();
+			try {
+				return delegate.addObverser(obverser);
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
+		 * .dutil.basic.prog.Obverser)
+		 */
+		@Override
+		public boolean removeObverser(ExconfigObverser obverser) {
+			lock.writeLock().lock();
+			try {
+				return delegate.removeObverser(obverser);
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#clear()
+		 */
+		@Override
+		public void clear() {
+			lock.writeLock().lock();
+			try {
+				delegate.clear();
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		 */
+		@Override
+		public void clearObverser() {
+			lock.writeLock().lock();
+			try {
+				delegate.clearObverser();
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#containsKey(com.dwarfeng
+		 * .dutil.develop.cfg.ConfigKey)
+		 */
+		@Override
+		public boolean containsKey(ConfigKey configKey) {
+			lock.readLock().lock();
+			try {
+				return delegate.containsKey(configKey);
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#getCurrentValue(com.
+		 * dwarfeng.dutil.develop.cfg.ConfigKey)
+		 */
+		@Override
+		public String getCurrentValue(ConfigKey configKey) {
+			lock.readLock().lock();
+			try {
+				return delegate.getCurrentValue(configKey);
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.CurrentValueContainer#
+		 * getAllCurrentValue()
+		 */
+		@Override
+		public Map<ConfigKey, String> getAllCurrentValue() {
+			lock.readLock().lock();
+			try {
+				return delegate.getAllCurrentValue();
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#isEmpty()
+		 */
+		@Override
+		public boolean isEmpty() {
+			lock.readLock().lock();
+			try {
+				return delegate.isEmpty();
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#keySet()
+		 */
+		@Override
+		public Set<ConfigKey> keySet() {
+			lock.readLock().lock();
+			try {
+				return delegate.keySet();
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#add(com.dwarfeng.dutil.
+		 * develop.cfg.struct.ExconfigEntry)
+		 */
+		@Override
+		public boolean add(ExconfigEntry exconfigEntry) {
+			lock.writeLock().lock();
+			try {
+				return delegate.add(exconfigEntry);
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#addAll(java.util.
+		 * Collection)
+		 */
+		@Override
+		public boolean addAll(Collection<ExconfigEntry> exconfigEntries) {
+			lock.writeLock().lock();
+			try {
+				return delegate.addAll(exconfigEntries);
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#remove(com.dwarfeng.
+		 * dutil.develop.cfg.ConfigKey)
+		 */
+		@Override
+		public boolean remove(ConfigKey configKey) {
+			lock.writeLock().lock();
+			try {
+				return delegate.remove(configKey);
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#removeAll(java.util.
+		 * Collection)
+		 */
+		@Override
+		public boolean removeAll(Collection<ConfigKey> configKeys) {
+			lock.writeLock().lock();
+			try {
+				return delegate.removeAll(configKeys);
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#retainAll(java.util.
+		 * Collection)
+		 */
+		@Override
+		public boolean retainAll(Collection<ConfigKey> configKeys) {
+			lock.writeLock().lock();
+			try {
+				return delegate.retainAll(configKeys);
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#size()
+		 */
+		@Override
+		public int size() {
+			lock.readLock().lock();
+			try {
+				return delegate.size();
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#isValueValid(com.
+		 * dwarfeng.dutil.develop.cfg.ConfigKey, java.lang.String)
+		 */
+		@Override
+		public boolean isValueValid(ConfigKey configKey, String value) {
+			lock.readLock().lock();
+			try {
+				return delegate.isValueValid(configKey, value);
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#getValidValue(com.
+		 * dwarfeng.dutil.develop.cfg.ConfigKey)
+		 */
+		@Override
+		public String getValidValue(ConfigKey configKey) {
+			lock.readLock().lock();
+			try {
+				return delegate.getValidValue(configKey);
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#getConfigFirmProps(com.
+		 * dwarfeng.dutil.develop.cfg.ConfigKey)
+		 */
+		@Override
+		public ConfigFirmProps getConfigFirmProps(ConfigKey configKey) {
+			lock.readLock().lock();
+			try {
+				return delegate.getConfigFirmProps(configKey);
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#setConfigFirmProps(com.
+		 * dwarfeng.dutil.develop.cfg.ConfigKey,
+		 * com.dwarfeng.dutil.develop.cfg.ConfigFirmProps)
+		 */
+		@Override
+		public boolean setConfigFirmProps(ConfigKey configKey, ConfigFirmProps configFirmProps) {
+			lock.writeLock().lock();
+			try {
+				return delegate.setConfigFirmProps(configKey, configFirmProps);
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.io.CurrentValueContainer#
+		 * setCurrentValue(com.dwarfeng.dutil.develop.cfg.ConfigKey,
+		 * java.lang.String)
+		 */
+		@Override
+		public boolean setCurrentValue(ConfigKey configKey, String currentValue) {
+			lock.writeLock().lock();
+			try {
+				return delegate.setCurrentValue(configKey, currentValue);
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.io.CurrentValueContainer#
+		 * setAllCurrentValue(java.util.Map)
+		 */
+		@Override
+		public boolean setAllCurrentValue(Map<ConfigKey, String> map) {
+			lock.writeLock().lock();
+			try {
+				return delegate.setAllCurrentValue(map);
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#resetCurrentValue(com.
+		 * dwarfeng.dutil.develop.cfg.ConfigKey)
+		 */
+		@Override
+		public boolean resetCurrentValue(ConfigKey configKey) {
+			lock.writeLock().lock();
+			try {
+				return delegate.resetCurrentValue(configKey);
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#resetAllCurrentValue()
+		 */
+		@Override
+		public boolean resetAllCurrentValue() {
+			lock.writeLock().lock();
+			try {
+				return delegate.resetAllCurrentValue();
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#getValueParser(com.
+		 * dwarfeng.dutil.develop.cfg.ConfigKey)
+		 */
+		@Override
+		public ValueParser getValueParser(ConfigKey configKey) {
+			lock.readLock().lock();
+			try {
+				return delegate.getValueParser(configKey);
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#setValueParser(com.
+		 * dwarfeng.dutil.develop.cfg.ConfigKey,
+		 * com.dwarfeng.dutil.develop.cfg.struct.ValueParser)
+		 */
+		@Override
+		public boolean setValueParser(ConfigKey configKey, ValueParser valueParser) {
+			lock.writeLock().lock();
+			try {
+				return delegate.setValueParser(configKey, valueParser);
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#getParsedValue(com.
+		 * dwarfeng.dutil.develop.cfg.ConfigKey)
+		 */
+		@Override
+		public Object getParsedValue(ConfigKey configKey) {
+			lock.readLock().lock();
+			try {
+				return delegate.getParsedValue(configKey);
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#getParsedValue(com.
+		 * dwarfeng.dutil.develop.cfg.ConfigKey, java.lang.Class)
+		 */
+		@Override
+		public <T> T getParsedValue(ConfigKey configKey, Class<T> clas) {
+			lock.readLock().lock();
+			try {
+				return delegate.getParsedValue(configKey, clas);
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+	}
+
+	public static SyncConfigModel syncConfigModel(ConfigModel configModel) {
+		Objects.requireNonNull(configModel, DwarfUtil.getStringField(StringFieldKey.CONFIGUTIL_0));
+		return new SyncConfigModelImpl(configModel);
+	}
+
+	private static class SyncConfigModelImpl implements SyncConfigModel {
+
+		private final ConfigModel delegate;
+		private final ReadWriteLock lock = new ReentrantReadWriteLock();
+
+		public SyncConfigModelImpl(ConfigModel delegate) {
+			this.delegate = delegate;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.threads.ExternalReadWriteThreadSafe#getLock(
+		 * )
+		 */
+		@Override
+		public ReadWriteLock getLock() {
+			return lock;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		 */
+		@Override
+		public Set<ConfigObverser> getObversers() {
+			lock.readLock().lock();
+			try {
+				return delegate.getObversers();
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
+		 * dutil.basic.prog.Obverser)
+		 */
+		@Override
+		public boolean addObverser(ConfigObverser obverser) {
+			lock.writeLock().lock();
+			try {
+				return delegate.addObverser(obverser);
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
+		 * .dutil.basic.prog.Obverser)
+		 */
+		@Override
+		public boolean removeObverser(ConfigObverser obverser) {
+			lock.writeLock().lock();
+			try {
+				return delegate.removeObverser(obverser);
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		 */
+		@Override
+		public void clearObverser() {
+			lock.writeLock().lock();
+			try {
+				delegate.clearObverser();
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#clear()
+		 */
+		@Override
+		public void clear() {
+			lock.writeLock().lock();
+			try {
+				delegate.clear();
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ConfigModel#containsKey(com.dwarfeng.
+		 * dutil.develop.cfg.ConfigKey)
+		 */
+		@Override
+		public boolean containsKey(ConfigKey configKey) {
+			lock.readLock().lock();
+			try {
+				return delegate.containsKey(configKey);
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.io.CurrentValueContainer#
+		 * getCurrentValue(com.dwarfeng.dutil.develop.cfg.ConfigKey)
+		 */
+		@Override
+		public String getCurrentValue(ConfigKey configKey) {
+			lock.readLock().lock();
+			try {
+				return delegate.getCurrentValue(configKey);
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.CurrentValueContainer#
+		 * getAllCurrentValue()
+		 */
+		@Override
+		public Map<ConfigKey, String> getAllCurrentValue() {
+			lock.readLock().lock();
+			try {
+				return delegate.getAllCurrentValue();
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#isEmpty()
+		 */
+		@Override
+		public boolean isEmpty() {
+			lock.readLock().lock();
+			try {
+				return delegate.isEmpty();
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#keySet()
+		 */
+		@Override
+		public Set<ConfigKey> keySet() {
+			lock.readLock().lock();
+			try {
+				return delegate.keySet();
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ConfigModel#add(com.dwarfeng.dutil.
+		 * develop.cfg.ConfigEntry)
+		 */
+		@Override
+		public boolean add(ConfigEntry configEntry) {
+			lock.writeLock().lock();
+			try {
+				return delegate.add(configEntry);
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#addAll(java.util.
+		 * Collection)
+		 */
+		@Override
+		public boolean addAll(Collection<ConfigEntry> configEntries) {
+			lock.writeLock().lock();
+			try {
+				return delegate.addAll(configEntries);
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ConfigModel#remove(com.dwarfeng.dutil.
+		 * develop.cfg.ConfigKey)
+		 */
+		@Override
+		public boolean remove(ConfigKey configKey) {
+			lock.writeLock().lock();
+			try {
+				return delegate.remove(configKey);
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#removeAll(java.util.
+		 * Collection)
+		 */
+		@Override
+		public boolean removeAll(Collection<ConfigKey> configKeys) {
+			lock.writeLock().lock();
+			try {
+				return delegate.removeAll(configKeys);
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#retainAll(java.util.
+		 * Collection)
+		 */
+		@Override
+		public boolean retainAll(Collection<ConfigKey> configKeys) {
+			lock.writeLock().lock();
+			try {
+				return delegate.retainAll(configKeys);
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#size()
+		 */
+		@Override
+		public int size() {
+			lock.readLock().lock();
+			try {
+				return delegate.size();
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ConfigModel#isValueValid(com.dwarfeng.
+		 * dutil.develop.cfg.ConfigKey, java.lang.String)
+		 */
+		@Override
+		public boolean isValueValid(ConfigKey configKey, String value) {
+			lock.readLock().lock();
+			try {
+				return delegate.isValueValid(configKey, value);
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ConfigModel#getValidValue(com.dwarfeng
+		 * .dutil.develop.cfg.ConfigKey)
+		 */
+		@Override
+		public String getValidValue(ConfigKey configKey) {
+			lock.readLock().lock();
+			try {
+				return delegate.getValidValue(configKey);
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ConfigModel#getConfigFirmProps(com.
+		 * dwarfeng.dutil.develop.cfg.ConfigKey)
+		 */
+		@Override
+		public ConfigFirmProps getConfigFirmProps(ConfigKey configKey) {
+			lock.readLock().lock();
+			try {
+				return delegate.getConfigFirmProps(configKey);
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ConfigModel#setConfigFirmProps(com.
+		 * dwarfeng.dutil.develop.cfg.ConfigKey,
+		 * com.dwarfeng.dutil.develop.cfg.ConfigFirmProps)
+		 */
+		@Override
+		public boolean setConfigFirmProps(ConfigKey configKey, ConfigFirmProps configFirmProps) {
+			lock.writeLock().lock();
+			try {
+				return delegate.setConfigFirmProps(configKey, configFirmProps);
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.io.CurrentValueContainer#
+		 * setCurrentValue(com.dwarfeng.dutil.develop.cfg.ConfigKey,
+		 * java.lang.String)
+		 */
+		@Override
+		public boolean setCurrentValue(ConfigKey configKey, String currentValue) {
+			lock.writeLock().lock();
+			try {
+				return delegate.setCurrentValue(configKey, currentValue);
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.io.CurrentValueContainer#
+		 * setAllCurrentValue(java.util.Map)
+		 */
+		@Override
+		public boolean setAllCurrentValue(Map<ConfigKey, String> map) {
+			lock.writeLock().lock();
+			try {
+				return delegate.setAllCurrentValue(map);
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ConfigModel#resetCurrentValue(com.
+		 * dwarfeng.dutil.develop.cfg.ConfigKey)
+		 */
+		@Override
+		public boolean resetCurrentValue(ConfigKey configKey) {
+			lock.writeLock().lock();
+			try {
+				return delegate.resetCurrentValue(configKey);
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ConfigModel#resetAllCurrentValue()
+		 */
+		@Override
+		public boolean resetAllCurrentValue() {
+			lock.writeLock().lock();
+			try {
+				return delegate.resetAllCurrentValue();
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+	}
+
+	/**
+	 * 根据指定的Ex配置模型生成一个不可编辑的Ex配置模型。
+	 * 
+	 * @param exconfigModel
+	 *            指定的配置模型。
+	 * @return 不可编辑的Ex配置模型。
+	 */
+	public static ExconfigModel unmodifiableExconfigModel(ExconfigModel exconfigModel) {
+		Objects.requireNonNull(exconfigModel, DwarfUtil.getStringField(StringFieldKey.CONFIGUTIL_1));
+		return new UnmodifiableExconfigModel(exconfigModel);
+	}
+
+	private static class UnmodifiableExconfigModel implements ExconfigModel {
+
+		private final ExconfigModel delegate;
+
+		public UnmodifiableExconfigModel(ExconfigModel delegate) {
+			this.delegate = delegate;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.CurrentValueContainer#getCurrentValue(
+		 * com.dwarfeng.dutil.develop.cfg.ConfigKey)
+		 */
+		@Override
+		public String getCurrentValue(ConfigKey configKey) {
+			return delegate.getCurrentValue(configKey);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		 */
+		@Override
+		public Set<ExconfigObverser> getObversers() {
+			return delegate.getObversers();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
+		 * dutil.basic.prog.Obverser)
+		 */
+		@Override
+		public boolean addObverser(ExconfigObverser obverser) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.CurrentValueContainer#
+		 * getAllCurrentValue()
+		 */
+		@Override
+		public Map<ConfigKey, String> getAllCurrentValue() {
+			return delegate.getAllCurrentValue();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
+		 * .dutil.basic.prog.Obverser)
+		 */
+		@Override
+		public boolean removeObverser(ExconfigObverser obverser) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#clear()
+		 */
+		@Override
+		public void clear() {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.CurrentValueContainer#setCurrentValue(
+		 * com.dwarfeng.dutil.develop.cfg.ConfigKey, java.lang.String)
+		 */
+		@Override
+		public boolean setCurrentValue(ConfigKey configKey, String currentValue) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		 */
+		@Override
+		public void clearObverser() {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#containsKey(com.dwarfeng
+		 * .dutil.develop.cfg.ConfigKey)
+		 */
+		@Override
+		public boolean containsKey(ConfigKey configKey) {
+			return delegate.containsKey(configKey);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#isEmpty()
+		 */
+		@Override
+		public boolean isEmpty() {
+			return delegate.isEmpty();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#keySet()
+		 */
+		@Override
+		public Set<ConfigKey> keySet() {
+			return Collections.unmodifiableSet(delegate.keySet());
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.CurrentValueContainer#
+		 * setAllCurrentValue(java.util.Map)
+		 */
+		@Override
+		public boolean setAllCurrentValue(Map<ConfigKey, String> map) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#add(com.dwarfeng.dutil.
+		 * develop.cfg.struct.ExconfigEntry)
+		 */
+		@Override
+		public boolean add(ExconfigEntry exconfigEntry) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#addAll(java.util.
+		 * Collection)
+		 */
+		@Override
+		public boolean addAll(Collection<ExconfigEntry> exconfigEntries) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#remove(com.dwarfeng.
+		 * dutil.develop.cfg.ConfigKey)
+		 */
+		@Override
+		public boolean remove(ConfigKey configKey) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#removeAll(java.util.
+		 * Collection)
+		 */
+		@Override
+		public boolean removeAll(Collection<ConfigKey> configKeys) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#retainAll(java.util.
+		 * Collection)
+		 */
+		@Override
+		public boolean retainAll(Collection<ConfigKey> configKeys) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#size()
+		 */
+		@Override
+		public int size() {
+			return delegate.size();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#isValueValid(com.
+		 * dwarfeng.dutil.develop.cfg.ConfigKey, java.lang.String)
+		 */
+		@Override
+		public boolean isValueValid(ConfigKey configKey, String value) {
+			return delegate.isValueValid(configKey, value);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#getValidValue(com.
+		 * dwarfeng.dutil.develop.cfg.ConfigKey)
+		 */
+		@Override
+		public String getValidValue(ConfigKey configKey) {
+			return delegate.getValidValue(configKey);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#getConfigFirmProps(com.
+		 * dwarfeng.dutil.develop.cfg.ConfigKey)
+		 */
+		@Override
+		public ConfigFirmProps getConfigFirmProps(ConfigKey configKey) {
+			return delegate.getConfigFirmProps(configKey);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#setConfigFirmProps(com.
+		 * dwarfeng.dutil.develop.cfg.ConfigKey,
+		 * com.dwarfeng.dutil.develop.cfg.ConfigFirmProps)
+		 */
+		@Override
+		public boolean setConfigFirmProps(ConfigKey configKey, ConfigFirmProps configFirmProps) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#resetCurrentValue(com.
+		 * dwarfeng.dutil.develop.cfg.ConfigKey)
+		 */
+		@Override
+		public boolean resetCurrentValue(ConfigKey configKey) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#resetAllCurrentValue()
+		 */
+		@Override
+		public boolean resetAllCurrentValue() {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#getValueParser(com.
+		 * dwarfeng.dutil.develop.cfg.ConfigKey)
+		 */
+		@Override
+		public ValueParser getValueParser(ConfigKey configKey) {
+			return delegate.getValueParser(configKey);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#setValueParser(com.
+		 * dwarfeng.dutil.develop.cfg.ConfigKey,
+		 * com.dwarfeng.dutil.develop.cfg.struct.ValueParser)
+		 */
+		@Override
+		public boolean setValueParser(ConfigKey configKey, ValueParser valueParser) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#getParsedValue(com.
+		 * dwarfeng.dutil.develop.cfg.ConfigKey)
+		 */
+		@Override
+		public Object getParsedValue(ConfigKey configKey) {
+			return delegate.getParsedValue(configKey);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#getParsedValue(com.
+		 * dwarfeng.dutil.develop.cfg.ConfigKey, java.lang.Class)
+		 */
+		@Override
+		public <T> T getParsedValue(ConfigKey configKey, Class<T> clas) {
+			return delegate.getParsedValue(configKey, clas);
+		}
+
 	}
 
 	// 禁止外部实例化。

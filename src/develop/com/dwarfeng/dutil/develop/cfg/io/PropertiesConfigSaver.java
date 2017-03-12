@@ -2,6 +2,7 @@ package com.dwarfeng.dutil.develop.cfg.io;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
 
@@ -9,7 +10,7 @@ import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.io.SaveFailedException;
 import com.dwarfeng.dutil.develop.cfg.ConfigKey;
-import com.dwarfeng.dutil.develop.cfg.ConfigModel;
+import com.dwarfeng.dutil.develop.cfg.CurrentValueContainer;
 
 /**
  * Properties ≈‰÷√±£¥Ê∆˜°£
@@ -45,16 +46,16 @@ public class PropertiesConfigSaver extends StreamConfigSaver implements ConfigSa
 	 * 
 	 * @see
 	 * com.dwarfeng.dutil.develop.cfg.io.ConfigSaver#saveConfig(com.dwarfeng.
-	 * dutil.develop.cfg.ConfigModel)
+	 * dutil.develop.cfg.io.CurrentValueContainer)
 	 */
 	@Override
 	@Deprecated
-	public void saveConfig(ConfigModel configModel) throws SaveFailedException {
-		Objects.requireNonNull(configModel, DwarfUtil.getStringField(StringFieldKey.PropertiesConfigSaver_0));
+	public void saveConfig(CurrentValueContainer container) throws SaveFailedException {
+		Objects.requireNonNull(container, DwarfUtil.getStringField(StringFieldKey.PropertiesConfigSaver_0));
 
 		Properties properties = new Properties();
-		for (ConfigKey configKey : configModel.keySet()) {
-			properties.setProperty(configKey.getName(), configModel.getCurrentValue(configKey));
+		for (Map.Entry<ConfigKey, String> entry : container.getAllCurrentValue().entrySet()) {
+			properties.setProperty(entry.getKey().getName(), entry.getValue());
 		}
 		try {
 			properties.store(out, null);
@@ -70,11 +71,11 @@ public class PropertiesConfigSaver extends StreamConfigSaver implements ConfigSa
 	 * 
 	 * @see
 	 * com.dwarfeng.dutil.develop.cfg.io.ConfigSaver#save(com.dwarfeng.dutil.
-	 * develop.cfg.ConfigModel)
+	 * develop.cfg.io.CurrentValueContainer)
 	 */
 	@Override
-	public void save(ConfigModel configModel) throws SaveFailedException {
-		saveConfig(configModel);
+	public void save(CurrentValueContainer container) throws SaveFailedException {
+		saveConfig(container);
 	}
 
 }

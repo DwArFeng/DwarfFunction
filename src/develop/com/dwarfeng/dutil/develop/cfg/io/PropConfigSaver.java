@@ -2,6 +2,7 @@ package com.dwarfeng.dutil.develop.cfg.io;
 
 import java.io.OutputStream;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
 import java.util.Set;
@@ -11,7 +12,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.io.SaveFailedException;
 import com.dwarfeng.dutil.basic.io.StreamSaver;
 import com.dwarfeng.dutil.develop.cfg.ConfigKey;
-import com.dwarfeng.dutil.develop.cfg.ConfigModel;
+import com.dwarfeng.dutil.develop.cfg.CurrentValueContainer;
 
 /**
  * Properties ≈‰÷√±£¥Ê∆˜°£
@@ -26,7 +27,7 @@ import com.dwarfeng.dutil.develop.cfg.ConfigModel;
  * @author DwArFeng
  * @since 0.0.3-beta
  */
-public class PropConfigSaver extends StreamSaver<ConfigModel> {
+public class PropConfigSaver extends StreamSaver<CurrentValueContainer> {
 
 	private boolean flag = true;
 
@@ -45,20 +46,20 @@ public class PropConfigSaver extends StreamSaver<ConfigModel> {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.dwarfeng.dutil.basic.prog.Saver#save(java.lang.Object)
+	 * @see com.dwarfeng.dutil.basic.io.Saver#save(java.lang.Object)
 	 */
 	@Override
-	public void save(ConfigModel configModel) throws SaveFailedException {
+	public void save(CurrentValueContainer container) throws SaveFailedException {
 		if (flag) {
 			flag = false;
 		} else {
 			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.PropertiesConfigSaver_1));
 		}
-		Objects.requireNonNull(configModel, DwarfUtil.getStringField(StringFieldKey.PropertiesConfigSaver_0));
+		Objects.requireNonNull(container, DwarfUtil.getStringField(StringFieldKey.PropertiesConfigSaver_0));
 
 		Properties properties = new Properties();
-		for (ConfigKey configKey : configModel.keySet()) {
-			properties.setProperty(configKey.getName(), configModel.getCurrentValue(configKey));
+		for (Map.Entry<ConfigKey, String> entry : container.getAllCurrentValue().entrySet()) {
+			properties.setProperty(entry.getKey().getName(), entry.getValue());
 		}
 		try {
 			properties.store(out, null);
@@ -73,19 +74,19 @@ public class PropConfigSaver extends StreamSaver<ConfigModel> {
 	 * @see com.dwarfeng.dutil.basic.io.Saver#countinuousSave(java.lang.Object)
 	 */
 	@Override
-	public Set<SaveFailedException> countinuousSave(ConfigModel configModel) throws IllegalStateException {
+	public Set<SaveFailedException> countinuousSave(CurrentValueContainer container) throws IllegalStateException {
 		if (flag) {
 			flag = false;
 		} else {
 			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.PropertiesConfigSaver_1));
 		}
-		Objects.requireNonNull(configModel, DwarfUtil.getStringField(StringFieldKey.PropertiesConfigSaver_0));
+		Objects.requireNonNull(container, DwarfUtil.getStringField(StringFieldKey.PropertiesConfigSaver_0));
 
 		final Set<SaveFailedException> exceptions = new HashSet<>();
 
 		Properties properties = new Properties();
-		for (ConfigKey configKey : configModel.keySet()) {
-			properties.setProperty(configKey.getName(), configModel.getCurrentValue(configKey));
+		for (Map.Entry<ConfigKey, String> entry : container.getAllCurrentValue().entrySet()) {
+			properties.setProperty(entry.getKey().getName(), entry.getValue());
 		}
 		try {
 			properties.store(out, null);

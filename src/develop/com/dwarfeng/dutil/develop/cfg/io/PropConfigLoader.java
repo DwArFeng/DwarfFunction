@@ -13,7 +13,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.io.LoadFailedException;
 import com.dwarfeng.dutil.basic.io.StreamLoader;
 import com.dwarfeng.dutil.develop.cfg.ConfigKey;
-import com.dwarfeng.dutil.develop.cfg.ConfigModel;
+import com.dwarfeng.dutil.develop.cfg.CurrentValueContainer;
 
 /**
  * Properties ≈‰÷√∂¡»°∆˜°£
@@ -28,7 +28,7 @@ import com.dwarfeng.dutil.develop.cfg.ConfigModel;
  * @author DwArFeng
  * @since 0.0.3-beta
  */
-public class PropConfigLoader extends StreamLoader<ConfigModel> {
+public class PropConfigLoader extends StreamLoader<CurrentValueContainer> {
 
 	private boolean flag = true;
 
@@ -47,16 +47,16 @@ public class PropConfigLoader extends StreamLoader<ConfigModel> {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.dwarfeng.dutil.basic.prog.Loader#load(java.lang.Object)
+	 * @see com.dwarfeng.dutil.basic.io.Loader#load(java.lang.Object)
 	 */
 	@Override
-	public void load(ConfigModel configModel) throws LoadFailedException {
+	public void load(CurrentValueContainer container) throws LoadFailedException {
 		if (flag) {
 			flag = false;
 		} else {
 			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.PropertiesConfigLoader_1));
 		}
-		Objects.requireNonNull(configModel, DwarfUtil.getStringField(StringFieldKey.PropertiesConfigLoader_0));
+		Objects.requireNonNull(container, DwarfUtil.getStringField(StringFieldKey.PropertiesConfigLoader_0));
 
 		Properties properties = new Properties();
 		try {
@@ -65,7 +65,7 @@ public class PropConfigLoader extends StreamLoader<ConfigModel> {
 			for (String str : properties.stringPropertyNames()) {
 				configMap.put(new ConfigKey(str), properties.getProperty(str));
 			}
-			configModel.setAllCurrentValue(configMap);
+			container.setAllCurrentValue(configMap);
 
 		} catch (Exception e) {
 			throw new LoadFailedException(e.getMessage(), e.getCause());
@@ -78,13 +78,13 @@ public class PropConfigLoader extends StreamLoader<ConfigModel> {
 	 * @see com.dwarfeng.dutil.basic.io.Loader#countinuousLoad(java.lang.Object)
 	 */
 	@Override
-	public Set<LoadFailedException> countinuousLoad(ConfigModel configModel) throws IllegalStateException {
+	public Set<LoadFailedException> countinuousLoad(CurrentValueContainer container) throws IllegalStateException {
 		if (flag) {
 			flag = false;
 		} else {
 			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.PropertiesConfigLoader_1));
 		}
-		Objects.requireNonNull(configModel, DwarfUtil.getStringField(StringFieldKey.PropertiesConfigLoader_0));
+		Objects.requireNonNull(container, DwarfUtil.getStringField(StringFieldKey.PropertiesConfigLoader_0));
 
 		final Set<LoadFailedException> exceptions = new HashSet<>();
 
@@ -95,7 +95,7 @@ public class PropConfigLoader extends StreamLoader<ConfigModel> {
 			for (String str : properties.stringPropertyNames()) {
 				configMap.put(new ConfigKey(str), properties.getProperty(str));
 			}
-			configModel.setAllCurrentValue(configMap);
+			container.setAllCurrentValue(configMap);
 
 		} catch (Exception e) {
 			exceptions.add(new LoadFailedException(e.getMessage(), e.getCause()));

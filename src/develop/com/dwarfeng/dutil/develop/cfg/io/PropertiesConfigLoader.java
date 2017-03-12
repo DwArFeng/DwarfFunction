@@ -12,6 +12,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.io.LoadFailedException;
 import com.dwarfeng.dutil.develop.cfg.ConfigKey;
 import com.dwarfeng.dutil.develop.cfg.ConfigModel;
+import com.dwarfeng.dutil.develop.cfg.CurrentValueContainer;
 
 /**
  * Properties ≈‰÷√∂¡»°∆˜°£
@@ -70,12 +71,12 @@ public class PropertiesConfigLoader extends StreamConfigLoader implements Config
 	 * 
 	 * @see
 	 * com.dwarfeng.dutil.develop.cfg.io.ConfigLoader#loadConfig(com.dwarfeng.
-	 * dutil.develop.cfg.ConfigModel)
+	 * dutil.develop.cfg.io.CurrentValueContainer)
 	 */
 	@Override
 	@Deprecated
-	public void loadConfig(ConfigModel configModel) throws LoadFailedException {
-		Objects.requireNonNull(configModel, DwarfUtil.getStringField(StringFieldKey.PropertiesConfigLoader_0));
+	public void loadConfig(CurrentValueContainer container) throws LoadFailedException {
+		Objects.requireNonNull(container, DwarfUtil.getStringField(StringFieldKey.PropertiesConfigLoader_0));
 
 		Properties properties = new Properties();
 		try {
@@ -84,7 +85,7 @@ public class PropertiesConfigLoader extends StreamConfigLoader implements Config
 			for (String str : properties.stringPropertyNames()) {
 				configMap.put(new ConfigKey(str), properties.getProperty(str));
 			}
-			configModel.setAllCurrentValue(configMap);
+			container.setAllCurrentValue(configMap);
 
 		} catch (IOException e) {
 			LoadFailedException lfe = new LoadFailedException(e.getMessage(), e.getCause());
@@ -98,11 +99,11 @@ public class PropertiesConfigLoader extends StreamConfigLoader implements Config
 	 * 
 	 * @see
 	 * com.dwarfeng.dutil.develop.cfg.io.ConfigLoader#load(com.dwarfeng.dutil.
-	 * develop.cfg.ConfigModel)
+	 * develop.cfg.io.CurrentValueContainer)
 	 */
 	@Override
-	public void load(ConfigModel configModel) throws LoadFailedException {
-		loadConfig(configModel);
+	public void load(CurrentValueContainer container) throws LoadFailedException {
+		loadConfig(container);
 	}
 
 }

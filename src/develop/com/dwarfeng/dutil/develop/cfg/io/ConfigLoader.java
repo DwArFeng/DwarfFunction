@@ -5,7 +5,7 @@ import java.util.Map;
 import com.dwarfeng.dutil.basic.io.LoadFailedException;
 import com.dwarfeng.dutil.basic.io.Loader;
 import com.dwarfeng.dutil.develop.cfg.ConfigKey;
-import com.dwarfeng.dutil.develop.cfg.ConfigModel;
+import com.dwarfeng.dutil.develop.cfg.CurrentValueContainer;
 
 /**
  * ≈‰÷√∂¡»°∆˜°£
@@ -22,9 +22,9 @@ public interface ConfigLoader {
 	public Map<ConfigKey, String> loadConfig() throws LoadFailedException;
 
 	@Deprecated
-	public void loadConfig(ConfigModel configModel) throws LoadFailedException;
+	public void loadConfig(CurrentValueContainer container) throws LoadFailedException;
 
 	@Deprecated
-	public void load(ConfigModel configModel) throws LoadFailedException;
+	public void load(CurrentValueContainer container) throws LoadFailedException;
 
 }
