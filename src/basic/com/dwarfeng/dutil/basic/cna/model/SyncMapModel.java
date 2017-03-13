@@ -2,6 +2,7 @@ package com.dwarfeng.dutil.basic.cna.model;
 
 import java.util.concurrent.locks.ReadWriteLock;
 
+import com.dwarfeng.dutil.basic.cna.model.obv.MapObverser;
 import com.dwarfeng.dutil.basic.threads.ExternalReadWriteThreadSafe;
 
 /**
@@ -30,6 +31,6 @@ import com.dwarfeng.dutil.basic.threads.ExternalReadWriteThreadSafe;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public interface SyncMapModel<K, V> extends MapModel<K, V>, ExternalReadWriteThreadSafe {
+public interface SyncMapModel<K, V, O extends MapObverser<K, V>> extends MapModel<K, V, O>, ExternalReadWriteThreadSafe {
 
 }

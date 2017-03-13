@@ -1,4 +1,4 @@
-package com.dwarfeng.dutil.basic.cna.model.obv;
+package com.dwarfeng.dutil.basic.cna.model;
 
 import java.util.Collections;
 import java.util.Objects;
@@ -7,7 +7,7 @@ import java.util.WeakHashMap;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
-import com.dwarfeng.dutil.basic.cna.model.KeySetModel;
+import com.dwarfeng.dutil.basic.cna.model.obv.KeySetObverser;
 import com.dwarfeng.dutil.basic.prog.ElementWithKey;
 
 /**
@@ -20,7 +20,8 @@ import com.dwarfeng.dutil.basic.prog.ElementWithKey;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public abstract class AbstractKeySetModel<K, V extends ElementWithKey<K>> implements KeySetModel<K, V> {
+public abstract class AbstractKeySetModel<K, V extends ElementWithKey<K>, O extends KeySetObverser<K, V>>
+		implements KeySetModel<K, V, KeySetObverser<K, V>> {
 
 	/** 抽象集合模型的侦听器集合。 */
 	private final Set<KeySetObverser<K, V>> obversers;

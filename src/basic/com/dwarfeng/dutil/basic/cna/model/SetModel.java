@@ -13,6 +13,6 @@ import com.dwarfeng.dutil.basic.prog.ObverserSet;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public interface SetModel<E>  extends Set<E>, ObverserSet<SetObverser<E>>{
+public interface SetModel<E, O extends SetObverser<E>>  extends Set<E>, ObverserSet<O>{
 
 }

@@ -336,7 +336,7 @@ public enum StringFieldKey implements Name {
 	CONFIGUTIL_0(new DefaultName("ConfigUtil.0")),
 	/** ConfigUtil类第1号文本字段 */
 	CONFIGUTIL_1(new DefaultName("ConfigUtil.1")),
-	
+
 	/** DefaultConfigFirmProps类第0号文本字段 */
 	DefaultConfigFirmProps_0(new DefaultName("DefaultConfigFirmProps.0")),
 	/** DefaultConfigFirmProps类第1号文本字段 */
@@ -406,7 +406,11 @@ public enum StringFieldKey implements Name {
 	DEFAULTEXCONFIGMODEL_2(new DefaultName("DefaultExconfigModel.2")),
 	/** DefaultExconfigModel类第3号文本字段 */
 	DEFAULTEXCONFIGMODEL_3(new DefaultName("DefaultExconfigModel.3")),
-	;
+
+	/** DelegateListModel类第0号文本字段 */
+	DELEGATELISTMODEL_0(new DefaultName("DelegateListModel.0")),
+	/** DelegateListModel类第1号文本字段 */
+	DELEGATELISTMODEL_1(new DefaultName("DelegateListModel.1")),;
 
 	private final Name name;
 

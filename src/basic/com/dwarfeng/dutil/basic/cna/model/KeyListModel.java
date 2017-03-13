@@ -19,7 +19,8 @@ import com.dwarfeng.dutil.basic.prog.ObverserSet;
  *            泛型V，代表元素的类型。
  * @since 0.1.0-beta
  */
-public interface KeyListModel<K, V extends ElementWithKey<K>> extends List<V>, ObverserSet<KeyListObverser<K, V>> {
+public interface KeyListModel<K, V extends ElementWithKey<K>, O extends KeyListObverser<K, V>>
+		extends List<V>, ObverserSet<O> {
 
 	/**
 	 * 如果列表包含指定的键，则返回 <code>true</code>。
@@ -118,5 +119,5 @@ public interface KeyListModel<K, V extends ElementWithKey<K>> extends List<V>, O
 	 *             <code>(fromIndex &lt; 0 || toIndex &gt; size || fromIndex &gt; toIndex)</code>
 	 */
 	@Override
-	public KeyListModel<K, V> subList(int fromIndex, int toIndex);
+	public KeyListModel<K, V, O> subList(int fromIndex, int toIndex);
 }
