@@ -38,6 +38,8 @@ public final class ModelUtil {
 	 *            指定的列表模型。
 	 * @param <E>
 	 *            列表模型的元素类型。
+	 * @param <O>
+	 *            列表模型的侦听器类型。
 	 * @return 由指定的列表模型生成的线程安全的列表模型。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
@@ -516,6 +518,8 @@ public final class ModelUtil {
 	 *            指定的集合模型。
 	 * @param <E>
 	 *            集合模型的元素类型。
+	 * @param <O>
+	 *            集合模型的侦听器类型。
 	 * @return 由指定的集合模型生成的线程安全的集合模型。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
@@ -846,6 +850,8 @@ public final class ModelUtil {
 	 *            映射模型的键的类型。
 	 * @param <V>
 	 *            映射的值的模型。
+	 * @param <O>
+	 *            映射模型的侦听器类型。
 	 * @return 由指定的映射模型生成的线程安全的映射模型。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
@@ -1156,12 +1162,14 @@ public final class ModelUtil {
 	/**
 	 * 由指定的键值列表模型生成一个线程安全的键值列表模型。
 	 * 
-	 * @param mapModel
+	 * @param keyListModel
 	 *            指定的键值列表模型。
 	 * @param <K>
 	 *            键值列表模型的键的类型。
 	 * @param <V>
 	 *            键值列表的值的模型。
+	 * @param <O>
+	 *            键值列表模型的侦听器类型。
 	 * @return 由指定的键值列表模型生成的线程安全的键值列表模型。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
@@ -1758,12 +1766,14 @@ public final class ModelUtil {
 	/**
 	 * 由指定的键值集合模型生成一个线程安全的键值集合模型。
 	 * 
-	 * @param mapModel
+	 * @param keySetModel
 	 *            指定的键值集合模型。
 	 * @param <K>
 	 *            键值集合模型的键的类型。
 	 * @param <V>
 	 *            键值集合的值的模型。
+	 * @param <O>
+	 *            键值集合模型的侦听器模型。
 	 * @return 由指定的键值集合模型生成的线程安全的键值集合模型。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。

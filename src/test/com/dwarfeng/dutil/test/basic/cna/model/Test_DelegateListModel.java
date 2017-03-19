@@ -319,17 +319,6 @@ public class Test_DelegateListModel {
 	}
 
 	@Test
-	public void testSubList() {
-		@SuppressWarnings("unchecked")
-		DelegateListModel<String, ListObverser<String>> subModel = (DelegateListModel<String, ListObverser<String>>) model
-				.subList(1, 3);
-		assertArrayEquals(new String[] { "1", "2" }, subModel.toArray(new String[0]));
-		subModel.add("0");
-		assertEquals(new Integer(2), obv.addedIndexes.get(0));
-		assertArrayEquals(new String[] { "0", "1", "2", "0", "3" }, model.toArray(new String[0]));
-	}
-
-	@Test
 	public void testEqualsObject() {
 		ArrayList<String> list = new ArrayList<>(Arrays.asList("0", "1", "2", "3"));
 		assertEquals(true, model.equals(list));

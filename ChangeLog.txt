@@ -98,7 +98,7 @@ Beta_0.1.0
 	新增 dutil.test 包，用于存储调试用的代码，该包不在 release 版本发布。
 	对 dutil.develop.cfg 包进行了重大升级
 		引入 Exconfig 架构，对配置模型的处理能力进行了一次升级：
-			该架构下的配置模型 ExconfigModel 可以将配置的有效值直接转化为用户需要的格式。
+			该架构下的配置模型 ExconfigModel 可以将配置的有效值直接转化为用户需要的格式，并且可以方便的扩展观察器。
 		新增 dutil.develop.cfg.ExconfigModel
 		新增 dutil.develop.cfg.SyncExconfigModel
 		新增 dutil.develop.cfg.SyncConfigModel
@@ -110,4 +110,7 @@ Beta_0.1.0
 		新增 dutil.develop.cfg.struct.obv包
 			新增 dutil.develop.cfg.parse.ExconfigObverser
 			新增 dutil.develop.cfg.parse.ExconfigAdapter
+	新增 dutil.basic.cna.model 包以及其子包
+		提供了大量的模型预设，可大大减少开发项目时的开发模型的工作量。
+		提供 ListModel, SetModel, MapModel, KeyListModel, KeySetModel 模型以及其实现，外加不可更改与线程安全的版本。
 			

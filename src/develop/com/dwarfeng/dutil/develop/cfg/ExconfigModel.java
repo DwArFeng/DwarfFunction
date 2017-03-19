@@ -254,6 +254,8 @@ public interface ExconfigModel<O extends ExconfigObverser> extends CurrentValueC
 	 *            指定的配置键。
 	 * @param clas
 	 *            指定的类型。
+	 * @param <T>
+	 *            值需要被转换成的类型。
 	 * @return 被转换成指定类型的指定的配置键对应的有效值的解析值。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。

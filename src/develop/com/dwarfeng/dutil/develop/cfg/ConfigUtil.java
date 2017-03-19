@@ -421,6 +421,8 @@ public final class ConfigUtil {
 	 * 
 	 * @param exconfigModel
 	 *            指定的Ex配置模型。
+	 * @param <O>
+	 *            Ex配置模型注册的侦听器类型。
 	 * @return 由指定Ex配置模型生成的线程安全的Ex配置模型。
 	 */
 	public static <O extends ExconfigObverser> SyncExconfigModel<O> syncExconfigModel(ExconfigModel<O> exconfigModel) {
@@ -1330,6 +1332,8 @@ public final class ConfigUtil {
 	 * 
 	 * @param exconfigModel
 	 *            指定的配置模型。
+	 * @param <O>
+	 *            Ex配置模型注册的侦听器类型。
 	 * @return 不可编辑的Ex配置模型。
 	 */
 	public static <O extends ExconfigObverser> ExconfigModel<O> unmodifiableExconfigModel(

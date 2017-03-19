@@ -13,8 +13,7 @@ public interface CurrentValueContainer {
 	/**
 	 * 获取容器中的当前值。
 	 * <p>
-	 * 当前值可能合法，也可能不合法，如果想要获得一个容器中指定配置键的合法值，请使用
-	 * {@link #getValidValue(ConfigKey)}。
+	 * 当前值可能合法，也可能不合法。
 	 * <p>
 	 * 如果容器中不存在指定的配置键或者入口配置键为 <code>null</code>，则返回 <code>null</code>。
 	 * 

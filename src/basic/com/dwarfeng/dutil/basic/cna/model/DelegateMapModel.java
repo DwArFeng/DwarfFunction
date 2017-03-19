@@ -1,0 +1,89 @@
+package com.dwarfeng.dutil.basic.cna.model;
+
+import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
+
+import com.dwarfeng.dutil.basic.cna.model.obv.MapObverser;
+
+/**
+ * 代理映射模型。
+ * 通过代理一个 {@link Map} 实现映射模型。
+ * @author DwArFeng
+ * @since 0.1.0-beta
+ */
+public class DelegateMapModel<K, V, O extends MapObverser<K, V>> extends AbstractMapModel<K, V, O>{
+
+	@Override
+	public int size() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean containsKey(Object key) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean containsValue(Object value) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public V get(Object key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public V put(K key, V value) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public V remove(Object key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void putAll(Map<? extends K, ? extends V> m) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void clear() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Set<K> keySet() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Collection<V> values() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Set<java.util.Map.Entry<K, V>> entrySet() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
