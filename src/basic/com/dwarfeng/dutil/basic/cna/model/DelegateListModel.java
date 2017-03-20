@@ -686,12 +686,12 @@ public class DelegateListModel<E, O extends ListObverser<E>> extends AbstractLis
 		@Override
 		public boolean addAll(int index, Collection<? extends E> c) {
 			Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.DELEGATELISTMODEL_1));
-			boolean aFlag = false;
+			int size = subDelegate.size();
+			int i = 0;
 			for (E e : c) {
-				if (add(e))
-					aFlag = true;
+				add(index + i++, e);
 			}
-			return aFlag;
+			return size != subDelegate.size();
 		}
 
 		/*
@@ -725,7 +725,7 @@ public class DelegateListModel<E, O extends ListObverser<E>> extends AbstractLis
 
 				if (c.contains(element) == aFlag) {
 					i.remove();
-					fireRemoved(index, element);
+					fireRemoved(index + offset, element);
 					result = true;
 				}
 			}
@@ -740,7 +740,8 @@ public class DelegateListModel<E, O extends ListObverser<E>> extends AbstractLis
 		 */
 		@Override
 		public void clear() {
-			for (int i = 0; i < subDelegate.size(); i++) {
+			int size = subDelegate.size();
+			for (int i = 0; i < size; i++) {
 				remove(0);
 			}
 		}
@@ -775,7 +776,7 @@ public class DelegateListModel<E, O extends ListObverser<E>> extends AbstractLis
 		@Override
 		public void add(int index, E element) {
 			subDelegate.add(index, element);
-			fireAdded(index, element);
+			fireAdded(index + offset, element);
 		}
 
 		/*
@@ -786,7 +787,7 @@ public class DelegateListModel<E, O extends ListObverser<E>> extends AbstractLis
 		@Override
 		public E remove(int index) {
 			E element = subDelegate.remove(index);
-			fireRemoved(index, element);
+			fireRemoved(index + offset, element);
 			return element;
 		}
 
