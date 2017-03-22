@@ -142,7 +142,7 @@ public class DelegateMapModel<K, V, O extends MapObverser<K, V>> extends Abstrac
 	public void putAll(Map<? extends K, ? extends V> m) {
 		Objects.requireNonNull(m, DwarfUtil.getStringField(StringFieldKey.DELEGATEMAPMODEL_1));
 		for (Map.Entry<? extends K, ? extends V> entry : m.entrySet()) {
-			delegate.put(entry.getKey(), entry.getValue());
+			put(entry.getKey(), entry.getValue());
 		}
 	}
 
@@ -419,7 +419,7 @@ public class DelegateMapModel<K, V, O extends MapObverser<K, V>> extends Abstrac
 	 */
 	@Override
 	public Collection<V> values() {
-		return Collections.unmodifiableCollection(delegate.values());
+		return new Values(delegate.values());
 	}
 
 	private class Values implements Collection<V> {
@@ -467,8 +467,47 @@ public class DelegateMapModel<K, V, O extends MapObverser<K, V>> extends Abstrac
 		 */
 		@Override
 		public Iterator<V> iterator() {
-			// TODO Auto-generated method stub
-			return null;
+			return new ValuesIterator(delegateValues.iterator());
+		}
+
+		private class ValuesIterator implements Iterator<V> {
+
+			private final Iterator<V> delegateIterator;
+
+			public ValuesIterator(Iterator<V> delegateIterator) {
+				this.delegateIterator = delegateIterator;
+			}
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see java.util.Iterator#hasNext()
+			 */
+			@Override
+			public boolean hasNext() {
+				return delegateIterator.hasNext();
+			}
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see java.util.Iterator#next()
+			 */
+			@Override
+			public V next() {
+				return delegateIterator.next();
+			}
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see java.util.Iterator#remove()
+			 */
+			@Override
+			public void remove() {
+
+			}
+
 		}
 
 		/*
@@ -501,9 +540,28 @@ public class DelegateMapModel<K, V, O extends MapObverser<K, V>> extends Abstrac
 			throw new UnsupportedOperationException();
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Collection#remove(java.lang.Object)
+		 */
 		@Override
 		public boolean remove(Object o) {
-			// TODO Auto-generated method stub
+			if (!contains(o))
+				return false;
+			// 如果对象 o 在值集合中，则对象 o 一定属于 V，故该转换类型安全。
+			@SuppressWarnings("unchecked")
+			V value = (V) o;
+			Set<K> set = findKey(value);
+			if (delegateValues.remove(o)) {
+				V newValue = null;
+				for (K key : set) {
+					if ((newValue = get(key)) != value) {
+						fireChanged(key, value, newValue);
+					}
+				}
+				return true;
+			}
 			return false;
 		}
 
@@ -525,19 +583,29 @@ public class DelegateMapModel<K, V, O extends MapObverser<K, V>> extends Abstrac
 		 */
 		@Override
 		public boolean addAll(Collection<? extends V> c) {
+			Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.DELEGATEMAPMODEL_2));
 			throw new UnsupportedOperationException();
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Collection#removeAll(java.util.Collection)
+		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
-			// TODO Auto-generated method stub
-			return false;
+			Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.DELEGATEMAPMODEL_2));
+			return batchRemove(c, true);
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Collection#retainAll(java.util.Collection)
+		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
-			// TODO Auto-generated method stub
-			return false;
+			return batchRemove(c, false);
 		}
 
 		private boolean batchRemove(Collection<?> c, boolean aFlag) {
@@ -547,9 +615,14 @@ public class DelegateMapModel<K, V, O extends MapObverser<K, V>> extends Abstrac
 				V value = i.next();
 
 				if (c.contains(value) == aFlag) {
-					K key = findKey(value);
+					Set<K> set = findKey(value);
 					i.remove();
-					// for()
+					for (K key : set) {
+						V newValue = null;
+						if ((newValue = get(key)) != value) {
+							fireChanged(key, value, newValue);
+						}
+					}
 					result = true;
 				}
 			}
@@ -557,38 +630,58 @@ public class DelegateMapModel<K, V, O extends MapObverser<K, V>> extends Abstrac
 			return result;
 		}
 
-		private K findKey(V value) {
+		private Set<K> findKey(V value) {
+			Set<K> set = new HashSet<>();
 			for (Map.Entry<K, V> entry : delegate.entrySet()) {
 				if (Objects.equals(value, entry.getValue())) {
-					return entry.getKey();
+					set.add(entry.getKey());
 				}
 			}
-			//
-			return null;
+			return set;
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Collection#clear()
+		 */
 		@Override
 		public void clear() {
-			// TODO Auto-generated method stub
-
+			for (K key : delegate.keySet()) {
+				DelegateMapModel.this.put(key, null);
+			}
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.lang.Object#hashCode()
+		 */
 		@Override
 		public int hashCode() {
-			// TODO Auto-generated method stub
-			return super.hashCode();
+			return delegateValues.hashCode();
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.lang.Object#equals(java.lang.Object)
+		 */
 		@Override
 		public boolean equals(Object obj) {
-			// TODO Auto-generated method stub
-			return super.equals(obj);
+			if (obj == this)
+				return true;
+			return delegateValues.equals(obj);
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.lang.Object#toString()
+		 */
 		@Override
 		public String toString() {
-			// TODO Auto-generated method stub
-			return super.toString();
+			return delegateValues.toString();
 		}
 
 	}
@@ -941,6 +1034,38 @@ public class DelegateMapModel<K, V, O extends MapObverser<K, V>> extends Abstrac
 
 		}
 
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		return delegate.hashCode();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this)
+			return true;
+		return delegate.equals(obj);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return delegate.toString();
 	}
 
 }

@@ -1,253 +1,156 @@
 package com.dwarfeng.dutil.test.basic.cna.model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
-import com.dwarfeng.dutil.basic.io.CT;
+import com.dwarfeng.dutil.basic.cna.model.DelegateMapModel;
+import com.dwarfeng.dutil.basic.cna.model.obv.MapObverser;
 
 public class Test_DelegateMapModel {
 
+	private final DelegateMapModel<String, String, MapObverser<String, String>> model = new DelegateMapModel<>();
+	private final TestMapObverser obv = new TestMapObverser();
+
 	@Before
 	public void setUp() throws Exception {
+		model.clearObverser();
+		model.clear();
+		model.put("A", "1");
+		model.put("B", "2");
+		model.put("C", "3");
+		model.put("D", "4");
+		model.put("E", "5");
+		obv.reset();
+		model.addObverser(obv);
 	}
 
-	@Test
-	public void testHashMap(){
-		HashMap<String, String> map = new HashMap<>();
-		String k1 = "key1";
-		String k2 = "key2";
-		map.put(k1, "value");
-		map.put(k2, "value");
-		map.values().remove("value");
-		CT.trace(map.get(k1));
-		CT.trace(map.get(k2));
-	}
-	
-	@Ignore
-	@Test
-	public void testTestHashMap() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
-	@Test
-	public void testDelegateMapModel() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
-	@Test
-	public void testDelegateMapModelMapOfKVSetOfO() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
 	@Test
 	public void testSize() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(5, model.size());
 	}
 
-	@Ignore
 	@Test
 	public void testIsEmpty() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(false, model.isEmpty());
+		model.clear();
+		assertEquals(true, model.isEmpty());
 	}
 
-	@Ignore
 	@Test
 	public void testContainsKey() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(true, model.containsKey("A"));
+		assertEquals(true, model.containsKey("B"));
+		assertEquals(true, model.containsKey("C"));
+		assertEquals(true, model.containsKey("D"));
+		assertEquals(true, model.containsKey("E"));
+		assertEquals(false, model.containsKey("1"));
+
 	}
 
-	@Ignore
 	@Test
 	public void testContainsValue() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(true, model.containsValue("1"));
+		assertEquals(true, model.containsValue("2"));
+		assertEquals(true, model.containsValue("3"));
+		assertEquals(true, model.containsValue("4"));
+		assertEquals(true, model.containsValue("5"));
+		assertEquals(false, model.containsValue("A"));
 	}
 
-	@Ignore
 	@Test
 	public void testGet() {
-		fail("Not yet implemented"); // TODO
+		assertEquals("1", model.get("A"));
+		assertEquals("2", model.get("B"));
+		assertEquals("3", model.get("C"));
+		assertEquals("4", model.get("D"));
+		assertEquals("5", model.get("E"));
+		assertEquals(null, model.get("F"));
+
 	}
 
-	@Ignore
 	@Test
 	public void testPut() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(null, model.put("F", "6"));
+		assertEquals("6", model.get("F"));
+		assertEquals("F", obv.putKeyList.get(0));
+		assertEquals("6", obv.putValueList.get(0));
+		assertEquals("1", model.put("A", "7"));
+		assertEquals("A", obv.changedKeyList.get(0));
+		assertEquals("1", obv.changedOldValueList.get(0));
+		assertEquals("7", obv.changedNewValueList.get(0));
 	}
 
-	@Ignore
 	@Test
 	public void testRemove() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(null, model.remove("1"));
+		assertEquals("2", model.remove("B"));
+		assertEquals("B", obv.removeKeyList.get(0));
+		assertEquals("2", obv.removeValueList.get(0));
 	}
 
-	@Ignore
 	@Test
 	public void testPutAll() {
-		fail("Not yet implemented"); // TODO
+		Map<String, String> m = new HashMap<>();
+		m.put("A", "1");
+		m.put("B", "6");
+		m.put("F", "7");
+		model.putAll(m);
+		assertEquals("A", obv.changedKeyList.get(0));
+		assertEquals("1", obv.changedOldValueList.get(0));
+		assertEquals("1", obv.changedNewValueList.get(0));
+		assertEquals("B", obv.changedKeyList.get(1));
+		assertEquals("6", obv.changedNewValueList.get(1));
+		assertEquals("2", obv.changedOldValueList.get(1));
+		assertEquals("F", obv.putKeyList.get(0));
+		assertEquals("7", obv.putValueList.get(0));
 	}
 
-	@Ignore
 	@Test
 	public void testClear() {
-		fail("Not yet implemented"); // TODO
+		model.clear();
+		assertEquals(true, model.isEmpty());
+		assertEquals(0, model.size());
+		assertEquals(1, obv.cleared);
 	}
 
-	@Ignore
-	@Test
-	public void testKeySet() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
-	@Test
-	public void testValues() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
-	@Test
-	public void testEntrySet() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
-	@Test
-	public void testAbstractMapModel() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
-	@Test
-	public void testAbstractMapModelSetOfO() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
 	@Test
 	public void testGetObversers() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(1, model.getObversers().size());
+		assertEquals(true, model.getObversers().contains(obv));
 	}
 
-	@Ignore
-	@Test
-	public void testAddObverser() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
 	@Test
 	public void testRemoveObverser() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(true, model.removeObverser(obv));
+		assertEquals(0, model.getObversers().size());
 	}
 
-	@Ignore
-	@Test
-	public void testClearObverser() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
-	@Test
-	public void testFirePut() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
-	@Test
-	public void testFireRemoved() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
-	@Test
-	public void testFireChanged() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
-	@Test
-	public void testFireCleared() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
-	@Test
-	public void testObject() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
-	@Test
-	public void testGetClass() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
 	@Test
 	public void testHashCode() {
-		fail("Not yet implemented"); // TODO
+		Map<String, String> map = new HashMap<>();
+		map.put("A", "1");
+		map.put("B", "2");
+		map.put("C", "3");
+		map.put("D", "4");
+		map.put("E", "5");
+		assertEquals(true, model.hashCode() == map.hashCode());
 	}
 
-	@Ignore
 	@Test
 	public void testEquals() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
-	@Test
-	public void testClone() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
-	@Test
-	public void testToString() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
-	@Test
-	public void testNotify() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
-	@Test
-	public void testNotifyAll() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
-	@Test
-	public void testWaitLong() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
-	@Test
-	public void testWaitLongInt() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
-	@Test
-	public void testWait() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
-	@Test
-	public void testFinalize() {
-		fail("Not yet implemented"); // TODO
+		Map<String, String> map = new HashMap<>();
+		map.put("A", "1");
+		map.put("B", "2");
+		map.put("C", "3");
+		map.put("D", "4");
+		map.put("E", "5");
+		assertEquals(true, map.equals(model));
+		assertEquals(true, model.equals(map));
 	}
 
 }
