@@ -8,7 +8,7 @@ import java.util.WeakHashMap;
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.cna.model.obv.KeySetObverser;
-import com.dwarfeng.dutil.basic.prog.ElementWithKey;
+import com.dwarfeng.dutil.basic.prog.WithKey;
 
 /**
  * 抽象键值集合模型。
@@ -20,7 +20,7 @@ import com.dwarfeng.dutil.basic.prog.ElementWithKey;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public abstract class AbstractKeySetModel<K, V extends ElementWithKey<K>, O extends KeySetObverser<K, V>>
+public abstract class AbstractKeySetModel<K, V extends WithKey<K>, O extends KeySetObverser<K, V>>
 		implements KeySetModel<K, V, KeySetObverser<K, V>> {
 
 	/** 抽象集合模型的侦听器集合。 */

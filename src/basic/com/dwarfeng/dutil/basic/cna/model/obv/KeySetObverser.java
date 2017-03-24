@@ -1,7 +1,7 @@
 package com.dwarfeng.dutil.basic.cna.model.obv;
 
 import com.dwarfeng.dutil.basic.cna.model.KeySetModel;
-import com.dwarfeng.dutil.basic.prog.ElementWithKey;
+import com.dwarfeng.dutil.basic.prog.WithKey;
 import com.dwarfeng.dutil.basic.prog.Obverser;
 
 /**
@@ -10,7 +10,7 @@ import com.dwarfeng.dutil.basic.prog.Obverser;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public interface KeySetObverser<K, V extends ElementWithKey<K>> extends Obverser {
+public interface KeySetObverser<K, V extends WithKey<K>> extends Obverser {
 
 	/**
 	 * 通知模型中添加了指定的元素。
@@ -48,7 +48,7 @@ public interface KeySetObverser<K, V extends ElementWithKey<K>> extends Obverser
 	 * 通知模型被清空。
 	 * <p>
 	 * 该方法为了提高效率而定义的，故在模型执行 {@link KeySetModel#clear()} 方法的时候， 会触发该通知而不是一条条地触发
-	 * {@link #fireRemoved(Object, ElementWithKey)}。
+	 * {@link #fireRemoved(Object, WithKey)}。
 	 */
 	public void fireCleared();
 

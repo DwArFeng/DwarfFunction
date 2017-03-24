@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.dwarfeng.dutil.basic.cna.model.obv.KeySetObverser;
-import com.dwarfeng.dutil.basic.prog.ElementWithKey;
+import com.dwarfeng.dutil.basic.prog.WithKey;
 import com.dwarfeng.dutil.basic.prog.ObverserSet;
 
 /**
@@ -21,7 +21,7 @@ import com.dwarfeng.dutil.basic.prog.ObverserSet;
  *            泛型V，代表元素的类型。
  * @since 0.1.0-beta
  */
-public interface KeySetModel<K, V extends ElementWithKey<K>, O extends KeySetObverser<K, V>>
+public interface KeySetModel<K, V extends WithKey<K>, O extends KeySetObverser<K, V>>
 		extends Set<V>, ObverserSet<O> {
 
 	/**

@@ -5,22 +5,22 @@ import java.util.List;
 
 import com.dwarfeng.dutil.basic.cna.model.obv.ListObverser;
 
-class TestListObverser implements ListObverser<String> {
+class TestListObverser<T> implements ListObverser<T> {
 
 	public List<Integer> removeIndexes = new ArrayList<>();
-	public List<String> removeElements = new ArrayList<>();
+	public List<T> removeElements = new ArrayList<>();
 
 	public int clearedCount = 0;
 
 	public List<Integer> changedIndexes = new ArrayList<>();
-	public List<String> changedOldElements = new ArrayList<>();
-	public List<String> changedNewElements = new ArrayList<>();
+	public List<T> changedOldElements = new ArrayList<>();
+	public List<T> changedNewElements = new ArrayList<>();
 
 	public List<Integer> addedIndexes = new ArrayList<>();
-	public List<String> addedElements = new ArrayList<>();
+	public List<T> addedElements = new ArrayList<>();
 
 	@Override
-	public void fireRemoved(int index, String element) {
+	public void fireRemoved(int index, T element) {
 		removeIndexes.add(index);
 		removeElements.add(element);
 	}
@@ -31,14 +31,14 @@ class TestListObverser implements ListObverser<String> {
 	}
 
 	@Override
-	public void fireChanged(int index, String oldElement, String newElement) {
+	public void fireChanged(int index, T oldElement, T newElement) {
 		changedIndexes.add(index);
 		changedOldElements.add(oldElement);
 		changedNewElements.add(newElement);
 	}
 
 	@Override
-	public void fireAdded(int index, String element) {
+	public void fireAdded(int index, T element) {
 		addedIndexes.add(index);
 		addedElements.add(element);
 	}

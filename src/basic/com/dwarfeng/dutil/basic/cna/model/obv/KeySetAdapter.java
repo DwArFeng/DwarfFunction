@@ -1,13 +1,13 @@
 package com.dwarfeng.dutil.basic.cna.model.obv;
 
-import com.dwarfeng.dutil.basic.prog.ElementWithKey;
+import com.dwarfeng.dutil.basic.prog.WithKey;
 
 /**
  * 键值集合模型观察器适配器。
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public abstract class KeySetAdapter<K, V extends ElementWithKey<K>> implements KeySetObverser<K, V> {
+public abstract class KeySetAdapter<K, V extends WithKey<K>> implements KeySetObverser<K, V> {
 
 	@Override
 	public void fireAdded(K key, V value) {}

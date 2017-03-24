@@ -16,7 +16,7 @@ import com.dwarfeng.dutil.basic.cna.model.obv.KeySetObverser;
 import com.dwarfeng.dutil.basic.cna.model.obv.ListObverser;
 import com.dwarfeng.dutil.basic.cna.model.obv.MapObverser;
 import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
-import com.dwarfeng.dutil.basic.prog.ElementWithKey;
+import com.dwarfeng.dutil.basic.prog.WithKey;
 
 /**
  * 有关模型的工具包。
@@ -1173,13 +1173,13 @@ public final class ModelUtil {
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public static <K, V extends ElementWithKey<K>, O extends ListObverser<V>> SyncKeyListModel<K, V, O> syncKeyListModel(
+	public static <K, V extends WithKey<K>, O extends ListObverser<V>> SyncKeyListModel<K, V, O> syncKeyListModel(
 			KeyListModel<K, V, O> keyListModel) {
 		Objects.requireNonNull(keyListModel, DwarfUtil.getStringField(StringFieldKey.MODELUTIL_3));
 		return new SyncKeyListModelImpl<>(keyListModel);
 	}
 
-	private static class SyncKeyListModelImpl<K, V extends ElementWithKey<K>, O extends ListObverser<V>>
+	private static class SyncKeyListModelImpl<K, V extends WithKey<K>, O extends ListObverser<V>>
 			implements SyncKeyListModel<K, V, O> {
 
 		private final KeyListModel<K, V, O> delegate;
@@ -1776,13 +1776,13 @@ public final class ModelUtil {
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public static <K, V extends ElementWithKey<K>, O extends KeySetObverser<K, V>> SyncKeySetModel<K, V, O> syncKeySetModel(
+	public static <K, V extends WithKey<K>, O extends KeySetObverser<K, V>> SyncKeySetModel<K, V, O> syncKeySetModel(
 			KeySetModel<K, V, O> keySetModel) {
 		Objects.requireNonNull(keySetModel, DwarfUtil.getStringField(StringFieldKey.MODELUTIL_4));
 		return new SyncKeySetModelImpl<>(keySetModel);
 	}
 
-	private static class SyncKeySetModelImpl<K, V extends ElementWithKey<K>, O extends KeySetObverser<K, V>>
+	private static class SyncKeySetModelImpl<K, V extends WithKey<K>, O extends KeySetObverser<K, V>>
 			implements SyncKeySetModel<K, V, O> {
 
 		private final KeySetModel<K, V, O> delegate;

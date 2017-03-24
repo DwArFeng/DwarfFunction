@@ -3,7 +3,7 @@ package com.dwarfeng.dutil.basic.cna.model;
 import java.util.concurrent.locks.ReadWriteLock;
 
 import com.dwarfeng.dutil.basic.cna.model.obv.ListObverser;
-import com.dwarfeng.dutil.basic.prog.ElementWithKey;
+import com.dwarfeng.dutil.basic.prog.WithKey;
 import com.dwarfeng.dutil.basic.threads.ExternalReadWriteThreadSafe;
 
 /**
@@ -31,7 +31,7 @@ import com.dwarfeng.dutil.basic.threads.ExternalReadWriteThreadSafe;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public interface SyncKeyListModel<K, V extends ElementWithKey<K>, O extends ListObverser<V>>
+public interface SyncKeyListModel<K, V extends WithKey<K>, O extends ListObverser<V>>
 		extends KeyListModel<K, V, O>, ExternalReadWriteThreadSafe {
 
 }

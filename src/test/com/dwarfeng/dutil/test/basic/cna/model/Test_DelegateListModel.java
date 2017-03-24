@@ -17,7 +17,7 @@ import com.dwarfeng.dutil.basic.cna.model.obv.ListObverser;
 public class Test_DelegateListModel {
 
 	private final DelegateListModel<String, ListObverser<String>> model = new DelegateListModel<>();
-	private final TestListObverser obv = new TestListObverser();
+	private final TestListObverser<String> obv = new TestListObverser<>();
 
 	@Before
 	public void setUp() throws Exception {

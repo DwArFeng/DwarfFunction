@@ -1,6 +1,5 @@
 package com.dwarfeng.dutil.basic.cna.model;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -10,18 +9,90 @@ import java.util.Objects;
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.cna.model.obv.ListObverser;
-import com.dwarfeng.dutil.basic.prog.ElementWithKey;
+import com.dwarfeng.dutil.basic.prog.WithKey;
 
 /**
  * 代理键值列表模型。
  * <p>
  * 通过代理一个 {@link List} 实现键值列表模型。
  * 
+ * <p>
+ * 该列表模型允许在其中拥有相同键值的元素，但是这些元素必须不相互冲突。
+ * 
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public class DelegateKeyListModel<K, V extends ElementWithKey<K>, O extends ListObverser<V>>
-		extends DelegateListModel<V, O> implements KeyListModel<K, V, O> {
+public class DelegateKeyListModel<K, V extends WithKey<K>, O extends ListObverser<V>> extends DelegateListModel<V, O>
+		implements KeyListModel<K, V, O> {
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.dwarfeng.dutil.basic.cna.model.DelegateListModel#add(java.lang.
+	 * Object)
+	 */
+	@Override
+	public boolean add(V e) {
+		if (checkConflict(e))
+			return false;
+		return super.add(e);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.dwarfeng.dutil.basic.cna.model.DelegateListModel#add(int,
+	 * java.lang.Object)
+	 */
+	@Override
+	public void add(int index, V element) {
+		if (checkConflict(element))
+			return;
+		super.add(index, element);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.dwarfeng.dutil.basic.cna.model.DelegateListModel#addAll(java.util.
+	 * Collection)
+	 */
+	@Override
+	public boolean addAll(Collection<? extends V> c) {
+		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.DELEGATEKEYLISTMODEL_0));
+		boolean aFlag = false;
+		for (V e : c) {
+			if (add(e))
+				aFlag = true;
+		}
+		return aFlag;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.dwarfeng.dutil.basic.cna.model.DelegateListModel#addAll(int,
+	 * java.util.Collection)
+	 */
+	@Override
+	public boolean addAll(int index, Collection<? extends V> c) {
+		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.DELEGATEKEYLISTMODEL_0));
+		int size = delegate.size();
+		int i = 0;
+		for (V e : c) {
+			add(index + i++, e);
+		}
+		return size != delegate.size();
+	}
+
+	private boolean checkConflict(V e) {
+		K key = e == null ? null : e.getKey();
+		if (!containsKey(key))
+			return false;
+		V currentElement = get(indexOfKey(key));
+		return currentElement.isConflict(e);
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -51,7 +122,7 @@ public class DelegateKeyListModel<K, V extends ElementWithKey<K>, O extends List
 	public boolean containsAllKey(Collection<?> c) {
 		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.DELEGATEKEYLISTMODEL_0));
 		for (Iterator<?> i = c.iterator(); i.hasNext();) {
-			Object o = i.hasNext();
+			Object o = i.next();
 			if (!containsKey(o))
 				return false;
 		}
@@ -70,7 +141,7 @@ public class DelegateKeyListModel<K, V extends ElementWithKey<K>, O extends List
 		for (ListIterator<V> i = delegate.listIterator(0); i.hasNext();) {
 			int index = i.nextIndex();
 			V value = i.next();
-			if (Objects.equals(o, value))
+			if (Objects.equals(o, value == null ? null : value.getKey()))
 				return index;
 		}
 		return -1;
@@ -85,10 +156,10 @@ public class DelegateKeyListModel<K, V extends ElementWithKey<K>, O extends List
 	 */
 	@Override
 	public int lastIndexOfKey(Object o) {
-		for (ListIterator<V> i = delegate.listIterator(delegate.size()); i.hasNext();) {
+		for (ListIterator<V> i = delegate.listIterator(delegate.size()); i.hasPrevious();) {
 			int index = i.previousIndex();
 			V value = i.previous();
-			if (Objects.equals(o, value))
+			if (Objects.equals(o, value == null ? null : value.getKey()))
 				return index;
 		}
 		return -1;
@@ -105,8 +176,11 @@ public class DelegateKeyListModel<K, V extends ElementWithKey<K>, O extends List
 		for (ListIterator<V> i = delegate.listIterator(0); i.hasNext();) {
 			int index = i.nextIndex();
 			V value = i.next();
-			if (Objects.equals(key, value == null ? null : value.getKey()))
-				remove(index);
+			if (Objects.equals(key, value == null ? null : value.getKey())){
+				i.remove();
+				fireRemoved(index, value);
+				return true;
+			}
 		}
 		return false;
 	}
