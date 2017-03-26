@@ -12,7 +12,6 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
-import com.dwarfeng.dutil.basic.cna.model.obv.KeySetObverser;
 import com.dwarfeng.dutil.basic.cna.model.obv.ListObverser;
 import com.dwarfeng.dutil.basic.cna.model.obv.MapObverser;
 import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
@@ -1776,13 +1775,13 @@ public final class ModelUtil {
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public static <K, V extends WithKey<K>, O extends KeySetObverser<K, V>> SyncKeySetModel<K, V, O> syncKeySetModel(
+	public static <K, V extends WithKey<K>, O extends SetObverser<V>> SyncKeySetModel<K, V, O> syncKeySetModel(
 			KeySetModel<K, V, O> keySetModel) {
 		Objects.requireNonNull(keySetModel, DwarfUtil.getStringField(StringFieldKey.MODELUTIL_4));
 		return new SyncKeySetModelImpl<>(keySetModel);
 	}
 
-	private static class SyncKeySetModelImpl<K, V extends WithKey<K>, O extends KeySetObverser<K, V>>
+	private static class SyncKeySetModelImpl<K, V extends WithKey<K>, O extends SetObverser<V>>
 			implements SyncKeySetModel<K, V, O> {
 
 		private final KeySetModel<K, V, O> delegate;

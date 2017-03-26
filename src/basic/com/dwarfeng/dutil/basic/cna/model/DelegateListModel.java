@@ -130,6 +130,9 @@ public class DelegateListModel<E, O extends ListObverser<E>> extends AbstractLis
 		 */
 		@Override
 		public void remove() {
+			if (lastRet < 0)
+				throw new IllegalStateException();
+			
 			cursor = lastRet;
 			E element = delegate.get(lastRet);
 			itr.remove();
@@ -454,6 +457,9 @@ public class DelegateListModel<E, O extends ListObverser<E>> extends AbstractLis
 		 */
 		@Override
 		public void remove() {
+            if (lastRet < 0)
+                throw new IllegalStateException();
+            
 			cursor = lastRet;
 			E element = delegate.get(lastRet);
 			litr.remove();
@@ -468,6 +474,9 @@ public class DelegateListModel<E, O extends ListObverser<E>> extends AbstractLis
 		 */
 		@Override
 		public void set(E e) {
+            if (lastRet < 0)
+                throw new IllegalStateException();
+            
 			E oldValue = delegate.get(lastRet);
 			litr.set(e);
 			fireChanged(lastRet, oldValue, e);
@@ -589,6 +598,9 @@ public class DelegateListModel<E, O extends ListObverser<E>> extends AbstractLis
 			 */
 			@Override
 			public void remove() {
+	            if (lastRet < 0)
+	                throw new IllegalStateException();
+				
 				cursor = lastRet;
 				E element = subDelegate.get(lastRet);
 				itr.remove();
@@ -915,6 +927,9 @@ public class DelegateListModel<E, O extends ListObverser<E>> extends AbstractLis
 			 */
 			@Override
 			public void remove() {
+	            if (lastRet < 0)
+	                throw new IllegalStateException();
+				
 				cursor = lastRet;
 				E element = subDelegate.get(lastRet);
 				litr.remove();
@@ -929,6 +944,9 @@ public class DelegateListModel<E, O extends ListObverser<E>> extends AbstractLis
 			 */
 			@Override
 			public void set(E e) {
+	            if (lastRet < 0)
+	                throw new IllegalStateException();
+				
 				E oldValue = subDelegate.get(lastRet);
 				litr.set(e);
 				fireChanged(lastRet + offset, oldValue, e);

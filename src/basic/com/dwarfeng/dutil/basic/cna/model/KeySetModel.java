@@ -2,11 +2,9 @@ package com.dwarfeng.dutil.basic.cna.model;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
-import com.dwarfeng.dutil.basic.cna.model.obv.KeySetObverser;
+import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
 import com.dwarfeng.dutil.basic.prog.WithKey;
-import com.dwarfeng.dutil.basic.prog.ObverserSet;
 
 /**
  * 键值集合模型。
@@ -21,8 +19,8 @@ import com.dwarfeng.dutil.basic.prog.ObverserSet;
  *            泛型V，代表元素的类型。
  * @since 0.1.0-beta
  */
-public interface KeySetModel<K, V extends WithKey<K>, O extends KeySetObverser<K, V>>
-		extends Set<V>, ObverserSet<O> {
+public interface KeySetModel<K, V extends WithKey<K>, O extends SetObverser<V>>
+		extends SetModel<V, O>{
 
 	/**
 	 * 如果集合包含指定的键，则返回 <code>true</code>。

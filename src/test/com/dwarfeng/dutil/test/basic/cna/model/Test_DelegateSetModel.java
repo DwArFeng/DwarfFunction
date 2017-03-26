@@ -1,14 +1,13 @@
 package com.dwarfeng.dutil.test.basic.cna.model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.WeakHashMap;
 
@@ -22,38 +21,9 @@ import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
 
 public class Test_DelegateSetModel {
 
-	private final class TestSetObverser implements SetObverser<String> {
-
-		public List<String> addedList = new ArrayList<>();
-		public List<String> removedList = new ArrayList<>();
-		public int cleared = 0;
-
-		@Override
-		public void fireAdded(String element) {
-			addedList.add(element);
-		}
-
-		@Override
-		public void fireRemoved(String element) {
-			removedList.add(element);
-		}
-
-		@Override
-		public void fireCleared() {
-			cleared++;
-		}
-
-		public void reset() {
-			addedList.clear();
-			removedList.clear();
-			cleared = 0;
-		}
-
-	}
-
 	private final SetModel<String, SetObverser<String>> model = new DelegateSetModel<>(new LinkedHashSet<>(),
 			Collections.newSetFromMap(new WeakHashMap<>()));
-	private final TestSetObverser obv = new TestSetObverser();
+	private final TestSetObverser<String> obv = new TestSetObverser<String>();
 
 	@Before
 	public void setUp() throws Exception {
@@ -167,7 +137,7 @@ public class Test_DelegateSetModel {
 		assertEquals("0", obv.removedList.get(0));
 		assertEquals("3", obv.removedList.get(1));
 	}
-	
+
 	@Test(expected = NullPointerException.class)
 	public final void testRetainAllWithException() {
 		model.retainAll(null);

@@ -52,7 +52,7 @@ public class TestWithKey implements WithKey<String> {
 			return false;
 		if (!element.getKey().equals(key))
 			return false;
-		return ! Objects.equals(element, this);
+		return !Objects.equals(element, this);
 	}
 
 	/*
@@ -72,10 +72,22 @@ public class TestWithKey implements WithKey<String> {
 
 	/*
 	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		return key.hashCode() * 17 + value.hashCode();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		return "TestWithKey [key=" + key + ", value=" + value + "]";
 	}
+
 }

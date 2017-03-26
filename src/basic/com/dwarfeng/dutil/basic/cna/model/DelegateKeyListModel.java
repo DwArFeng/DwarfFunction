@@ -16,83 +16,11 @@ import com.dwarfeng.dutil.basic.prog.WithKey;
  * <p>
  * 通过代理一个 {@link List} 实现键值列表模型。
  * 
- * <p>
- * 该列表模型允许在其中拥有相同键值的元素，但是这些元素必须不相互冲突。
- * 
  * @author DwArFeng
  * @since 0.1.0-beta
  */
 public class DelegateKeyListModel<K, V extends WithKey<K>, O extends ListObverser<V>> extends DelegateListModel<V, O>
 		implements KeyListModel<K, V, O> {
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.cna.model.DelegateListModel#add(java.lang.
-	 * Object)
-	 */
-	@Override
-	public boolean add(V e) {
-		if (checkConflict(e))
-			return false;
-		return super.add(e);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.cna.model.DelegateListModel#add(int,
-	 * java.lang.Object)
-	 */
-	@Override
-	public void add(int index, V element) {
-		if (checkConflict(element))
-			return;
-		super.add(index, element);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.cna.model.DelegateListModel#addAll(java.util.
-	 * Collection)
-	 */
-	@Override
-	public boolean addAll(Collection<? extends V> c) {
-		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.DELEGATEKEYLISTMODEL_0));
-		boolean aFlag = false;
-		for (V e : c) {
-			if (add(e))
-				aFlag = true;
-		}
-		return aFlag;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.cna.model.DelegateListModel#addAll(int,
-	 * java.util.Collection)
-	 */
-	@Override
-	public boolean addAll(int index, Collection<? extends V> c) {
-		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.DELEGATEKEYLISTMODEL_0));
-		int size = delegate.size();
-		int i = 0;
-		for (V e : c) {
-			add(index + i++, e);
-		}
-		return size != delegate.size();
-	}
-
-	private boolean checkConflict(V e) {
-		K key = e == null ? null : e.getKey();
-		if (!containsKey(key))
-			return false;
-		V currentElement = get(indexOfKey(key));
-		return currentElement.isConflict(e);
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -176,7 +104,7 @@ public class DelegateKeyListModel<K, V extends WithKey<K>, O extends ListObverse
 		for (ListIterator<V> i = delegate.listIterator(0); i.hasNext();) {
 			int index = i.nextIndex();
 			V value = i.next();
-			if (Objects.equals(key, value == null ? null : value.getKey())){
+			if (Objects.equals(key, value == null ? null : value.getKey())) {
 				i.remove();
 				fireRemoved(index, value);
 				return true;
