@@ -432,6 +432,9 @@ public enum StringFieldKey implements Name {
 	/** MapKeySetModel类第1号文本字段 */
 	MAPKEYSETMODEL_1(new DefaultName("MapKeySetModel.1")),
 	
+	/** DelegateKeySetModel类第0号文本字段 */
+	DELEGATEKEYSETMODEL_0(new DefaultName("DelegateKeySetModel.0"))
+	
 	;
 
 	private final Name name;
