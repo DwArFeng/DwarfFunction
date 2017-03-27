@@ -142,4 +142,36 @@ public class DelegateKeySetModel<K, V extends WithKey<K>, O extends SetObverser<
 
 		return result;
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.util.Set#add(java.lang.Object)
+	 */
+	@Override
+	public boolean add(V e) {
+		K key = e == null ? null : e.getKey();
+		if (containsKey(key)) {
+			return false;
+		}
+		delegate.add(e);
+		fireAdded(e);
+		return true;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.util.Set#addAll(java.util.Collection)
+	 */
+	@Override
+	public boolean addAll(Collection<? extends V> c) {
+		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.MAPKEYSETMODEL_1));
+		boolean aFlag = false;
+		for (V v : c) {
+			if (add(v))
+				aFlag = true;
+		}
+		return aFlag;
+	}
 }

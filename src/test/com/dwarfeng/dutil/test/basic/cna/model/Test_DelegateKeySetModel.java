@@ -2,109 +2,141 @@ package com.dwarfeng.dutil.test.basic.cna.model;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.WeakHashMap;
+
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import com.dwarfeng.dutil.basic.cna.model.DelegateKeySetModel;
 import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
+import com.sun.scenario.effect.Blend.Mode;
 
 public class Test_DelegateKeySetModel {
 
-	DelegateKeySetModel<String, TestWithKey, SetObverser<TestWithKey>> model = new DelegateKeyS
-	
+	private final DelegateKeySetModel<String, TestWithKey, SetObverser<TestWithKey>> model = new DelegateKeySetModel<>(
+			new LinkedHashSet<>(), Collections.newSetFromMap(new WeakHashMap<>()));
+	private final TestSetObverser<TestWithKey> obv = new TestSetObverser<>();
+
 	@Before
 	public void setUp() throws Exception {
+		model.clearObverser();
+		model.clear();
+		obv.reset();
+		model.add(TestWithKey.ELE_1);
+		model.add(TestWithKey.ELE_2);
+		model.add(TestWithKey.ELE_3);
+		model.add(TestWithKey.ELE_4);
+		model.add(TestWithKey.ELE_5);
+		model.addObverser(obv);
 	}
 
 	@Test
-	@Ignore
 	public void testContainsKey() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(true, model.containsKey("A"));
+		assertEquals(true, model.containsKey("B"));
+		assertEquals(true, model.containsKey("C"));
+		assertEquals(true, model.containsKey("D"));
+		assertEquals(true, model.containsKey("E"));
+		assertEquals(false, model.containsKey("F"));
+
 	}
 
 	@Test
-	@Ignore
 	public void testContainsAllKey() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(true, model.containsAllKey(Arrays.asList("A", "B", "C", "D", "E")));
+		assertEquals(false, model.containsAllKey(Arrays.asList("A", "B", "C", "D", "E", "F")));
 	}
 
 	@Test
-	@Ignore
 	public void testRemoveKey() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(true, model.removeKey("B"));
+		assertEquals(false, model.contains(TestWithKey.ELE_2));
+		assertEquals(4, model.size());
+		assertEquals(TestWithKey.ELE_2, obv.removedList.get(0));
 	}
 
 	@Test
-	@Ignore
 	public void testRemoveAllKey() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(true, model.removeAllKey(Arrays.asList("B", "C", "D")));
+		assertEquals(2, model.size());
+		assertEquals(TestWithKey.ELE_2, obv.removedList.get(0));
+		assertEquals(TestWithKey.ELE_3, obv.removedList.get(1));
+		assertEquals(TestWithKey.ELE_4, obv.removedList.get(2));
 	}
 
 	@Test
-	@Ignore
 	public void testRetainAllKey() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(true, model.retainAllKey(Arrays.asList("B", "C", "D")));
+		assertEquals(3, model.size());
+		assertEquals(TestWithKey.ELE_1, obv.removedList.get(0));
+		assertEquals(TestWithKey.ELE_5, obv.removedList.get(1));
 	}
 
 	@Test
-	@Ignore
 	public void testHashCode() {
-		fail("Not yet implemented"); // TODO
+		Set<TestWithKey> set = new HashSet<>(Arrays.asList(TestWithKey.ELE_1, TestWithKey.ELE_2, TestWithKey.ELE_3,
+				TestWithKey.ELE_4, TestWithKey.ELE_5));
+		assertEquals(true, set.hashCode() == model.hashCode());
 	}
 
 	@Test
-	@Ignore
-	public void testDelegateSetModel() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	@Ignore
-	public void testDelegateSetModelSetOfESetOfO() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	@Ignore
 	public void testSize() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(5, model.size());
 	}
 
 	@Test
-	@Ignore
 	public void testIsEmpty() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(false, model.isEmpty());
+		model.clear();
+		assertEquals(true, model.isEmpty());
 	}
 
 	@Test
-	@Ignore
 	public void testContains() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(true, model.contains(TestWithKey.ELE_1));
+		assertEquals(true, model.contains(TestWithKey.ELE_2));
+		assertEquals(true, model.contains(TestWithKey.ELE_3));
+		assertEquals(true, model.contains(TestWithKey.ELE_4));
+		assertEquals(true, model.contains(TestWithKey.ELE_5));
+		assertEquals(false, model.contains(TestWithKey.FAIL_ELE));
 	}
 
 	@Test
-	@Ignore
 	public void testIterator() {
-		fail("Not yet implemented"); // TODO
+		Iterator<TestWithKey> i = model.iterator();
+		assertEquals(TestWithKey.ELE_1, i.next());
+		assertEquals(TestWithKey.ELE_2, i.next());
+		i.remove();
+		assertEquals(4, model.size());
+		assertEquals(false, model.containsKey("B"));
+
+		assertEquals(TestWithKey.ELE_2, obv.removedList.get(0));
 	}
 
 	@Test
-	@Ignore
 	public void testToArray() {
-		fail("Not yet implemented"); // TODO
+		assertArrayEquals(new Object[] { TestWithKey.ELE_1, TestWithKey.ELE_2, TestWithKey.ELE_3, TestWithKey.ELE_4,
+				TestWithKey.ELE_5 }, model.toArray());
 	}
 
 	@Test
-	@Ignore
 	public void testToArrayTArray() {
-		fail("Not yet implemented"); // TODO
+		assertArrayEquals(new Object[] { TestWithKey.ELE_1, TestWithKey.ELE_2, TestWithKey.ELE_3, TestWithKey.ELE_4,
+				TestWithKey.ELE_5 }, model.toArray(new TestWithKey[0]));
 	}
 
 	@Test
-	@Ignore
 	public void testAdd() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(true, model.add(TestWithKey.ELE_6));
+		assertEquals(TestWithKey.ELE_6, obv.addedList.get(0));
+		assertEquals(false, model.add(TestWithKey.FAIL_ELE));
 	}
 
 	@Test
