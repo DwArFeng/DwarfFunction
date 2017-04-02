@@ -1,15 +1,16 @@
 package com.dwarfeng.dutil.test.develop.backgr;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
-import com.dwarfeng.dutil.basic.io.CT;
 import com.dwarfeng.dutil.basic.mea.TimeMeasurer;
-import com.dwarfeng.dutil.develop.backgr.Task;
 
 public class Test_AbstractTask {
 
@@ -42,13 +43,12 @@ public class Test_AbstractTask {
 			@Override
 			public void run() {
 				new Thread(new Runnable() {
-					
+
 					@Override
 					public void run() {
 						try {
 							Thread.sleep(100);
 						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 						task.finishTask();
@@ -141,13 +141,17 @@ public class Test_AbstractTask {
 		runTaskAndStop(task, 100);
 		task.awaitFinish();
 		tm.stop();
-		assertTrue(tm.getTimeMs() > 100);
+		assertTrue(tm.getTimeMs() >= 100);
 	}
 
-	@Ignore
 	@Test
-	public void testAwaitFinishLongTimeUnit() {
-		fail("Not yet implemented"); // TODO
+	public void testAwaitFinishLongTimeUnit() throws InterruptedException {
+		TimeMeasurer tm = new TimeMeasurer();
+		tm.start();
+		runTaskAndStop(task, 100);
+		assertEquals(false, task.awaitFinish(60, TimeUnit.MILLISECONDS));
+		assertEquals(true, task.awaitFinish(60, TimeUnit.MILLISECONDS));
+
 	}
 
 }

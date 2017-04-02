@@ -48,4 +48,9 @@ public interface BackgroundObverser extends Obverser {
 	 */
 	public void fireShutDown();
 
+	/**
+	 * 通知观察器后台被终结。
+	 */
+	public void fireTerminated();
+
 }

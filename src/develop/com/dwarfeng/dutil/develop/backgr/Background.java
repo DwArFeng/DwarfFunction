@@ -24,7 +24,7 @@ import com.dwarfeng.dutil.develop.backgr.obv.BackgroundObverser;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public interface Background<O extends BackgroundObverser> extends ExternalReadWriteThreadSafe, ObverserSet<O> {
+public interface Background extends ExternalReadWriteThreadSafe, ObverserSet<BackgroundObverser> {
 
 	/**
 	 * 向后台中提交指定的任务。
@@ -46,7 +46,7 @@ public interface Background<O extends BackgroundObverser> extends ExternalReadWr
 	 * 向后台中提交指定 <code>collection</code> 中的所有任务。
 	 * 
 	 * <p>
-	 * 只有非 <code>null</code> 且还未开始的任务才可提交成功。 TODO
+	 * 只有非 <code>null</code> 且还未开始的任务才可提交成功。
 	 * 
 	 * <p>
 	 * 试图向正在关闭的后台中提交任务会抛出异常。

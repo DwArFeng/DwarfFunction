@@ -20,10 +20,10 @@ import com.dwarfeng.dutil.develop.backgr.obv.BackgroundObverser;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public abstract class AbstractBackground<O extends BackgroundObverser> implements Background<O> {
+public abstract class AbstractBackground implements Background {
 
 	/** 观察器集合 */
-	protected final Set<O> obversers;
+	protected final Set<BackgroundObverser> obversers;
 	/** 同步锁 */
 	protected final ReadWriteLock lock = new ReentrantReadWriteLock();
 
@@ -42,7 +42,7 @@ public abstract class AbstractBackground<O extends BackgroundObverser> implement
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public AbstractBackground(Set<O> obversers) {
+	public AbstractBackground(Set<BackgroundObverser> obversers) {
 		Objects.requireNonNull(obversers, DwarfUtil.getStringField(StringFieldKey.ABSTRACTBACKGROUND_0));
 		this.obversers = obversers;
 	}
@@ -64,7 +64,7 @@ public abstract class AbstractBackground<O extends BackgroundObverser> implement
 	 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
 	 */
 	@Override
-	public Set<O> getObversers() {
+	public Set<BackgroundObverser> getObversers() {
 		lock.readLock().lock();
 		try {
 			return obversers;
@@ -81,7 +81,7 @@ public abstract class AbstractBackground<O extends BackgroundObverser> implement
 	 * basic.prog.Obverser)
 	 */
 	@Override
-	public boolean addObverser(O obverser) {
+	public boolean addObverser(BackgroundObverser obverser) {
 		lock.writeLock().lock();
 		try {
 			return obversers.add(obverser);
@@ -98,7 +98,7 @@ public abstract class AbstractBackground<O extends BackgroundObverser> implement
 	 * dutil.basic.prog.Obverser)
 	 */
 	@Override
-	public boolean removeObverser(O obverser) {
+	public boolean removeObverser(BackgroundObverser obverser) {
 		lock.writeLock().lock();
 		try {
 			return obversers.remove(obverser);
@@ -129,7 +129,10 @@ public abstract class AbstractBackground<O extends BackgroundObverser> implement
 	 *            指定的任务。
 	 */
 	protected void fireTaskSubmitted(Task task) {
-
+		for (BackgroundObverser obverser : obversers) {
+			if (Objects.nonNull(obverser))
+				obverser.fireTaskSubmitted(task);
+		}
 	}
 
 	/**
@@ -139,7 +142,7 @@ public abstract class AbstractBackground<O extends BackgroundObverser> implement
 	 *            指定的任务。
 	 */
 	protected void fireTaskStarted(Task task) {
-		for (O obverser : obversers) {
+		for (BackgroundObverser obverser : obversers) {
 			if (Objects.nonNull(obverser))
 				obverser.fireTaskStarted(task);
 		}
@@ -152,7 +155,7 @@ public abstract class AbstractBackground<O extends BackgroundObverser> implement
 	 *            指定的任务。
 	 */
 	protected void fireTaskFinished(Task task) {
-		for (O obverser : obversers) {
+		for (BackgroundObverser obverser : obversers) {
 			if (Objects.nonNull(obverser))
 				obverser.fireTaskFinished(task);
 		}
@@ -165,7 +168,7 @@ public abstract class AbstractBackground<O extends BackgroundObverser> implement
 	 *            指定的任务。
 	 */
 	protected void fireTaskRemoved(Task task) {
-		for (O obverser : obversers) {
+		for (BackgroundObverser obverser : obversers) {
 			if (Objects.nonNull(obverser))
 				obverser.fireTaskRemoved(task);
 		}
@@ -175,9 +178,19 @@ public abstract class AbstractBackground<O extends BackgroundObverser> implement
 	 * 通知观察器后台被关闭。
 	 */
 	protected void fireShutDown() {
-		for (O obverser : obversers) {
+		for (BackgroundObverser obverser : obversers) {
 			if (Objects.nonNull(obverser))
 				obverser.fireShutDown();
+		}
+	}
+
+	/**
+	 * 通知观察器后台被终结。
+	 */
+	protected void fireTerminated() {
+		for (BackgroundObverser obverser : obversers) {
+			if (Objects.nonNull(obverser))
+				obverser.fireTerminated();
 		}
 	}
 

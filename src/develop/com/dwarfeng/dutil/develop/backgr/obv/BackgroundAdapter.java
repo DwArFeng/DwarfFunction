@@ -30,4 +30,8 @@ public abstract class BackgroundAdapter implements BackgroundObverser {
 	public void fireShutDown() {
 	}
 
+	@Override
+	public void fireTerminated() {
+	}
+
 }

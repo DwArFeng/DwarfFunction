@@ -16,6 +16,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.io.CT;
 import com.dwarfeng.dutil.basic.threads.NumberedThreadFactory;
 import com.dwarfeng.dutil.develop.backgr.obv.BackgroundObverser;
 import com.dwarfeng.dutil.develop.backgr.obv.TaskObverser;
@@ -29,7 +30,7 @@ import com.dwarfeng.dutil.develop.backgr.obv.TaskObverser;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
-public class ExecutorServiceBackground<O extends BackgroundObverser> extends AbstractBackground<O> {
+public class ExecutorServiceBackground extends AbstractBackground {
 
 	/** 执行器后台默认的线程工厂。 */
 	public static final ThreadFactory THREAD_FACTORY = new NumberedThreadFactory("EsBackgr", false,
@@ -63,7 +64,7 @@ public class ExecutorServiceBackground<O extends BackgroundObverser> extends Abs
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public ExecutorServiceBackground(ExecutorService executorService, Set<O> obversers) {
+	public ExecutorServiceBackground(ExecutorService executorService, Set<BackgroundObverser> obversers) {
 		super(obversers);
 		Objects.requireNonNull(executorService, DwarfUtil.getStringField(StringFieldKey.EXECUTORSERVICEBACKGROUND_0));
 		this.executorService = executorService;
@@ -86,19 +87,20 @@ public class ExecutorServiceBackground<O extends BackgroundObverser> extends Abs
 				return false;
 			if (tasks.contains(task))
 				return false;
+			if (!task.addObverser(new TaskInspector(task)))
+				return false;
 
 			try {
-				task.addObverser(new TaskInspector(task));
 				executorService.submit(task);
 				tasks.add(task);
-				fireTaskStarted(task);
+				fireTaskSubmitted(task);
 				return true;
 			} catch (Exception e) {
 				return false;
 			}
 		} finally {
 			lock.writeLock().unlock();
-		} 
+		}
 	}
 
 	/*
@@ -136,6 +138,16 @@ public class ExecutorServiceBackground<O extends BackgroundObverser> extends Abs
 			executorService.shutdown();
 			shutdownFlag = true;
 			fireShutDown();
+			if (tasks.isEmpty()) {
+				terminateFlag = true;
+				fireTerminated();
+				runningLock.lock();
+				try {
+					runningCondition.signalAll();
+				} finally {
+					runningLock.unlock();
+				}
+			}
 		} finally {
 			lock.writeLock().unlock();
 		}
@@ -247,7 +259,24 @@ public class ExecutorServiceBackground<O extends BackgroundObverser> extends Abs
 		 */
 		@Override
 		public void fireFinished() {
-			fireTaskFinished(task);
+			lock.writeLock().lock();
+			try {
+				fireTaskFinished(task);
+				tasks.remove(task);
+				fireTaskRemoved(task);
+				if (isShutdown() && tasks.isEmpty()) {
+					runningLock.lock();
+					try {
+						terminateFlag = true;
+						fireTerminated();
+						runningCondition.signalAll();
+					} finally {
+						runningLock.unlock();
+					}
+				}
+			} finally {
+				lock.writeLock().unlock();
+			}
 		}
 
 	}
