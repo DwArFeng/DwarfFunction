@@ -6,8 +6,8 @@ import com.dwarfeng.dutil.math.MathObject;
 import com.dwarfeng.dutil.math.linalge.MatrixLike;
 
 /**
- * ¾ØÕóÕóÁĞ¡£
- * <p> ÆäÊµÏÖÀà¿ÉÒÔ±»¿´×öÒ»¸ö¾ØÕóÕóÁĞ¡£
+ * çŸ©é˜µé˜µåˆ—ã€‚
+ * <p> å…¶å®ç°ç±»å¯ä»¥è¢«çœ‹åšä¸€ä¸ªçŸ©é˜µé˜µåˆ—ã€‚
  * <p>
  * @author DwArFeng
  * @since 0.0.2-beta
@@ -24,10 +24,10 @@ public interface FormulaMatrixLike extends MathObject, NumberBased, MatrixLike{
 	}
 	
 	/**
-	 * ·µ»ØÖ¸¶¨µÄĞĞÁĞ³öËù¶ÔÓ¦µÄÔªËØ¡£
-	 * @param row Ö¸¶¨µÄĞĞ¡£
-	 * @param column Ö¸¶¨µÄÁĞ¡£
-	 * @return Ö¸¶¨µÄĞĞÁĞ´¦¶ÔÓ¦µÄÔªËØ¡£
+	 * è¿”å›æŒ‡å®šçš„è¡Œåˆ—å‡ºæ‰€å¯¹åº”çš„å…ƒç´ ã€‚
+	 * @param row æŒ‡å®šçš„è¡Œã€‚
+	 * @param column æŒ‡å®šçš„åˆ—ã€‚
+	 * @return æŒ‡å®šçš„è¡Œåˆ—å¤„å¯¹åº”çš„å…ƒç´ ã€‚
 	 */
 	public FothValue fothValueAt(int row, int column);
 	

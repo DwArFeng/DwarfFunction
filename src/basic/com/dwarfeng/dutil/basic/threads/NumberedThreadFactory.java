@@ -8,9 +8,9 @@ import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 
 /**
- * ±àºÅÏß³Ì¹¤³§¡£
- * <p> ¸ÃÏß³Ì¹¤³§Ìá¹©Á÷Ë®±àºÅµÄÏß³Ì£¬ÆäÄÚ²¿Î¬»¤×ÅÒ»¸ö±àºÅ¡£
- * µ±ĞÂµÄÏß³Ì±»ÇëÇóÊ±£¬¸Ã¹¤³§·µ»ØµÄÏß³ÌµÄÃû³ÆÓÉ±àºÅºÍÇ°×º×é³É¡£
+ * ç¼–å·çº¿ç¨‹å·¥å‚ã€‚
+ * <p> è¯¥çº¿ç¨‹å·¥å‚æä¾›æµæ°´ç¼–å·çš„çº¿ç¨‹ï¼Œå…¶å†…éƒ¨ç»´æŠ¤ç€ä¸€ä¸ªç¼–å·ã€‚
+ * å½“æ–°çš„çº¿ç¨‹è¢«è¯·æ±‚æ—¶ï¼Œè¯¥å·¥å‚è¿”å›çš„çº¿ç¨‹çš„åç§°ç”±ç¼–å·å’Œå‰ç¼€ç»„æˆã€‚
  * @author DwArFeng
  * @since 0.0.3-beta
  */
@@ -25,21 +25,21 @@ public class NumberedThreadFactory implements ThreadFactory {
 	private final int priority;
 	
 	/**
-	 * Éú³ÉÒ»¸öÄ¬ÈÏµÄ±àºÅÏß³Ì¡£
-	 * <p> Ïß³Ì²»ÊÇÊØ»¤Ïß³Ì£¬ÇÒ¾ßÓĞ±ê×¼µÄÓÅÏÈ¼¶¡£
-	 * @param prefix Ö¸¶¨µÄÇ°×º¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * ç”Ÿæˆä¸€ä¸ªé»˜è®¤çš„ç¼–å·çº¿ç¨‹ã€‚
+	 * <p> çº¿ç¨‹ä¸æ˜¯å®ˆæŠ¤çº¿ç¨‹ï¼Œä¸”å…·æœ‰æ ‡å‡†çš„ä¼˜å…ˆçº§ã€‚
+	 * @param prefix æŒ‡å®šçš„å‰ç¼€ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public NumberedThreadFactory(String prefix) {
 		this(prefix, false, Thread.NORM_PRIORITY);
 	}
 	
 	/**
-	 * Éú³ÉÒ»¸ö¾ßÓĞÖ¸¶¨Ç°×º£¬Ö¸¶¨ÊØ»¤Ïß³Ì±êÖ¾£¬Ö¸¶¨ÓÅÏÈ¼¶µÄ±àºÅÏß³Ì¹¤³§¡£
-	 * @param prefix Ö¸¶¨µÄÇ°×º¡£
-	 * @param daemonFlag Ö¸¶¨µÄÊØ»¤Ïß³Ì±êÖ¾¡£
-	 * @param priority Ö¸¶¨µÄÓÅÏÈ¼¶¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * ç”Ÿæˆä¸€ä¸ªå…·æœ‰æŒ‡å®šå‰ç¼€ï¼ŒæŒ‡å®šå®ˆæŠ¤çº¿ç¨‹æ ‡å¿—ï¼ŒæŒ‡å®šä¼˜å…ˆçº§çš„ç¼–å·çº¿ç¨‹å·¥å‚ã€‚
+	 * @param prefix æŒ‡å®šçš„å‰ç¼€ã€‚
+	 * @param daemonFlag æŒ‡å®šçš„å®ˆæŠ¤çº¿ç¨‹æ ‡å¿—ã€‚
+	 * @param priority æŒ‡å®šçš„ä¼˜å…ˆçº§ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public NumberedThreadFactory(String prefix, boolean daemonFlag, int priority) {
 		Objects.requireNonNull(prefix, DwarfUtil.getStringField(StringFieldKey.NumberedThreadFactory_0));

@@ -7,23 +7,23 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.str.Tag;
 
 /**
- * ±êÇ©ÔËĞĞÆ÷¡£
- * <p> ¸Ã¹¤¾ßÀà¶Ô {@link Runnable} ºÍ {@link Tag} ½øĞĞ·â×°£¬Ê¹µÃÒ»¸ö¿ÉÔËĞĞ¶ÔÏóÓµÓĞÃû³ÆºÍÃèÊö¡£
+ * æ ‡ç­¾è¿è¡Œå™¨ã€‚
+ * <p> è¯¥å·¥å…·ç±»å¯¹ {@link Runnable} å’Œ {@link Tag} è¿›è¡Œå°è£…ï¼Œä½¿å¾—ä¸€ä¸ªå¯è¿è¡Œå¯¹è±¡æ‹¥æœ‰åç§°å’Œæè¿°ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public class TagRunnable implements Runnable, Tag{
 	
-	/**ÄÚ²¿Runnable*/
+	/**å†…éƒ¨Runnable*/
 	protected final Runnable runnable;
-	/**ÄÚ²¿Tag*/
+	/**å†…éƒ¨Tag*/
 	protected final Tag tag;
 	
 	/**
-	 * Éú³ÉÒ»¸öĞÂµÄ±êÇ©ÔËĞĞÆ÷¡£
-	 * @param runnable Ö¸¶¨µÄ¿ÉÔËĞĞ¶ÔÏó¡£
-	 * @param tag Ö¸¶¨µÄ±êÇ©¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * ç”Ÿæˆä¸€ä¸ªæ–°çš„æ ‡ç­¾è¿è¡Œå™¨ã€‚
+	 * @param runnable æŒ‡å®šçš„å¯è¿è¡Œå¯¹è±¡ã€‚
+	 * @param tag æŒ‡å®šçš„æ ‡ç­¾ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public TagRunnable(Runnable runnable, Tag tag){
 		Objects.requireNonNull(runnable, DwarfUtil.getStringField(StringFieldKey.TAGRUNNER_0));

@@ -1,7 +1,7 @@
 package com.dwarfeng.dutil.basic.prog;
 
 /**
- * ¹¹ÔìÆ÷³éÏóµÄ½á¹¹£¬ÓµÓÐÒ»¸ö¶Ô<code>T</code>µÄ¹¹Ôì·½·¨¡£
+ * æž„é€ å™¨æŠ½è±¡çš„ç»“æž„ï¼Œæ‹¥æœ‰ä¸€ä¸ªå¯¹<code>T</code>çš„æž„é€ æ–¹æ³•ã€‚
  * 
  * @author DwArFeng
  * @since 0.0.2-beta
@@ -9,9 +9,9 @@ package com.dwarfeng.dutil.basic.prog;
 public interface Buildable<T> {
 
 	/**
-	 * ¹¹ÔìÐÂµÄTÊµÀý¡£
+	 * æž„é€ æ–°çš„Tå®žä¾‹ã€‚
 	 * 
-	 * @return ÐÂµÄÊµÀý¡£
+	 * @return æ–°çš„å®žä¾‹ã€‚
 	 */
 	public T build();
 }

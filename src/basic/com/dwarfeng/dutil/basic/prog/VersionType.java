@@ -3,20 +3,20 @@ package com.dwarfeng.dutil.basic.prog;
 import com.dwarfeng.dutil.basic.str.Name;
 
 /**
- * ±à³ÌÖĞ³£¼ûµÄ°æ±¾ÀàĞÍ¡£
+ * ç¼–ç¨‹ä¸­å¸¸è§çš„ç‰ˆæœ¬ç±»å‹ã€‚
  * 
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public enum VersionType implements Name {
 
-	/** ÄÚ²â°æ±¾ */
+	/** å†…æµ‹ç‰ˆæœ¬ */
 	ALPHA("Alpha"),
-	/** ¹«²â°æ±¾ */
+	/** å…¬æµ‹ç‰ˆæœ¬ */
 	BETA("Beta"),
-	/** ·¢²¼°æ±¾ */
+	/** å‘å¸ƒç‰ˆæœ¬ */
 	RELEASE("Release"),
-	/** Ô¤ÀÀ°æ±¾ */
+	/** é¢„è§ˆç‰ˆæœ¬ */
 	SNAPSHOTS("Snapshots");
 
 	private final String name;

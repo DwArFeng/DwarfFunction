@@ -6,9 +6,9 @@ import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 
 /**
- * ÓĞ¹ØÓÚÏßĞÔ´úÊıµÄ¹¤¾ß°ü¡£
- * <p> ¸Ã°üÖĞ°üº¬¹ØÓÚ¶ÔÏßĞÔ´úÊı½øĞĞ²Ù×÷µÄ³£ÓÃ·½·¨¡£
- * <p> ÓÉÓÚÊÇÖ»º¬ÓĞ¾²Ì¬·½·¨µÄ¹¤¾ß°ü£¬ËùÒÔ¸ÃÀàÎŞ·¨±»¼Ì³Ğ¡£
+ * æœ‰å…³äºçº¿æ€§ä»£æ•°çš„å·¥å…·åŒ…ã€‚
+ * <p> è¯¥åŒ…ä¸­åŒ…å«å…³äºå¯¹çº¿æ€§ä»£æ•°è¿›è¡Œæ“ä½œçš„å¸¸ç”¨æ–¹æ³•ã€‚
+ * <p> ç”±äºæ˜¯åªå«æœ‰é™æ€æ–¹æ³•çš„å·¥å…·åŒ…ï¼Œæ‰€ä»¥è¯¥ç±»æ— æ³•è¢«ç»§æ‰¿ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
@@ -16,12 +16,12 @@ public final class LinalgeUtil {
 
 	
 	/**
-	 * ¼ì²éÁ½¸ö¾ØÕóÕóÁĞÊÇ·ñÄÜ¹»Ïò³Ë¡£
-	 * <p> Á½¸ö¾ØÕóÕóÁĞ¿ÉÒÔÏà³ËµÄÇ°ÌáÌõ¼şÊÇÇ°ÕßµÄĞĞÊıµÈÓÚºóÕßµÄÁĞÊı¡£
-	 * @param m1 µÚÒ»¸ö¾ØÕóÕóÁĞ¡£
-	 * @param m2 µÚ¶ş¸ö¾ØÕóÕóÁĞ¡£
-	 * @return Á½¸ö¾ØÕóÕóÁĞÄÜ·ñÏà³Ë£¬<code>true</code>Îª¿ÉÒÔÏà³Ë¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * æ£€æŸ¥ä¸¤ä¸ªçŸ©é˜µé˜µåˆ—æ˜¯å¦èƒ½å¤Ÿå‘ä¹˜ã€‚
+	 * <p> ä¸¤ä¸ªçŸ©é˜µé˜µåˆ—å¯ä»¥ç›¸ä¹˜çš„å‰ææ¡ä»¶æ˜¯å‰è€…çš„è¡Œæ•°ç­‰äºåè€…çš„åˆ—æ•°ã€‚
+	 * @param m1 ç¬¬ä¸€ä¸ªçŸ©é˜µé˜µåˆ—ã€‚
+	 * @param m2 ç¬¬äºŒä¸ªçŸ©é˜µé˜µåˆ—ã€‚
+	 * @return ä¸¤ä¸ªçŸ©é˜µé˜µåˆ—èƒ½å¦ç›¸ä¹˜ï¼Œ<code>true</code>ä¸ºå¯ä»¥ç›¸ä¹˜ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static boolean checkForMutiply(MatrixLike m1, MatrixLike m2){
 		Objects.requireNonNull(m1, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_0));
@@ -31,12 +31,12 @@ public final class LinalgeUtil {
 	}
 	
 	/**
-	 * ÒªÇóÁ½¸ö¾ØÕóÄÜ¹»Ïà³Ë¡£
-	 * <p> Èç¹ûÁ½¸ö¾ØÕó²»ÄÜÏà³Ë£¬ÔòÅ×³ö {@link IllegalArgumentException}¡£
-	 * @param m1 ¾ØÕó1¡£
-	 * @param m2 ¾ØÕó2¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
-	 * @throws IllegalArgumentException Á½¸ö¾ØÕóÎŞ·¨Ïà³Ë¡£
+	 * è¦æ±‚ä¸¤ä¸ªçŸ©é˜µèƒ½å¤Ÿç›¸ä¹˜ã€‚
+	 * <p> å¦‚æœä¸¤ä¸ªçŸ©é˜µä¸èƒ½ç›¸ä¹˜ï¼Œåˆ™æŠ›å‡º {@link IllegalArgumentException}ã€‚
+	 * @param m1 çŸ©é˜µ1ã€‚
+	 * @param m2 çŸ©é˜µ2ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
+	 * @throws IllegalArgumentException ä¸¤ä¸ªçŸ©é˜µæ— æ³•ç›¸ä¹˜ã€‚
 	 */
 	public static void requireForMutiply(MatrixLike m1, MatrixLike m2){
 		Objects.requireNonNull(m1, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_0));
@@ -46,13 +46,13 @@ public final class LinalgeUtil {
 	}
 	
 	/**
-	 * ÒªÇóÁ½¸ö¾ØÕóÄÜ¹»Ïà³Ë¡£
-	 * <p> Èç¹ûÁ½¸ö¾ØÕó²»ÄÜÏà³Ë£¬ÔòÅ×³ö¾ßÓĞÖ¸¶¨ÃèÊöÎÄ±¾µÄ {@link IllegalArgumentException}¡£
-	 * @param m1 ¾ØÕó1¡£
-	 * @param m2 ¾ØÕó2¡£
-	 * @param message Ö¸¶¨µÄÃèÊöÎÄ±¾¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
-	 * @throws IllegalArgumentException Á½¸ö¾ØÕóÎŞ·¨Ïà³Ë¡£
+	 * è¦æ±‚ä¸¤ä¸ªçŸ©é˜µèƒ½å¤Ÿç›¸ä¹˜ã€‚
+	 * <p> å¦‚æœä¸¤ä¸ªçŸ©é˜µä¸èƒ½ç›¸ä¹˜ï¼Œåˆ™æŠ›å‡ºå…·æœ‰æŒ‡å®šæè¿°æ–‡æœ¬çš„ {@link IllegalArgumentException}ã€‚
+	 * @param m1 çŸ©é˜µ1ã€‚
+	 * @param m2 çŸ©é˜µ2ã€‚
+	 * @param message æŒ‡å®šçš„æè¿°æ–‡æœ¬ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
+	 * @throws IllegalArgumentException ä¸¤ä¸ªçŸ©é˜µæ— æ³•ç›¸ä¹˜ã€‚
 	 */
 	public static void requireForMutiply(MatrixLike m1, MatrixLike m2, String message){
 		Objects.requireNonNull(m1, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_0));
@@ -62,11 +62,11 @@ public final class LinalgeUtil {
 	}
 	
 	/**
-	 * ¼ì²âÖ¸¶¨µÄĞĞÏòÁ¿ºÍÁĞÏòÁ¿ÊÇ·ñÄÜ¹»Ïà³Ë¡£
-	 * @param rowVector Ö¸¶¨µÄĞĞÏòÁ¿¡£
-	 * @param columnVector Ö¸¶¨µÄÁĞÏòÁ¿¡£
-	 * @return Ö¸¶¨µÄĞĞÏòÁ¿ÓëÖ¸¶¨µÄÁĞÏòÁ¿ÊÇ·ñÄÜ¹»Ïà³Ë¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * æ£€æµ‹æŒ‡å®šçš„è¡Œå‘é‡å’Œåˆ—å‘é‡æ˜¯å¦èƒ½å¤Ÿç›¸ä¹˜ã€‚
+	 * @param rowVector æŒ‡å®šçš„è¡Œå‘é‡ã€‚
+	 * @param columnVector æŒ‡å®šçš„åˆ—å‘é‡ã€‚
+	 * @return æŒ‡å®šçš„è¡Œå‘é‡ä¸æŒ‡å®šçš„åˆ—å‘é‡æ˜¯å¦èƒ½å¤Ÿç›¸ä¹˜ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static boolean checkForMutiply(RowVector rowVector, ColumnVector columnVector){
 		Objects.requireNonNull(rowVector, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_2));
@@ -76,12 +76,12 @@ public final class LinalgeUtil {
 	}
 	
 	/**
-	 * ÒªÇóÖ¸¶¨µÄĞĞÏòÁ¿ºÍÖ¸¶¨µÄÁĞÏòÁ¿ÄÜ¹»Ïà³Ë¡£
-	 * <p> Èç¹ûĞĞÏòÁ¿ºÍÁĞÏòÁ¿²»ÄÜÏà³Ë£¬ÔòÅ×³ö {@link IllegalArgumentException}¡£
-	 * @param rowVector Ö¸¶¨µÄĞĞÏòÁ¿¡£
-	 * @param columnVector Ö¸¶¨µÄÁĞÏòÁ¿¡£
-	 * @throws IllegalArgumentException Ö¸¶¨µÄĞĞÏòÁ¿ÓëÁĞÏòÁ¿²»ÄÜÏà³Ë¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * è¦æ±‚æŒ‡å®šçš„è¡Œå‘é‡å’ŒæŒ‡å®šçš„åˆ—å‘é‡èƒ½å¤Ÿç›¸ä¹˜ã€‚
+	 * <p> å¦‚æœè¡Œå‘é‡å’Œåˆ—å‘é‡ä¸èƒ½ç›¸ä¹˜ï¼Œåˆ™æŠ›å‡º {@link IllegalArgumentException}ã€‚
+	 * @param rowVector æŒ‡å®šçš„è¡Œå‘é‡ã€‚
+	 * @param columnVector æŒ‡å®šçš„åˆ—å‘é‡ã€‚
+	 * @throws IllegalArgumentException æŒ‡å®šçš„è¡Œå‘é‡ä¸åˆ—å‘é‡ä¸èƒ½ç›¸ä¹˜ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static void requireForMutiply(RowVector rowVector, ColumnVector columnVector){
 		Objects.requireNonNull(rowVector, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_2));
@@ -93,13 +93,13 @@ public final class LinalgeUtil {
 	}
 	
 	/**
-	 * ÒªÇóÖ¸¶¨µÄĞĞÏòÁ¿ÓëÖ¸¶¨µÄÁĞÏòÁ¿ÄÜ¹»Ïà³Ë¡£
-	 * <p> Èç¹ûĞĞÏòÁ¿ºÍÁĞÏòÁ¿²»ÄÜÏà³Ë£¬ÔòÅ×³ö¾ßÓĞÖ¸¶¨ÃèÊöÎÄ±¾µÄ {@link IllegalArgumentException}¡£
-	 * @param rowVector Ö¸¶¨µÄĞĞÏòÁ¿¡£
-	 * @param columnVector Ö¸¶¨µÄÁĞÏòÁ¿¡£
-	 * @param message Ö¸¶¨µÄÃèÊöÎÄ±¾¡£
-	 * @throws IllegalArgumentException Ö¸¶¨µÄĞĞÏòÁ¿ÓëÁĞÏòÁ¿²»ÄÜÏà³ËÊ±Å×³ö¸ÃÒì³£¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª  <code>null</code>¡£
+	 * è¦æ±‚æŒ‡å®šçš„è¡Œå‘é‡ä¸æŒ‡å®šçš„åˆ—å‘é‡èƒ½å¤Ÿç›¸ä¹˜ã€‚
+	 * <p> å¦‚æœè¡Œå‘é‡å’Œåˆ—å‘é‡ä¸èƒ½ç›¸ä¹˜ï¼Œåˆ™æŠ›å‡ºå…·æœ‰æŒ‡å®šæè¿°æ–‡æœ¬çš„ {@link IllegalArgumentException}ã€‚
+	 * @param rowVector æŒ‡å®šçš„è¡Œå‘é‡ã€‚
+	 * @param columnVector æŒ‡å®šçš„åˆ—å‘é‡ã€‚
+	 * @param message æŒ‡å®šçš„æè¿°æ–‡æœ¬ã€‚
+	 * @throws IllegalArgumentException æŒ‡å®šçš„è¡Œå‘é‡ä¸åˆ—å‘é‡ä¸èƒ½ç›¸ä¹˜æ—¶æŠ›å‡ºè¯¥å¼‚å¸¸ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º  <code>null</code>ã€‚
 	 */
 	public static void requireForMutiply(RowVector rowVector, ColumnVector columnVector, String message){
 		Objects.requireNonNull(rowVector, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_2));
@@ -111,14 +111,14 @@ public final class LinalgeUtil {
 	}
 	
 	/**
-	 * ÒªÇó¾ØÕó¾ßÓĞÌØ¶¨µÄ´óĞ¡¡£
-	 * <p> ¸Ã·½·¨»áÅĞ¶Ï¾ØÕóÊÇ·ñ¾ßÓĞÌØ¶¨µÄ´óĞ¡£¬
-	 * Èç¹û²»ÊÇ£¬ÔòÅ×³ö {@link IllegalArgumentException}¡£
-	 * @param mat Ö¸¶¨µÄ¾ØÕó¡£
-	 * @param row Ö¸¶¨µÄĞĞÊı¡£
-	 * @param column Ö¸¶¨µÄÁĞÊı¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊı<code>mat</code>Îª <code>null</code>¡£
-	 * @throws IllegalArgumentException Ö¸¶¨µÄ¾ØÕóĞĞÁĞÊı²»·ûºÏÒªÇó¡£
+	 * è¦æ±‚çŸ©é˜µå…·æœ‰ç‰¹å®šçš„å¤§å°ã€‚
+	 * <p> è¯¥æ–¹æ³•ä¼šåˆ¤æ–­çŸ©é˜µæ˜¯å¦å…·æœ‰ç‰¹å®šçš„å¤§å°ï¼Œ
+	 * å¦‚æœä¸æ˜¯ï¼Œåˆ™æŠ›å‡º {@link IllegalArgumentException}ã€‚
+	 * @param mat æŒ‡å®šçš„çŸ©é˜µã€‚
+	 * @param row æŒ‡å®šçš„è¡Œæ•°ã€‚
+	 * @param column æŒ‡å®šçš„åˆ—æ•°ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°<code>mat</code>ä¸º <code>null</code>ã€‚
+	 * @throws IllegalArgumentException æŒ‡å®šçš„çŸ©é˜µè¡Œåˆ—æ•°ä¸ç¬¦åˆè¦æ±‚ã€‚
 	 */
 	public static void requireSpecificSize(MatrixLike mat, int row, int column){
 		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_1));
@@ -129,15 +129,15 @@ public final class LinalgeUtil {
 	}
 	
 	/**
-	 * ÒªÇó¾ØÕó¾ßÓĞÌØ¶¨µÄ´óĞ¡¡£
-	 * <p> ¸Ã·½·¨»áÅĞ¶Ï¾ØÕóÊÇ·ñ¾ßÓĞÌØ¶¨µÄ´óĞ¡£¬
-	 * Èç¹û²»ÊÇ£¬ÔòÅ×³ö¾ßÓĞÖ¸¶¨ÃèÊöÎÄ±¾µÄ {@link IllegalArgumentException}¡£
-	 * @param mat Ö¸¶¨µÄ¾ØÕó¡£
-	 * @param row Ö¸¶¨µÄĞĞÊı¡£
-	 * @param column Ö¸¶¨µÄÁĞÊı¡£
-	 * @param message Ö¸¶¨µÄÃèÊöÎÄ±¾¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊı<code>mat</code>Îª <code>null</code>¡£
-	 * @throws IllegalArgumentException Ö¸¶¨µÄ¾ØÕóĞĞÁĞÊı²»·ûºÏÒªÇó¡£
+	 * è¦æ±‚çŸ©é˜µå…·æœ‰ç‰¹å®šçš„å¤§å°ã€‚
+	 * <p> è¯¥æ–¹æ³•ä¼šåˆ¤æ–­çŸ©é˜µæ˜¯å¦å…·æœ‰ç‰¹å®šçš„å¤§å°ï¼Œ
+	 * å¦‚æœä¸æ˜¯ï¼Œåˆ™æŠ›å‡ºå…·æœ‰æŒ‡å®šæè¿°æ–‡æœ¬çš„ {@link IllegalArgumentException}ã€‚
+	 * @param mat æŒ‡å®šçš„çŸ©é˜µã€‚
+	 * @param row æŒ‡å®šçš„è¡Œæ•°ã€‚
+	 * @param column æŒ‡å®šçš„åˆ—æ•°ã€‚
+	 * @param message æŒ‡å®šçš„æè¿°æ–‡æœ¬ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°<code>mat</code>ä¸º <code>null</code>ã€‚
+	 * @throws IllegalArgumentException æŒ‡å®šçš„çŸ©é˜µè¡Œåˆ—æ•°ä¸ç¬¦åˆè¦æ±‚ã€‚
 	 */
 	public static void requireSpecificSize(MatrixLike mat, int row, int column, String message){
 		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_1));
@@ -148,13 +148,13 @@ public final class LinalgeUtil {
 	}
 	
 	/**
-	 * ÒªÇóÖ¸¶¨µÄÏòÁ¿¾ßÓĞÌØ¶¨µÄ´óĞ¡¡£
-	 * 	 * <p> ¸Ã·½·¨»áÅĞ¶ÏÏòÁ¿ÊÇ·ñ¾ßÓĞÌØ¶¨µÄ´óĞ¡£¬
-	 * Èç¹û²»ÊÇ£¬ÔòÅ×³ö {@link IllegalArgumentException}¡£
-	 * @param vector Ö¸¶¨µÄÏòÁ¿¡£
-	 * @param size Ö¸¶¨µÄ´óĞ¡¡£
-	 * @throws IllegalArgumentException Ö¸¶¨µÄÏòÁ¿²»·ûºÏÌØ¶¨µÄ´óĞ¡¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * è¦æ±‚æŒ‡å®šçš„å‘é‡å…·æœ‰ç‰¹å®šçš„å¤§å°ã€‚
+	 * 	 * <p> è¯¥æ–¹æ³•ä¼šåˆ¤æ–­å‘é‡æ˜¯å¦å…·æœ‰ç‰¹å®šçš„å¤§å°ï¼Œ
+	 * å¦‚æœä¸æ˜¯ï¼Œåˆ™æŠ›å‡º {@link IllegalArgumentException}ã€‚
+	 * @param vector æŒ‡å®šçš„å‘é‡ã€‚
+	 * @param size æŒ‡å®šçš„å¤§å°ã€‚
+	 * @throws IllegalArgumentException æŒ‡å®šçš„å‘é‡ä¸ç¬¦åˆç‰¹å®šçš„å¤§å°ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static void requireSpecificSize(LinalgeVector vector, int size){
 		Objects.requireNonNull(vector, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_4));
@@ -165,14 +165,14 @@ public final class LinalgeUtil {
 	}
 	
 	/**
-	 * ÒªÇóÖ¸¶¨µÄÏòÁ¿¾ßÓĞÌØ¶¨µÄ´óĞ¡¡£
-	 * <p> ¸Ã·½·¨»áÅĞ¶ÏÏòÁ¿ÊÇ·ñ¾ßÓĞÌØ¶¨µÄ´óĞ¡£¬
-	 * Èç¹û²»ÊÇ£¬ÔòÅ×³ö¾ßÓĞÖ¸¶¨ÃèÊöÎÄ±¾µÄ {@link IllegalArgumentException}¡£
-	 * @param vector Ö¸¶¨µÄÏòÁ¿¡£
-	 * @param size Ö¸¶¨µÄ´óĞ¡¡£
-	 * @param message Ö¸¶¨µÄÃèÊöÎÄ±¾¡£
-	 * @throws IllegalArgumentException Ö¸¶¨µÄÏòÁ¿²»·ûºÏÌØ¶¨µÄ´óĞ¡¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * è¦æ±‚æŒ‡å®šçš„å‘é‡å…·æœ‰ç‰¹å®šçš„å¤§å°ã€‚
+	 * <p> è¯¥æ–¹æ³•ä¼šåˆ¤æ–­å‘é‡æ˜¯å¦å…·æœ‰ç‰¹å®šçš„å¤§å°ï¼Œ
+	 * å¦‚æœä¸æ˜¯ï¼Œåˆ™æŠ›å‡ºå…·æœ‰æŒ‡å®šæè¿°æ–‡æœ¬çš„ {@link IllegalArgumentException}ã€‚
+	 * @param vector æŒ‡å®šçš„å‘é‡ã€‚
+	 * @param size æŒ‡å®šçš„å¤§å°ã€‚
+	 * @param message æŒ‡å®šçš„æè¿°æ–‡æœ¬ã€‚
+	 * @throws IllegalArgumentException æŒ‡å®šçš„å‘é‡ä¸ç¬¦åˆç‰¹å®šçš„å¤§å°ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static void requireSpecificSize(LinalgeVector vector, int size, String message){
 		Objects.requireNonNull(vector, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_4));
@@ -183,12 +183,12 @@ public final class LinalgeUtil {
 	}
 	
 	/**
-	 * ÒªÇó¾ØÕóµÄĞĞÓĞÃ»ÓĞÔ½½ç¡£
-	 * <p> Èç¹ûÔ½½ç£¬ÔòÅ×³ö {@link IndexOutOfBoundsException}
-	 * @param mat Ö¸¶¨µÄ¾ØÕó¡£
-	 * @param row ĞĞºÅ¡£
-	 * @throws NullPointerException Ö¸¶¨µÄ¾ØÕóÎª <code>null</code>¡£
-	 * @throws IndexOutOfBoundsException Ö¸¶¨µÄĞĞºÅÔ½½ç¡£
+	 * è¦æ±‚çŸ©é˜µçš„è¡Œæœ‰æ²¡æœ‰è¶Šç•Œã€‚
+	 * <p> å¦‚æœè¶Šç•Œï¼Œåˆ™æŠ›å‡º {@link IndexOutOfBoundsException}
+	 * @param mat æŒ‡å®šçš„çŸ©é˜µã€‚
+	 * @param row è¡Œå·ã€‚
+	 * @throws NullPointerException æŒ‡å®šçš„çŸ©é˜µä¸º <code>null</code>ã€‚
+	 * @throws IndexOutOfBoundsException æŒ‡å®šçš„è¡Œå·è¶Šç•Œã€‚
 	 */
 	public static void requireRowInBound(MatrixLike mat, int row){
 		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_1));
@@ -199,13 +199,13 @@ public final class LinalgeUtil {
 	}
 	
 	/**
-	 * ÒªÇó¾ØÕóµÄĞĞÓĞÃ»ÓĞÔ½½ç¡£
-	 * <p> Èç¹ûÔ½½ç£¬ÔòÅ×³ö¾ßÓĞÖ¸¶¨ÃèÊöÎÄ±¾µÄ {@link IndexOutOfBoundsException}
-	 * @param mat Ö¸¶¨µÄ¾ØÕó¡£
-	 * @param row ĞĞºÅ¡£
-	 * @param message Ö¸¶¨µÄÃèÊöÎÄ±¾¡£
-	 * @throws NullPointerException Ö¸¶¨µÄ¾ØÕóÎª <code>null</code>¡£
-	 * @throws IndexOutOfBoundsException Ö¸¶¨µÄĞĞºÅÔ½½ç¡£
+	 * è¦æ±‚çŸ©é˜µçš„è¡Œæœ‰æ²¡æœ‰è¶Šç•Œã€‚
+	 * <p> å¦‚æœè¶Šç•Œï¼Œåˆ™æŠ›å‡ºå…·æœ‰æŒ‡å®šæè¿°æ–‡æœ¬çš„ {@link IndexOutOfBoundsException}
+	 * @param mat æŒ‡å®šçš„çŸ©é˜µã€‚
+	 * @param row è¡Œå·ã€‚
+	 * @param message æŒ‡å®šçš„æè¿°æ–‡æœ¬ã€‚
+	 * @throws NullPointerException æŒ‡å®šçš„çŸ©é˜µä¸º <code>null</code>ã€‚
+	 * @throws IndexOutOfBoundsException æŒ‡å®šçš„è¡Œå·è¶Šç•Œã€‚
 	 */
 	public static void requireRowInBound(MatrixLike mat, int row, String message){
 		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_1));
@@ -216,12 +216,12 @@ public final class LinalgeUtil {
 	}
 	
 	/**
-	 * ÒªÇó¾ØÕóµÄÁĞÓĞÃ»ÓĞÔ½½ç¡£
-	 * <p> Èç¹ûÔ½½ç£¬ÔòÅ×³ö {@link IndexOutOfBoundsException}
-	 * @param mat Ö¸¶¨µÄ¾ØÕó¡£
-	 * @param column ÁĞºÅ¡£
-	 * @throws NullPointerException Ö¸¶¨µÄ¾ØÕóÎª <code>null</code>¡£
-	 * @throws IndexOutOfBoundsException Ö¸¶¨µÄÁĞºÅÔ½½ç¡£
+	 * è¦æ±‚çŸ©é˜µçš„åˆ—æœ‰æ²¡æœ‰è¶Šç•Œã€‚
+	 * <p> å¦‚æœè¶Šç•Œï¼Œåˆ™æŠ›å‡º {@link IndexOutOfBoundsException}
+	 * @param mat æŒ‡å®šçš„çŸ©é˜µã€‚
+	 * @param column åˆ—å·ã€‚
+	 * @throws NullPointerException æŒ‡å®šçš„çŸ©é˜µä¸º <code>null</code>ã€‚
+	 * @throws IndexOutOfBoundsException æŒ‡å®šçš„åˆ—å·è¶Šç•Œã€‚
 	 */
 	public static void requireColumnInBound(MatrixLike mat, int column){
 		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_1));
@@ -232,13 +232,13 @@ public final class LinalgeUtil {
 	}
 	
 	/**
-	 * ÒªÇó¾ØÕóµÄÁĞÓĞÃ»ÓĞÔ½½ç¡£
-	 * <p> Èç¹ûÔ½½ç£¬ÔòÅ×³ö¾ßÓĞÖ¸¶¨ÃèÊöÎÄ±¾µÄ {@link IndexOutOfBoundsException}
-	 * @param mat Ö¸¶¨µÄ¾ØÕó¡£
-	 * @param column ÁĞºÅ¡£
-	 * @param message Ö¸¶¨µÄÃèÊöÎÄ±¾¡£
-	 * @throws NullPointerException Ö¸¶¨µÄ¾ØÕóÎª <code>null</code>¡£
-	 * @throws IndexOutOfBoundsException Ö¸¶¨µÄÁĞºÅÔ½½ç¡£
+	 * è¦æ±‚çŸ©é˜µçš„åˆ—æœ‰æ²¡æœ‰è¶Šç•Œã€‚
+	 * <p> å¦‚æœè¶Šç•Œï¼Œåˆ™æŠ›å‡ºå…·æœ‰æŒ‡å®šæè¿°æ–‡æœ¬çš„ {@link IndexOutOfBoundsException}
+	 * @param mat æŒ‡å®šçš„çŸ©é˜µã€‚
+	 * @param column åˆ—å·ã€‚
+	 * @param message æŒ‡å®šçš„æè¿°æ–‡æœ¬ã€‚
+	 * @throws NullPointerException æŒ‡å®šçš„çŸ©é˜µä¸º <code>null</code>ã€‚
+	 * @throws IndexOutOfBoundsException æŒ‡å®šçš„åˆ—å·è¶Šç•Œã€‚
 	 */
 	public static void requireColumnInBound(MatrixLike mat, int column, String message){
 		Objects.requireNonNull(mat, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_1));
@@ -249,12 +249,12 @@ public final class LinalgeUtil {
 	}
 	
 	/**
-	 * ÒªÇóÖ¸¶¨ĞòºÅÃ»ÓĞÔ½½ç¡£
-	 * <p> Èç¹ûÔ½½ç£¬ÔòÅ×³ö {@link IndexOutOfBoundsException}
-	 * @param vector Ö¸¶¨µÄ¾ØÕó¡£
-	 * @param index Ö¸¶¨µÄĞòºÅ¡£
-	 * @throws IndexOutOfBoundsException Ö¸¶¨µÄĞòºÅÔ½½ç¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * è¦æ±‚æŒ‡å®šåºå·æ²¡æœ‰è¶Šç•Œã€‚
+	 * <p> å¦‚æœè¶Šç•Œï¼Œåˆ™æŠ›å‡º {@link IndexOutOfBoundsException}
+	 * @param vector æŒ‡å®šçš„çŸ©é˜µã€‚
+	 * @param index æŒ‡å®šçš„åºå·ã€‚
+	 * @throws IndexOutOfBoundsException æŒ‡å®šçš„åºå·è¶Šç•Œã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static void requireIndexInBound(LinalgeVector vector, int index){
 		Objects.requireNonNull(vector, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_4));
@@ -265,13 +265,13 @@ public final class LinalgeUtil {
 	}
 	
 	/**
-	 * ÒªÇóÖ¸¶¨ĞòºÅÃ»ÓĞÔ½½ç¡£
-	 * <p> Èç¹ûÔ½½ç£¬ÔòÅ×³ö¾ßÓĞÖ¸¶¨ÃèÊöÎÄ±¾µÄ {@link IndexOutOfBoundsException}
-	 * @param vector Ö¸¶¨µÄ¾ØÕó¡£
-	 * @param index Ö¸¶¨µÄĞòºÅ¡£
-	 * @param message Ö¸¶¨µÄÃèÊöÎÄ±¾¡£
-	 * @throws IndexOutOfBoundsException Ö¸¶¨µÄĞòºÅÔ½½ç¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * è¦æ±‚æŒ‡å®šåºå·æ²¡æœ‰è¶Šç•Œã€‚
+	 * <p> å¦‚æœè¶Šç•Œï¼Œåˆ™æŠ›å‡ºå…·æœ‰æŒ‡å®šæè¿°æ–‡æœ¬çš„ {@link IndexOutOfBoundsException}
+	 * @param vector æŒ‡å®šçš„çŸ©é˜µã€‚
+	 * @param index æŒ‡å®šçš„åºå·ã€‚
+	 * @param message æŒ‡å®šçš„æè¿°æ–‡æœ¬ã€‚
+	 * @throws IndexOutOfBoundsException æŒ‡å®šçš„åºå·è¶Šç•Œã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static void requireIndexInBound(LinalgeVector vector, int index, String message){
 		Objects.requireNonNull(vector, DwarfUtil.getStringField(StringFieldKey.LinalgeUtil_4));
@@ -281,7 +281,7 @@ public final class LinalgeUtil {
 		}
 	}
 	
-	//½ûÖ¹Íâ²¿ÊµÀı»¯¡£
+	//ç¦æ­¢å¤–éƒ¨å®ä¾‹åŒ–ã€‚
 	private LinalgeUtil() {}
 
 }

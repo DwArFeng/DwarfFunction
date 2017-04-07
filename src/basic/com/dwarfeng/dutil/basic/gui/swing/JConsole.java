@@ -23,18 +23,18 @@ import com.dwarfeng.dutil.basic.gui.event.EventListenerWeakSet;
 import com.dwarfeng.dutil.basic.num.NumberUtil;
 
 /**
- * swing¿ØÖÆÌ¨Àà¡£
- * <p>¸ÃÀàµÄ±íÏÖĞĞÎªÀàËÆ¿ØÖÆÌ¨£¬ÓÃÓÚÌæ»»ÖØÖÃÖ®Ç°°æ±¾µÄ²»ÍêÉÆµÄ¿ØÖÆÌ¨£¬¶øÖØÖÃÖ®Ç°°æ±¾µÄ¿ØÖÆÌ¨½«±»ÒÆ³ı¡£
- * <br> Õâ´ÎµÄ¿ØÖÆÌ¨²»»áÖ÷¶¯¸²¸Ç<code>System.in</code>£¬Òò´Ë£¬²»±ØÔÙµ£ĞÄÊ¹ÓÃ¿ØÖÆÌ¨Ö®ºó¾Í»áÊ§È¥Ô­ÓĞµÄÏµÍ³Êä³öÁ÷¡£
- * ¿ØÖÆÌ¨ÈÔÈ»Ìá¹©Ò»¸öÊä³öÁ÷£¬µ±ÓÃ»§ÏëÖØĞÂ¶¨ÏòÊä³öÁ÷Ê±£¬¿ÉÒÔ½«Ìá¹©µÄÊä³öÁ÷ÖØ¶¨Ïòµ½<code>System.in</code>ÉÏ¡£
- * <br> ¿ØÖÆÌ¨Ìá¹©´óÖÂµÄĞĞÊı±£Ö¤£¬ËüÔÊĞíÎÄ±¾´ïµ½Ò»¸ö×î´óµÄĞĞÊı£¬µ±ÎÄ±¾³¬¹ı×î´óµÄĞĞÊıÊ±£¬¿ØÖÆÌ¨»á°´ÕÕÒ»¶¨µÄ±ÈÀıÉ¾µô
- * ×îÔçÊä³öµÄÒ»²¿·ÖĞĞÊı£¬ÒÔ¿ØÖÆĞĞÊı²»³¬¹ı×î´óÖµ¡£
- * ±»É¾³ı¡£Õâ¸öĞĞÊı³ÉÎªÄÜ±»ÏÔÊ¾µÄ×î´óĞĞÊı£¬×î´óĞĞÊıÔÚ¹¹ÔìÆ÷ÖĞ±»Ö¸¶¨£¬Ò»µ©±»Ö¸¶¨¾Í²»ÄÜ¸ü¸Ä¡£
- * <br> ¿ØÖÆÌ¨Ìá¹©Á½¸öÁ÷£ºÊäÈëÁ÷ºÍÊä³öÁ÷£¬ÆäÖĞÊä³öÁ÷ÊÇÏß³Ì°²È«µÄ£¬¿ÉÒÔ¶à¸öÏß³ÌÍ¬Ê±ÏòÊäÈëÁ÷ÖĞÊä³ö×Ö½Ú£¬µ«ÊÇÊäÈëÁ÷ÊÇÏß³Ì
- * ²»°²È«µÄ£¬ËüÖ»ÄÜÓÃÓÚµ¥Ïß³ÌÊäÈë£¬²»¹ÜÊÇ²»ÊÇ¼ÓÈëÁËÍâ²¿Í¬²½»úÖÆ¡£
- * <br>ĞèÒª×¢ÒâµÄÊÇ£¬´Ë¿ØÖÆÌ¨µÄĞ§ÂÊÔ¶Ô¶µÍÓÚÏµÍ³¿ØÖÆÌ¨£¬ÔÚÍ¬µÈÊä³öÄÚÈİÏÂ£¬´Ë¿ØÖÆÌ¨µÄ»¨·ÑÊ±¼ä´óÔ¼ÎªÏµÍ³¿ØÖÆÌ¨µÄ10±¶¡£
+ * swingæ§åˆ¶å°ç±»ã€‚
+ * <p>è¯¥ç±»çš„è¡¨ç°è¡Œä¸ºç±»ä¼¼æ§åˆ¶å°ï¼Œç”¨äºæ›¿æ¢é‡ç½®ä¹‹å‰ç‰ˆæœ¬çš„ä¸å®Œå–„çš„æ§åˆ¶å°ï¼Œè€Œé‡ç½®ä¹‹å‰ç‰ˆæœ¬çš„æ§åˆ¶å°å°†è¢«ç§»é™¤ã€‚
+ * <br> è¿™æ¬¡çš„æ§åˆ¶å°ä¸ä¼šä¸»åŠ¨è¦†ç›–<code>System.in</code>ï¼Œå› æ­¤ï¼Œä¸å¿…å†æ‹…å¿ƒä½¿ç”¨æ§åˆ¶å°ä¹‹åå°±ä¼šå¤±å»åŸæœ‰çš„ç³»ç»Ÿè¾“å‡ºæµã€‚
+ * æ§åˆ¶å°ä»ç„¶æä¾›ä¸€ä¸ªè¾“å‡ºæµï¼Œå½“ç”¨æˆ·æƒ³é‡æ–°å®šå‘è¾“å‡ºæµæ—¶ï¼Œå¯ä»¥å°†æä¾›çš„è¾“å‡ºæµé‡å®šå‘åˆ°<code>System.in</code>ä¸Šã€‚
+ * <br> æ§åˆ¶å°æä¾›å¤§è‡´çš„è¡Œæ•°ä¿è¯ï¼Œå®ƒå…è®¸æ–‡æœ¬è¾¾åˆ°ä¸€ä¸ªæœ€å¤§çš„è¡Œæ•°ï¼Œå½“æ–‡æœ¬è¶…è¿‡æœ€å¤§çš„è¡Œæ•°æ—¶ï¼Œæ§åˆ¶å°ä¼šæŒ‰ç…§ä¸€å®šçš„æ¯”ä¾‹åˆ æ‰
+ * æœ€æ—©è¾“å‡ºçš„ä¸€éƒ¨åˆ†è¡Œæ•°ï¼Œä»¥æ§åˆ¶è¡Œæ•°ä¸è¶…è¿‡æœ€å¤§å€¼ã€‚
+ * è¢«åˆ é™¤ã€‚è¿™ä¸ªè¡Œæ•°æˆä¸ºèƒ½è¢«æ˜¾ç¤ºçš„æœ€å¤§è¡Œæ•°ï¼Œæœ€å¤§è¡Œæ•°åœ¨æ„é€ å™¨ä¸­è¢«æŒ‡å®šï¼Œä¸€æ—¦è¢«æŒ‡å®šå°±ä¸èƒ½æ›´æ”¹ã€‚
+ * <br> æ§åˆ¶å°æä¾›ä¸¤ä¸ªæµï¼šè¾“å…¥æµå’Œè¾“å‡ºæµï¼Œå…¶ä¸­è¾“å‡ºæµæ˜¯çº¿ç¨‹å®‰å…¨çš„ï¼Œå¯ä»¥å¤šä¸ªçº¿ç¨‹åŒæ—¶å‘è¾“å…¥æµä¸­è¾“å‡ºå­—èŠ‚ï¼Œä½†æ˜¯è¾“å…¥æµæ˜¯çº¿ç¨‹
+ * ä¸å®‰å…¨çš„ï¼Œå®ƒåªèƒ½ç”¨äºå•çº¿ç¨‹è¾“å…¥ï¼Œä¸ç®¡æ˜¯ä¸æ˜¯åŠ å…¥äº†å¤–éƒ¨åŒæ­¥æœºåˆ¶ã€‚
+ * <br>éœ€è¦æ³¨æ„çš„æ˜¯ï¼Œæ­¤æ§åˆ¶å°çš„æ•ˆç‡è¿œè¿œä½äºç³»ç»Ÿæ§åˆ¶å°ï¼Œåœ¨åŒç­‰è¾“å‡ºå†…å®¹ä¸‹ï¼Œæ­¤æ§åˆ¶å°çš„èŠ±è´¹æ—¶é—´å¤§çº¦ä¸ºç³»ç»Ÿæ§åˆ¶å°çš„10å€ã€‚
  * 
- * @deprecated ¸Ã¿ØÖÆÌ¨²»ÍêÉÆÇÒĞ§ÂÊµÍÏÂ£¬dutil Ìá¹©ÁË¸üºÃµÄ¹¤¾ßÀà£º {@link JExconsole}¡£
+ * @deprecated è¯¥æ§åˆ¶å°ä¸å®Œå–„ä¸”æ•ˆç‡ä½ä¸‹ï¼Œdutil æä¾›äº†æ›´å¥½çš„å·¥å…·ç±»ï¼š {@link JExconsole}ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
@@ -42,53 +42,53 @@ public class JConsole extends JPanel{
 	
 	private static final long serialVersionUID = 4394657761909015686L;
 	
-	/**×î´óĞĞÊı*/
+	/**æœ€å¤§è¡Œæ•°*/
 	protected final static int DEFAULT_MAX_LINE = 3000;
-	/**ĞĞÉ¾³ı±ÈÂÊ*/
+	/**è¡Œåˆ é™¤æ¯”ç‡*/
 	protected final static int LINE_RATIO = 10;
 
-	/**ÎÄ±¾¿ò*/
+	/**æ–‡æœ¬æ¡†*/
 	protected final JTextArea textArea;
-	/**ÊäÈë¿ò*/
+	/**è¾“å…¥æ¡†*/
 	protected final JTextField inputField;
 	
-	/**ÊÂ¼ş¼¯ºÏ*/
+	/**äº‹ä»¶é›†åˆ*/
 	protected final EventListenerWeakSet eSet = new EventListenerWeakSet();
 	
-	/**×î´óÏÔÊ¾ĞĞÊı*/
+	/**æœ€å¤§æ˜¾ç¤ºè¡Œæ•°*/
 	protected int maxLine = DEFAULT_MAX_LINE;
-	/**ÊÇ·ñ»ØÏÔ±ê¼Ç*/
+	/**æ˜¯å¦å›æ˜¾æ ‡è®°*/
 	private boolean echoFlag = true;
 	
 	/**
-	 * Éú³ÉÒ»¸öÄ¬ÈÏµÄ¿ØÖÆÌ¨¡£
+	 * ç”Ÿæˆä¸€ä¸ªé»˜è®¤çš„æ§åˆ¶å°ã€‚
 	 */
 	public JConsole() {
 		this(DEFAULT_MAX_LINE);
 	}
 	
 	/**
-	 * Éú³ÉÒ»¸öÓµÓĞ×î´óĞĞÊıµÄ¿ØÖÆÌ¨.
+	 * ç”Ÿæˆä¸€ä¸ªæ‹¥æœ‰æœ€å¤§è¡Œæ•°çš„æ§åˆ¶å°.
 	 */
 	/**
-	 *  Éú³ÉÒ»¸öÓµÓĞ×î´óĞĞÊıµÄ¿ØÖÆÌ¨¡£
-	 *  <p> ¿ØÖÆÌ¨µÄ×î´óĞĞÊıÎª<code>maxLine</code>Óë1µÄ×î´óÖµ¡£
-	 * @param maxLine ×î´óµÄĞĞÊı¡£
+	 *  ç”Ÿæˆä¸€ä¸ªæ‹¥æœ‰æœ€å¤§è¡Œæ•°çš„æ§åˆ¶å°ã€‚
+	 *  <p> æ§åˆ¶å°çš„æœ€å¤§è¡Œæ•°ä¸º<code>maxLine</code>ä¸1çš„æœ€å¤§å€¼ã€‚
+	 * @param maxLine æœ€å¤§çš„è¡Œæ•°ã€‚
 	 */
 	public JConsole(int maxLine){
-		//³õÊ¼»¯³£Á¿
+		//åˆå§‹åŒ–å¸¸é‡
 		this.maxLine = Math.max(maxLine, 1);
 		
 		inputField = new JTextField();
 		textArea = new JTextArea();
 		
-		//³õÊ¼»¯½çÃæ
+		//åˆå§‹åŒ–ç•Œé¢
 		init();
 	}
 	
 	/**
-	 * »ñÈ¡¸Ã¿ØÖÆÌ¨µÄÊä³öÁ÷¡£
-	 * @return ¸Ã¿ØÖÆÌ¨µÄÊä³öÁ÷¡£
+	 * è·å–è¯¥æ§åˆ¶å°çš„è¾“å‡ºæµã€‚
+	 * @return è¯¥æ§åˆ¶å°çš„è¾“å‡ºæµã€‚
 	 */
 	public PrintStream getOut(){
 		return printStream;
@@ -102,9 +102,9 @@ public class JConsole extends JPanel{
 	private final InnerInputStream inputStream = new InnerInputStream();
 	
 	/**
-	 * Ïò¿ØÖÆÌ¨ÖĞÌí¼Ó¿ØÖÆÌ¨ÊäÈëÊÂ¼şÕìÌı¡£
-	 * <p> µ±Èë¿Ú²ÎÊı<code>e</code>Îª<code>null</code>µÄÊ±ºò£¬Ê²Ã´Ò²²»×ö¡£
-	 * @param e ¿ØÖÆÌ¨ÊäÈëÊÂ¼şÕìÌı¡£
+	 * å‘æ§åˆ¶å°ä¸­æ·»åŠ æ§åˆ¶å°è¾“å…¥äº‹ä»¶ä¾¦å¬ã€‚
+	 * <p> å½“å…¥å£å‚æ•°<code>e</code>ä¸º<code>null</code>çš„æ—¶å€™ï¼Œä»€ä¹ˆä¹Ÿä¸åšã€‚
+	 * @param e æ§åˆ¶å°è¾“å…¥äº‹ä»¶ä¾¦å¬ã€‚
 	 */
 	public void addConsoleInputEventListener(ConsoleInputEventListener e){
 		if(e == null) return;
@@ -112,32 +112,32 @@ public class JConsole extends JPanel{
 	}
 	
 	/**
-	 * Ïò¿ØÖÆÌ¨ÖĞÒÆ³ıÊäÈëÊÂ¼şÕìÌı¡£
-	 * @param e Ö¸¶¨µÄ¿ØÖÆÌ¨ÊäÈëÊÂ¼şÕìÌı¡£
-	 * @return ¸ÃÒÆ³ı²Ù×÷ÊÇ·ñ³É¹¦ÒÆ³ıÁËÖ¸¶¨µÄÊÂ¼şÕìÌı¡£
+	 * å‘æ§åˆ¶å°ä¸­ç§»é™¤è¾“å…¥äº‹ä»¶ä¾¦å¬ã€‚
+	 * @param e æŒ‡å®šçš„æ§åˆ¶å°è¾“å…¥äº‹ä»¶ä¾¦å¬ã€‚
+	 * @return è¯¥ç§»é™¤æ“ä½œæ˜¯å¦æˆåŠŸç§»é™¤äº†æŒ‡å®šçš„äº‹ä»¶ä¾¦å¬ã€‚
 	 */
 	public boolean removeConsoleInputEventListener(ConsoleInputEventListener e){
 		return eSet.remove(e);
 	}
 	
 	/**
-	 * ÒÆ³ıËùÓĞµÄÊÂ¼şÕìÌı¡£
+	 * ç§»é™¤æ‰€æœ‰çš„äº‹ä»¶ä¾¦å¬ã€‚
 	 */
 	public void removeAllListeners(){
 		eSet.clear();
 	}
 	
 	/**
-	 * »ñµÃ¸Ã¿ØÖÆÌ¨¶ÔÏóµÄ×ÖÌå¡£
-	 * @return »ñµÃµÄ×ÖÌå¡£
+	 * è·å¾—è¯¥æ§åˆ¶å°å¯¹è±¡çš„å­—ä½“ã€‚
+	 * @return è·å¾—çš„å­—ä½“ã€‚
 	 */
 	public Font getConsoleFont(){
 		return this.textArea.getFont();
 	}
 	
 	/**
-	 * ÉèÖÃ¸Ã¿ØÖÆÌ¨¶ÔÏóµÄ×ÖÌå¡£
-	 * @param font Ö¸¶¨µÄ×ÖÌå¡£
+	 * è®¾ç½®è¯¥æ§åˆ¶å°å¯¹è±¡çš„å­—ä½“ã€‚
+	 * @param font æŒ‡å®šçš„å­—ä½“ã€‚
 	 */
 	public void setConsoleFont(Font font){
 		this.textArea.setFont(font);
@@ -146,63 +146,63 @@ public class JConsole extends JPanel{
 	}
 	
 	/**
-	 * ·µ»Ø¿ØÖÆÌ¨ÏÔÊ¾µÄ×î´óĞĞÊı¡£
-	 * @return ¿ØÖÆÌ¨ÏÔÊ¾µÄ×î´óĞĞÊı¡£
+	 * è¿”å›æ§åˆ¶å°æ˜¾ç¤ºçš„æœ€å¤§è¡Œæ•°ã€‚
+	 * @return æ§åˆ¶å°æ˜¾ç¤ºçš„æœ€å¤§è¡Œæ•°ã€‚
 	 */
 	public int getMaxLine(){
 		return maxLine;
 	}
 	
 	/**
-	 * ·µ»ØÊäÈë¿òÊÇ·ñÆôÓÃ¡£
-	 * @return ÊäÈë¿òÊÇ·ñ±»ÆôÓÃ¡£
+	 * è¿”å›è¾“å…¥æ¡†æ˜¯å¦å¯ç”¨ã€‚
+	 * @return è¾“å…¥æ¡†æ˜¯å¦è¢«å¯ç”¨ã€‚
 	 */
 	public boolean isInputFieldEnabled(){
 		return inputField.isEnabled();
 	}
 	
 	/**
-	 * ÉèÖÃÊäÈë¿òÊÇ·ñ±»ÆôÓÃ¡£
-	 * @param flag Ö¸¶¨µÄÆôÓÃ±êÊ¶¡£
+	 * è®¾ç½®è¾“å…¥æ¡†æ˜¯å¦è¢«å¯ç”¨ã€‚
+	 * @param flag æŒ‡å®šçš„å¯ç”¨æ ‡è¯†ã€‚
 	 */
 	public void setInputFieldEnabled(boolean flag){
 		inputField.setEnabled(flag);
 	}
 	
 	/**
-	 * ·µ»ØÊäÈë¿òÊÇ·ñ±»ÏÔÊ¾¡£
-	 * @return ÊäÈë¿òÊÇ·ñ±»ÏÔÊ¾¡£
+	 * è¿”å›è¾“å…¥æ¡†æ˜¯å¦è¢«æ˜¾ç¤ºã€‚
+	 * @return è¾“å…¥æ¡†æ˜¯å¦è¢«æ˜¾ç¤ºã€‚
 	 */
 	public boolean isInputFieldVisible(){
 		return inputField.isVisible();
 	}
 	
 	/**
-	 * ÉèÖÃÊäÈë¿òÊÇ·ñ±»ÏÔÊ¾¡£
-	 * @param flag Ö¸¶¨µÄÏÔÊ¾±êÊ¶¡£
+	 * è®¾ç½®è¾“å…¥æ¡†æ˜¯å¦è¢«æ˜¾ç¤ºã€‚
+	 * @param flag æŒ‡å®šçš„æ˜¾ç¤ºæ ‡è¯†ã€‚
 	 */
 	public void setInputFieldVisible(boolean flag){
 		inputField.setVisible(flag);
 	}
 	
 	/**
-	 * ¿ØÖÆÌ¨ÊäÈëÊÇ·ñ»ØÏÔ¡£
-	 * @return ¿ØÖÆÌ¨ÊäÈëÊÇ·ñ»ØÏÔ¡£
+	 * æ§åˆ¶å°è¾“å…¥æ˜¯å¦å›æ˜¾ã€‚
+	 * @return æ§åˆ¶å°è¾“å…¥æ˜¯å¦å›æ˜¾ã€‚
 	 */
 	public boolean isEcho() {
 		return echoFlag;
 	}
 
 	/**
-	 * ÉèÖÃ¿ØÖÆÌ¨ÊäÈëÊÇ·ñ»ØÏÔ
-	 * @param echoFlag ¿ØÖÆÌ¨ÊäÈëÊÇ·ñ»ØÏÔ¡£
+	 * è®¾ç½®æ§åˆ¶å°è¾“å…¥æ˜¯å¦å›æ˜¾
+	 * @param echoFlag æ§åˆ¶å°è¾“å…¥æ˜¯å¦å›æ˜¾ã€‚
 	 */
 	public void setEcho(boolean echoFlag) {
 		this.echoFlag = echoFlag;
 	}
 
 	/**
-	 * Ìá¹©½çÃæµÄ³õÊ¼»¯¡£
+	 * æä¾›ç•Œé¢çš„åˆå§‹åŒ–ã€‚
 	 */
 	private void init(){
 		setLayout(new BorderLayout(0, 0));
@@ -261,7 +261,7 @@ public class JConsole extends JPanel{
 		/*
 		 * (non-Javadoc)
 		 * @see java.io.InputStream#markSupported()
-		 * ¸ÃÊäÈëÁ÷Ö§³Ömark/reset
+		 * è¯¥è¾“å…¥æµæ”¯æŒmark/reset
 		 */
 		@Override
 		public boolean markSupported(){
@@ -285,7 +285,7 @@ public class JConsole extends JPanel{
 		/*
 		 * (non-Javadoc)
 		 * @see java.io.InputStream#reset()
-		 * ´Ë´¦µÄreset·½·¨ÓÀÔ¶²»»áÅ×³öÒì³£¡£
+		 * æ­¤å¤„çš„resetæ–¹æ³•æ°¸è¿œä¸ä¼šæŠ›å‡ºå¼‚å¸¸ã€‚
 		 */
 		@Override
 	    public synchronized void reset() throws IOException {
@@ -336,7 +336,7 @@ public class JConsole extends JPanel{
 					append(str);
 				}
 				byteList.clear();
-				//×îºó£¬ÈÃÁĞ±íÊÍ·Å¶àÓàµÄ¿Õ¼ä¡£
+				//æœ€åï¼Œè®©åˆ—è¡¨é‡Šæ”¾å¤šä½™çš„ç©ºé—´ã€‚
 				byteList.trimToSize();
 			}finally{
 				outLock.unlock();
@@ -358,8 +358,8 @@ public class JConsole extends JPanel{
 		}
 		
 		/**
-		 * Ïò¿ØÖÆÌ¨µÄÊä³ö´°¿Ú×·¼ÓÎÄ±¾¡£
-		 * @param str Ö¸¶¨µÄ×·¼ÓÎÄ±¾¡£
+		 * å‘æ§åˆ¶å°çš„è¾“å‡ºçª—å£è¿½åŠ æ–‡æœ¬ã€‚
+		 * @param str æŒ‡å®šçš„è¿½åŠ æ–‡æœ¬ã€‚
 		 */
 		private void append(String str){
 			textArea.append(str);
@@ -368,7 +368,7 @@ public class JConsole extends JPanel{
 		}
 		
 		/**
-		 * È·±£×î´óĞĞ¡£
+		 * ç¡®ä¿æœ€å¤§è¡Œã€‚
 		 */
 		private void ensureMaxLine(){
 			int line = textArea.getLineCount();

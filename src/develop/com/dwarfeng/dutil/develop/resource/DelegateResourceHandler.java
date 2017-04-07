@@ -12,32 +12,32 @@ import com.dwarfeng.dutil.basic.cna.model.MapKeySetModel;
 import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
 
 /**
- * ´úÀí×ÊÔ´¹ÜÀíÆ÷¡£
+ * ä»£ç†èµ„æºç®¡ç†å™¨ã€‚
  * <p>
- * Í¨¹ı´úÀíÒ»¸ö {@link KeySetModel} À´ÊµÏÖ¾ßÌå¹¦ÄÜµÄ×ÊÔ´¹ÜÀíÆ÷¡£
+ * é€šè¿‡ä»£ç†ä¸€ä¸ª {@link KeySetModel} æ¥å®ç°å…·ä½“åŠŸèƒ½çš„èµ„æºç®¡ç†å™¨ã€‚
  * 
  * @author DwArFeng
  * @since 0.1.1-beta
  */
 public class DelegateResourceHandler implements ResourceHandler {
 
-	/** ¸Ã×ÊÔ´¹ÜÀíÆ÷µÄ´úÀí¡£ */
+	/** è¯¥èµ„æºç®¡ç†å™¨çš„ä»£ç†ã€‚ */
 	protected final KeySetModel<String, Resource> delegate;
 
 	/**
-	 * Éú³ÉÒ»¸öÄ¬ÈÏµÄ´úÀí×ÊÔ´¹ÜÀíÆ÷¡£
+	 * ç”Ÿæˆä¸€ä¸ªé»˜è®¤çš„ä»£ç†èµ„æºç®¡ç†å™¨ã€‚
 	 */
 	public DelegateResourceHandler() {
 		this(new MapKeySetModel<>());
 	}
 
 	/**
-	 * Éú³ÉÒ»¸öÓÉÖ¸¶¨µÄ¼üÖµ¼¯ºÏÄ£ĞÍ´úÀíµÄ×ÊÔ´¹ÜÀíÆ÷¡£
+	 * ç”Ÿæˆä¸€ä¸ªç”±æŒ‡å®šçš„é”®å€¼é›†åˆæ¨¡å‹ä»£ç†çš„èµ„æºç®¡ç†å™¨ã€‚
 	 * 
 	 * @param delegate
-	 *            Ö¸¶¨µÄ¼¯ºÏÄ£ĞÍ´úÀí¡£
+	 *            æŒ‡å®šçš„é›†åˆæ¨¡å‹ä»£ç†ã€‚
 	 * @throws NullPointerException
-	 *             Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 *             å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public DelegateResourceHandler(KeySetModel<String, Resource> delegate) {
 		Objects.requireNonNull(delegate, DwarfUtil.getStringField(StringFieldKey.DELEGATERESOURCEHANDLER_0));

@@ -10,12 +10,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 /**
- * ×é¼şµ÷ÊÔÆ÷¡£
+ * ç»„ä»¶è°ƒè¯•å™¨ã€‚
  * <p>
- * ¸Ãµ÷ÊÔÆ÷ÊÇÒ»¸ö´°¿Ú£¬¿ÉÒÔ´«ÈëÖ¸¶¨µÄ×é¼ş¡£ÕâÑù£¬ÓÃ»§¾Í¿ÉÒÔÔÚ³ÌĞòÖĞÏÔÊ¾³öÕâ¸ö½çÃæ£¬´Ó¶ø¶Ô×é¼ş½øĞĞµ÷ÊÔÁË¡£ <br>
- * ¸Ã½çÃæµÄÄÚÈİÃæ°åÊ¹ÓÃµÄÊÇ {@link BorderLayout}£¬´ıµ÷ÊÔµÄ×é¼şÊ¼ÖÕ´¦ÓÚ½çÃæµÄÖĞ¼ä¡£
+ * è¯¥è°ƒè¯•å™¨æ˜¯ä¸€ä¸ªçª—å£ï¼Œå¯ä»¥ä¼ å…¥æŒ‡å®šçš„ç»„ä»¶ã€‚è¿™æ ·ï¼Œç”¨æˆ·å°±å¯ä»¥åœ¨ç¨‹åºä¸­æ˜¾ç¤ºå‡ºè¿™ä¸ªç•Œé¢ï¼Œä»è€Œå¯¹ç»„ä»¶è¿›è¡Œè°ƒè¯•äº†ã€‚ <br>
+ * è¯¥ç•Œé¢çš„å†…å®¹é¢æ¿ä½¿ç”¨çš„æ˜¯ {@link BorderLayout}ï¼Œå¾…è°ƒè¯•çš„ç»„ä»¶å§‹ç»ˆå¤„äºç•Œé¢çš„ä¸­é—´ã€‚
  * <p>
- * ¸Ãµ÷ÊÔÆ÷´°¿Ú°´ÏÂ¹Ø±Õ°´Å¥£¬³ÌĞò¼´½áÊø¡£
+ * è¯¥è°ƒè¯•å™¨çª—å£æŒ‰ä¸‹å…³é—­æŒ‰é’®ï¼Œç¨‹åºå³ç»“æŸã€‚
  * 
  * @author DwArFeng
  * @since 0.0.2-beta
@@ -24,27 +24,27 @@ public class JComponentTester extends JFrame {
 
 	private static final long serialVersionUID = 2757822629350396907L;
 
-	/** ½çÃæµÄ±êÌâ¡£ */
+	/** ç•Œé¢çš„æ ‡é¢˜ã€‚ */
 	public static final String TITLE = "dutil.detool.gui.swing.JComponentTester";
 
-	/** ´ıµ÷ÊÔ×é¼ş */
+	/** å¾…è°ƒè¯•ç»„ä»¶ */
 	protected final JComponent component;
 
-	/** ÄÚÈİÃæ°å */
+	/** å†…å®¹é¢æ¿ */
 	private final JPanel contentPane = new JPanel();
 
 	/**
-	 * Éú³ÉÒ»¸öÄ¬ÈÏµÄ×é¼şµ÷ÊÔÆ÷¡£
+	 * ç”Ÿæˆä¸€ä¸ªé»˜è®¤çš„ç»„ä»¶è°ƒè¯•å™¨ã€‚
 	 */
 	public JComponentTester() {
 		this(null);
 	}
 
 	/**
-	 * Éú³ÉÒ»¸ö¾ßÓĞÖ¸¶¨´ıµ÷ÊÔ×é¼şµÄ×é¼şµ÷ÊÔÆ÷¡£
+	 * ç”Ÿæˆä¸€ä¸ªå…·æœ‰æŒ‡å®šå¾…è°ƒè¯•ç»„ä»¶çš„ç»„ä»¶è°ƒè¯•å™¨ã€‚
 	 * 
 	 * @param component
-	 *            Ö¸¶¨µÄ×é¼ş£¬ÔÊĞíÎª <code>null</code>¡£
+	 *            æŒ‡å®šçš„ç»„ä»¶ï¼Œå…è®¸ä¸º <code>null</code>ã€‚
 	 */
 	public JComponentTester(JComponent component) {
 		if (Objects.nonNull(component)) {
@@ -68,9 +68,9 @@ public class JComponentTester extends JFrame {
 	}
 
 	/**
-	 * »ñÈ¡¸Ãµ÷ÊÔÆ÷ÖĞµÄ´ıµ÷ÊÔ×é¼ş¡£
+	 * è·å–è¯¥è°ƒè¯•å™¨ä¸­çš„å¾…è°ƒè¯•ç»„ä»¶ã€‚
 	 * 
-	 * @return ´ıµ÷ÊÔ×é¼ş¡£
+	 * @return å¾…è°ƒè¯•ç»„ä»¶ã€‚
 	 */
 	public JComponent getComponent() {
 		return component;

@@ -20,16 +20,16 @@ import com.dwarfeng.dutil.basic.cna.ArrayUtil;
 import com.dwarfeng.dutil.basic.cna.CollectionUtil;
 
 /**
- * ¾ßÓĞÄ¬ÈÏÌõÄ¿µÄÁĞ±íÄ£ĞÍ¡£
- * <p> ¸ÃÄ£ĞÍµÄÊ¹ÓÃ·¶Î§ÊÇÒ»Ğ©¾ßÓĞÄ¬ÈÏÑ¡ÏîµÄ Combobox »òÕßÄ¬ÈÏÌõÄ¿µÄ List¡£ÀıÈç£ºÓĞÒ»¸öÈËÔ±ÏÂÀ­Ñ¡µ¥£¬Ñ¡µ¥ÖĞ³öÁË¾ßÓĞ¸÷¸öÈËÔ±µÄÌõÄ¿Ö®Íâ£¬»¹ÔÚ
- * µÚÒ»ÏîÖĞÓµÓĞÒ»¸öÄ¬ÈÏÌõÄ¿¡°Ñ¡ÔñËùÓĞÈËÔ±£¨È«Ñ¡£©¡±¡£
- * <br> ¸ÃÁĞ±íÄ£ĞÍÓÉÁ½¸ö²¿·Ö×é³É£¬Ä¬ÈÏÌõÄ¿ºÍÒ»°ãÌõÄ¿¡£ËäÈ»¸ÃÄ£ĞÍ²»ÊÇÒ»¸öÖ±½ÓµÄ {@link List}ÊµÏÖ£¬µ«ÊÇÆäÖĞµÄÄ¬ÈÏÌõÄ¿ºÍÒ»°ãÌõÄ¿¾ùÎª 
- * {@link List}ÊµÏÖ¡£ÔÚ¸ÃÄ£ĞÍÖĞ£¬Ä¬ÈÏÌõÄ¿ºÍÒ»°ãÌõÄ¿¾ùÓĞĞò£¬ÇÒÄ¬ÈÏÌõÄ¿Ê¼ÖÕÔÚÒ»°ãÌõÄ¿ÉÏ·½¡£
- * <br> Ä¬ÈÏÌõÄ¿ºÍÒ»°ãÌõÄ¿¾ù¿ÉÒÔ×÷Îª {@link List}·µ»Ø£¬²¢·Ö±ğ½øĞĞ²Ù×÷£»¸ÃÄ£ĞÍÒ²Ìá¹©ÁËÖ±½ÓµÄ²Ù×÷·½·¨£¬ÕâĞ©Ö±½ÓµÄ²Ù×÷·½·¨½öÄÜ¹»²Ù×÷Ò»°ãÌõÄ¿¡£
- * Èç£ºÌí¼Ó²Ù×÷Ö»ÄÜ¶ÔÒ»°ãÔªËØ½øĞĞ²Ù×÷£¬Èç¹ûÏòÄ¬ÈÏÔªËØËùÔÚµÄÇøÓò½øĞĞ²åÈë²Ù×÷£¬Ôò»á±»»ı¼«¾Ü¾ø£»Çå¿Õ²Ù×÷Ö»ÄÜ½«Ò»°ãÔªËØÇå¿Õ£¬¶øÄ¬ÈÏÔªËØÔò²»»á¸Ä±ä¡£
- * <br> ²Ù×÷Ä¬ÈÏÔªËØµÄ·½·¨ÊÇ£¬Ê¹ÓÃ {@link #getDefaultList()}»ñÈ¡Ä¬ÈÏÔªËØËùÔÚµÄÁĞ±í£¬È»ºó¶ÔÁĞ±í½øĞĞ²Ù×÷¡£
- * <p> ¸ÃÀà¿ÉÒÔÍ¨¹ıÖ¸¶¨Èë¿ÚµÄ²ÎÊıÀ´±£Ö¤ÁĞ±íµÄ²»Í¬ÊµÏÖ£¬ÈçÓÃÍ¬²½ÁĞ±í×÷ÎªÊµÏÖ¾Í¿ÉÒÔ±£Ö¤ÆäÖĞ·½·¨µÄÍ¬²½¡£
- * <p> Èç¹û²»Ö¸¶¨ÈÎºÎÄ¬ÈÏÔªËØ£¬¸ÃÄ£ĞÍµÈÍ¬ÓÚ {@link DefaultListModel}¡£
+ * å…·æœ‰é»˜è®¤æ¡ç›®çš„åˆ—è¡¨æ¨¡å‹ã€‚
+ * <p> è¯¥æ¨¡å‹çš„ä½¿ç”¨èŒƒå›´æ˜¯ä¸€äº›å…·æœ‰é»˜è®¤é€‰é¡¹çš„ Combobox æˆ–è€…é»˜è®¤æ¡ç›®çš„ Listã€‚ä¾‹å¦‚ï¼šæœ‰ä¸€ä¸ªäººå‘˜ä¸‹æ‹‰é€‰å•ï¼Œé€‰å•ä¸­å‡ºäº†å…·æœ‰å„ä¸ªäººå‘˜çš„æ¡ç›®ä¹‹å¤–ï¼Œè¿˜åœ¨
+ * ç¬¬ä¸€é¡¹ä¸­æ‹¥æœ‰ä¸€ä¸ªé»˜è®¤æ¡ç›®â€œé€‰æ‹©æ‰€æœ‰äººå‘˜ï¼ˆå…¨é€‰ï¼‰â€ã€‚
+ * <br> è¯¥åˆ—è¡¨æ¨¡å‹ç”±ä¸¤ä¸ªéƒ¨åˆ†ç»„æˆï¼Œé»˜è®¤æ¡ç›®å’Œä¸€èˆ¬æ¡ç›®ã€‚è™½ç„¶è¯¥æ¨¡å‹ä¸æ˜¯ä¸€ä¸ªç›´æ¥çš„ {@link List}å®ç°ï¼Œä½†æ˜¯å…¶ä¸­çš„é»˜è®¤æ¡ç›®å’Œä¸€èˆ¬æ¡ç›®å‡ä¸º 
+ * {@link List}å®ç°ã€‚åœ¨è¯¥æ¨¡å‹ä¸­ï¼Œé»˜è®¤æ¡ç›®å’Œä¸€èˆ¬æ¡ç›®å‡æœ‰åºï¼Œä¸”é»˜è®¤æ¡ç›®å§‹ç»ˆåœ¨ä¸€èˆ¬æ¡ç›®ä¸Šæ–¹ã€‚
+ * <br> é»˜è®¤æ¡ç›®å’Œä¸€èˆ¬æ¡ç›®å‡å¯ä»¥ä½œä¸º {@link List}è¿”å›ï¼Œå¹¶åˆ†åˆ«è¿›è¡Œæ“ä½œï¼›è¯¥æ¨¡å‹ä¹Ÿæä¾›äº†ç›´æ¥çš„æ“ä½œæ–¹æ³•ï¼Œè¿™äº›ç›´æ¥çš„æ“ä½œæ–¹æ³•ä»…èƒ½å¤Ÿæ“ä½œä¸€èˆ¬æ¡ç›®ã€‚
+ * å¦‚ï¼šæ·»åŠ æ“ä½œåªèƒ½å¯¹ä¸€èˆ¬å…ƒç´ è¿›è¡Œæ“ä½œï¼Œå¦‚æœå‘é»˜è®¤å…ƒç´ æ‰€åœ¨çš„åŒºåŸŸè¿›è¡Œæ’å…¥æ“ä½œï¼Œåˆ™ä¼šè¢«ç§¯ææ‹’ç»ï¼›æ¸…ç©ºæ“ä½œåªèƒ½å°†ä¸€èˆ¬å…ƒç´ æ¸…ç©ºï¼Œè€Œé»˜è®¤å…ƒç´ åˆ™ä¸ä¼šæ”¹å˜ã€‚
+ * <br> æ“ä½œé»˜è®¤å…ƒç´ çš„æ–¹æ³•æ˜¯ï¼Œä½¿ç”¨ {@link #getDefaultList()}è·å–é»˜è®¤å…ƒç´ æ‰€åœ¨çš„åˆ—è¡¨ï¼Œç„¶åå¯¹åˆ—è¡¨è¿›è¡Œæ“ä½œã€‚
+ * <p> è¯¥ç±»å¯ä»¥é€šè¿‡æŒ‡å®šå…¥å£çš„å‚æ•°æ¥ä¿è¯åˆ—è¡¨çš„ä¸åŒå®ç°ï¼Œå¦‚ç”¨åŒæ­¥åˆ—è¡¨ä½œä¸ºå®ç°å°±å¯ä»¥ä¿è¯å…¶ä¸­æ–¹æ³•çš„åŒæ­¥ã€‚
+ * <p> å¦‚æœä¸æŒ‡å®šä»»ä½•é»˜è®¤å…ƒç´ ï¼Œè¯¥æ¨¡å‹ç­‰åŒäº {@link DefaultListModel}ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
@@ -37,23 +37,23 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	
 	private static final long serialVersionUID = 8547542339038946434L;
 	
-	/**Ä¬ÈÏÌõÄ¿ÁĞ±í*/
+	/**é»˜è®¤æ¡ç›®åˆ—è¡¨*/
 	protected final DefalutItemList defaultItemList;
-	/**Ò»°ãÌõÄ¿ÁĞ±í*/
+	/**ä¸€èˆ¬æ¡ç›®åˆ—è¡¨*/
 	protected final NormalItemList normalItemList;
 	
 	/**
-	 * Éú³ÉÒ»¸öÊ¹ÓÃ {@link ArrayList}ÊµÏÖµÄÄ¬ÈÏÌõÄ¿ÁĞ±íÄ£ĞÍ¡£
+	 * ç”Ÿæˆä¸€ä¸ªä½¿ç”¨ {@link ArrayList}å®ç°çš„é»˜è®¤æ¡ç›®åˆ—è¡¨æ¨¡å‹ã€‚
 	 */
 	public DefaultItemListModel() {
 		this(new ArrayList<E>(), new ArrayList<E>());
 	}
 	
 	/**
-	 * Éú³ÉÒ»¸ö¾ßÓĞÖ¸¶¨ÊµÏÖµÄÄ¬ÈÏÌõÄ¿ÁĞ±íÄ£ĞÍ¡£
-	 * @param defalutDelegate Ä¬ÈÏÌõÄ¿µÄÁĞ±íÊµÏÖ¡£
-	 * @param normalDelegate Ò»°ãÌõÄ¿µÄÁĞ±íÊµÏÖ¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * ç”Ÿæˆä¸€ä¸ªå…·æœ‰æŒ‡å®šå®ç°çš„é»˜è®¤æ¡ç›®åˆ—è¡¨æ¨¡å‹ã€‚
+	 * @param defalutDelegate é»˜è®¤æ¡ç›®çš„åˆ—è¡¨å®ç°ã€‚
+	 * @param normalDelegate ä¸€èˆ¬æ¡ç›®çš„åˆ—è¡¨å®ç°ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public DefaultItemListModel(List<E> defalutDelegate, List<E> normalDelegate) {
 		Objects.requireNonNull(defalutDelegate);
@@ -90,13 +90,13 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	}
 	
 	/**
-	 * ÔÚ´ËÁĞ±íµÄÖ¸¶¨Î»ÖÃ´¦²åÈëÖ¸¶¨µÄÔªËØ¡£
-	 *<p> Èç¹ûË÷Òı³¬³ö·¶Î§ <code>£¨index &lt; 0 || index &gt; size()£©</code>£¬ÔòÅ×³ö IndexOutOfBoundsException¡£
-	 *<p> Èç¹ûĞòºÅĞ¡ÓÚµÚÒ»¸öÒ»°ãÌõÄ¿µÄĞòºÅ£¬Ôò»áÅ×³ö {@link IllegalArgumentException};
-	 * @param index Ö¸¶¨ÔªËØµÄ²åÈëÎ»ÖÃµÄË÷Òı¡£
-	 * @param element Òª²åÈëµÄÔªËØ¡£
-	 * @throws IndexOutOfBoundsException ĞòºÅÔ½½ç¡£
-	 * @throws IllegalArgumentException ÊÔÍ¼ÔÚÄ¬ÈÏÔªËØÇø¼äÌí¼ÓÔªËØ¡£
+	 * åœ¨æ­¤åˆ—è¡¨çš„æŒ‡å®šä½ç½®å¤„æ’å…¥æŒ‡å®šçš„å…ƒç´ ã€‚
+	 *<p> å¦‚æœç´¢å¼•è¶…å‡ºèŒƒå›´ <code>ï¼ˆindex &lt; 0 || index &gt; size()ï¼‰</code>ï¼Œåˆ™æŠ›å‡º IndexOutOfBoundsExceptionã€‚
+	 *<p> å¦‚æœåºå·å°äºç¬¬ä¸€ä¸ªä¸€èˆ¬æ¡ç›®çš„åºå·ï¼Œåˆ™ä¼šæŠ›å‡º {@link IllegalArgumentException};
+	 * @param index æŒ‡å®šå…ƒç´ çš„æ’å…¥ä½ç½®çš„ç´¢å¼•ã€‚
+	 * @param element è¦æ’å…¥çš„å…ƒç´ ã€‚
+	 * @throws IndexOutOfBoundsException åºå·è¶Šç•Œã€‚
+	 * @throws IllegalArgumentException è¯•å›¾åœ¨é»˜è®¤å…ƒç´ åŒºé—´æ·»åŠ å…ƒç´ ã€‚
 	 */
 	public void add(int index, E element){
 		if(index < 0 || index > getSize()){
@@ -112,8 +112,8 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	}
 	
 	/**
-	 * ½«Ö¸¶¨×é¼şÌí¼Óµ½´ËÀà±íµÄÄ©Î²¡£
-	 * @param element ÒªÌí¼ÓµÄ×é¼ş¡£
+	 * å°†æŒ‡å®šç»„ä»¶æ·»åŠ åˆ°æ­¤ç±»è¡¨çš„æœ«å°¾ã€‚
+	 * @param element è¦æ·»åŠ çš„ç»„ä»¶ã€‚
 	 */
 	public void addElement(E element){
 		int index = getSize();
@@ -122,16 +122,16 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	}
 	
 	/**
-	 * ·µ»Ø´ËÁĞ±íµÄµ±Ç°ÈİÁ¿¡£ 
-	 * <p> ¸Ã·½·¨Óë {@link #getSize()}·½·¨ÏàÍ¬£¬ÊµÏÖÕâ¸ö·½·¨ÊÇÎªÁË±£Ö¤Óë {@link DefaultListModel}ÖĞµÄ·½·¨Ò»ÖÂ¡£
-	 * @return µ±Ç°ÈİÁ¿¡£
+	 * è¿”å›æ­¤åˆ—è¡¨çš„å½“å‰å®¹é‡ã€‚ 
+	 * <p> è¯¥æ–¹æ³•ä¸ {@link #getSize()}æ–¹æ³•ç›¸åŒï¼Œå®ç°è¿™ä¸ªæ–¹æ³•æ˜¯ä¸ºäº†ä¿è¯ä¸ {@link DefaultListModel}ä¸­çš„æ–¹æ³•ä¸€è‡´ã€‚
+	 * @return å½“å‰å®¹é‡ã€‚
 	 */
 	public int capacity(){
 		return getSize();
 	}
 	
 	/**
-	 * ´Ó´ËÁĞ±íÖĞÒÆ³ıËùÓĞÒ»°ãÔªËØ¡£´Ëµ÷ÓÃ·µ»Øºó£¬Ò»°ãÔªËØÁĞ±í½«ÊÇ¿ÕµÄ£¬¶øÄ¬ÈÏÔªËØÁĞ±í½«±»±£Áô£¨³ı·Ç¸Ãµ÷ÓÃÅ×³öÒì³££©¡£ 
+	 * ä»æ­¤åˆ—è¡¨ä¸­ç§»é™¤æ‰€æœ‰ä¸€èˆ¬å…ƒç´ ã€‚æ­¤è°ƒç”¨è¿”å›åï¼Œä¸€èˆ¬å…ƒç´ åˆ—è¡¨å°†æ˜¯ç©ºçš„ï¼Œè€Œé»˜è®¤å…ƒç´ åˆ—è¡¨å°†è¢«ä¿ç•™ï¼ˆé™¤éè¯¥è°ƒç”¨æŠ›å‡ºå¼‚å¸¸ï¼‰ã€‚ 
 	 */
 	public void clear(){
 		int index0 = defaultItemList.size();
@@ -141,18 +141,18 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	}
 	
 	/**
-	 * ²âÊÔÖ¸¶¨¶ÔÏóÊÇ·ñÎª´ËÀà±íÖĞµÄ×é¼ş¡£
-	 * @param elem ¶ÔÏó¡£
-	 * @return Èç¹ûÖ¸¶¨¶ÔÏóÊÇ´ËÁĞ±íÖĞµÄ×é¼ş£¬Ôò·µ»Ø <code>true</code>¡£
+	 * æµ‹è¯•æŒ‡å®šå¯¹è±¡æ˜¯å¦ä¸ºæ­¤ç±»è¡¨ä¸­çš„ç»„ä»¶ã€‚
+	 * @param elem å¯¹è±¡ã€‚
+	 * @return å¦‚æœæŒ‡å®šå¯¹è±¡æ˜¯æ­¤åˆ—è¡¨ä¸­çš„ç»„ä»¶ï¼Œåˆ™è¿”å› <code>true</code>ã€‚
 	 */
 	public boolean contains(Object elem){
 		return defaultItemList.contains(elem) || normalItemList.contains(elem);
 	}
 	
 	/**
-	 * ½«´ËÁĞ±íµÄ×é¼ş¸´ÖÆµ½Ö¸¶¨Êı×éÖĞ¡£Êı×é±ØĞë×ã¹»´ó£¬ÄÜ¹»±£´æ´ËÁĞ±íÖĞµÄËùÓĞ¶ÔÏó£¬·ñÔòÅ×³ö IndexOutOfBoundsException¡£ 
-	 * @param anArray Òª½«×é¼ş¸´ÖÆµ½ÆäÖĞµÄÊı×é¡£
-	 * @throws IndexOutOfBoundsException Êı×é²»¹»´ó£¬ÒÔÖÁÓÚ²»ÄÜ·ÅÏÂËùÓĞ¶ÔÏó¡£
+	 * å°†æ­¤åˆ—è¡¨çš„ç»„ä»¶å¤åˆ¶åˆ°æŒ‡å®šæ•°ç»„ä¸­ã€‚æ•°ç»„å¿…é¡»è¶³å¤Ÿå¤§ï¼Œèƒ½å¤Ÿä¿å­˜æ­¤åˆ—è¡¨ä¸­çš„æ‰€æœ‰å¯¹è±¡ï¼Œå¦åˆ™æŠ›å‡º IndexOutOfBoundsExceptionã€‚ 
+	 * @param anArray è¦å°†ç»„ä»¶å¤åˆ¶åˆ°å…¶ä¸­çš„æ•°ç»„ã€‚
+	 * @throws IndexOutOfBoundsException æ•°ç»„ä¸å¤Ÿå¤§ï¼Œä»¥è‡³äºä¸èƒ½æ”¾ä¸‹æ‰€æœ‰å¯¹è±¡ã€‚
 	 */
 	public void copyInto(Object[] anArray){
 		Objects.requireNonNull(anArray, DwarfUtil.getStringField(StringFieldKey.DefaultListItemModel_5));
@@ -166,32 +166,32 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	}
 	
 	/**
-	 * ·µ»ØÖ¸¶¨Ë÷Òı´¦µÄ×é¼ş¡£Èç¹ûË÷ÒıÎª¸º»ò²»Ğ¡ÓÚÁĞ±íµÄ´óĞ¡£¬ÔòÅ×³ö IndexOutOfBoundsException¡£ 
-	 * <p> ×¢£º¾¡¹Ü´Ë·½·¨Î´¹ıÊ±£¬µ«Ê×Ñ¡Ê¹ÓÃ·½·¨ÊÇ get(int)£¬¸Ã·½·¨ÊµÏÖ 1.2 Collections ¿ò¼ÜÖĞ¶¨ÒåµÄ List ½Ó¿Ú¡£
-	 * @param index ´ËÁĞ±íÖĞµÄÒ»¸öË÷Òı¡£
-	 * @return Ö¸¶¨Ë÷Òı´¦µÄ×é¼ş¡£
+	 * è¿”å›æŒ‡å®šç´¢å¼•å¤„çš„ç»„ä»¶ã€‚å¦‚æœç´¢å¼•ä¸ºè´Ÿæˆ–ä¸å°äºåˆ—è¡¨çš„å¤§å°ï¼Œåˆ™æŠ›å‡º IndexOutOfBoundsExceptionã€‚ 
+	 * <p> æ³¨ï¼šå°½ç®¡æ­¤æ–¹æ³•æœªè¿‡æ—¶ï¼Œä½†é¦–é€‰ä½¿ç”¨æ–¹æ³•æ˜¯ get(int)ï¼Œè¯¥æ–¹æ³•å®ç° 1.2 Collections æ¡†æ¶ä¸­å®šä¹‰çš„ List æ¥å£ã€‚
+	 * @param index æ­¤åˆ—è¡¨ä¸­çš„ä¸€ä¸ªç´¢å¼•ã€‚
+	 * @return æŒ‡å®šç´¢å¼•å¤„çš„ç»„ä»¶ã€‚
 	 */
 	public E elementAt(int index){
 		return getElementAt(index);
 	}
 	
 	/**
-	 * ·µ»Ø´ËÁĞ±íµÄ×é¼şÃ¶¾Ù¡£ 
-	 * @return ´ËÁĞ±íµÄ×é¼şÃ¶¾Ù¡£
+	 * è¿”å›æ­¤åˆ—è¡¨çš„ç»„ä»¶æšä¸¾ã€‚ 
+	 * @return æ­¤åˆ—è¡¨çš„ç»„ä»¶æšä¸¾ã€‚
 	 */
 	public Enumeration<E> elements(){
 		return CollectionUtil.iterator2Enumeration(iterator());
 	}
 
 	/**
-	 * ¸Ã·½·¨²»ÊµÏÖÈÎºÎ¶¯×÷£¬ÊµÏÖÕâ¸ö·½·¨ÊÇÎªÁË±£Ö¤Óë {@link DefaultListModel}ÖĞµÄ·½·¨Ò»ÖÂ¡£
+	 * è¯¥æ–¹æ³•ä¸å®ç°ä»»ä½•åŠ¨ä½œï¼Œå®ç°è¿™ä¸ªæ–¹æ³•æ˜¯ä¸ºäº†ä¿è¯ä¸ {@link DefaultListModel}ä¸­çš„æ–¹æ³•ä¸€è‡´ã€‚
 	 * @param minCapacity the minCapacity.
 	 */
 	public void ensureCapacity(int minCapacity){}
 	
 	/**
-	 * ·µ»ØÒ»°ãÁĞ±íÖĞµÄµÚÒ»¸ö×é¼ş¡£Èç¹û´ËÏòÁ¿Ã»ÓĞ×é¼ş£¬ÔòÅ×³ö NoSuchElementException¡£ 
-	 * @return ´ËÁĞ±íµÄµÚÒ»¸ö×é¼ş¡£
+	 * è¿”å›ä¸€èˆ¬åˆ—è¡¨ä¸­çš„ç¬¬ä¸€ä¸ªç»„ä»¶ã€‚å¦‚æœæ­¤å‘é‡æ²¡æœ‰ç»„ä»¶ï¼Œåˆ™æŠ›å‡º NoSuchElementExceptionã€‚ 
+	 * @return æ­¤åˆ—è¡¨çš„ç¬¬ä¸€ä¸ªç»„ä»¶ã€‚
 	 */
 	public E firstElement(){
 		if(getSize() == 0) throw new NoSuchElementException();
@@ -199,20 +199,20 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	}
 	
 	/**
-	 * ·µ»ØÁĞ±íÖĞÖ¸¶¨Î»ÖÃ´¦µÄÔªËØ¡£ 
-	 * <p> Èç¹ûË÷Òı³¬³ö·¶Î§<code>£¨index &lt; 0 || index &gt;= size()£©</code>£¬ÔòÅ×³ö IndexOutOfBoundsException¡£ 
-	 * @param index Òª·µ»ØµÄÔªËØµÄË÷Òı¡£
-	 * @return Ö¸¶¨Î»ÖÃ´¦µÄÔªËØ¡£
-	 * @throws IndexOutOfBoundsException ÏÂ±êÔ½½ç¡£
+	 * è¿”å›åˆ—è¡¨ä¸­æŒ‡å®šä½ç½®å¤„çš„å…ƒç´ ã€‚ 
+	 * <p> å¦‚æœç´¢å¼•è¶…å‡ºèŒƒå›´<code>ï¼ˆindex &lt; 0 || index &gt;= size()ï¼‰</code>ï¼Œåˆ™æŠ›å‡º IndexOutOfBoundsExceptionã€‚ 
+	 * @param index è¦è¿”å›çš„å…ƒç´ çš„ç´¢å¼•ã€‚
+	 * @return æŒ‡å®šä½ç½®å¤„çš„å…ƒç´ ã€‚
+	 * @throws IndexOutOfBoundsException ä¸‹æ ‡è¶Šç•Œã€‚
 	 */
 	public E get(int index){
 		return getElementAt(index);
 	}
 	
 	/**
-	 * ËÑË÷ elem µÄµÚÒ»´Î³öÏÖ¡£ 
-	 * @param elem Ò»¸ö¶ÔÏó¡£
-	 * @return ´ËÁĞ±íÖĞ¸Ã²ÎÊıµÚÒ»´Î³öÏÖÊ±ËùÔÚÎ»ÖÃÉÏµÄË÷Òı£»Èç¹ûÃ»ÓĞÕÒµ½¸Ã¶ÔÏó£¬Ôò·µ»Ø <code>-1</code>¡£
+	 * æœç´¢ elem çš„ç¬¬ä¸€æ¬¡å‡ºç°ã€‚ 
+	 * @param elem ä¸€ä¸ªå¯¹è±¡ã€‚
+	 * @return æ­¤åˆ—è¡¨ä¸­è¯¥å‚æ•°ç¬¬ä¸€æ¬¡å‡ºç°æ—¶æ‰€åœ¨ä½ç½®ä¸Šçš„ç´¢å¼•ï¼›å¦‚æœæ²¡æœ‰æ‰¾åˆ°è¯¥å¯¹è±¡ï¼Œåˆ™è¿”å› <code>-1</code>ã€‚
 	 */
 	public int indexOf(Object elem){
 		int def = defaultItemList.indexOf(elem);
@@ -226,10 +226,10 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	}
 
 	/**
-	 * ´Ó index ¿ªÊ¼ËÑË÷ elem µÄµÚÒ»´Î³öÏÖ¡£ 
-	 * @param elem ËùĞèµÄ×é¼ş¡£
-	 * @param index ´ÓÆäËùÔÚµÄÎ»ÖÃ¿ªÊ¼½øĞĞËÑË÷µÄË÷Òı¡£
-	 * @return Ö®ºóµÚÒ»´Î³öÏÖ elem ´¦µÄË÷Òı£»Èç¹ûÔÚÁĞ±íÖĞÃ»ÓĞÕÒµ½ elem£¬Ôò·µ»Ø <code>-1</code>¡£
+	 * ä» index å¼€å§‹æœç´¢ elem çš„ç¬¬ä¸€æ¬¡å‡ºç°ã€‚ 
+	 * @param elem æ‰€éœ€çš„ç»„ä»¶ã€‚
+	 * @param index ä»å…¶æ‰€åœ¨çš„ä½ç½®å¼€å§‹è¿›è¡Œæœç´¢çš„ç´¢å¼•ã€‚
+	 * @return ä¹‹åç¬¬ä¸€æ¬¡å‡ºç° elem å¤„çš„ç´¢å¼•ï¼›å¦‚æœåœ¨åˆ—è¡¨ä¸­æ²¡æœ‰æ‰¾åˆ° elemï¼Œåˆ™è¿”å› <code>-1</code>ã€‚
 	 */
 	public int indexOf(Object elem, int index){
 		for(int i = index ; i < getSize() ; i ++){
@@ -241,30 +241,30 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	}
 	
 	/**
-	 * ½«Ö¸¶¨¶ÔÏó×÷Îª´ËÁĞ±íÖĞµÄ×é¼ş²åÈëµ½Ö¸¶¨µÄ index ´¦¡£ 
-	 * <p> Èç¹ûË÷ÒıÎŞĞ§£¬ÔòÅ×³ö IndexOutOfBoundsException¡£ 
-	 * <p> Èç¹ûĞòºÅĞ¡ÓÚµÚÒ»¸öÒ»°ãÌõÄ¿µÄĞòºÅ£¬Ôò»áÅ×³ö {@link IllegalArgumentException};
-	 * <p> ×¢£º¾¡¹Ü´Ë·½·¨Î´¹ıÊ±£¬µ«Ê×Ñ¡Ê¹ÓÃ·½·¨ÊÇ add(int,Object)£¬¸Ã·½·¨ÊµÏÖ 1.2 Collections ¿ò¼ÜÖĞ¶¨ÒåµÄ List ½Ó¿Ú¡£ 
-	 * @param obj Òª²åÈëµÄ×é¼ş¡£
-	 * @param index ²åÈëĞÂ×é¼şµÄÎ»ÖÃ ¡£
-	 * @throws IllegalArgumentException ĞòºÅĞ¡ÓÚµÚÒ»¸öÒ»°ãÌõÄ¿µÄĞòºÅ¡£
-	 * @throws IndexOutOfBoundsException ÏÂ±êÔ½½ç¡£
+	 * å°†æŒ‡å®šå¯¹è±¡ä½œä¸ºæ­¤åˆ—è¡¨ä¸­çš„ç»„ä»¶æ’å…¥åˆ°æŒ‡å®šçš„ index å¤„ã€‚ 
+	 * <p> å¦‚æœç´¢å¼•æ— æ•ˆï¼Œåˆ™æŠ›å‡º IndexOutOfBoundsExceptionã€‚ 
+	 * <p> å¦‚æœåºå·å°äºç¬¬ä¸€ä¸ªä¸€èˆ¬æ¡ç›®çš„åºå·ï¼Œåˆ™ä¼šæŠ›å‡º {@link IllegalArgumentException};
+	 * <p> æ³¨ï¼šå°½ç®¡æ­¤æ–¹æ³•æœªè¿‡æ—¶ï¼Œä½†é¦–é€‰ä½¿ç”¨æ–¹æ³•æ˜¯ add(int,Object)ï¼Œè¯¥æ–¹æ³•å®ç° 1.2 Collections æ¡†æ¶ä¸­å®šä¹‰çš„ List æ¥å£ã€‚ 
+	 * @param obj è¦æ’å…¥çš„ç»„ä»¶ã€‚
+	 * @param index æ’å…¥æ–°ç»„ä»¶çš„ä½ç½® ã€‚
+	 * @throws IllegalArgumentException åºå·å°äºç¬¬ä¸€ä¸ªä¸€èˆ¬æ¡ç›®çš„åºå·ã€‚
+	 * @throws IndexOutOfBoundsException ä¸‹æ ‡è¶Šç•Œã€‚
 	 */
 	public void insertElementAt(E obj, int index){
 		add(index, obj);
 	}
 	
 	/**
-	 * ²âÊÔ´ËÁĞ±íÖĞÊÇ·ñÓĞ×é¼ş¡£ 
-	 * @return µ±ÇÒ½öµ±´ËÁĞ±íÖĞÃ»ÓĞ×é¼ş£¨Ò²¾ÍÊÇËµÆä´óĞ¡ÎªÁã£©Ê±·µ»Ø true£»·ñÔò·µ»Ø false¡£
+	 * æµ‹è¯•æ­¤åˆ—è¡¨ä¸­æ˜¯å¦æœ‰ç»„ä»¶ã€‚ 
+	 * @return å½“ä¸”ä»…å½“æ­¤åˆ—è¡¨ä¸­æ²¡æœ‰ç»„ä»¶ï¼ˆä¹Ÿå°±æ˜¯è¯´å…¶å¤§å°ä¸ºé›¶ï¼‰æ—¶è¿”å› trueï¼›å¦åˆ™è¿”å› falseã€‚
 	 */
 	public boolean isEmpty(){
 		return defaultItemList.isEmpty() && normalItemList.isEmpty();
 	}
 	
 	/**
-	 * ·µ»ØÁĞ±íµÄ×îºóÒ»¸ö×é¼ş¡£Èç¹û´ËÏòÁ¿Ã»ÓĞ×é¼ş£¬ÔòÅ×³ö NoSuchElementException¡£ 
-	 * @return ÁĞ±íµÄ×îºóÒ»¸ö×é¼ş¡£
+	 * è¿”å›åˆ—è¡¨çš„æœ€åä¸€ä¸ªç»„ä»¶ã€‚å¦‚æœæ­¤å‘é‡æ²¡æœ‰ç»„ä»¶ï¼Œåˆ™æŠ›å‡º NoSuchElementExceptionã€‚ 
+	 * @return åˆ—è¡¨çš„æœ€åä¸€ä¸ªç»„ä»¶ã€‚
 	 */
 	public E lastElement(){
 		if(getSize() == 0) throw new NoSuchElementException();
@@ -272,9 +272,9 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	}
 	
 	/**
-	 * ·µ»Ø elem ×îºóÒ»´Î³öÏÖ´¦µÄË÷Òı¡£
-	 * @param elem ËùĞèµÄ×é¼ş¡£
-	 * @return ÁĞ±íÖĞ elem ×îºóÒ»´Î³öÏÖ´¦µÄË÷Òı£»Èç¹ûÃ»ÓĞÕÒµ½¸Ã¶ÔÏó£¬Ôò·µ»Ø<code>-1</code>¡£
+	 * è¿”å› elem æœ€åä¸€æ¬¡å‡ºç°å¤„çš„ç´¢å¼•ã€‚
+	 * @param elem æ‰€éœ€çš„ç»„ä»¶ã€‚
+	 * @return åˆ—è¡¨ä¸­ elem æœ€åä¸€æ¬¡å‡ºç°å¤„çš„ç´¢å¼•ï¼›å¦‚æœæ²¡æœ‰æ‰¾åˆ°è¯¥å¯¹è±¡ï¼Œåˆ™è¿”å›<code>-1</code>ã€‚
 	 */
 	public int lastIndexOf(Object elem){
 		for(int i = getSize() - 1 ; i >= 0 ; i--){
@@ -286,10 +286,10 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	}
 	
 	/**
-	 * ´ÓÖ¸¶¨µÄË÷Òı´¦¿ªÊ¼·´ÏòËÑË÷ elem£¬²¢·µ»Ø¸Ã¶ÔÏóµÄË÷Òı¡£
-	 * @param elem ËùĞèµÄ×é¼ş¡£
-	 * @param index ´ÓÆäËùÔÚµÄÎ»ÖÃ¿ªÊ¼½øĞĞËÑË÷µÄË÷Òı ¡£
-	 * @return ÁĞ±íÖĞ index Ö®Ç°×îºóÒ»´Î³öÏÖ elem ´¦µÄË÷Òı£»Èç¹ûÔÚÁĞ±íÖĞÃ»ÓĞÕÒµ½¸Ã¶ÔÏó£¬Ôò·µ»Ø <code>-1</code>¡£
+	 * ä»æŒ‡å®šçš„ç´¢å¼•å¤„å¼€å§‹åå‘æœç´¢ elemï¼Œå¹¶è¿”å›è¯¥å¯¹è±¡çš„ç´¢å¼•ã€‚
+	 * @param elem æ‰€éœ€çš„ç»„ä»¶ã€‚
+	 * @param index ä»å…¶æ‰€åœ¨çš„ä½ç½®å¼€å§‹è¿›è¡Œæœç´¢çš„ç´¢å¼• ã€‚
+	 * @return åˆ—è¡¨ä¸­ index ä¹‹å‰æœ€åä¸€æ¬¡å‡ºç° elem å¤„çš„ç´¢å¼•ï¼›å¦‚æœåœ¨åˆ—è¡¨ä¸­æ²¡æœ‰æ‰¾åˆ°è¯¥å¯¹è±¡ï¼Œåˆ™è¿”å› <code>-1</code>ã€‚
 	 */
 	public int lastIndexOf(Object elem, int index){
 		for(int i = index ; i >= 0 ; i --){
@@ -301,12 +301,12 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	}
 	
 	/**
-	 * ÒÆ³ı´ËÁĞ±íÖĞÖ¸¶¨Î»ÖÃ´¦µÄÔªËØ¡£·µ»Ø´ÓÁĞ±íÖĞÒÆ³ıµÄÔªËØ¡£
-	 * <p> Èç¹ûË÷Òı³¬³ö·¶Î§<code>£¨index &lt; 0 || index &gt;= size()£©</code>£¬ÔòÅ×³ö IndexOutOfBoundsException¡£
-	 * <p> Èç¹ûĞòºÅĞ¡ÓÚµÚÒ»¸öÒ»°ãÌõÄ¿µÄĞòºÅ£¬Ôò»áÅ×³ö {@link IllegalArgumentException};
-	 * @param index ÒªÒÆ³ıµÄÔªËØµÄË÷Òı¡£
-	 * @return ·µ»ØµÄÔªËØ¡£
-	 * @throws IndexOutOfBoundsException ÏÂ±êÔ½½ç¡£
+	 * ç§»é™¤æ­¤åˆ—è¡¨ä¸­æŒ‡å®šä½ç½®å¤„çš„å…ƒç´ ã€‚è¿”å›ä»åˆ—è¡¨ä¸­ç§»é™¤çš„å…ƒç´ ã€‚
+	 * <p> å¦‚æœç´¢å¼•è¶…å‡ºèŒƒå›´<code>ï¼ˆindex &lt; 0 || index &gt;= size()ï¼‰</code>ï¼Œåˆ™æŠ›å‡º IndexOutOfBoundsExceptionã€‚
+	 * <p> å¦‚æœåºå·å°äºç¬¬ä¸€ä¸ªä¸€èˆ¬æ¡ç›®çš„åºå·ï¼Œåˆ™ä¼šæŠ›å‡º {@link IllegalArgumentException};
+	 * @param index è¦ç§»é™¤çš„å…ƒç´ çš„ç´¢å¼•ã€‚
+	 * @return è¿”å›çš„å…ƒç´ ã€‚
+	 * @throws IndexOutOfBoundsException ä¸‹æ ‡è¶Šç•Œã€‚
 	 */
 	public E remove(int index){
 		if(index < 0 || index >= getSize()){
@@ -322,17 +322,17 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	}
 	
 	/**
-	 * ´Ó´ËÁĞ±íÖĞÒÆ³ıËùÓĞ×é¼ş£¬²¢½«ËüÃÇµÄ´óĞ¡ÉèÖÃÎªÁã¡£ 
-	 * <p> ×¢£º¾¡¹Ü´Ë·½·¨Î´¹ıÊ±£¬µ«Ê×Ñ¡Ê¹ÓÃ·½·¨ÊÇ clear£¬¸Ã·½·¨ÊµÏÖ 1.2 Collections ¿ò¼ÜÖĞ¶¨ÒåµÄ List ½Ó¿Ú¡£
+	 * ä»æ­¤åˆ—è¡¨ä¸­ç§»é™¤æ‰€æœ‰ç»„ä»¶ï¼Œå¹¶å°†å®ƒä»¬çš„å¤§å°è®¾ç½®ä¸ºé›¶ã€‚ 
+	 * <p> æ³¨ï¼šå°½ç®¡æ­¤æ–¹æ³•æœªè¿‡æ—¶ï¼Œä½†é¦–é€‰ä½¿ç”¨æ–¹æ³•æ˜¯ clearï¼Œè¯¥æ–¹æ³•å®ç° 1.2 Collections æ¡†æ¶ä¸­å®šä¹‰çš„ List æ¥å£ã€‚
 	 */
 	public void removeAllElements(){
 		clear();
 	}
 	
 	/**
-	 * ´ÓÒ»°ãÁĞ±íÖĞÒÆ³ı²ÎÊıµÄµÚÒ»¸ö£¨Ë÷Òı×îĞ¡µÄ£©Æ¥ÅäÏî¡£ 
-	 * @param obj ÒªÒÆ³ıµÄ×é¼ş ¡£
-	 * @return Èç¹û¸Ã²ÎÊıÊÇÒ»°ãÁĞ±íµÄÒ»¸ö×é¼ş£¬Ôò·µ»Ø <code>true</code>£»·ñÔò·µ»Ø <code>false</code>¡£
+	 * ä»ä¸€èˆ¬åˆ—è¡¨ä¸­ç§»é™¤å‚æ•°çš„ç¬¬ä¸€ä¸ªï¼ˆç´¢å¼•æœ€å°çš„ï¼‰åŒ¹é…é¡¹ã€‚ 
+	 * @param obj è¦ç§»é™¤çš„ç»„ä»¶ ã€‚
+	 * @return å¦‚æœè¯¥å‚æ•°æ˜¯ä¸€èˆ¬åˆ—è¡¨çš„ä¸€ä¸ªç»„ä»¶ï¼Œåˆ™è¿”å› <code>true</code>ï¼›å¦åˆ™è¿”å› <code>false</code>ã€‚
 	 */
 	public boolean removeElement(Object obj){
 		int index = normalItemList.indexOf(obj);
@@ -344,26 +344,26 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	}
 	
 	/**
-	 * É¾³ıÖ¸¶¨Ë÷Òı´¦µÄ×é¼ş¡£ 
-	 * <p> Èç¹ûË÷ÒıÎŞĞ§£¬ÔòÅ×³ö IndexOutOfBoundsException¡£ 
-	 * <p> Èç¹ûĞòºÅĞ¡ÓÚµÚÒ»¸öÒ»°ãÌõÄ¿µÄĞòºÅ£¬Ôò»áÅ×³ö {@link IllegalArgumentException};
-	 * <p> ×¢£º¾¡¹Ü´Ë·½·¨Î´¹ıÊ±£¬µ«Ê×Ñ¡Ê¹ÓÃ·½·¨ÊÇ remove(int)£¬¸Ã·½·¨ÊµÏÖ 1.2 Collections ¿ò¼ÜÖĞ¶¨ÒåµÄ List ½Ó¿Ú¡£ 
-	 * @param index ÒªÒÆ³ı¶ÔÏóµÄË÷Òı
-	 * @throws IndexOutOfBoundsException ÏÂ±êÔ½½ç¡£
-	 * @throws IllegalArgumentException ÏÂ±êÂäÔÚÄ¬ÈÏÌõÄ¿ÇøÓò¡£
+	 * åˆ é™¤æŒ‡å®šç´¢å¼•å¤„çš„ç»„ä»¶ã€‚ 
+	 * <p> å¦‚æœç´¢å¼•æ— æ•ˆï¼Œåˆ™æŠ›å‡º IndexOutOfBoundsExceptionã€‚ 
+	 * <p> å¦‚æœåºå·å°äºç¬¬ä¸€ä¸ªä¸€èˆ¬æ¡ç›®çš„åºå·ï¼Œåˆ™ä¼šæŠ›å‡º {@link IllegalArgumentException};
+	 * <p> æ³¨ï¼šå°½ç®¡æ­¤æ–¹æ³•æœªè¿‡æ—¶ï¼Œä½†é¦–é€‰ä½¿ç”¨æ–¹æ³•æ˜¯ remove(int)ï¼Œè¯¥æ–¹æ³•å®ç° 1.2 Collections æ¡†æ¶ä¸­å®šä¹‰çš„ List æ¥å£ã€‚ 
+	 * @param index è¦ç§»é™¤å¯¹è±¡çš„ç´¢å¼•
+	 * @throws IndexOutOfBoundsException ä¸‹æ ‡è¶Šç•Œã€‚
+	 * @throws IllegalArgumentException ä¸‹æ ‡è½åœ¨é»˜è®¤æ¡ç›®åŒºåŸŸã€‚
 	 */
 	public void removeElementAt(int index){
 		remove(index);
 	}
 	
 	/**
-	 * É¾³ıÖ¸¶¨Ë÷Òı·¶Î§ÖĞµÄ×é¼ş¡£ÒÆ³ı×é¼ş°üÀ¨Ö¸¶¨·¶Î§Á½¸ö¶Ëµã´¦µÄ×é¼ş¡£
-	 * <p> Èç¹ûË÷ÒıÎŞĞ§£¬ÔòÅ×³ö IndexOutOfBoundsException¡£Èç¹û <code>fromIndex &gt; toIndex</code>£¬ÔòÅ×³ö IllegalArgumentException¡£
-	 * <p> Èç¹ûĞòºÅÖĞ°üº¬Ğ¡ÓÚµÚÒ»¸öÒ»°ãÌõÄ¿µÄĞòºÅ£¬Ôò»áÅ×³ö {@link IllegalArgumentException};
-	 * @param fromIndex ·¶Î§µÍ¶ËµãµÄË÷Òı¡£
-	 * @param toIndex ·¶Î§¸ß¶ËµãµÄË÷Òı¡£
-	 * @throws IndexOutOfBoundsException ÏÂ±êÔ½½ç
-	 * @throws IllegalArgumentException ÏÂ±êÇø¼äÖĞ°üº¬ÂäÔÚÄ¬ÈÏÌõÄ¿ÇøÓòµÄÏÂ±ê¡£
+	 * åˆ é™¤æŒ‡å®šç´¢å¼•èŒƒå›´ä¸­çš„ç»„ä»¶ã€‚ç§»é™¤ç»„ä»¶åŒ…æ‹¬æŒ‡å®šèŒƒå›´ä¸¤ä¸ªç«¯ç‚¹å¤„çš„ç»„ä»¶ã€‚
+	 * <p> å¦‚æœç´¢å¼•æ— æ•ˆï¼Œåˆ™æŠ›å‡º IndexOutOfBoundsExceptionã€‚å¦‚æœ <code>fromIndex &gt; toIndex</code>ï¼Œåˆ™æŠ›å‡º IllegalArgumentExceptionã€‚
+	 * <p> å¦‚æœåºå·ä¸­åŒ…å«å°äºç¬¬ä¸€ä¸ªä¸€èˆ¬æ¡ç›®çš„åºå·ï¼Œåˆ™ä¼šæŠ›å‡º {@link IllegalArgumentException};
+	 * @param fromIndex èŒƒå›´ä½ç«¯ç‚¹çš„ç´¢å¼•ã€‚
+	 * @param toIndex èŒƒå›´é«˜ç«¯ç‚¹çš„ç´¢å¼•ã€‚
+	 * @throws IndexOutOfBoundsException ä¸‹æ ‡è¶Šç•Œ
+	 * @throws IllegalArgumentException ä¸‹æ ‡åŒºé—´ä¸­åŒ…å«è½åœ¨é»˜è®¤æ¡ç›®åŒºåŸŸçš„ä¸‹æ ‡ã€‚
 	 */
 	public void removeRange(int fromIndex, int toIndex){
 		int defaultSize = defaultItemList.size();
@@ -383,15 +383,15 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	}
 	
 	/**
-	 * Ê¹ÓÃÖ¸¶¨ÔªËØÌæ»»´ËÁĞ±íÖĞÖ¸¶¨Î»ÖÃÉÏµÄÔªËØ¡£ 
-	 * <p> Èç¹ûË÷Òı³¬³ö·¶Î§<code>£¨index &lt; 0 || index &gt;= size()£©</code>£¬ÔòÅ×³ö IndexOutOfBoundsException¡£
-	 * <p> Èç¹ûĞòºÅĞ¡ÓÚµÚÒ»¸öÒ»°ãÌõÄ¿µÄĞòºÅ£¬Ôò»áÅ×³ö {@link IllegalArgumentException};
-	 * @param index ÒªÌæ»»µÄÔªËØµÄË÷Òı¡£
-	 * @param element Òª´æ´¢ÔÚÖ¸¶¨Î»ÖÃÉÏµÄÔªËØ¡£
-	 * @return ÒÔÇ°ÔÚÖ¸¶¨Î»ÖÃÉÏµÄÔªËØ¡£
-	 * @throws IndexOutOfBoundsException ÏÂ±êÔ½½ç¡£
-	 * @throws IllegalArgumentException ÏÂ±êÂäÔÚÄ¬ÈÏÌõÄ¿ÇøÓò¡£
-	 * @throws IndexOutOfBoundsException ÏÂ±êÔ½Ô½½ç¡£
+	 * ä½¿ç”¨æŒ‡å®šå…ƒç´ æ›¿æ¢æ­¤åˆ—è¡¨ä¸­æŒ‡å®šä½ç½®ä¸Šçš„å…ƒç´ ã€‚ 
+	 * <p> å¦‚æœç´¢å¼•è¶…å‡ºèŒƒå›´<code>ï¼ˆindex &lt; 0 || index &gt;= size()ï¼‰</code>ï¼Œåˆ™æŠ›å‡º IndexOutOfBoundsExceptionã€‚
+	 * <p> å¦‚æœåºå·å°äºç¬¬ä¸€ä¸ªä¸€èˆ¬æ¡ç›®çš„åºå·ï¼Œåˆ™ä¼šæŠ›å‡º {@link IllegalArgumentException};
+	 * @param index è¦æ›¿æ¢çš„å…ƒç´ çš„ç´¢å¼•ã€‚
+	 * @param element è¦å­˜å‚¨åœ¨æŒ‡å®šä½ç½®ä¸Šçš„å…ƒç´ ã€‚
+	 * @return ä»¥å‰åœ¨æŒ‡å®šä½ç½®ä¸Šçš„å…ƒç´ ã€‚
+	 * @throws IndexOutOfBoundsException ä¸‹æ ‡è¶Šç•Œã€‚
+	 * @throws IllegalArgumentException ä¸‹æ ‡è½åœ¨é»˜è®¤æ¡ç›®åŒºåŸŸã€‚
+	 * @throws IndexOutOfBoundsException ä¸‹æ ‡è¶Šè¶Šç•Œã€‚
 	 */
 	public E set(int index,E element){
 		if(index < 0 || index >= getSize()){
@@ -407,36 +407,36 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	}
 	
 	/**
-	 * ½«´ËÁĞ±íÖ¸¶¨ index ´¦µÄ×é¼şÉèÖÃÎªÖ¸¶¨µÄ¶ÔÏó¡£¶ªÆú¸ÃÎ»ÖÃÒÔÇ°µÄ×é¼ş¡£ 
-	 * <p> Èç¹ûË÷ÒıÎŞĞ§£¬ÔòÅ×³ö IndexOutOfBoundsException¡£ 
-	 * <p> Èç¹ûĞòºÅĞ¡ÓÚµÚÒ»¸öÒ»°ãÌõÄ¿µÄĞòºÅ£¬Ôò»áÅ×³ö {@link IllegalArgumentException};
-	 * <p> ×¢£º¾¡¹Ü´Ë·½·¨Î´¹ıÊ±£¬µ«Ê×Ñ¡Ê¹ÓÃ·½·¨ÊÇ set(int,Object)£¬¸Ã·½·¨ÊµÏÖ 1.2 Collections ¿ò¼ÜÖĞ¶¨ÒåµÄ List ½Ó¿Ú¡£ 
-	 * @param obj ×é¼şµÄÉèÖÃÄ¿±ê¡£
-	 * @param index Ö¸¶¨µÄË÷Òı¡£
-	 * @throws IndexOutOfBoundsException ÏÂ±êÔ½½ç¡£
-	 * @throws IllegalArgumentException ÏÂ±êÂäÔÚÄ¬ÈÏÌõÄ¿ÇøÓò¡£
+	 * å°†æ­¤åˆ—è¡¨æŒ‡å®š index å¤„çš„ç»„ä»¶è®¾ç½®ä¸ºæŒ‡å®šçš„å¯¹è±¡ã€‚ä¸¢å¼ƒè¯¥ä½ç½®ä»¥å‰çš„ç»„ä»¶ã€‚ 
+	 * <p> å¦‚æœç´¢å¼•æ— æ•ˆï¼Œåˆ™æŠ›å‡º IndexOutOfBoundsExceptionã€‚ 
+	 * <p> å¦‚æœåºå·å°äºç¬¬ä¸€ä¸ªä¸€èˆ¬æ¡ç›®çš„åºå·ï¼Œåˆ™ä¼šæŠ›å‡º {@link IllegalArgumentException};
+	 * <p> æ³¨ï¼šå°½ç®¡æ­¤æ–¹æ³•æœªè¿‡æ—¶ï¼Œä½†é¦–é€‰ä½¿ç”¨æ–¹æ³•æ˜¯ set(int,Object)ï¼Œè¯¥æ–¹æ³•å®ç° 1.2 Collections æ¡†æ¶ä¸­å®šä¹‰çš„ List æ¥å£ã€‚ 
+	 * @param obj ç»„ä»¶çš„è®¾ç½®ç›®æ ‡ã€‚
+	 * @param index æŒ‡å®šçš„ç´¢å¼•ã€‚
+	 * @throws IndexOutOfBoundsException ä¸‹æ ‡è¶Šç•Œã€‚
+	 * @throws IllegalArgumentException ä¸‹æ ‡è½åœ¨é»˜è®¤æ¡ç›®åŒºåŸŸã€‚
 	 */
 	public void setElementAt(E obj, int index){
 		set(index, obj);
 	}
 	
 	/**
-	 * ¸Ã·½·¨²»ÊµÏÖÈÎºÎ¶¯×÷£¬ÊµÏÖÕâ¸ö·½·¨ÊÇÎªÁË±£Ö¤Óë {@link DefaultListModel}ÖĞµÄ·½·¨Ò»ÖÂ¡£
-	 * @param newSize the newSize¡£
+	 * è¯¥æ–¹æ³•ä¸å®ç°ä»»ä½•åŠ¨ä½œï¼Œå®ç°è¿™ä¸ªæ–¹æ³•æ˜¯ä¸ºäº†ä¿è¯ä¸ {@link DefaultListModel}ä¸­çš„æ–¹æ³•ä¸€è‡´ã€‚
+	 * @param newSize the newSizeã€‚
 	 */
 	public void setSize(int newSize){}
 	
 	/**
-	 * ·µ»Ø´ËÁĞ±íÖĞµÄ×é¼şÊı¡£
-	 * @return ´ËÁĞ±íÖĞµÄ×é¼şÊı¡£
+	 * è¿”å›æ­¤åˆ—è¡¨ä¸­çš„ç»„ä»¶æ•°ã€‚
+	 * @return æ­¤åˆ—è¡¨ä¸­çš„ç»„ä»¶æ•°ã€‚
 	 */
 	public int size(){
 		return getSize();
 	}
 	
 	/**
-	 * ÒÔÕıÈ·Ë³Ğò·µ»Ø°üº¬Ä¬ÈÏÁĞ±íÒÔ¼°Ò»°ãÁĞ±íÖĞËùÓĞÔªËØµÄÊı×é¡£ 
-	 * @return °üº¬ÁĞ±íÔªËØµÄÊı×é¡£
+	 * ä»¥æ­£ç¡®é¡ºåºè¿”å›åŒ…å«é»˜è®¤åˆ—è¡¨ä»¥åŠä¸€èˆ¬åˆ—è¡¨ä¸­æ‰€æœ‰å…ƒç´ çš„æ•°ç»„ã€‚ 
+	 * @return åŒ…å«åˆ—è¡¨å…ƒç´ çš„æ•°ç»„ã€‚
 	 */
 	public Object[] toArray(){
 		Object[] arr1 = defaultItemList.toArray();
@@ -445,14 +445,14 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	}
 	
 	/**
-	 * ÒÔÕıÈ·Ë³Ğò·µ»Ø°üº¬Ä¬ÈÏÁĞ±íÒÔ¼°Ò»°ãÁĞ±íÖĞËùÓĞÔªËØµÄÊı×é¡£
-	 * ·µ»ØÊı×éµÄÔËĞĞÊ±ÀàĞÍÊÇÖ¸¶¨Êı×éµÄÔËĞĞÊ±ÀàĞÍ¡£Èç¹ûÖ¸¶¨µÄÊı×éÄÜÈİÄÉÁĞ±í£¬Ôò½«¸ÃÁĞ±í·µ»Ø´Ë´¦¡£
-	 * ·ñÔò£¬½«·ÖÅäÒ»¸ö¾ßÓĞÖ¸¶¨Êı×éµÄÔËĞĞÊ±ÀàĞÍºÍ´ËÁĞ±í´óĞ¡µÄĞÂÊı×é¡£
-	 * <p> Èç¹ûÖ¸¶¨µÄÊı×éÄÜÈİÄÉ¶ÓÁĞ£¬²¢ÓĞÊ£ÓàµÄ¿Õ¼ä£¨¼´Êı×éµÄÔªËØ±È¶ÓÁĞ¶à£©£¬ÄÇÃ´»á½«Êı×éÖĞ½ô½Ó collection Î²²¿µÄÔªËØÉèÖÃÎª null¡£
-	 * £¨½ö ÔÚµ÷ÓÃÕßÖªµÀÁĞ±íÖĞ²»°üº¬ÈÎºÎ null ÔªËØÊ±²ÅÄÜÓÃ´Ë·½·¨È·¶¨ÁĞ±í³¤¶È£©¡£  
-	 * @param a  ÒªÔÚÆäÖĞ´æ´¢ÁĞ±íÔªËØµÄÊı×é£¨Èç¹ûËü×ã¹»´ó£©£»·ñÔò£¬Îª´Ë·ÖÅäÒ»¸ö¾ßÓĞÏàÍ¬ÔËĞĞÊ±ÀàĞÍµÄĞÂÊı×é¡£
-	 * @param <T> ·ºĞÍT¡£ 
-	 * @return °üº¬ÁĞ±íÔªËØµÄÊı×é¡£
+	 * ä»¥æ­£ç¡®é¡ºåºè¿”å›åŒ…å«é»˜è®¤åˆ—è¡¨ä»¥åŠä¸€èˆ¬åˆ—è¡¨ä¸­æ‰€æœ‰å…ƒç´ çš„æ•°ç»„ã€‚
+	 * è¿”å›æ•°ç»„çš„è¿è¡Œæ—¶ç±»å‹æ˜¯æŒ‡å®šæ•°ç»„çš„è¿è¡Œæ—¶ç±»å‹ã€‚å¦‚æœæŒ‡å®šçš„æ•°ç»„èƒ½å®¹çº³åˆ—è¡¨ï¼Œåˆ™å°†è¯¥åˆ—è¡¨è¿”å›æ­¤å¤„ã€‚
+	 * å¦åˆ™ï¼Œå°†åˆ†é…ä¸€ä¸ªå…·æœ‰æŒ‡å®šæ•°ç»„çš„è¿è¡Œæ—¶ç±»å‹å’Œæ­¤åˆ—è¡¨å¤§å°çš„æ–°æ•°ç»„ã€‚
+	 * <p> å¦‚æœæŒ‡å®šçš„æ•°ç»„èƒ½å®¹çº³é˜Ÿåˆ—ï¼Œå¹¶æœ‰å‰©ä½™çš„ç©ºé—´ï¼ˆå³æ•°ç»„çš„å…ƒç´ æ¯”é˜Ÿåˆ—å¤šï¼‰ï¼Œé‚£ä¹ˆä¼šå°†æ•°ç»„ä¸­ç´§æ¥ collection å°¾éƒ¨çš„å…ƒç´ è®¾ç½®ä¸º nullã€‚
+	 * ï¼ˆä»… åœ¨è°ƒç”¨è€…çŸ¥é“åˆ—è¡¨ä¸­ä¸åŒ…å«ä»»ä½• null å…ƒç´ æ—¶æ‰èƒ½ç”¨æ­¤æ–¹æ³•ç¡®å®šåˆ—è¡¨é•¿åº¦ï¼‰ã€‚  
+	 * @param a  è¦åœ¨å…¶ä¸­å­˜å‚¨åˆ—è¡¨å…ƒç´ çš„æ•°ç»„ï¼ˆå¦‚æœå®ƒè¶³å¤Ÿå¤§ï¼‰ï¼›å¦åˆ™ï¼Œä¸ºæ­¤åˆ†é…ä¸€ä¸ªå…·æœ‰ç›¸åŒè¿è¡Œæ—¶ç±»å‹çš„æ–°æ•°ç»„ã€‚
+	 * @param <T> æ³›å‹Tã€‚ 
+	 * @return åŒ…å«åˆ—è¡¨å…ƒç´ çš„æ•°ç»„ã€‚
 	 */
 	public<T> T[] toArray(T[] a){
 		T[] t1 = defaultItemList.toArray(a);
@@ -490,34 +490,34 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	}
 
 	/**
-	 * ¸Ã·½·¨²»ÊµÏÖÈÎºÎ¶¯×÷£¬ÊµÏÖÕâ¸ö·½·¨ÊÇÎªÁË±£Ö¤Óë {@link DefaultListModel}ÖĞµÄ·½·¨Ò»ÖÂ¡£
+	 * è¯¥æ–¹æ³•ä¸å®ç°ä»»ä½•åŠ¨ä½œï¼Œå®ç°è¿™ä¸ªæ–¹æ³•æ˜¯ä¸ºäº†ä¿è¯ä¸ {@link DefaultListModel}ä¸­çš„æ–¹æ³•ä¸€è‡´ã€‚
 	 */
 	public void trimToSize(){}
 	
 	/**
-	 * »ñÈ¡µÚÒ»¸öÒ»°ãÌõÄ¿ËùÔÚµÄĞòºÅ¡£
-	 * @return µÚÒ»¸öÒ»°ãÌõÄ¿ËùÔÚµÄĞòºÅ¡£
+	 * è·å–ç¬¬ä¸€ä¸ªä¸€èˆ¬æ¡ç›®æ‰€åœ¨çš„åºå·ã€‚
+	 * @return ç¬¬ä¸€ä¸ªä¸€èˆ¬æ¡ç›®æ‰€åœ¨çš„åºå·ã€‚
 	 */
 	public int getFirstNormalItemIndex(){
 		return defaultItemList.size();
 	}
 	
 	/**
-	 * ²éÑ¯Ò»¸öÔªËØÊÇ·ñÊÇÄ¬ÈÏÔªËØ¡£
-	 * <p> Ò»¸öÔªËØ¿ÉÄÜÍ¬Ê±ÔÚÄ¬ÈÏÁĞ±íºÍÒ»°ãÁĞ±íÖ®¼ä£¬Òò´Ë´æÔÚÕâÖÖ¿ÉÄÜĞÔ£º
-	 * <br> <code> isDefaultItem(e) == isNormalItem(e) == true </code>¡£
-	 * @param element Ö¸¶¨µÄÔªËØ¡£
-	 * @return Ö¸¶¨µÄÔªËØÊÇ·ñÊÇÄ¬ÈÏÔªËØ¡£
+	 * æŸ¥è¯¢ä¸€ä¸ªå…ƒç´ æ˜¯å¦æ˜¯é»˜è®¤å…ƒç´ ã€‚
+	 * <p> ä¸€ä¸ªå…ƒç´ å¯èƒ½åŒæ—¶åœ¨é»˜è®¤åˆ—è¡¨å’Œä¸€èˆ¬åˆ—è¡¨ä¹‹é—´ï¼Œå› æ­¤å­˜åœ¨è¿™ç§å¯èƒ½æ€§ï¼š
+	 * <br> <code> isDefaultItem(e) == isNormalItem(e) == true </code>ã€‚
+	 * @param element æŒ‡å®šçš„å…ƒç´ ã€‚
+	 * @return æŒ‡å®šçš„å…ƒç´ æ˜¯å¦æ˜¯é»˜è®¤å…ƒç´ ã€‚
 	 */
 	public boolean isDefaultItem(Object element){
 		return defaultItemList.contains(element);
 	}
 	
 	/**
-	 * ²éÑ¯Ò»¸öÔªËØÊÇ·ñÊÇÄ¬ÈÏÔªËØ¡£
-	 * @param index ÔªËØµÄĞòºÅ¡£
-	 * @return ĞòºÅÖ¸ÏòµÄÔªËØÊÇ·ñÊÇÄ¬ÈÏÔªËØ¡£
-	 * @throws IndexOutOfBoundsException ÏÂ±êÔ½½ç¡£
+	 * æŸ¥è¯¢ä¸€ä¸ªå…ƒç´ æ˜¯å¦æ˜¯é»˜è®¤å…ƒç´ ã€‚
+	 * @param index å…ƒç´ çš„åºå·ã€‚
+	 * @return åºå·æŒ‡å‘çš„å…ƒç´ æ˜¯å¦æ˜¯é»˜è®¤å…ƒç´ ã€‚
+	 * @throws IndexOutOfBoundsException ä¸‹æ ‡è¶Šç•Œã€‚
 	 */
 	public boolean isDefaultItem(int index){
 		if(index < 0 || index >= getSize()){
@@ -527,31 +527,31 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	}
 	
 	/**
-	 * ²éÑ¯Ò»¸öÔªËØÊÇ·ñÊÇÒ»°ãÔªËØ¡£
-	 * <p> Ò»¸öÔªËØ¿ÉÄÜÍ¬Ê±ÔÚÄ¬ÈÏÁĞ±íºÍÒ»°ãÁĞ±íÖ®¼ä£¬Òò´Ë´æÔÚÕâÖÖ¿ÉÄÜĞÔ£º
-	 * <br> <code> isDefaultItem(e) == isNormalItem(e) == true </code>¡£
-	 * @param element Ö¸¶¨µÄÔªËØ¡£
-	 * @return Ö¸¶¨µÄÔªËØÊÇ·ñÊÇÒ»°ãÔªËØ¡£
+	 * æŸ¥è¯¢ä¸€ä¸ªå…ƒç´ æ˜¯å¦æ˜¯ä¸€èˆ¬å…ƒç´ ã€‚
+	 * <p> ä¸€ä¸ªå…ƒç´ å¯èƒ½åŒæ—¶åœ¨é»˜è®¤åˆ—è¡¨å’Œä¸€èˆ¬åˆ—è¡¨ä¹‹é—´ï¼Œå› æ­¤å­˜åœ¨è¿™ç§å¯èƒ½æ€§ï¼š
+	 * <br> <code> isDefaultItem(e) == isNormalItem(e) == true </code>ã€‚
+	 * @param element æŒ‡å®šçš„å…ƒç´ ã€‚
+	 * @return æŒ‡å®šçš„å…ƒç´ æ˜¯å¦æ˜¯ä¸€èˆ¬å…ƒç´ ã€‚
 	 */
 	public boolean isNormalItem(Object element){
 		return normalItemList.contains(element);
 	}
 	
 	/**
-	 * »ñÈ¡Ä¬ÈÏÔªËØÁĞ±í¡£
-	 * <p> ¶Ô¸ÃÁĞ±í½øĞĞ¸ü¸Ä¿ÉÒÔ½«Ğ§¹ûÁ¢¼´·´Ó³ÔÚÊÓÍ¼ÖĞ¡£µ«ÊÇ£¬ÓÉ¸ÃÁĞ±íÍ¨¹ı {@link List#subList(int, int)}·½·¨·µ»ØµÄ
-	 * ×ÓÁĞ±íÔòÎŞ·¨Ìá¹©ÕâÖÖÁ¢¼´·´À¡µÄĞ§¹û¡£
-	 * @return Ä¬ÈÏÔªËØÁĞ±í¡£
+	 * è·å–é»˜è®¤å…ƒç´ åˆ—è¡¨ã€‚
+	 * <p> å¯¹è¯¥åˆ—è¡¨è¿›è¡Œæ›´æ”¹å¯ä»¥å°†æ•ˆæœç«‹å³åæ˜ åœ¨è§†å›¾ä¸­ã€‚ä½†æ˜¯ï¼Œç”±è¯¥åˆ—è¡¨é€šè¿‡ {@link List#subList(int, int)}æ–¹æ³•è¿”å›çš„
+	 * å­åˆ—è¡¨åˆ™æ— æ³•æä¾›è¿™ç§ç«‹å³åé¦ˆçš„æ•ˆæœã€‚
+	 * @return é»˜è®¤å…ƒç´ åˆ—è¡¨ã€‚
 	 */
 	public List<E> getDefaultList(){
 		return this.defaultItemList;
 	}
 	
 	/**
-	 * »ñÈ¡Ò»°ãÔªËØÁĞ±í¡£
-	 * <p> ¶Ô¸ÃÁĞ±í½øĞĞ¸ü¸Ä¿ÉÒÔ½«Ğ§¹ûÁ¢¼´·´Ó³ÔÚÊÓÍ¼ÖĞ¡£µ«ÊÇ£¬ÓÉ¸ÃÁĞ±íÍ¨¹ı {@link List#subList(int, int)}·½·¨·µ»ØµÄ
-	 * ×ÓÁĞ±íÔòÎŞ·¨Ìá¹©ÕâÖÖÁ¢¼´·´À¡µÄĞ§¹û¡£
-	 * @return Ò»°ãÔªËØÁĞ±í¡£
+	 * è·å–ä¸€èˆ¬å…ƒç´ åˆ—è¡¨ã€‚
+	 * <p> å¯¹è¯¥åˆ—è¡¨è¿›è¡Œæ›´æ”¹å¯ä»¥å°†æ•ˆæœç«‹å³åæ˜ åœ¨è§†å›¾ä¸­ã€‚ä½†æ˜¯ï¼Œç”±è¯¥åˆ—è¡¨é€šè¿‡ {@link List#subList(int, int)}æ–¹æ³•è¿”å›çš„
+	 * å­åˆ—è¡¨åˆ™æ— æ³•æä¾›è¿™ç§ç«‹å³åé¦ˆçš„æ•ˆæœã€‚
+	 * @return ä¸€èˆ¬å…ƒç´ åˆ—è¡¨ã€‚
 	 */
 	public List<E> getNormalList(){
 		return this.normalItemList;

@@ -1,28 +1,39 @@
 package com.dwarfeng.dutil.develop.resource;
 
+import java.util.Objects;
+
+import com.dwarfeng.dutil.basic.DwarfUtil;
+import com.dwarfeng.dutil.basic.StringFieldKey;
+
 /**
- * ³éÏó×ÊÔ´¡£
- * <p> ×ÊÔ´½Ó¿ÚµÄ³éÏóÊµÏÖ¡£
+ * æŠ½è±¡èµ„æºã€‚
+ * <p>
+ * èµ„æºæ¥å£çš„æŠ½è±¡å®ç°ã€‚
+ * 
  * @author DwArFeng
  * @since 0.1.1-beta
  */
-public abstract class AbstractResource implements Resource{
+public abstract class AbstractResource implements Resource {
 
-	private final String key;
-	
-	
+	/** æŠ½è±¡èµ„æºçš„é”®ã€‚ */
+	protected final String key;
+
 	/**
-	 * Éú³ÉÒ»¸ö¾ßÓĞÖ¸¶¨¼üÖµµÄ³éÏó×ÊÔ´¡£
-	 * @param key Ö¸¶¨µÄ¼üÖµ¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * ç”Ÿæˆä¸€ä¸ªå…·æœ‰æŒ‡å®šé”®å€¼çš„æŠ½è±¡èµ„æºã€‚
+	 * 
+	 * @param key
+	 *            æŒ‡å®šçš„é”®å€¼ã€‚
+	 * @throws NullPointerException
+	 *             å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public AbstractResource(String key) {
-		//TODO ÅĞ¶ÏÈë¿Ú²ÎÊı²»ÄÜÎª null¡£
+		Objects.requireNonNull(key, DwarfUtil.getStringField(StringFieldKey.ABSTRACTRESOURCE_0));
 		this.key = key;
 	}
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.dwarfeng.dutil.basic.prog.WithKey#getKey()
 	 */
 	@Override

@@ -9,20 +9,20 @@ import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 
 /**
- * Á÷¼Ç¶ÁÈ¡Æ÷¡£
- * <p> ÓÃÁ÷ÊµÏÖµÄ¶ÁÈ¡Æ÷¡£
+ * æµè®°è¯»å–å™¨ã€‚
+ * <p> ç”¨æµå®ç°çš„è¯»å–å™¨ã€‚
  * @author DwArFeng
  * @since 0.0.3-beta
  */
 public abstract class StreamLoader<T> implements Closeable, Loader<T>{
 	
-	/**ÊäÈëÁ÷¡£*/
+	/**è¾“å…¥æµã€‚*/
 	protected final InputStream in;
 
 	/**
-	 * ĞÂÊµÀı¡£
-	 * @param in Ö¸¶¨µÄÊäÈëÁ÷¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * æ–°å®ä¾‹ã€‚
+	 * @param in æŒ‡å®šçš„è¾“å…¥æµã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public StreamLoader(InputStream in) {
 		Objects.requireNonNull(in, DwarfUtil.getStringField(StringFieldKey.STREAMLOADER_0));

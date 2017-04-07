@@ -1,11 +1,11 @@
 package com.dwarfeng.dutil.basic.prog;
 
 /**
- * ¶ÁÈ¡Æ÷¡£
+ * è¯»å–å™¨ã€‚
  * <p>
- * ÊµÏÖ¸Ã½Ó¿ÚÒâÎ¶×Å¸Ã¶ÔÏóÄÜ¹»½«Ä³Ğ©Êı¾İ¼ÓÔØµ½Ö¸¶¨µÄ¶ÔÏóÖĞ¡£
+ * å®ç°è¯¥æ¥å£æ„å‘³ç€è¯¥å¯¹è±¡èƒ½å¤Ÿå°†æŸäº›æ•°æ®åŠ è½½åˆ°æŒ‡å®šçš„å¯¹è±¡ä¸­ã€‚
  * 
- * @deprecated ¸ÃÀàµÄÎ»ÖÃ²»ºÏÀí£¬ÒÑ¾­ÓÉ {@link com.dwarfeng.dutil.basic.io.Loader}´úÌæ
+ * @deprecated è¯¥ç±»çš„ä½ç½®ä¸åˆç†ï¼Œå·²ç»ç”± {@link com.dwarfeng.dutil.basic.io.Loader}ä»£æ›¿
  * @author DwArFeng
  * @since 0.0.3-beta
  */

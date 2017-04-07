@@ -3,10 +3,10 @@ package com.dwarfeng.dutil.develop.resource;
 import com.dwarfeng.dutil.basic.cna.model.KeySetModel;
 
 /**
- * ×ÊÔ´´¦ÀíÆ÷¡£
+ * èµ„æºå¤„ç†å™¨ã€‚
  * <p>
- * ¸Ã½Ó¿Ú¸ºÔğ´¦Àí×ÊÔ´¡£ <br>
- * ¸Ã½Ó¿Ú±¾ÉíÊÇÒ»¸ö <code>KeySetModel</code>£¬²¢Ã»ÓĞ¸ü¶àµÄ·½·¨¡£
+ * è¯¥æ¥å£è´Ÿè´£å¤„ç†èµ„æºã€‚ <br>
+ * è¯¥æ¥å£æœ¬èº«æ˜¯ä¸€ä¸ª <code>KeySetModel</code>ï¼Œå¹¶æ²¡æœ‰æ›´å¤šçš„æ–¹æ³•ã€‚
  * 
  * @author DwArFeng
  * @since 0.1.1-beta

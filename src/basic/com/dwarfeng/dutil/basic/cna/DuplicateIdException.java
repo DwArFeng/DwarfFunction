@@ -4,9 +4,9 @@ import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 
 /**
- * IDÖØ¸´Òì³£¡£
- * <p>µ±Ä³Ğ©ÀàÖĞ°üº¬Ò»Ğ©¾ßÓĞIDÖµµÄ¼¯ºÏ£¬ÇÒ²»ÔÊĞíÆäIDÖµÖØ¸´¡£µ±ÏòÕâĞ©ÀàÖĞÊÔÍ¼Ìí¼ÓÒÑ¾­´æÔÚµÄIDÊ±Í¨³£
- * »áÅ×³ö¸ÃÒì³£¡£
+ * IDé‡å¤å¼‚å¸¸ã€‚
+ * <p>å½“æŸäº›ç±»ä¸­åŒ…å«ä¸€äº›å…·æœ‰IDå€¼çš„é›†åˆï¼Œä¸”ä¸å…è®¸å…¶IDå€¼é‡å¤ã€‚å½“å‘è¿™äº›ç±»ä¸­è¯•å›¾æ·»åŠ å·²ç»å­˜åœ¨çš„IDæ—¶é€šå¸¸
+ * ä¼šæŠ›å‡ºè¯¥å¼‚å¸¸ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
@@ -17,39 +17,39 @@ class DuplicateIdException extends Exception {
 	private int id;
 	
 	/**
-	 * Éú³ÉÒ»¸öÄ¬ÈÏµÄIDÖØ¸´Òì³£¡£
+	 * ç”Ÿæˆä¸€ä¸ªé»˜è®¤çš„IDé‡å¤å¼‚å¸¸ã€‚
 	 */
 	public DuplicateIdException() {
 		this(0,null,null);
 	}
 	/**
-	 * Éú³ÉÒ»¸ö¾ßÓĞÖ¸¶¨IDºÅµÄIDÒì³£¡£
-	 * @param id Ö¸¶¨µÄIDºÅ¡£
+	 * ç”Ÿæˆä¸€ä¸ªå…·æœ‰æŒ‡å®šIDå·çš„IDå¼‚å¸¸ã€‚
+	 * @param id æŒ‡å®šçš„IDå·ã€‚
 	 */
 	public DuplicateIdException(int id){
 		this(id,null,null);
 	}
 	/**
-	 * Éú³ÉÒ»¸ö¾ßÓĞÖ¸¶¨IDºÅ£¬Ö¸¶¨µÄÒì³£ĞÅÏ¢µÄIDÖØ¸´Òì³£¡£
-	 * @param id Ö¸¶¨µÄIDºÅ¡£
-	 * @param message Ö¸¶¨µÄÒì³£ĞÅÏ¢¡£
+	 * ç”Ÿæˆä¸€ä¸ªå…·æœ‰æŒ‡å®šIDå·ï¼ŒæŒ‡å®šçš„å¼‚å¸¸ä¿¡æ¯çš„IDé‡å¤å¼‚å¸¸ã€‚
+	 * @param id æŒ‡å®šçš„IDå·ã€‚
+	 * @param message æŒ‡å®šçš„å¼‚å¸¸ä¿¡æ¯ã€‚
 	 */
 	public DuplicateIdException(int id,String message) {
 		this(id,message,null);
 	}
 	/**
-	 * Éú³ÉÒ»¸ö¾ßÓĞÖ¸¶¨µÄIDºÅ£¬Ö¸¶¨µÄ·¢ÉúÔ­ÒòµÄIDÖØ¸´Òì³£¡£
-	 * @param id Ö¸¶¨µÄIDºÅ¡£
-	 * @param cause Ö¸¶¨µÄ·¢ÉúÔ­Òò¡£
+	 * ç”Ÿæˆä¸€ä¸ªå…·æœ‰æŒ‡å®šçš„IDå·ï¼ŒæŒ‡å®šçš„å‘ç”ŸåŸå› çš„IDé‡å¤å¼‚å¸¸ã€‚
+	 * @param id æŒ‡å®šçš„IDå·ã€‚
+	 * @param cause æŒ‡å®šçš„å‘ç”ŸåŸå› ã€‚
 	 */
 	public DuplicateIdException(int id,Throwable cause) {
 		this(id,null,cause);
 	}
 	/**
-	 * Éú³ÉÒ»¸ö¾ßÓĞÖ¸¶¨µÄIDºÅ£¬Ö¸¶¨µÄÒì³£ĞÅÏ¢£¬Ö¸¶¨µÄÒì³£·¢ÉúÔ­ÒòµÄIDÖØ¸´Òì³£¡£
-	 * @param id Ö¸¶¨µÄIDºÅ¡£
-	 * @param message Ö¸¶¨µÄÒì³£ĞÅÏ¢¡£
-	 * @param cause Ö¸¶¨µÄÒì³£·¢ÉúÔ­Òò¡£
+	 * ç”Ÿæˆä¸€ä¸ªå…·æœ‰æŒ‡å®šçš„IDå·ï¼ŒæŒ‡å®šçš„å¼‚å¸¸ä¿¡æ¯ï¼ŒæŒ‡å®šçš„å¼‚å¸¸å‘ç”ŸåŸå› çš„IDé‡å¤å¼‚å¸¸ã€‚
+	 * @param id æŒ‡å®šçš„IDå·ã€‚
+	 * @param message æŒ‡å®šçš„å¼‚å¸¸ä¿¡æ¯ã€‚
+	 * @param cause æŒ‡å®šçš„å¼‚å¸¸å‘ç”ŸåŸå› ã€‚
 	 */
 	public DuplicateIdException(int id,String message, Throwable cause) {
 		super(message, cause);
@@ -57,8 +57,8 @@ class DuplicateIdException extends Exception {
 	}
 	
 	/**
-	 * ·µ»Ø¸ÃIDÖØ¸´Òì³£µÄÖØ¸´IDºÅ¡£
-	 * @return IDºÅ¡£
+	 * è¿”å›è¯¥IDé‡å¤å¼‚å¸¸çš„é‡å¤IDå·ã€‚
+	 * @return IDå·ã€‚
 	 */
 	public int getID(){return this.id;}
 	

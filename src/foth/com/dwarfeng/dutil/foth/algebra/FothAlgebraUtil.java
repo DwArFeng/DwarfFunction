@@ -9,18 +9,18 @@ import com.dwarfeng.dutil.basic.num.NumberValue;
 import com.dwarfeng.dutil.basic.num.QuickNumberValueable;
 
 /**
- * ´úÊı°ü¹¤¾ßÀà¡£
- * <p> ¸ÃÀàÌá¹©Ò»Ğ©ÔÚ´úÊıÖĞĞèÒªÊ¹ÓÃµÄ¹¤¾ß·½·¨¡£
+ * ä»£æ•°åŒ…å·¥å…·ç±»ã€‚
+ * <p> è¯¥ç±»æä¾›ä¸€äº›åœ¨ä»£æ•°ä¸­éœ€è¦ä½¿ç”¨çš„å·¥å…·æ–¹æ³•ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public final class FothAlgebraUtil {
 	
 	/**
-	 * ½«Ö¸¶¨µÄÖµ¶ÔÏóÊı×é×ª»»ÎªÏàÓ¦µÄdouble Êı×é¡£
-	 * @param vals Ö¸¶¨µÄÖµÊı×é¡£
-	 * @return ×ª»»³ÉµÄdoubleÊı×é¡£
-	 * @throws NullPointerException Èë¿ÚÊı×éÎª <code>null</code> »òÕßÆäÖĞº¬ÓĞ <code>null</code>ÔªËØ¡£
+	 * å°†æŒ‡å®šçš„å€¼å¯¹è±¡æ•°ç»„è½¬æ¢ä¸ºç›¸åº”çš„double æ•°ç»„ã€‚
+	 * @param vals æŒ‡å®šçš„å€¼æ•°ç»„ã€‚
+	 * @return è½¬æ¢æˆçš„doubleæ•°ç»„ã€‚
+	 * @throws NullPointerException å…¥å£æ•°ç»„ä¸º <code>null</code> æˆ–è€…å…¶ä¸­å«æœ‰ <code>null</code>å…ƒç´ ã€‚
 	 */
 	public static double[] takeValues(FothValue[] vals){
 		ArrayUtil.requireNotContainsNull(vals, DwarfUtil.getStringField(StringFieldKey.FOTHALGEBRAUTIL_0));
@@ -32,10 +32,10 @@ public final class FothAlgebraUtil {
 	}
 	
 	/**
-	 * ½«¸ÃÖµ½Ó¿Ú×ª»»Îªdfunc°üÖĞµÄ¶àÌ¬Öµ½Ó¿Ú¡£
-	 * @param val Ö¸¶¨µÄÖµ½Ó¿Ú¡£
-	 * @return ×ª»»³ÉµÄ¶àÌ¬Öµ½Ó¿Ú¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * å°†è¯¥å€¼æ¥å£è½¬æ¢ä¸ºdfuncåŒ…ä¸­çš„å¤šæ€å€¼æ¥å£ã€‚
+	 * @param val æŒ‡å®šçš„å€¼æ¥å£ã€‚
+	 * @return è½¬æ¢æˆçš„å¤šæ€å€¼æ¥å£ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static NumberValue toMusValueable(FothValue val){
 		return new QuickNumberValueable(val.value());
@@ -43,10 +43,10 @@ public final class FothAlgebraUtil {
 	
 	
 	/**
-	 * ½«Ë«¾«¶È¸¡µãÊı×é×ª»»ÎªÒ»¸öÖµÊı×é¡£
-	 * @param ds Ö¸¶¨µÄË«¾«¶È¸¡µãÊı×é¡£
-	 * @return ÖµÊı×é¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * å°†åŒç²¾åº¦æµ®ç‚¹æ•°ç»„è½¬æ¢ä¸ºä¸€ä¸ªå€¼æ•°ç»„ã€‚
+	 * @param ds æŒ‡å®šçš„åŒç²¾åº¦æµ®ç‚¹æ•°ç»„ã€‚
+	 * @return å€¼æ•°ç»„ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static FothValue[] toFothValues(double[] ds){
 		Objects.requireNonNull(ds, DwarfUtil.getStringField(StringFieldKey.FOTHALGEBRAUTIL_1));
@@ -59,12 +59,12 @@ public final class FothAlgebraUtil {
 	}
 	
 	/**
-	 * ÅĞ¶ÏÁ½¸ö±äÁ¿ÊÇ·ñ³åÍ»¡£
-	 * <p> ÓĞ¹ØÓÚ³åÍ»µÄ¸ÅÄî£¬Çë²ÎÕÕ {@link FothVariable}¡£
-	 * @param v1 µÚÒ»¸ö±äÁ¿¡£
-	 * @param v2 µÚ¶ş¸ö±äÁ¿¡£
-	 * @return Á½¸ö±äÁ¿ÊÇ·ñ³åÍ»¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * åˆ¤æ–­ä¸¤ä¸ªå˜é‡æ˜¯å¦å†²çªã€‚
+	 * <p> æœ‰å…³äºå†²çªçš„æ¦‚å¿µï¼Œè¯·å‚ç…§ {@link FothVariable}ã€‚
+	 * @param v1 ç¬¬ä¸€ä¸ªå˜é‡ã€‚
+	 * @param v2 ç¬¬äºŒä¸ªå˜é‡ã€‚
+	 * @return ä¸¤ä¸ªå˜é‡æ˜¯å¦å†²çªã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static boolean checkConflict(FothVariable v1, FothVariable v2){
 		Objects.requireNonNull(v1, DwarfUtil.getStringField(StringFieldKey.FOTHALGEBRAUTIL_2));
@@ -73,7 +73,7 @@ public final class FothAlgebraUtil {
 		return v1 != v2 && v1.getName().equals(v2.getName());
 	}
 	
-	//½ûÖ¹Íâ²¿ÊµÀı»¯¡£
+	//ç¦æ­¢å¤–éƒ¨å®ä¾‹åŒ–ã€‚
 	private FothAlgebraUtil(){}
 
 }

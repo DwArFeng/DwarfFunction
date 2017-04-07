@@ -3,54 +3,54 @@ package com.dwarfeng.dutil.math.linalge;
 import com.dwarfeng.dutil.math.MathObject;
 
 /**
- * ´ú±íĞĞÏòÁ¿µÄ½Ó¿Ú¡£
+ * ä»£è¡¨è¡Œå‘é‡çš„æ¥å£ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public interface RowVector extends MathObject, LinalgeVector{
 	
 	/**
-	 * ĞĞÏòÁ¿µÄ¼Ó·¨¡£
-	 * <p> ¸ÃĞĞÏòÁ¿ÓëÖ¸¶¨µÄĞĞÏòÁ¿Ïà¼Ó¡£
-	 * @param rowVector Ö¸¶¨µÄĞĞÏòÁ¿¡£
-	 * @return Ïà¼ÓµÃµ½µÄĞÂµÄĞĞÏòÁ¿¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
-	 * @throws IllegalArgumentException ĞĞÏòÁ¿µÄ´óĞ¡²»Æ¥Åä¡£
+	 * è¡Œå‘é‡çš„åŠ æ³•ã€‚
+	 * <p> è¯¥è¡Œå‘é‡ä¸æŒ‡å®šçš„è¡Œå‘é‡ç›¸åŠ ã€‚
+	 * @param rowVector æŒ‡å®šçš„è¡Œå‘é‡ã€‚
+	 * @return ç›¸åŠ å¾—åˆ°çš„æ–°çš„è¡Œå‘é‡ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
+	 * @throws IllegalArgumentException è¡Œå‘é‡çš„å¤§å°ä¸åŒ¹é…ã€‚
 	 */
 	public RowVector add(RowVector rowVector);
 	
 	/**
-	 * ĞĞÏòÁ¿µÄ¼õ·¨¡£
-	 * <p> ¸ÃĞĞÏòÁ¿ÓëÖ¸¶¨µÄĞĞÏòÁ¿Ïà¼õ¡£
-	 * @param rowVector Ö¸¶¨µÄĞĞÏòÁ¿¡£
-	 * @return Ïà¼õµÃµ½µÄĞÂµÄĞĞÏòÁ¿¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
-	 * @throws IllegalArgumentException ĞĞÏòÁ¿µÄ´óĞ¡²»Æ¥Åä¡£
+	 * è¡Œå‘é‡çš„å‡æ³•ã€‚
+	 * <p> è¯¥è¡Œå‘é‡ä¸æŒ‡å®šçš„è¡Œå‘é‡ç›¸å‡ã€‚
+	 * @param rowVector æŒ‡å®šçš„è¡Œå‘é‡ã€‚
+	 * @return ç›¸å‡å¾—åˆ°çš„æ–°çš„è¡Œå‘é‡ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
+	 * @throws IllegalArgumentException è¡Œå‘é‡çš„å¤§å°ä¸åŒ¹é…ã€‚
 	 */
 	public RowVector minus(RowVector rowVector);
 	
 	/**
-	 * ĞĞÏòÁ¿µÄ³Ë·¨¡£
-	 * <p> ¸ÃĞĞÏòÁ¿ÓëÖ¸¶¨µÄÁĞÏòÁ¿Ïà³Ë¡£
-	 * @param columnVector Ö¸¶¨µÄÁĞÏòÁ¿¡£
-	 * @return Ïà³ËµÃµ½µÄĞÂµÄÁĞÏòÁ¿¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
-	 * @throws IllegalArgumentException ÁĞÏòÁ¿µÄ´óĞ¡²»Æ¥Åä¡£
+	 * è¡Œå‘é‡çš„ä¹˜æ³•ã€‚
+	 * <p> è¯¥è¡Œå‘é‡ä¸æŒ‡å®šçš„åˆ—å‘é‡ç›¸ä¹˜ã€‚
+	 * @param columnVector æŒ‡å®šçš„åˆ—å‘é‡ã€‚
+	 * @return ç›¸ä¹˜å¾—åˆ°çš„æ–°çš„åˆ—å‘é‡ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
+	 * @throws IllegalArgumentException åˆ—å‘é‡çš„å¤§å°ä¸åŒ¹é…ã€‚
 	 */
 	public double mul(ColumnVector columnVector);
 	
 	/**
-	 * ĞĞÏòÁ¿µÄËõ·ÅÔËËã¡£
-	 * <p> ¸ÃĞĞÏòÁ¿ÓëÖ¸¶¨µÄÖµÏà³Ë¡£
-	 * @param val Ö¸¶¨µÄÖµ¡£
-	 * @return Ëõ·ÅµÃµ½µÄĞÂµÄĞĞÏòÁ¿¡£
+	 * è¡Œå‘é‡çš„ç¼©æ”¾è¿ç®—ã€‚
+	 * <p> è¯¥è¡Œå‘é‡ä¸æŒ‡å®šçš„å€¼ç›¸ä¹˜ã€‚
+	 * @param val æŒ‡å®šçš„å€¼ã€‚
+	 * @return ç¼©æ”¾å¾—åˆ°çš„æ–°çš„è¡Œå‘é‡ã€‚
 	 */
 	public RowVector scale(double val);
 	
 	/**
-	 * ĞĞÏòÁ¿µÄ×ªÖÃÔËËã¡£
-	 * <p> ¸ÃĞĞÏòÁ¿µÄ×ªÖÃ¡£
-	 * @return ĞĞÏòÁ¿×ªÖÃµÃµ½µÄĞÂµÄÁĞÏòÁ¿¡£
+	 * è¡Œå‘é‡çš„è½¬ç½®è¿ç®—ã€‚
+	 * <p> è¯¥è¡Œå‘é‡çš„è½¬ç½®ã€‚
+	 * @return è¡Œå‘é‡è½¬ç½®å¾—åˆ°çš„æ–°çš„åˆ—å‘é‡ã€‚
 	 */
 	public ColumnVector trans();
 	

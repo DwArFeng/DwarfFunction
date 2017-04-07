@@ -8,26 +8,26 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.num.unit.Angle;
 
 /**
- * Êı¾İ×ª»»Àà¡£
- * <p> Ìá¹©³£ÓÃµÄÊı¾İ×ª»»·½·¨Óë³£ÓÃµÄÊı¾İ½á¹¹ÓëbyteÊı×éÏà»¥×ª»»µÄ·½·¨¡£
- * <p> ÓÉÓÚÊÇÖ»º¬ÓĞ¾²Ì¬·½·¨µÄ¹¤¾ß°ü£¬ËùÒÔ¸ÃÀàÎŞ·¨±»¼Ì³Ğ¡£
- * <p> ¸ÃÀàÌá¹©µ¥Î»»»ËãÏà¹ØµÄ·½·¨¡£
- * <br> Çë×¢Òâ£¬»»Ëã·½·¨ÓÉÓÚÉæ¼°¸¡µãÔËËã£¬¾«¶È»áÉÔÓĞÎó²î¡£
- * <br> ¸Ã°ü¶¨ÒåÁË²¿·Ö³£ÓÃµÄ»»ËãÃ¶¾Ù£¬ÕâÑù¾Í±ÜÃâÁËÓÃ»§ÔÚ³£¼ûµÄµ¥Î»»»ËãÖĞ»¨·ÑÊ±¼ä¡£±ÈÈç {@linkplain Angle}
- * <br> Çë×¢Òâ£¬ËäÈ»»»Ëã·½·¨ÖĞ£¬<code>u1</code>ºÍ<code>u2</code>¿ÉÒÔÓÃ²»Í¬Ã¶¾ÙÖĞµÄ
- * ×Ö¶Î£¬µ«ÊÇÕâÑùÊÇÃ»ÓĞÒâÒåµÄ£¬Çë²»ÒªÕâÑù×ö¡£
+ * æ•°æ®è½¬æ¢ç±»ã€‚
+ * <p> æä¾›å¸¸ç”¨çš„æ•°æ®è½¬æ¢æ–¹æ³•ä¸å¸¸ç”¨çš„æ•°æ®ç»“æ„ä¸byteæ•°ç»„ç›¸äº’è½¬æ¢çš„æ–¹æ³•ã€‚
+ * <p> ç”±äºæ˜¯åªå«æœ‰é™æ€æ–¹æ³•çš„å·¥å…·åŒ…ï¼Œæ‰€ä»¥è¯¥ç±»æ— æ³•è¢«ç»§æ‰¿ã€‚
+ * <p> è¯¥ç±»æä¾›å•ä½æ¢ç®—ç›¸å…³çš„æ–¹æ³•ã€‚
+ * <br> è¯·æ³¨æ„ï¼Œæ¢ç®—æ–¹æ³•ç”±äºæ¶‰åŠæµ®ç‚¹è¿ç®—ï¼Œç²¾åº¦ä¼šç¨æœ‰è¯¯å·®ã€‚
+ * <br> è¯¥åŒ…å®šä¹‰äº†éƒ¨åˆ†å¸¸ç”¨çš„æ¢ç®—æšä¸¾ï¼Œè¿™æ ·å°±é¿å…äº†ç”¨æˆ·åœ¨å¸¸è§çš„å•ä½æ¢ç®—ä¸­èŠ±è´¹æ—¶é—´ã€‚æ¯”å¦‚ {@linkplain Angle}
+ * <br> è¯·æ³¨æ„ï¼Œè™½ç„¶æ¢ç®—æ–¹æ³•ä¸­ï¼Œ<code>u1</code>å’Œ<code>u2</code>å¯ä»¥ç”¨ä¸åŒæšä¸¾ä¸­çš„
+ * å­—æ®µï¼Œä½†æ˜¯è¿™æ ·æ˜¯æ²¡æœ‰æ„ä¹‰çš„ï¼Œè¯·ä¸è¦è¿™æ ·åšã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public final class NumberUtil {
 
-	//²»ÄÜ½øĞĞÊµÀı»¯
+	//ä¸èƒ½è¿›è¡Œå®ä¾‹åŒ–
 	private NumberUtil(){}
 	
 	/**
-	 * ½«intÊı¾İÀàĞÍ×ª»¯ÎªbyteÊı×é¡£
-	 * @param i Ö¸¶¨µÄintÊı¾İÀàĞÍ¡£
-	 * @return ×ª»»ºóµÄbyteÊı×é¡£
+	 * å°†intæ•°æ®ç±»å‹è½¬åŒ–ä¸ºbyteæ•°ç»„ã€‚
+	 * @param i æŒ‡å®šçš„intæ•°æ®ç±»å‹ã€‚
+	 * @return è½¬æ¢åçš„byteæ•°ç»„ã€‚
 	 */
 	public static byte[] int2Byte(int i){
 		
@@ -36,10 +36,10 @@ public final class NumberUtil {
 		return buffer.array();
 	}
 	/**
-	 * ½«Ö¸¶¨µÄbyteÊı×é×ª»»ÎªintÊı¾İÀàĞÍ¡£
-	 * <p>Ö¸¶¨µÄbyteÊı×é½«»á×Ô¶¯µÄ±»²Ã¼ô»òÌí¼Óµ½4Î»¡£
-	 * @param bytes Ö¸¶¨µÄbyteÊı×é¡£
-	 * @return ×ª»»ºóµÄintÊı¾İÀàĞÍ¡£
+	 * å°†æŒ‡å®šçš„byteæ•°ç»„è½¬æ¢ä¸ºintæ•°æ®ç±»å‹ã€‚
+	 * <p>æŒ‡å®šçš„byteæ•°ç»„å°†ä¼šè‡ªåŠ¨çš„è¢«è£å‰ªæˆ–æ·»åŠ åˆ°4ä½ã€‚
+	 * @param bytes æŒ‡å®šçš„byteæ•°ç»„ã€‚
+	 * @return è½¬æ¢åçš„intæ•°æ®ç±»å‹ã€‚
 	 */
 	public static int byte2Int(byte[] bytes){
 		ByteBuffer buffer = ByteBuffer.allocate(4);
@@ -47,9 +47,9 @@ public final class NumberUtil {
 		return buffer.getInt();
 	}
 	/**
-	 * ½«longÊı¾İÀàĞÍ×ª»»ÎªbyteÊı×é¡£
-	 * @param l Ö¸¶¨µÄlongÊı¾İÀàĞÍ¡£
-	 * @return ×ª»»ºóµÄbyteÊı×é¡£
+	 * å°†longæ•°æ®ç±»å‹è½¬æ¢ä¸ºbyteæ•°ç»„ã€‚
+	 * @param l æŒ‡å®šçš„longæ•°æ®ç±»å‹ã€‚
+	 * @return è½¬æ¢åçš„byteæ•°ç»„ã€‚
 	 */
 	public static byte[] long2Byte(long l){
 		ByteBuffer buffer = ByteBuffer.allocate(8);
@@ -57,10 +57,10 @@ public final class NumberUtil {
 		return buffer.array();
 	}
 	/**
-	 * ½«byteÊı×é×ª»»ÎªlongÊı¾İÀàĞÍ¡£
-	 * <p>Ö¸¶¨µÄbyteÊı×é½«»á×Ô¶¯±»²Ã¼ô»òÌí¼Óµ½8Î»¡£
-	 * @param bytes Ö¸¶¨µÄbyteÊı×é¡£
-	 * @return ×ª»»ºóµÄlongÊı¾İÀàĞÍ¡£
+	 * å°†byteæ•°ç»„è½¬æ¢ä¸ºlongæ•°æ®ç±»å‹ã€‚
+	 * <p>æŒ‡å®šçš„byteæ•°ç»„å°†ä¼šè‡ªåŠ¨è¢«è£å‰ªæˆ–æ·»åŠ åˆ°8ä½ã€‚
+	 * @param bytes æŒ‡å®šçš„byteæ•°ç»„ã€‚
+	 * @return è½¬æ¢åçš„longæ•°æ®ç±»å‹ã€‚
 	 */
 	public static long byte2Long(byte[] bytes){
 		ByteBuffer buffer = ByteBuffer.allocate(8);
@@ -68,9 +68,9 @@ public final class NumberUtil {
 		return buffer.getLong();
 	}
 	/**
-	 * ½«floatÊı¾İÀàĞÍ×ª»»ÎªbyteÊı×é¡£
-	 * @param f Ö¸¶¨µÄfloatÊı¾İÀàĞÍ¡£
-	 * @return ×ª»»ºóµÄbyteÊı×é¡£
+	 * å°†floatæ•°æ®ç±»å‹è½¬æ¢ä¸ºbyteæ•°ç»„ã€‚
+	 * @param f æŒ‡å®šçš„floatæ•°æ®ç±»å‹ã€‚
+	 * @return è½¬æ¢åçš„byteæ•°ç»„ã€‚
 	 */
 	public static byte[] float2Byte(float f){
 		ByteBuffer buffer = ByteBuffer.allocate(4);
@@ -78,10 +78,10 @@ public final class NumberUtil {
 		return buffer.array();
 	}
 	/**
-	 * ½«byteÊı×é×ª»»ÎªfloatÊı¾İÀàĞÍ¡£
-	 * <p>Ö¸¶¨µÄbyteÊı×é½«»á×Ô¶¯±»²Ã¼ô»òÌí¼Óµ½4Î»¡£
-	 * @param bytes Ö¸¶¨µÄbyteÊı×é¡£
-	 * @return ×ª»»ºóµÄfloatÊı¾İÀàĞÍ¡£
+	 * å°†byteæ•°ç»„è½¬æ¢ä¸ºfloatæ•°æ®ç±»å‹ã€‚
+	 * <p>æŒ‡å®šçš„byteæ•°ç»„å°†ä¼šè‡ªåŠ¨è¢«è£å‰ªæˆ–æ·»åŠ åˆ°4ä½ã€‚
+	 * @param bytes æŒ‡å®šçš„byteæ•°ç»„ã€‚
+	 * @return è½¬æ¢åçš„floatæ•°æ®ç±»å‹ã€‚
 	 */
 	public static float byte2Float(byte[] bytes){
 		ByteBuffer buffer = ByteBuffer.allocate(4);
@@ -89,9 +89,9 @@ public final class NumberUtil {
 		return buffer.getFloat();
 	}
 	/**
-	 * ½«doubleÀàĞÍ×ª»»ÎªbyteÊı×é¡£
-	 * @param d Ö¸¶¨µÄdoubleÊı¾İÀàĞÍ¡£
-	 * @return ×ª»»ºóµÄbyteÊı×é¡£
+	 * å°†doubleç±»å‹è½¬æ¢ä¸ºbyteæ•°ç»„ã€‚
+	 * @param d æŒ‡å®šçš„doubleæ•°æ®ç±»å‹ã€‚
+	 * @return è½¬æ¢åçš„byteæ•°ç»„ã€‚
 	 */
 	public static byte[] double2Byte(double d){
 		ByteBuffer buffer = ByteBuffer.allocate(8);
@@ -99,10 +99,10 @@ public final class NumberUtil {
 		return buffer.array();
 	}
 	/**
-	 * ½«byteÊı×é×ª»»ÎªdoubleÊı¾İÀàĞÍ¡£
-	 * <p>Ö¸¶¨µÄbyteÊı×é½«»á×Ô¶¯±»²Ã¼ô»òÌí¼Óµ½8Î»¡£
-	 * @param bytes Ö¸¶¨µÄbyteÊı×é¡£
-	 * @return ×ª»»ºóµÄdoubleÊı¾İÀàĞÍ¡£
+	 * å°†byteæ•°ç»„è½¬æ¢ä¸ºdoubleæ•°æ®ç±»å‹ã€‚
+	 * <p>æŒ‡å®šçš„byteæ•°ç»„å°†ä¼šè‡ªåŠ¨è¢«è£å‰ªæˆ–æ·»åŠ åˆ°8ä½ã€‚
+	 * @param bytes æŒ‡å®šçš„byteæ•°ç»„ã€‚
+	 * @return è½¬æ¢åçš„doubleæ•°æ®ç±»å‹ã€‚
 	 */
 	public static double byte2Double(byte[] bytes){
 		ByteBuffer buffer = ByteBuffer.allocate(8);
@@ -110,9 +110,9 @@ public final class NumberUtil {
 		return buffer.getDouble();
 	}
 	/**
-	 * ½«shortÊı¾İÀàĞÍ×ª»»ÎªbyteÊı×é¡£
-	 * @param s Ö¸¶¨µÄshortÊı¾İÀàĞÍ¡£
-	 * @return ×ª»»ºóµÄbyteÊı×é¡£
+	 * å°†shortæ•°æ®ç±»å‹è½¬æ¢ä¸ºbyteæ•°ç»„ã€‚
+	 * @param s æŒ‡å®šçš„shortæ•°æ®ç±»å‹ã€‚
+	 * @return è½¬æ¢åçš„byteæ•°ç»„ã€‚
 	 */
 	public static byte[] short2Double(short s){
 		ByteBuffer buffer = ByteBuffer.allocate(2);
@@ -120,10 +120,10 @@ public final class NumberUtil {
 		return buffer.array();
 	}
 	/**
-	 * ½«byteÊı×é×ª»»ÎªshortÊı¾İÀàĞÍ¡£
-	 * <p>Ö¸¶¨µÄbyteÊı×é½«»á×Ô¶¯µÄ±»²Ã¼ô»òÌí¼Óµ½2Î»¡£
-	 * @param bytes Ö¸¶¨µÄbyteÊı×é¡£
-	 * @return ×ª»»ºóµÄshortÊı¾İÀàĞÍ¡£
+	 * å°†byteæ•°ç»„è½¬æ¢ä¸ºshortæ•°æ®ç±»å‹ã€‚
+	 * <p>æŒ‡å®šçš„byteæ•°ç»„å°†ä¼šè‡ªåŠ¨çš„è¢«è£å‰ªæˆ–æ·»åŠ åˆ°2ä½ã€‚
+	 * @param bytes æŒ‡å®šçš„byteæ•°ç»„ã€‚
+	 * @return è½¬æ¢åçš„shortæ•°æ®ç±»å‹ã€‚
 	 */
 	public static short byte2Short(byte[] bytes){
 		ByteBuffer buffer = ByteBuffer.allocate(2);
@@ -132,14 +132,14 @@ public final class NumberUtil {
 	}
 	
 	/**
-	 * ½«byteÊı×é½øĞĞ²Ã¼ôµ½´ïÖ¸¶¨µÄÎ»Êı¡£
-	 * Èç¹ûÊı×éµÄÎ»Êı¶àÓàÖ¸¶¨µÄÎ»Êı£¬Ôò½øĞĞ²Ã¼ô£»Èç¹ûÊı×éµÄÎ»ÊıÉÙÓÚÖ¸¶¨µÄÎ»Êı£¬Ôò½øĞĞ²¹0¡£
-	 * @param bytes Ö¸¶¨µÄÊı×é¡£
-	 * @param length ĞèÒª²Ã¼ôµ½µÄ³¤¶È¡£
-	 * @return ²Ã¼ôºóµÄÊı×é¡£
+	 * å°†byteæ•°ç»„è¿›è¡Œè£å‰ªåˆ°è¾¾æŒ‡å®šçš„ä½æ•°ã€‚
+	 * å¦‚æœæ•°ç»„çš„ä½æ•°å¤šä½™æŒ‡å®šçš„ä½æ•°ï¼Œåˆ™è¿›è¡Œè£å‰ªï¼›å¦‚æœæ•°ç»„çš„ä½æ•°å°‘äºæŒ‡å®šçš„ä½æ•°ï¼Œåˆ™è¿›è¡Œè¡¥0ã€‚
+	 * @param bytes æŒ‡å®šçš„æ•°ç»„ã€‚
+	 * @param length éœ€è¦è£å‰ªåˆ°çš„é•¿åº¦ã€‚
+	 * @return è£å‰ªåçš„æ•°ç»„ã€‚
 	 */
 	private static byte[] TrimToSize(byte[] bytes,int length){
-		//ÌØÊâÇé¿ö£º²Ã¼ôÊı×éµÄ³¤¶ÈÕıºÃÎªËùĞèµÄ³¤¶È¡£
+		//ç‰¹æ®Šæƒ…å†µï¼šè£å‰ªæ•°ç»„çš„é•¿åº¦æ­£å¥½ä¸ºæ‰€éœ€çš„é•¿åº¦ã€‚
 		if(bytes.length == length) return bytes;
 		byte[] target = new byte[length];
 		if(bytes.length > length){
@@ -159,9 +159,9 @@ public final class NumberUtil {
 	}
 	
 	/**
-	 * ½«Ò»¸öÕûĞÍÊı½ØÈ¡µÍ°ËÎ»ºó£¬Êä³öÆäbyteĞÎÊ½¡£
-	 * @param b Ö¸¶¨µÄÕûĞÍÊı¡£
-	 * @return ½ØÈ¡µÍ°ËÎ»ºóµÄbyteĞÎÊ½¡£
+	 * å°†ä¸€ä¸ªæ•´å‹æ•°æˆªå–ä½å…«ä½åï¼Œè¾“å‡ºå…¶byteå½¢å¼ã€‚
+	 * @param b æŒ‡å®šçš„æ•´å‹æ•°ã€‚
+	 * @return æˆªå–ä½å…«ä½åçš„byteå½¢å¼ã€‚
 	 */
 	public static byte cutInt2Byte(int b){
 		return (byte) (b & 0xFF);
@@ -169,11 +169,11 @@ public final class NumberUtil {
 	
 
 	/**
-	 * ½«Ö¸¶¨µÄÖµÓÉÒ»¸öµ¥Î»×ª»»ÎªÁíÒ»¸öµ¥Î»¡£
-	 * @param val ´ı×ª»»µÄÖµ¡£
-	 * @param u1 ¸ÃÖµµÄÏÖÓĞµ¥Î»È¨ÖØ¡£
-	 * @param u2 Ä¿±êµ¥Î»µÄÈ¨ÖØ¡£
-	 * @return ¸ÃÖµÔÚÄ¿±êµ¥Î»ÏÂµÄÖµ¡£
+	 * å°†æŒ‡å®šçš„å€¼ç”±ä¸€ä¸ªå•ä½è½¬æ¢ä¸ºå¦ä¸€ä¸ªå•ä½ã€‚
+	 * @param val å¾…è½¬æ¢çš„å€¼ã€‚
+	 * @param u1 è¯¥å€¼çš„ç°æœ‰å•ä½æƒé‡ã€‚
+	 * @param u2 ç›®æ ‡å•ä½çš„æƒé‡ã€‚
+	 * @return è¯¥å€¼åœ¨ç›®æ ‡å•ä½ä¸‹çš„å€¼ã€‚
 	 */
 	public static NumberValue unitTrans(NumberValue val, NumberValue u1, NumberValue u2){
 		
@@ -190,11 +190,11 @@ public final class NumberUtil {
 	}
 	
 	/**
-	 * ½«Ö¸¶¨µÄÖµÓÉÒ»¸öµ¥Î»×ª»»ÎªÁíÒ»¸öµ¥Î»¡£
-	 * @param val ´ı×ª»»µÄÖµ¡£
-	 * @param u1 ¸ÃÖµµÄÏÖÓĞµ¥Î»È¨ÖØ¡£
-	 * @param u2 Ä¿±êµ¥Î»µÄÈ¨ÖØ¡£
-	 * @return ¸ÃÖµÔÚÄ¿±êµ¥Î»ÏÂµÄÖµ¡£
+	 * å°†æŒ‡å®šçš„å€¼ç”±ä¸€ä¸ªå•ä½è½¬æ¢ä¸ºå¦ä¸€ä¸ªå•ä½ã€‚
+	 * @param val å¾…è½¬æ¢çš„å€¼ã€‚
+	 * @param u1 è¯¥å€¼çš„ç°æœ‰å•ä½æƒé‡ã€‚
+	 * @param u2 ç›®æ ‡å•ä½çš„æƒé‡ã€‚
+	 * @return è¯¥å€¼åœ¨ç›®æ ‡å•ä½ä¸‹çš„å€¼ã€‚
 	 */
 	public static NumberValue unitTrans(float val, NumberValue u1, NumberValue u2){
 		
@@ -211,11 +211,11 @@ public final class NumberUtil {
 	}
 	
 	/**
-	 * ½«Ö¸¶¨µÄÖµÓÉÒ»¸öµ¥Î»×ª»»ÎªÁíÒ»¸öµ¥Î»¡£
-	 * @param val ´ı×ª»»µÄÖµ¡£
-	 * @param u1 ¸ÃÖµµÄÏÖÓĞµ¥Î»È¨ÖØ¡£
-	 * @param u2 Ä¿±êµ¥Î»µÄÈ¨ÖØ¡£
-	 * @return ¸ÃÖµÔÚÄ¿±êµ¥Î»ÏÂµÄÖµ¡£
+	 * å°†æŒ‡å®šçš„å€¼ç”±ä¸€ä¸ªå•ä½è½¬æ¢ä¸ºå¦ä¸€ä¸ªå•ä½ã€‚
+	 * @param val å¾…è½¬æ¢çš„å€¼ã€‚
+	 * @param u1 è¯¥å€¼çš„ç°æœ‰å•ä½æƒé‡ã€‚
+	 * @param u2 ç›®æ ‡å•ä½çš„æƒé‡ã€‚
+	 * @return è¯¥å€¼åœ¨ç›®æ ‡å•ä½ä¸‹çš„å€¼ã€‚
 	 */
 	public static NumberValue unitTrans(double val, NumberValue u1, NumberValue u2){
 		
@@ -232,11 +232,11 @@ public final class NumberUtil {
 	}
 	
 	/**
-	 * ½«Ö¸¶¨µÄÖµÓÉÒ»¸öµ¥Î»×ª»»ÎªÁíÒ»¸öµ¥Î»¡£
-	 * @param val ´ı×ª»»µÄÖµ¡£
-	 * @param u1 ¸ÃÖµµÄÏÖÓĞµ¥Î»È¨ÖØ¡£
-	 * @param u2 Ä¿±êµ¥Î»µÄÈ¨ÖØ¡£
-	 * @return ¸ÃÖµÔÚÄ¿±êµ¥Î»ÏÂµÄÖµ¡£
+	 * å°†æŒ‡å®šçš„å€¼ç”±ä¸€ä¸ªå•ä½è½¬æ¢ä¸ºå¦ä¸€ä¸ªå•ä½ã€‚
+	 * @param val å¾…è½¬æ¢çš„å€¼ã€‚
+	 * @param u1 è¯¥å€¼çš„ç°æœ‰å•ä½æƒé‡ã€‚
+	 * @param u2 ç›®æ ‡å•ä½çš„æƒé‡ã€‚
+	 * @return è¯¥å€¼åœ¨ç›®æ ‡å•ä½ä¸‹çš„å€¼ã€‚
 	 */
 	public static NumberValue unitTrans(long val, NumberValue u1, NumberValue u2){
 		
@@ -253,11 +253,11 @@ public final class NumberUtil {
 	}
 	
 	/**
-	 * ½«Ö¸¶¨µÄÖµÓÉÒ»¸öµ¥Î»×ª»»ÎªÁíÒ»¸öµ¥Î»¡£
-	 * @param val ´ı×ª»»µÄÖµ¡£
-	 * @param u1 ¸ÃÖµµÄÏÖÓĞµ¥Î»È¨ÖØ¡£
-	 * @param u2 Ä¿±êµ¥Î»µÄÈ¨ÖØ¡£
-	 * @return ¸ÃÖµÔÚÄ¿±êµ¥Î»ÏÂµÄÖµ¡£
+	 * å°†æŒ‡å®šçš„å€¼ç”±ä¸€ä¸ªå•ä½è½¬æ¢ä¸ºå¦ä¸€ä¸ªå•ä½ã€‚
+	 * @param val å¾…è½¬æ¢çš„å€¼ã€‚
+	 * @param u1 è¯¥å€¼çš„ç°æœ‰å•ä½æƒé‡ã€‚
+	 * @param u2 ç›®æ ‡å•ä½çš„æƒé‡ã€‚
+	 * @return è¯¥å€¼åœ¨ç›®æ ‡å•ä½ä¸‹çš„å€¼ã€‚
 	 */
 	public static NumberValue unitTrans(short val, NumberValue u1, NumberValue u2){
 		
@@ -274,11 +274,11 @@ public final class NumberUtil {
 	}
 	
 	/**
-	 * ½«Ö¸¶¨µÄÖµÓÉÒ»¸öµ¥Î»×ª»»ÎªÁíÒ»¸öµ¥Î»¡£
-	 * @param val ´ı×ª»»µÄÖµ¡£
-	 * @param u1 ¸ÃÖµµÄÏÖÓĞµ¥Î»È¨ÖØ¡£
-	 * @param u2 Ä¿±êµ¥Î»µÄÈ¨ÖØ¡£
-	 * @return ¸ÃÖµÔÚÄ¿±êµ¥Î»ÏÂµÄÖµ¡£
+	 * å°†æŒ‡å®šçš„å€¼ç”±ä¸€ä¸ªå•ä½è½¬æ¢ä¸ºå¦ä¸€ä¸ªå•ä½ã€‚
+	 * @param val å¾…è½¬æ¢çš„å€¼ã€‚
+	 * @param u1 è¯¥å€¼çš„ç°æœ‰å•ä½æƒé‡ã€‚
+	 * @param u2 ç›®æ ‡å•ä½çš„æƒé‡ã€‚
+	 * @return è¯¥å€¼åœ¨ç›®æ ‡å•ä½ä¸‹çš„å€¼ã€‚
 	 */
 	public static NumberValue unitTrans(int val, NumberValue u1, NumberValue u2){
 		
@@ -295,11 +295,11 @@ public final class NumberUtil {
 	}
 	
 	/**
-	 * ½«Ö¸¶¨µÄÖµÓÉÒ»¸öµ¥Î»×ª»»ÎªÁíÒ»¸öµ¥Î»¡£
-	 * @param val ´ı×ª»»µÄÖµ¡£
-	 * @param u1 ¸ÃÖµµÄÏÖÓĞµ¥Î»È¨ÖØ¡£
-	 * @param u2 Ä¿±êµ¥Î»µÄÈ¨ÖØ¡£
-	 * @return ¸ÃÖµÔÚÄ¿±êµ¥Î»ÏÂµÄÖµ¡£
+	 * å°†æŒ‡å®šçš„å€¼ç”±ä¸€ä¸ªå•ä½è½¬æ¢ä¸ºå¦ä¸€ä¸ªå•ä½ã€‚
+	 * @param val å¾…è½¬æ¢çš„å€¼ã€‚
+	 * @param u1 è¯¥å€¼çš„ç°æœ‰å•ä½æƒé‡ã€‚
+	 * @param u2 ç›®æ ‡å•ä½çš„æƒé‡ã€‚
+	 * @return è¯¥å€¼åœ¨ç›®æ ‡å•ä½ä¸‹çš„å€¼ã€‚
 	 */
 	public static NumberValue unitTrans(byte val, NumberValue u1, NumberValue u2){
 		
@@ -316,11 +316,11 @@ public final class NumberUtil {
 	}
 	
 	/**
-	 * ·µ»ØÒ»×éÕûĞÍÊı¾İÖĞµÄ×î´óÖµ¡£
-	 * <p> Èç¹û²»´«ÈëÈÎºÎ²ÎÊı£¬Ôò·µ»Ø <code>0</code>¡£
-	 * @param is ÕûĞÍÊı×é¡£
-	 * @return ×î´óÖµ¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * è¿”å›ä¸€ç»„æ•´å‹æ•°æ®ä¸­çš„æœ€å¤§å€¼ã€‚
+	 * <p> å¦‚æœä¸ä¼ å…¥ä»»ä½•å‚æ•°ï¼Œåˆ™è¿”å› <code>0</code>ã€‚
+	 * @param is æ•´å‹æ•°ç»„ã€‚
+	 * @return æœ€å¤§å€¼ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static int max(int... is){
 		Objects.requireNonNull(is, DwarfUtil.getStringField(StringFieldKey.NumberUtil_0));
@@ -335,11 +335,11 @@ public final class NumberUtil {
 	}
 	
 	/**
-	 * ·µ»ØÒ»×éÕûĞÍÊı¾İÖĞµÄ×îĞ¡Öµ¡£
-	 * <p> Èç¹û²»´«ÈëÈÎºÎ²ÎÊı£¬Ôò·µ»Ø <code>0</code>¡£
-	 * @param is ÕûĞÍÊı×é¡£
-	 * @return ×îĞ¡Öµ¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * è¿”å›ä¸€ç»„æ•´å‹æ•°æ®ä¸­çš„æœ€å°å€¼ã€‚
+	 * <p> å¦‚æœä¸ä¼ å…¥ä»»ä½•å‚æ•°ï¼Œåˆ™è¿”å› <code>0</code>ã€‚
+	 * @param is æ•´å‹æ•°ç»„ã€‚
+	 * @return æœ€å°å€¼ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static int min(int... is){
 		Objects.requireNonNull(is, DwarfUtil.getStringField(StringFieldKey.NumberUtil_0));
@@ -354,11 +354,11 @@ public final class NumberUtil {
 	}
 	
 	/**
-	 * ·µ»ØÒ»×éË«¾«¶È¸¡µãÊı¾İÖĞµÄ×î´óÖµ¡£
-	 * <p> Èç¹û²»´«ÈëÈÎºÎ²ÎÊı£¬Ôò·µ»Ø <code>0</code>¡£
-	 * @param ds Ë«¾«¶È¸¡µãÊı×é¡£
-	 * @return ×î´óÖµ¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * è¿”å›ä¸€ç»„åŒç²¾åº¦æµ®ç‚¹æ•°æ®ä¸­çš„æœ€å¤§å€¼ã€‚
+	 * <p> å¦‚æœä¸ä¼ å…¥ä»»ä½•å‚æ•°ï¼Œåˆ™è¿”å› <code>0</code>ã€‚
+	 * @param ds åŒç²¾åº¦æµ®ç‚¹æ•°ç»„ã€‚
+	 * @return æœ€å¤§å€¼ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static double max(double... ds){
 		Objects.requireNonNull(ds, DwarfUtil.getStringField(StringFieldKey.NumberUtil_1));
@@ -373,11 +373,11 @@ public final class NumberUtil {
 	}
 	
 	/**
-	 * ·µ»ØÒ»×éË«¾«¶È¸¡µãÊı¾İÖĞµÄ×îĞ¡Öµ¡£
-	 * <p> Èç¹û²»´«ÈëÈÎºÎ²ÎÊı£¬Ôò·µ»Ø <code>0</code>¡£
-	 * @param ds Ë«¾«¶È¸¡µãÊı×é¡£
-	 * @return ×îĞ¡Öµ¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * è¿”å›ä¸€ç»„åŒç²¾åº¦æµ®ç‚¹æ•°æ®ä¸­çš„æœ€å°å€¼ã€‚
+	 * <p> å¦‚æœä¸ä¼ å…¥ä»»ä½•å‚æ•°ï¼Œåˆ™è¿”å› <code>0</code>ã€‚
+	 * @param ds åŒç²¾åº¦æµ®ç‚¹æ•°ç»„ã€‚
+	 * @return æœ€å°å€¼ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static double min(double... ds){
 		Objects.requireNonNull(ds, DwarfUtil.getStringField(StringFieldKey.NumberUtil_1));

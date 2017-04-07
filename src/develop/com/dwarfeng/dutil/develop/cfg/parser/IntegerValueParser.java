@@ -3,8 +3,8 @@ package com.dwarfeng.dutil.develop.cfg.parser;
 import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
 /**
- * ÕûĞÍÊıÖµ½âÎöÆ÷¡£
- *  <p> ¸Ã½âÎöÆ÷½âÎöµÄÊÇ <code>int</code> ¶ÔÏó¡£
+ * æ•´å‹æ•°å€¼è§£æå™¨ã€‚
+ *  <p> è¯¥è§£æå™¨è§£æçš„æ˜¯ <code>int</code> å¯¹è±¡ã€‚
  * @author DwArFeng
  * @since 0.1.0-beta
  */
@@ -13,20 +13,20 @@ public class IntegerValueParser implements ValueParser {
 	private int radix;
 
 	/**
-	 * Éú³ÉÒ»¸öÊ®½øÖÆµÄÕûĞÍÊıÖµ½âÎöÆ÷¡£
+	 * ç”Ÿæˆä¸€ä¸ªåè¿›åˆ¶çš„æ•´å‹æ•°å€¼è§£æå™¨ã€‚
 	 */
 	public IntegerValueParser() {
 		this(10);
 	}
 
 	/**
-	 * Éú³ÉÒ»¸ö½øÖÆÎªÖ¸¶¨ÖµµÄÕûĞÍÊıÖµ½âÎöÆ÷¡£
+	 * ç”Ÿæˆä¸€ä¸ªè¿›åˆ¶ä¸ºæŒ‡å®šå€¼çš„æ•´å‹æ•°å€¼è§£æå™¨ã€‚
 	 * 
 	 * @param radix
-	 *            Ö¸¶¨µÄ½øÖÆ¡£
+	 *            æŒ‡å®šçš„è¿›åˆ¶ã€‚
 	 */
 	public IntegerValueParser(int radix) {
-		// TODO ÅĞ¶Ï radix ÊÇ·ñÔ½½ç¡£
+		// TODO åˆ¤æ–­ radix æ˜¯å¦è¶Šç•Œã€‚
 		this.radix = radix;
 	}
 

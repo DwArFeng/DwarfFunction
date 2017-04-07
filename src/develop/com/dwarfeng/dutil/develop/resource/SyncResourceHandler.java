@@ -3,9 +3,9 @@ package com.dwarfeng.dutil.develop.resource;
 import com.dwarfeng.dutil.basic.threads.ExternalReadWriteThreadSafe;
 
 /**
- * Í¬²½×ÊÔ´¹ÜÀíÆ÷¡£
+ * åŒæ­¥èµ„æºç®¡ç†å™¨ã€‚
  * <p>
- * ¸Ã×ÊÔ´¹ÜÀíÆ÷ÊÇÏß³Ì°²È«µÄ¡£
+ * è¯¥èµ„æºç®¡ç†å™¨æ˜¯çº¿ç¨‹å®‰å…¨çš„ã€‚
  * 
  * @author DwArFeng
  * @since 0.1.1-beta

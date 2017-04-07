@@ -13,34 +13,34 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
 
 /**
- * ´úÀí¼¯ºÏÄ£ĞÍ¡£
+ * ä»£ç†é›†åˆæ¨¡å‹ã€‚
  * <p>
- * Í¨¹ı´úÀíÒ»¸ö {@link Set} ÊµÏÖÁĞ±íÄ£ĞÍ¡£
+ * é€šè¿‡ä»£ç†ä¸€ä¸ª {@link Set} å®ç°åˆ—è¡¨æ¨¡å‹ã€‚
  * 
  * @author DwArFeng
  * @since 0.1.0-beta
  */
 public class DelegateSetModel<E> extends AbstractSetModel<E> {
 
-	/** ¸Ã¼¯ºÏÄ£ĞÍµÄ´úÀí¡£ */
+	/** è¯¥é›†åˆæ¨¡å‹çš„ä»£ç†ã€‚ */
 	protected final Set<E> delegate;
 
 	/**
-	 * Éú³ÉÒ»¸öÄ¬ÈÏµÄ´úÀí¼¯ºÏÄ£ĞÍ¡£
+	 * ç”Ÿæˆä¸€ä¸ªé»˜è®¤çš„ä»£ç†é›†åˆæ¨¡å‹ã€‚
 	 */
 	public DelegateSetModel() {
 		this(new HashSet<>(), Collections.newSetFromMap(new WeakHashMap<>()));
 	}
 
 	/**
-	 * Éú³ÉÒ»¸ö¾ßÓĞÖ¸¶¨µÄ´úÀí£¬Ö¸¶¨µÄ¹Û²ìÆ÷¼¯ºÏµÄ´úÀí¼¯ºÏÄ£ĞÍ¡£
+	 * ç”Ÿæˆä¸€ä¸ªå…·æœ‰æŒ‡å®šçš„ä»£ç†ï¼ŒæŒ‡å®šçš„è§‚å¯Ÿå™¨é›†åˆçš„ä»£ç†é›†åˆæ¨¡å‹ã€‚
 	 * 
 	 * @param delegate
-	 *            Ö¸¶¨µÄ´úÀí¡£
+	 *            æŒ‡å®šçš„ä»£ç†ã€‚
 	 * @param obversers
-	 *            Ö¸¶¨µÄ¹Û²ìÆ÷¼¯ºÏÄ£ĞÍ¡£
+	 *            æŒ‡å®šçš„è§‚å¯Ÿå™¨é›†åˆæ¨¡å‹ã€‚
 	 * @throws NullPointerException
-	 *             Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 *             å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public DelegateSetModel(Set<E> delegate, Set<SetObverser<E>> obversers) {
 		super(obversers);
@@ -174,7 +174,7 @@ public class DelegateSetModel<E> extends AbstractSetModel<E> {
 	@Override
 	public boolean remove(Object o) {
 		if (delegate.remove(o)) {
-			// Ö»ÓĞ o ÊôÓÚÀàĞÍ E£¬²ÅÓĞ¿ÉÄÜÒÆ³ı³É¹¦£¬Òò´Ë´Ë´¦ÀàĞÍ×ª»»ÊÇ°²È«µÄ¡£
+			// åªæœ‰ o å±äºç±»å‹ Eï¼Œæ‰æœ‰å¯èƒ½ç§»é™¤æˆåŠŸï¼Œå› æ­¤æ­¤å¤„ç±»å‹è½¬æ¢æ˜¯å®‰å…¨çš„ã€‚
 			@SuppressWarnings("unchecked")
 			E e = (E) o;
 			fireRemoved(e);

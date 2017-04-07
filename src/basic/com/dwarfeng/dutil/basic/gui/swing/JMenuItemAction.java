@@ -10,8 +10,8 @@ import javax.swing.KeyStroke;
 import com.dwarfeng.dutil.basic.prog.Buildable;
 
 /**
- * ²Ëµ¥ÏîÄ¿¶¯×÷Àà£¬ÓÃ¸ÃÀà¿ÉÒÔ¿ìËÙµÄ½¨Á¢Ò»¸ö¾ßÓĞÖ¸¶¨ÊôĞÔµÄ²Ëµ¥ÏîÄ¿¡£
- * <p> ÓÉÓÚ¸ÃÀàÒÑ¾­ÍêÈ«Íê³ÉÁË<code>Action</code>µÄËùÓĞÊôĞÔ£¬Òò´Ë¸ÃÀà²»ÄÜ±»¼Ì³Ğ¡£
+ * èœå•é¡¹ç›®åŠ¨ä½œç±»ï¼Œç”¨è¯¥ç±»å¯ä»¥å¿«é€Ÿçš„å»ºç«‹ä¸€ä¸ªå…·æœ‰æŒ‡å®šå±æ€§çš„èœå•é¡¹ç›®ã€‚
+ * <p> ç”±äºè¯¥ç±»å·²ç»å®Œå…¨å®Œæˆäº†<code>Action</code>çš„æ‰€æœ‰å±æ€§ï¼Œå› æ­¤è¯¥ç±»ä¸èƒ½è¢«ç»§æ‰¿ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
@@ -22,7 +22,7 @@ public final class JMenuItemAction extends AbstractAction{
 	private ActionListener listener;
 	
 	/**
-	 * ²Ëµ¥ÏîÄ¿¶¯×÷¹¹ÔìÆ÷Àà¡£
+	 * èœå•é¡¹ç›®åŠ¨ä½œæ„é€ å™¨ç±»ã€‚
 	 * @author DwArFeng
 	 * @since 0.0.2-beta
 	 */
@@ -36,9 +36,9 @@ public final class JMenuItemAction extends AbstractAction{
 		private ActionListener listener = null;
 		
 		/**
-		 * Éè¶¨¶¯×÷µÄÍ¼±ê¡£
-		 * @param val ¶¯×÷µÄÍ¼±ê¡£
-		 * @return ¹¹ÔìÆ÷×ÔÉí¡£
+		 * è®¾å®šåŠ¨ä½œçš„å›¾æ ‡ã€‚
+		 * @param val åŠ¨ä½œçš„å›¾æ ‡ã€‚
+		 * @return æ„é€ å™¨è‡ªèº«ã€‚
 		 */
 		public Builder icon(Icon val){
 			this.icon = val;
@@ -46,9 +46,9 @@ public final class JMenuItemAction extends AbstractAction{
 		}
 		
 		/**
-		 * Éè¶¨¶¯×÷µÄÃû³Æ¡£
-		 * @param val ¶¯×÷µÄÃû³Æ¡£
-		 * @return ¹¹ÔìÆ÷×ÔÉí¡£
+		 * è®¾å®šåŠ¨ä½œçš„åç§°ã€‚
+		 * @param val åŠ¨ä½œçš„åç§°ã€‚
+		 * @return æ„é€ å™¨è‡ªèº«ã€‚
 		 */
 		public Builder name(String val){
 			this.name = val;
@@ -56,9 +56,9 @@ public final class JMenuItemAction extends AbstractAction{
 		}
 		
 		/**
-		 * Éè¶¨¶¯×÷µÄÃèÊö¡£
-		 * @param val ¶¯×÷µÄÃèÊö¡£
-		 * @return ¹¹ÔìÆ÷×ÔÉí¡£
+		 * è®¾å®šåŠ¨ä½œçš„æè¿°ã€‚
+		 * @param val åŠ¨ä½œçš„æè¿°ã€‚
+		 * @return æ„é€ å™¨è‡ªèº«ã€‚
 		 */
 		public Builder description(String val){
 			this.description = val;
@@ -66,9 +66,9 @@ public final class JMenuItemAction extends AbstractAction{
 		}
 		
 		/**
-		 * Éè¶¨¶¯×÷µÄ×éºÏ¼ü¡£
-		 * @param val Éè¶¨¶¯×÷µÄ×éºÏ¼ü¡£
-		 * @return ¹¹ÔìÆ÷×ÔÉí¡£
+		 * è®¾å®šåŠ¨ä½œçš„ç»„åˆé”®ã€‚
+		 * @param val è®¾å®šåŠ¨ä½œçš„ç»„åˆé”®ã€‚
+		 * @return æ„é€ å™¨è‡ªèº«ã€‚
 		 */
 		public Builder keyStorke(KeyStroke val){
 			this.keyStroke = val;
@@ -76,9 +76,9 @@ public final class JMenuItemAction extends AbstractAction{
 		}
 		
 		/**
-		 * Éè¶¨¶¯×÷µÄÖú¼Ç·û¡£
-		 * @param val ¶¯×÷µÄÖú¼Ç·û¡£
-		 * @return ¹¹ÔìÆ÷×ÔÉí¡£
+		 * è®¾å®šåŠ¨ä½œçš„åŠ©è®°ç¬¦ã€‚
+		 * @param val åŠ¨ä½œçš„åŠ©è®°ç¬¦ã€‚
+		 * @return æ„é€ å™¨è‡ªèº«ã€‚
 		 */
 		public Builder mnemonic(int val){
 			this.mnemonic = val;
@@ -86,9 +86,9 @@ public final class JMenuItemAction extends AbstractAction{
 		}
 		
 		/**
-		 * Éè¶¨¶¯×÷µÄ¶¯×÷ÕìÌı¡£
-		 * @param val ¶¯×÷µÄ¶¯×÷ÕìÌı¡£
-		 * @return ¹¹ÔìÆ÷×ÔÉí¡£
+		 * è®¾å®šåŠ¨ä½œçš„åŠ¨ä½œä¾¦å¬ã€‚
+		 * @param val åŠ¨ä½œçš„åŠ¨ä½œä¾¦å¬ã€‚
+		 * @return æ„é€ å™¨è‡ªèº«ã€‚
 		 */
 		public Builder listener(ActionListener val){
 			this.listener = val;

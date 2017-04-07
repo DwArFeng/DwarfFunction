@@ -5,11 +5,11 @@ import com.dwarfeng.dutil.basic.prog.Saver;
 import com.dwarfeng.dutil.develop.cfg.CurrentValueContainer;
 
 /**
- * ÅäÖÃ±£´æÆ÷¡£
+ * é…ç½®ä¿å­˜å™¨ã€‚
  * <p>
- * ÓÃÓÚ±£´æÖ¸¶¨µÄÅäÖÃ¡£
+ * ç”¨äºä¿å­˜æŒ‡å®šçš„é…ç½®ã€‚
  * 
- * @deprecated ¸Ã½Ó¿ÚÓÉ {@link Saver} ´úÌæ¡£
+ * @deprecated è¯¥æ¥å£ç”± {@link Saver} ä»£æ›¿ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */

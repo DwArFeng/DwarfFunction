@@ -12,12 +12,12 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
 
 /**
- * ÓĞ¹Ø×ÊÔ´¹ÜÀíµÄ¹¤¾ß°ü¡£
+ * æœ‰å…³èµ„æºç®¡ç†çš„å·¥å…·åŒ…ã€‚
  * 
  * <p>
- * ¸Ã°üÖĞ°üº¬¹ØÓÚ¶Ô×ÊÔ´¹ÜÀíÆ÷½øĞĞ²Ù×÷µÄ³£ÓÃ·½·¨¡£
+ * è¯¥åŒ…ä¸­åŒ…å«å…³äºå¯¹èµ„æºç®¡ç†å™¨è¿›è¡Œæ“ä½œçš„å¸¸ç”¨æ–¹æ³•ã€‚
  * <p>
- * ÓÉÓÚÊÇÖ»º¬ÓĞ¾²Ì¬·½·¨µÄ¹¤¾ß°ü£¬ËùÒÔ¸ÃÀàÎŞ·¨±»¼Ì³Ğ¡£
+ * ç”±äºæ˜¯åªå«æœ‰é™æ€æ–¹æ³•çš„å·¥å…·åŒ…ï¼Œæ‰€ä»¥è¯¥ç±»æ— æ³•è¢«ç»§æ‰¿ã€‚
  * 
  * @author DwArFeng
  * @since 0.1.1-beta
@@ -25,13 +25,13 @@ import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
 public final class ResourceUtil {
 
 	/**
-	 * ¸ù¾İÖ¸¶¨µÄ×ÊÔ´¹ÜÀíÆ÷Éú³ÉÒ»¸ö²»¿É±à¼­µÄ×ÊÔ´¹ÜÀíÆ÷¡£
+	 * æ ¹æ®æŒ‡å®šçš„èµ„æºç®¡ç†å™¨ç”Ÿæˆä¸€ä¸ªä¸å¯ç¼–è¾‘çš„èµ„æºç®¡ç†å™¨ã€‚
 	 * 
 	 * @param resourceHandler
-	 *            Ö¸¶¨µÄ×ÊÔ´¹ÜÀíÆ÷¡£
-	 * @return ¸ù¾İÖ¸¶¨µÄ×ÊÔ´¹ÜÀíÆ÷Éú³ÉµÄ²»¿É±à¼­µÄ×ÊÔ´¹ÜÀíÆ÷¡£
+	 *            æŒ‡å®šçš„èµ„æºç®¡ç†å™¨ã€‚
+	 * @return æ ¹æ®æŒ‡å®šçš„èµ„æºç®¡ç†å™¨ç”Ÿæˆçš„ä¸å¯ç¼–è¾‘çš„èµ„æºç®¡ç†å™¨ã€‚
 	 * @throws NullPointerException
-	 *             Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 *             å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static ResourceHandler unmodifiableResourceHandler(ResourceHandler resourceHandler) {
 		Objects.requireNonNull(resourceHandler, DwarfUtil.getStringField(StringFieldKey.RESOURCEUTIL_0));
@@ -313,13 +313,13 @@ public final class ResourceUtil {
 	}
 
 	/**
-	 * ¸ù¾İÖ¸¶¨µÄ×ÊÔ´¹ÜÀíÆ÷Éú³ÉÒ»¸öÏß³Ì°²È«µÄ×ÊÔ´¹ÜÀíÆ÷¡£
+	 * æ ¹æ®æŒ‡å®šçš„èµ„æºç®¡ç†å™¨ç”Ÿæˆä¸€ä¸ªçº¿ç¨‹å®‰å…¨çš„èµ„æºç®¡ç†å™¨ã€‚
 	 * 
 	 * @param resourceHandler
-	 *            Ö¸¶¨µÄ×ÊÔ´¹ÜÀíÆ÷¡£
-	 * @return ¸ù¾İÖ¸¶¨µÄ×ÊÔ´¹ÜÀíÆ÷Éú³ÉµÄÏß³Ì°²È«µÄ×ÊÔ´¹ÜÀíÆ÷¡£
+	 *            æŒ‡å®šçš„èµ„æºç®¡ç†å™¨ã€‚
+	 * @return æ ¹æ®æŒ‡å®šçš„èµ„æºç®¡ç†å™¨ç”Ÿæˆçš„çº¿ç¨‹å®‰å…¨çš„èµ„æºç®¡ç†å™¨ã€‚
 	 * @throws NullPointerException
-	 *             Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 *             å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static SyncResourceHandler syncResourceHandler(ResourceHandler resourceHandler) {
 		Objects.requireNonNull(resourceHandler, DwarfUtil.getStringField(StringFieldKey.RESOURCEUTIL_0));
@@ -748,7 +748,7 @@ public final class ResourceUtil {
 
 	}
 
-	// ½ûÖ¹Íâ²¿ÊµÀı»¯¡£
+	// ç¦æ­¢å¤–éƒ¨å®ä¾‹åŒ–ã€‚
 	private ResourceUtil() {
 	};
 }

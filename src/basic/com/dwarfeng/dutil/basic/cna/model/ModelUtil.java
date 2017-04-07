@@ -18,11 +18,11 @@ import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
 import com.dwarfeng.dutil.basic.prog.WithKey;
 
 /**
- * �й�ģ�͵Ĺ��߰���
+ * 有关模型的工具包。
  * <p>
- * �ð��а���ģ�͵ĳ��÷�����������ģ�������̰߳�ȫ��ģ�͡�
+ * 该包中包含模型的常用方法，包括由模型生成线程安全的模型。
  * <p>
- * ������ֻ���о�̬�����Ĺ��߰������Ը����޷����̳С�
+ * 由于是只含有静态方法的工具包，所以该类无法被继承。
  * 
  * @author DwArFeng
  * @since 0.1.0-beta
@@ -30,15 +30,15 @@ import com.dwarfeng.dutil.basic.prog.WithKey;
 public final class ModelUtil {
 
 	/**
-	 * ��ָ�����б�ģ������һ���̰߳�ȫ���б�ģ�͡�
+	 * 由指定的列表模型生成一个线程安全的列表模型。
 	 * 
 	 * @param listModel
-	 *            ָ�����б�ģ�͡�
+	 *            指定的列表模型。
 	 * @param <E>
-	 *            �б�ģ�͵�Ԫ�����͡�
-	 * @return ��ָ�����б�ģ�����ɵ��̰߳�ȫ���б�ģ�͡�
+	 *            列表模型的元素类型。
+	 * @return 由指定的列表模型生成的线程安全的列表模型。
 	 * @throws NullPointerException
-	 *             ��ڲ���Ϊ <code>null</code>��
+	 *             入口参数为 <code>null</code>。
 	 */
 	public static <E> SyncListModel<E> syncListModel(ListModel<E> listModel) {
 		Objects.requireNonNull(listModel, DwarfUtil.getStringField(StringFieldKey.MODELUTIL_0));
@@ -508,15 +508,15 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * ��ָ���ļ���ģ������һ���̰߳�ȫ�ļ���ģ�͡�
+	 * 由指定的集合模型生成一个线程安全的集合模型。
 	 * 
 	 * @param setModel
-	 *            ָ���ļ���ģ�͡�
+	 *            指定的集合模型。
 	 * @param <E>
-	 *            ����ģ�͵�Ԫ�����͡�
-	 * @return ��ָ���ļ���ģ�����ɵ��̰߳�ȫ�ļ���ģ�͡�
+	 *            集合模型的元素类型。
+	 * @return 由指定的集合模型生成的线程安全的集合模型。
 	 * @throws NullPointerException
-	 *             ��ڲ���Ϊ <code>null</code>��
+	 *             入口参数为 <code>null</code>。
 	 */
 	public static <E> SyncSetModel<E> syncSetMdel(SyncSetModel<E> setModel) {
 		Objects.requireNonNull(setModel, DwarfUtil.getStringField(StringFieldKey.MODELUTIL_1));
@@ -836,17 +836,17 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * ��ָ����ӳ��ģ������һ���̰߳�ȫ��ӳ��ģ�͡�
+	 * 由指定的映射模型生成一个线程安全的映射模型。
 	 * 
 	 * @param mapModel
-	 *            ָ����ӳ��ģ�͡�
+	 *            指定的映射模型。
 	 * @param <K>
-	 *            ӳ��ģ�͵ļ������͡�
+	 *            映射模型的键的类型。
 	 * @param <V>
-	 *            ӳ���ֵ��ģ�͡�
-	 * @return ��ָ����ӳ��ģ�����ɵ��̰߳�ȫ��ӳ��ģ�͡�
+	 *            映射的值的模型。
+	 * @return 由指定的映射模型生成的线程安全的映射模型。
 	 * @throws NullPointerException
-	 *             ��ڲ���Ϊ <code>null</code>��
+	 *             入口参数为 <code>null</code>。
 	 */
 	public static <K, V> SyncMapModel<K, V> syncMapModel(SyncMapModel<K, V> mapModel) {
 		Objects.requireNonNull(mapModel, DwarfUtil.getStringField(StringFieldKey.MODELUTIL_2));
@@ -1151,17 +1151,17 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * ��ָ���ļ�ֵ�б�ģ������һ���̰߳�ȫ�ļ�ֵ�б�ģ�͡�
+	 * 由指定的键值列表模型生成一个线程安全的键值列表模型。
 	 * 
 	 * @param keyListModel
-	 *            ָ���ļ�ֵ�б�ģ�͡�
+	 *            指定的键值列表模型。
 	 * @param <K>
-	 *            ��ֵ�б�ģ�͵ļ������͡�
+	 *            键值列表模型的键的类型。
 	 * @param <V>
-	 *            ��ֵ�б���ֵ��ģ�͡�
-	 * @return ��ָ���ļ�ֵ�б�ģ�����ɵ��̰߳�ȫ�ļ�ֵ�б�ģ�͡�
+	 *            键值列表的值的模型。
+	 * @return 由指定的键值列表模型生成的线程安全的键值列表模型。
 	 * @throws NullPointerException
-	 *             ��ڲ���Ϊ <code>null</code>��
+	 *             入口参数为 <code>null</code>。
 	 */
 	public static <K, V extends WithKey<K>> SyncKeyListModel<K, V> syncKeyListModel(KeyListModel<K, V> keyListModel) {
 		Objects.requireNonNull(keyListModel, DwarfUtil.getStringField(StringFieldKey.MODELUTIL_3));
@@ -1750,17 +1750,17 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * ��ָ���ļ�ֵ����ģ������һ���̰߳�ȫ�ļ�ֵ����ģ�͡�
+	 * 由指定的键值集合模型生成一个线程安全的键值集合模型。
 	 * 
 	 * @param keySetModel
-	 *            ָ���ļ�ֵ����ģ�͡�
+	 *            指定的键值集合模型。
 	 * @param <K>
-	 *            ��ֵ����ģ�͵ļ������͡�
+	 *            键值集合模型的键的类型。
 	 * @param <V>
-	 *            ��ֵ���ϵ�ֵ��ģ�͡�
-	 * @return ��ָ���ļ�ֵ����ģ�����ɵ��̰߳�ȫ�ļ�ֵ����ģ�͡�
+	 *            键值集合的值的模型。
+	 * @return 由指定的键值集合模型生成的线程安全的键值集合模型。
 	 * @throws NullPointerException
-	 *             ��ڲ���Ϊ <code>null</code>��
+	 *             入口参数为 <code>null</code>。
 	 */
 	public static <K, V extends WithKey<K>> SyncKeySetModel<K, V> syncKeySetModel(
 			KeySetModel<K, V> keySetModel) {
@@ -2167,7 +2167,7 @@ public final class ModelUtil {
 
 	}
 
-	// ��ֹ�ⲿʵ������
+	// 禁止外部实例化。
 	private ModelUtil() {
 	};
 

@@ -6,68 +6,68 @@ import java.util.List;
 import com.dwarfeng.dutil.basic.prog.WithKey;
 
 /**
- * ��ֵ����ģ�͡�
+ * 键值集合模型。
  * <p>
- * ģ�Ϳ�������һ��ӵ��������Ԫ�أ����ṩһϵ�еĲ���������ģ���е�Ԫ����û��˳��ģ� ��ͬ������ֻ�ܶ�Ӧһ��Ԫ�ء�
- * ��ģ��ͬ�����Զ�Ԫ�ظ����������в�������ģ����һ�� {@link List}ʵ�֡�
+ * 模型可以容纳一组拥有主键的元素，并提供一系列的操作方法。模型中的元素是没有顺序的， 相同的主键只能对应一个元素。
+ * 该模型同样可以对元素根据主键进行操作。该模型是一个 {@link List}实现。
  * 
  * @author DwArFeng
  * @param <K>
- *            ����K������Ԫ�ؼ������͡�
+ *            泛型K，代表元素键的类型。
  * @param <V>
- *            ����V������Ԫ�ص����͡�
+ *            泛型V，代表元素的类型。
  * @since 0.1.0-beta
  */
 public interface KeySetModel<K, V extends WithKey<K>> extends SetModel<V> {
 
 	/**
-	 * ������ϰ���ָ���ļ����򷵻� <code>true</code>��
+	 * 如果集合包含指定的键，则返回 <code>true</code>。
 	 * 
 	 * @param key
-	 *            ָ���ļ���
-	 * @return �������ָ���ļ����򷵻� <code>true</code>��
+	 *            指定的键。
+	 * @return 如果包含指定的键，则返回 <code>true</code>。
 	 */
 	public boolean containsKey(Object key);
 
 	/**
-	 * ������ϰ���ָ�� {@link Collection} �����м����򷵻� <code>true</code>��
+	 * 如果集合包含指定 {@link Collection} 的所有键，则返回 <code>true</code>。
 	 * 
 	 * @param c
-	 *            Ҫ�ڼ����м��������Ե� {@link Collection}
-	 * @return ������ϰ���ָ�� {@link Collection} �����м����򷵻� <code>true</code>��
+	 *            要在集合中检查其包含性的 {@link Collection}
+	 * @return 如果集合包含指定 {@link Collection} 的所有键，则返回 <code>true</code>。
 	 * @throws NullPointerException
-	 *             ��ڲ���Ϊ <code>null</code>��
+	 *             入口参数为 <code>null</code>。
 	 */
 	public boolean containsAllKey(Collection<?> c);
 
 	/**
-	 * �Ӵ˼������Ƴ�ָ������������ڣ�����ѡ��������
+	 * 从此集合中移除指定键（如果存在）（可选操作）。
 	 * 
 	 * @param key
-	 *            Ҫ�Ӹü������Ƴ��ļ���
-	 * @return ������ϰ���ָ���ļ����򷵻� <code>true</code>��
+	 *            要从该集合中移除的键。
+	 * @return 如果集合包含指定的键，则返回 <code>true</code>。
 	 */
 	public boolean removeKey(Object key);
 
 	/**
-	 * �Ӽ������Ƴ�ָ�� {@link Collection} �а�����������Ԫ�أ���ѡ��������
+	 * 从集合中移除指定 {@link Collection} 中包含的其所有元素（可选操作）。
 	 * 
 	 * @param c
-	 *            �����Ӵ˼������Ƴ���Ԫ�ص� {@link Collection}��
-	 * @return ����˼������ڵ��ö��������ģ��򷵻� <code>true</code>��
+	 *            包含从此集合中移除的元素的 {@link Collection}。
+	 * @return 如果此集合由于调用而发生更改，则返回 <code>true</code>。
 	 * @throws NullPointerException
-	 *             ��ڲ���Ϊ <code>null</code>��
+	 *             入口参数为 <code>null</code>。
 	 */
 	public boolean removeAllKey(Collection<?> c);
 
 	/**
-	 * ���ڼ����б���ָ�� {@link Collection} ����������Ԫ�أ���ѡ��������
+	 * 仅在集合中保留指定 {@link Collection} 中所包含的元素（可选操作）。
 	 * 
 	 * @param c
-	 *            �����������ڴ˼����е�Ԫ�ص� {@link Collection}��
-	 * @return ����˼������ڵ��ö��������ģ��򷵻� <code>true</code>��
+	 *            包含将保留在此集合中的元素的 {@link Collection}。
+	 * @return 如果此集合由于调用而发生更改，则返回 <code>true</code>。
 	 * @throws NullPointerException
-	 *             ��ڲ���Ϊ <code>null</code>��
+	 *             入口参数为 <code>null</code>。
 	 */
 	public boolean retainAllKey(Collection<?> c);
 

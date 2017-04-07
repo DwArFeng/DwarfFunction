@@ -15,7 +15,7 @@ import com.dwarfeng.dutil.develop.cfg.struct.ExconfigEntry;
 import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
 /**
- * ÓĞ¹ØÓÚÅäÖÃ°üµÄÒ»Ğ©³£ÓÃ·½·¨¡£
+ * æœ‰å…³äºé…ç½®åŒ…çš„ä¸€äº›å¸¸ç”¨æ–¹æ³•ã€‚
  * 
  * @author DwArFeng
  * @since 0.0.2-beta
@@ -23,14 +23,14 @@ import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 public final class ConfigUtil {
 
 	/**
-	 * ÅĞ¶ÏÖ¸¶¨µÄÅäÖÃ¹Ì¶¨ÊôĞÔÊÇ·ñÓĞĞ§¡£
+	 * åˆ¤æ–­æŒ‡å®šçš„é…ç½®å›ºå®šå±æ€§æ˜¯å¦æœ‰æ•ˆã€‚
 	 * <p>
-	 * µ±Ö¸¶¨µÄÅäÖÃ¹Ì¶¨ÊôĞÔ²»Îª <code>null</code>£¬²¢ÇÒÆäÖĞµÄÅäÖÃÖµ¼ì²éÆ÷²»Îª <code>null</code>£¬
-	 * ÇÒÆäÄ¬ÈÏÖµÄÜÍ¨¹ıÅäÖÃÖµ¼ì²éÆ÷Ê±£¬ÈÏÎªÖ¸¶¨µÄÅäÖÃ¹Ì¶¨ÊôĞÔÓĞĞ§¡£
+	 * å½“æŒ‡å®šçš„é…ç½®å›ºå®šå±æ€§ä¸ä¸º <code>null</code>ï¼Œå¹¶ä¸”å…¶ä¸­çš„é…ç½®å€¼æ£€æŸ¥å™¨ä¸ä¸º <code>null</code>ï¼Œ
+	 * ä¸”å…¶é»˜è®¤å€¼èƒ½é€šè¿‡é…ç½®å€¼æ£€æŸ¥å™¨æ—¶ï¼Œè®¤ä¸ºæŒ‡å®šçš„é…ç½®å›ºå®šå±æ€§æœ‰æ•ˆã€‚
 	 * 
 	 * @param configFirmProps
-	 *            Ö¸¶¨µÄÅäÖÃ¹Ì¶¨ÊôĞÔ¡£
-	 * @return Ö¸¶¨µÄÅäÖÃ¹Ì¶¨ÊôĞÔÊÇ·ñÓĞĞ§¡£
+	 *            æŒ‡å®šçš„é…ç½®å›ºå®šå±æ€§ã€‚
+	 * @return æŒ‡å®šçš„é…ç½®å›ºå®šå±æ€§æ˜¯å¦æœ‰æ•ˆã€‚
 	 */
 	public static boolean isValid(ConfigFirmProps configFirmProps) {
 		if (Objects.isNull(configFirmProps))
@@ -44,27 +44,27 @@ public final class ConfigUtil {
 	}
 
 	/**
-	 * ÅĞ¶ÏÖ¸¶¨µÄÅäÖÃ¹Ì¶¨ÊôĞÔÊÇ·ñÎŞĞ§¡£
+	 * åˆ¤æ–­æŒ‡å®šçš„é…ç½®å›ºå®šå±æ€§æ˜¯å¦æ— æ•ˆã€‚
 	 * <p>
-	 * Èç¹ûÅäÖÃ¹Ì¶¨Öµ²»ÓĞĞ§£¬ÔòÎŞĞ§£¬¼´¸Ã·½·¨µÈÍ¬ÓÚ <code> ! isValid(configFirmProps)</code>
+	 * å¦‚æœé…ç½®å›ºå®šå€¼ä¸æœ‰æ•ˆï¼Œåˆ™æ— æ•ˆï¼Œå³è¯¥æ–¹æ³•ç­‰åŒäº <code> ! isValid(configFirmProps)</code>
 	 * 
 	 * @param configFirmProps
-	 *            Ö¸¶¨µÄÅäÖÃ¹Ì¶¨ÊôĞÔ¡£
-	 * @return Ö¸¶¨µÄÅäÖÃ¹Ì¶¨ÊôĞÔÖµÊÇ·ñÎŞĞ§¡£
+	 *            æŒ‡å®šçš„é…ç½®å›ºå®šå±æ€§ã€‚
+	 * @return æŒ‡å®šçš„é…ç½®å›ºå®šå±æ€§å€¼æ˜¯å¦æ— æ•ˆã€‚
 	 */
 	public static boolean nonValid(ConfigFirmProps configFirmProps) {
 		return !isValid(configFirmProps);
 	}
 
 	/**
-	 * ÅĞ¶ÏÖ¸¶¨µÄÅäÖÃÈë¿ÚÊÇ·ñÓĞĞ§¡£
+	 * åˆ¤æ–­æŒ‡å®šçš„é…ç½®å…¥å£æ˜¯å¦æœ‰æ•ˆã€‚
 	 * <p>
-	 * µ±Ö¸¶¨µÄÅäÖÃÈë¿Ú²»Îª <code>null</code>£¬ ÇÒÆäÖĞµÄÅäÖÃ¼ü²»Îª <code>null</code>£¬
-	 * ÇÒÆäÖĞµÄÅäÖÃ¹Ì¶¨ÖµÓĞĞ§Ê±£¬ÈÏÎªÖ¸¶¨µÄÅäÖÃÈë¿ÚÓĞĞ§¡£
+	 * å½“æŒ‡å®šçš„é…ç½®å…¥å£ä¸ä¸º <code>null</code>ï¼Œ ä¸”å…¶ä¸­çš„é…ç½®é”®ä¸ä¸º <code>null</code>ï¼Œ
+	 * ä¸”å…¶ä¸­çš„é…ç½®å›ºå®šå€¼æœ‰æ•ˆæ—¶ï¼Œè®¤ä¸ºæŒ‡å®šçš„é…ç½®å…¥å£æœ‰æ•ˆã€‚
 	 * 
 	 * @param configEntry
-	 *            Ö¸¶¨µÄÅäÖÃÈë¿Ú¡£
-	 * @return Ö¸¶¨µÄÅäÖÃÈë¿ÚÊÇ·ñÓĞĞ§¡£
+	 *            æŒ‡å®šçš„é…ç½®å…¥å£ã€‚
+	 * @return æŒ‡å®šçš„é…ç½®å…¥å£æ˜¯å¦æœ‰æ•ˆã€‚
 	 */
 	public static boolean isValid(ConfigEntry configEntry) {
 		if (Objects.isNull(configEntry))
@@ -76,26 +76,26 @@ public final class ConfigUtil {
 	}
 
 	/**
-	 * ÅĞ¶ÏÖ¸¶¨µÄÅäÖÃÈë¿ÚÊÇ·ñÎŞĞ§¡£
+	 * åˆ¤æ–­æŒ‡å®šçš„é…ç½®å…¥å£æ˜¯å¦æ— æ•ˆã€‚
 	 * <p>
-	 * Èç¹ûÅäÖÃÈë¿Ú²»ÓĞĞ§£¬ÔòÎŞĞ§£¬¼´¸Ã·½·¨µÈÍ¬ÓÚ <code>£¡ isValid(configEntry)</code>
+	 * å¦‚æœé…ç½®å…¥å£ä¸æœ‰æ•ˆï¼Œåˆ™æ— æ•ˆï¼Œå³è¯¥æ–¹æ³•ç­‰åŒäº <code>ï¼ isValid(configEntry)</code>
 	 * 
 	 * @param configEntry
-	 *            Ö¸¶¨µÄÅäÖÃÈë¿Ú¡£
-	 * @return Ö¸¶¨µÄÅäÖÃÈë¿ÚÊÇ·ñÎŞĞ§¡£
+	 *            æŒ‡å®šçš„é…ç½®å…¥å£ã€‚
+	 * @return æŒ‡å®šçš„é…ç½®å…¥å£æ˜¯å¦æ— æ•ˆã€‚
 	 */
 	public static boolean nonValid(ConfigEntry configEntry) {
 		return !isValid(configEntry);
 	}
 
 	/**
-	 * ¸ù¾İÖ¸¶¨µÄÅäÖÃÄ£ĞÍÉú³ÉÒ»¸ö²»¿É¸ü¸ÄµÄÅäÖÃÄ£ĞÍ¡£
+	 * æ ¹æ®æŒ‡å®šçš„é…ç½®æ¨¡å‹ç”Ÿæˆä¸€ä¸ªä¸å¯æ›´æ”¹çš„é…ç½®æ¨¡å‹ã€‚
 	 * 
 	 * @param configModel
-	 *            Ö¸¶¨µÄÅäÖÃÄ£ĞÍ¡£
-	 * @return ¸ù¾İÖ¸¶¨Ä£ĞÍÉú³ÉµÄ²»¿É¸ü¸ÄµÄÅäÖÃÄ£ĞÍ¡£
+	 *            æŒ‡å®šçš„é…ç½®æ¨¡å‹ã€‚
+	 * @return æ ¹æ®æŒ‡å®šæ¨¡å‹ç”Ÿæˆçš„ä¸å¯æ›´æ”¹çš„é…ç½®æ¨¡å‹ã€‚
 	 * @throws NullPointerException
-	 *             Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 *             å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static ConfigModel unmodifiableConfigModel(ConfigModel configModel) {
 		Objects.requireNonNull(configModel, DwarfUtil.getStringField(StringFieldKey.CONFIGUTIL_0));
@@ -383,11 +383,11 @@ public final class ConfigUtil {
 	}
 
 	/**
-	 * ÅĞ¶ÏÖ¸¶¨µÄ ExÅäÖÃÈë¿ÚÊÇ²»ÊÇÓĞĞ§µÄ¡£
+	 * åˆ¤æ–­æŒ‡å®šçš„ Exé…ç½®å…¥å£æ˜¯ä¸æ˜¯æœ‰æ•ˆçš„ã€‚
 	 * 
 	 * @param entry
-	 *            Ö¸¶¨µÄÅäÖÃÈë¿Ú¡£
-	 * @return Ö¸¶¨µÄÅäÖÃÈë¿ÚÊÇ²»ÊÇÓĞĞ§µÄ¡£
+	 *            æŒ‡å®šçš„é…ç½®å…¥å£ã€‚
+	 * @return æŒ‡å®šçš„é…ç½®å…¥å£æ˜¯ä¸æ˜¯æœ‰æ•ˆçš„ã€‚
 	 */
 	public static boolean isValid(ExconfigEntry entry) {
 		if (Objects.isNull(entry))
@@ -406,22 +406,22 @@ public final class ConfigUtil {
 	}
 
 	/**
-	 * ÅĞ¶ÏÖ¸¶¨µÄ ExÅäÖÃÈë¿ÚÊÇ²»ÊÇÎŞĞ§µÄ¡£
+	 * åˆ¤æ–­æŒ‡å®šçš„ Exé…ç½®å…¥å£æ˜¯ä¸æ˜¯æ— æ•ˆçš„ã€‚
 	 * 
 	 * @param entry
-	 *            Ö¸¶¨µÄÅäÖÃÈë¿Ú
-	 * @return Ö¸¶¨µÄÅäÖÃÈë¿ÚÊÇ²»ÊÇÎŞĞ§µÄ¡£
+	 *            æŒ‡å®šçš„é…ç½®å…¥å£
+	 * @return æŒ‡å®šçš„é…ç½®å…¥å£æ˜¯ä¸æ˜¯æ— æ•ˆçš„ã€‚
 	 */
 	public static boolean nonValid(ExconfigEntry entry) {
 		return !isValid(entry);
 	}
 
 	/**
-	 * ÓÉÖ¸¶¨µÄExÅäÖÃÄ£ĞÍÉú³ÉÒ»¸öÏß³Ì°²È«µÄExÅäÖÃÄ£ĞÍ¡£
+	 * ç”±æŒ‡å®šçš„Exé…ç½®æ¨¡å‹ç”Ÿæˆä¸€ä¸ªçº¿ç¨‹å®‰å…¨çš„Exé…ç½®æ¨¡å‹ã€‚
 	 * 
 	 * @param exconfigModel
-	 *            Ö¸¶¨µÄExÅäÖÃÄ£ĞÍ¡£
-	 * @return ÓÉÖ¸¶¨ExÅäÖÃÄ£ĞÍÉú³ÉµÄÏß³Ì°²È«µÄExÅäÖÃÄ£ĞÍ¡£
+	 *            æŒ‡å®šçš„Exé…ç½®æ¨¡å‹ã€‚
+	 * @return ç”±æŒ‡å®šExé…ç½®æ¨¡å‹ç”Ÿæˆçš„çº¿ç¨‹å®‰å…¨çš„Exé…ç½®æ¨¡å‹ã€‚
 	 */
 	public static SyncExconfigModel syncExconfigModel(ExconfigModel exconfigModel) {
 		Objects.requireNonNull(exconfigModel, DwarfUtil.getStringField(StringFieldKey.CONFIGUTIL_1));
@@ -1342,11 +1342,11 @@ public final class ConfigUtil {
 	}
 
 	/**
-	 * ¸ù¾İÖ¸¶¨µÄExÅäÖÃÄ£ĞÍÉú³ÉÒ»¸ö²»¿É±à¼­µÄExÅäÖÃÄ£ĞÍ¡£
+	 * æ ¹æ®æŒ‡å®šçš„Exé…ç½®æ¨¡å‹ç”Ÿæˆä¸€ä¸ªä¸å¯ç¼–è¾‘çš„Exé…ç½®æ¨¡å‹ã€‚
 	 * 
 	 * @param exconfigModel
-	 *            Ö¸¶¨µÄÅäÖÃÄ£ĞÍ¡£
-	 * @return ²»¿É±à¼­µÄExÅäÖÃÄ£ĞÍ¡£
+	 *            æŒ‡å®šçš„é…ç½®æ¨¡å‹ã€‚
+	 * @return ä¸å¯ç¼–è¾‘çš„Exé…ç½®æ¨¡å‹ã€‚
 	 */
 	public static ExconfigModel unmodifiableExconfigModel(ExconfigModel exconfigModel) {
 		Objects.requireNonNull(exconfigModel, DwarfUtil.getStringField(StringFieldKey.CONFIGUTIL_1));
@@ -1690,7 +1690,7 @@ public final class ConfigUtil {
 
 	}
 
-	// ½ûÖ¹Íâ²¿ÊµÀı»¯¡£
+	// ç¦æ­¢å¤–éƒ¨å®ä¾‹åŒ–ã€‚
 	private ConfigUtil() {
 	}
 

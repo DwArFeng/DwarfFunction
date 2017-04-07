@@ -14,21 +14,21 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import com.dwarfeng.dutil.develop.backgr.obv.TaskObverser;
 
 /**
- * ³éÏóÈÎÎñ¡£
+ * æŠ½è±¡ä»»åŠ¡ã€‚
  * <p>
- * ÈÎÎñ½Ó¿ÚµÄ³éÏóÊµÏÖ¡£
+ * ä»»åŠ¡æ¥å£çš„æŠ½è±¡å®ç°ã€‚
  * <p>
- * ¸ÃÀàÁ¼ºÃµØ¶¨ÒåÁË <code>run</code>·½·¨£¬²¢ÇÒÔÚ<code>run</code> ·½·¨ÖĞÖ´ĞĞ<code>todo</code>
- * ·½·¨£¬<code>todo</code>·½·¨ÖĞÌîĞ´ĞèÒªÊµÏÖµÄ¾ßÌåÈÎÎñ¡£
+ * è¯¥ç±»è‰¯å¥½åœ°å®šä¹‰äº† <code>run</code>æ–¹æ³•ï¼Œå¹¶ä¸”åœ¨<code>run</code> æ–¹æ³•ä¸­æ‰§è¡Œ<code>todo</code>
+ * æ–¹æ³•ï¼Œ<code>todo</code>æ–¹æ³•ä¸­å¡«å†™éœ€è¦å®ç°çš„å…·ä½“ä»»åŠ¡ã€‚
  * 
  * @author DwArFeng
  * @since 0.1.0-beta
  */
 public abstract class AbstractTask implements Task {
 
-	/** ¹Û²ìÆ÷¼¯ºÏ¡£ */
+	/** è§‚å¯Ÿå™¨é›†åˆã€‚ */
 	protected final Set<TaskObverser> obversers = Collections.newSetFromMap(new WeakHashMap<>());
-	/** Í¬²½¶ÁĞ´Ëø */
+	/** åŒæ­¥è¯»å†™é” */
 	protected final ReadWriteLock lock = new ReentrantReadWriteLock();
 
 	private final Lock runningLock = new ReentrantLock();
@@ -39,12 +39,12 @@ public abstract class AbstractTask implements Task {
 	private Exception exception = null;
 
 	/**
-	 * ³éÏóÈÎÎñĞèÒªÊµÏÖµÄ¾ßÌåÈÎÎñ¡£
+	 * æŠ½è±¡ä»»åŠ¡éœ€è¦å®ç°çš„å…·ä½“ä»»åŠ¡ã€‚
 	 * <p>
-	 * ¸Ã·½·¨ÔÊĞíÅ×³öÒì³££¬Èç¹ûÅ×³öÒì³££¬ÈÎÎñÔò»áÖÕÖ¹£¬²¢ÇÒµ÷ÓÃ <code>getException</code>·½·¨»á·µ»ØÅ×³öµÄÒì³£¡£
+	 * è¯¥æ–¹æ³•å…è®¸æŠ›å‡ºå¼‚å¸¸ï¼Œå¦‚æœæŠ›å‡ºå¼‚å¸¸ï¼Œä»»åŠ¡åˆ™ä¼šç»ˆæ­¢ï¼Œå¹¶ä¸”è°ƒç”¨ <code>getException</code>æ–¹æ³•ä¼šè¿”å›æŠ›å‡ºçš„å¼‚å¸¸ã€‚
 	 * 
 	 * @throws Exception
-	 *             Å×³öµÄÒì³£¡£
+	 *             æŠ›å‡ºçš„å¼‚å¸¸ã€‚
 	 */
 	protected abstract void todo() throws Exception;
 
@@ -130,7 +130,7 @@ public abstract class AbstractTask implements Task {
 	 */
 	@Override
 	public void run() {
-		// ÖÃÎ»¿ªÊ¼±êÖ¾£¬²¢ÇÒÍ¨Öª¹Û²ìÆ÷¡£
+		// ç½®ä½å¼€å§‹æ ‡å¿—ï¼Œå¹¶ä¸”é€šçŸ¥è§‚å¯Ÿå™¨ã€‚
 		lock.writeLock().lock();
 		try {
 			startFlag = true;
@@ -138,13 +138,13 @@ public abstract class AbstractTask implements Task {
 			lock.writeLock().unlock();
 		}
 		fireStarted();
-		// ÔËĞĞ todo ·½·¨¡£
+		// è¿è¡Œ todo æ–¹æ³•ã€‚
 		try {
 			todo();
 		} catch (Exception e) {
 			exception = e;
 		}
-		// ÖÃÎ»½áÊø±êÖ¾£¬²¢ÇÒÍ¨Öª¹Û²ìÆ÷¡£
+		// ç½®ä½ç»“æŸæ ‡å¿—ï¼Œå¹¶ä¸”é€šçŸ¥è§‚å¯Ÿå™¨ã€‚
 		lock.writeLock().lock();
 		try {
 			finishFlag = true;
@@ -152,7 +152,7 @@ public abstract class AbstractTask implements Task {
 			lock.writeLock().unlock();
 		}
 		fireFinished();
-		// »½ĞÑµÈ´ıÏß³Ì
+		// å”¤é†’ç­‰å¾…çº¿ç¨‹
 		runningLock.lock();
 		try {
 			runningCondition.signalAll();
@@ -162,7 +162,7 @@ public abstract class AbstractTask implements Task {
 	}
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷ÈÎÎñ¿ªÊ¼¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨ä»»åŠ¡å¼€å§‹ã€‚
 	 */
 	protected void fireStarted() {
 		for (TaskObverser obverser : obversers) {
@@ -172,7 +172,7 @@ public abstract class AbstractTask implements Task {
 	}
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷ÈÎÎñ½áÊø¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨ä»»åŠ¡ç»“æŸã€‚
 	 */
 	protected void fireFinished() {
 		for (TaskObverser obverser : obversers) {

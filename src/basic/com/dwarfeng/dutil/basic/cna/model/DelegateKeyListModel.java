@@ -13,9 +13,9 @@ import com.dwarfeng.dutil.basic.cna.model.obv.ListObverser;
 import com.dwarfeng.dutil.basic.prog.WithKey;
 
 /**
- * ´úÀí¼üÖµÁĞ±íÄ£ĞÍ¡£
+ * ä»£ç†é”®å€¼åˆ—è¡¨æ¨¡å‹ã€‚
  * <p>
- * Í¨¹ı´úÀíÒ»¸ö {@link List} ÊµÏÖ¼üÖµÁĞ±íÄ£ĞÍ¡£
+ * é€šè¿‡ä»£ç†ä¸€ä¸ª {@link List} å®ç°é”®å€¼åˆ—è¡¨æ¨¡å‹ã€‚
  * 
  * @author DwArFeng
  * @since 0.1.0-beta
@@ -23,21 +23,21 @@ import com.dwarfeng.dutil.basic.prog.WithKey;
 public class DelegateKeyListModel<K, V extends WithKey<K>> extends DelegateListModel<V> implements KeyListModel<K, V> {
 
 	/**
-	 * Éú³ÉÒ»¸öÄ¬ÈÏµÄ´úÀí¼üÖµÁĞ±íÄ£ĞÍ¡£
+	 * ç”Ÿæˆä¸€ä¸ªé»˜è®¤çš„ä»£ç†é”®å€¼åˆ—è¡¨æ¨¡å‹ã€‚
 	 */
 	public DelegateKeyListModel() {
 		super();
 	}
 
 	/**
-	 * Éú³ÉÒ»¸ö¾ßÓĞÖ¸¶¨µÄ´úÀí£¬Ö¸¶¨µÄ¹Û²ìÆ÷ÁĞ±íµÄ´úÀí¼üÖµÁĞ±íÄ£ĞÍ¡£
+	 * ç”Ÿæˆä¸€ä¸ªå…·æœ‰æŒ‡å®šçš„ä»£ç†ï¼ŒæŒ‡å®šçš„è§‚å¯Ÿå™¨åˆ—è¡¨çš„ä»£ç†é”®å€¼åˆ—è¡¨æ¨¡å‹ã€‚
 	 * 
 	 * @param delegate
-	 *            Ö¸¶¨µÄ´úÀí¡£
+	 *            æŒ‡å®šçš„ä»£ç†ã€‚
 	 * @param obversers
-	 *            Ö¸¶¨µÄ¹Û²ìÆ÷ÁĞ±í¡£
+	 *            æŒ‡å®šçš„è§‚å¯Ÿå™¨åˆ—è¡¨ã€‚
 	 * @throws NullPointerException
-	 *             Èë¿Ú²ÎÊıÎª null¡£
+	 *             å…¥å£å‚æ•°ä¸º nullã€‚
 	 */
 	public DelegateKeyListModel(List<V> delegate, Set<ListObverser<V>> obversers) {
 		super(delegate, obversers);

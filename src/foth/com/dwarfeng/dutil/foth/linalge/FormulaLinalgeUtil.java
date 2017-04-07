@@ -6,20 +6,20 @@ import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 
 /**
- * ÓĞ¹ØÓÚ½á¹¹±£ÁôÏßĞÔ´úÊıµÄ¹¤¾ß°ü¡£
- * <p> ¸Ã°üÖĞ°üº¬¹ØÓÚ¶ÔÏßĞÔ´úÊı½øĞĞ²Ù×÷µÄ³£ÓÃ·½·¨¡£
- * <p> ÓÉÓÚÊÇÖ»º¬ÓĞ¾²Ì¬·½·¨µÄ¹¤¾ß°ü£¬ËùÒÔ¸ÃÀàÎŞ·¨±»¼Ì³Ğ¡£
+ * æœ‰å…³äºç»“æ„ä¿ç•™çº¿æ€§ä»£æ•°çš„å·¥å…·åŒ…ã€‚
+ * <p> è¯¥åŒ…ä¸­åŒ…å«å…³äºå¯¹çº¿æ€§ä»£æ•°è¿›è¡Œæ“ä½œçš„å¸¸ç”¨æ–¹æ³•ã€‚
+ * <p> ç”±äºæ˜¯åªå«æœ‰é™æ€æ–¹æ³•çš„å·¥å…·åŒ…ï¼Œæ‰€ä»¥è¯¥ç±»æ— æ³•è¢«ç»§æ‰¿ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public final class FormulaLinalgeUtil {
 	
 	/**
-	 * ¼ì²âÖ¸¶¨µÄĞĞÏòÁ¿ºÍÁĞÏòÁ¿ÊÇ·ñÄÜ¹»Ïà³Ë¡£
-	 * @param rowVector Ö¸¶¨µÄĞĞÏòÁ¿¡£
-	 * @param columnVector Ö¸¶¨µÄÁĞÏòÁ¿¡£
-	 * @return Ö¸¶¨µÄĞĞÏòÁ¿ÓëÖ¸¶¨µÄÁĞÏòÁ¿ÊÇ·ñÄÜ¹»Ïà³Ë¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * æ£€æµ‹æŒ‡å®šçš„è¡Œå‘é‡å’Œåˆ—å‘é‡æ˜¯å¦èƒ½å¤Ÿç›¸ä¹˜ã€‚
+	 * @param rowVector æŒ‡å®šçš„è¡Œå‘é‡ã€‚
+	 * @param columnVector æŒ‡å®šçš„åˆ—å‘é‡ã€‚
+	 * @return æŒ‡å®šçš„è¡Œå‘é‡ä¸æŒ‡å®šçš„åˆ—å‘é‡æ˜¯å¦èƒ½å¤Ÿç›¸ä¹˜ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static boolean checkForMutiply(FormulaRowVector rowVector, FormulaColumnVector columnVector){
 		Objects.requireNonNull(rowVector, DwarfUtil.getStringField(StringFieldKey.FormulaLinalgeUtil_0));
@@ -29,12 +29,12 @@ public final class FormulaLinalgeUtil {
 	}
 	
 	/**
-	 * ÒªÇóÖ¸¶¨µÄĞĞÏòÁ¿ºÍÖ¸¶¨µÄÁĞÏòÁ¿ÄÜ¹»Ïà³Ë¡£
-	 * <p> Èç¹ûĞĞÏòÁ¿ºÍÁĞÏòÁ¿²»ÄÜÏà³Ë£¬ÔòÅ×³ö {@link IllegalArgumentException}¡£
-	 * @param rowVector Ö¸¶¨µÄĞĞÏòÁ¿¡£
-	 * @param columnVector Ö¸¶¨µÄÁĞÏòÁ¿¡£
-	 * @throws IllegalArgumentException Ö¸¶¨µÄĞĞÏòÁ¿ÓëÁĞÏòÁ¿²»ÄÜÏà³Ë¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * è¦æ±‚æŒ‡å®šçš„è¡Œå‘é‡å’ŒæŒ‡å®šçš„åˆ—å‘é‡èƒ½å¤Ÿç›¸ä¹˜ã€‚
+	 * <p> å¦‚æœè¡Œå‘é‡å’Œåˆ—å‘é‡ä¸èƒ½ç›¸ä¹˜ï¼Œåˆ™æŠ›å‡º {@link IllegalArgumentException}ã€‚
+	 * @param rowVector æŒ‡å®šçš„è¡Œå‘é‡ã€‚
+	 * @param columnVector æŒ‡å®šçš„åˆ—å‘é‡ã€‚
+	 * @throws IllegalArgumentException æŒ‡å®šçš„è¡Œå‘é‡ä¸åˆ—å‘é‡ä¸èƒ½ç›¸ä¹˜ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static void requireForMutiply(FormulaRowVector rowVector, FormulaColumnVector columnVector){
 		Objects.requireNonNull(rowVector, DwarfUtil.getStringField(StringFieldKey.FormulaLinalgeUtil_0));
@@ -46,13 +46,13 @@ public final class FormulaLinalgeUtil {
 	}
 	
 	/**
-	 * ÒªÇóÖ¸¶¨µÄĞĞÏòÁ¿ÓëÖ¸¶¨µÄÁĞÏòÁ¿ÄÜ¹»Ïà³Ë¡£
-	 * <p> Èç¹ûĞĞÏòÁ¿ºÍÁĞÏòÁ¿²»ÄÜÏà³Ë£¬ÔòÅ×³ö¾ßÓĞÖ¸¶¨ÃèÊöÎÄ±¾µÄ {@link IllegalArgumentException}¡£
-	 * @param rowVector Ö¸¶¨µÄĞĞÏòÁ¿¡£
-	 * @param columnVector Ö¸¶¨µÄÁĞÏòÁ¿¡£
-	 * @param message Ö¸¶¨µÄÃèÊöÎÄ±¾¡£
-	 * @throws IllegalArgumentException Ö¸¶¨µÄĞĞÏòÁ¿ÓëÁĞÏòÁ¿²»ÄÜÏà³ËÊ±Å×³ö¸ÃÒì³£¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª  <code>null</code>¡£
+	 * è¦æ±‚æŒ‡å®šçš„è¡Œå‘é‡ä¸æŒ‡å®šçš„åˆ—å‘é‡èƒ½å¤Ÿç›¸ä¹˜ã€‚
+	 * <p> å¦‚æœè¡Œå‘é‡å’Œåˆ—å‘é‡ä¸èƒ½ç›¸ä¹˜ï¼Œåˆ™æŠ›å‡ºå…·æœ‰æŒ‡å®šæè¿°æ–‡æœ¬çš„ {@link IllegalArgumentException}ã€‚
+	 * @param rowVector æŒ‡å®šçš„è¡Œå‘é‡ã€‚
+	 * @param columnVector æŒ‡å®šçš„åˆ—å‘é‡ã€‚
+	 * @param message æŒ‡å®šçš„æè¿°æ–‡æœ¬ã€‚
+	 * @throws IllegalArgumentException æŒ‡å®šçš„è¡Œå‘é‡ä¸åˆ—å‘é‡ä¸èƒ½ç›¸ä¹˜æ—¶æŠ›å‡ºè¯¥å¼‚å¸¸ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º  <code>null</code>ã€‚
 	 */
 	public static void requireForMutiply(FormulaRowVector rowVector, FormulaColumnVector columnVector, String message){
 		Objects.requireNonNull(rowVector, DwarfUtil.getStringField(StringFieldKey.FormulaLinalgeUtil_0));
@@ -63,6 +63,6 @@ public final class FormulaLinalgeUtil {
 		}
 	}
 
-	//²»ÔÊĞíÍâ²¿ÊµÀı»¯
+	//ä¸å…è®¸å¤–éƒ¨å®ä¾‹åŒ–
 	private FormulaLinalgeUtil() {}
 }

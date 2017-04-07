@@ -5,9 +5,9 @@ import java.util.Objects;
 import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
 
 /**
- * ����ֵ�������
- * <p> ֻҪ�������ı�����Ϊ��д֮�� ��Ϊ <code>TRUE</code> ���� <code>FALSE</code> ����֮һ��
- * ��Ϊ��Ч��
+ * 布尔值检查器。
+ * <p> 只要待检测的文本解析为大写之后 ，为 <code>TRUE</code> 或者 <code>FALSE</code> 两者之一，
+ * 即为有效。
  * @author DwArFeng
  * @since 0.0.2-beta
  */

@@ -233,7 +233,7 @@ public class Test_DelegateListModel {
 		assertEquals("0", i.previous());
 		assertEquals("0", i.next());
 
-		// Á½¸ö·½ÏòµÄÌí¼Ó²âÊÔ
+		// ä¸¤ä¸ªæ–¹å‘çš„æ·»åŠ æµ‹è¯•
 		i.add("2");
 		assertArrayEquals(new String[] { "0", "2", "3" }, model.toArray(new String[0]));
 		assertEquals(new Integer(1), obv.addedIndexes.get(0));

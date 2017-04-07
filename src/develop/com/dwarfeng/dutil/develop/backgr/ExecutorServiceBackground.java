@@ -21,23 +21,23 @@ import com.dwarfeng.dutil.develop.backgr.obv.BackgroundObverser;
 import com.dwarfeng.dutil.develop.backgr.obv.TaskObverser;
 
 /**
- * Ö´ĞĞÆ÷ºóÌ¨¡£
+ * æ‰§è¡Œå™¨åå°ã€‚
  * 
  * <p>
- * ¸ÃºóÌ¨Ê¹ÓÃÒ»¸öÖ´ĞĞÆ÷½øĞĞÍĞ¹Ü£¬¸ÃºóÌ¨½«±»Ìá½»µÄÈÎÎñ·¢ËÍ¸øÖ´ĞĞÆ÷Ö´ĞĞ¡£Ö´ĞĞÆ÷µÄĞĞÎª¾ö¶¨ÁË¸ÃºóÌ¨µÄĞĞÎª¡£
+ * è¯¥åå°ä½¿ç”¨ä¸€ä¸ªæ‰§è¡Œå™¨è¿›è¡Œæ‰˜ç®¡ï¼Œè¯¥åå°å°†è¢«æäº¤çš„ä»»åŠ¡å‘é€ç»™æ‰§è¡Œå™¨æ‰§è¡Œã€‚æ‰§è¡Œå™¨çš„è¡Œä¸ºå†³å®šäº†è¯¥åå°çš„è¡Œä¸ºã€‚
  * 
  * @author DwArFeng
  * @since 0.1.0-beta
  */
 public class ExecutorServiceBackground extends AbstractBackground {
 
-	/** Ö´ĞĞÆ÷ºóÌ¨Ä¬ÈÏµÄÏß³Ì¹¤³§¡£ */
+	/** æ‰§è¡Œå™¨åå°é»˜è®¤çš„çº¿ç¨‹å·¥å‚ã€‚ */
 	public static final ThreadFactory THREAD_FACTORY = new NumberedThreadFactory("EsBackgr", false,
 			Thread.NORM_PRIORITY);
 
-	/** ÍĞ¹ÜºóÌ¨µÄÖ´ĞĞÆ÷¡£ */
+	/** æ‰˜ç®¡åå°çš„æ‰§è¡Œå™¨ã€‚ */
 	protected final ExecutorService executorService;
-	/** ºóÌ¨ÖĞËùÓĞÈÎÎñµÄ¼¯ºÏ¡£ */
+	/** åå°ä¸­æ‰€æœ‰ä»»åŠ¡çš„é›†åˆã€‚ */
 	protected final Set<Task> tasks = new HashSet<>();
 
 	private final Lock runningLock = new ReentrantLock();
@@ -47,21 +47,21 @@ public class ExecutorServiceBackground extends AbstractBackground {
 	private boolean terminateFlag = false;
 
 	/**
-	 * Éú³ÉÒ»¸öÄ¬ÈÏµÄÖ´ĞĞÆ÷ºóÌ¨¡£
+	 * ç”Ÿæˆä¸€ä¸ªé»˜è®¤çš„æ‰§è¡Œå™¨åå°ã€‚
 	 */
 	public ExecutorServiceBackground() {
 		this(Executors.newSingleThreadExecutor(THREAD_FACTORY), Collections.newSetFromMap(new WeakHashMap<>()));
 	}
 
 	/**
-	 * Éú³ÉÒ»¸ö¾ßÓĞÖ¸¶¨Ö´ĞĞÆ÷£¬Ö¸¶¨µÄ¹Û²ìÆ÷¼¯ºÏµÄÖ´ĞĞÆ÷ºóÌ¨¡£
+	 * ç”Ÿæˆä¸€ä¸ªå…·æœ‰æŒ‡å®šæ‰§è¡Œå™¨ï¼ŒæŒ‡å®šçš„è§‚å¯Ÿå™¨é›†åˆçš„æ‰§è¡Œå™¨åå°ã€‚
 	 * 
 	 * @param executorService
-	 *            Ö¸¶¨µÄÖ´ĞĞÆ÷¡£
+	 *            æŒ‡å®šçš„æ‰§è¡Œå™¨ã€‚
 	 * @param obversers
-	 *            Ö¸¶¨µÄ¹Û²ìÆ÷¼¯ºÏ¡£
+	 *            æŒ‡å®šçš„è§‚å¯Ÿå™¨é›†åˆã€‚
 	 * @throws NullPointerException
-	 *             Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 *             å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public ExecutorServiceBackground(ExecutorService executorService, Set<BackgroundObverser> obversers) {
 		super(obversers);

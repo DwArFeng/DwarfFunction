@@ -4,7 +4,7 @@ import com.dwarfeng.dutil.basic.prog.Obverser;
 import com.dwarfeng.dutil.develop.backgr.Task;
 
 /**
- * ºóÌ¨¹Û²ìÆ÷¡£
+ * åå°è§‚å¯Ÿå™¨ã€‚
  * 
  * @author DwArFeng
  * @since 0.1.0-beta
@@ -12,44 +12,44 @@ import com.dwarfeng.dutil.develop.backgr.Task;
 public interface BackgroundObverser extends Obverser {
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷Ö¸¶¨µÄÈÎÎñ±»Ìá½»¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨æŒ‡å®šçš„ä»»åŠ¡è¢«æäº¤ã€‚
 	 * 
 	 * @param task
-	 *            Ö¸¶¨µÄÈÎÎñ¡£
+	 *            æŒ‡å®šçš„ä»»åŠ¡ã€‚
 	 */
 	public void fireTaskSubmitted(Task task);
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷Ö¸¶¨µÄÈÎÎñ¿ªÊ¼¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨æŒ‡å®šçš„ä»»åŠ¡å¼€å§‹ã€‚
 	 * 
 	 * @param task
-	 *            Ö¸¶¨µÄÈÎÎñ¡£
+	 *            æŒ‡å®šçš„ä»»åŠ¡ã€‚
 	 */
 	public void fireTaskStarted(Task task);
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷Ö¸¶¨µÄÈÎÎñ½áÊø¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨æŒ‡å®šçš„ä»»åŠ¡ç»“æŸã€‚
 	 * 
 	 * @param task
-	 *            Ö¸¶¨µÄÈÎÎñ¡£
+	 *            æŒ‡å®šçš„ä»»åŠ¡ã€‚
 	 */
 	public void fireTaskFinished(Task task);
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷Ö¸¶¨µÄÈÎÎñ±»ÒÆ³ı¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨æŒ‡å®šçš„ä»»åŠ¡è¢«ç§»é™¤ã€‚
 	 * 
 	 * @param task
-	 *            Ö¸¶¨µÄÈÎÎñ¡£
+	 *            æŒ‡å®šçš„ä»»åŠ¡ã€‚
 	 */
 	public void fireTaskRemoved(Task task);
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷ºóÌ¨±»¹Ø±Õ¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨åå°è¢«å…³é—­ã€‚
 	 */
 	public void fireShutDown();
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷ºóÌ¨±»ÖÕ½á¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨åå°è¢«ç»ˆç»“ã€‚
 	 */
 	public void fireTerminated();
 

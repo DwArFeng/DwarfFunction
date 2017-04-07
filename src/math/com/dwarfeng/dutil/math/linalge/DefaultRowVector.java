@@ -7,20 +7,20 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.math.AbstractMathObject;
 
 /**
- * ĞĞÏòÁ¿¡£
+ * è¡Œå‘é‡ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public class DefaultRowVector extends AbstractMathObject implements RowVector{
 
-	/**´æ´¢ĞĞÏòÁ¿ÖµµÄÊı×é*/
+	/**å­˜å‚¨è¡Œå‘é‡å€¼çš„æ•°ç»„*/
 	protected final double[] vals;
 	
 	/**
-	 * Éú³ÉÒ»¸öÖµÎªÖ¸¶¨Êı×éµÄĞĞÏòÁ¿¡£
-	 * @param vals Ö¸¶¨µÄÖµÊı×é¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
-	 * @throws IllegalArgumentException Êı×éµÄ´óĞ¡Ğ¡ÓÚ1¡£
+	 * ç”Ÿæˆä¸€ä¸ªå€¼ä¸ºæŒ‡å®šæ•°ç»„çš„è¡Œå‘é‡ã€‚
+	 * @param vals æŒ‡å®šçš„å€¼æ•°ç»„ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
+	 * @throws IllegalArgumentException æ•°ç»„çš„å¤§å°å°äº1ã€‚
 	 */
 	public DefaultRowVector(double[] vals) {
 		Objects.requireNonNull(vals, DwarfUtil.getStringField(StringFieldKey.DefaultRowVector_0));

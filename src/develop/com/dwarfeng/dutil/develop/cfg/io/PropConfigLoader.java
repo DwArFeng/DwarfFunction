@@ -16,14 +16,14 @@ import com.dwarfeng.dutil.develop.cfg.ConfigKey;
 import com.dwarfeng.dutil.develop.cfg.CurrentValueContainer;
 
 /**
- * Properties ÅäÖÃ¶ÁÈ¡Æ÷¡£
+ * Properties é…ç½®è¯»å–å™¨ã€‚
  * <p>
- * ¸ÃÅäÖÃ¶ÁÈ¡Æ÷¼ÙÉè´ı¶ÁÈ¡µÄÎÄ¼ş¸ñÊ½·ûºÏ java µÄ properties ÎÄ¼ş¸ñÊ½¡£±ÈÈç <blockquote> <code>
- * 			# ×¢ÊÍ...<br>
+ * è¯¥é…ç½®è¯»å–å™¨å‡è®¾å¾…è¯»å–çš„æ–‡ä»¶æ ¼å¼ç¬¦åˆ java çš„ properties æ–‡ä»¶æ ¼å¼ã€‚æ¯”å¦‚ <blockquote> <code>
+ * 			# æ³¨é‡Š...<br>
  * 			Config_0 = TURE<br>
  * 			Config_1 = FALSE<br>
  * 			Config_2 = 12.450
- * 		</code> </blockquote> ÆäÖĞ µÈºÅ×ó±ßµÄÊÇ¼ü£¬µÈºÅÓÒ±ßµÄÊÇÖµ¡£
+ * 		</code> </blockquote> å…¶ä¸­ ç­‰å·å·¦è¾¹çš„æ˜¯é”®ï¼Œç­‰å·å³è¾¹çš„æ˜¯å€¼ã€‚
  * 
  * @author DwArFeng
  * @since 0.0.3-beta
@@ -33,12 +33,12 @@ public class PropConfigLoader extends StreamLoader<CurrentValueContainer> {
 	private boolean flag = true;
 
 	/**
-	 * Éú³ÉÒ»¸öĞÂµÄ Properties ÅäÖÃ¶ÁÈ¡Æ÷¡£
+	 * ç”Ÿæˆä¸€ä¸ªæ–°çš„ Properties é…ç½®è¯»å–å™¨ã€‚
 	 * 
 	 * @param in
-	 *            Ö¸¶¨µÄÊäÈëÁ÷¡£
+	 *            æŒ‡å®šçš„è¾“å…¥æµã€‚
 	 * @throws NullPointerException
-	 *             Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 *             å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public PropConfigLoader(InputStream in) {
 		super(in);

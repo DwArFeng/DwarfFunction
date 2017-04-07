@@ -16,23 +16,23 @@ import com.dwarfeng.dutil.math.linalge.DefaultColumnVector;
 import com.dwarfeng.dutil.math.linalge.LinalgeUtil;
 
 /**
- * ÁĞÏòÁ¿¡£
- * <p> ¸Ã¶ÔÀà½ÓÊÜ¿É±ä¶ÔÏó£¬´«ÈëÆäÖĞµÄÖµ¶ÔÏó¶¼»áÖ±½Ó´æ´¢£¬ÆäÖĞ±äÁ¿·¢Éú±ä»¯µÄ»°£¬¸Ã¶ÔÏóÒ²»á·¢Éú±ä»¯¡£
- * <p> ÁĞÏòÁ¿ÓëÊı×é²»Ò»ÑùµÄµØ·½ÔÚÓÚ£¬ÁĞÏòÁ¿²»ÔÊĞí¾ßÓĞ0¸öÔªËØ£¬ÒòÎª0¸öÔªËØµÄÁĞÏòÁ¿ÍêÈ«Ã»ÓĞÒâÒå¡£
+ * åˆ—å‘é‡ã€‚
+ * <p> è¯¥å¯¹ç±»æ¥å—å¯å˜å¯¹è±¡ï¼Œä¼ å…¥å…¶ä¸­çš„å€¼å¯¹è±¡éƒ½ä¼šç›´æ¥å­˜å‚¨ï¼Œå…¶ä¸­å˜é‡å‘ç”Ÿå˜åŒ–çš„è¯ï¼Œè¯¥å¯¹è±¡ä¹Ÿä¼šå‘ç”Ÿå˜åŒ–ã€‚
+ * <p> åˆ—å‘é‡ä¸æ•°ç»„ä¸ä¸€æ ·çš„åœ°æ–¹åœ¨äºï¼Œåˆ—å‘é‡ä¸å…è®¸å…·æœ‰0ä¸ªå…ƒç´ ï¼Œå› ä¸º0ä¸ªå…ƒç´ çš„åˆ—å‘é‡å®Œå…¨æ²¡æœ‰æ„ä¹‰ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public class DefalutFormulaColumnVector extends AbstractMathObject implements FormulaColumnVector{
 	
-	/**´æ´¢ÁĞÏòÁ¿ÖµµÄÊı×é*/
+	/**å­˜å‚¨åˆ—å‘é‡å€¼çš„æ•°ç»„*/
 	protected final FothValue[] vals;
-	/**ÁĞÏòÁ¿µÄ±äÁ¿¿Õ¼ä*/
+	/**åˆ—å‘é‡çš„å˜é‡ç©ºé—´*/
 	protected final FothVariableSpace vs;
 	
 	/**
-	 * Éú³ÉÒ»¸öÓëmath°üÖĞµÄÁĞÏòÁ¿µÄÖµÒ»ÖÂµÄÓĞ½á¹¹ÁĞÏòÁ¿¡£
-	 * @param columnVector math°üÖĞµÄÁĞÏòÁ¿¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * ç”Ÿæˆä¸€ä¸ªä¸mathåŒ…ä¸­çš„åˆ—å‘é‡çš„å€¼ä¸€è‡´çš„æœ‰ç»“æ„åˆ—å‘é‡ã€‚
+	 * @param columnVector mathåŒ…ä¸­çš„åˆ—å‘é‡ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public DefalutFormulaColumnVector(ColumnVector columnVector) {
 		Objects.requireNonNull(columnVector, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_3));
@@ -48,11 +48,11 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 	}
 	
 	/**
-	 * Éú³ÉÒ»¸öÓµÓĞÖ¸¶¨ÁĞÔªËØµÄÁĞÏòÁ¿¡£
-	 * <p> Çë×¢Òâ£ºÕâÀïµÄÁĞÔªËØÊı×é±ØĞëÓĞĞ§£¬ÓĞĞ§ÊÇÖ¸ÁĞÔªËØµÄ¸öÊı±ØĞë´óÓÚ0¡£
-	 * @param vals Ö¸¶¨µÄÁĞÔªËØ¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
-	 * @throws IllegalArgumentException ÔªËØÊı×éÎŞĞ§¡£
+	 * ç”Ÿæˆä¸€ä¸ªæ‹¥æœ‰æŒ‡å®šåˆ—å…ƒç´ çš„åˆ—å‘é‡ã€‚
+	 * <p> è¯·æ³¨æ„ï¼šè¿™é‡Œçš„åˆ—å…ƒç´ æ•°ç»„å¿…é¡»æœ‰æ•ˆï¼Œæœ‰æ•ˆæ˜¯æŒ‡åˆ—å…ƒç´ çš„ä¸ªæ•°å¿…é¡»å¤§äº0ã€‚
+	 * @param vals æŒ‡å®šçš„åˆ—å…ƒç´ ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
+	 * @throws IllegalArgumentException å…ƒç´ æ•°ç»„æ— æ•ˆã€‚
 	 */
 	public DefalutFormulaColumnVector(double[] vals) {
 		Objects.requireNonNull(vals, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_1));
@@ -65,12 +65,12 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 	}
 	
 	/**
-	 * Éú³ÉÒ»¸öÓµÓĞÖ¸¶¨Öµ½Ó¿ÚÔªËØµÄµ±Ç°Öµ×é³ÉµÄÁĞÏòÁ¿¡£
-	 * <p> 	Çë×¢Òâ£¬´Ë´¦µÄÖµ½Ó¿ÚÔªËØ±ØĞëÍêÈ«ÓĞĞ§¡£
-	 * @param valueables Ö¸¶¨µÄÖµ½Ó¿Ú¡£
-	 * @throws VariableConflictException ±äÁ¿³åÍ»Òì³£¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
-	 * @throws IllegalArgumentException Öµ½Ó¿ÚÊı×éÎŞĞ§¡£ 
+	 * ç”Ÿæˆä¸€ä¸ªæ‹¥æœ‰æŒ‡å®šå€¼æ¥å£å…ƒç´ çš„å½“å‰å€¼ç»„æˆçš„åˆ—å‘é‡ã€‚
+	 * <p> 	è¯·æ³¨æ„ï¼Œæ­¤å¤„çš„å€¼æ¥å£å…ƒç´ å¿…é¡»å®Œå…¨æœ‰æ•ˆã€‚
+	 * @param valueables æŒ‡å®šçš„å€¼æ¥å£ã€‚
+	 * @throws VariableConflictException å˜é‡å†²çªå¼‚å¸¸ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
+	 * @throws IllegalArgumentException å€¼æ¥å£æ•°ç»„æ— æ•ˆã€‚ 
 	 */
 	public DefalutFormulaColumnVector(FothValue[] valueables){
 		ArrayUtil.requireNotContainsNull(valueables, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_2));

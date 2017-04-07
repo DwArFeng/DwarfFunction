@@ -1,7 +1,7 @@
 package com.dwarfeng.dutil.develop.cfg;
 
 /**
- * ÅäÖÃÄ£ĞÍ¹Û²ìÆ÷ÊÊÅäÆ÷¡£
+ * é…ç½®æ¨¡å‹è§‚å¯Ÿå™¨é€‚é…å™¨ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */

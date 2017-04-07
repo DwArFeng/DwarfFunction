@@ -15,23 +15,23 @@ import com.dwarfeng.dutil.math.linalge.LinalgeUtil;
 import com.dwarfeng.dutil.math.linalge.Matrix;
 
 /**
- * ¾ØÕóÀà¡£
- * <p> {@link FormulaMatrix}µÄÄ¬ÈÏÊµÏÖ¡£
+ * çŸ©é˜µç±»ã€‚
+ * <p> {@link FormulaMatrix}çš„é»˜è®¤å®ç°ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaMatrix{
 	
-	/**¾ØÕóµÄÖµ*/
+	/**çŸ©é˜µçš„å€¼*/
 	protected final FothValue[][] vals;
-	/**¾ØÕóµÄ±äÁ¿¿Õ¼ä*/
+	/**çŸ©é˜µçš„å˜é‡ç©ºé—´*/
 	protected final FothVariableSpace vs;
 
 	/**
-	 * Í¨¹ımath°üÖĞµÄ¾ØÕó¹¹Ôì¸Ã¾ØÕó¡£
-	 * @param matrix math°üÖĞµÄ¾ØÕó¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
-	 * @throws IllegalArgumentException Ö¸¶¨µÄ¾ØÕóµÄĞĞ»òÁĞĞ¡ÓÚ1¡£
+	 * é€šè¿‡mathåŒ…ä¸­çš„çŸ©é˜µæ„é€ è¯¥çŸ©é˜µã€‚
+	 * @param matrix mathåŒ…ä¸­çš„çŸ©é˜µã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
+	 * @throws IllegalArgumentException æŒ‡å®šçš„çŸ©é˜µçš„è¡Œæˆ–åˆ—å°äº1ã€‚
 	 */
 	public DefaultFormulaMatrix(Matrix matrix) {
 		Objects.requireNonNull(matrix, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaMatrix_5));
@@ -51,10 +51,10 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 	}
 	
 	/**
-	 * Í¨¹ı¶şÎ¬Ë«¾«¶È¸¡µãÊı×é¹¹Ôì¾ØÕó¡£
-	 * @param vals Ö¸¶¨µÄË«¾«¶È¸¡µãÊı×é¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>£¬»òÆäÖĞº¬ÓĞ <code>null</code>ÔªËØ¡£
-	 * @throws IllegalArgumentException Êı×éµÄĞĞ»òÁĞµÄ´óĞ¡Îª0¡£
+	 * é€šè¿‡äºŒç»´åŒç²¾åº¦æµ®ç‚¹æ•°ç»„æ„é€ çŸ©é˜µã€‚
+	 * @param vals æŒ‡å®šçš„åŒç²¾åº¦æµ®ç‚¹æ•°ç»„ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ï¼Œæˆ–å…¶ä¸­å«æœ‰ <code>null</code>å…ƒç´ ã€‚
+	 * @throws IllegalArgumentException æ•°ç»„çš„è¡Œæˆ–åˆ—çš„å¤§å°ä¸º0ã€‚
 	 */
 	public DefaultFormulaMatrix(double[][] vals) {
 		Objects.requireNonNull(vals, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaMatrix_0));
@@ -76,10 +76,10 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 	}
 	
 	/**
-	 * Í¨¹ıÖ¸¶¨µÄÖµ¶ÔÏó¶şÎ¬Êı×éÉú³É¾ØÕó¡£
-	 * @param vals Ö¸¶¨µÄÖµ¶ÔÏó¶şÎ¬Êı×é¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>£¬»òÆäÖĞº¬ÓĞ <code>null</code>ÔªËØ¡£
-	 * @throws IllegalArgumentException Êı×éµÄĞĞ»òÁĞµÄ´óĞ¡Îª0¡£
+	 * é€šè¿‡æŒ‡å®šçš„å€¼å¯¹è±¡äºŒç»´æ•°ç»„ç”ŸæˆçŸ©é˜µã€‚
+	 * @param vals æŒ‡å®šçš„å€¼å¯¹è±¡äºŒç»´æ•°ç»„ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ï¼Œæˆ–å…¶ä¸­å«æœ‰ <code>null</code>å…ƒç´ ã€‚
+	 * @throws IllegalArgumentException æ•°ç»„çš„è¡Œæˆ–åˆ—çš„å¤§å°ä¸º0ã€‚
 	 */
 	public DefaultFormulaMatrix(FothValue[][] vals) {
 		Objects.requireNonNull(vals, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaMatrix_0));
@@ -103,9 +103,9 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 	
 	
 	/**
-	 * ¾ØÕóµÄË«¾«¶È¸¡µã¹¹ÔìÆ÷¡£
-	 * <p> Ë«¾«¶È¸¡µã¹¹ÔìÆ÷»á³õÊ¼»¯Ò»¸öÖ¸¶¨ĞĞ»òÕßÁĞµÄ¶şÎ¬Ë«¾«¶È¸¡µãÊı×é£¬ÆäÖĞµÄ³õÊ¼ÖµÎª0¡£
-	 * <br> ¿ÉÒÔ¸ø¹¹ÔìÆ÷ÖĞµÄ¶şÎ¬Êı×éÖ¸¶¨µÄÎ»ÖÃ¸³Öµ¡£
+	 * çŸ©é˜µçš„åŒç²¾åº¦æµ®ç‚¹æ„é€ å™¨ã€‚
+	 * <p> åŒç²¾åº¦æµ®ç‚¹æ„é€ å™¨ä¼šåˆå§‹åŒ–ä¸€ä¸ªæŒ‡å®šè¡Œæˆ–è€…åˆ—çš„äºŒç»´åŒç²¾åº¦æµ®ç‚¹æ•°ç»„ï¼Œå…¶ä¸­çš„åˆå§‹å€¼ä¸º0ã€‚
+	 * <br> å¯ä»¥ç»™æ„é€ å™¨ä¸­çš„äºŒç»´æ•°ç»„æŒ‡å®šçš„ä½ç½®èµ‹å€¼ã€‚
 	 * @author DwArFeng
 	 * @since 0.0.2-beta
 	 */
@@ -115,10 +115,10 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 		private final double[][] vals;
 
 		/**
-		 * Éú³ÉÒ»¸ö¾ßÓĞÖ¸¶¨ĞĞÁĞµÄË«¾«¶È¾ØÕó¹¹ÔìÆ÷¡£
-		 * @param row Ö¸¶¨µÄĞĞ¡£
-		 * @param column Ö¸¶¨µÄÁĞ¡£
-		 * @throws IllegalArgumentException Ö¸¶¨µÄĞĞ»òÕßÁĞĞ¡ÓÚ1¡£
+		 * ç”Ÿæˆä¸€ä¸ªå…·æœ‰æŒ‡å®šè¡Œåˆ—çš„åŒç²¾åº¦çŸ©é˜µæ„é€ å™¨ã€‚
+		 * @param row æŒ‡å®šçš„è¡Œã€‚
+		 * @param column æŒ‡å®šçš„åˆ—ã€‚
+		 * @throws IllegalArgumentException æŒ‡å®šçš„è¡Œæˆ–è€…åˆ—å°äº1ã€‚
 		 */
 		public DoubleBuilder(int row, int column) {
 			if(row < 1 || column < 1){
@@ -128,12 +128,12 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 		}
 		
 		/**
-		 * ÎªÖ¸¶¨ĞĞÁĞ´¦µÄÎ»ÖÃ¸³Öµ¡£
-		 * @param row Ö¸¶¨µÄĞĞ¡£
-		 * @param column Ö¸¶¨µÄÁĞ¡£
-		 * @param val Ö¸¶¨µÄÖµ¡£
-		 * @return ¹¹ÔìÆ÷×ÔÉí¡£
-		 * @throws IndexOutOfBoundsException ĞĞÁĞºÅ³¬½ç¡£
+		 * ä¸ºæŒ‡å®šè¡Œåˆ—å¤„çš„ä½ç½®èµ‹å€¼ã€‚
+		 * @param row æŒ‡å®šçš„è¡Œã€‚
+		 * @param column æŒ‡å®šçš„åˆ—ã€‚
+		 * @param val æŒ‡å®šçš„å€¼ã€‚
+		 * @return æ„é€ å™¨è‡ªèº«ã€‚
+		 * @throws IndexOutOfBoundsException è¡Œåˆ—å·è¶…ç•Œã€‚
 		 */
 		public DoubleBuilder setVal(int row, int column, double val){
 			if(row < 1 || row >= vals.length){
@@ -166,9 +166,9 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 	}
 	
 	/**
-	 * ¾ØÕóµÄÖµ¶ÔÏó¹¹ÔìÆ÷¡£
-	 * <p> Öµ¶ÔÏó¹¹ÔìÆ÷»á³õÊ¼»¯Ò»¸öÖ¸¶¨ĞĞ»òÕßÁĞµÄ¶şÎ¬Öµ¶ÔÏóÊı×é£¬ÆäÖĞµÄ³õÊ¼ÖµÎª {@link QuickFothValue#ZERO}¡£
-	 * <br> ¿ÉÒÔ¸ø¹¹ÔìÆ÷ÖĞµÄ¶şÎ¬Êı×éÖ¸¶¨µÄÎ»ÖÃ¸³Öµ¡£
+	 * çŸ©é˜µçš„å€¼å¯¹è±¡æ„é€ å™¨ã€‚
+	 * <p> å€¼å¯¹è±¡æ„é€ å™¨ä¼šåˆå§‹åŒ–ä¸€ä¸ªæŒ‡å®šè¡Œæˆ–è€…åˆ—çš„äºŒç»´å€¼å¯¹è±¡æ•°ç»„ï¼Œå…¶ä¸­çš„åˆå§‹å€¼ä¸º {@link QuickFothValue#ZERO}ã€‚
+	 * <br> å¯ä»¥ç»™æ„é€ å™¨ä¸­çš„äºŒç»´æ•°ç»„æŒ‡å®šçš„ä½ç½®èµ‹å€¼ã€‚
 	 * @author DwArFeng
 	 * @since 0.0.2-beta
 	 */
@@ -178,10 +178,10 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 		private final FothValue[][] vals;
 
 		/**
-		 * ¹¹ÔìÒ»¸ö¾ßÓĞÖ¸¶¨ĞĞÁĞÊıµÄÖµ¶ÔÏó¾ØÕó¹¹ÔìÆ÷¡£
-		 * @param row Ö¸¶¨µÄĞĞ¡£
-		 * @param column Ö¸¶¨µÄÁĞ¡£
-		 * @throws IllegalArgumentException Ö¸¶¨µÄĞĞ»òÕßÁĞĞ¡ÓÚ1¡£
+		 * æ„é€ ä¸€ä¸ªå…·æœ‰æŒ‡å®šè¡Œåˆ—æ•°çš„å€¼å¯¹è±¡çŸ©é˜µæ„é€ å™¨ã€‚
+		 * @param row æŒ‡å®šçš„è¡Œã€‚
+		 * @param column æŒ‡å®šçš„åˆ—ã€‚
+		 * @throws IllegalArgumentException æŒ‡å®šçš„è¡Œæˆ–è€…åˆ—å°äº1ã€‚
 		 */
 		public FValueBuilder(int row, int column) {
 			if(row < 1 || column < 1){
@@ -199,13 +199,13 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 		}
 		
 		/**
-		 * ÎªÖ¸¶¨ĞĞÁĞ´¦µÄÎ»ÖÃ¸³Öµ¡£
-		 * @param row Ö¸¶¨µÄĞĞ¡£
-		 * @param column Ö¸¶¨µÄÁĞ¡£
-		 * @param val Ö¸¶¨µÄÖµ¡£
-		 * @return ¹¹ÔìÆ÷×ÔÉí¡£
-		 * @throws IndexOutOfBoundsException ĞĞÁĞºÅ³¬½ç¡£
-		 * @throws NullPointerException Èë¿Ú²ÎÊı <code>val</code>Îª <code>null</code>¡£
+		 * ä¸ºæŒ‡å®šè¡Œåˆ—å¤„çš„ä½ç½®èµ‹å€¼ã€‚
+		 * @param row æŒ‡å®šçš„è¡Œã€‚
+		 * @param column æŒ‡å®šçš„åˆ—ã€‚
+		 * @param val æŒ‡å®šçš„å€¼ã€‚
+		 * @return æ„é€ å™¨è‡ªèº«ã€‚
+		 * @throws IndexOutOfBoundsException è¡Œåˆ—å·è¶…ç•Œã€‚
+		 * @throws NullPointerException å…¥å£å‚æ•° <code>val</code>ä¸º <code>null</code>ã€‚
 		 */
 		public FValueBuilder setVal(int row, int column, FothValue val){
 			Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaMatrix_2));

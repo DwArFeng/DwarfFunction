@@ -10,34 +10,34 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
 
 /**
- * ³éÏó¼¯ºÏÄ£ĞÍ¡£
+ * æŠ½è±¡é›†åˆæ¨¡å‹ã€‚
  * <p>
- * ¼¯ºÏÄ£ĞÍµÄ³éÏóÊµÏÖ¡£
+ * é›†åˆæ¨¡å‹çš„æŠ½è±¡å®ç°ã€‚
  * <p>
- * ¸ÃÀàÊµÏÖÁËÄ£ĞÍÖĞÕìÌıÆ÷×¢²áÓëÒÆ³ıµÄ·½·¨£¬ÒÔ¼°Í¨ÖªÕìÌıÆ÷µÄ·½·¨¡£
+ * è¯¥ç±»å®ç°äº†æ¨¡å‹ä¸­ä¾¦å¬å™¨æ³¨å†Œä¸ç§»é™¤çš„æ–¹æ³•ï¼Œä»¥åŠé€šçŸ¥ä¾¦å¬å™¨çš„æ–¹æ³•ã€‚
  * 
  * @author DwArFeng
  * @since 0.1.0-beta
  */
 public abstract class AbstractSetModel<E> implements SetModel<E> {
 
-	/** ³éÏó¼¯ºÏÄ£ĞÍµÄÕìÌıÆ÷¼¯ºÏ¡£ */
+	/** æŠ½è±¡é›†åˆæ¨¡å‹çš„ä¾¦å¬å™¨é›†åˆã€‚ */
 	protected final Set<SetObverser<E>> obversers;
 
 	/**
-	 * Éú³ÉÒ»¸öÄ¬ÈÏµÄ³éÏó¼¯ºÏÄ£ĞÍ¡£
+	 * ç”Ÿæˆä¸€ä¸ªé»˜è®¤çš„æŠ½è±¡é›†åˆæ¨¡å‹ã€‚
 	 */
 	public AbstractSetModel() {
 		this(Collections.newSetFromMap(new WeakHashMap<>()));
 	}
 
 	/**
-	 * Éú³ÉÒ»¸ö¾ßÓĞÖ¸¶¨µÄÕìÌıÆ÷¼¯ºÏµÄµÄ³éÏó¼¯ºÏÄ£ĞÍ¡£
+	 * ç”Ÿæˆä¸€ä¸ªå…·æœ‰æŒ‡å®šçš„ä¾¦å¬å™¨é›†åˆçš„çš„æŠ½è±¡é›†åˆæ¨¡å‹ã€‚
 	 * 
 	 * @param obversers
-	 *            Ö¸¶¨µÄÕìÌıÆ÷¼¯ºÏ¡£
+	 *            æŒ‡å®šçš„ä¾¦å¬å™¨é›†åˆã€‚
 	 * @throws NullPointerException
-	 *             Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 *             å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public AbstractSetModel(Set<SetObverser<E>> obversers) {
 		Objects.requireNonNull(obversers, DwarfUtil.getStringField(StringFieldKey.ABSTRACTSETMODEL_0));
@@ -89,10 +89,10 @@ public abstract class AbstractSetModel<E> implements SetModel<E> {
 	}
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷¸ÃÄ£ĞÍÌí¼ÓÁËÖ¸¶¨µÄÔªËØ¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨è¯¥æ¨¡å‹æ·»åŠ äº†æŒ‡å®šçš„å…ƒç´ ã€‚
 	 * 
 	 * @param element
-	 *            Ö¸¶¨µÄÔªËØ¡£
+	 *            æŒ‡å®šçš„å…ƒç´ ã€‚
 	 */
 	protected void fireAdded(E element) {
 		for (SetObverser<E> obverser : obversers) {
@@ -102,10 +102,10 @@ public abstract class AbstractSetModel<E> implements SetModel<E> {
 	}
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷¸ÃÄ£ĞÍÒÆ³ıÁËÖ¸¶¨µÄÔªËØ¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨è¯¥æ¨¡å‹ç§»é™¤äº†æŒ‡å®šçš„å…ƒç´ ã€‚
 	 * 
 	 * @param element
-	 *            Ö¸¶¨µÄÔªËØ¡£
+	 *            æŒ‡å®šçš„å…ƒç´ ã€‚
 	 */
 	protected void fireRemoved(E element) {
 		for (SetObverser<E> obverser : obversers) {
@@ -115,7 +115,7 @@ public abstract class AbstractSetModel<E> implements SetModel<E> {
 	}
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷¸ÃÄ£ĞÍÇå³ıÁËÔªËØ¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨è¯¥æ¨¡å‹æ¸…é™¤äº†å…ƒç´ ã€‚
 	 */
 	protected void fireCleared() {
 		for (SetObverser<E> obverser : obversers) {

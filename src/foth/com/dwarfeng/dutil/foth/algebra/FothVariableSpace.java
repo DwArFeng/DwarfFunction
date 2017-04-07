@@ -17,31 +17,31 @@ import com.dwarfeng.dutil.math.AbstractMathObject;
 import com.dwarfeng.dutil.math.Region;
 
 /**
- * ±äÁ¿¿Õ¼ä¡£
- * <p> ±äÁ¿¿Õ¼äÊÇÖ¸ÓÉÒ»×é {@link FothVariable} ×é³ÉµÄ¿Õ¼ä¡£
- * <br> ¸Ã¿Õ¼äÖĞµÄ¶ÔÏóµÄË³Ğò°´ÕÕ×ÖµäË³ĞòÅÅĞò£¬Ïà»¥³åÍ»µÄ±äÁ¿²»ÄÜ½øÈëÍ¬×éÏòÁ¿¿Õ¼ä¡£
- * <p> ËùÎ½µÄ±äÁ¿³åÍ»£¬ÊÇÖ¸º¬ÓĞÏàÍ¬Ãû³ÆµÄ²»Í¬±äÁ¿¡£ÓÉÓÚ±äÁ¿¿Ø¼şÖĞ±äÁ¿µÄË³ĞòÊÇÓÉÆä×ÖµäË³Ğò¾ö¶¨µÄ£¬
- * Èç¹û´æÔÚÍ¬Ãû±äÁ¿£¬ÔòÎŞ·¨´ÓÎÄ±¾ÉÏ¶Ô±äÁ¿½øĞĞÇø±ğ£¬´Ó¶ø»áµ¼ÖÂ½øÒ»²½µÄ´íÎó¡£
- * <br> ÓÉÓÚ±äÁ¿¿Õ¼ä»ı¼«¾Ü¾ø±äÁ¿³åÍ»£¬ËùÒÔ±äÁ¿¿Õ¼ä¿ÉÒÔ±£Ö¤ËùÓĞµÄ±äÁ¿¶¼ÊÇ²»ÏàÍ¬µÄ£¬¼´ÔÚÒ»¸ö±äÁ¿¿Õ¼äÖĞµÄÈÎÒâÒ»¸ö
- * ±äÁ¿ÓëÁíÒ»¸ö±äÁ¿equals²»ÏàµÈ£¬Í¬Ê±£¬Í¬Ãû±äÁ¿Ö»»á³öÏÖÒ»´Î¡£
- * <p> ±äÁ¿¿Õ¼äµÄ¹¹ÔìÆ÷ÊÇ²»¿É¼ûµÄ£¬¹¹Ôì±äÁ¿¿Õ¼äĞèÒªÓÃ±äÁ¿¿Õ¼äµÄ¹¹ÔìÆ÷À´Íê³É¡£±äÁ¿¿Õ¼äµÄ½á¹¹ÊÇ²»¿É¸ü¸ÄµÄ£¬
- * ËäÈ»±äÁ¿¿Õ¼äÖĞµÄ±äÁ¿¶¼¿ÉÒÔÖØĞÂ±»¸³Öµ£¬µ«ÊÇ±äÁ¿¿Õ¼äÖĞµÄ±äÁ¿²»¿ÉÒÔÔö¼Ó»òÒÆ³ı¡£
- * ÔÚ±äÁ¿¿Õ¼äµÄ¹¹ÔìÆ÷ÖĞÔö¼Ó»òÒÆ³ıÔªËØÓĞ¿ÉÄÜ»áÅ×³ö {@link VariableConflictException}£¬´ı±äÁ¿±à¼­Íê³Éºó£¬¼´¿É
- * µ÷ÓÃ {@link Builder#build()}·½·¨À´¹¹Ôì±äÁ¿¿Õ¼ä¡£
- * <p>Á½¸ö±äÁ¿¿Õ¼äÏàµÈµÄÇ°ÌáÌõ¼şÊÇÁ½¸ö±äÁ¿¿Õ¼äµÄËùÓĞÔªËØ¾ùÏàµÈ¡£
+ * å˜é‡ç©ºé—´ã€‚
+ * <p> å˜é‡ç©ºé—´æ˜¯æŒ‡ç”±ä¸€ç»„ {@link FothVariable} ç»„æˆçš„ç©ºé—´ã€‚
+ * <br> è¯¥ç©ºé—´ä¸­çš„å¯¹è±¡çš„é¡ºåºæŒ‰ç…§å­—å…¸é¡ºåºæ’åºï¼Œç›¸äº’å†²çªçš„å˜é‡ä¸èƒ½è¿›å…¥åŒç»„å‘é‡ç©ºé—´ã€‚
+ * <p> æ‰€è°“çš„å˜é‡å†²çªï¼Œæ˜¯æŒ‡å«æœ‰ç›¸åŒåç§°çš„ä¸åŒå˜é‡ã€‚ç”±äºå˜é‡æ§ä»¶ä¸­å˜é‡çš„é¡ºåºæ˜¯ç”±å…¶å­—å…¸é¡ºåºå†³å®šçš„ï¼Œ
+ * å¦‚æœå­˜åœ¨åŒåå˜é‡ï¼Œåˆ™æ— æ³•ä»æ–‡æœ¬ä¸Šå¯¹å˜é‡è¿›è¡ŒåŒºåˆ«ï¼Œä»è€Œä¼šå¯¼è‡´è¿›ä¸€æ­¥çš„é”™è¯¯ã€‚
+ * <br> ç”±äºå˜é‡ç©ºé—´ç§¯ææ‹’ç»å˜é‡å†²çªï¼Œæ‰€ä»¥å˜é‡ç©ºé—´å¯ä»¥ä¿è¯æ‰€æœ‰çš„å˜é‡éƒ½æ˜¯ä¸ç›¸åŒçš„ï¼Œå³åœ¨ä¸€ä¸ªå˜é‡ç©ºé—´ä¸­çš„ä»»æ„ä¸€ä¸ª
+ * å˜é‡ä¸å¦ä¸€ä¸ªå˜é‡equalsä¸ç›¸ç­‰ï¼ŒåŒæ—¶ï¼ŒåŒåå˜é‡åªä¼šå‡ºç°ä¸€æ¬¡ã€‚
+ * <p> å˜é‡ç©ºé—´çš„æ„é€ å™¨æ˜¯ä¸å¯è§çš„ï¼Œæ„é€ å˜é‡ç©ºé—´éœ€è¦ç”¨å˜é‡ç©ºé—´çš„æ„é€ å™¨æ¥å®Œæˆã€‚å˜é‡ç©ºé—´çš„ç»“æ„æ˜¯ä¸å¯æ›´æ”¹çš„ï¼Œ
+ * è™½ç„¶å˜é‡ç©ºé—´ä¸­çš„å˜é‡éƒ½å¯ä»¥é‡æ–°è¢«èµ‹å€¼ï¼Œä½†æ˜¯å˜é‡ç©ºé—´ä¸­çš„å˜é‡ä¸å¯ä»¥å¢åŠ æˆ–ç§»é™¤ã€‚
+ * åœ¨å˜é‡ç©ºé—´çš„æ„é€ å™¨ä¸­å¢åŠ æˆ–ç§»é™¤å…ƒç´ æœ‰å¯èƒ½ä¼šæŠ›å‡º {@link VariableConflictException}ï¼Œå¾…å˜é‡ç¼–è¾‘å®Œæˆåï¼Œå³å¯
+ * è°ƒç”¨ {@link Builder#build()}æ–¹æ³•æ¥æ„é€ å˜é‡ç©ºé—´ã€‚
+ * <p>ä¸¤ä¸ªå˜é‡ç©ºé—´ç›¸ç­‰çš„å‰ææ¡ä»¶æ˜¯ä¸¤ä¸ªå˜é‡ç©ºé—´çš„æ‰€æœ‰å…ƒç´ å‡ç›¸ç­‰ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public class FothVariableSpace extends AbstractMathObject implements
 Iterable<FothVariable>, Region<FothVariable>{
 
-	/**¿ÕµÄ±äÁ¿¼¯ºÏ*/
+	/**ç©ºçš„å˜é‡é›†åˆ*/
 	public static final FothVariableSpace EMPTY = new Builder().build();
-	/**¿Õ¼¯µÄ×Ö¶Î*/
-	public static final String EMPTY_SPACE_NAME = "¦µ";
+	/**ç©ºé›†çš„å­—æ®µ*/
+	public static final String EMPTY_SPACE_NAME = "Î¦";
 	
 	/**
-	 * ±äÁ¿¿Õ¼äµÄ¹¹ÔìÆ÷¡£
+	 * å˜é‡ç©ºé—´çš„æ„é€ å™¨ã€‚
 	 * @author DwArFeng
 	 * @since 0.0.2-beta
 	 */
@@ -50,18 +50,18 @@ Iterable<FothVariable>, Region<FothVariable>{
 		private final Set<FothVariable> set;
 		
 		/**
-		 * Éú³ÉÒ»¸ö±äÁ¿¿Õ¼ä¹¹ÔìÆ÷¡£
+		 * ç”Ÿæˆä¸€ä¸ªå˜é‡ç©ºé—´æ„é€ å™¨ã€‚
 		 */
 		public Builder() {
 			this.set = CollectionUtil.nonNullSet(new HashSet<FothVariable>());
 		}
 		
 		/**
-		 * Ïò±äÁ¿¿Õ¼äµÄ¹¹ÔìÆ÷ÖĞÌí¼ÓÖ¸¶¨µÄ¿É±ä¶ÔÏó¡£
-		 * @param var Ö¸¶¨µÄ±äÁ¿¡£
-		 * @return ¹¹ÔìÆ÷×ÔÉí¡£
-		 * @throws VariableConflictException µ±Ìí¼ÓµÄÔªËØÓë¹¹ÔìÆ÷ÖĞµÄÖÁÉÙÒ»¸öÔªËØ³åÍ»¡£
-		 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code> Ê±Å×³öÒì³£¡£
+		 * å‘å˜é‡ç©ºé—´çš„æ„é€ å™¨ä¸­æ·»åŠ æŒ‡å®šçš„å¯å˜å¯¹è±¡ã€‚
+		 * @param var æŒ‡å®šçš„å˜é‡ã€‚
+		 * @return æ„é€ å™¨è‡ªèº«ã€‚
+		 * @throws VariableConflictException å½“æ·»åŠ çš„å…ƒç´ ä¸æ„é€ å™¨ä¸­çš„è‡³å°‘ä¸€ä¸ªå…ƒç´ å†²çªã€‚
+		 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code> æ—¶æŠ›å‡ºå¼‚å¸¸ã€‚
 		 */
 		public Builder add(FothVariable var){
 			for(FothVariable vv : set){
@@ -74,11 +74,11 @@ Iterable<FothVariable>, Region<FothVariable>{
 		}
 		
 		/**
-		 * Ïò±äÁ¿¿Õ¼äµÄ¹¹ÔìÆ÷ÖĞÌí¼ÓÒ»¸ö±äÁ¿¿Õ¼äÖĞµÄËùÓĞ±äÁ¿¡£
-		 * @param variableSpace Ö¸¶¨µÄ±äÁ¿¿Õ¼ä¡£
-		 * @return ¹¹ÔìÆ÷×ÔÉí¡£
-		 * @throws VariableConflictException µ±Ìí¼ÓµÄÔªËØÓë¹¹ÔìÆ÷ÖĞµÄÖÁÉÙÒ»¸öÔªËØ³åÍ»¡£
-		 * @throws NullPointerException µ±Èë¿ÚÔªËØÎª <code>null</code>Ê±Å×³öÒì³£¡£
+		 * å‘å˜é‡ç©ºé—´çš„æ„é€ å™¨ä¸­æ·»åŠ ä¸€ä¸ªå˜é‡ç©ºé—´ä¸­çš„æ‰€æœ‰å˜é‡ã€‚
+		 * @param variableSpace æŒ‡å®šçš„å˜é‡ç©ºé—´ã€‚
+		 * @return æ„é€ å™¨è‡ªèº«ã€‚
+		 * @throws VariableConflictException å½“æ·»åŠ çš„å…ƒç´ ä¸æ„é€ å™¨ä¸­çš„è‡³å°‘ä¸€ä¸ªå…ƒç´ å†²çªã€‚
+		 * @throws NullPointerException å½“å…¥å£å…ƒç´ ä¸º <code>null</code>æ—¶æŠ›å‡ºå¼‚å¸¸ã€‚
 		 */
 		public Builder add(FothVariableSpace variableSpace){
 			for(FothVariable vv : variableSpace){
@@ -88,11 +88,11 @@ Iterable<FothVariable>, Region<FothVariable>{
 		}
 		
 		/**
-		 * Ïò±äÁ¿¿Ø¼şµÄ¹¹ÔìÆ÷ÖĞÌí¼ÓÒ»¸öÖµ¶ÔÏóÖĞµÄËùÓĞ±äÁ¿¡£
-		 * @param valueable Ö¸¶¨µÄÖµ¶ÔÏó¡£
-		 * @return ¹¹ÔìÆ÷×ÔÉí¡£
-		 * @throws VariableConflictException µ±Öµ¶ÔÏóÖĞµÄ±äÁ¿Óë¹¹ÔìÆ÷ÖĞµÄÖÁÉÙÒ»¸ö±äÁ¿³åÍ»¡£
-		 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code> »òÕßÖµ¶ÔÏóÖĞµÄ±äÁ¿¿Õ¼äÎª <code>null</code>¡£
+		 * å‘å˜é‡æ§ä»¶çš„æ„é€ å™¨ä¸­æ·»åŠ ä¸€ä¸ªå€¼å¯¹è±¡ä¸­çš„æ‰€æœ‰å˜é‡ã€‚
+		 * @param valueable æŒ‡å®šçš„å€¼å¯¹è±¡ã€‚
+		 * @return æ„é€ å™¨è‡ªèº«ã€‚
+		 * @throws VariableConflictException å½“å€¼å¯¹è±¡ä¸­çš„å˜é‡ä¸æ„é€ å™¨ä¸­çš„è‡³å°‘ä¸€ä¸ªå˜é‡å†²çªã€‚
+		 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code> æˆ–è€…å€¼å¯¹è±¡ä¸­çš„å˜é‡ç©ºé—´ä¸º <code>null</code>ã€‚
 		 */
 		public Builder add(FothValue valueable){
 			add(valueable.variableSpace());
@@ -100,9 +100,9 @@ Iterable<FothVariable>, Region<FothVariable>{
 		}
 		
 		/**
-		 * ÔÚ±äÁ¿¿Õ¼äÒÆ³ıÖ¸¶¨µÄ¶ÔÏó¡£
-		 * @param o Ö¸¶¨µÄ¶ÔÏó¡£
-		 * @return ¹¹ÔìÆ÷×ÔÉí¡£
+		 * åœ¨å˜é‡ç©ºé—´ç§»é™¤æŒ‡å®šçš„å¯¹è±¡ã€‚
+		 * @param o æŒ‡å®šçš„å¯¹è±¡ã€‚
+		 * @return æ„é€ å™¨è‡ªèº«ã€‚
 		 */
 		public Builder remove(Object o){
 			set.remove(o);
@@ -110,10 +110,10 @@ Iterable<FothVariable>, Region<FothVariable>{
 		}
 		
 		/**
-		 * ÔÚ±äÁ¿¿Õ¼äÖĞÒÆ³ıÖ¸¶¨±äÁ¿¿Õ¼äÖĞµÄËùÓĞ±äÁ¿¡£
-		 * <p> Èë¿Ú²ÎÊıÎª <code>null</code> ´ú±í²»ÒÆ³ıÈÎºÎÔªËØ¡£
-		 * @param variableSpace Ö¸¶¨µÄ±äÁ¿¿Õ¼ä¡£
-		 * @return ¹¹ÔìÆ÷×ÔÉí¡£
+		 * åœ¨å˜é‡ç©ºé—´ä¸­ç§»é™¤æŒ‡å®šå˜é‡ç©ºé—´ä¸­çš„æ‰€æœ‰å˜é‡ã€‚
+		 * <p> å…¥å£å‚æ•°ä¸º <code>null</code> ä»£è¡¨ä¸ç§»é™¤ä»»ä½•å…ƒç´ ã€‚
+		 * @param variableSpace æŒ‡å®šçš„å˜é‡ç©ºé—´ã€‚
+		 * @return æ„é€ å™¨è‡ªèº«ã€‚
 		 */
 		public Builder remove(FothVariableSpace variableSpace){
 			if(Objects.nonNull(variableSpace)){
@@ -125,10 +125,10 @@ Iterable<FothVariable>, Region<FothVariable>{
 		}
 		
 		/**
-		 * ÒÆ³ıÖ¸¶¨Öµ¶ÔÏóÖĞµÄ±äÁ¿¿Õ¼äÖĞµÄËùÓĞ±äÁ¿¡£
-		 * <p> Èë¿Ú²ÎÊıÎª <code>null</code> ´ú±í²»ÒÆ³ıÈÎºÎÔªËØ¡£
-		 * @param val Ö¸¶¨µÄÖµ¶ÔÏó¡£
-		 * @return ¹¹ÔìÆ÷×ÔÉí¡£
+		 * ç§»é™¤æŒ‡å®šå€¼å¯¹è±¡ä¸­çš„å˜é‡ç©ºé—´ä¸­çš„æ‰€æœ‰å˜é‡ã€‚
+		 * <p> å…¥å£å‚æ•°ä¸º <code>null</code> ä»£è¡¨ä¸ç§»é™¤ä»»ä½•å…ƒç´ ã€‚
+		 * @param val æŒ‡å®šçš„å€¼å¯¹è±¡ã€‚
+		 * @return æ„é€ å™¨è‡ªèº«ã€‚
 		 */
 		public Builder remove(FothValue val){
 			if(Objects.nonNull(val)){
@@ -199,8 +199,8 @@ Iterable<FothVariable>, Region<FothVariable>{
 	}
 	
 	/**
-	 * ·µ»Ø±äÁ¿¿Õ¼äÖĞÔªËØµÄÊıÁ¿¡£
-	 * @return ±äÁ¿¿Õ¼äÔªËØÊıÁ¿¡£
+	 * è¿”å›å˜é‡ç©ºé—´ä¸­å…ƒç´ çš„æ•°é‡ã€‚
+	 * @return å˜é‡ç©ºé—´å…ƒç´ æ•°é‡ã€‚
 	 */
 	public int size(){
 		return vars.length;
@@ -215,7 +215,7 @@ Iterable<FothVariable>, Region<FothVariable>{
 		if(size() == 0) return EMPTY_SPACE_NAME;
 		
 		StringBuilder sb = new StringBuilder();
-		//ÒòÎªÁ´½ÓµÄ StringBuilder ²»ÊÇ Closeable¶ÔÏó£¬Òò´Ë²»ĞèÒª¹Ø±Õ¸ñÊ½»¯¶ÔÏó¡£
+		//å› ä¸ºé“¾æ¥çš„ StringBuilder ä¸æ˜¯ Closeableå¯¹è±¡ï¼Œå› æ­¤ä¸éœ€è¦å…³é—­æ ¼å¼åŒ–å¯¹è±¡ã€‚
 		@SuppressWarnings("resource")
 		Formatter formatter = new Formatter(sb);
 		sb.append("[");
@@ -262,9 +262,9 @@ Iterable<FothVariable>, Region<FothVariable>{
 	
 	
 	/**
-	 * ¸ø±äÁ¿¿Õ¼äÖĞµÄÃ¿¸ö±äÁ¿¸³Öµ¡£
-	 * @param vals ÖµÊı×é¡£
-	 * @throws IllegalArgumentException Èë¿ÚÊı×é´óĞ¡Óë±äÁ¿¿Õ¼äÖĞµÄ±äÁ¿¸öÊı²»Ò»ÖÂ¡£
+	 * ç»™å˜é‡ç©ºé—´ä¸­çš„æ¯ä¸ªå˜é‡èµ‹å€¼ã€‚
+	 * @param vals å€¼æ•°ç»„ã€‚
+	 * @throws IllegalArgumentException å…¥å£æ•°ç»„å¤§å°ä¸å˜é‡ç©ºé—´ä¸­çš„å˜é‡ä¸ªæ•°ä¸ä¸€è‡´ã€‚
 	 */
 	public void setValue(double[] vals){
 		if(vals.length != vars.length){
@@ -276,10 +276,10 @@ Iterable<FothVariable>, Region<FothVariable>{
 	}
 	
 	/**
-	 * ¸ø±äÁ¿¿Õ¼äÖĞµÄÃ¿¸ö±äÁ¿¸³Öµ¡£
-	 * @param vals ÖµÊı×é¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>»òÆäÖĞº¬ÓĞ <code>null</code>ÔªËØ¡£
-	 * @throws IllegalArgumentException Èë¿ÚÊı×é´óĞ¡Óë±äÁ¿¿Õ¼äÖĞµÄ±äÁ¿¸öÊı²»Ò»ÖÂ¡£
+	 * ç»™å˜é‡ç©ºé—´ä¸­çš„æ¯ä¸ªå˜é‡èµ‹å€¼ã€‚
+	 * @param vals å€¼æ•°ç»„ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>æˆ–å…¶ä¸­å«æœ‰ <code>null</code>å…ƒç´ ã€‚
+	 * @throws IllegalArgumentException å…¥å£æ•°ç»„å¤§å°ä¸å˜é‡ç©ºé—´ä¸­çš„å˜é‡ä¸ªæ•°ä¸ä¸€è‡´ã€‚
 	 */
 	public void setValue(FothValue[] vals){
 		ArrayUtil.requireNotContainsNull(vals, DwarfUtil.getStringField(StringFieldKey.FothVariableSpace_1));
@@ -292,9 +292,9 @@ Iterable<FothVariable>, Region<FothVariable>{
 	}
 	
 	/**
-	 * ±äÁ¿¿Õ¼äÖĞµÄÃ¿¸ö±äÁ¿Æ«ÒÆ¡£
-	 * @param vals ÖµÊı×é¡£
-	 * @throws IllegalArgumentException Èë¿ÚÊı×é´óĞ¡Óë±äÁ¿¿Õ¼äÖĞµÄ±äÁ¿¸öÊı²»Ò»ÖÂ¡£
+	 * å˜é‡ç©ºé—´ä¸­çš„æ¯ä¸ªå˜é‡åç§»ã€‚
+	 * @param vals å€¼æ•°ç»„ã€‚
+	 * @throws IllegalArgumentException å…¥å£æ•°ç»„å¤§å°ä¸å˜é‡ç©ºé—´ä¸­çš„å˜é‡ä¸ªæ•°ä¸ä¸€è‡´ã€‚
 	 */
 	public void offset(double[] vals){
 		if(vals.length != vars.length){
@@ -306,10 +306,10 @@ Iterable<FothVariable>, Region<FothVariable>{
 	}
 	
 	/**
-	 * ±äÁ¿¿Õ¼äÖĞµÄÃ¿¸ö±äÁ¿Æ«ÒÆ¡£
-	 * @param vals ÖµÊı×é¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>»òÆäÖĞº¬ÓĞ <code>null</code>ÔªËØ¡£
-	 * @throws IllegalArgumentException Èë¿ÚÊı×é´óĞ¡Óë±äÁ¿¿Õ¼äÖĞµÄ±äÁ¿¸öÊı²»Ò»ÖÂ¡£
+	 * å˜é‡ç©ºé—´ä¸­çš„æ¯ä¸ªå˜é‡åç§»ã€‚
+	 * @param vals å€¼æ•°ç»„ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>æˆ–å…¶ä¸­å«æœ‰ <code>null</code>å…ƒç´ ã€‚
+	 * @throws IllegalArgumentException å…¥å£æ•°ç»„å¤§å°ä¸å˜é‡ç©ºé—´ä¸­çš„å˜é‡ä¸ªæ•°ä¸ä¸€è‡´ã€‚
 	 */
 	public void offset(FothValue[] vals){
 		ArrayUtil.requireNotContainsNull(vals, DwarfUtil.getStringField(StringFieldKey.FothVariableSpace_1));

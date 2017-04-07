@@ -10,34 +10,34 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.cna.model.obv.MapObverser;
 
 /**
- * ³éÏóÓ³ÉäÄ£ĞÍ¡£
+ * æŠ½è±¡æ˜ å°„æ¨¡å‹ã€‚
  * <p>
- * Ó³ÉäÄ£ĞÍµÄ³éÏóÊµÏÖ¡£
+ * æ˜ å°„æ¨¡å‹çš„æŠ½è±¡å®ç°ã€‚
  * <p>
- * ¸ÃÀàÊµÏÖÁËÄ£ĞÍÖĞÕìÌıÆ÷×¢²áÓëÒÆ³ıµÄ·½·¨£¬ÒÔ¼°Í¨ÖªÕìÌıÆ÷µÄ·½·¨¡£
+ * è¯¥ç±»å®ç°äº†æ¨¡å‹ä¸­ä¾¦å¬å™¨æ³¨å†Œä¸ç§»é™¤çš„æ–¹æ³•ï¼Œä»¥åŠé€šçŸ¥ä¾¦å¬å™¨çš„æ–¹æ³•ã€‚
  * 
  * @author DwArFeng
  * @since 0.1.0-beta
  */
 public abstract class AbstractMapModel<K, V> implements MapModel<K, V> {
 
-	/** ³éÏó¼¯ºÏÄ£ĞÍµÄÕìÌıÆ÷¼¯ºÏ¡£ */
+	/** æŠ½è±¡é›†åˆæ¨¡å‹çš„ä¾¦å¬å™¨é›†åˆã€‚ */
 	protected final Set<MapObverser<K, V>> obversers;
 
 	/**
-	 * Éú³ÉÒ»¸öÄ¬ÈÏµÄ³éÏóÓ³ÉäÄ£ĞÍ¡£
+	 * ç”Ÿæˆä¸€ä¸ªé»˜è®¤çš„æŠ½è±¡æ˜ å°„æ¨¡å‹ã€‚
 	 */
 	public AbstractMapModel() {
 		this(Collections.newSetFromMap(new WeakHashMap<>()));
 	}
 
 	/**
-	 * Éú³ÉÒ»¸ö¾ßÓĞÖ¸¶¨µÄÕìÌıÆ÷¼¯ºÏµÄµÄ³éÏóÓ³ÉäÄ£ĞÍ¡£
+	 * ç”Ÿæˆä¸€ä¸ªå…·æœ‰æŒ‡å®šçš„ä¾¦å¬å™¨é›†åˆçš„çš„æŠ½è±¡æ˜ å°„æ¨¡å‹ã€‚
 	 * 
 	 * @param obversers
-	 *            Ö¸¶¨µÄÕìÌıÆ÷¼¯ºÏ¡£
+	 *            æŒ‡å®šçš„ä¾¦å¬å™¨é›†åˆã€‚
 	 * @throws NullPointerException
-	 *             Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 *             å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public AbstractMapModel(Set<MapObverser<K, V>> obversers) {
 		Objects.requireNonNull(obversers, DwarfUtil.getStringField(StringFieldKey.ABSTRACTMAPMODEL_0));
@@ -89,12 +89,12 @@ public abstract class AbstractMapModel<K, V> implements MapModel<K, V> {
 	}
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷¸ÃÄ£ĞÍÖĞÖ¸¶¨µÄ¼ü-Öµ¶Ô±»Ìí¼Ó¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨è¯¥æ¨¡å‹ä¸­æŒ‡å®šçš„é”®-å€¼å¯¹è¢«æ·»åŠ ã€‚
 	 * 
 	 * @param key
-	 *            Ö¸¶¨µÄ¼ü¡£
+	 *            æŒ‡å®šçš„é”®ã€‚
 	 * @param value
-	 *            Ö¸¶¨µÄÖµ¡£
+	 *            æŒ‡å®šçš„å€¼ã€‚
 	 */
 	protected void firePut(K key, V value) {
 		for (MapObverser<K, V> obverser : obversers) {
@@ -104,12 +104,12 @@ public abstract class AbstractMapModel<K, V> implements MapModel<K, V> {
 	}
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷¸ÃÄ£ĞÍÖĞÖ¸¶¨µÄ¼ü±»ÒÆ³ı¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨è¯¥æ¨¡å‹ä¸­æŒ‡å®šçš„é”®è¢«ç§»é™¤ã€‚
 	 * 
 	 * @param key
-	 *            Ö¸¶¨µÄ¼ü¡£
+	 *            æŒ‡å®šçš„é”®ã€‚
 	 * @param value
-	 *            ¼ü¶ÔÓ¦µÄÖµ¡£
+	 *            é”®å¯¹åº”çš„å€¼ã€‚
 	 */
 	protected void fireRemoved(K key, V value) {
 		for (MapObverser<K, V> obverser : obversers) {
@@ -119,14 +119,14 @@ public abstract class AbstractMapModel<K, V> implements MapModel<K, V> {
 	}
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷¸ÃÄ£ĞÍÖĞÖ¸¶¨µÄ¼üµÄ¶ÔÓ¦Öµ·¢Éú¸Ä±ä¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨è¯¥æ¨¡å‹ä¸­æŒ‡å®šçš„é”®çš„å¯¹åº”å€¼å‘ç”Ÿæ”¹å˜ã€‚
 	 * 
 	 * @param key
-	 *            Ö¸¶¨µÄ¼ü¡£
+	 *            æŒ‡å®šçš„é”®ã€‚
 	 * @param oldValue
-	 *            ¼ü¶ÔÓ¦µÄ¾ÉÖµ¡£
+	 *            é”®å¯¹åº”çš„æ—§å€¼ã€‚
 	 * @param newValue
-	 *            ¼ü¶ÔÓ¦µÄĞÂÖµ¡£
+	 *            é”®å¯¹åº”çš„æ–°å€¼ã€‚
 	 */
 	protected void fireChanged(K key, V oldValue, V newValue) {
 		for (MapObverser<K, V> obverser : obversers) {
@@ -136,7 +136,7 @@ public abstract class AbstractMapModel<K, V> implements MapModel<K, V> {
 	}
 
 	/**
-	 * Í¨Öª¸ÃÄ£ĞÍÖĞµÄ¼ü-Öµ¶Ô±»Çå³ı¡£
+	 * é€šçŸ¥è¯¥æ¨¡å‹ä¸­çš„é”®-å€¼å¯¹è¢«æ¸…é™¤ã€‚
 	 */
 	protected void fireCleared() {
 		for (MapObverser<K, V> obverser : obversers) {

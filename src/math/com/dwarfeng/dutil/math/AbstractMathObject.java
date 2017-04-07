@@ -1,8 +1,8 @@
 package com.dwarfeng.dutil.math;
 
 /**
- * ÊýÑ§¶ÔÏó³éÏóÀà¡£
- * <p> ¸ÃÀàÊÇËùÓÐÊýÑ§¶ÔÏóµÄ³éÏóÀà£¬Ëü¶¨ÒåÁËËùÓÐÊýÑ§¶ÔÏó¶¼Ó¦¸Ã¾ßÓÐµÄ³éÏó·½·¨¡£
+ * æ•°å­¦å¯¹è±¡æŠ½è±¡ç±»ã€‚
+ * <p> è¯¥ç±»æ˜¯æ‰€æœ‰æ•°å­¦å¯¹è±¡çš„æŠ½è±¡ç±»ï¼Œå®ƒå®šä¹‰äº†æ‰€æœ‰æ•°å­¦å¯¹è±¡éƒ½åº”è¯¥å…·æœ‰çš„æŠ½è±¡æ–¹æ³•ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */

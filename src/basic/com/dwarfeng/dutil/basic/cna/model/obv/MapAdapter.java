@@ -1,7 +1,7 @@
 package com.dwarfeng.dutil.basic.cna.model.obv;
 
 /**
- * Ó³ÉäÄ£ĞÍ¹Û²ìÆ÷ÊÊÅäÆ÷¡£
+ * æ˜ å°„æ¨¡å‹è§‚å¯Ÿå™¨é€‚é…å™¨ã€‚
  * @author DwArFeng
  * @since 0.1.0-beta
  */

@@ -14,22 +14,22 @@ import com.dwarfeng.dutil.basic.cna.ArrayUtil;
 import com.dwarfeng.dutil.basic.num.NumberUtil;
 
 /**
- * ×Ö·û´®¹¹ÔìÊä³öÁ÷¡£
- * <p> ¸ÃÊä³öÁ÷½«Êä³öµÄÊı¾İ´æ´¢µ½×Ö·û´®¹¹ÔìÆ÷ÖĞ£¬ÊÇÊä³öÁ÷ÓëÎÄ±¾µÄÇÅÁº¡£
+ * å­—ç¬¦ä¸²æ„é€ è¾“å‡ºæµã€‚
+ * <p> è¯¥è¾“å‡ºæµå°†è¾“å‡ºçš„æ•°æ®å­˜å‚¨åˆ°å­—ç¬¦ä¸²æ„é€ å™¨ä¸­ï¼Œæ˜¯è¾“å‡ºæµä¸æ–‡æœ¬çš„æ¡¥æ¢ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public class StringOutputStream extends OutputStream {
 	
-	/**×Ö·û´®¹¹ÔìÆ÷*/
+	/**å­—ç¬¦ä¸²æ„é€ å™¨*/
 	protected final StringBuilder stringBuilder;
-	/**×Ö½Ú»º³å*/
+	/**å­—èŠ‚ç¼“å†²*/
 	protected final List<Byte> buffer;
-	/**Ö¸¶¨µÄ×Ö·û¼¯ºÏ*/
+	/**æŒ‡å®šçš„å­—ç¬¦é›†åˆ*/
 	protected final Charset charset;
 
 	/**
-	 * Éú³ÉÒ»¸öÄ¬ÈÏµÄ×Ö·û´®¹¹ÔìÊä³öÁ÷¡£
+	 * ç”Ÿæˆä¸€ä¸ªé»˜è®¤çš„å­—ç¬¦ä¸²æ„é€ è¾“å‡ºæµã€‚
 	 */
 	public StringOutputStream() {
 		this(Charset.defaultCharset());
@@ -37,9 +37,9 @@ public class StringOutputStream extends OutputStream {
 	
 	
 	/**
-	 * Éú³ÉÒ»¸ö×Ö·û¼¯ºÏÖ¸¶¨£¬»º³åÈİÁ¿Ö¸¶¨µÄ×Ö·û´®¹¹ÔìÊä³öÁ÷¡£
-	 * @param charset Ö¸¶¨µÄ×Ö·û¼¯ºÏ¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıcharset Îª <code>null</code>¡£
+	 * ç”Ÿæˆä¸€ä¸ªå­—ç¬¦é›†åˆæŒ‡å®šï¼Œç¼“å†²å®¹é‡æŒ‡å®šçš„å­—ç¬¦ä¸²æ„é€ è¾“å‡ºæµã€‚
+	 * @param charset æŒ‡å®šçš„å­—ç¬¦é›†åˆã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°charset ä¸º <code>null</code>ã€‚
 	 */
 	public StringOutputStream(Charset charset){
 		Objects.requireNonNull(charset, DwarfUtil.getStringField(StringFieldKey.STRINGOUTPUTSTREAM_0));

@@ -7,20 +7,20 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.math.AbstractMathObject;
 
 /**
- * ÁĞÏòÁ¿¡£
+ * åˆ—å‘é‡ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public class DefaultColumnVector extends AbstractMathObject implements ColumnVector{
 
-	/**´æ´¢ÁĞÏòÁ¿µÄÖµµÄÊı×é*/
+	/**å­˜å‚¨åˆ—å‘é‡çš„å€¼çš„æ•°ç»„*/
 	protected final double[] vals;
 	
 	/**
-	 * Éú³ÉÒ»¸öÖµÎªÖ¸¶¨Êı×éµÄÁĞÏòÁ¿¡£
-	 * @param vals Ö¸¶¨µÄÖµÊı×é¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
-	 * @throws IllegalArgumentException Êı×éµÄ´óĞ¡Ğ¡ÓÚ1¡£
+	 * ç”Ÿæˆä¸€ä¸ªå€¼ä¸ºæŒ‡å®šæ•°ç»„çš„åˆ—å‘é‡ã€‚
+	 * @param vals æŒ‡å®šçš„å€¼æ•°ç»„ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
+	 * @throws IllegalArgumentException æ•°ç»„çš„å¤§å°å°äº1ã€‚
 	 */
 	public DefaultColumnVector(double[] vals) {
 		Objects.requireNonNull(vals, DwarfUtil.getStringField(StringFieldKey.DefaultColumnVector_0));

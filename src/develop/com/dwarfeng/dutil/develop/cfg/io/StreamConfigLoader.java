@@ -10,26 +10,26 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.io.StreamLoader;
 
 /**
- * Á÷ÅäÖÃ¶ÁÈ¡Æ÷¡£
+ * æµé…ç½®è¯»å–å™¨ã€‚
  * <p>
- * Ê¹ÓÃÊäÈëÁ÷ÊµÏÖµÄÅäÖÃ¶ÁÈ¡Æ÷¡£
+ * ä½¿ç”¨è¾“å…¥æµå®ç°çš„é…ç½®è¯»å–å™¨ã€‚
  * 
- * @deprecated ¸ÃÀàÓÉ {@link StreamLoader} Ìæ´ú¡£
+ * @deprecated è¯¥ç±»ç”± {@link StreamLoader} æ›¿ä»£ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public abstract class StreamConfigLoader implements ConfigLoader, Closeable {
 
-	/** ÊäÈëÁ÷ */
+	/** è¾“å…¥æµ */
 	protected final InputStream in;
 
 	/**
-	 * Éú³ÉÁ÷ÅäÖÃ¶ÁÈ¡Æ÷¡£
+	 * ç”Ÿæˆæµé…ç½®è¯»å–å™¨ã€‚
 	 * 
 	 * @param in
-	 *            Ö¸¶¨µÄÊäÈëÁ÷¡£
+	 *            æŒ‡å®šçš„è¾“å…¥æµã€‚
 	 * @throws NullPointerException
-	 *             Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 *             å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public StreamConfigLoader(InputStream in) {
 		Objects.requireNonNull(in, DwarfUtil.getStringField(StringFieldKey.StreamConfigLoader_0));

@@ -6,22 +6,22 @@ import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 
 /**
- * Ä¬ÈÏ±êÇ©¡£
+ * é»˜è®¤æ ‡ç­¾ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public class DefaultTag implements Tag{
 
-	/**Ãû³Æ*/
+	/**åç§°*/
 	protected final String name;
-	/**ÃèÊö*/
+	/**æè¿°*/
 	protected final String description;
 	
 	/**
-	 * ĞÂ½¨Ò»¸ö¾ßÓĞÖ¸¶¨Ãû³Æ£¬Ö¸¶¨ÃèÊöµÄÄ¬ÈÏ±êÇ©¡£
-	 * @param name Ö¸¶¨µÄÃû³Æ¡£
-	 * @param description Ö¸¶¨µÄÃèÊö¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * æ–°å»ºä¸€ä¸ªå…·æœ‰æŒ‡å®šåç§°ï¼ŒæŒ‡å®šæè¿°çš„é»˜è®¤æ ‡ç­¾ã€‚
+	 * @param name æŒ‡å®šçš„åç§°ã€‚
+	 * @param description æŒ‡å®šçš„æè¿°ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public DefaultTag(String name, String description) {
 		Objects.requireNonNull(name, DwarfUtil.getStringField(StringFieldKey.DefaultTag_0));
