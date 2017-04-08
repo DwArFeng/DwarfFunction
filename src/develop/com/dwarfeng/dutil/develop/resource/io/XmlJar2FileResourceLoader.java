@@ -44,7 +44,6 @@ public class XmlJar2FileResourceLoader extends StreamLoader<ResourceHandler> {
 
 	public XmlJar2FileResourceLoader(InputStream in) {
 		super(in);
-		// TODO Auto-generated constructor stub
 	}
 
 	/*
@@ -77,13 +76,13 @@ public class XmlJar2FileResourceLoader extends StreamLoader<ResourceHandler> {
 				String key = info.attributeValue("key");
 
 				if (Objects.isNull(defString) || Objects.isNull(resString) || Objects.isNull(key)) {
-					throw new LoadFailedException("配置文件缺失属性");
+					throw new LoadFailedException(DwarfUtil.getStringField(StringFieldKey.XMLJAR2FILERESOURCELOADER_3));
 				}
 
 				URL def = DwarfUtil.class.getResource(defString);
 
 				if (Objects.isNull(def)) {
-					throw new LoadFailedException("配置中资源的路径不正确");
+					throw new LoadFailedException(DwarfUtil.getStringField(StringFieldKey.XMLJAR2FILERESOURCELOADER_4));
 				}
 
 				File res = new File(resString);
@@ -129,13 +128,13 @@ public class XmlJar2FileResourceLoader extends StreamLoader<ResourceHandler> {
 					String key = info.attributeValue("key");
 
 					if (Objects.isNull(defString) || Objects.isNull(resString) || Objects.isNull(key)) {
-						throw new LoadFailedException("配置文件缺失属性");
+						throw new LoadFailedException(DwarfUtil.getStringField(StringFieldKey.XMLJAR2FILERESOURCELOADER_3));
 					}
 
 					URL def = DwarfUtil.class.getResource(defString);
 
 					if (Objects.isNull(def)) {
-						throw new LoadFailedException("配置中资源的路径不正确");
+						throw new LoadFailedException(DwarfUtil.getStringField(StringFieldKey.XMLJAR2FILERESOURCELOADER_4));
 					}
 
 					File res = new File(resString);

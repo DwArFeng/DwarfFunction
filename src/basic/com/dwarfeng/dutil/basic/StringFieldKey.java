@@ -468,6 +468,36 @@ public enum StringFieldKey implements Name {
 	XMLJAR2FILERESOURCELOADER_1(new DefaultName("XmlJar2FileResourceLoader.1")),
 	/** XmlJar2FileResourceLoader类第2号文本字段 */
 	XMLJAR2FILERESOURCELOADER_2(new DefaultName("XmlJar2FileResourceLoader.2")),
+	/** XmlJar3FileResourceLoader类第3号文本字段 */
+	XMLJAR2FILERESOURCELOADER_3(new DefaultName("XmlJar2FileResourceLoader.3")),
+	/** XmlJar4FileResourceLoader类第4号文本字段 */
+	XMLJAR2FILERESOURCELOADER_4(new DefaultName("XmlJar2FileResourceLoader.4")),
+	
+	/** AbstractI18nInfo类第0号文本字段 */
+	ABSTRACTI18NINFO_0(new DefaultName("AbstractI18nInfo.0")),
+	/** AbstractI18nInfo类第1号文本字段 */
+	ABSTRACTI18NINFO_1(new DefaultName("AbstractI18nInfo.1")),
+	
+	/** DelegateI18nHandler类第0号文本字段 */
+	I18NUTIL_0(new DefaultName("DelegateI18nHandler.0")),
+	
+	/** DelegateI18nHandler类第0号文本字段 */
+	DELEGATEI18NHANDLER_0(new DefaultName("DelegateI18nHandler.0")),
+	
+	/** PropFileI18nInfo类第0号文本字段 */
+	PROPFILEI18NINFO_0(new DefaultName("PropFileI18nInfo.0")),
+	
+	/** PropertiesI18n类第0号文本字段 */
+	PROPERTIESI18N_0(new DefaultName("PropertiesI18n.0")),
+	
+	/** XmlPropFileI18nLoader类第0号文本字段 */
+	XMLPROPFILEI18NLOADER_0(new DefaultName("XmlPropFileI18nLoader.0")),
+	/** XmlPropFileI18nLoader类第1号文本字段 */
+	XMLPROPFILEI18NLOADER_1(new DefaultName("XmlPropFileI18nLoader.1")),
+	/** XmlPropFileI18nLoader类第2号文本字段 */
+	XMLPROPFILEI18NLOADER_2(new DefaultName("XmlPropFileI18nLoader.2")),
+	/** XmlPropFileI18nLoader类第3号文本字段 */
+	XMLPROPFILEI18NLOADER_3(new DefaultName("XmlPropFileI18nLoader.3")),
 	
 	;
 

@@ -1,7 +1,8 @@
-package com.dwarfeng.dutil.develop.resource;
+package com.dwarfeng.dutil.develop.i18n;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.locks.ReadWriteLock;
@@ -12,8 +13,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
 
 /**
- * 有关资源管理的工具包。
- * 
+ * 有关国际化的工具包。
  * <p>
  * 该包中包含关于对资源管理器进行操作的常用方法。
  * <p>
@@ -22,28 +22,50 @@ import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
  * @author DwArFeng
  * @since 0.1.1-beta
  */
-public final class ResourceUtil {
+public final class I18nUtil {
 
 	/**
-	 * 根据指定的资源管理器生成一个不可编辑的资源管理器。
+	 * 根据指定的国际化管理器生成一个不可更改的国际化管理器。
 	 * 
-	 * @param resourceHandler
-	 *            指定的资源管理器。
-	 * @return 根据指定的资源管理器生成的不可编辑的资源管理器。
+	 * @param i18nHandler
+	 *            指定的国际化管理器。
+	 * @return 根据指定的国际化管理器生成的不可更改的国际化管理器。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public static ResourceHandler unmodifiableResourceHandler(ResourceHandler resourceHandler) {
-		Objects.requireNonNull(resourceHandler, DwarfUtil.getStringField(StringFieldKey.RESOURCEUTIL_0));
-		return new UnmodifiableResourceHandler(resourceHandler);
+	public static I18nHandler unmodifiableI18nHandler(I18nHandler i18nHandler) {
+		Objects.requireNonNull(i18nHandler, DwarfUtil.getStringField(StringFieldKey.I18NUTIL_0));
+		return new UnmodifiableI18nHandler(i18nHandler);
 	}
 
-	private static class UnmodifiableResourceHandler implements ResourceHandler {
+	private static class UnmodifiableI18nHandler implements I18nHandler {
 
-		private final ResourceHandler delegate;
+		private final I18nHandler delegate;
 
-		public UnmodifiableResourceHandler(ResourceHandler delegate) {
+		public UnmodifiableI18nHandler(I18nHandler delegate) {
 			this.delegate = delegate;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		 */
+		@Override
+		public Set<SetObverser<I18nInfo>> getObversers() {
+			return delegate.getObversers();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
+		 * dutil.basic.prog.Obverser)
+		 */
+		@Override
+		public boolean addObverser(SetObverser<I18nInfo> obverser) {
+			throw new UnsupportedOperationException();
 		}
 
 		/*
@@ -61,6 +83,28 @@ public final class ResourceUtil {
 		/*
 		 * (non-Javadoc)
 		 * 
+		 * @see com.dwarfeng.dutil.develop.i18n.I18nHandler#getCurrentLocale()
+		 */
+		@Override
+		public Locale getCurrentLocale() {
+			return delegate.getCurrentLocale();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
+		 * .dutil.basic.prog.Obverser)
+		 */
+		@Override
+		public boolean removeObverser(SetObverser<I18nInfo> obverser) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see
 		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsAllKey(java.
 		 * util.Collection)
@@ -68,6 +112,38 @@ public final class ResourceUtil {
 		@Override
 		public boolean containsAllKey(Collection<?> c) {
 			return delegate.containsAllKey(c);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.i18n.I18nHandler#setCurrentLocale(java.
+		 * util.Locale)
+		 */
+		@Override
+		public boolean setCurrentLocale(Locale locale) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		 */
+		@Override
+		public void clearObverser() {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.i18n.I18nHandler#getCurrentMutilang()
+		 */
+		@Override
+		public I18n getCurrentI18n() {
+			return delegate.getCurrentI18n();
 		}
 
 		/*
@@ -142,15 +218,15 @@ public final class ResourceUtil {
 		 * @see java.util.Set#iterator()
 		 */
 		@Override
-		public Iterator<Resource> iterator() {
+		public Iterator<I18nInfo> iterator() {
 			return new UnmodifiableIterator(delegate.iterator());
 		}
 
-		private class UnmodifiableIterator implements Iterator<Resource> {
+		private class UnmodifiableIterator implements Iterator<I18nInfo> {
 
-			private final Iterator<Resource> delegateIterator;
+			private final Iterator<I18nInfo> delegateIterator;
 
-			public UnmodifiableIterator(Iterator<Resource> delegateIterator) {
+			public UnmodifiableIterator(Iterator<I18nInfo> delegateIterator) {
 				this.delegateIterator = delegateIterator;
 			}
 
@@ -170,7 +246,7 @@ public final class ResourceUtil {
 			 * @see java.util.Iterator#next()
 			 */
 			@Override
-			public Resource next() {
+			public I18nInfo next() {
 				return delegateIterator.next();
 			}
 
@@ -202,7 +278,7 @@ public final class ResourceUtil {
 		 * @see java.util.Set#add(java.lang.Object)
 		 */
 		@Override
-		public boolean add(Resource e) {
+		public boolean add(I18nInfo e) {
 			throw new UnsupportedOperationException();
 		}
 
@@ -232,7 +308,7 @@ public final class ResourceUtil {
 		 * @see java.util.Set#addAll(java.util.Collection)
 		 */
 		@Override
-		public boolean addAll(Collection<? extends Resource> c) {
+		public boolean addAll(Collection<? extends I18nInfo> c) {
 			throw new UnsupportedOperationException();
 		}
 
@@ -269,69 +345,45 @@ public final class ResourceUtil {
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		 * @see java.lang.Object#equals(java.lang.Object)
 		 */
 		@Override
-		public Set<SetObverser<Resource>> getObversers() {
-			return delegate.getObversers();
+		public boolean equals(Object o) {
+			return delegate.equals(o);
 		}
 
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
-		 * dutil.basic.prog.Obverser)
+		 * @see java.lang.Object#hashCode()
 		 */
 		@Override
-		public boolean addObverser(SetObverser<Resource> obverser) {
-			throw new UnsupportedOperationException();
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
-		 * .dutil.basic.prog.Obverser)
-		 */
-		@Override
-		public boolean removeObverser(SetObverser<Resource> obverser) {
-			throw new UnsupportedOperationException();
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
-		 */
-		@Override
-		public void clearObverser() {
-			throw new UnsupportedOperationException();
+		public int hashCode() {
+			return delegate.hashCode();
 		}
 
 	}
 
 	/**
-	 * 根据指定的资源管理器生成一个线程安全的资源管理器。
+	 * 根据指定的国际化管理器生成一个线程安全的国际化管理器。
 	 * 
-	 * @param resourceHandler
-	 *            指定的资源管理器。
-	 * @return 根据指定的资源管理器生成的线程安全的资源管理器。
+	 * @param i18nHandler
+	 *            指定的国际化管理器。
+	 * @return 根据指定的国际化管理器生成的线程安全的国际化管理器。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public static SyncResourceHandler syncResourceHandler(ResourceHandler resourceHandler) {
-		Objects.requireNonNull(resourceHandler, DwarfUtil.getStringField(StringFieldKey.RESOURCEUTIL_0));
-		return new SyncResourceHandlerImpl(resourceHandler);
+	public static SyncI18nHandler syncI18nHandler(I18nHandler i18nHandler) {
+		Objects.requireNonNull(i18nHandler, DwarfUtil.getStringField(StringFieldKey.I18NUTIL_0));
+		return new SyncI18nHandlerImpl(i18nHandler);
 	}
 
-	private static class SyncResourceHandlerImpl implements SyncResourceHandler {
+	private static class SyncI18nHandlerImpl implements SyncI18nHandler {
 
-		private final ResourceHandler delegate;
+		private final I18nHandler delegate;
 		private final ReadWriteLock lock = new ReentrantReadWriteLock();
 
-		public SyncResourceHandlerImpl(ResourceHandler delegate) {
+		public SyncI18nHandlerImpl(I18nHandler delegate) {
 			this.delegate = delegate;
 		}
 
@@ -350,14 +402,13 @@ public final class ResourceUtil {
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		 * @see com.dwarfeng.dutil.develop.i18n.I18nHandler#getCurrentLocale()
 		 */
 		@Override
-		public Set<SetObverser<Resource>> getObversers() {
+		public Locale getCurrentLocale() {
 			lock.readLock().lock();
 			try {
-				return delegate.getObversers();
-
+				return delegate.getCurrentLocale();
 			} finally {
 				lock.readLock().unlock();
 			}
@@ -367,17 +418,31 @@ public final class ResourceUtil {
 		 * (non-Javadoc)
 		 * 
 		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
-		 * dutil.basic.prog.Obverser)
+		 * com.dwarfeng.dutil.develop.i18n.I18nHandler#setCurrentLocale(java.
+		 * util.Locale)
 		 */
 		@Override
-		public boolean addObverser(SetObverser<Resource> obverser) {
+		public boolean setCurrentLocale(Locale locale) {
 			lock.writeLock().lock();
 			try {
-				return delegate.addObverser(obverser);
-
+				return delegate.setCurrentLocale(locale);
 			} finally {
 				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.i18n.I18nHandler#getCurrentMutilang()
+		 */
+		@Override
+		public I18n getCurrentI18n() {
+			lock.readLock().lock();
+			try {
+				return delegate.getCurrentI18n();
+			} finally {
+				lock.readLock().unlock();
 			}
 		}
 
@@ -393,27 +458,8 @@ public final class ResourceUtil {
 			lock.readLock().lock();
 			try {
 				return delegate.containsKey(key);
-
 			} finally {
 				lock.readLock().unlock();
-			}
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
-		 * .dutil.basic.prog.Obverser)
-		 */
-		@Override
-		public boolean removeObverser(SetObverser<Resource> obverser) {
-			lock.writeLock().lock();
-			try {
-				return delegate.removeObverser(obverser);
-
-			} finally {
-				lock.writeLock().unlock();
 			}
 		}
 
@@ -429,25 +475,8 @@ public final class ResourceUtil {
 			lock.readLock().lock();
 			try {
 				return delegate.containsAllKey(c);
-
 			} finally {
 				lock.readLock().unlock();
-			}
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
-		 */
-		@Override
-		public void clearObverser() {
-			lock.writeLock().lock();
-			try {
-				delegate.clearObverser();
-
-			} finally {
-				lock.writeLock().unlock();
 			}
 		}
 
@@ -463,7 +492,6 @@ public final class ResourceUtil {
 			lock.writeLock().lock();
 			try {
 				return delegate.removeKey(key);
-
 			} finally {
 				lock.writeLock().unlock();
 			}
@@ -481,7 +509,6 @@ public final class ResourceUtil {
 			lock.writeLock().lock();
 			try {
 				return delegate.removeAllKey(c);
-
 			} finally {
 				lock.writeLock().unlock();
 			}
@@ -499,7 +526,6 @@ public final class ResourceUtil {
 			lock.writeLock().lock();
 			try {
 				return delegate.retainAllKey(c);
-
 			} finally {
 				lock.writeLock().unlock();
 			}
@@ -515,7 +541,6 @@ public final class ResourceUtil {
 			lock.readLock().lock();
 			try {
 				return delegate.size();
-
 			} finally {
 				lock.readLock().unlock();
 			}
@@ -531,7 +556,6 @@ public final class ResourceUtil {
 			lock.readLock().lock();
 			try {
 				return delegate.isEmpty();
-
 			} finally {
 				lock.readLock().unlock();
 			}
@@ -547,7 +571,6 @@ public final class ResourceUtil {
 			lock.readLock().lock();
 			try {
 				return delegate.contains(o);
-
 			} finally {
 				lock.readLock().unlock();
 			}
@@ -559,11 +582,10 @@ public final class ResourceUtil {
 		 * @see java.util.Set#iterator()
 		 */
 		@Override
-		public Iterator<Resource> iterator() {
+		public Iterator<I18nInfo> iterator() {
 			lock.readLock().lock();
 			try {
 				return delegate.iterator();
-
 			} finally {
 				lock.readLock().unlock();
 			}
@@ -579,7 +601,6 @@ public final class ResourceUtil {
 			lock.readLock().lock();
 			try {
 				return delegate.toArray();
-
 			} finally {
 				lock.readLock().unlock();
 			}
@@ -595,7 +616,6 @@ public final class ResourceUtil {
 			lock.readLock().lock();
 			try {
 				return delegate.toArray(a);
-
 			} finally {
 				lock.readLock().unlock();
 			}
@@ -607,11 +627,10 @@ public final class ResourceUtil {
 		 * @see java.util.Set#add(java.lang.Object)
 		 */
 		@Override
-		public boolean add(Resource e) {
+		public boolean add(I18nInfo e) {
 			lock.writeLock().lock();
 			try {
 				return delegate.add(e);
-
 			} finally {
 				lock.writeLock().unlock();
 			}
@@ -627,7 +646,6 @@ public final class ResourceUtil {
 			lock.writeLock().lock();
 			try {
 				return delegate.remove(o);
-
 			} finally {
 				lock.writeLock().unlock();
 			}
@@ -643,7 +661,6 @@ public final class ResourceUtil {
 			lock.readLock().lock();
 			try {
 				return delegate.containsAll(c);
-
 			} finally {
 				lock.readLock().unlock();
 			}
@@ -655,11 +672,10 @@ public final class ResourceUtil {
 		 * @see java.util.Set#addAll(java.util.Collection)
 		 */
 		@Override
-		public boolean addAll(Collection<? extends Resource> c) {
+		public boolean addAll(Collection<? extends I18nInfo> c) {
 			lock.writeLock().lock();
 			try {
 				return delegate.addAll(c);
-
 			} finally {
 				lock.writeLock().unlock();
 			}
@@ -675,7 +691,6 @@ public final class ResourceUtil {
 			lock.writeLock().lock();
 			try {
 				return delegate.retainAll(c);
-
 			} finally {
 				lock.writeLock().unlock();
 			}
@@ -691,7 +706,6 @@ public final class ResourceUtil {
 			lock.writeLock().lock();
 			try {
 				return delegate.removeAll(c);
-
 			} finally {
 				lock.writeLock().unlock();
 			}
@@ -707,7 +721,70 @@ public final class ResourceUtil {
 			lock.writeLock().lock();
 			try {
 				delegate.clear();
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
 
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		 */
+		@Override
+		public Set<SetObverser<I18nInfo>> getObversers() {
+			lock.readLock().lock();
+			try {
+				return delegate.getObversers();
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
+		 * dutil.basic.prog.Obverser)
+		 */
+		@Override
+		public boolean addObverser(SetObverser<I18nInfo> obverser) {
+			lock.writeLock().lock();
+			try {
+				return delegate.addObverser(obverser);
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
+		 * .dutil.basic.prog.Obverser)
+		 */
+		@Override
+		public boolean removeObverser(SetObverser<I18nInfo> obverser) {
+			lock.writeLock().lock();
+			try {
+				return delegate.removeObverser(obverser);
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		 */
+		@Override
+		public void clearObverser() {
+			lock.writeLock().lock();
+			try {
+				delegate.clear();
 			} finally {
 				lock.writeLock().unlock();
 			}
@@ -719,12 +796,12 @@ public final class ResourceUtil {
 		 * @see java.lang.Object#equals(java.lang.Object)
 		 */
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(Object obj) {
 			lock.readLock().lock();
 			try {
-				if (o == this)
+				if (obj == this)
 					return true;
-				return delegate.equals(o);
+				return delegate.equals(obj);
 			} finally {
 				lock.readLock().unlock();
 			}
@@ -740,7 +817,6 @@ public final class ResourceUtil {
 			lock.readLock().lock();
 			try {
 				return delegate.hashCode();
-
 			} finally {
 				lock.readLock().unlock();
 			}
@@ -749,6 +825,6 @@ public final class ResourceUtil {
 	}
 
 	// 禁止外部实例化。
-	private ResourceUtil() {
-	};
+	private I18nUtil() {
+	}
 }
