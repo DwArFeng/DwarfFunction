@@ -120,4 +120,6 @@ Beta_0.1.1
 	修正 dutil.basic.cna.model 包中的内容。
 		AbstractMapModel 中的 obversers 属性由 private 改为 protected。
 		AbstractSetModel 中的 obversers 属性由 private 改为 protected。
+	新增 dtuil.develop.resource包，提供资源文件管理工具。
+	新增 dutil.develop.i18n包，提供国际化的管理工具。
 			

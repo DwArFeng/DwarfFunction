@@ -1,7 +1,7 @@
 package com.dwarfeng.dutil.develop.i18n;
 
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Properties;
@@ -10,10 +10,10 @@ import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 
 /**
- * Properties文件国际化信息。
+ * Properties URL国际化信息。
  * <p>
  * 通过 <code>.properties</code> 文件确定的国际化信息接口。 <br>
- * 该国际化信息接口通过一个本地的 <code>.properties</code> 文件来实现。
+ * 该国际化信息接口通过一个 URL 文件来实现。
  * 
  * <p>
  * <code>.properties</code> 文件的形式为：
@@ -25,26 +25,26 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
  * @author DwArFeng
  * @since 0.1.1-beta
  */
-public class PropFileI18nInfo extends AbstractI18nInfo {
+public class PropUrlI18nInfo extends AbstractI18nInfo {
 
 	/** 该国际化信息的文件。 */
-	protected final File file;
+	protected final URL url;
 
 	/**
-	 * 生成一个具有指定语言，指定名称，指定文件的 Properties文件国际化信息。
+	 * 生成一个具有指定语言，指定名称，指定文件的 Properties URL国际化信息。
 	 * 
 	 * @param key
 	 *            指定的语言。
 	 * @param name
 	 *            指定的名称。
-	 * @param file
-	 *            指定的文件。
+	 * @param url
+	 *            指定的URL。
 	 */
-	public PropFileI18nInfo(Locale key, String name, File file) {
+	public PropUrlI18nInfo(Locale key, String name, URL url) {
 		super(key, name);
 
-		Objects.requireNonNull(file, DwarfUtil.getStringField(StringFieldKey.PROPFILEI18NINFO_0));
-		this.file = file;
+		Objects.requireNonNull(url, DwarfUtil.getStringField(StringFieldKey.PROPURLI18NINFO_0));
+		this.url = url;
 	}
 
 	/*
@@ -55,9 +55,9 @@ public class PropFileI18nInfo extends AbstractI18nInfo {
 	@Override
 	public I18n newI18n() throws Exception {
 		Properties properties = new Properties();
-		FileInputStream in = null;
+		InputStream in = null;
 		try {
-			in = new FileInputStream(file);
+			in = url.openStream();
 			properties.load(in);
 			return new PropertiesI18n(properties);
 		} finally {

@@ -484,8 +484,8 @@ public enum StringFieldKey implements Name {
 	/** DelegateI18nHandler类第0号文本字段 */
 	DELEGATEI18NHANDLER_0(new DefaultName("DelegateI18nHandler.0")),
 	
-	/** PropFileI18nInfo类第0号文本字段 */
-	PROPFILEI18NINFO_0(new DefaultName("PropFileI18nInfo.0")),
+	/** PropUrlI18nInfo类第0号文本字段 */
+	PROPURLI18NINFO_0(new DefaultName("PropUrlI18nInfo.0")),
 	
 	/** PropertiesI18n类第0号文本字段 */
 	PROPERTIESI18N_0(new DefaultName("PropertiesI18n.0")),
