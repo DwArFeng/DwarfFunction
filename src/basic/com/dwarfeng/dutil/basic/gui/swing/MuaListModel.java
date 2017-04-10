@@ -14,10 +14,10 @@ import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 
 /**
- * ¶àÖØ²Ù×÷ÁĞ±íÄ£ĞÍ¡£
- * <p> ¸ÃÁĞ±íÄ£ĞÍ¾ßÓĞ {@link DefaultListModel}µÄËùÓĞ¹¦ÄÜ£¬Í¬Ê±ÓÅ»¯ÁË½á¹¹ÀàĞÍ£¬²¢ÇÒ¶ÔÅúÁ¿²Ù×÷½øĞĞÁËÓÅ»¯¡£
- * Í¬Ê±£¬Õâ¸öÀàÊÇÒ»¸öÕæÕıµÄÁĞ±íµÄÊµÏÖ¡£
- * <p> ¸ÃÀà¿ÉÒÔÍ¨¹ıÖ¸¶¨Èë¿ÚµÄ²ÎÊıÀ´±£Ö¤ÁĞ±íµÄ²»Í¬ÊµÏÖ£¬ÈçÓÃÍ¬²½ÁĞ±í×÷ÎªÊµÏÖ¾Í¿ÉÒÔ±£Ö¤ÆäÖĞ·½·¨µÄÍ¬²½¡£
+ * å¤šé‡æ“ä½œåˆ—è¡¨æ¨¡å‹ã€‚
+ * <p> è¯¥åˆ—è¡¨æ¨¡å‹å…·æœ‰ {@link DefaultListModel}çš„æ‰€æœ‰åŠŸèƒ½ï¼ŒåŒæ—¶ä¼˜åŒ–äº†ç»“æ„ç±»å‹ï¼Œå¹¶ä¸”å¯¹æ‰¹é‡æ“ä½œè¿›è¡Œäº†ä¼˜åŒ–ã€‚
+ * åŒæ—¶ï¼Œè¿™ä¸ªç±»æ˜¯ä¸€ä¸ªçœŸæ­£çš„åˆ—è¡¨çš„å®ç°ã€‚
+ * <p> è¯¥ç±»å¯ä»¥é€šè¿‡æŒ‡å®šå…¥å£çš„å‚æ•°æ¥ä¿è¯åˆ—è¡¨çš„ä¸åŒå®ç°ï¼Œå¦‚ç”¨åŒæ­¥åˆ—è¡¨ä½œä¸ºå®ç°å°±å¯ä»¥ä¿è¯å…¶ä¸­æ–¹æ³•çš„åŒæ­¥ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
@@ -28,16 +28,16 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E>{
 	private final List<E> delegate;
 	
 	/**
-	 * Éú³ÉÒ»¸öÄ¬ÈÏµÄ£¬ÓÉ {@link ArrayList}ÊµÏÖµÄÁĞ±íÄ£ĞÍ¡£
+	 * ç”Ÿæˆä¸€ä¸ªé»˜è®¤çš„ï¼Œç”± {@link ArrayList}å®ç°çš„åˆ—è¡¨æ¨¡å‹ã€‚
 	 */
 	public MuaListModel() {
 		this(new ArrayList<E>());
 	}
 	
 	/**
-	 * Éú³ÉÒ»¸öÓÉÖ¸¶¨ÁĞ±íÊµÏÖµÄÁĞ±íÄ£ĞÍ¡£
-	 * @param list Ö¸¶¨µÄÁĞ±í¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>
+	 * ç”Ÿæˆä¸€ä¸ªç”±æŒ‡å®šåˆ—è¡¨å®ç°çš„åˆ—è¡¨æ¨¡å‹ã€‚
+	 * @param list æŒ‡å®šçš„åˆ—è¡¨ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>
 	 */
 	public MuaListModel(List<E> list){
 		super();

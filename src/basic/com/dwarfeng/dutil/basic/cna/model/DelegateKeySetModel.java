@@ -11,9 +11,9 @@ import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
 import com.dwarfeng.dutil.basic.prog.WithKey;
 
 /**
- * ´úÀí¼üÖµ¼¯ºÏÄ£ĞÍ¡£
+ * ä»£ç†é”®å€¼é›†åˆæ¨¡å‹ã€‚
  * <p>
- * ¸Ã¼¯ºÏÄ£ĞÍÊÇÍ¨¹ı´úÀíÒÔ¼°¼¯ºÏÀ´ÊµÏÖµÄ¡£
+ * è¯¥é›†åˆæ¨¡å‹æ˜¯é€šè¿‡ä»£ç†ä»¥åŠé›†åˆæ¥å®ç°çš„ã€‚
  * 
  * @author DwArFeng
  * @since 0.1.0-beta
@@ -21,24 +21,38 @@ import com.dwarfeng.dutil.basic.prog.WithKey;
 public class DelegateKeySetModel<K, V extends WithKey<K>> extends DelegateSetModel<V> implements KeySetModel<K, V> {
 
 	/**
-	 * Éú³ÉÒ»¸öÄ¬ÈÏµÄ´úÀí¼üÖµ¼¯ºÏÄ£ĞÍ¡£
+	 * ç”Ÿæˆä¸€ä¸ªé»˜è®¤çš„ä»£ç†é”®å€¼é›†åˆæ¨¡å‹ã€‚
 	 */
 	public DelegateKeySetModel() {
 		super();
 	}
 
 	/**
-	 * Éú³ÉÒ»¸ö¾ßÓĞÖ¸¶¨µÄ´úÀí£¬Ö¸¶¨µÄ¹Û²ìÆ÷¼¯ºÏµÄ´úÀí¼üÖµ¼¯ºÏÄ£ĞÍ¡£
+	 * ç”Ÿæˆä¸€ä¸ªå…·æœ‰æŒ‡å®šçš„ä»£ç†ï¼ŒæŒ‡å®šçš„è§‚å¯Ÿå™¨é›†åˆçš„ä»£ç†é”®å€¼é›†åˆæ¨¡å‹ã€‚
 	 * 
 	 * @param delegate
-	 *            Ö¸¶¨µÄ´úÀí¡£
+	 *            æŒ‡å®šçš„ä»£ç†ã€‚
 	 * @param obversers
-	 *            Ö¸¶¨µÄ¹Û²ìÆ÷¼¯ºÏ¡£
+	 *            æŒ‡å®šçš„è§‚å¯Ÿå™¨é›†åˆã€‚
 	 * @throws NullPointerException
-	 *             Èë¿Ú²ÎÊıÎª null¡£
+	 *             å…¥å£å‚æ•°ä¸º nullã€‚
 	 */
 	public DelegateKeySetModel(Set<V> delegate, Set<SetObverser<V>> obversers) {
 		super(delegate, obversers);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.dwarfeng.dutil.basic.cna.model.KeySetModel#get(java.lang.Object)
+	 */
+	@Override
+	public V get(K key) {
+		for (V value : this) {
+			if (value.getKey().equals(key))
+				return value;
+		}
+		return null;
 	}
 
 	/*

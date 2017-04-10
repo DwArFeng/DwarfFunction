@@ -6,7 +6,7 @@ import java.util.StringTokenizer;
 import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
 /**
- * µØÇøÖµ½âÎöÆ÷¡£
+ * åœ°åŒºå€¼è§£æå™¨ã€‚
  * 
  * @author DwArFeng
  * @since 0.1.0-beta

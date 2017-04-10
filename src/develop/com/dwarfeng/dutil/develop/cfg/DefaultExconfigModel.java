@@ -18,15 +18,15 @@ import com.dwarfeng.dutil.develop.cfg.struct.ExconfigEntry;
 import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
 /**
- * Ä¬ÈÏExÅäÖÃÄ£ĞÍ¡£
+ * é»˜è®¤Exé…ç½®æ¨¡å‹ã€‚
  * <p>
- * ExÅäÖÃÄ£ĞÍµÄÄ¬ÈÏÊµÏÖ¡£
+ * Exé…ç½®æ¨¡å‹çš„é»˜è®¤å®ç°ã€‚
  * <p>
- * ¸ÃÊµÏÖÊ¹ÓÃÁËÒ»¸öÓ³ÉäÀ´´æ´¢ËùÓĞµÄÅäÖÃĞÅÏ¢¡£¸ÃÓ³ÉäµÄÖµµÄÀàĞÍÊÇ {@link ExconfigBean}£¬
- * ËüÄÜ»ñÈ¡ºÍÉèÖÃÅäÖÃµÄ¹Ì¶¨ÊôĞÔ¡¢µ±Ç°Öµ¡¢Öµ½âÎöÆ÷¡£Ïà±ÈÓÚ {@link DefaultConfigModel}µÄË«ÖØÓ³Éä£¬ ¸ÃÄ£ĞÍµÄ½á¹¹ÊÇÊ®·Ö¼òµ¥µÄ¡£
+ * è¯¥å®ç°ä½¿ç”¨äº†ä¸€ä¸ªæ˜ å°„æ¥å­˜å‚¨æ‰€æœ‰çš„é…ç½®ä¿¡æ¯ã€‚è¯¥æ˜ å°„çš„å€¼çš„ç±»å‹æ˜¯ {@link ExconfigBean}ï¼Œ
+ * å®ƒèƒ½è·å–å’Œè®¾ç½®é…ç½®çš„å›ºå®šå±æ€§ã€å½“å‰å€¼ã€å€¼è§£æå™¨ã€‚ç›¸æ¯”äº {@link DefaultConfigModel}çš„åŒé‡æ˜ å°„ï¼Œ è¯¥æ¨¡å‹çš„ç»“æ„æ˜¯ååˆ†ç®€å•çš„ã€‚
  * <p>
- * Ö»ÓĞÒ»¸öÓ³ÉäÒâÎ¶×ÅÉèÖÃ´úÀíºÍ³õÖµÊÇ·Ç³£·½±ãµÄ£¬²»Ïñ {@link DefaultConfigModel} ÄÇÑùĞèÒªÉèÖÃÁ½¸öÓ³ÉäµÄ´úÀí£¬
- * ¸ÃÊµÏÖÖ»ĞèÒªÉèÖÃÒ»¸öÓ³ÉäµÄ´úÀí£¬´Ó¶ø±ÜÃâÁË {@link DefaultConfigModel}µÄ´úÀí±íÏÖ²»Ò»ÖÂµÄÎÊÌâ¡£
+ * åªæœ‰ä¸€ä¸ªæ˜ å°„æ„å‘³ç€è®¾ç½®ä»£ç†å’Œåˆå€¼æ˜¯éå¸¸æ–¹ä¾¿çš„ï¼Œä¸åƒ {@link DefaultConfigModel} é‚£æ ·éœ€è¦è®¾ç½®ä¸¤ä¸ªæ˜ å°„çš„ä»£ç†ï¼Œ
+ * è¯¥å®ç°åªéœ€è¦è®¾ç½®ä¸€ä¸ªæ˜ å°„çš„ä»£ç†ï¼Œä»è€Œé¿å…äº† {@link DefaultConfigModel}çš„ä»£ç†è¡¨ç°ä¸ä¸€è‡´çš„é—®é¢˜ã€‚
  * 
  * @author DwArFeng
  * @since 0.1.0-beta
@@ -34,9 +34,9 @@ import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 public class DefaultExconfigModel extends AbstractExconfigModel {
 
 	/**
-	 * ExÅäÖÃBean¡£
+	 * Exé…ç½®Beanã€‚
 	 * <p>
-	 * ÓÃÓÚ»ñÈ¡ºÍÉèÖÃ {@link ExconfigModel} ÖĞĞèÒªµÄ¹Ì¶¨ÊôĞÔ¡¢µ±Ç°Öµ¡¢Öµ½âÎöÆ÷¡£
+	 * ç”¨äºè·å–å’Œè®¾ç½® {@link ExconfigModel} ä¸­éœ€è¦çš„å›ºå®šå±æ€§ã€å½“å‰å€¼ã€å€¼è§£æå™¨ã€‚
 	 * 
 	 * @author DwArFeng
 	 * @since 0.1.0-beta
@@ -48,21 +48,21 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		private ValueParser valueParser;
 
 		/**
-		 * Éú³ÉÒ»¸öÄ¬ÈÏµÄ ExÅäÖÃBean¡£
+		 * ç”Ÿæˆä¸€ä¸ªé»˜è®¤çš„ Exé…ç½®Beanã€‚
 		 */
 		public ExconfigBean() {
 			this(null, null, null);
 		}
 
 		/**
-		 * Éú³É¾ßÓĞÖ¸¶¨ÊôĞÔÖµµÄ ExÅäÖÃBean¡£
+		 * ç”Ÿæˆå…·æœ‰æŒ‡å®šå±æ€§å€¼çš„ Exé…ç½®Beanã€‚
 		 * 
 		 * @param configFirmProps
-		 *            Ö¸¶¨µÄ¹Ì¶¨ÊôĞÔ¡£
+		 *            æŒ‡å®šçš„å›ºå®šå±æ€§ã€‚
 		 * @param currentValue
-		 *            Ö¸¶¨µÄµ±Ç°Öµ¡£
+		 *            æŒ‡å®šçš„å½“å‰å€¼ã€‚
 		 * @param valueParser
-		 *            Ö¸¶¨µÄÖµ½âÎöÆ÷¡£
+		 *            æŒ‡å®šçš„å€¼è§£æå™¨ã€‚
 		 */
 		public ExconfigBean(ConfigFirmProps configFirmProps, String currentValue, ValueParser valueParser) {
 			this.configFirmProps = configFirmProps;
@@ -71,57 +71,57 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		}
 
 		/**
-		 * »ñÈ¡¸ÃBeanÖĞµÄÅäÖÃ¹Ì¶¨ÊôĞÔ¡£
+		 * è·å–è¯¥Beanä¸­çš„é…ç½®å›ºå®šå±æ€§ã€‚
 		 * 
-		 * @return ¸ÃBeanÖĞµÄÅäÖÃ¹Ì¶¨ÊôĞÔ¡£
+		 * @return è¯¥Beanä¸­çš„é…ç½®å›ºå®šå±æ€§ã€‚
 		 */
 		public ConfigFirmProps getConfigFirmProps() {
 			return configFirmProps;
 		}
 
 		/**
-		 * ÉèÖÃ¸ÃBeanÖĞµÄÅäÖÃ¹Ì¶¨ÊôĞÔÎªÖ¸¶¨Öµ¡£
+		 * è®¾ç½®è¯¥Beanä¸­çš„é…ç½®å›ºå®šå±æ€§ä¸ºæŒ‡å®šå€¼ã€‚
 		 * 
 		 * @param configFirmProps
-		 *            Ö¸¶¨µÄÅäÖÃ¹Ì¶¨ÊôĞÔ¡£
+		 *            æŒ‡å®šçš„é…ç½®å›ºå®šå±æ€§ã€‚
 		 */
 		public void setConfigFirmProps(ConfigFirmProps configFirmProps) {
 			this.configFirmProps = configFirmProps;
 		}
 
 		/**
-		 * »ñÈ¡¸ÃBeanÖĞµÄµ±Ç°Öµ¡£
+		 * è·å–è¯¥Beanä¸­çš„å½“å‰å€¼ã€‚
 		 * 
-		 * @return ¸ÃBeanÖĞµÄµ±Ç°Öµ¡£
+		 * @return è¯¥Beanä¸­çš„å½“å‰å€¼ã€‚
 		 */
 		public String getCurrentValue() {
 			return currentValue;
 		}
 
 		/**
-		 * ÉèÖÃ¸ÃBeanÖĞµÄµ±Ç°ÖµÎªÖ¸¶¨Öµ¡£
+		 * è®¾ç½®è¯¥Beanä¸­çš„å½“å‰å€¼ä¸ºæŒ‡å®šå€¼ã€‚
 		 * 
 		 * @param currentValue
-		 *            Ö¸¶¨µÄµ±Ç°Öµ¡£
+		 *            æŒ‡å®šçš„å½“å‰å€¼ã€‚
 		 */
 		public void setCurrentValue(String currentValue) {
 			this.currentValue = currentValue;
 		}
 
 		/**
-		 * »ñÈ¡¸ÃBeanÖĞµÄÖµ½âÎöÆ÷¡£
+		 * è·å–è¯¥Beanä¸­çš„å€¼è§£æå™¨ã€‚
 		 * 
-		 * @return ¸ÃBeanÖĞµÄÖµ½âÎöÆ÷¡£
+		 * @return è¯¥Beanä¸­çš„å€¼è§£æå™¨ã€‚
 		 */
 		public ValueParser getValueParser() {
 			return valueParser;
 		}
 
 		/**
-		 * ÉèÖÃ¸ÃBeanÖĞµÄÖµ½âÎöÆ÷ÎªÖ¸¶¨Öµ¡£
+		 * è®¾ç½®è¯¥Beanä¸­çš„å€¼è§£æå™¨ä¸ºæŒ‡å®šå€¼ã€‚
 		 * 
 		 * @param valueParser
-		 *            ¸ÃBeanÖĞµÄÖµ½âÎöÆ÷¡£
+		 *            è¯¥Beanä¸­çš„å€¼è§£æå™¨ã€‚
 		 */
 		public void setValueParser(ValueParser valueParser) {
 			this.valueParser = valueParser;
@@ -129,41 +129,41 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 
 	}
 
-	/** ExÅäÖÃÄ£ĞÍµÄÓ³Éä´úÀí¡£ */
+	/** Exé…ç½®æ¨¡å‹çš„æ˜ å°„ä»£ç†ã€‚ */
 	protected final Map<ConfigKey, ExconfigBean> delegate;
 
 	/**
-	 * Éú³ÉÒ»¸öÄ¬ÈÏµÄExÅäÖÃÄ£ĞÍ¡£
+	 * ç”Ÿæˆä¸€ä¸ªé»˜è®¤çš„Exé…ç½®æ¨¡å‹ã€‚
 	 */
 	public DefaultExconfigModel() {
 		this(new HashSet<>(), new HashMap<>(), Collections.newSetFromMap(new WeakHashMap<>()));
 	}
 
 	/**
-	 * Éú³ÉÒ»¸ö¾ßÓĞÖ¸¶¨³õÊ¼ÖµÈë¿ÚµÄExÅäÖÃÄ£ĞÍ¡£
+	 * ç”Ÿæˆä¸€ä¸ªå…·æœ‰æŒ‡å®šåˆå§‹å€¼å…¥å£çš„Exé…ç½®æ¨¡å‹ã€‚
 	 * 
 	 * @param entries
-	 *            Ö¸¶¨µÄ³õÊ¼ÖµÈë¿ÚµÄ¼¯ºÏ¡£
+	 *            æŒ‡å®šçš„åˆå§‹å€¼å…¥å£çš„é›†åˆã€‚
 	 * @throws NullPointerException
-	 *             Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 *             å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public DefaultExconfigModel(Collection<ExconfigEntry> entries) {
 		this(entries, new HashMap<>(), Collections.newSetFromMap(new WeakHashMap<>()));
 	}
 
 	/**
-	 * Éú³ÉÒ»¸ö¾ßÓĞÖ¸¶¨³õÊ¼ÖµÈë¿Ú¡¢Ó³Éä´úÀí¡¢Ö¸¶¨µÄ¹Û²ìÆ÷¼¯ºÏµÄExÅäÖÃÄ£ĞÍ¡£
+	 * ç”Ÿæˆä¸€ä¸ªå…·æœ‰æŒ‡å®šåˆå§‹å€¼å…¥å£ã€æ˜ å°„ä»£ç†ã€æŒ‡å®šçš„è§‚å¯Ÿå™¨é›†åˆçš„Exé…ç½®æ¨¡å‹ã€‚
 	 * <p>
-	 * Ö»ÓĞ³õÊ¼ÖµÈë¿Ú¼¯ºÏÖĞµÄÓĞĞ§Èë¿Ú²Å»á±»Ìí¼Óµ½Ä£ĞÍÖĞ¡£
+	 * åªæœ‰åˆå§‹å€¼å…¥å£é›†åˆä¸­çš„æœ‰æ•ˆå…¥å£æ‰ä¼šè¢«æ·»åŠ åˆ°æ¨¡å‹ä¸­ã€‚
 	 * 
 	 * @param entries
-	 *            Ö¸¶¨µÄ³õÊ¼ÖµÈë¿ÚµÄ¼¯ºÏ¡£
+	 *            æŒ‡å®šçš„åˆå§‹å€¼å…¥å£çš„é›†åˆã€‚
 	 * @param delegate
-	 *            Ö¸¶¨µÄÓ³Éä´úÀí¡£
+	 *            æŒ‡å®šçš„æ˜ å°„ä»£ç†ã€‚
 	 * @param obversers
-	 *            Ö¸¶¨µÄ¹Û²ìÆ÷¼¯ºÏ¡£
+	 *            æŒ‡å®šçš„è§‚å¯Ÿå™¨é›†åˆã€‚
 	 * @throws NullPointerException
-	 *             Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 *             å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public DefaultExconfigModel(Collection<ExconfigEntry> entries, Map<ConfigKey, ExconfigBean> delegate,
 			Set<ExconfigObverser> obversers) {
@@ -596,7 +596,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		String validValue = getValidValue(configKey);
 		ValueParser valueParser = getValueParser(configKey);
 
-		// ¸Ã´¦×ª»»²»ÊÇ°²È«µÄ£¬µ«ÊÇÔÊĞíÅ×³ö ClassCastException()¡£
+		// è¯¥å¤„è½¬æ¢ä¸æ˜¯å®‰å…¨çš„ï¼Œä½†æ˜¯å…è®¸æŠ›å‡º ClassCastException()ã€‚
 		@SuppressWarnings("unchecked")
 		T t = (T) valueParser.parseValue(validValue);
 
@@ -689,7 +689,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		 */
 		@Override
 		public String put(ConfigKey key, String value) {
-			// ¸ÃÀàÊÇÖ»¶ÁµÄ¡£
+			// è¯¥ç±»æ˜¯åªè¯»çš„ã€‚
 			throw new UnsupportedOperationException();
 		}
 
@@ -700,7 +700,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		 */
 		@Override
 		public String remove(Object key) {
-			// ¸ÃÀàÊÇÖ»¶ÁµÄ¡£
+			// è¯¥ç±»æ˜¯åªè¯»çš„ã€‚
 			throw new UnsupportedOperationException();
 		}
 
@@ -711,7 +711,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		 */
 		@Override
 		public void putAll(Map<? extends ConfigKey, ? extends String> m) {
-			// ¸ÃÀàÊÇÖ»¶ÁµÄ¡£
+			// è¯¥ç±»æ˜¯åªè¯»çš„ã€‚
 			throw new UnsupportedOperationException();
 		}
 
@@ -722,7 +722,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		 */
 		@Override
 		public void clear() {
-			// ¸ÃÀàÊÇÖ»¶ÁµÄ¡£
+			// è¯¥ç±»æ˜¯åªè¯»çš„ã€‚
 			throw new UnsupportedOperationException();
 		}
 
@@ -832,7 +832,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			Object[] arr = delegate.toArray();
 			Object[] strArr = new Object[arr.length];
 			for (int i = 0; i < strArr.length; i++) {
-				// ´Ë´¦×ª»»ÊÇ°²È«µÄ¡£
+				// æ­¤å¤„è½¬æ¢æ˜¯å®‰å…¨çš„ã€‚
 				strArr[i] = ((ExconfigBean) arr[i]).getCurrentValue();
 			}
 			return strArr;
@@ -846,12 +846,12 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		@Override
 		public <T> T[] toArray(T[] a) {
 			Object[] strArr = toArray();
-			// ´Ë´¦×ª»»ÊÇ°²È«µÄ¡£
+			// æ­¤å¤„è½¬æ¢æ˜¯å®‰å…¨çš„ã€‚
 			@SuppressWarnings("unchecked")
 			T[] r = a.length >= strArr.length ? a
 					: (T[]) java.lang.reflect.Array.newInstance(a.getClass().getComponentType(), strArr.length);
 			for (int i = 0; i < strArr.length; i++) {
-				// ´Ë´¦×ª»¯ÓĞ¿ÉÄÜ²»°²È«£¬µ«ÊÇÔÊĞíÅ×³ö ClassCastException¡£
+				// æ­¤å¤„è½¬åŒ–æœ‰å¯èƒ½ä¸å®‰å…¨ï¼Œä½†æ˜¯å…è®¸æŠ›å‡º ClassCastExceptionã€‚
 				@SuppressWarnings("unchecked")
 				T t = (T) strArr[i];
 				r[i] = t;
@@ -866,7 +866,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		 */
 		@Override
 		public boolean add(String e) {
-			// ¸ÃÀàÊÇÖ»¶ÁµÄ
+			// è¯¥ç±»æ˜¯åªè¯»çš„
 			throw new UnsupportedOperationException();
 		}
 
@@ -877,7 +877,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		 */
 		@Override
 		public boolean remove(Object o) {
-			// ¸ÃÀàÊÇÖ»¶ÁµÄ
+			// è¯¥ç±»æ˜¯åªè¯»çš„
 			throw new UnsupportedOperationException();
 		}
 
@@ -903,7 +903,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		 */
 		@Override
 		public boolean addAll(Collection<? extends String> c) {
-			// ¸ÃÀàÊÇÖ»¶ÁµÄ
+			// è¯¥ç±»æ˜¯åªè¯»çš„
 			throw new UnsupportedOperationException();
 		}
 
@@ -914,7 +914,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
-			// ¸ÃÀàÊÇÖ»¶ÁµÄ
+			// è¯¥ç±»æ˜¯åªè¯»çš„
 			throw new UnsupportedOperationException();
 		}
 
@@ -925,7 +925,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
-			// ¸ÃÀàÊÇÖ»¶ÁµÄ
+			// è¯¥ç±»æ˜¯åªè¯»çš„
 			throw new UnsupportedOperationException();
 		}
 
@@ -936,7 +936,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		 */
 		@Override
 		public void clear() {
-			// ¸ÃÀàÊÇÖ»¶ÁµÄ
+			// è¯¥ç±»æ˜¯åªè¯»çš„
 			throw new UnsupportedOperationException();
 		}
 
@@ -1036,7 +1036,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			Object[] arr = delegate.toArray();
 			Object[] strArr = new Object[arr.length];
 			for (int i = 0; i < strArr.length; i++) {
-				// ´Ë´¦×ª»»ÊÇ°²È«µÄ¡£
+				// æ­¤å¤„è½¬æ¢æ˜¯å®‰å…¨çš„ã€‚
 				@SuppressWarnings("unchecked")
 				Map.Entry<ConfigKey, ExconfigBean> entry = (Map.Entry<ConfigKey, DefaultExconfigModel.ExconfigBean>) arr[i];
 				strArr[i] = new TransEntrySetEntry(entry);
@@ -1052,12 +1052,12 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		@Override
 		public <T> T[] toArray(T[] a) {
 			Object[] strArr = toArray();
-			// ´Ë´¦×ª»»ÊÇ°²È«µÄ¡£
+			// æ­¤å¤„è½¬æ¢æ˜¯å®‰å…¨çš„ã€‚
 			@SuppressWarnings("unchecked")
 			T[] r = a.length >= strArr.length ? a
 					: (T[]) java.lang.reflect.Array.newInstance(a.getClass().getComponentType(), strArr.length);
 			for (int i = 0; i < strArr.length; i++) {
-				// ´Ë´¦×ª»¯ÓĞ¿ÉÄÜ²»°²È«£¬µ«ÊÇÔÊĞíÅ×³ö ClassCastException¡£
+				// æ­¤å¤„è½¬åŒ–æœ‰å¯èƒ½ä¸å®‰å…¨ï¼Œä½†æ˜¯å…è®¸æŠ›å‡º ClassCastExceptionã€‚
 				@SuppressWarnings("unchecked")
 				T t = (T) strArr[i];
 				r[i] = t;
@@ -1072,7 +1072,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		 */
 		@Override
 		public boolean add(Entry<ConfigKey, String> e) {
-			// ¸ÃÀàÊÇÖ»¶ÁµÄ
+			// è¯¥ç±»æ˜¯åªè¯»çš„
 			throw new UnsupportedOperationException();
 		}
 
@@ -1083,7 +1083,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		 */
 		@Override
 		public boolean remove(Object o) {
-			// ¸ÃÀàÊÇÖ»¶ÁµÄ
+			// è¯¥ç±»æ˜¯åªè¯»çš„
 			throw new UnsupportedOperationException();
 		}
 
@@ -1109,7 +1109,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		 */
 		@Override
 		public boolean addAll(Collection<? extends Entry<ConfigKey, String>> c) {
-			// ¸ÃÀàÊÇÖ»¶ÁµÄ
+			// è¯¥ç±»æ˜¯åªè¯»çš„
 			throw new UnsupportedOperationException();
 		}
 
@@ -1120,7 +1120,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
-			// ¸ÃÀàÊÇÖ»¶ÁµÄ
+			// è¯¥ç±»æ˜¯åªè¯»çš„
 			throw new UnsupportedOperationException();
 		}
 
@@ -1131,7 +1131,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
-			// ¸ÃÀàÊÇÖ»¶ÁµÄ
+			// è¯¥ç±»æ˜¯åªè¯»çš„
 			throw new UnsupportedOperationException();
 		}
 
@@ -1142,7 +1142,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		 */
 		@Override
 		public void clear() {
-			// ¸ÃÀàÊÇÖ»¶ÁµÄ
+			// è¯¥ç±»æ˜¯åªè¯»çš„
 			throw new UnsupportedOperationException();
 		}
 
@@ -1213,7 +1213,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		 */
 		@Override
 		public String setValue(String value) {
-			// ¸ÃÀàÊÇÖ»¶ÁµÄ
+			// è¯¥ç±»æ˜¯åªè¯»çš„
 			throw new UnsupportedOperationException();
 		}
 

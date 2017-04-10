@@ -9,23 +9,23 @@ import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 
 /**
- * swing¹¤¾ß°ü¡£
- * <p> ¸Ã°üÖĞ°üº¬¹ØÓÚ¶Ôswing×é¼ş½øĞĞ²Ù×÷µÄ³£ÓÃ·½·¨¡£
- * <p> ÓÉÓÚÊÇÖ»º¬ÓĞ¾²Ì¬·½·¨µÄ¹¤¾ß°ü£¬ËùÒÔ¸ÃÀàÎŞ·¨±»¼Ì³Ğ¡£
+ * swingå·¥å…·åŒ…ã€‚
+ * <p> è¯¥åŒ…ä¸­åŒ…å«å…³äºå¯¹swingç»„ä»¶è¿›è¡Œæ“ä½œçš„å¸¸ç”¨æ–¹æ³•ã€‚
+ * <p> ç”±äºæ˜¯åªå«æœ‰é™æ€æ–¹æ³•çš„å·¥å…·åŒ…ï¼Œæ‰€ä»¥è¯¥ç±»æ— æ³•è¢«ç»§æ‰¿ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public final class SwingUtil {
 
-	//½ûÖ¹Íâ²¿ÊµÀı»¯¡£
+	//ç¦æ­¢å¤–éƒ¨å®ä¾‹åŒ–ã€‚
 	private SwingUtil() {}
 
 	/**
-	 * ÉèÖÃÖ¸¶¨µÄÎÄ¼şÑ¡ÔñÆ÷µÄÓïÑÔ»·¾³¡£
-	 * <p> ÔÊĞí²ÎÊı <code>locale</code>Îª <code>null</code>¡£
-	 * @param fileChooser Ö¸¶¨µÄÎÄ¼şÑ¡ÔñÆ÷¡£
-	 * @param locale Ö¸¶¨µÄÓïÑÔ»·¾³¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊı <code>fileChooser</code> Îª <code>null</code>¡£
+	 * è®¾ç½®æŒ‡å®šçš„æ–‡ä»¶é€‰æ‹©å™¨çš„è¯­è¨€ç¯å¢ƒã€‚
+	 * <p> å…è®¸å‚æ•° <code>locale</code>ä¸º <code>null</code>ã€‚
+	 * @param fileChooser æŒ‡å®šçš„æ–‡ä»¶é€‰æ‹©å™¨ã€‚
+	 * @param locale æŒ‡å®šçš„è¯­è¨€ç¯å¢ƒã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•° <code>fileChooser</code> ä¸º <code>null</code>ã€‚
 	 */
 	public static void setJFileChooserLocal(JFileChooser fileChooser, Locale locale){
 		Objects.requireNonNull(fileChooser, DwarfUtil.getStringField(StringFieldKey.SwingUtil_0));

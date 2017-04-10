@@ -18,11 +18,11 @@ import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
 import com.dwarfeng.dutil.basic.prog.WithKey;
 
 /**
- * ÓĞ¹ØÄ£ĞÍµÄ¹¤¾ß°ü¡£
+ * æœ‰å…³æ¨¡å‹çš„å·¥å…·åŒ…ã€‚
  * <p>
- * ¸Ã°üÖĞ°üº¬Ä£ĞÍµÄ³£ÓÃ·½·¨£¬°üÀ¨ÓÉÄ£ĞÍÉú³ÉÏß³Ì°²È«µÄÄ£ĞÍ¡£
+ * è¯¥åŒ…ä¸­åŒ…å«æ¨¡å‹çš„å¸¸ç”¨æ–¹æ³•ï¼ŒåŒ…æ‹¬ç”±æ¨¡å‹ç”Ÿæˆçº¿ç¨‹å®‰å…¨çš„æ¨¡å‹ã€‚
  * <p>
- * ÓÉÓÚÊÇÖ»º¬ÓĞ¾²Ì¬·½·¨µÄ¹¤¾ß°ü£¬ËùÒÔ¸ÃÀàÎŞ·¨±»¼Ì³Ğ¡£
+ * ç”±äºæ˜¯åªå«æœ‰é™æ€æ–¹æ³•çš„å·¥å…·åŒ…ï¼Œæ‰€ä»¥è¯¥ç±»æ— æ³•è¢«ç»§æ‰¿ã€‚
  * 
  * @author DwArFeng
  * @since 0.1.0-beta
@@ -30,15 +30,15 @@ import com.dwarfeng.dutil.basic.prog.WithKey;
 public final class ModelUtil {
 
 	/**
-	 * ÓÉÖ¸¶¨µÄÁĞ±íÄ£ĞÍÉú³ÉÒ»¸öÏß³Ì°²È«µÄÁĞ±íÄ£ĞÍ¡£
+	 * ç”±æŒ‡å®šçš„åˆ—è¡¨æ¨¡å‹ç”Ÿæˆä¸€ä¸ªçº¿ç¨‹å®‰å…¨çš„åˆ—è¡¨æ¨¡å‹ã€‚
 	 * 
 	 * @param listModel
-	 *            Ö¸¶¨µÄÁĞ±íÄ£ĞÍ¡£
+	 *            æŒ‡å®šçš„åˆ—è¡¨æ¨¡å‹ã€‚
 	 * @param <E>
-	 *            ÁĞ±íÄ£ĞÍµÄÔªËØÀàĞÍ¡£
-	 * @return ÓÉÖ¸¶¨µÄÁĞ±íÄ£ĞÍÉú³ÉµÄÏß³Ì°²È«µÄÁĞ±íÄ£ĞÍ¡£
+	 *            åˆ—è¡¨æ¨¡å‹çš„å…ƒç´ ç±»å‹ã€‚
+	 * @return ç”±æŒ‡å®šçš„åˆ—è¡¨æ¨¡å‹ç”Ÿæˆçš„çº¿ç¨‹å®‰å…¨çš„åˆ—è¡¨æ¨¡å‹ã€‚
 	 * @throws NullPointerException
-	 *             Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 *             å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static <E> SyncListModel<E> syncListModel(ListModel<E> listModel) {
 		Objects.requireNonNull(listModel, DwarfUtil.getStringField(StringFieldKey.MODELUTIL_0));
@@ -508,15 +508,15 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * ÓÉÖ¸¶¨µÄ¼¯ºÏÄ£ĞÍÉú³ÉÒ»¸öÏß³Ì°²È«µÄ¼¯ºÏÄ£ĞÍ¡£
+	 * ç”±æŒ‡å®šçš„é›†åˆæ¨¡å‹ç”Ÿæˆä¸€ä¸ªçº¿ç¨‹å®‰å…¨çš„é›†åˆæ¨¡å‹ã€‚
 	 * 
 	 * @param setModel
-	 *            Ö¸¶¨µÄ¼¯ºÏÄ£ĞÍ¡£
+	 *            æŒ‡å®šçš„é›†åˆæ¨¡å‹ã€‚
 	 * @param <E>
-	 *            ¼¯ºÏÄ£ĞÍµÄÔªËØÀàĞÍ¡£
-	 * @return ÓÉÖ¸¶¨µÄ¼¯ºÏÄ£ĞÍÉú³ÉµÄÏß³Ì°²È«µÄ¼¯ºÏÄ£ĞÍ¡£
+	 *            é›†åˆæ¨¡å‹çš„å…ƒç´ ç±»å‹ã€‚
+	 * @return ç”±æŒ‡å®šçš„é›†åˆæ¨¡å‹ç”Ÿæˆçš„çº¿ç¨‹å®‰å…¨çš„é›†åˆæ¨¡å‹ã€‚
 	 * @throws NullPointerException
-	 *             Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 *             å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static <E> SyncSetModel<E> syncSetMdel(SyncSetModel<E> setModel) {
 		Objects.requireNonNull(setModel, DwarfUtil.getStringField(StringFieldKey.MODELUTIL_1));
@@ -836,17 +836,17 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * ÓÉÖ¸¶¨µÄÓ³ÉäÄ£ĞÍÉú³ÉÒ»¸öÏß³Ì°²È«µÄÓ³ÉäÄ£ĞÍ¡£
+	 * ç”±æŒ‡å®šçš„æ˜ å°„æ¨¡å‹ç”Ÿæˆä¸€ä¸ªçº¿ç¨‹å®‰å…¨çš„æ˜ å°„æ¨¡å‹ã€‚
 	 * 
 	 * @param mapModel
-	 *            Ö¸¶¨µÄÓ³ÉäÄ£ĞÍ¡£
+	 *            æŒ‡å®šçš„æ˜ å°„æ¨¡å‹ã€‚
 	 * @param <K>
-	 *            Ó³ÉäÄ£ĞÍµÄ¼üµÄÀàĞÍ¡£
+	 *            æ˜ å°„æ¨¡å‹çš„é”®çš„ç±»å‹ã€‚
 	 * @param <V>
-	 *            Ó³ÉäµÄÖµµÄÄ£ĞÍ¡£
-	 * @return ÓÉÖ¸¶¨µÄÓ³ÉäÄ£ĞÍÉú³ÉµÄÏß³Ì°²È«µÄÓ³ÉäÄ£ĞÍ¡£
+	 *            æ˜ å°„çš„å€¼çš„æ¨¡å‹ã€‚
+	 * @return ç”±æŒ‡å®šçš„æ˜ å°„æ¨¡å‹ç”Ÿæˆçš„çº¿ç¨‹å®‰å…¨çš„æ˜ å°„æ¨¡å‹ã€‚
 	 * @throws NullPointerException
-	 *             Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 *             å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static <K, V> SyncMapModel<K, V> syncMapModel(SyncMapModel<K, V> mapModel) {
 		Objects.requireNonNull(mapModel, DwarfUtil.getStringField(StringFieldKey.MODELUTIL_2));
@@ -1151,17 +1151,17 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * ÓÉÖ¸¶¨µÄ¼üÖµÁĞ±íÄ£ĞÍÉú³ÉÒ»¸öÏß³Ì°²È«µÄ¼üÖµÁĞ±íÄ£ĞÍ¡£
+	 * ç”±æŒ‡å®šçš„é”®å€¼åˆ—è¡¨æ¨¡å‹ç”Ÿæˆä¸€ä¸ªçº¿ç¨‹å®‰å…¨çš„é”®å€¼åˆ—è¡¨æ¨¡å‹ã€‚
 	 * 
 	 * @param keyListModel
-	 *            Ö¸¶¨µÄ¼üÖµÁĞ±íÄ£ĞÍ¡£
+	 *            æŒ‡å®šçš„é”®å€¼åˆ—è¡¨æ¨¡å‹ã€‚
 	 * @param <K>
-	 *            ¼üÖµÁĞ±íÄ£ĞÍµÄ¼üµÄÀàĞÍ¡£
+	 *            é”®å€¼åˆ—è¡¨æ¨¡å‹çš„é”®çš„ç±»å‹ã€‚
 	 * @param <V>
-	 *            ¼üÖµÁĞ±íµÄÖµµÄÄ£ĞÍ¡£
-	 * @return ÓÉÖ¸¶¨µÄ¼üÖµÁĞ±íÄ£ĞÍÉú³ÉµÄÏß³Ì°²È«µÄ¼üÖµÁĞ±íÄ£ĞÍ¡£
+	 *            é”®å€¼åˆ—è¡¨çš„å€¼çš„æ¨¡å‹ã€‚
+	 * @return ç”±æŒ‡å®šçš„é”®å€¼åˆ—è¡¨æ¨¡å‹ç”Ÿæˆçš„çº¿ç¨‹å®‰å…¨çš„é”®å€¼åˆ—è¡¨æ¨¡å‹ã€‚
 	 * @throws NullPointerException
-	 *             Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 *             å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static <K, V extends WithKey<K>> SyncKeyListModel<K, V> syncKeyListModel(KeyListModel<K, V> keyListModel) {
 		Objects.requireNonNull(keyListModel, DwarfUtil.getStringField(StringFieldKey.MODELUTIL_3));
@@ -1250,6 +1250,22 @@ public final class ModelUtil {
 				delegate.clearObverser();
 			} finally {
 				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#get(java.lang.Object)
+		 */
+		@Override
+		public V get(K key) {
+			lock.readLock().lock();
+			try {
+				return delegate.get(key);
+			} finally {
+				lock.readLock().unlock();
 			}
 		}
 
@@ -1750,26 +1766,24 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * ÓÉÖ¸¶¨µÄ¼üÖµ¼¯ºÏÄ£ĞÍÉú³ÉÒ»¸öÏß³Ì°²È«µÄ¼üÖµ¼¯ºÏÄ£ĞÍ¡£
+	 * ç”±æŒ‡å®šçš„é”®å€¼é›†åˆæ¨¡å‹ç”Ÿæˆä¸€ä¸ªçº¿ç¨‹å®‰å…¨çš„é”®å€¼é›†åˆæ¨¡å‹ã€‚
 	 * 
 	 * @param keySetModel
-	 *            Ö¸¶¨µÄ¼üÖµ¼¯ºÏÄ£ĞÍ¡£
+	 *            æŒ‡å®šçš„é”®å€¼é›†åˆæ¨¡å‹ã€‚
 	 * @param <K>
-	 *            ¼üÖµ¼¯ºÏÄ£ĞÍµÄ¼üµÄÀàĞÍ¡£
+	 *            é”®å€¼é›†åˆæ¨¡å‹çš„é”®çš„ç±»å‹ã€‚
 	 * @param <V>
-	 *            ¼üÖµ¼¯ºÏµÄÖµµÄÄ£ĞÍ¡£
-	 * @return ÓÉÖ¸¶¨µÄ¼üÖµ¼¯ºÏÄ£ĞÍÉú³ÉµÄÏß³Ì°²È«µÄ¼üÖµ¼¯ºÏÄ£ĞÍ¡£
+	 *            é”®å€¼é›†åˆçš„å€¼çš„æ¨¡å‹ã€‚
+	 * @return ç”±æŒ‡å®šçš„é”®å€¼é›†åˆæ¨¡å‹ç”Ÿæˆçš„çº¿ç¨‹å®‰å…¨çš„é”®å€¼é›†åˆæ¨¡å‹ã€‚
 	 * @throws NullPointerException
-	 *             Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 *             å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
-	public static <K, V extends WithKey<K>> SyncKeySetModel<K, V> syncKeySetModel(
-			KeySetModel<K, V> keySetModel) {
+	public static <K, V extends WithKey<K>> SyncKeySetModel<K, V> syncKeySetModel(KeySetModel<K, V> keySetModel) {
 		Objects.requireNonNull(keySetModel, DwarfUtil.getStringField(StringFieldKey.MODELUTIL_4));
 		return new SyncKeySetModelImpl<>(keySetModel);
 	}
 
-	private static class SyncKeySetModelImpl<K, V extends WithKey<K>>
-			implements SyncKeySetModel<K, V> {
+	private static class SyncKeySetModelImpl<K, V extends WithKey<K>> implements SyncKeySetModel<K, V> {
 
 		private final KeySetModel<K, V> delegate;
 		private final ReadWriteLock lock = new ReentrantReadWriteLock();
@@ -1851,6 +1865,22 @@ public final class ModelUtil {
 				delegate.clearObverser();
 			} finally {
 				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#get(java.lang.Object)
+		 */
+		@Override
+		public V get(K key) {
+			lock.readLock().lock();
+			try {
+				return delegate.get(key);
+			} finally {
+				lock.readLock().unlock();
 			}
 		}
 
@@ -2167,7 +2197,7 @@ public final class ModelUtil {
 
 	}
 
-	// ½ûÖ¹Íâ²¿ÊµÀı»¯¡£
+	// ç¦æ­¢å¤–éƒ¨å®ä¾‹åŒ–ã€‚
 	private ModelUtil() {
 	};
 

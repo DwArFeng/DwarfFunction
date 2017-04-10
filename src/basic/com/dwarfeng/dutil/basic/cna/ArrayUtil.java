@@ -10,11 +10,11 @@ import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 
 /**
- * ÓĞ¹ØÓÚÊı×éµÄ¹¤¾ß°ü¡£
+ * æœ‰å…³äºæ•°ç»„çš„å·¥å…·åŒ…ã€‚
  * <p>
- * ¸Ã°üÖĞ°üº¬¹ØÓÚ¶ÔÊı×é½øĞĞ²Ù×÷µÄ³£ÓÃ·½·¨¡£
+ * è¯¥åŒ…ä¸­åŒ…å«å…³äºå¯¹æ•°ç»„è¿›è¡Œæ“ä½œçš„å¸¸ç”¨æ–¹æ³•ã€‚
  * <p>
- * ÓÉÓÚÊÇÖ»º¬ÓĞ¾²Ì¬·½·¨µÄ¹¤¾ß°ü£¬ËùÒÔ¸ÃÀàÎŞ·¨±»¼Ì³Ğ¡£
+ * ç”±äºæ˜¯åªå«æœ‰é™æ€æ–¹æ³•çš„å·¥å…·åŒ…ï¼Œæ‰€ä»¥è¯¥ç±»æ— æ³•è¢«ç»§æ‰¿ã€‚
  * 
  * @author DwArFeng
  * @since 0.0.2-beta
@@ -22,17 +22,17 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 public final class ArrayUtil {
 	
 	private ArrayUtil(){
-		//²»ÔÊĞíÊµÀı»¯¡£
+		//ä¸å…è®¸å®ä¾‹åŒ–ã€‚
 	}
 	
 	/**
-	 * ÅĞ¶ÏÊı×éÖĞÊÇ·ñ°üº¬Ä³¸öÔªËØ¡£
-	 * <p> ¸Ã·½·¨»á½«Ä¿±êÊı×éÖĞµÄÃ¿Ò»¸ö¶ÔÏóÄÃ³öÀ´ÓëÄ¿±ê¶ÔÏó½øĞĞequals±È¶Ô£¬Èç¹ûÎªtrue £¬¾Í·µ»Øtrue£»Èç¹ûÈ«²¿ÔªËØÎªfalse Ôò·µ»Øfalse¡£
-	 * <br>ÓÉÓÚ¸Ã·½·¨ÀûÓÃequals·½·¨£¬¶øÓĞĞ©¶ÔÏó»áÖØĞ´¸Ã·½·¨£¬Òò´Ë¸Ã±È¶ÔµÄ½á¹û²»ÒÔÄÚ´æÖĞµÄÎ»ÖÃÎª×¼¡£
-	 * <p> Èç¹ûÄ¿±êÊı×éÎª <code>null</code>£¬Ôò·µ»Ø <code>false</code>
-	 * @param objects Ä¿±êÊı×é¡£
-	 * @param object Ä¿±êÔªËØ¡£
-	 * @return Ä¿±êÊı×éÖĞÊÇ·ñº¬ÓĞÄ¿±êÔªËØ¡£
+	 * åˆ¤æ–­æ•°ç»„ä¸­æ˜¯å¦åŒ…å«æŸä¸ªå…ƒç´ ã€‚
+	 * <p> è¯¥æ–¹æ³•ä¼šå°†ç›®æ ‡æ•°ç»„ä¸­çš„æ¯ä¸€ä¸ªå¯¹è±¡æ‹¿å‡ºæ¥ä¸ç›®æ ‡å¯¹è±¡è¿›è¡Œequalsæ¯”å¯¹ï¼Œå¦‚æœä¸ºtrue ï¼Œå°±è¿”å›trueï¼›å¦‚æœå…¨éƒ¨å…ƒç´ ä¸ºfalse åˆ™è¿”å›falseã€‚
+	 * <br>ç”±äºè¯¥æ–¹æ³•åˆ©ç”¨equalsæ–¹æ³•ï¼Œè€Œæœ‰äº›å¯¹è±¡ä¼šé‡å†™è¯¥æ–¹æ³•ï¼Œå› æ­¤è¯¥æ¯”å¯¹çš„ç»“æœä¸ä»¥å†…å­˜ä¸­çš„ä½ç½®ä¸ºå‡†ã€‚
+	 * <p> å¦‚æœç›®æ ‡æ•°ç»„ä¸º <code>null</code>ï¼Œåˆ™è¿”å› <code>false</code>
+	 * @param objects ç›®æ ‡æ•°ç»„ã€‚
+	 * @param object ç›®æ ‡å…ƒç´ ã€‚
+	 * @return ç›®æ ‡æ•°ç»„ä¸­æ˜¯å¦å«æœ‰ç›®æ ‡å…ƒç´ ã€‚
 	 */
 	public static boolean contains(Object[] objects,Object object){
 		if(Objects.isNull(objects)) return false;
@@ -42,12 +42,12 @@ public final class ArrayUtil {
 		return false;
 	}
 	/**
-	 * ÅĞ¶ÏÔ´Êı×éÊÇ·ñ°üº¬Ä¿±êÊı×éµÄËùÓĞ¶ÔÏó¡£
-	 * <p>¸Ã·½·¨»á¶ÔÄ¿±êÊı×éÖĞµÄÃ¿Ò»¸öÔªoËØÖ´ĞĞ<code>contains(source,o)</code>£¬Ö±µ½È«²¿²âÊÔÍê»òÕß·¢ÏÖÆäÖĞÒ»¸öo²»ÔÚÔ´Êı×éÖĞ¡£
-	 * <p> Èç¹ûÊı×éÎª <code>null</code>£¬ÔòÄ¬ÈÏÆäÎª²»º¬ÓĞÔªËØµÄ¿ÕÊı×é¡£
-	 * @param source Ô´Êı×é¡£
-	 * @param target Ä¿±êÊı×é¡£
-	 * @return Ô´Êı×éÊÇ·ñ°üº¬Ä¿±êÊı×éµÄÈ«²¿ÔªËØ¡£
+	 * åˆ¤æ–­æºæ•°ç»„æ˜¯å¦åŒ…å«ç›®æ ‡æ•°ç»„çš„æ‰€æœ‰å¯¹è±¡ã€‚
+	 * <p>è¯¥æ–¹æ³•ä¼šå¯¹ç›®æ ‡æ•°ç»„ä¸­çš„æ¯ä¸€ä¸ªå…ƒoç´ æ‰§è¡Œ<code>contains(source,o)</code>ï¼Œç›´åˆ°å…¨éƒ¨æµ‹è¯•å®Œæˆ–è€…å‘ç°å…¶ä¸­ä¸€ä¸ªoä¸åœ¨æºæ•°ç»„ä¸­ã€‚
+	 * <p> å¦‚æœæ•°ç»„ä¸º <code>null</code>ï¼Œåˆ™é»˜è®¤å…¶ä¸ºä¸å«æœ‰å…ƒç´ çš„ç©ºæ•°ç»„ã€‚
+	 * @param source æºæ•°ç»„ã€‚
+	 * @param target ç›®æ ‡æ•°ç»„ã€‚
+	 * @return æºæ•°ç»„æ˜¯å¦åŒ…å«ç›®æ ‡æ•°ç»„çš„å…¨éƒ¨å…ƒç´ ã€‚
 	 * @see ArrayUtil#contains(Object[], Object)
 	 */
 	public static boolean containsAll(Object[] source,Object[] target){
@@ -59,12 +59,12 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * ÔÚÒ»¸öÊı×éÌŞ³ıÆäÖĞËùÓĞµÄnullÔªËØ£¬²¢°Ñ²»ÊÇnullµÄÔªËØ°´ÕÕÔ­ÓĞµÄË³ĞòÒÔÊı×éµÄĞÎÊ½·µ»Ø¡£
-	 * <p> Èç¹ûÔªËØÊı×éÎª <code>null</code> Ôò·µ»ØÒ»¸ö¿ÕµÄ¼¯ºÏ¡£
-	 * @param objects ÔªËØÊı×é¡£
-	 * @param t ·µ»ØµÄÊı×éÀàĞÍ£¬±ÈÈç<code> new Object[0]</code>¡£
-	 * @param <T> ·ºĞÍT
-	 * @return ·µ»ØµÄÊı×é·ºĞÍ¡£
+	 * åœ¨ä¸€ä¸ªæ•°ç»„å‰”é™¤å…¶ä¸­æ‰€æœ‰çš„nullå…ƒç´ ï¼Œå¹¶æŠŠä¸æ˜¯nullçš„å…ƒç´ æŒ‰ç…§åŸæœ‰çš„é¡ºåºä»¥æ•°ç»„çš„å½¢å¼è¿”å›ã€‚
+	 * <p> å¦‚æœå…ƒç´ æ•°ç»„ä¸º <code>null</code> åˆ™è¿”å›ä¸€ä¸ªç©ºçš„é›†åˆã€‚
+	 * @param objects å…ƒç´ æ•°ç»„ã€‚
+	 * @param t è¿”å›çš„æ•°ç»„ç±»å‹ï¼Œæ¯”å¦‚<code> new Object[0]</code>ã€‚
+	 * @param <T> æ³›å‹T
+	 * @return è¿”å›çš„æ•°ç»„æ³›å‹ã€‚
 	 */
 	public static <T> T[] getNotNull(Object[] objects,T[] t){
 		Collection<Object> col = new Vector<Object>();
@@ -75,11 +75,11 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * ÔÚÒ»¸öÊı×éÌŞ³ıÆäÖĞËùÓĞµÄnullÔªËØ£¬²¢°Ñ²»ÊÇnullµÄÔªËØ°´ÕÕÔ­ÓĞµÄË³ĞòÒÔ¼¯ºÏµÄĞÎÊ½·µ»Ø¡£
-	 * <p> Èç¹ûÔªËØÊı×éÎª <code>null</code> Ôò·µ»ØÒ»¸ö¿ÕµÄ¼¯ºÏ¡£
-	 * @param object ÔªËØÊı×é¡£
-	 * @param <T> ·ºĞÍT
-	 * @return ·µ»ØµÄ¼¯ºÏ¡£
+	 * åœ¨ä¸€ä¸ªæ•°ç»„å‰”é™¤å…¶ä¸­æ‰€æœ‰çš„nullå…ƒç´ ï¼Œå¹¶æŠŠä¸æ˜¯nullçš„å…ƒç´ æŒ‰ç…§åŸæœ‰çš„é¡ºåºä»¥é›†åˆçš„å½¢å¼è¿”å›ã€‚
+	 * <p> å¦‚æœå…ƒç´ æ•°ç»„ä¸º <code>null</code> åˆ™è¿”å›ä¸€ä¸ªç©ºçš„é›†åˆã€‚
+	 * @param object å…ƒç´ æ•°ç»„ã€‚
+	 * @param <T> æ³›å‹T
+	 * @return è¿”å›çš„é›†åˆã€‚
 	 */
 	public static <T> Collection<T> getNotNull(T[] object){
 		Collection<T> col = new Vector<T>();
@@ -90,13 +90,13 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * ½«Á½¸öÊı×éºÏ²¢¡£
-	 * <p> Á½¸öÊı×é¾ù²»ÄÜÎª null¡£;
-	 * @param first  µÚÒ»¸öÊı×é¡£
-	 * @param second µÚ¶ş¸öÊı×é¡£
-	 * @param <T> ·ºĞÍT¡£
-	 * @return Á½¸öÊı×é°´ÕÕÏÈºóË³ĞòºÏ²¢ºóµÃµ½µÄÊı×é¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * å°†ä¸¤ä¸ªæ•°ç»„åˆå¹¶ã€‚
+	 * <p> ä¸¤ä¸ªæ•°ç»„å‡ä¸èƒ½ä¸º nullã€‚;
+	 * @param first  ç¬¬ä¸€ä¸ªæ•°ç»„ã€‚
+	 * @param second ç¬¬äºŒä¸ªæ•°ç»„ã€‚
+	 * @param <T> æ³›å‹Tã€‚
+	 * @return ä¸¤ä¸ªæ•°ç»„æŒ‰ç…§å…ˆåé¡ºåºåˆå¹¶åå¾—åˆ°çš„æ•°ç»„ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static<T> T[] concat(T[] first, T[] second){
 		Objects.requireNonNull(first, DwarfUtil.getStringField(StringFieldKey.ARRAYUTIL_0));
@@ -110,14 +110,14 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * ½«¶à¸öÊı×éºÏ²¢¡£
-	 * <p> Èç¹ûÊı×éÎª <code>null</code>£¬Ôò±»µ±×ö²»º¬ÓĞÈÎºÎÔªËØµÄÊı×é¡£
-	 * Ê×¸öÊı×é²»ÄÜÎª <code>null</code>¡£
-	 * @param first µÚÒ»¸öÊı×é¡£
-	 * @param rest µÚ¶ş¸ö»ò¸ü¶à¸öÊı×é¡£
-	 * @param <T> ·ºĞÍT¡£
-	 * @return ËùÓĞÊı×é°´ÏÈºóË³ĞòºÏ²¢ºóµÃµ½µÄÊı×é¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊı <code>rest</code>Îª <code>null</code>¡£
+	 * å°†å¤šä¸ªæ•°ç»„åˆå¹¶ã€‚
+	 * <p> å¦‚æœæ•°ç»„ä¸º <code>null</code>ï¼Œåˆ™è¢«å½“åšä¸å«æœ‰ä»»ä½•å…ƒç´ çš„æ•°ç»„ã€‚
+	 * é¦–ä¸ªæ•°ç»„ä¸èƒ½ä¸º <code>null</code>ã€‚
+	 * @param first ç¬¬ä¸€ä¸ªæ•°ç»„ã€‚
+	 * @param rest ç¬¬äºŒä¸ªæˆ–æ›´å¤šä¸ªæ•°ç»„ã€‚
+	 * @param <T> æ³›å‹Tã€‚
+	 * @return æ‰€æœ‰æ•°ç»„æŒ‰å…ˆåé¡ºåºåˆå¹¶åå¾—åˆ°çš„æ•°ç»„ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•° <code>rest</code>ä¸º <code>null</code>ã€‚
 	 */
 	public static<T> T[] concat(T[] first,T[][] rest){
 		Objects.requireNonNull(first, DwarfUtil.getStringField(StringFieldKey.ARRAYUTIL_0));
@@ -140,10 +140,10 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * ÅĞ¶ÏÊı×éÊÇ·ñº¬ÓĞ¿ÕÔªËØ¡£
-	 * <p> µ±ÇÒ½öµ±Êı×é±¾Éí²»Îª <code>null</code>ÇÒ²»º¬ÓĞÈÎºÎ <code>null</code>ÔªËØÊÇ·µ»Ø <code>true</code>¡£
-	 * @param objs ´ıÅĞ¶ÏµÄÊı×é¡£
-	 * @return Êı×éÊÇ·ñº¬ÓĞ¿ÕÔªËØ¡£
+	 * åˆ¤æ–­æ•°ç»„æ˜¯å¦å«æœ‰ç©ºå…ƒç´ ã€‚
+	 * <p> å½“ä¸”ä»…å½“æ•°ç»„æœ¬èº«ä¸ä¸º <code>null</code>ä¸”ä¸å«æœ‰ä»»ä½• <code>null</code>å…ƒç´ æ˜¯è¿”å› <code>true</code>ã€‚
+	 * @param objs å¾…åˆ¤æ–­çš„æ•°ç»„ã€‚
+	 * @return æ•°ç»„æ˜¯å¦å«æœ‰ç©ºå…ƒç´ ã€‚
 	 */
 	public static boolean isContainsNull(Object[] objs){
 		if(Objects.isNull(objs)) return false;
@@ -154,10 +154,10 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * È·±£Ö¸¶¨µÄÊı×é²»º¬ÓĞÈÎºÎ <code>null</code>ÔªËØ£¬Èç¹ûÓĞ£¬ÔòÅ×³öÒì³£¡£
-	 * @param objs Ö¸¶¨µÄÊı×é¡£
-	 * @throws NullPointerException Ö¸¶¨Êı×é±¾ÉíÊÇ <code>null</code>»òÆäÖĞº¬ÓĞ <code>null</code>ÔªËØÊ±
-	 * Å×³ö¸ÃÒì³£¡£
+	 * ç¡®ä¿æŒ‡å®šçš„æ•°ç»„ä¸å«æœ‰ä»»ä½• <code>null</code>å…ƒç´ ï¼Œå¦‚æœæœ‰ï¼Œåˆ™æŠ›å‡ºå¼‚å¸¸ã€‚
+	 * @param objs æŒ‡å®šçš„æ•°ç»„ã€‚
+	 * @throws NullPointerException æŒ‡å®šæ•°ç»„æœ¬èº«æ˜¯ <code>null</code>æˆ–å…¶ä¸­å«æœ‰ <code>null</code>å…ƒç´ æ—¶
+	 * æŠ›å‡ºè¯¥å¼‚å¸¸ã€‚
 	 */
 	public static void requireNotContainsNull(Object[] objs) throws NullPointerException{
 		Objects.requireNonNull(objs);
@@ -167,11 +167,11 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * È·±£Ö¸¶¨µÄÊı×é²»º¬ÓĞÈÎºÎ <code>null</code>ÔªËØ£¬Èç¹ûÓĞ£¬ÔòÅ×³öÒì³£¡£
-	 * @param objs Ö¸¶¨µÄÊı×é¡£
-	 * @param message Å×³öÒì³£Ê±µÄĞÅÏ¢¡£
-	 * @throws NullPointerException Ö¸¶¨Êı×é±¾ÉíÊÇ <code>null</code>»òÆäÖĞº¬ÓĞ <code>null</code>ÔªËØÊ±
-	 * Å×³ö¸ÃĞÅÏ¢ÎªÖ¸¶¨×Ö·û´®µÄÒì³£¡£
+	 * ç¡®ä¿æŒ‡å®šçš„æ•°ç»„ä¸å«æœ‰ä»»ä½• <code>null</code>å…ƒç´ ï¼Œå¦‚æœæœ‰ï¼Œåˆ™æŠ›å‡ºå¼‚å¸¸ã€‚
+	 * @param objs æŒ‡å®šçš„æ•°ç»„ã€‚
+	 * @param message æŠ›å‡ºå¼‚å¸¸æ—¶çš„ä¿¡æ¯ã€‚
+	 * @throws NullPointerException æŒ‡å®šæ•°ç»„æœ¬èº«æ˜¯ <code>null</code>æˆ–å…¶ä¸­å«æœ‰ <code>null</code>å…ƒç´ æ—¶
+	 * æŠ›å‡ºè¯¥ä¿¡æ¯ä¸ºæŒ‡å®šå­—ç¬¦ä¸²çš„å¼‚å¸¸ã€‚
 	 */
 	public static void requireNotContainsNull(Object[] objs, String message) throws NullPointerException{
 		Objects.requireNonNull(objs, message);
@@ -181,9 +181,9 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * ¶ÔByteÊı×é²ğ°ü¡£
-	 * @param target Ö¸¶¨µÄByteÊı×é¡£
-	 * @return ²ğ°üºóµÃµ½µÄ»ù±¾ÀàĞÍÊı×é¡£
+	 * å¯¹Byteæ•°ç»„æ‹†åŒ…ã€‚
+	 * @param target æŒ‡å®šçš„Byteæ•°ç»„ã€‚
+	 * @return æ‹†åŒ…åå¾—åˆ°çš„åŸºæœ¬ç±»å‹æ•°ç»„ã€‚
 	 */
 	public static byte[] unpack(Byte[] target){
 		
@@ -199,9 +199,9 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * ¶ÔShortÊı×é²ğ°ü¡£
-	 * @param target Ö¸¶¨µÄShortÊı×é¡£
-	 * @return ²ğ°üºóµÃµ½µÄ»ù±¾ÀàĞÍÊı×é¡£
+	 * å¯¹Shortæ•°ç»„æ‹†åŒ…ã€‚
+	 * @param target æŒ‡å®šçš„Shortæ•°ç»„ã€‚
+	 * @return æ‹†åŒ…åå¾—åˆ°çš„åŸºæœ¬ç±»å‹æ•°ç»„ã€‚
 	 */
 	public static short[] unpack(Short[] target){
 		
@@ -217,9 +217,9 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * ¶ÔIntegerÊı×é²ğ°ü¡£
-	 * @param target Ö¸¶¨µÄIntegerÊı×é¡£
-	 * @return ²ğ°üºóµÃµ½µÄ»ù±¾ÀàĞÍÊı×é¡£
+	 * å¯¹Integeræ•°ç»„æ‹†åŒ…ã€‚
+	 * @param target æŒ‡å®šçš„Integeræ•°ç»„ã€‚
+	 * @return æ‹†åŒ…åå¾—åˆ°çš„åŸºæœ¬ç±»å‹æ•°ç»„ã€‚
 	 */
 	public static int[] unpack(Integer[] target){
 		
@@ -235,9 +235,9 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * ¶ÔFloatÊı×é²ğ°ü¡£
-	 * @param target Ö¸¶¨µÄFloatÊı×é¡£
-	 * @return ²ğ°üºóµÃµ½µÄ»ù±¾ÀàĞÍÊı×é¡£
+	 * å¯¹Floatæ•°ç»„æ‹†åŒ…ã€‚
+	 * @param target æŒ‡å®šçš„Floatæ•°ç»„ã€‚
+	 * @return æ‹†åŒ…åå¾—åˆ°çš„åŸºæœ¬ç±»å‹æ•°ç»„ã€‚
 	 */
 	public static float[] unpack(Float[] target){
 		
@@ -253,9 +253,9 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * ¶ÔLongÊı×é²ğ°ü¡£
-	 * @param target Ö¸¶¨µÄLongÊı×é¡£
-	 * @return ²ğ°üºóµÃµ½µÄ»ù±¾ÀàĞÍÊı×é¡£
+	 * å¯¹Longæ•°ç»„æ‹†åŒ…ã€‚
+	 * @param target æŒ‡å®šçš„Longæ•°ç»„ã€‚
+	 * @return æ‹†åŒ…åå¾—åˆ°çš„åŸºæœ¬ç±»å‹æ•°ç»„ã€‚
 	 */
 	public static long[] unpack(Long[] target){
 		
@@ -271,9 +271,9 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * ¶ÔCharacterÊı×é½øĞĞ²ğ°ü¡£
-	 * @param target Ö¸¶¨µÄCharacterÊı×é¡£
-	 * @return ²ğ°üºóµÃµ½µÄ»ù±¾Êı×é¡£
+	 * å¯¹Characteræ•°ç»„è¿›è¡Œæ‹†åŒ…ã€‚
+	 * @param target æŒ‡å®šçš„Characteræ•°ç»„ã€‚
+	 * @return æ‹†åŒ…åå¾—åˆ°çš„åŸºæœ¬æ•°ç»„ã€‚
 	 */
 	public static char[] unpack(Character[] target){
 		
@@ -289,9 +289,9 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * ¶ÔBooleanÊı×é½øĞĞ²ğ°ü¡£
-	 * @param target Ö¸¶¨µÄBooleanÊı×é¡£
-	 * @return ²ğ°üºóµÃµ½µÄ»ù±¾Êı×é¡£
+	 * å¯¹Booleanæ•°ç»„è¿›è¡Œæ‹†åŒ…ã€‚
+	 * @param target æŒ‡å®šçš„Booleanæ•°ç»„ã€‚
+	 * @return æ‹†åŒ…åå¾—åˆ°çš„åŸºæœ¬æ•°ç»„ã€‚
 	 */
 	public static boolean[] unpack(Boolean[] target){
 		
@@ -307,9 +307,9 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * ¶ÔbyteÊı×é½øĞĞ´ò°ü¡£
-	 * @param target Ö¸¶¨µÄbyteÊı×é¡£
-	 * @return ´ò°üºóµÃµ½µÄ·â°üÊı×é¡£
+	 * å¯¹byteæ•°ç»„è¿›è¡Œæ‰“åŒ…ã€‚
+	 * @param target æŒ‡å®šçš„byteæ•°ç»„ã€‚
+	 * @return æ‰“åŒ…åå¾—åˆ°çš„å°åŒ…æ•°ç»„ã€‚
 	 */
 	public static Byte[] pack(byte[] target){
 		
@@ -323,9 +323,9 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * ¶ÔshortÊı×é½øĞĞ´ò°ü¡£
-	 * @param target Ö¸¶¨µÄshortÊı×é¡£
-	 * @return ´ò°üºóµÃµ½µÄ·â°üÊı×é¡£
+	 * å¯¹shortæ•°ç»„è¿›è¡Œæ‰“åŒ…ã€‚
+	 * @param target æŒ‡å®šçš„shortæ•°ç»„ã€‚
+	 * @return æ‰“åŒ…åå¾—åˆ°çš„å°åŒ…æ•°ç»„ã€‚
 	 */
 	public static Short[] pack(short[] target){
 		
@@ -339,9 +339,9 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * ¶ÔintÊı×é½øĞĞ´ò°ü¡£
-	 * @param target Ö¸¶¨µÄintÊı×é¡£
-	 * @return ´ò°üºóµÃµ½µÄ·â°üÊı×é¡£
+	 * å¯¹intæ•°ç»„è¿›è¡Œæ‰“åŒ…ã€‚
+	 * @param target æŒ‡å®šçš„intæ•°ç»„ã€‚
+	 * @return æ‰“åŒ…åå¾—åˆ°çš„å°åŒ…æ•°ç»„ã€‚
 	 */
 	public static Integer[] pack(int[] target){
 		
@@ -355,9 +355,9 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * ¶ÔlongÊı×é½øĞĞ´ò°ü¡£
-	 * @param target Ö¸¶¨µÄlongÊı×é¡£
-	 * @return ´ò°üºóµÃµ½µÄ·â°üÊı×é¡£
+	 * å¯¹longæ•°ç»„è¿›è¡Œæ‰“åŒ…ã€‚
+	 * @param target æŒ‡å®šçš„longæ•°ç»„ã€‚
+	 * @return æ‰“åŒ…åå¾—åˆ°çš„å°åŒ…æ•°ç»„ã€‚
 	 */
 	public static Long[] pack(long[] target){
 		
@@ -371,10 +371,10 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * ¶ÔfloatÊı×é½øĞĞ´ò°ü¡£
-	 * @deprecated ¸Ã·½·¨ÓÉÓÚ²»·ûºÏÃüÃû¹æ·¶£¬ÒÑ¾­ÓÃ {@link #pack(float[])} ´úÌæ¡£
-	 * @param target Ö¸¶¨µÄfloatÊı×é¡£
-	 * @return ´ò°üºóµÃµ½µÄ·â°üÊı×é¡£
+	 * å¯¹floatæ•°ç»„è¿›è¡Œæ‰“åŒ…ã€‚
+	 * @deprecated è¯¥æ–¹æ³•ç”±äºä¸ç¬¦åˆå‘½åè§„èŒƒï¼Œå·²ç»ç”¨ {@link #pack(float[])} ä»£æ›¿ã€‚
+	 * @param target æŒ‡å®šçš„floatæ•°ç»„ã€‚
+	 * @return æ‰“åŒ…åå¾—åˆ°çš„å°åŒ…æ•°ç»„ã€‚
 	 * @see #pack(float[])
 	 */
 	@Deprecated
@@ -383,9 +383,9 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * ¶ÔfloatÊı×é½øĞĞ´ò°ü¡£
-	 * @param target Ö¸¶¨µÄfloatÊı×é¡£
-	 * @return ´ò°üºóµÃµ½µÄ·â°üÊı×é¡£
+	 * å¯¹floatæ•°ç»„è¿›è¡Œæ‰“åŒ…ã€‚
+	 * @param target æŒ‡å®šçš„floatæ•°ç»„ã€‚
+	 * @return æ‰“åŒ…åå¾—åˆ°çš„å°åŒ…æ•°ç»„ã€‚
 	 */
 	public static Float[] pack(float[] target){
 		
@@ -400,10 +400,10 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * ¶ÔdoubleÊı×é½øĞĞ´ò°ü¡£
-	 * @deprecated ÓÉÓÚ¸Ã·½·¨²»·ûºÏÃüÃû¹æ·¶£¬ÒÑ¾­ÓÃ {@link #pack(double[])} ´úÌæ¡£
-	 * @param target Ö¸¶¨µÄdoubleÊı×é¡£
-	 * @return ´ò°üºóµÃµ½µÄ·â°üÊı×é¡£
+	 * å¯¹doubleæ•°ç»„è¿›è¡Œæ‰“åŒ…ã€‚
+	 * @deprecated ç”±äºè¯¥æ–¹æ³•ä¸ç¬¦åˆå‘½åè§„èŒƒï¼Œå·²ç»ç”¨ {@link #pack(double[])} ä»£æ›¿ã€‚
+	 * @param target æŒ‡å®šçš„doubleæ•°ç»„ã€‚
+	 * @return æ‰“åŒ…åå¾—åˆ°çš„å°åŒ…æ•°ç»„ã€‚
 	 * @see #pack(double[])
 	 */
 	@Deprecated
@@ -412,9 +412,9 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * ¶ÔdoubleÊı×é½øĞĞ´ò°ü¡£
-	 * @param target Ö¸¶¨µÄdoubleÊı×é¡£
-	 * @return ´ò°üºóµÃµ½µÄ·â°üÊı×é¡£
+	 * å¯¹doubleæ•°ç»„è¿›è¡Œæ‰“åŒ…ã€‚
+	 * @param target æŒ‡å®šçš„doubleæ•°ç»„ã€‚
+	 * @return æ‰“åŒ…åå¾—åˆ°çš„å°åŒ…æ•°ç»„ã€‚
 	 */
 	public static Double[] pack(double[] target){
 		
@@ -428,10 +428,10 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * ¶ÔcharÊı×é½øĞĞ´ò°ü¡£
-	 * @deprecated ÓÉÓÚ¸Ã·½·¨²»·ûºÏÃüÃû¹æ·¶£¬ÒÑ¾­ÓÃ {@link #Pack(char[])} ´úÌæ¡£
-	 * @param target Ö¸¶¨µÄcharÊı×é¡£
-	 * @return ´ò°üºóµÃµ½µÄ·â°üÊı×é¡£
+	 * å¯¹charæ•°ç»„è¿›è¡Œæ‰“åŒ…ã€‚
+	 * @deprecated ç”±äºè¯¥æ–¹æ³•ä¸ç¬¦åˆå‘½åè§„èŒƒï¼Œå·²ç»ç”¨ {@link #Pack(char[])} ä»£æ›¿ã€‚
+	 * @param target æŒ‡å®šçš„charæ•°ç»„ã€‚
+	 * @return æ‰“åŒ…åå¾—åˆ°çš„å°åŒ…æ•°ç»„ã€‚
 	 * @see #pack(char[])
 	 */
 	@Deprecated
@@ -440,9 +440,9 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * ¶ÔcharÊı×é½øĞĞ´ò°ü¡£
-	 * @param target Ö¸¶¨µÄcharÊı×é¡£
-	 * @return ´ò°üºóµÃµ½µÄ·â°üÊı×é¡£
+	 * å¯¹charæ•°ç»„è¿›è¡Œæ‰“åŒ…ã€‚
+	 * @param target æŒ‡å®šçš„charæ•°ç»„ã€‚
+	 * @return æ‰“åŒ…åå¾—åˆ°çš„å°åŒ…æ•°ç»„ã€‚
 	 */
 	public static Character[] pack(char[] target){
 		
@@ -456,10 +456,10 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * ¶ÔbooleanÊı×é½øĞĞ´ò°ü¡£
-	 * @deprecated ÓÉÓÚ¸Ã·½·¨²»·ûºÏÃüÃû¹æ·¶£¬ÒÑ¾­ÓÃ {@link #pack(boolean[])} ´úÌæ¡£
-	 * @param target Ö¸¶¨µÄbooleanÊı×é¡£
-	 * @return ´ò°üºóµÃµ½µÄ·â°üÊı×é¡£
+	 * å¯¹booleanæ•°ç»„è¿›è¡Œæ‰“åŒ…ã€‚
+	 * @deprecated ç”±äºè¯¥æ–¹æ³•ä¸ç¬¦åˆå‘½åè§„èŒƒï¼Œå·²ç»ç”¨ {@link #pack(boolean[])} ä»£æ›¿ã€‚
+	 * @param target æŒ‡å®šçš„booleanæ•°ç»„ã€‚
+	 * @return æ‰“åŒ…åå¾—åˆ°çš„å°åŒ…æ•°ç»„ã€‚
 	 * @see #pack(boolean[])
 	 */
 	@Deprecated
@@ -468,9 +468,9 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * ¶ÔbooleanÊı×é½øĞĞ´ò°ü¡£
-	 * @param target Ö¸¶¨µÄbooleanÊı×é¡£
-	 * @return ´ò°üºóµÃµ½µÄ·â°üÊı×é¡£
+	 * å¯¹booleanæ•°ç»„è¿›è¡Œæ‰“åŒ…ã€‚
+	 * @param target æŒ‡å®šçš„booleanæ•°ç»„ã€‚
+	 * @return æ‰“åŒ…åå¾—åˆ°çš„å°åŒ…æ•°ç»„ã€‚
 	 */
 	public static Boolean[] pack(boolean[] target){
 		
@@ -484,20 +484,20 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * ¼ì²âÖ¸¶¨µÄĞòºÅÊÇ·ñÂäÔÚÊı×éµÄ±ß½çÖĞ¡£
-	 * @param objs Ö¸¶¨µÄÊı×é¡£
-	 * @param index Ö¸¶¨µÄĞòºÅ¡£
-	 * @return Èç¹ûĞòºÅÂäÔÚÊı×éµÄ±ß½çÖĞ£¬Ôò·µ»Ø <code>true</code>¡£
+	 * æ£€æµ‹æŒ‡å®šçš„åºå·æ˜¯å¦è½åœ¨æ•°ç»„çš„è¾¹ç•Œä¸­ã€‚
+	 * @param objs æŒ‡å®šçš„æ•°ç»„ã€‚
+	 * @param index æŒ‡å®šçš„åºå·ã€‚
+	 * @return å¦‚æœåºå·è½åœ¨æ•°ç»„çš„è¾¹ç•Œä¸­ï¼Œåˆ™è¿”å› <code>true</code>ã€‚
 	 */
 	public static boolean checkBounds(Object[] objs, int index){
 		return index >= 0 && index < objs.length;
 	}
 	
 	/**
-	 * ÒªÇóÖ¸¶¨µÄĞèÒªÂäÔÚÖ¸¶¨Êı×éµÄ±ß½çÄÚ¡£
-	 * @param objs Ö¸¶¨µÄÊı×é¡£
-	 * @param index Ö¸¶¨µÄĞòºÅ¡£
-	 * @throws IndexOutOfBoundsException Èç¹ûÖ¸¶¨µÄĞòºÅÃ»ÓĞÂäÔÚÖ¸¶¨µÄÊı×éÖĞ¡£
+	 * è¦æ±‚æŒ‡å®šçš„éœ€è¦è½åœ¨æŒ‡å®šæ•°ç»„çš„è¾¹ç•Œå†…ã€‚
+	 * @param objs æŒ‡å®šçš„æ•°ç»„ã€‚
+	 * @param index æŒ‡å®šçš„åºå·ã€‚
+	 * @throws IndexOutOfBoundsException å¦‚æœæŒ‡å®šçš„åºå·æ²¡æœ‰è½åœ¨æŒ‡å®šçš„æ•°ç»„ä¸­ã€‚
 	 */
 	public static void requireInBounds(Object[] objs, int index){
 		if(index >= 0 && index < objs.length){
@@ -506,11 +506,11 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * ÒªÇóÖ¸¶¨µÄĞèÒªÂäÔÚÖ¸¶¨Êı×éµÄ±ß½çÄÚ¡£
-	 * @param objs Ö¸¶¨µÄÊı×é¡£
-	 * @param index Ö¸¶¨µÄĞòºÅ¡£
-	 * @param message Òì³£µÄĞÅÏ¢¡£
-	 * @throws IndexOutOfBoundsException Èç¹ûÖ¸¶¨µÄĞòºÅÃ»ÓĞÂäÔÚÖ¸¶¨µÄÊı×éÖĞ¡£
+	 * è¦æ±‚æŒ‡å®šçš„éœ€è¦è½åœ¨æŒ‡å®šæ•°ç»„çš„è¾¹ç•Œå†…ã€‚
+	 * @param objs æŒ‡å®šçš„æ•°ç»„ã€‚
+	 * @param index æŒ‡å®šçš„åºå·ã€‚
+	 * @param message å¼‚å¸¸çš„ä¿¡æ¯ã€‚
+	 * @throws IndexOutOfBoundsException å¦‚æœæŒ‡å®šçš„åºå·æ²¡æœ‰è½åœ¨æŒ‡å®šçš„æ•°ç»„ä¸­ã€‚
 	 */
 	public static void requireInBounds(Object[] objs, int index, String message){
 		if(index >= 0 && index < objs.length){
@@ -561,13 +561,13 @@ public final class ArrayUtil {
 	}
 	
 	/**
-	 * ½«Ò»¸öÊı×é×ª»¯ÎªÒ»¸ö¿Éµü´ú¶ÔÏó¡£
-	 * <p> ËäÈ»Êı×é¿ÉÒÔÊ¹ÓÃ for-each Ñ­»·£¬µ«ÊÇÊı×é²»¿ÉÒÔ×÷Îª {@link Iterable} ¶ÔÏó½øĞĞ²ÎÊı´«µİ£¬¸Ã·½·¨ÎªÁË½â¾öÕâÒ»ÎÊÌâ£¬
-	 * ¿ÉÒÔ½«Ò»¸öÊı×é×ª»¯ÎªÒ»¸ö {@link Iterable}¶ÔÏó£¬·½±ãÄ³Ğ©ĞèÒª´«Èë¿Éµü´ú¶ÔÏóµÄ³¡ºÏ¡£
-	 * @param array Ö¸¶¨µÄÊı×é¡£
-	 * @param <T> ·ºĞÍT¡£
-	 * @return ÓÉÖ¸¶¨µÄÊı×é×ª»¯¶ø³ÉµÄ¿Éµü´ú¶ÔÏó¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * å°†ä¸€ä¸ªæ•°ç»„è½¬åŒ–ä¸ºä¸€ä¸ªå¯è¿­ä»£å¯¹è±¡ã€‚
+	 * <p> è™½ç„¶æ•°ç»„å¯ä»¥ä½¿ç”¨ for-each å¾ªç¯ï¼Œä½†æ˜¯æ•°ç»„ä¸å¯ä»¥ä½œä¸º {@link Iterable} å¯¹è±¡è¿›è¡Œå‚æ•°ä¼ é€’ï¼Œè¯¥æ–¹æ³•ä¸ºäº†è§£å†³è¿™ä¸€é—®é¢˜ï¼Œ
+	 * å¯ä»¥å°†ä¸€ä¸ªæ•°ç»„è½¬åŒ–ä¸ºä¸€ä¸ª {@link Iterable}å¯¹è±¡ï¼Œæ–¹ä¾¿æŸäº›éœ€è¦ä¼ å…¥å¯è¿­ä»£å¯¹è±¡çš„åœºåˆã€‚
+	 * @param array æŒ‡å®šçš„æ•°ç»„ã€‚
+	 * @param <T> æ³›å‹Tã€‚
+	 * @return ç”±æŒ‡å®šçš„æ•°ç»„è½¬åŒ–è€Œæˆçš„å¯è¿­ä»£å¯¹è±¡ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static<T> Iterable<T> array2Iterable(T[] array){
 		Objects.requireNonNull(array, DwarfUtil.getStringField(StringFieldKey.ARRAYUTIL_2));

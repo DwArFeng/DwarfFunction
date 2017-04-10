@@ -6,9 +6,9 @@ import com.dwarfeng.dutil.math.MathObject;
 import com.dwarfeng.dutil.math.linalge.LinalgeVector;
 
 /**
- * ±£ÁôËãÊ½µÄÏòÁ¿½Ó¿Ú¡£
- * <p> ¸Ã½Ó¿Ú´ú±í×Å±£ÁôËãÊ½ÏòÁ¿µÄÒ»°ã½Ó¿Ú¡£
- * <p> ÓÉÓÚ<code>Vector</code>ÊÇ¸ö³£ÓÃµÄÃû×Ö£¬ÎªÁËÇø·ÖÕâ¸ö°üÖĞµÄ<code>Vector</code>£¬¹ÊÊ¹ÓÃ<code>FormulaLinalgeVector</code>¡£
+ * ä¿ç•™ç®—å¼çš„å‘é‡æ¥å£ã€‚
+ * <p> è¯¥æ¥å£ä»£è¡¨ç€ä¿ç•™ç®—å¼å‘é‡çš„ä¸€èˆ¬æ¥å£ã€‚
+ * <p> ç”±äº<code>Vector</code>æ˜¯ä¸ªå¸¸ç”¨çš„åå­—ï¼Œä¸ºäº†åŒºåˆ†è¿™ä¸ªåŒ…ä¸­çš„<code>Vector</code>ï¼Œæ•…ä½¿ç”¨<code>FormulaLinalgeVector</code>ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
@@ -24,10 +24,10 @@ public interface FormulaLinalgeVector extends MathObject, LinalgeVector, NumberB
 	}
 	
 	/**
-	 * ·µ»ØÖ¸¶¨ĞòºÅ´¦µÄÖµ¡£
-	 * @param index Ö¸¶¨µÄĞòÁĞ¡£
-	 * @return Ö¸¶¨µÄĞòÁĞ´¦¶ÔÓ¦µÄÖµ¡£
-	 * @throws IndexOutOfBoundsException ĞĞÁĞºÅ³¬½ç¡£
+	 * è¿”å›æŒ‡å®šåºå·å¤„çš„å€¼ã€‚
+	 * @param index æŒ‡å®šçš„åºåˆ—ã€‚
+	 * @return æŒ‡å®šçš„åºåˆ—å¤„å¯¹åº”çš„å€¼ã€‚
+	 * @throws IndexOutOfBoundsException è¡Œåˆ—å·è¶…ç•Œã€‚
 	 */
 	public FothValue fothValueAt(int index);
 }

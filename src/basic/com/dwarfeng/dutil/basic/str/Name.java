@@ -1,15 +1,15 @@
 package com.dwarfeng.dutil.basic.str;
 
 /**
- * Ãû³Æ½Ó¿Ú£¬¸Ã½Ó¿ÚÊµÏÖ<code>getName()</code>·½·¨£¬ÒÔ´ËÀ´·µ»Ø¶ÔÏóµÄÃû³Æ¡£
+ * åç§°æ¥å£ï¼Œè¯¥æ¥å£å®ç°<code>getName()</code>æ–¹æ³•ï¼Œä»¥æ­¤æ¥è¿”å›å¯¹è±¡çš„åç§°ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public interface Name{
 	
 	/**
-	 * ·µ»Ø¶ÔÏóµÄÃû³Æ¡£
-	 * @return ¶ÔÏóµÄÃû³Æ¡£
+	 * è¿”å›å¯¹è±¡çš„åç§°ã€‚
+	 * @return å¯¹è±¡çš„åç§°ã€‚
 	 */
 	public String getName();
 	

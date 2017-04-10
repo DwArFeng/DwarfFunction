@@ -5,9 +5,9 @@ import java.util.Objects;
 import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
 
 /**
- * ÕûÊý¼ì²éÆ÷¡£
+ * æ•´æ•°æ£€æŸ¥å™¨ã€‚
  * <p>
- * Èç¹ûÖ¸¶¨µÄÖµÊÇÕûÊý£¬ÇÒ´¦ÓÚÖ¸¶¨µÄ·¶Î§Ö®ÄÚ£¬ÔòÄÜ¹»Í¨¹ýÖµ¼ì²éÆ÷¡£
+ * å¦‚æžœæŒ‡å®šçš„å€¼æ˜¯æ•´æ•°ï¼Œä¸”å¤„äºŽæŒ‡å®šçš„èŒƒå›´ä¹‹å†…ï¼Œåˆ™èƒ½å¤Ÿé€šè¿‡å€¼æ£€æŸ¥å™¨ã€‚
  * 
  * @author DwArFeng
  * @since 0.0.2-beta
@@ -18,23 +18,23 @@ public class IntegerConfigChecker implements ConfigChecker {
 	private final int maxValue;
 
 	/**
-	 * Éú³ÉÒ»¸öÕûÊý¼ì²éÆ÷¡£
+	 * ç”Ÿæˆä¸€ä¸ªæ•´æ•°æ£€æŸ¥å™¨ã€‚
 	 * <p>
-	 * µ±Ö¸¶¨µÄ value ÖµÊÇÕûÊýµÄ¸ñÊ½£¬Ôò¸Ã value ÖµÓÐÐ§¡£
+	 * å½“æŒ‡å®šçš„ value å€¼æ˜¯æ•´æ•°çš„æ ¼å¼ï¼Œåˆ™è¯¥ value å€¼æœ‰æ•ˆã€‚
 	 */
 	public IntegerConfigChecker() {
 		this(Integer.MIN_VALUE, Integer.MAX_VALUE);
 	}
 
 	/**
-	 * Éú³ÉÒ»¸ö¾ßÓÐÖ¸¶¨×î´óÖµºÍ×îÐ¡ÖµµÄÕûÊý¼ì²éÆ÷¡£
+	 * ç”Ÿæˆä¸€ä¸ªå…·æœ‰æŒ‡å®šæœ€å¤§å€¼å’Œæœ€å°å€¼çš„æ•´æ•°æ£€æŸ¥å™¨ã€‚
 	 * <p>
-	 * µ±Ö¸¶¨µÄ value ÖµÊÇÕûÊýµÄ¸ñÊ½ÇÒ¸ÃÊý×éÂäÔÚ×î´óÖµºÍ×îÐ¡ÖµÖ®¼ä£¨¿ÉÒÔÓë×î´óÖµ»ò×îÐ¡ÖµÏàµÈ£©£¬ Ôò¸Ã value ÖµÓÐÐ§¡£
+	 * å½“æŒ‡å®šçš„ value å€¼æ˜¯æ•´æ•°çš„æ ¼å¼ä¸”è¯¥æ•°ç»„è½åœ¨æœ€å¤§å€¼å’Œæœ€å°å€¼ä¹‹é—´ï¼ˆå¯ä»¥ä¸Žæœ€å¤§å€¼æˆ–æœ€å°å€¼ç›¸ç­‰ï¼‰ï¼Œ åˆ™è¯¥ value å€¼æœ‰æ•ˆã€‚
 	 * 
 	 * @param minValue
-	 *            ×îÐ¡Öµ¡£
+	 *            æœ€å°å€¼ã€‚
 	 * @param maxValue
-	 *            ×î´óÖµ¡£
+	 *            æœ€å¤§å€¼ã€‚
 	 */
 	public IntegerConfigChecker(int minValue, int maxValue) {
 		this.maxValue = maxValue;

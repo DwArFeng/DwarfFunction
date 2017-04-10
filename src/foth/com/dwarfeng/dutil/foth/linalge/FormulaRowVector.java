@@ -6,77 +6,77 @@ import com.dwarfeng.dutil.math.MathObject;
 import com.dwarfeng.dutil.math.linalge.RowVector;
 
 /**
- * ±£ÁôËãÊ½¸ñÊ½µÄÐÐÏòÁ¿¡£
+ * ä¿ç•™ç®—å¼æ ¼å¼çš„è¡Œå‘é‡ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public interface FormulaRowVector extends MathObject, FormulaLinalgeVector{
 	
 	/**
-	 * ÐÐÏòÁ¿µÄ¼Ó·¨¡£
-	 * <p> ¸ÃÐÐÏòÁ¿ÓëÖ¸¶¨µÄÐÐÏòÁ¿Ïà¼Ó¡£
-	 * <p> ×¢Òâ£º¸ÃÔËËãÊÇ½á¹¹ÆÆ»µÐÔµÄ£¬ÐÂµÄÐÐÏòÁ¿½«Ê§È¥²ÎÓëÔËËãµÄÐÐÏòÁ¿µÄÔ­±¾½á¹¹¡£
-	 * @param rowVector Ö¸¶¨µÄÐÐÏòÁ¿¡£
-	 * @return Ïà¼ÓµÃµ½µÄÐÂµÄÐÐÏòÁ¿¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊýÎª <code>null</code>¡£
-	 * @throws IllegalArgumentException ÐÐÏòÁ¿µÄ´óÐ¡²»Æ¥Åä¡£
+	 * è¡Œå‘é‡çš„åŠ æ³•ã€‚
+	 * <p> è¯¥è¡Œå‘é‡ä¸ŽæŒ‡å®šçš„è¡Œå‘é‡ç›¸åŠ ã€‚
+	 * <p> æ³¨æ„ï¼šè¯¥è¿ç®—æ˜¯ç»“æž„ç ´åæ€§çš„ï¼Œæ–°çš„è¡Œå‘é‡å°†å¤±åŽ»å‚ä¸Žè¿ç®—çš„è¡Œå‘é‡çš„åŽŸæœ¬ç»“æž„ã€‚
+	 * @param rowVector æŒ‡å®šçš„è¡Œå‘é‡ã€‚
+	 * @return ç›¸åŠ å¾—åˆ°çš„æ–°çš„è¡Œå‘é‡ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
+	 * @throws IllegalArgumentException è¡Œå‘é‡çš„å¤§å°ä¸åŒ¹é…ã€‚
 	 */
 	public FormulaRowVector add(FormulaRowVector rowVector);
 	
 	/**
-	 * ÐÐÏòÁ¿µÄ¼õ·¨¡£
-	 * <p> ¸ÃÐÐÏòÁ¿ÓëÖ¸¶¨µÄÐÐÏòÁ¿Ïà¼õ¡£
-	 * <p> ×¢Òâ£º¸ÃÔËËãÊÇ½á¹¹ÆÆ»µÐÔµÄ£¬ÐÂµÄÐÐÏòÁ¿½«Ê§È¥²ÎÓëÔËËãµÄÐÐÏòÁ¿µÄÔ­±¾½á¹¹¡£
-	 * @param rowVector Ö¸¶¨µÄÐÐÏòÁ¿¡£
-	 * @return Ïà¼õµÃµ½µÄÐÂµÄÐÐÏòÁ¿¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊýÎª <code>null</code>¡£
-	 * @throws IllegalArgumentException ÐÐÏòÁ¿µÄ´óÐ¡²»Æ¥Åä¡£
+	 * è¡Œå‘é‡çš„å‡æ³•ã€‚
+	 * <p> è¯¥è¡Œå‘é‡ä¸ŽæŒ‡å®šçš„è¡Œå‘é‡ç›¸å‡ã€‚
+	 * <p> æ³¨æ„ï¼šè¯¥è¿ç®—æ˜¯ç»“æž„ç ´åæ€§çš„ï¼Œæ–°çš„è¡Œå‘é‡å°†å¤±åŽ»å‚ä¸Žè¿ç®—çš„è¡Œå‘é‡çš„åŽŸæœ¬ç»“æž„ã€‚
+	 * @param rowVector æŒ‡å®šçš„è¡Œå‘é‡ã€‚
+	 * @return ç›¸å‡å¾—åˆ°çš„æ–°çš„è¡Œå‘é‡ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
+	 * @throws IllegalArgumentException è¡Œå‘é‡çš„å¤§å°ä¸åŒ¹é…ã€‚
 	 */
 	public FormulaRowVector minus(FormulaRowVector rowVector);
 	
 	/**
-	 * ÐÐÏòÁ¿µÄ³Ë·¨¡£
-	 * <p> ¸ÃÐÐÏòÁ¿ÓëÖ¸¶¨µÄÁÐÏòÁ¿Ïà³Ë¡£
-	 * <p> ×¢Òâ£º¸ÃÔËËãÊÇ½á¹¹ÆÆ»µÐÔµÄ£¬ÐÂµÄÐÐÏòÁ¿½«Ê§È¥²ÎÓëÔËËãµÄÐÐÏòÁ¿µÄÔ­±¾½á¹¹¡£
-	 * @param columnVector Ö¸¶¨µÄÁÐÏòÁ¿¡£
-	 * @return Ïà³ËµÃµ½µÄÐÂµÄÁÐÏòÁ¿¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊýÎª <code>null</code>¡£
-	 * @throws IllegalArgumentException ÁÐÏòÁ¿µÄ´óÐ¡²»Æ¥Åä¡£
+	 * è¡Œå‘é‡çš„ä¹˜æ³•ã€‚
+	 * <p> è¯¥è¡Œå‘é‡ä¸ŽæŒ‡å®šçš„åˆ—å‘é‡ç›¸ä¹˜ã€‚
+	 * <p> æ³¨æ„ï¼šè¯¥è¿ç®—æ˜¯ç»“æž„ç ´åæ€§çš„ï¼Œæ–°çš„è¡Œå‘é‡å°†å¤±åŽ»å‚ä¸Žè¿ç®—çš„è¡Œå‘é‡çš„åŽŸæœ¬ç»“æž„ã€‚
+	 * @param columnVector æŒ‡å®šçš„åˆ—å‘é‡ã€‚
+	 * @return ç›¸ä¹˜å¾—åˆ°çš„æ–°çš„åˆ—å‘é‡ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
+	 * @throws IllegalArgumentException åˆ—å‘é‡çš„å¤§å°ä¸åŒ¹é…ã€‚
 	 */
 	public FothValue mul(FormulaColumnVector columnVector);
 	
 	/**
-	 * ÐÐÏòÁ¿µÄËõ·ÅÔËËã¡£
-	 * <p> ¸ÃÐÐÏòÁ¿ÓëÖ¸¶¨µÄÖµÏà³Ë¡£
-	 * <p> ×¢Òâ£º¸ÃÔËËãÊÇ½á¹¹ÆÆ»µÐÔµÄ£¬ÐÂµÄÐÐÏòÁ¿½«Ê§È¥²ÎÓëÔËËãµÄÐÐÏòÁ¿µÄÔ­±¾½á¹¹¡£
-	 * @param val Ö¸¶¨µÄÖµ¡£
-	 * @return Ëõ·ÅµÃµ½µÄÐÂµÄÐÐÏòÁ¿¡£
+	 * è¡Œå‘é‡çš„ç¼©æ”¾è¿ç®—ã€‚
+	 * <p> è¯¥è¡Œå‘é‡ä¸ŽæŒ‡å®šçš„å€¼ç›¸ä¹˜ã€‚
+	 * <p> æ³¨æ„ï¼šè¯¥è¿ç®—æ˜¯ç»“æž„ç ´åæ€§çš„ï¼Œæ–°çš„è¡Œå‘é‡å°†å¤±åŽ»å‚ä¸Žè¿ç®—çš„è¡Œå‘é‡çš„åŽŸæœ¬ç»“æž„ã€‚
+	 * @param val æŒ‡å®šçš„å€¼ã€‚
+	 * @return ç¼©æ”¾å¾—åˆ°çš„æ–°çš„è¡Œå‘é‡ã€‚
 	 */
 	public default FormulaRowVector scale(double val){
 		return scale(new QuickFothValue(val));
 	}
 	
 	/**
-	 * ÐÐÏòÁ¿µÄËõ·ÅÔËËã¡£
-	 * <p> ¸ÃÐÐÏòÁ¿ÓëÖ¸¶¨µÄÖµÏà³Ë¡£
-	 * <p> ×¢Òâ£º¸ÃÔËËãÊÇ½á¹¹ÆÆ»µÐÔµÄ£¬ÐÂµÄÐÐÏòÁ¿½«Ê§È¥²ÎÓëÔËËãµÄÐÐÏòÁ¿µÄÔ­±¾½á¹¹¡£
-	 * @param val Ö¸¶¨µÄÖµ¡£
-	 * @return Ëõ·ÅµÃµ½µÄÐÂµÄÐÐÏòÁ¿¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊýÎª <code>null</code>¡£
+	 * è¡Œå‘é‡çš„ç¼©æ”¾è¿ç®—ã€‚
+	 * <p> è¯¥è¡Œå‘é‡ä¸ŽæŒ‡å®šçš„å€¼ç›¸ä¹˜ã€‚
+	 * <p> æ³¨æ„ï¼šè¯¥è¿ç®—æ˜¯ç»“æž„ç ´åæ€§çš„ï¼Œæ–°çš„è¡Œå‘é‡å°†å¤±åŽ»å‚ä¸Žè¿ç®—çš„è¡Œå‘é‡çš„åŽŸæœ¬ç»“æž„ã€‚
+	 * @param val æŒ‡å®šçš„å€¼ã€‚
+	 * @return ç¼©æ”¾å¾—åˆ°çš„æ–°çš„è¡Œå‘é‡ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public FormulaRowVector scale(FothValue val);
 	
 	/**
-	 * ÐÐÏòÁ¿µÄ×ªÖÃÔËËã¡£
-	 * <p> ¸ÃÐÐÏòÁ¿µÄ×ªÖÃ¡£
-	 * <p> ×ªÖÃ²Ù×÷²»ÆÆ»µ½á¹¹¡£
-	 * @return ÐÐÏòÁ¿×ªÖÃµÃµ½µÄÐÂµÄÐÐÏòÁ¿¡£
+	 * è¡Œå‘é‡çš„è½¬ç½®è¿ç®—ã€‚
+	 * <p> è¯¥è¡Œå‘é‡çš„è½¬ç½®ã€‚
+	 * <p> è½¬ç½®æ“ä½œä¸ç ´åç»“æž„ã€‚
+	 * @return è¡Œå‘é‡è½¬ç½®å¾—åˆ°çš„æ–°çš„è¡Œå‘é‡ã€‚
 	 */
 	public FormulaColumnVector trans();
 	
 	/**
-	 * ½«¸ÃÐÐÏòÁ¿×ª»¯Îªmath°üÖÐµÄÐÐÏòÁ¿¡£
-	 * @return math°üÖÐµÄÐÐÏòÁ¿¡£
+	 * å°†è¯¥è¡Œå‘é‡è½¬åŒ–ä¸ºmathåŒ…ä¸­çš„è¡Œå‘é‡ã€‚
+	 * @return mathåŒ…ä¸­çš„è¡Œå‘é‡ã€‚
 	 */
 	public RowVector toRowVector();
 }

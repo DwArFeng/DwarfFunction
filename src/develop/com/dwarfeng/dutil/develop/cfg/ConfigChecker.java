@@ -1,29 +1,29 @@
 package com.dwarfeng.dutil.develop.cfg;
 
 /**
- * ÅäÖÃÖµ¼ì²éÆ÷¡£
- * <p> ÓÃÓÚ¼ì²éÅäÖÃÖµÊÇ·ñºÏ·¨¡£
- * <br> ÓÉÓÚ¼ì²âÖµÊÇ·ñÎŞĞ§ºÍ¼ì²âÖµÊÇ·ñÓĞĞ§µÄÊ¹ÓÃÆµÂÊ¼¸ºõÍ¬Ñù¸ß£¬Òò´Ë£¬×¨ÃÅ¶¨Òå¼ì²âÖµÊÇ·ñÎŞĞ§µÄÄ¬ÈÏ·½·¨
- * {@link #nonValid(String)}£¬ Èç¹ûÖØĞ´Õâ¸ö·½·¨£¬ĞèÒª±£Ö¤£º¶ÔÓÚÈÎÒâµÄ<code>String value</code>
- * Öµ£¨°üÀ¨ <code>null</code> Öµ£©£¬ĞèÒª<code>isValid(value) == ! nonValid(value)</code>¡£
+ * é…ç½®å€¼æ£€æŸ¥å™¨ã€‚
+ * <p> ç”¨äºæ£€æŸ¥é…ç½®å€¼æ˜¯å¦åˆæ³•ã€‚
+ * <br> ç”±äºæ£€æµ‹å€¼æ˜¯å¦æ— æ•ˆå’Œæ£€æµ‹å€¼æ˜¯å¦æœ‰æ•ˆçš„ä½¿ç”¨é¢‘ç‡å‡ ä¹åŒæ ·é«˜ï¼Œå› æ­¤ï¼Œä¸“é—¨å®šä¹‰æ£€æµ‹å€¼æ˜¯å¦æ— æ•ˆçš„é»˜è®¤æ–¹æ³•
+ * {@link #nonValid(String)}ï¼Œ å¦‚æœé‡å†™è¿™ä¸ªæ–¹æ³•ï¼Œéœ€è¦ä¿è¯ï¼šå¯¹äºä»»æ„çš„<code>String value</code>
+ * å€¼ï¼ˆåŒ…æ‹¬ <code>null</code> å€¼ï¼‰ï¼Œéœ€è¦<code>isValid(value) == ! nonValid(value)</code>ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public interface ConfigChecker {
 
 	/**
-	 * ¼ì²éÖ¸¶¨µÄÖµÊÇ·ñÓĞĞ§¡£
-	 * <p> ¸Ã·½·¨ĞèÒª×ñÊØÔ¼¶¨£º <code>null</code>ÖµÔÚÈÎºÎÇé¿öÏÂ¶¼·µ»Ø <code>false</code>¡£
-	 * @param value Ö¸¶¨µÄÖµ¡£
-	 * @return Ö¸¶¨µÄÖµÊÇ·ñÓĞĞ§¡£
+	 * æ£€æŸ¥æŒ‡å®šçš„å€¼æ˜¯å¦æœ‰æ•ˆã€‚
+	 * <p> è¯¥æ–¹æ³•éœ€è¦éµå®ˆçº¦å®šï¼š <code>null</code>å€¼åœ¨ä»»ä½•æƒ…å†µä¸‹éƒ½è¿”å› <code>false</code>ã€‚
+	 * @param value æŒ‡å®šçš„å€¼ã€‚
+	 * @return æŒ‡å®šçš„å€¼æ˜¯å¦æœ‰æ•ˆã€‚
 	 */
 	public boolean isValid(String value);
 	
 	/**
-	 * ¼ì²éÖ¸¶¨µÄÖµÊÇ·ñÎŞĞ§¡£
-	 * <p> ¸Ã·½·¨ĞèÒª×ñÊØÔ¼¶¨£º <code>null</code>ÖµÔÚÈÎºÎÇé¿öÏÂ¶¼·µ»Ø <code>true</code>¡£
-	 * @param value Ö¸¶¨µÄÖµ¡£
-	 * @return Ö¸¶¨µÄÖµÊÇ·ñÎŞĞ§¡£
+	 * æ£€æŸ¥æŒ‡å®šçš„å€¼æ˜¯å¦æ— æ•ˆã€‚
+	 * <p> è¯¥æ–¹æ³•éœ€è¦éµå®ˆçº¦å®šï¼š <code>null</code>å€¼åœ¨ä»»ä½•æƒ…å†µä¸‹éƒ½è¿”å› <code>true</code>ã€‚
+	 * @param value æŒ‡å®šçš„å€¼ã€‚
+	 * @return æŒ‡å®šçš„å€¼æ˜¯å¦æ— æ•ˆã€‚
 	 */
 	public default boolean nonValid(String value){
 		return ! isValid(value);

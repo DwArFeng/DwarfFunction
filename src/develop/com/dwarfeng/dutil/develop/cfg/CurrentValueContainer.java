@@ -3,7 +3,7 @@ package com.dwarfeng.dutil.develop.cfg;
 import java.util.Map;
 
 /**
- * ��ǰֵ������
+ * 当前值容器。
  * 
  * @author DwArFeng
  * @since 0.1.0-beta
@@ -11,53 +11,53 @@ import java.util.Map;
 public interface CurrentValueContainer {
 
 	/**
-	 * ��ȡ�����еĵ�ǰֵ��
+	 * 获取容器中的当前值。
 	 * <p>
-	 * ��ǰֵ���ܺϷ���Ҳ���ܲ��Ϸ���
+	 * 当前值可能合法，也可能不合法。
 	 * <p>
-	 * ��������в�����ָ�������ü�����������ü�Ϊ <code>null</code>���򷵻� <code>null</code>��
+	 * 如果容器中不存在指定的配置键或者入口配置键为 <code>null</code>，则返回 <code>null</code>。
 	 * 
 	 * @param configKey
-	 *            ָ�������ü���
-	 * @return ģ����ָ�����ü���Ӧ�ĵ�ǰֵ��
+	 *            指定的配置键。
+	 * @return 模型中指定配置键对应的当前值。
 	 */
 	public String getCurrentValue(ConfigKey configKey);
 
 	/**
-	 * ��ȡ�����е����ü��뵱ǰֵ��ӳ�䣬���ӳ����������е����е�ǰֵ��
+	 * 获取容器中的配置键与当前值的映射，这个映射包含容器中的所有当前值。
 	 * <p>
-	 * ��ȡ��ӳ����ֻ���ġ�
+	 * 获取的映射是只读的。
 	 * 
-	 * @return �����е����ü��뵱ǰֵӳ�䡣
+	 * @return 容器中的配置键与当前值映射。
 	 */
 	public Map<ConfigKey, String> getAllCurrentValue();
 
 	/**
-	 * ����ģ����ָ�����ü��ĵ�ǰֵ��
+	 * 设置模型中指定配置键的当前值。
 	 * <p>
-	 * ��ָ�������ü�Ϊ <code>null</code>����ָ�������ü��������ڵ�ǰ��ģ��ʱ���������κβ����� <br>
-	 * ��ָ���� currentValue Ϊ <code>null</code>ʱ���������κβ�����
+	 * 当指定的配置键为 <code>null</code>，或指定的配置键不存在于当前的模型时，不进行任何操作。 <br>
+	 * 当指定的 currentValue 为 <code>null</code>时，不进行任何操作。
 	 * 
 	 * @param configKey
-	 *            ָ�������ü���
+	 *            指定的配置键。
 	 * @param currentValue
-	 *            ָ���ĵ�ǰֵ��
-	 * @return �ò����Ƿ��ģ�Ͳ����˱����
+	 *            指定的当前值。
+	 * @return 该操作是否对模型产生了变更。
 	 */
 	public boolean setCurrentValue(ConfigKey configKey, String currentValue);
 
 	/**
-	 * ����ģ����ָ�����ü��ĵ�ǰֵ��
+	 * 设置模型中指定配置键的当前值。
 	 * <p>
-	 * �ò�����ͼ��ָ����ӳ���е����е����ü�-��ǰֵ���õ�ģ���С�
+	 * 该操作试图将指定的映射中的所有的配置键-当前值设置到模型中。
 	 * <p>
-	 * ��ָ�������ü�Ϊ <code>null</code>����ָ�������ü��������ڵ�ǰ��ģ��ʱ���������κβ�����
+	 * 当指定的配置键为 <code>null</code>，或指定的配置键不存在于当前的模型时，不进行任何操作。
 	 * 
 	 * @param map
-	 *            ָ�������ü�-��ǰֵӳ�䡣
-	 * @return �ò����Ƿ��ģ�Ͳ����˸ı䡣
+	 *            指定的配置键-当前值映射。
+	 * @return 该操作是否对模型产生了改变。
 	 * @throws NullPointerException
-	 *             ��ڲ���Ϊ <code>null</code>��
+	 *             入口参数为 <code>null</code>。
 	 */
 	public boolean setAllCurrentValue(Map<ConfigKey, String> map);
 

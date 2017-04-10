@@ -1,24 +1,24 @@
 package com.dwarfeng.dutil.math;
 
 /**
- * dmath�������ӿڡ�
- * <p> dmath�е������ӽӿڶ��̳иýӿڣ��ýӿ���dmath�������нӿڵĸ���ӿڣ�
- * {@link AbstractMathObject} �Ǹýӿڵĳ���ʵ�֣�Ҳ����˵�����е�dmath���еĶ��󶼼̳�����ӿڣ�������еĶ��󶼾������������
+ * dmath包超级接口。
+ * <p> dmath中的所有子接口都继承该接口，该接口是dmath包中所有接口的父类接口，
+ * {@link AbstractMathObject} 是该接口的抽象实现，也就是说，所有的dmath包中的对象都继承这个接口，因此所有的对象都具有这个方法。
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public interface MathObject {
 	
 	/**
-	 * ���ظö�������ѧ�е����ơ�
-	 * @return �ö�������ѧ�е����ơ�
+	 * 返回该对象在数学中的名称。
+	 * @return 该对象在数学中的名称。
 	 */
 	public String getMathName();
 	
 	/**
-	 * ���ظö���ı���ʽ��
-	 * <p> ����ʽӦ���ڵ��еĻ����Ͼ���������ѧ�ϵ���ʽ��
-	 * @return ����ı���ʽ��
+	 * 返回该对象的表达式。
+	 * <p> 表达式应该在单行的基础上尽量接其数学上的形式。
+	 * @return 对象的表达式。
 	 */
 	public String getExpression();
 

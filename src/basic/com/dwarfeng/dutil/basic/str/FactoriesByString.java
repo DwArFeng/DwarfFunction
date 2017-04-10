@@ -8,20 +8,20 @@ import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 
 /**
- * Ìá¹©Ò»Ğ©Ê¹ÓÃString×÷ÎªÈë¿Ú²ÎÊıµÄ¹¤³§·½·¨¡£
- * <p> ÓÉÓÚÊÇÖ»º¬ÓĞ¾²Ì¬·½·¨µÄ¹¤¾ß°ü£¬ËùÒÔ¸ÃÀàÎŞ·¨±»¼Ì³Ğ¡£
+ * æä¾›ä¸€äº›ä½¿ç”¨Stringä½œä¸ºå…¥å£å‚æ•°çš„å·¥å‚æ–¹æ³•ã€‚
+ * <p> ç”±äºæ˜¯åªå«æœ‰é™æ€æ–¹æ³•çš„å·¥å…·åŒ…ï¼Œæ‰€ä»¥è¯¥ç±»æ— æ³•è¢«ç»§æ‰¿ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public final class FactoriesByString {
 	
 	/**
-	 * Í¨¹ıÖ¸¶¨µÄ×Ö·û´®¹¹½¨¹ú¼Ò/µØÇø¡£
-	 * <p> Ö¸¶¨µÄ×Ö·û´®±ØĞë·ûºÏ±ê×¼¹ú¼Ò/µØÇø´úÂë¸ñÊ½¡£
-	 * @param string Ö¸¶¨µÄ×Ö·û´®¡£
-	 * @return ÓÉ×Ö·û´®¹¹½¨µÄ¹ú¼Ò/µØÇø¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>
-	 * @throws IllegalArgumentException Èë¿Ú²ÎÊı²»ÊÇ±ê×¼µÄ¹ú¼Ò/µØÇø´úÂë¸ñÊ½¡£
+	 * é€šè¿‡æŒ‡å®šçš„å­—ç¬¦ä¸²æ„å»ºå›½å®¶/åœ°åŒºã€‚
+	 * <p> æŒ‡å®šçš„å­—ç¬¦ä¸²å¿…é¡»ç¬¦åˆæ ‡å‡†å›½å®¶/åœ°åŒºä»£ç æ ¼å¼ã€‚
+	 * @param string æŒ‡å®šçš„å­—ç¬¦ä¸²ã€‚
+	 * @return ç”±å­—ç¬¦ä¸²æ„å»ºçš„å›½å®¶/åœ°åŒºã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>
+	 * @throws IllegalArgumentException å…¥å£å‚æ•°ä¸æ˜¯æ ‡å‡†çš„å›½å®¶/åœ°åŒºä»£ç æ ¼å¼ã€‚
 	 */
 	public static Locale newLocale(String string){
 		Objects.requireNonNull(string, DwarfUtil.getStringField(StringFieldKey.FactoriesByString_0));
@@ -37,7 +37,7 @@ public final class FactoriesByString {
 		return new Locale(language, country, variant);
 	}
 	
-	//½ûÖ¹Íâ²¿ÊµÀı»¯¡£
+	//ç¦æ­¢å¤–éƒ¨å®ä¾‹åŒ–ã€‚
 	private FactoriesByString() {}
 
 }

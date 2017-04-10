@@ -8,20 +8,20 @@ import com.dwarfeng.dutil.basic.prog.Buildable;
 import com.dwarfeng.dutil.math.AbstractMathObject;
 
 /**
- * ¾ØÕóÀà¡£
- * <p> ¸ÃÀà¿ÉÒÔ±íÊ¾ÏßĞÔ´úÊıÖĞµÄ¾ØÕó¡£
+ * çŸ©é˜µç±»ã€‚
+ * <p> è¯¥ç±»å¯ä»¥è¡¨ç¤ºçº¿æ€§ä»£æ•°ä¸­çš„çŸ©é˜µã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public class DefaultMatrix extends AbstractMathObject implements Matrix{
 	
-	/**¾ØÕóµÄÖµ*/
+	/**çŸ©é˜µçš„å€¼*/
 	protected final double[][] vals;
 	
 	/**
-	 * Í¨¹ı¶şÎ¬Ë«¾«¶È¸¡µãÊı×é¹¹Ôì¾ØÕó¡£
-	 * @param vals Ö¸¶¨µÄ¶şÎ¬Ë«¾«¶È¸¡µãÊı×é¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * é€šè¿‡äºŒç»´åŒç²¾åº¦æµ®ç‚¹æ•°ç»„æ„é€ çŸ©é˜µã€‚
+	 * @param vals æŒ‡å®šçš„äºŒç»´åŒç²¾åº¦æµ®ç‚¹æ•°ç»„ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public DefaultMatrix(double[][] vals) {
 		Objects.requireNonNull(vals, DwarfUtil.getStringField(StringFieldKey.DefaultMatrix_0));
@@ -33,9 +33,9 @@ public class DefaultMatrix extends AbstractMathObject implements Matrix{
 	}
 	
 	/**
-	 * ¾ØÕóµÄ¹¹ÔìÆ÷¡£
-	 * <p> ¹¹ÔìÆ÷»á³õÊ¼»¯Ò»¸öÖ¸¶¨ĞĞ»òÕßÁĞµÄ¶şÎ¬Ë«¾«¶È¸¡µãÊı×é£¬ÆäÖĞµÄ³õÊ¼ÖµÎª0¡£
-	 * <br> ¿ÉÒÔ¸ø¹¹ÔìÆ÷ÖĞµÄ¶şÎ¬Êı×éÖ¸¶¨µÄÎ»ÖÃ¸³Öµ¡£
+	 * çŸ©é˜µçš„æ„é€ å™¨ã€‚
+	 * <p> æ„é€ å™¨ä¼šåˆå§‹åŒ–ä¸€ä¸ªæŒ‡å®šè¡Œæˆ–è€…åˆ—çš„äºŒç»´åŒç²¾åº¦æµ®ç‚¹æ•°ç»„ï¼Œå…¶ä¸­çš„åˆå§‹å€¼ä¸º0ã€‚
+	 * <br> å¯ä»¥ç»™æ„é€ å™¨ä¸­çš„äºŒç»´æ•°ç»„æŒ‡å®šçš„ä½ç½®èµ‹å€¼ã€‚
 	 * @author DwArFeng
 	 * @since 0.0.2-beta
 	 */
@@ -44,10 +44,10 @@ public class DefaultMatrix extends AbstractMathObject implements Matrix{
 		private final double[][] vals;
 
 		/**
-		 * Éú³ÉÒ»¸öÓµÓĞÖ¸¶¨ĞĞÊıºÍÁĞÊıµÄ¹¹ÔìÆ÷¡£
-		 * @param row Ö¸¶¨µÄĞĞÊı¡£
-		 * @param column Ö¸¶¨µÄÁĞÊı¡£
-		 * @throws IllegalArgumentException ĞĞÊı»òÁĞÊıĞ¡ÓÚ1¡£
+		 * ç”Ÿæˆä¸€ä¸ªæ‹¥æœ‰æŒ‡å®šè¡Œæ•°å’Œåˆ—æ•°çš„æ„é€ å™¨ã€‚
+		 * @param row æŒ‡å®šçš„è¡Œæ•°ã€‚
+		 * @param column æŒ‡å®šçš„åˆ—æ•°ã€‚
+		 * @throws IllegalArgumentException è¡Œæ•°æˆ–åˆ—æ•°å°äº1ã€‚
 		 */
 		public Builder(int row, int column) {
 			if(row < 1 || column < 1){
@@ -57,12 +57,12 @@ public class DefaultMatrix extends AbstractMathObject implements Matrix{
 		}
 		
 		/**
-		 * ÎªÖ¸¶¨ĞĞÁĞ´¦µÄÎ»ÖÃ¸³Öµ¡£
-		 * @param row Ö¸¶¨µÄĞĞ¡£
-		 * @param column Ö¸¶¨µÄÁĞ¡£
-		 * @param val Ö¸¶¨µÄÖµ¡£
-		 * @return ¹¹ÔìÆ÷×ÔÉí¡£
-		 * @throws IndexOutOfBoundsException ĞĞÁĞºÅ³¬½ç¡£
+		 * ä¸ºæŒ‡å®šè¡Œåˆ—å¤„çš„ä½ç½®èµ‹å€¼ã€‚
+		 * @param row æŒ‡å®šçš„è¡Œã€‚
+		 * @param column æŒ‡å®šçš„åˆ—ã€‚
+		 * @param val æŒ‡å®šçš„å€¼ã€‚
+		 * @return æ„é€ å™¨è‡ªèº«ã€‚
+		 * @throws IndexOutOfBoundsException è¡Œåˆ—å·è¶…ç•Œã€‚
 		 */
 		public Builder setVal(int row, int column, double val){
 			if(row < 1 || row >= vals.length){

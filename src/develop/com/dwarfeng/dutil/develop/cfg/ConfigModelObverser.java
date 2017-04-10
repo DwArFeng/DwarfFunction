@@ -1,9 +1,9 @@
 package com.dwarfeng.dutil.develop.cfg;
 
 /**
- * ÅäÖÃ¹Û²ìÆ÷¡£
+ * é…ç½®è§‚å¯Ÿå™¨ã€‚
  * 
- * @deprecated ÎªÁË·ûºÏÃüÃû¹æ·¶£¬¸ÃÀàÒÑ¾­±» {@link ConfigObverser} È¡´ú¡£
+ * @deprecated ä¸ºäº†ç¬¦åˆå‘½åè§„èŒƒï¼Œè¯¥ç±»å·²ç»è¢« {@link ConfigObverser} å–ä»£ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */

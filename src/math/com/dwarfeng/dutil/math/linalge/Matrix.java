@@ -3,63 +3,63 @@ package com.dwarfeng.dutil.math.linalge;
 import com.dwarfeng.dutil.math.MathObject;
 
 /**
- * ¾ØÕó½Ó¿Ú¡£
- * <p> ÊµÏÖ¸Ã½Ó¿Ú¾ÍÒâÎ¶×Å¸Ã¶ÔÏóÊÇÒ»¸ö¾ØÕó¡£
+ * çŸ©é˜µæ¥å£ã€‚
+ * <p> å®ç°è¯¥æ¥å£å°±æ„å‘³ç€è¯¥å¯¹è±¡æ˜¯ä¸€ä¸ªçŸ©é˜µã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public interface Matrix extends MathObject, MatrixLike{
 
 	/**
-	 * ·µ»ØÖ¸¶¨ĞĞ¶ÔÓ¦µÄĞĞÏòÁ¿¡£
-	 * @param row Ö¸¶¨ĞĞ¡£
-	 * @return Ö¸¶¨ĞĞ¶ÔÓ¦µÄĞĞÏòÁ¿¡£
-	 * @throws IndexOutOfBoundsException Ö¸¶¨µÄĞĞºÅ³¬½ç¡£
+	 * è¿”å›æŒ‡å®šè¡Œå¯¹åº”çš„è¡Œå‘é‡ã€‚
+	 * @param row æŒ‡å®šè¡Œã€‚
+	 * @return æŒ‡å®šè¡Œå¯¹åº”çš„è¡Œå‘é‡ã€‚
+	 * @throws IndexOutOfBoundsException æŒ‡å®šçš„è¡Œå·è¶…ç•Œã€‚
 	 */
 	public RowVector rowVectorAt(int row);
 	/**
-	 * ·µ»ØÖ¸¶¨ÁĞ¶ÔÓ¦µÄÁĞÏòÁ¿¡£
-	 * @param column Ö¸¶¨µÄÁĞ¡£
-	 * @return Ö¸¶¨µÄÁĞËù¶ÔÓ¦µÄÁĞÏòÁ¿¡£
-	 * @throws IndexOutOfBoundsException Ö¸¶¨µÄÁĞºÅ³¬½ç¡£
+	 * è¿”å›æŒ‡å®šåˆ—å¯¹åº”çš„åˆ—å‘é‡ã€‚
+	 * @param column æŒ‡å®šçš„åˆ—ã€‚
+	 * @return æŒ‡å®šçš„åˆ—æ‰€å¯¹åº”çš„åˆ—å‘é‡ã€‚
+	 * @throws IndexOutOfBoundsException æŒ‡å®šçš„åˆ—å·è¶…ç•Œã€‚
 	 */
 	public ColumnVector columnVectorAt(int column);
 	
 	/**
-	 * ¾ØÕóµÄ¼Ó·¨¡£
-	 * <p> ¸Ã¾ØÕóÓëÖ¸¶¨µÄ¾ØÕóÏà¼Ó¡£
-	 * @param matrix Ö¸¶¨µÄ¾ØÕó¡£
-	 * @return Ïà¼ÓµÃµ½µÄĞÂµÄ¾ØÕó¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
-	 * @throws IllegalArgumentException ¸Ã¾ØÕóÓëÖ¸¶¨¾ØÕó²»ÄÜÏà³Ë¡£
+	 * çŸ©é˜µçš„åŠ æ³•ã€‚
+	 * <p> è¯¥çŸ©é˜µä¸æŒ‡å®šçš„çŸ©é˜µç›¸åŠ ã€‚
+	 * @param matrix æŒ‡å®šçš„çŸ©é˜µã€‚
+	 * @return ç›¸åŠ å¾—åˆ°çš„æ–°çš„çŸ©é˜µã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
+	 * @throws IllegalArgumentException è¯¥çŸ©é˜µä¸æŒ‡å®šçŸ©é˜µä¸èƒ½ç›¸ä¹˜ã€‚
 	 */
 	public Matrix add(Matrix matrix);
 	
 	/**
-	 * ¾ØÕóµÄ¼õ·¨¡£
-	 * <p> ¸Ã¾ØÕóÓëÖ¸¶¨¾ØÕóÏà¼õ¡£
-	 * @param matrix Ö¸¶¨µÄ¾ØÕó¡£
-	 * @return Ïà¼õµÃµ½µÄĞÂµÄ¾ØÕó¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
-	 * @throws IllegalArgumentException ¸Ã¾ØÕóÓëÖ¸¶¨¾ØÕó²»ÄÜÏà¼õ¡£
+	 * çŸ©é˜µçš„å‡æ³•ã€‚
+	 * <p> è¯¥çŸ©é˜µä¸æŒ‡å®šçŸ©é˜µç›¸å‡ã€‚
+	 * @param matrix æŒ‡å®šçš„çŸ©é˜µã€‚
+	 * @return ç›¸å‡å¾—åˆ°çš„æ–°çš„çŸ©é˜µã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
+	 * @throws IllegalArgumentException è¯¥çŸ©é˜µä¸æŒ‡å®šçŸ©é˜µä¸èƒ½ç›¸å‡ã€‚
 	 */
 	public Matrix minus(Matrix matrix);
 	
 	/**
-	 * ¾ØÕóµÄ³Ë·¨¡£
-	 * <p> ¸Ã¾ØÕóÓëÖ¸¶¨µÄ¾ØÕóÏà³Ë¡£
-	 * @param matrix Ö¸¶¨µÄ¾ØÕó¡£
-	 * @return Ïà³ËµÃµ½µÄĞÂµÄ¾ØÕó¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
-	 * @throws IllegalArgumentException ¸Ã¾ØÕóÓëÖ¸¶¨¾ØÕó²»ÄÜÏà¼õ¡£
+	 * çŸ©é˜µçš„ä¹˜æ³•ã€‚
+	 * <p> è¯¥çŸ©é˜µä¸æŒ‡å®šçš„çŸ©é˜µç›¸ä¹˜ã€‚
+	 * @param matrix æŒ‡å®šçš„çŸ©é˜µã€‚
+	 * @return ç›¸ä¹˜å¾—åˆ°çš„æ–°çš„çŸ©é˜µã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
+	 * @throws IllegalArgumentException è¯¥çŸ©é˜µä¸æŒ‡å®šçŸ©é˜µä¸èƒ½ç›¸å‡ã€‚
 	 */
 	public Matrix mul(Matrix matrix);
 	
 	/**
-	 * ¾ØÕóµÄËõ·ÅÔËËã¡£
-	 * <p>¸Ã¾ØÕóÓëÖ¸¶¨µÄÖµÏà³Ë¡£
-	 * @param val Ö¸¶¨µÄÖµ¡£
-	 * @return Ëõ·ÅºóµÃµ½µÄĞÂµÄ¾ØÕó¡£
+	 * çŸ©é˜µçš„ç¼©æ”¾è¿ç®—ã€‚
+	 * <p>è¯¥çŸ©é˜µä¸æŒ‡å®šçš„å€¼ç›¸ä¹˜ã€‚
+	 * @param val æŒ‡å®šçš„å€¼ã€‚
+	 * @return ç¼©æ”¾åå¾—åˆ°çš„æ–°çš„çŸ©é˜µã€‚
 	 */
 	public Matrix scale(double val);
 	

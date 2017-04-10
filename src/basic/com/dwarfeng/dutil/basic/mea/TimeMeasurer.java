@@ -10,81 +10,81 @@ import com.dwarfeng.dutil.basic.num.NumberValue;
 import com.dwarfeng.dutil.basic.num.unit.Time;
 
 /**
- * ��ʱ����
- * <p> �ü�ʱ����������ʵ�е������������������һ�����޵�ʱ�䡣
- * <br> �ü�ʱ��ӵ�� {@link #start()} �� {@link #stop()}�����������������Ƽ�ʱ����ʼ��ʱ�ͽ�����ʱ���ڲ�ͬ��ʱ�����
- * ���������������ܼ�¼����������������ʱ��֮��Ӷ���¼���ʱ�䡣
- * <br> ��ʱ���ĵ�λ�����룬�ڲ�ͬƽ̨�ϣ����ȿ��ܻ���΢��Щ������ֻ�ܵ������Եļ�ʱ����ʹ�ã����ң��ü�ʱ��
- * ���ܵ�ϵͳʱ��ĸı���ɵ�Ӱ�졣
- * <br> ���ڳ����α����Ĵ洢���ƣ��ü�ʱ��ֻ���ṩ��Լ292��ļ�ʱ���ȡ�
- * <p> �ü�ʱ���̰߳�ȫ������ͨ���κ�һ���߳����������ұ��κ�һ���߳���ֹ������������Σ�������ʱ��ֻ������һ�β���
- * �����ֻ��ֹͣһ�Ρ���Ҳ����˵�����ʱ����һ���Եģ�һ�μ�ʱ֮����Ҫ�µ�ʵ��������һ�μ�ʱ��
+ * 计时器。
+ * <p> 该计时器类似于现实中的秒表，可以用来测量一段有限的时间。
+ * <br> 该计时器拥有 {@link #start()} 和 {@link #stop()}两个方法，用来控制计时器开始计时和结束计时。在不同的时间调用
+ * 这两个方法，就能记录调用这两个方法的时间之差，从而记录这段时间。
+ * <br> 计时器的单位是纳秒，在不同平台上，精度可能会稍微有些差别，因此只能当做粗略的计时器而使用，并且，该计时器
+ * 会受到系统时间的改变造成的影响。
+ * <br> 由于长整形变量的存储限制，该计时器只能提供大约292年的计时长度。
+ * <p> 该计时器线程安全，可以通过任何一个线程启动，并且被任何一个线程终止。但是无论如何，整个计时器只能启动一次并且
+ * 在其后只能停止一次——也就是说这个计时器是一次性的，一次计时之后，需要新的实例进行下一次计时。
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public class TimeMeasurer {
 	
 	/**
-	 * ��ʱ����״̬��
+	 * 计时器的状态。
 	 * @author DwArFeng
 	 * @since 0.0.2-beta
 	 */
 	protected enum Status{
-		/**û������*/
+		/**没有启动*/
 		NOTSTART,
-		/**���ڼ�ʱ*/
+		/**正在计时*/
 		TIMING,
-		/**��ʱ����*/
+		/**计时结束*/
 		STOPED
 	}
 
-	/**��ʱ����״̬*/
+	/**计时器的状态*/
 	protected Status status = Status.NOTSTART;
-	/**ʱ��ͳ��(����)*/
+	/**时间统计(纳秒)*/
 	private long l;
-	/**ͬ����*/
+	/**同步锁*/
 	protected final Lock lock = new ReentrantLock();
 	
 	/**
-	 * ����һ�������ʱ����
+	 * 生成一个代码计时器。
 	 */
 	public TimeMeasurer() {}
 	
 	/**
-	 * ��ȡ�ü�ʱ���ļ�ʱ״̬��
-	 * @return �ü�ʱ���ļ�ʱ״̬��
+	 * 获取该计时器的计时状态。
+	 * @return 该计时器的计时状态。
 	 */
 	protected Status getStatus(){
 		return this.status;
 	}
 	
 	/**
-	 * ��ȡ��ʱ���Ƿ�δ������
-	 * @return ��ʱ���Ƿ�δ������
+	 * 获取计时器是否还未启动。
+	 * @return 计时器是否还未启动。
 	 */
 	public boolean isNotStart(){
 		return status == Status.NOTSTART;
 	}
 	
 	/**
-	 * ��ȡ��ʱ���Ƿ����ڼ�ʱ��
-	 * @return ��ʱ���Ƿ����ڼ�ʱ��
+	 * 获取计时器是否正在计时。
+	 * @return 计时器是否正在计时。
 	 */
 	public boolean isTiming(){
 		return status == Status.TIMING;
 	}
 	
 	/**
-	 * ��ȡ��ʱ���Ƿ��Ѿ�ֹͣ��ʱ��
-	 * @return ��ʱ���Ƿ��Ѿ�ֹͣ��ʱ��
+	 * 获取计时器是否已经停止计时。
+	 * @return 计时器是否已经停止计时。
 	 */
 	public boolean isStoped(){
 		return status == Status.STOPED;
 	}
 	
 	/**
-	 * ��ʼ��ʱ��
-	 * @throws IllegalStateException ��ʱ���Ѿ���ʼ��ʱ�����Ѿ���ʱ������
+	 * 开始计时。
+	 * @throws IllegalStateException 计时器已经开始计时或者已经计时结束。
 	 */
 	public void start(){
 		lock.lock();
@@ -100,8 +100,8 @@ public class TimeMeasurer {
 	}
 	
 	/**
-	 * ֹͣ��ʱ��
-	 * @throws IllegalStateException ��ʱ����δ��ʼ��ʱ�����Ѿ���ʱ������
+	 * 停止计时。
+	 * @throws IllegalStateException 计时器还未开始计时或者已经计时结束。
 	 */
 	public void stop(){
 		lock.lock();
@@ -117,9 +117,9 @@ public class TimeMeasurer {
 	}
 	
 	/**
-	 * ��ȡ�ü�ʱ����ʱ�䣬������Ϊ��λ��
-	 * @return �ô����ʱ����ʱ�䡣
-	 * @throws IllegalStateException ��ʱ����δ��ʱ������
+	 * 获取该计时器的时间，以纳秒为单位。
+	 * @return 该代码计时器的时间。
+	 * @throws IllegalStateException 计时器还未计时结束。
 	 */
 	public long getTimeNs(){
 		if(! isStoped()){
@@ -129,9 +129,9 @@ public class TimeMeasurer {
 	}
 	
 	/**
-	 * ��ȡ�ü�ʱ����ʱ�䣬�Ժ���Ϊ��λ������Ԫ��Ϊ������
-	 * @return �ô����ʱ����ʱ�䡣
-	 * @throws IllegalStateException ��ʱ����δ��ʱ������
+	 * 获取该计时器的时间，以毫秒为单位，并且元整为整数。
+	 * @return 该代码计时器的时间。
+	 * @throws IllegalStateException 计时器还未计时结束。
 	 */
 	public long getTimeMs(){
 		if(! isStoped()){
@@ -141,9 +141,9 @@ public class TimeMeasurer {
 	}
 	
 	/**
-	 * ��ȡ�ü�ʱ����ʱ�䣬����Ϊ��λ������Ԫ��Ϊ������
-	 * @return �ô����ʱ����ʱ�䡣
-	 * @throws IllegalStateException ��ʱ����δ��ʱ������
+	 * 获取该计时器的时间，以秒为单位，并且元整为整数。
+	 * @return 该代码计时器的时间。
+	 * @throws IllegalStateException 计时器还未计时结束。
 	 */
 	public long getTimeSec(){
 		if(! isStoped()){
@@ -153,12 +153,12 @@ public class TimeMeasurer {
 	}
 	
 	/**
-	 * ��ȡ�ü�ʱ����ʱ�䣬��ָ���ĵ�ЧȨ��Ϊ��Ϊ��λ������˫���ȸ���ֵ��
-	 * <p> ��ЧȨ�ص�ȡֵ����Ϊ�� <code> 86400000000000 / x ������ x Ϊ1ָ���ĵ�λ��Ӧ�ĺ������� </code>
-	 * <br> �й���ʱ�䵥λ������� {@link Time}�����а����˴󲿷ֳ��õ�ʱ�䵥λ��
-	 * @param valueable ָ���ĵ�λ�ĵ�ЧȨ�ء�
-	 * @return �ô����ʱ����ʱ�䡣
-	 * @throws IllegalStateException ��ʱ����δ��ʱ������
+	 * 获取该计时器的时间，以指定的等效权重为作为单位，返回双精度浮点值。
+	 * <p> 等效权重的取值方法为： <code> 86400000000000 / x ，其中 x 为1指定的单位对应的毫秒数。 </code>
+	 * <br> 有关于时间单位，请参阅 {@link Time}，其中包含了大部分常用的时间单位。
+	 * @param valueable 指定的单位的等效权重。
+	 * @return 该代码计时器的时间。
+	 * @throws IllegalStateException 计时器还未计时结束。
 	 */
 	public double getTime(NumberValue valueable){
 		if(! isStoped()){
@@ -168,9 +168,9 @@ public class TimeMeasurer {
 	}
 	
 	/**
-	 * ���ؼ�ʱ��Ԥ��ļ�ʱ�ĸ�ʽ���ַ�������λΪ���롣
-	 * @return Ԥ��ĸ�ʽ���ַ�����
-	 * @throws IllegalStateException ��ʱ����δ��ʱ������
+	 * 返回计时器预设的计时的格式化字符串，单位为纳秒。
+	 * @return 预设的格式化字符串。
+	 * @throws IllegalStateException 计时器还未计时结束。
 	 */
 	public String formatStringNs(){
 		if(! isStoped()){
@@ -180,9 +180,9 @@ public class TimeMeasurer {
 	}
 	
 	/**
-	 * ���ؼ�ʱ��Ԥ��ļ�ʱ�ĸ�ʽ���ַ�������λΪ���롣
-	 * @return Ԥ��ĸ�ʽ���ַ�����
-	 * @throws IllegalStateException ��ʱ����δ��ʱ������
+	 * 返回计时器预设的计时的格式化字符串，单位为毫秒。
+	 * @return 预设的格式化字符串。
+	 * @throws IllegalStateException 计时器还未计时结束。
 	 */
 	public String formatStringMs(){
 		if(! isStoped()){
@@ -192,9 +192,9 @@ public class TimeMeasurer {
 	}
 	
 	/**
-	 * ���ؼ�ʱ��Ԥ��ļ�ʱ�ĸ�ʽ���ַ�������λΪ�롣
-	 * @return Ԥ��ĸ�ʽ���ַ�����
-	 * @throws IllegalStateException ��ʱ����δ��ʱ������
+	 * 返回计时器预设的计时的格式化字符串，单位为秒。
+	 * @return 预设的格式化字符串。
+	 * @throws IllegalStateException 计时器还未计时结束。
 	 */
 	public String formatStringSec(){
 		if(! isStoped()){

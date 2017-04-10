@@ -6,14 +6,14 @@ import java.util.Set;
 import java.util.WeakHashMap;
 
 /**
- * ³éÏóÅäÖÃÄ£ĞÍÊµÏÖ¡£
+ * æŠ½è±¡é…ç½®æ¨¡å‹å®ç°ã€‚
  * 
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public abstract class AbstractConfigModel implements ConfigModel {
 
-	/** ¹Û²ìÆ÷¼¯ºÏ */
+	/** è§‚å¯Ÿå™¨é›†åˆ */
 	protected final Set<ConfigObverser> obversers = Collections.newSetFromMap(new WeakHashMap<>());
 
 	/*
@@ -63,7 +63,7 @@ public abstract class AbstractConfigModel implements ConfigModel {
 	}
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷Ä£ĞÍÖĞµÄÅäÖÃ¼ü±»Çå³ı¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨æ¨¡å‹ä¸­çš„é…ç½®é”®è¢«æ¸…é™¤ã€‚
 	 */
 	protected void fireConfigKeyCleared() {
 		for (ConfigObverser obverser : obversers) {
@@ -72,10 +72,10 @@ public abstract class AbstractConfigModel implements ConfigModel {
 	}
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷Ö¸¶¨µÄÅäÖÃ¼ü±»Ìí¼Ó¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨æŒ‡å®šçš„é…ç½®é”®è¢«æ·»åŠ ã€‚
 	 * 
 	 * @param configKey
-	 *            Ö¸¶¨µÄÅäÖÃ¼ü¡£
+	 *            æŒ‡å®šçš„é…ç½®é”®ã€‚
 	 */
 	protected void fireConfigKeyAdded(ConfigKey configKey) {
 		for (ConfigObverser obverser : obversers) {
@@ -84,10 +84,10 @@ public abstract class AbstractConfigModel implements ConfigModel {
 	}
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷Ö¸¶¨µÄÅäÖÃ¼ü±»ÒÆ³ı¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨æŒ‡å®šçš„é…ç½®é”®è¢«ç§»é™¤ã€‚
 	 * 
 	 * @param configKey
-	 *            Ö¸¶¨µÄÅäÖÃ¼ü¡£
+	 *            æŒ‡å®šçš„é…ç½®é”®ã€‚
 	 */
 	protected void fireConfigKeyRemoved(ConfigKey configKey) {
 		for (ConfigObverser obverser : obversers) {
@@ -96,14 +96,14 @@ public abstract class AbstractConfigModel implements ConfigModel {
 	}
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷Ö¸¶¨µÄÅäÖÃ¼ü¶ÔÓ¦µÄÅäÖÃÊôĞÔ±»¸Ä±ä¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨æŒ‡å®šçš„é…ç½®é”®å¯¹åº”çš„é…ç½®å±æ€§è¢«æ”¹å˜ã€‚
 	 * 
 	 * @param configKey
-	 *            Ö¸¶¨µÄÅäÖÃ¼ü¡£
+	 *            æŒ‡å®šçš„é…ç½®é”®ã€‚
 	 * @param oldValue
-	 *            Ö¸¶¨µÄÅäÖÃ¼ü¶ÔÓ¦µÄ¾ÉµÄÅäÖÃÊôĞÔ¡£
+	 *            æŒ‡å®šçš„é…ç½®é”®å¯¹åº”çš„æ—§çš„é…ç½®å±æ€§ã€‚
 	 * @param newValue
-	 *            Ö¸¶¨µÄÅäÖÃ¼ü¶ÔÓ¦µÄĞÂµÄÅäÖÃÊôĞÔ¡£
+	 *            æŒ‡å®šçš„é…ç½®é”®å¯¹åº”çš„æ–°çš„é…ç½®å±æ€§ã€‚
 	 */
 	protected void fireConfigFirmPropsChanged(ConfigKey configKey, ConfigFirmProps oldValue, ConfigFirmProps newValue) {
 		for (ConfigObverser obverser : obversers) {
@@ -112,16 +112,16 @@ public abstract class AbstractConfigModel implements ConfigModel {
 	}
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷Ö¸¶¨µÄµ±Ç°Öµ±»¸Ä±ä¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨æŒ‡å®šçš„å½“å‰å€¼è¢«æ”¹å˜ã€‚
 	 * 
 	 * @param configKey
-	 *            Ö¸¶¨µÄÅäÖÃ¼ü¡£
+	 *            æŒ‡å®šçš„é…ç½®é”®ã€‚
 	 * @param oldValue
-	 *            Ö¸¶¨µÄÅäÖÃ¼ü¶ÔÓ¦µÄ¾ÉµÄµ±Ç°Öµ¡£
+	 *            æŒ‡å®šçš„é…ç½®é”®å¯¹åº”çš„æ—§çš„å½“å‰å€¼ã€‚
 	 * @param newValue
-	 *            Ö¸¶¨µÄÅäÖÃ¼ü¶ÔÓ¦µÄĞÂµÄµ±Ç°Öµ¡£
+	 *            æŒ‡å®šçš„é…ç½®é”®å¯¹åº”çš„æ–°çš„å½“å‰å€¼ã€‚
 	 * @param validValue
-	 *            Ö¸¶¨µÄÅäÖÃ¼ü¶ÔÓ¦µÄµ±Ç°Öµ¸Ä±äºóµÄĞÂµÄÓĞĞ§Öµ¡£
+	 *            æŒ‡å®šçš„é…ç½®é”®å¯¹åº”çš„å½“å‰å€¼æ”¹å˜åçš„æ–°çš„æœ‰æ•ˆå€¼ã€‚
 	 */
 	protected void fireCurrentValueChanged(ConfigKey configKey, String oldValue, String newValue, String validValue) {
 		for (ConfigObverser obverser : obversers) {

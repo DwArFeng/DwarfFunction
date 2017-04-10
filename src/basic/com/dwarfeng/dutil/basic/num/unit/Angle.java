@@ -3,21 +3,21 @@ package com.dwarfeng.dutil.basic.num.unit;
 import com.dwarfeng.dutil.basic.num.NumberValue;
 
 /**
- * ½Ç¶ÈÃ¶¾Ù¡£
+ * è§’åº¦æžšä¸¾ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public enum Angle implements NumberValue{
 	
-	/**½Ç¶È*/
+	/**è§’åº¦*/
 	DEG(180),
-	/**»¡¶È*/
+	/**å¼§åº¦*/
 	RAD(Math.PI),
-	/**°Ù·Ö¶È*/
+	/**ç™¾åˆ†åº¦*/
 	GRAD(200),
-	/**·Ö*/
+	/**åˆ†*/
 	MIN(10800),
-	/**Ãë*/
+	/**ç§’*/
 	SEC(648000),
 	;
 	

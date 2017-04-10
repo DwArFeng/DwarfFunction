@@ -10,13 +10,13 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.prog.Buildable;
 
 /**
- * Á¬½Óµü´úÆ÷¡£ÓÃÓÚÁ¬½Ó¶à¸ö¶ÀÁ¢ {@link Iterator} µÄ {@link Iterator}¡£
- * <p> ¸Ãµü´úÆ÷Á¬½Ó¶à¸öµü´úÆ÷£¬ÕâĞ©±»Á¬½ÓµÄµü´úÆ÷¶ÔË³ĞòÃô¸Ğ¡£¸ÃÁ¬½Óµü´úÆ÷µÄµü´úË³ĞòÊÇ£ºÊ×ÏÈ¶ÔÆäÖĞ¶ÀÁ¢µÄµü´úÆ÷ÖĞµÄµÚÒ»¸ö
- * ÖĞµÄÔªËØ½øĞĞµü´ú£¬µ±µÚÒ»¸öµü´úÆ÷ÖĞÃ»ÓĞ¸ü¶àµÄÔªËØÊ±£¬½ø¶øµü´úµÚ¶ş¸öµü´úÆ÷µÄÔªËØ£¬ÒÔ´ËÀàÍÆ£¬Ö±µ½ËùÓĞµü´úÆ÷ÖĞµÄÔªËØ
- * ¶¼Íê³Éµü´ú¡£
- * <p> µü´úÆ÷²»½ÓÊÜ <code>null</code>ÔªËØ£¬Èç¹ûÔÚ¹¹ÔìÆ÷ÖĞÊ¹ÓÃ <code>null</code>ÔªËØ½øĞĞ¹¹Ôì£¬Ôò»á±»»ı¼«µÄ¾Ü¾ø¡£
- * <p> ÎªÁË·ÀÖ¹Ç±ÔÚµÄ¶ÑÎÛÈ¾£¬¸ÃÀàµÄ¹¹Ôì·½Ê½ÓÉ¹¹ÔìÆ÷Íê³É¡£
- * <p> Èç¹ûÖ»ÊÇºÏ²¢Á½¸öµü´úÆ÷£¬Ôò {@link CollectionUtil}Ìá¹©ÁË±ã½İ·½·¨£¬Çë²é¿´ {@link CollectionUtil#contactIterator(Iterator, Iterator)}¡£
+ * è¿æ¥è¿­ä»£å™¨ã€‚ç”¨äºè¿æ¥å¤šä¸ªç‹¬ç«‹ {@link Iterator} çš„ {@link Iterator}ã€‚
+ * <p> è¯¥è¿­ä»£å™¨è¿æ¥å¤šä¸ªè¿­ä»£å™¨ï¼Œè¿™äº›è¢«è¿æ¥çš„è¿­ä»£å™¨å¯¹é¡ºåºæ•æ„Ÿã€‚è¯¥è¿æ¥è¿­ä»£å™¨çš„è¿­ä»£é¡ºåºæ˜¯ï¼šé¦–å…ˆå¯¹å…¶ä¸­ç‹¬ç«‹çš„è¿­ä»£å™¨ä¸­çš„ç¬¬ä¸€ä¸ª
+ * ä¸­çš„å…ƒç´ è¿›è¡Œè¿­ä»£ï¼Œå½“ç¬¬ä¸€ä¸ªè¿­ä»£å™¨ä¸­æ²¡æœ‰æ›´å¤šçš„å…ƒç´ æ—¶ï¼Œè¿›è€Œè¿­ä»£ç¬¬äºŒä¸ªè¿­ä»£å™¨çš„å…ƒç´ ï¼Œä»¥æ­¤ç±»æ¨ï¼Œç›´åˆ°æ‰€æœ‰è¿­ä»£å™¨ä¸­çš„å…ƒç´ 
+ * éƒ½å®Œæˆè¿­ä»£ã€‚
+ * <p> è¿­ä»£å™¨ä¸æ¥å— <code>null</code>å…ƒç´ ï¼Œå¦‚æœåœ¨æ„é€ å™¨ä¸­ä½¿ç”¨ <code>null</code>å…ƒç´ è¿›è¡Œæ„é€ ï¼Œåˆ™ä¼šè¢«ç§¯æçš„æ‹’ç»ã€‚
+ * <p> ä¸ºäº†é˜²æ­¢æ½œåœ¨çš„å †æ±¡æŸ“ï¼Œè¯¥ç±»çš„æ„é€ æ–¹å¼ç”±æ„é€ å™¨å®Œæˆã€‚
+ * <p> å¦‚æœåªæ˜¯åˆå¹¶ä¸¤ä¸ªè¿­ä»£å™¨ï¼Œåˆ™ {@link CollectionUtil}æä¾›äº†ä¾¿æ·æ–¹æ³•ï¼Œè¯·æŸ¥çœ‹ {@link CollectionUtil#contactIterator(Iterator, Iterator)}ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
@@ -27,11 +27,11 @@ public class JointIterator<T> implements Iterator<T> {
 		private final List<Iterator<T>> iteratorList = CollectionUtil.nonNullList(new ArrayList<Iterator<T>>());
 		
 		/**
-		 * Ïò¹¹ÔìÆ÷ÖĞÌí¼ÓÒ»¸öµü´úÆ÷¡£
-		 * <p> ¸Ãµü´úÆ÷Î»ÓÚ¹¹ÔìÆ÷ÖĞµÄ×îºó·½£¬Ö±µ½ĞÂµÄµü´úÆ÷±»Ìí¼Ó¡£
-		 * @param iterator Ö¸¶¨µÄ¿Éµü´ú¶ÔÏó¡£
-		 * @return ¹¹ÔìÆ÷×ÔÉí¡£
-		 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+		 * å‘æ„é€ å™¨ä¸­æ·»åŠ ä¸€ä¸ªè¿­ä»£å™¨ã€‚
+		 * <p> è¯¥è¿­ä»£å™¨ä½äºæ„é€ å™¨ä¸­çš„æœ€åæ–¹ï¼Œç›´åˆ°æ–°çš„è¿­ä»£å™¨è¢«æ·»åŠ ã€‚
+		 * @param iterator æŒ‡å®šçš„å¯è¿­ä»£å¯¹è±¡ã€‚
+		 * @return æ„é€ å™¨è‡ªèº«ã€‚
+		 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 		 */
 		public Builder<T> append(Iterator<T> iterator){
 			Objects.requireNonNull(iterator, DwarfUtil.getStringField(StringFieldKey.JointIterator_0));
@@ -40,10 +40,10 @@ public class JointIterator<T> implements Iterator<T> {
 		}
 		
 		/**
-		 * Ïò¹¹ÔìÆ÷ÖĞÌí¼ÓÒ»¸ö¿Éµü´ú¶ÔÏó¡£
-		 * @param iterable Ö¸¶¨µÄ¿Éµü´ú¶ÔÏó¡£
-		 * @return ¹¹ÔìÆ÷×ÔÉí¡£
-		 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+		 * å‘æ„é€ å™¨ä¸­æ·»åŠ ä¸€ä¸ªå¯è¿­ä»£å¯¹è±¡ã€‚
+		 * @param iterable æŒ‡å®šçš„å¯è¿­ä»£å¯¹è±¡ã€‚
+		 * @return æ„é€ å™¨è‡ªèº«ã€‚
+		 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 		 */
 		public Builder<T> append(Iterable<T> iterable){
 			Objects.requireNonNull(iterable, DwarfUtil.getStringField(StringFieldKey.JointIterator_1));
@@ -52,11 +52,11 @@ public class JointIterator<T> implements Iterator<T> {
 		}
 		
 		/**
-		 * Ïò¹¹ÔìÆ÷ÖĞÌí¼ÓÒ»¸öÊı×é¡£
-		 * <p> ¸ÃÊı×é½«×ª»»Îªµü´úÆ÷Ìí¼Ó½ø¹¹ÔìÆ÷ÖĞ£¬Æäµü´úË³ĞòºÍÊı×éµÄË³ĞòÒ»ÖÂ¡£
-		 * @param array Ö¸¶¨µÄÊı×é¡£
-		 * @return ¹¹ÔìÆ÷×ÔÉí¡£
-		 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+		 * å‘æ„é€ å™¨ä¸­æ·»åŠ ä¸€ä¸ªæ•°ç»„ã€‚
+		 * <p> è¯¥æ•°ç»„å°†è½¬æ¢ä¸ºè¿­ä»£å™¨æ·»åŠ è¿›æ„é€ å™¨ä¸­ï¼Œå…¶è¿­ä»£é¡ºåºå’Œæ•°ç»„çš„é¡ºåºä¸€è‡´ã€‚
+		 * @param array æŒ‡å®šçš„æ•°ç»„ã€‚
+		 * @return æ„é€ å™¨è‡ªèº«ã€‚
+		 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 		 */
 		public Builder<T> append(T[] array){
 			Objects.requireNonNull(array, DwarfUtil.getStringField(StringFieldKey.JointIterator_2));
@@ -75,9 +75,9 @@ public class JointIterator<T> implements Iterator<T> {
 		
 	}
 
-	/**´æ·Å¶ÀÁ¢µü´úÆ÷µÄÁĞ±í*/
+	/**å­˜æ”¾ç‹¬ç«‹è¿­ä»£å™¨çš„åˆ—è¡¨*/
 	protected final List<Iterator<T>> iteratorList;
-	/**ÓÃÓÚ¼ÇÂ¼µ±Ç°µü´úÎ»ÖÃµÄ±äÁ¿*/
+	/**ç”¨äºè®°å½•å½“å‰è¿­ä»£ä½ç½®çš„å˜é‡*/
 	protected int index = 0;
 	
 	private JointIterator(List<Iterator<T>> iteratorList) {

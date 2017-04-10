@@ -3,25 +3,25 @@ package com.dwarfeng.dutil.math.linalge;
 import com.dwarfeng.dutil.math.MathObject;
 
 /**
- * ÏòÁ¿½Ó¿Ú¡£
- * <p> ¸Ã½Ó¿Ú´ú±í×ÅÏòÁ¿µÄÒ»°ã½Ó¿Ú¡£
- * <p> ÓÉÓÚ<code>Vector</code>ÊÇ¸ö³£ÓÃµÄÃû×Ö£¬ÎªÁËÇø·ÖÕâ¸ö°üÖĞµÄ<code>Vector</code>£¬¹ÊÊ¹ÓÃ<code>LinalgeVector</code>¡£
+ * å‘é‡æ¥å£ã€‚
+ * <p> è¯¥æ¥å£ä»£è¡¨ç€å‘é‡çš„ä¸€èˆ¬æ¥å£ã€‚
+ * <p> ç”±äº<code>Vector</code>æ˜¯ä¸ªå¸¸ç”¨çš„åå­—ï¼Œä¸ºäº†åŒºåˆ†è¿™ä¸ªåŒ…ä¸­çš„<code>Vector</code>ï¼Œæ•…ä½¿ç”¨<code>LinalgeVector</code>ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public interface LinalgeVector extends MathObject{
 
 	/**
-	 * ·µ»Ø¸ÃÏòÁ¿µÄÎ¬¶È¡£
-	 * @return ÏòÁ¿µÄÎ¬¶È¡£
+	 * è¿”å›è¯¥å‘é‡çš„ç»´åº¦ã€‚
+	 * @return å‘é‡çš„ç»´åº¦ã€‚
 	 */
 	public int size();
 	
 	/**
-	 * ·µ»ØÖ¸¶¨ĞòºÅ´¦µÄÖµ¡£
-	 * @param index Ö¸¶¨µÄĞòÁĞ¡£
-	 * @return Ö¸¶¨µÄĞòÁĞ´¦¶ÔÓ¦µÄÖµ¡£
-	 * @throws IndexOutOfBoundsException ĞĞÁĞºÅ³¬½ç¡£
+	 * è¿”å›æŒ‡å®šåºå·å¤„çš„å€¼ã€‚
+	 * @param index æŒ‡å®šçš„åºåˆ—ã€‚
+	 * @return æŒ‡å®šçš„åºåˆ—å¤„å¯¹åº”çš„å€¼ã€‚
+	 * @throws IndexOutOfBoundsException è¡Œåˆ—å·è¶…ç•Œã€‚
 	 */
 	public double valueAt(int index);
 	

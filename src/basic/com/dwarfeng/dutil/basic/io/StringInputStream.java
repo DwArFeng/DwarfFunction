@@ -9,8 +9,8 @@ import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 
 /**
- * ×Ö·û´®ÊäÈëÁ÷¡£
- * <p> ¸ÃÊäÈëÁ÷´ÓÖ¸¶¨µÄ×Ö·û´®ÖĞ¶ÁÈëÊı¾İ£¬ÊÇÎÄ±¾ÓëÊäÈëÁ÷Ö®¼äµÄÇÅÁº¡£
+ * å­—ç¬¦ä¸²è¾“å…¥æµã€‚
+ * <p> è¯¥è¾“å…¥æµä»æŒ‡å®šçš„å­—ç¬¦ä¸²ä¸­è¯»å…¥æ•°æ®ï¼Œæ˜¯æ–‡æœ¬ä¸è¾“å…¥æµä¹‹é—´çš„æ¡¥æ¢ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
@@ -20,20 +20,20 @@ public class StringInputStream extends InputStream {
 	private int index = 0;
 	
 	/**
-	 * ¹¹ÔìÒ»¸ö»ùÓÚÖ¸¶¨×Ö·û´®µÄ×Ö·û´®ÊäÈëÁ÷¡£
-	 * @param string Ö¸¶¨µÄ×Ö·û´®¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊı <code>string</code>Îª <code>null</code>¡£
+	 * æ„é€ ä¸€ä¸ªåŸºäºæŒ‡å®šå­—ç¬¦ä¸²çš„å­—ç¬¦ä¸²è¾“å…¥æµã€‚
+	 * @param string æŒ‡å®šçš„å­—ç¬¦ä¸²ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•° <code>string</code>ä¸º <code>null</code>ã€‚
 	 */
 	public StringInputStream(String string) {
 		this(string, Charset.defaultCharset());
 	}
 	
 	/**
-	 * ¹¹ÔìÒ»¸ö»ùÓÚÖ¸¶¨×Ö·û´®µÄ£¬Ê¹ÓÃÖ¸¶¨×Ö·û¼¯µÄ×Ö·û´®ÊäÈëÁ÷¡£
-	 * @param string Ö¸¶¨µÄ×Ö·û´®¡£
-	 * @param charset Ö¸¶¨µÄ×Ö·û¼¯¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊı <code>string</code>Îª <code>null</code>¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊı <code>charset</code> Îª <code>null</code>¡£
+	 * æ„é€ ä¸€ä¸ªåŸºäºæŒ‡å®šå­—ç¬¦ä¸²çš„ï¼Œä½¿ç”¨æŒ‡å®šå­—ç¬¦é›†çš„å­—ç¬¦ä¸²è¾“å…¥æµã€‚
+	 * @param string æŒ‡å®šçš„å­—ç¬¦ä¸²ã€‚
+	 * @param charset æŒ‡å®šçš„å­—ç¬¦é›†ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•° <code>string</code>ä¸º <code>null</code>ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•° <code>charset</code> ä¸º <code>null</code>ã€‚
 	 */
 	public StringInputStream(String string, Charset charset){
 		Objects.requireNonNull(string, DwarfUtil.getStringField(StringFieldKey.STRINGINPUTSTREAM_0));

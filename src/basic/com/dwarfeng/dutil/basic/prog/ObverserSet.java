@@ -3,10 +3,10 @@ package com.dwarfeng.dutil.basic.prog;
 import java.util.Set;
 
 /**
- * �۲������ϡ�
+ * 观察器集合。
  * <p>
- * ʵ�ָýӿ���ζ���ܹ����������ӡ��Ƴ�������۲�����Ҳ���Ա��������е����й۲����� <br>
- * �۲����������� mvc ģ���С�ģ�Ͳ㳣��ͨ����������ע��Ĺ۲������㲥һϵ���¼������ýӿ�������һ���۲����ļ���Ӧ��ӵ�еķ�����
+ * 实现该接口意味着能够向其中添加、移除、清除观察器，也可以遍历集合中的所有观察器。 <br>
+ * 观察器常常用在 mvc 模型中。模型层常常通过遍历在其注册的观察器来广播一系列事件。而该接口则定义了一个观察器的集合应该拥有的方法。
  * 
  * @author DwArFeng
  * @since 0.0.2-beta
@@ -14,34 +14,34 @@ import java.util.Set;
 public interface ObverserSet<T extends Obverser> {
 
 	/**
-	 * �Լ��ϵ���ʽ���ظù۲������ϡ�
+	 * 以集合的形式返回该观察器集合。
 	 * <p>
-	 * �ü���Ϊֻ�����ϣ������κ��޸ķ��������׳� {@link UnsupportedOperationException}��
+	 * 该集合为只读集合，调用任何修改方法将会抛出 {@link UnsupportedOperationException}。
 	 * 
-	 * @return ������ʽ�Ĺ۲������ϡ�
+	 * @return 集合形式的观察器集合。
 	 */
 	public Set<T> getObversers();
 
 	/**
-	 * ��������ģ�������ӹ۲�����
+	 * 向属性行模型中添加观察器。
 	 * 
 	 * @param obverser
-	 *            ָ���Ĺ۲�����
-	 * @return �ö����Ƿ������˹۲������ϵĸı䡣
+	 *            指定的观察器。
+	 * @return 该动作是否引起了观察器集合的改变。
 	 */
 	public boolean addObverser(T obverser);
 
 	/**
-	 * ��������ģ�����Ƴ��۲�����
+	 * 从属性行模型中移除观察器。
 	 * 
 	 * @param obverser
-	 *            ָ���Ĺ۲�����
-	 * @return �ö����Ƿ������˹۲������ϵĸı䡣
+	 *            指定的观察器。
+	 * @return 该动作是否引起了观察器集合的改变。
 	 */
 	public boolean removeObverser(T obverser);
 
 	/**
-	 * ��������ģ�����Ƴ����й۲�����
+	 * 从属性行模型中移除所有观察器。
 	 */
 	public void clearObverser();
 

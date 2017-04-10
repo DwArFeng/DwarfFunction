@@ -15,75 +15,75 @@ import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 
 /**
- * Ĭ������ģ�͡�
+ * 默认配置模型。
  * <p>
- * ����ģ�͵�Ĭ��ʵ�֡�
+ * 配置模型的默认实现。
  * 
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public class DefaultConfigModel extends AbstractConfigModel {
 
-	/** ����ģ�͵ĵ�ǰֵӳ�� */
+	/** 配置模型的当前值映射 */
 	protected final Map<ConfigKey, String> currentValueMap;
 
-	/** ����ģ�͵Ĺ̶�����ӳ�� */
+	/** 配置模型的固定属性映射 */
 	protected final Map<ConfigKey, ConfigFirmProps> firmPropsMap;
 
 	/**
-	 * ����һ��Ĭ�ϵģ��������κ�������Ŀ��Ĭ������ģ�͡�
+	 * 生成一个默认的，不包含任何配置条目的默认配置模型。
 	 */
 	public DefaultConfigModel() {
 		this(new ArrayList<>(), new HashMap<>(), new HashMap<>());
 	}
 
 	/**
-	 * ����һ����ָ��������Ŀ����ɵ�Ĭ������ģ�͡�
+	 * 生成一个由指定配置条目数组成的默认配置模型。
 	 * <p>
-	 * ���ɵ�ģ���У�ÿ����Ŀ������ֵ��Ĭ��ֵ��ȡ�
+	 * 生成的模型中，每个条目的现有值和默认值相等。
 	 * 
 	 * @param configEntries
-	 *            ָ����������Ŀ���顣
+	 *            指定的配置条目数组。
 	 * @throws NullPointerException
-	 *             ��ڲ���Ϊ <code>null</code>��
+	 *             入口参数为 <code>null</code>。
 	 * @throws IllegalArgumentException
-	 *             ������ڼ���������һ�������Ч��
+	 *             配置入口集合中至少一个入口无效。
 	 */
 	public DefaultConfigModel(ConfigEntry[] configEntries) {
 		this(Arrays.asList(configEntries), new HashMap<>(), new HashMap<>());
 	}
 
 	/**
-	 * ����һ����ָ��������Ŀ������ɵ�Ĭ������ģ�͡�
+	 * 生成一个由指定配置条目集合组成的默认配置模型。
 	 * <p>
-	 * ���ɵ�ģ���У�ÿ����Ŀ������ֵ��Ĭ��ֵ��ȡ�
+	 * 生成的模型中，每个条目的现有值和默认值相等。
 	 * 
 	 * @param configEntries
-	 *            ָ����������Ŀ���ϡ�
+	 *            指定的配置条目集合。
 	 * @throws NullPointerException
-	 *             ��ڲ���Ϊ <code>null</code>��
+	 *             入口参数为 <code>null</code>。
 	 */
 	public DefaultConfigModel(Collection<ConfigEntry> configEntries) {
 		this(configEntries, new HashMap<>(), new HashMap<>());
 	}
 
 	/**
-	 * ����һ����ָ����������Ŀ��ָ���ĵ�ǰֵӳ�������ָ���Ĺ̶�����ӳ�������ϳɵ�Ĭ������ģ�͡�
+	 * 生成一个由指定的配置条目，指定的当前值映射代理，指定的固定属性映射代理组合成的默认配置模型。
 	 * <p>
-	 * ӳ����������������Ժ�����ʽ�洢����ָ������Ϊ {@link LinkedHashMap}�Ϳ��Ա�֤����ģ��ӵ�й̶��ĵ���˳��
+	 * 映射代理决定了配置以何种形式存储，如指定代理为 {@link LinkedHashMap}就可以保证配置模型拥有固定的迭代顺序。
 	 * <p>
-	 * ��Ҫע����ǣ���ڵĴ���ӳ��Ӧ���ǿյģ����ӳ������Ƿǿյģ������ǻ��ڴ洢��������֮ǰ����ա�
+	 * 需要注意的是，入口的代理映射应该是空的，如果映射代理是非空的，那它们会在存储配置数据之前先清空。
 	 * 
 	 * @param configEntries
-	 *            ָ����������Ŀ���ϡ�
+	 *            指定的配置条目集合。
 	 * @param currentValueMap
-	 *            ָ���ĵ�ǰֵӳ�������
+	 *            指定的当前值映射代理。
 	 * @param firmPropsMap
-	 *            ָ���Ĺ̶�����ӳ�������
+	 *            指定的固定属性映射代理。
 	 * @throws NullPointerException
-	 *             ��ڲ��� Ϊ <code>null</code>��
+	 *             入口参数 为 <code>null</code>。
 	 * @throws IllegalArgumentException
-	 *             ����һ�����������Ч��
+	 *             至少一个配置入口无效。
 	 */
 	public DefaultConfigModel(Collection<ConfigEntry> configEntries, Map<ConfigKey, String> currentValueMap,
 			Map<ConfigKey, ConfigFirmProps> firmPropsMap) {

@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 /**
- * ¹¹ÔìÒ»¸ö¾ßÓĞÖ¸¶¨Í¼ÏñµÄÎŞÎÄ×Ö°´Å¥£¬Í¼ÏñÒ»¾­Ö¸¶¨£¬²»ÄÜËõ·Å¡£
+ * æ„é€ ä¸€ä¸ªå…·æœ‰æŒ‡å®šå›¾åƒçš„æ— æ–‡å­—æŒ‰é’®ï¼Œå›¾åƒä¸€ç»æŒ‡å®šï¼Œä¸èƒ½ç¼©æ”¾ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
@@ -16,14 +16,14 @@ public class JIconButton extends JButton {
 	private Image image;
 	
 	/**
-	 * Éú³ÉÒ»¸ö¾ßÓĞÄ¬ÈÏÍ¼ÏñnullµÄÍ¼Ïñ°´Å¥
+	 * ç”Ÿæˆä¸€ä¸ªå…·æœ‰é»˜è®¤å›¾åƒnullçš„å›¾åƒæŒ‰é’®
 	 */
 	public JIconButton(){
 		this(null);
 	}
 	/**
-	 * Éú³ÉÒ»¸ö¾ßÓĞÖ¸¶¨Í¼ÏñµÄ°´Å¥¡£
-	 * @param image Ö¸¶¨µÄÍ¼Ïñ¡£
+	 * ç”Ÿæˆä¸€ä¸ªå…·æœ‰æŒ‡å®šå›¾åƒçš„æŒ‰é’®ã€‚
+	 * @param image æŒ‡å®šçš„å›¾åƒã€‚
 	 */
 	public JIconButton(Image image){
 		super("");
@@ -31,15 +31,15 @@ public class JIconButton extends JButton {
 	}
 	
 	/**
-	 * ·µ»Ø°´Å¥µÄÍ¼Ïñ¡£
-	 * @return °´Å¥µÄÍ¼Ïñ¡£
+	 * è¿”å›æŒ‰é’®çš„å›¾åƒã€‚
+	 * @return æŒ‰é’®çš„å›¾åƒã€‚
 	 */
 	public Image getImage() {
 		return image;
 	}
 	/**
-	 * ÉèÖÃ°´Å¥µÄÍ¼Ïñ¡£
-	 * @param image Ö¸¶¨µÄÍ¼Ïñ¡£
+	 * è®¾ç½®æŒ‰é’®çš„å›¾åƒã€‚
+	 * @param image æŒ‡å®šçš„å›¾åƒã€‚
 	 */
 	public void setImage(Image image) {
 		this.image = image;

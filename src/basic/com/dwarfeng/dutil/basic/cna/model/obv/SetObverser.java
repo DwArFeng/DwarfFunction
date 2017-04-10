@@ -4,28 +4,28 @@ import com.dwarfeng.dutil.basic.cna.model.SetModel;
 import com.dwarfeng.dutil.basic.prog.Obverser;
 
 /**
- * ¼¯ºÏÄ£ĞÍ¹Û²ìÆ÷¡£
+ * é›†åˆæ¨¡å‹è§‚å¯Ÿå™¨ã€‚
  * @author DwArFeng
  * @since 0.1.0-beta
  */
 public interface SetObverser<E> extends Obverser {
 	
 	/**
-	 * Í¨ÖªÄ£ĞÍÖĞÖ¸¶¨µÄÔªËØ±»Ìí¼Ó¡£
-	 * @param element Ö¸¶¨µÄÔªËØ¡£
+	 * é€šçŸ¥æ¨¡å‹ä¸­æŒ‡å®šçš„å…ƒç´ è¢«æ·»åŠ ã€‚
+	 * @param element æŒ‡å®šçš„å…ƒç´ ã€‚
 	 */
 	public void fireAdded(E element);
 	
 	/**
-	 * Í¨ÖªÄ£ĞÍÖĞÖ¸¶¨µÄÔªËØ±»ÒÆ³ı¡£
-	 * @param element Ö¸¶¨µÄÔªËØ¡£
+	 * é€šçŸ¥æ¨¡å‹ä¸­æŒ‡å®šçš„å…ƒç´ è¢«ç§»é™¤ã€‚
+	 * @param element æŒ‡å®šçš„å…ƒç´ ã€‚
 	 */
 	public void fireRemoved(E element);
 	
 	/**
-	 * Í¨ÖªÄ£ĞÍÖĞËùÓĞÔªËØ±»Çå³ı¡£
-	 * <p> ¸Ã·½·¨ÊÇÎªÁËÓÅ»¯Ğ§ÂÊ¶ø¶¨ÒåµÄ£¬Òò´Ë£¬ÔÚÄ£ĞÍÖ´ĞĞ {@link SetModel#clear()}µÄÊ±ºò£¬
-	 * »áµ÷ÓÃ¸Ã·½·¨½øĞĞÍ¨Öª£¬¶ø²»ÊÇ Ò»ÌõÌõµØµ÷ÓÃ {@link #fireRemoved(Object)}¡£
+	 * é€šçŸ¥æ¨¡å‹ä¸­æ‰€æœ‰å…ƒç´ è¢«æ¸…é™¤ã€‚
+	 * <p> è¯¥æ–¹æ³•æ˜¯ä¸ºäº†ä¼˜åŒ–æ•ˆç‡è€Œå®šä¹‰çš„ï¼Œå› æ­¤ï¼Œåœ¨æ¨¡å‹æ‰§è¡Œ {@link SetModel#clear()}çš„æ—¶å€™ï¼Œ
+	 * ä¼šè°ƒç”¨è¯¥æ–¹æ³•è¿›è¡Œé€šçŸ¥ï¼Œè€Œä¸æ˜¯ ä¸€æ¡æ¡åœ°è°ƒç”¨ {@link #fireRemoved(Object)}ã€‚
 	 */
 	public void fireCleared();
 

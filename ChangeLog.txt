@@ -81,7 +81,7 @@ Beta_0.0.3_20170128_build_A
 	
 	新增 protected 域：dutil.basic.gui.swing.JExconsole.popup 用于指示控制台的右键菜单。
 	
-Beta_0.1.0
+Beta_0.1.0_20170403_build_A
 	调整 dutil.basic.prog.Saver 与 Loader
 		将这两个类移动到更加符合其功能的 dutil.basic.io 包中，并过时 prog 包中的相应接口。
 		为Saver 和 Loader 接口提供另一种读写方式：连续读写方式。
@@ -115,4 +115,16 @@ Beta_0.1.0
 		提供 ListModel, SetModel, MapModel, KeyListModel, KeySetModel 模型以及其实现，外加不可更改与线程安全的版本。
 	新增 dutil.develop.backgr 包，提供程序后台的实现
 	新增 dutil.basic.UnsafeGetter<T> 接口
+	
+Beta_0.1.0_20170410_build_A
+	该版本可能与之前的版本有轻微的不兼容。
+	在接口 dutil.basic.cna.model.KeyListModel 中添加方法 V get(K)。
+		这可能导致该版本与前一个版本有轻微的不兼容。
+	在接口 dutil.basic.cna.model.KeySetModel 中添加方法 Vget(K)。
+		这可能导致该版本与前一个版本有轻微的不兼容。
+	修正 dutil.basic.cna.model 包中的内容。
+		AbstractMapModel 中的 obversers 属性由 private 改为 protected。
+		AbstractSetModel 中的 obversers 属性由 private 改为 protected。
+	新增 dtuil.develop.resource包，提供资源文件管理工具。
+	新增 dutil.develop.i18n包，提供国际化的管理工具。
 			

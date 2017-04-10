@@ -1,18 +1,18 @@
 package com.dwarfeng.dutil.basic.prog;
 
 /**
- * ÔËÐÐÊ±×´Ì¬¡£
+ * è¿è¡Œæ—¶çŠ¶æ€ã€‚
  * <p>
- * Ö¸Ê¾³ÌÐòµÄÔËÐÐ×´Ì¬µÄÃ¶¾Ù¡£
+ * æŒ‡ç¤ºç¨‹åºçš„è¿è¡ŒçŠ¶æ€çš„æžšä¸¾ã€‚
  * 
  * @author DwArFeng
  * @since 0.0.3-beta
  */
 public enum RuntimeState {
-	/** ³ÌÐò»¹Î´Æô¶¯ */
+	/** ç¨‹åºè¿˜æœªå¯åŠ¨ */
 	NOT_START,
-	/** ³ÌÐòÕýÔÚÔËÐÐ */
+	/** ç¨‹åºæ­£åœ¨è¿è¡Œ */
 	RUNNING,
-	/** ³ÌÐòÒÑ¾­½áÊø */
+	/** ç¨‹åºå·²ç»ç»“æŸ */
 	ENDED,
 }

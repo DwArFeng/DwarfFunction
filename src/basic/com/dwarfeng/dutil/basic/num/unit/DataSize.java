@@ -3,7 +3,7 @@ package com.dwarfeng.dutil.basic.num.unit;
 import com.dwarfeng.dutil.basic.num.NumberValue;
 
 /**
- * Êı¾İ´óĞ¡Ã¶¾Ù¡£
+ * æ•°æ®å¤§å°æšä¸¾ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */

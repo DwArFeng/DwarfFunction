@@ -1,38 +1,38 @@
 package com.dwarfeng.dutil.basic.prog;
 
 /**
- * Ä¬ÈÏµÄ°æ±¾ÊµÏÖĞÎÊ½¡£
+ * é»˜è®¤çš„ç‰ˆæœ¬å®ç°å½¢å¼ã€‚
  * <p>
- * ÕâÊÇÎÒ×î³£ÓÃµÄ°æ±¾ĞÎÊ½¡£ <br>
- * °æ±¾µÄĞÎÊ½ÈçÏÂ£º<code>alpha_0.3.2_160701_build_A</code>
+ * è¿™æ˜¯æˆ‘æœ€å¸¸ç”¨çš„ç‰ˆæœ¬å½¢å¼ã€‚ <br>
+ * ç‰ˆæœ¬çš„å½¢å¼å¦‚ä¸‹ï¼š<code>alpha_0.3.2_160701_build_A</code>
  * 
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public class DefaultVersion implements Version {
 
-	/** ±íÊ¾±àÒë°æ±¾µÄ×Ö¶Î */
+	/** è¡¨ç¤ºç¼–è¯‘ç‰ˆæœ¬çš„å­—æ®µ */
 	protected static final String BUILD_TEXT = "build";
-	/** °æ±¾Êı×Ö¶ÎÖ®¼äµÄ·Ö¸ô·û */
+	/** ç‰ˆæœ¬æ•°å­—æ®µä¹‹é—´çš„åˆ†éš”ç¬¦ */
 	protected static final char VERSION_SEP = '.';
-	/** °æ±¾Óò×Ö¶ÎÖ®¼äµÄ·Ö¸ô·û */
+	/** ç‰ˆæœ¬åŸŸå­—æ®µä¹‹é—´çš„åˆ†éš”ç¬¦ */
 	protected static final char FIELD_SEP = '_';
 
-	/** °æ±¾µÄÀàĞÍ */
+	/** ç‰ˆæœ¬çš„ç±»å‹ */
 	protected final VersionType type;
-	/** µÚÒ»¸ö°æ±¾ºÅ */
+	/** ç¬¬ä¸€ä¸ªç‰ˆæœ¬å· */
 	protected final byte firstVersion;
-	/** µÚ¶ş¸ö°æ±¾ºÅ */
+	/** ç¬¬äºŒä¸ªç‰ˆæœ¬å· */
 	protected final byte secondVersion;
-	/** µÚÈı¸ö°æ±¾ºÅ */
+	/** ç¬¬ä¸‰ä¸ªç‰ˆæœ¬å· */
 	protected final byte thirdVersion;
-	/** ´´½¨ÈÕÆÚ */
+	/** åˆ›å»ºæ—¥æœŸ */
 	protected final String buildDate;
-	/** ´´½¨°æ±¾ */
+	/** åˆ›å»ºç‰ˆæœ¬ */
 	protected final char buildVersion;
 
 	/**
-	 * Ä¬ÈÏ°æ±¾µÄ¹¹ÔìÕß¡£
+	 * é»˜è®¤ç‰ˆæœ¬çš„æ„é€ è€…ã€‚
 	 * 
 	 * @author DwArFeng
 	 * @since 0.0.2-beta
@@ -47,17 +47,17 @@ public class DefaultVersion implements Version {
 		private char buildVersion = 'A';
 
 		/**
-		 * ¹¹ÔìÄ¬ÈÏµÄ°æ±¾¹¹ÔìÕß¡£
+		 * æ„é€ é»˜è®¤çš„ç‰ˆæœ¬æ„é€ è€…ã€‚
 		 */
 		public Builder() {
 		}
 
 		/**
-		 * ÉèÖÃ¹¹ÔìÕßÖĞµÄ°æ±¾ÀàĞÍ¡£
+		 * è®¾ç½®æ„é€ è€…ä¸­çš„ç‰ˆæœ¬ç±»å‹ã€‚
 		 * 
 		 * @param val
-		 *            Ö¸¶¨µÄ°æ±¾ÀàĞÍ¡£
-		 * @return ¹¹ÔìÆ÷×ÔÉí¡£
+		 *            æŒ‡å®šçš„ç‰ˆæœ¬ç±»å‹ã€‚
+		 * @return æ„é€ å™¨è‡ªèº«ã€‚
 		 */
 		public Builder type(VersionType val) {
 			this.type = val;
@@ -65,11 +65,11 @@ public class DefaultVersion implements Version {
 		}
 
 		/**
-		 * ÉèÖÃ¹¹ÔìÆ÷ÖĞµÚÒ»¸ö°æ±¾µÄÖµ¡£
+		 * è®¾ç½®æ„é€ å™¨ä¸­ç¬¬ä¸€ä¸ªç‰ˆæœ¬çš„å€¼ã€‚
 		 * 
 		 * @param val
-		 *            Ö¸¶¨µÄÖµ¡£
-		 * @return ¹¹ÔìÆ÷×ÔÉí¡£
+		 *            æŒ‡å®šçš„å€¼ã€‚
+		 * @return æ„é€ å™¨è‡ªèº«ã€‚
 		 */
 		public Builder firstVersion(byte val) {
 			this.firstVersion = val;
@@ -77,11 +77,11 @@ public class DefaultVersion implements Version {
 		}
 
 		/**
-		 * ÉèÖÃ¹¹ÔìÆ÷ÖĞµÚ¶ş¸ö°æ±¾µÄÖµ¡£
+		 * è®¾ç½®æ„é€ å™¨ä¸­ç¬¬äºŒä¸ªç‰ˆæœ¬çš„å€¼ã€‚
 		 * 
 		 * @param val
-		 *            Ö¸¶¨µÄÖµ¡£
-		 * @return ¹¹ÔìÆ÷×ÔÉí¡£
+		 *            æŒ‡å®šçš„å€¼ã€‚
+		 * @return æ„é€ å™¨è‡ªèº«ã€‚
 		 */
 		public Builder secondVersion(byte val) {
 			this.secondVersion = val;
@@ -89,11 +89,11 @@ public class DefaultVersion implements Version {
 		}
 
 		/**
-		 * ÉèÖÃ¹¹ÔìÆ÷ÖĞµÚÈı¸ö°æ±¾µÄÖµ¡£
+		 * è®¾ç½®æ„é€ å™¨ä¸­ç¬¬ä¸‰ä¸ªç‰ˆæœ¬çš„å€¼ã€‚
 		 * 
 		 * @param val
-		 *            Ö¸¶¨µÄÖµ¡£
-		 * @return ¹¹ÔìÆ÷×ÔÉí¡£
+		 *            æŒ‡å®šçš„å€¼ã€‚
+		 * @return æ„é€ å™¨è‡ªèº«ã€‚
 		 */
 		public Builder thirdVersion(byte val) {
 			this.thirdVersion = val;
@@ -101,11 +101,11 @@ public class DefaultVersion implements Version {
 		}
 
 		/**
-		 * ÉèÖÃ¹¹ÔìÆ÷ÖĞµÄ±àÒëÊ±¼ä¡£
+		 * è®¾ç½®æ„é€ å™¨ä¸­çš„ç¼–è¯‘æ—¶é—´ã€‚
 		 * 
 		 * @param val
-		 *            Ö¸¶¨µÄ±àÒëÊ±¼ä¡£
-		 * @return ¹¹ÔìÆ÷×ÔÉí¡£
+		 *            æŒ‡å®šçš„ç¼–è¯‘æ—¶é—´ã€‚
+		 * @return æ„é€ å™¨è‡ªèº«ã€‚
 		 */
 		public Builder buildDate(String val) {
 			this.buildDate = val;
@@ -113,11 +113,11 @@ public class DefaultVersion implements Version {
 		}
 
 		/**
-		 * ÉèÖÃ¹¹ÔìÆ÷ÖĞµÄ±àÒë°æ±¾ºÅ¡£
+		 * è®¾ç½®æ„é€ å™¨ä¸­çš„ç¼–è¯‘ç‰ˆæœ¬å·ã€‚
 		 * 
 		 * @param val
-		 *            ¹¹ÔìÆ÷ÖĞµÄ±àÒë°æ±¾ºÅ¡£
-		 * @return ¹¹ÔìÆ÷×ÔÉí¡£
+		 *            æ„é€ å™¨ä¸­çš„ç¼–è¯‘ç‰ˆæœ¬å·ã€‚
+		 * @return æ„é€ å™¨è‡ªèº«ã€‚
 		 */
 		public Builder buildVersion(char val) {
 			this.buildVersion = val;

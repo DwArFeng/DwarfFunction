@@ -5,28 +5,28 @@ import java.util.Objects;
 import com.dwarfeng.dutil.math.AbstractMathObject;
 
 /**
- * ¶şÎ¬µã¡£
+ * äºŒç»´ç‚¹ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public class Point2d extends AbstractMathObject implements Dimension2d{
 
-	/**µãµÄx×ø±ê*/
+	/**ç‚¹çš„xåæ ‡*/
 	protected final double x;
-	/**µãµÄy×ø±ê*/
+	/**ç‚¹çš„yåæ ‡*/
 	protected final double y;
 	
 	/**
-	 * Éú³ÉÒ»¸öÄ¬ÈÏµã£¨Ô­µã£©¡£
+	 * ç”Ÿæˆä¸€ä¸ªé»˜è®¤ç‚¹ï¼ˆåŸç‚¹ï¼‰ã€‚
 	 */
 	public Point2d() {
 		this(0,0);
 	}
 	
 	/**
-	 * Éú³ÉÒ»¸ö¾ßÓĞÖ¸¶¨×ø±êµÄ¶şÎ¬µã¡£
-	 * @param x x×ø±êÖµ¡£
-	 * @param y y×ø±êÖµ¡£
+	 * ç”Ÿæˆä¸€ä¸ªå…·æœ‰æŒ‡å®šåæ ‡çš„äºŒç»´ç‚¹ã€‚
+	 * @param x xåæ ‡å€¼ã€‚
+	 * @param y yåæ ‡å€¼ã€‚
 	 */
 	public Point2d(double x, double y){
 		this.x = x;

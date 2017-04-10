@@ -1,6 +1,6 @@
 /**
  * 
- * 与多线程有关的程序包
+ * 涓庡绾跨▼鏈夊叧鐨勭▼搴忓寘
  * @author DwArFeng
  * @since 0.0.2-beta
  */

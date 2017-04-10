@@ -10,18 +10,18 @@ import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 
 /**
- * Àà¹¦ÄÜ°ü¡£
- * <p>¸Ã°ü·â×°ÁËÒ»Ğ©{@link Class}°üÖĞÃ»ÓĞµÄ¹¦ÄÜ£¬±ÈÈçÁĞ³öÒ»¸ö°üµÄËùÓĞÖ±µ½{@link Object}µÄËùÓĞ¸¸Àà¡£
+ * ç±»åŠŸèƒ½åŒ…ã€‚
+ * <p>è¯¥åŒ…å°è£…äº†ä¸€äº›{@link Class}åŒ…ä¸­æ²¡æœ‰çš„åŠŸèƒ½ï¼Œæ¯”å¦‚åˆ—å‡ºä¸€ä¸ªåŒ…çš„æ‰€æœ‰ç›´åˆ°{@link Object}çš„æ‰€æœ‰çˆ¶ç±»ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public final class ClassUtil {
 	
 	/**
-	 * »ñÈ¡Ò»¸öÀàµÄËùÓĞ¸¸Àà¡£
-	 * @param cl Ö¸¶¨µÄÀà¡£
-	 * @return ¸ÃÀàµÄËùÓĞ¸¸Àà×é³ÉµÄ¼¯ºÏ¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * è·å–ä¸€ä¸ªç±»çš„æ‰€æœ‰çˆ¶ç±»ã€‚
+	 * @param cl æŒ‡å®šçš„ç±»ã€‚
+	 * @return è¯¥ç±»çš„æ‰€æœ‰çˆ¶ç±»ç»„æˆçš„é›†åˆã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static Collection<Class<?>> getSuperClasses(Class<?> cl){
 		Objects.requireNonNull(cl, DwarfUtil.getStringField(StringFieldKey.CLASSUTIL_0));
@@ -35,10 +35,10 @@ public final class ClassUtil {
 	}
 	
 	/**
-	 * »ñÈ¡Ò»¸öÀàµÄËùÓĞ¸¸Àà¡£
-	 * @param o Ö¸¶¨µÄÊµÀı¡£
-	 * @return ¸ÃÀàµÄËùÓĞ¸¸Àà×é³ÉµÄ¼¯ºÏ¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * è·å–ä¸€ä¸ªç±»çš„æ‰€æœ‰çˆ¶ç±»ã€‚
+	 * @param o æŒ‡å®šçš„å®ä¾‹ã€‚
+	 * @return è¯¥ç±»çš„æ‰€æœ‰çˆ¶ç±»ç»„æˆçš„é›†åˆã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static Collection<Class<?>> getSuperClasses(Object o){
 		Objects.requireNonNull(o, DwarfUtil.getStringField(StringFieldKey.CLASSUTIL_1));
@@ -46,10 +46,10 @@ public final class ClassUtil {
 	}
 	
 	/**
-	 * 	»ñÈ¡Ò»¸öÊµÀıµÄÀàÖĞµÄËùÓĞ¸¸Àà¡£
-	 * @param o Ö¸¶¨µÄÊµÀı¡£
-	 * @return ¸ÃÊµÀıµÄËùÓĞ¸¸Àà×é³ÉµÄÊı×é¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * 	è·å–ä¸€ä¸ªå®ä¾‹çš„ç±»ä¸­çš„æ‰€æœ‰çˆ¶ç±»ã€‚
+	 * @param o æŒ‡å®šçš„å®ä¾‹ã€‚
+	 * @return è¯¥å®ä¾‹çš„æ‰€æœ‰çˆ¶ç±»ç»„æˆçš„æ•°ç»„ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static Class<?>[] getSuperClassArray(Object o){
 		Objects.requireNonNull(o, DwarfUtil.getStringField(StringFieldKey.CLASSUTIL_1));
@@ -57,10 +57,10 @@ public final class ClassUtil {
 	}
 	
 	/**
-	 * 	»ñÈ¡Ò»¸öÀàÖĞµÄËùÓĞ¸¸Àà¡£
-	 * @param cl Ö¸¶¨µÄÀà¡£
-	 * @return ¸ÃÀàµÄËùÓĞ¸¸Àà×é³ÉµÄÊı×é¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * 	è·å–ä¸€ä¸ªç±»ä¸­çš„æ‰€æœ‰çˆ¶ç±»ã€‚
+	 * @param cl æŒ‡å®šçš„ç±»ã€‚
+	 * @return è¯¥ç±»çš„æ‰€æœ‰çˆ¶ç±»ç»„æˆçš„æ•°ç»„ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static Class<?>[] getSuperClassArray(Class<?> cl){
 		Objects.requireNonNull(cl, DwarfUtil.getStringField(StringFieldKey.CLASSUTIL_0));
@@ -68,10 +68,10 @@ public final class ClassUtil {
 	}
 	
 	/**
-	 * »ñÈ¡Ò»¸öÀàËùÊµÏÖµÄËùÓĞ½Ó¿Ú£¬°üÀ¨×ÔÉíÒÔ¼°¸¸ÀàÊµÏÖµÄËùÓĞ½Ó¿ÚºÍÊµÏÖ½Ó¿ÚµÄ¸¸½Ó¿Ú¡£
-	 * @param cl Ö¸¶¨µÄÀà¡£
-	 * @return ¸ÃÀàÒÔ¼°¸¸ÀàÊµÏÖµÄËùÓĞ½Ó¿Ú×é³ÉµÄ¼¯ºÏ¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * è·å–ä¸€ä¸ªç±»æ‰€å®ç°çš„æ‰€æœ‰æ¥å£ï¼ŒåŒ…æ‹¬è‡ªèº«ä»¥åŠçˆ¶ç±»å®ç°çš„æ‰€æœ‰æ¥å£å’Œå®ç°æ¥å£çš„çˆ¶æ¥å£ã€‚
+	 * @param cl æŒ‡å®šçš„ç±»ã€‚
+	 * @return è¯¥ç±»ä»¥åŠçˆ¶ç±»å®ç°çš„æ‰€æœ‰æ¥å£ç»„æˆçš„é›†åˆã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static Collection<Class<?>> getImplInterfaces(Class<?> cl){
 		Objects.requireNonNull(cl, DwarfUtil.getStringField(StringFieldKey.CLASSUTIL_0));
@@ -98,10 +98,10 @@ public final class ClassUtil {
 	}
 	
 	/**
-	 * »ñÈ¡Ò»¸öÊµÀıµÄÀàËùÊµÏÖµÄËùÓĞ½Ó¿Ú£¬°üÀ¨×ÔÉíÒÔ¼°¸¸ÀàÊµÏÖµÄËùÓĞ½Ó¿ÚºÍÊµÏÖ½Ó¿ÚµÄ¸¸½Ó¿Ú¡£
-	 * @param o Ö¸¶¨µÄÊµÀı¡£
-	 * @return ¸ÃÊµÀıµÄÀàÒÔ¼°¸¸ÀàÊµÏÖµÄËùÓĞ½Ó¿Ú×é³ÉµÄ¼¯ºÏ¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * è·å–ä¸€ä¸ªå®ä¾‹çš„ç±»æ‰€å®ç°çš„æ‰€æœ‰æ¥å£ï¼ŒåŒ…æ‹¬è‡ªèº«ä»¥åŠçˆ¶ç±»å®ç°çš„æ‰€æœ‰æ¥å£å’Œå®ç°æ¥å£çš„çˆ¶æ¥å£ã€‚
+	 * @param o æŒ‡å®šçš„å®ä¾‹ã€‚
+	 * @return è¯¥å®ä¾‹çš„ç±»ä»¥åŠçˆ¶ç±»å®ç°çš„æ‰€æœ‰æ¥å£ç»„æˆçš„é›†åˆã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static Collection<Class<?>> getImplInterfaces(Object o){
 		Objects.requireNonNull(o, DwarfUtil.getStringField(StringFieldKey.CLASSUTIL_1));
@@ -109,10 +109,10 @@ public final class ClassUtil {
 	}
 	
 	/**
-	 * »ñÈ¡Ò»¸öÀàËùÊµÏÖµÄËùÓĞ½Ó¿Ú£¬°üÀ¨×ÔÉíÒÔ¼°¸¸ÀàÊµÏÖµÄËùÓĞ½Ó¿ÚºÍÊµÏÖ½Ó¿ÚµÄ¸¸½Ó¿Ú¡£
-	 * @param cl Ö¸¶¨µÄÀà¡£
-	 * @return ¸ÃÀàÒÔ¼°¸¸ÀàÊµÏÖµÄËùÓĞ½Ó¿Ú×é³ÉµÄÊı×é¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * è·å–ä¸€ä¸ªç±»æ‰€å®ç°çš„æ‰€æœ‰æ¥å£ï¼ŒåŒ…æ‹¬è‡ªèº«ä»¥åŠçˆ¶ç±»å®ç°çš„æ‰€æœ‰æ¥å£å’Œå®ç°æ¥å£çš„çˆ¶æ¥å£ã€‚
+	 * @param cl æŒ‡å®šçš„ç±»ã€‚
+	 * @return è¯¥ç±»ä»¥åŠçˆ¶ç±»å®ç°çš„æ‰€æœ‰æ¥å£ç»„æˆçš„æ•°ç»„ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static Class<?>[] getImplInterfacesArray(Class<?> cl){
 		Objects.requireNonNull(cl, DwarfUtil.getStringField(StringFieldKey.CLASSUTIL_0));
@@ -120,17 +120,17 @@ public final class ClassUtil {
 	}
 	
 	/**
-	 * »ñÈ¡Ò»¸öÊµÀıµÄÀàËùÊµÏÖµÄËùÓĞ½Ó¿Ú£¬°üÀ¨×ÔÉíÒÔ¼°¸¸ÀàÊµÏÖµÄËùÓĞ½Ó¿ÚºÍÊµÏÖ½Ó¿ÚµÄ¸¸½Ó¿Ú¡£
-	 * @param o Ö¸¶¨µÄÊµÀı¡£
-	 * @return ¸ÃÊµÀıµÄÀàÒÔ¼°¸¸ÀàÊµÏÖµÄËùÓĞ½Ó¿Ú×é³ÉµÄÊı×é¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * è·å–ä¸€ä¸ªå®ä¾‹çš„ç±»æ‰€å®ç°çš„æ‰€æœ‰æ¥å£ï¼ŒåŒ…æ‹¬è‡ªèº«ä»¥åŠçˆ¶ç±»å®ç°çš„æ‰€æœ‰æ¥å£å’Œå®ç°æ¥å£çš„çˆ¶æ¥å£ã€‚
+	 * @param o æŒ‡å®šçš„å®ä¾‹ã€‚
+	 * @return è¯¥å®ä¾‹çš„ç±»ä»¥åŠçˆ¶ç±»å®ç°çš„æ‰€æœ‰æ¥å£ç»„æˆçš„æ•°ç»„ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static Class<?>[] getImplInterfacesArray(Object o){
 		Objects.requireNonNull(o, DwarfUtil.getStringField(StringFieldKey.CLASSUTIL_1));
 		return getImplInterfaces(o).toArray(new Class<?>[0]);
 	}
 	
-	//¸ÃÀàÎŞ·¨ÊµÀı»¯
+	//è¯¥ç±»æ— æ³•å®ä¾‹åŒ–
 	private ClassUtil(){}
 
 }

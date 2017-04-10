@@ -4,40 +4,40 @@ import com.dwarfeng.dutil.basic.cna.model.MapModel;
 import com.dwarfeng.dutil.basic.prog.Obverser;
 
 /**
- * Ó³ÉäÄ£ĞÍ¹Û²ìÆ÷¡£
+ * æ˜ å°„æ¨¡å‹è§‚å¯Ÿå™¨ã€‚
  * @author DwArFeng
  * @since 0.1.0-beta
  */
 public interface MapObverser<K, V> extends Obverser {
 	
 	/**
-	 * Í¨ÖªÖ¸¶¨µÄ¼ü-Öµ¶Ô±»Ìí¼Ó¡£
-	 * @param key Ö¸¶¨µÄ¼ü¡£
-	 * @param value Ö¸¶¨µÄÖµ¡£
+	 * é€šçŸ¥æŒ‡å®šçš„é”®-å€¼å¯¹è¢«æ·»åŠ ã€‚
+	 * @param key æŒ‡å®šçš„é”®ã€‚
+	 * @param value æŒ‡å®šçš„å€¼ã€‚
 	 */
 	public void firePut(K key, V value);
 	
 	/**
-	 * Í¨ÖªÖ¸¶¨µÄ¼üÓ³ÉäµÄÔªËØ±»¸Ä±ä¡£
-	 * <p> ×¢Òâ£¬µ±µ÷ÓÃ {@link MapModel#put(Object, Object)} ·½·¨Ê±£¬Èç¹ûÄ£ĞÍÖĞÒÑ¾­´æÔÚÖ¸¶¨µÄ¼ü£¬
-	 * ÔòÄ£ĞÍ»áµ÷ÓÃ¸Ã·½·¨½øĞĞÍ¨Öª£¬¶ø²»ÊÇµ÷ÓÃ {@link #firePut(Object, Object)}·½·¨½øĞĞÍ¨Öª¡£
-	 * @param key Ö¸¶¨µÄ¼ü¡£
-	 * @param oldValue ¸Ã¼ü¾ÉµÄÓ³ÉäÖµ¡£
-	 * @param newValue ¸Ã¼üĞÂµÄÓ³ÉäÖµ¡£
+	 * é€šçŸ¥æŒ‡å®šçš„é”®æ˜ å°„çš„å…ƒç´ è¢«æ”¹å˜ã€‚
+	 * <p> æ³¨æ„ï¼Œå½“è°ƒç”¨ {@link MapModel#put(Object, Object)} æ–¹æ³•æ—¶ï¼Œå¦‚æœæ¨¡å‹ä¸­å·²ç»å­˜åœ¨æŒ‡å®šçš„é”®ï¼Œ
+	 * åˆ™æ¨¡å‹ä¼šè°ƒç”¨è¯¥æ–¹æ³•è¿›è¡Œé€šçŸ¥ï¼Œè€Œä¸æ˜¯è°ƒç”¨ {@link #firePut(Object, Object)}æ–¹æ³•è¿›è¡Œé€šçŸ¥ã€‚
+	 * @param key æŒ‡å®šçš„é”®ã€‚
+	 * @param oldValue è¯¥é”®æ—§çš„æ˜ å°„å€¼ã€‚
+	 * @param newValue è¯¥é”®æ–°çš„æ˜ å°„å€¼ã€‚
 	 */
 	public void fireChanged(K key, V oldValue, V newValue);
 	
 	/**
-	 * Í¨ÖªÄ£ĞÍÖĞÒÆ³ıÁËÖ¸¶¨µÄ¼ü¡£
-	 * @param key Ö¸¶¨µÄ¼ü¡£
-	 * @param value ¸Ã¼üµÄ¶ÔÓ¦Öµ¡£
+	 * é€šçŸ¥æ¨¡å‹ä¸­ç§»é™¤äº†æŒ‡å®šçš„é”®ã€‚
+	 * @param key æŒ‡å®šçš„é”®ã€‚
+	 * @param value è¯¥é”®çš„å¯¹åº”å€¼ã€‚
 	 */
 	public void fireRemoved(K key, V value);
 	
 	/**
-	 * Í¨ÖªÄ£ĞÍÖĞµÄÄÚÈİ±»Çå³ı¡£
-	 * <p> ¸Ã·½·¨ÊÇÎªÁËÌá¸ßĞ§ÂÊ¶ø¶¨ÒåµÄ£¬µ±Ä£ĞÍÖ´ĞĞ {@link MapModel#clear()} ·½·¨µÄÊ±ºò£¬
-	 * »á´¥·¢¸ÃÍ¨Öª¶ø²»ÊÇÒ»ÌõÌõµØ´¥·¢ {@link #fireRemoved(Object, Object)}¡£
+	 * é€šçŸ¥æ¨¡å‹ä¸­çš„å†…å®¹è¢«æ¸…é™¤ã€‚
+	 * <p> è¯¥æ–¹æ³•æ˜¯ä¸ºäº†æé«˜æ•ˆç‡è€Œå®šä¹‰çš„ï¼Œå½“æ¨¡å‹æ‰§è¡Œ {@link MapModel#clear()} æ–¹æ³•çš„æ—¶å€™ï¼Œ
+	 * ä¼šè§¦å‘è¯¥é€šçŸ¥è€Œä¸æ˜¯ä¸€æ¡æ¡åœ°è§¦å‘ {@link #fireRemoved(Object, Object)}ã€‚
 	 */
 	public void fireCleared();
 

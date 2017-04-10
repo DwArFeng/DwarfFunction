@@ -5,11 +5,11 @@ import java.util.concurrent.locks.ReadWriteLock;
 import com.dwarfeng.dutil.basic.threads.ExternalReadWriteThreadSafe;
 
 /**
- * ͬ��ӳ��ģ��
+ * 同步映射模型
  * <p>
- * �ṩһ���̰߳�ȫ��ӳ��ģ�ͣ���ģ�͵��̰߳�ȫ����ͬ����д���� {@link ReadWriteLock}��ʵ�ֵġ�
- * ���ڴ󲿷ַ���������ֱ�ӵ��ö����õ����̰߳�ȫ�ķ���������һС������Ҫ�Է��صĶ�����������ģ� ����Ԥ֪�Ĳ�����ʱ������Ҫ��ȡģ���е��������ⲿͬ����
- * ����ʹ�� {@link #keySet()}�������б�����ʵ���������£�
+ * 提供一个线程安全的映射模型，该模型的线程安全是用同步读写锁（ {@link ReadWriteLock}）实现的。
+ * 对于大部分方法，可以直接调用而不用担心线程安全的方法；对于一小部分需要对返回的对象进行连续的， 不可预知的操作的时候，则需要获取模型中的锁用以外部同步。
+ * 比如使用 {@link #keySet()}方法进行遍历。实例代码如下：
  * 
  * <pre>
  * 
@@ -25,7 +25,7 @@ import com.dwarfeng.dutil.basic.threads.ExternalReadWriteThreadSafe;
  * }
  * </pre>
  * <p>
- * ��ģ�����̰߳�ȫ�ġ�
+ * 该模型是线程安全的。
  * 
  * @author DwArFeng
  * @since 0.1.0-beta

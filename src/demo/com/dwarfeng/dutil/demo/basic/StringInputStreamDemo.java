@@ -8,7 +8,7 @@ import com.dwarfeng.dutil.basic.io.CT;
 import com.dwarfeng.dutil.basic.io.StringInputStream;
 
 /**
- * {@link StringInputStream} µÄÊ¾Àý¡£
+ * {@link StringInputStream} çš„ç¤ºä¾‹ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
@@ -16,9 +16,9 @@ public class StringInputStreamDemo {
 
 	public static void main(String[] args) throws IOException {
 		String testString = new StringBuilder()
-				.append("ÕâÊÇµÚÒ»ÐÐ\n")
+				.append("è¿™æ˜¯ç¬¬ä¸€è¡Œ\n")
 				.append("This is the second line\n")
-				.append("ÕâÊÇµÚÈýÐÐ\n")
+				.append("è¿™æ˜¯ç¬¬ä¸‰è¡Œ\n")
 				.append("This is the forth line")
 				.toString();
 		StringInputStream in = new StringInputStream(testString, Charset.forName("UTF-8"));

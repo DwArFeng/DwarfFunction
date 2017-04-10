@@ -16,23 +16,23 @@ import com.dwarfeng.dutil.math.linalge.LinalgeUtil;
 import com.dwarfeng.dutil.math.linalge.RowVector;
 
 /**
- * ĞĞÏòÁ¿¡£
- * <p> ¸Ã¶ÔÀà½ÓÊÜ¿É±ä¶ÔÏó£¬´«ÈëÆäÖĞµÄÖµ¶ÔÏó¶¼»áÖ±½Ó´æ´¢£¬ÆäÖĞ±äÁ¿·¢Éú±ä»¯µÄ»°£¬¸Ã¶ÔÏóÒ²»á·¢Éú±ä»¯¡£
- * <p> ĞĞÏòÁ¿ÓëÊı×é²»Ò»ÑùµÄµØ·½ÔÚÓÚ£¬ĞĞÏòÁ¿²»ÔÊĞí¾ßÓĞ0¸öÔªËØ£¬ÒòÎª0¸öÔªËØµÄĞĞÏòÁ¿ÍêÈ«Ã»ÓĞÒâÒå¡£
+ * è¡Œå‘é‡ã€‚
+ * <p> è¯¥å¯¹ç±»æ¥å—å¯å˜å¯¹è±¡ï¼Œä¼ å…¥å…¶ä¸­çš„å€¼å¯¹è±¡éƒ½ä¼šç›´æ¥å­˜å‚¨ï¼Œå…¶ä¸­å˜é‡å‘ç”Ÿå˜åŒ–çš„è¯ï¼Œè¯¥å¯¹è±¡ä¹Ÿä¼šå‘ç”Ÿå˜åŒ–ã€‚
+ * <p> è¡Œå‘é‡ä¸æ•°ç»„ä¸ä¸€æ ·çš„åœ°æ–¹åœ¨äºï¼Œè¡Œå‘é‡ä¸å…è®¸å…·æœ‰0ä¸ªå…ƒç´ ï¼Œå› ä¸º0ä¸ªå…ƒç´ çš„è¡Œå‘é‡å®Œå…¨æ²¡æœ‰æ„ä¹‰ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public class DefaultFormulaRowVector extends AbstractMathObject implements FormulaRowVector{
 	
-	/**´æ´¢ĞĞÏòÁ¿ÖµµÄÊı×é*/
+	/**å­˜å‚¨è¡Œå‘é‡å€¼çš„æ•°ç»„*/
 	protected final FothValue[] vals;
-	/**ĞĞÏòÁ¿µÄ±äÁ¿¿Õ¼ä*/
+	/**è¡Œå‘é‡çš„å˜é‡ç©ºé—´*/
 	protected final FothVariableSpace vs;
 	
 	/**
-	 * Éú³ÉÒ»¸öÓëmathÖĞĞĞÏòÁ¿µÄÖµÒ»ÖÂµÄÓĞ½á¹¹ĞĞÏòÁ¿¡£
-	 * @param rowVector math°üÖĞµÄĞĞÏòÁ¿¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * ç”Ÿæˆä¸€ä¸ªä¸mathä¸­è¡Œå‘é‡çš„å€¼ä¸€è‡´çš„æœ‰ç»“æ„è¡Œå‘é‡ã€‚
+	 * @param rowVector mathåŒ…ä¸­çš„è¡Œå‘é‡ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public DefaultFormulaRowVector(RowVector rowVector){
 		Objects.requireNonNull(rowVector, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaRowVector_3));
@@ -47,11 +47,11 @@ public class DefaultFormulaRowVector extends AbstractMathObject implements Formu
 	}
 	
 	/**
-	 * Éú³ÉÒ»¸öÓµÓĞÖ¸¶¨ÁĞÔªËØµÄÁĞÏòÁ¿¡£
-	 * <p> Çë×¢Òâ£ºÕâÀïµÄÁĞÔªËØÊı×é±ØĞëÓĞĞ§£¬ÓĞĞ§ÊÇÖ¸ÁĞÔªËØµÄ¸öÊı±ØĞë´óÓÚ0¡£
-	 * @param vals Ö¸¶¨µÄÁĞÔªËØ¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
-	 * @throws IllegalArgumentException ÔªËØÊı×éÎŞĞ§¡£
+	 * ç”Ÿæˆä¸€ä¸ªæ‹¥æœ‰æŒ‡å®šåˆ—å…ƒç´ çš„åˆ—å‘é‡ã€‚
+	 * <p> è¯·æ³¨æ„ï¼šè¿™é‡Œçš„åˆ—å…ƒç´ æ•°ç»„å¿…é¡»æœ‰æ•ˆï¼Œæœ‰æ•ˆæ˜¯æŒ‡åˆ—å…ƒç´ çš„ä¸ªæ•°å¿…é¡»å¤§äº0ã€‚
+	 * @param vals æŒ‡å®šçš„åˆ—å…ƒç´ ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
+	 * @throws IllegalArgumentException å…ƒç´ æ•°ç»„æ— æ•ˆã€‚
 	 */
 	public DefaultFormulaRowVector(double[] vals) {
 		Objects.requireNonNull(vals, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaRowVector_1));
@@ -64,12 +64,12 @@ public class DefaultFormulaRowVector extends AbstractMathObject implements Formu
 	}
 	
 	/**
-	 * Éú³ÉÒ»¸öÓµÓĞÖ¸¶¨Öµ½Ó¿ÚÔªËØµÄµ±Ç°Öµ×é³ÉµÄÁĞÏòÁ¿¡£
-	 * <p> 	Çë×¢Òâ£¬´Ë´¦µÄÖµ½Ó¿ÚÔªËØ±ØĞëÍêÈ«ÓĞĞ§¡£
-	 * @param valueables Ö¸¶¨µÄÖµ½Ó¿Ú¡£
-	 * @throws VariableConflictException ±äÁ¿³åÍ»Òì³£¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
-	 * @throws IllegalArgumentException Öµ½Ó¿ÚÊı×éÎŞĞ§¡£ 
+	 * ç”Ÿæˆä¸€ä¸ªæ‹¥æœ‰æŒ‡å®šå€¼æ¥å£å…ƒç´ çš„å½“å‰å€¼ç»„æˆçš„åˆ—å‘é‡ã€‚
+	 * <p> 	è¯·æ³¨æ„ï¼Œæ­¤å¤„çš„å€¼æ¥å£å…ƒç´ å¿…é¡»å®Œå…¨æœ‰æ•ˆã€‚
+	 * @param valueables æŒ‡å®šçš„å€¼æ¥å£ã€‚
+	 * @throws VariableConflictException å˜é‡å†²çªå¼‚å¸¸ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
+	 * @throws IllegalArgumentException å€¼æ¥å£æ•°ç»„æ— æ•ˆã€‚ 
 	 */
 	public DefaultFormulaRowVector(FothValue[] valueables) throws VariableConflictException{
 		ArrayUtil.requireNotContainsNull(valueables, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaRowVector_2));

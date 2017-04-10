@@ -3,7 +3,7 @@ package com.dwarfeng.dutil.develop.backgr.obv;
 import com.dwarfeng.dutil.basic.prog.Obverser;
 
 /**
- * ÈÎÎñ¹Û²ìÆ÷¡£
+ * ä»»åŠ¡è§‚å¯Ÿå™¨ã€‚
  * 
  * @author DwArFeng
  * @since 0.1.0-beta
@@ -11,12 +11,12 @@ import com.dwarfeng.dutil.basic.prog.Obverser;
 public interface TaskObverser extends Obverser {
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷ÈÎÎñÒÑ¾­¿ªÊ¼Ö´ĞĞ¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨ä»»åŠ¡å·²ç»å¼€å§‹æ‰§è¡Œã€‚
 	 */
 	public void fireStarted();
 
 	/**
-	 * Í¨ÖªÈÎÎñÒÑ¾­½áÊøÖ´ĞĞ¡£
+	 * é€šçŸ¥ä»»åŠ¡å·²ç»ç»“æŸæ‰§è¡Œã€‚
 	 */
 	public void fireFinished();
 

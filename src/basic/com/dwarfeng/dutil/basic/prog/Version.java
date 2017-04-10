@@ -3,23 +3,23 @@ package com.dwarfeng.dutil.basic.prog;
 public interface Version {
 
 	/**
-	 * ·µ»ØÕâ¸ö°æ±¾µÄÀàĞÍ¡£
+	 * è¿”å›è¿™ä¸ªç‰ˆæœ¬çš„ç±»å‹ã€‚
 	 * 
-	 * @return Õâ¸ö°æ±¾µÄÀàĞÍ¡£
+	 * @return è¿™ä¸ªç‰ˆæœ¬çš„ç±»å‹ã€‚
 	 */
 	public VersionType getVersionType();
 
 	/**
-	 * ·µ»ØÕâ¸ö°æ±¾µÄ³¤Ãû³Æ¡£
+	 * è¿”å›è¿™ä¸ªç‰ˆæœ¬çš„é•¿åç§°ã€‚
 	 * 
-	 * @return Õâ¸ö°æ±¾µÄ³¤Ãû³Æ
+	 * @return è¿™ä¸ªç‰ˆæœ¬çš„é•¿åç§°
 	 */
 	public String getLongName();
 
 	/**
-	 * ·µ»ØÕâ¸ö°æ±¾µÄ¶ÌÃû³Æ¡£
+	 * è¿”å›è¿™ä¸ªç‰ˆæœ¬çš„çŸ­åç§°ã€‚
 	 * 
-	 * @return Õâ¸ö°æ±¾µÄ¶ÌÃû³Æ¡£
+	 * @return è¿™ä¸ªç‰ˆæœ¬çš„çŸ­åç§°ã€‚
 	 */
 	public String getShortName();
 

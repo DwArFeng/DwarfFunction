@@ -8,11 +8,11 @@ import com.dwarfeng.dutil.develop.cfg.ConfigKey;
 import com.dwarfeng.dutil.develop.cfg.CurrentValueContainer;
 
 /**
- * ÅäÖÃ¶ÁÈ¡Æ÷¡£
+ * é…ç½®è¯»å–å™¨ã€‚
  * <p>
- * ÓÃÓÚ¶ÁÈ¡Ö¸¶¨µÄÅäÖÃ¡£
+ * ç”¨äºè¯»å–æŒ‡å®šçš„é…ç½®ã€‚
  * 
- * @deprecated ¸Ã½Ó¿ÚÓÉ {@link Loader} ½Ó¿Ú´úÌæ¡£
+ * @deprecated è¯¥æ¥å£ç”± {@link Loader} æ¥å£ä»£æ›¿ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */

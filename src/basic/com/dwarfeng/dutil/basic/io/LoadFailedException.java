@@ -3,7 +3,7 @@ package com.dwarfeng.dutil.basic.io;
 import com.dwarfeng.dutil.basic.prog.ProcessException;
 
 /**
- * ∂¡»° ß∞‹“Ï≥£°£
+ * ËØªÂèñÂ§±Ë¥•ÂºÇÂ∏∏„ÄÇ
  * @author DwArFeng
  * @since 0.0.2-beta
  */

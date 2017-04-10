@@ -3,9 +3,9 @@ package com.dwarfeng.dutil.develop.cfg.parser;
 import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
 /**
- * ²¼¶ûÖµ½âÎöÆ÷¡£
+ * å¸ƒå°”å€¼è§£æå™¨ã€‚
  * <p>
- * ¸Ã½âÎöÆ÷»ñµÃµÄÊÇ <code>boolean</code> ¶ÔÏó¡£
+ * è¯¥è§£æå™¨è·å¾—çš„æ˜¯ <code>boolean</code> å¯¹è±¡ã€‚
  * 
  * @author DwArFeng
  * @since 0.1.0-beta

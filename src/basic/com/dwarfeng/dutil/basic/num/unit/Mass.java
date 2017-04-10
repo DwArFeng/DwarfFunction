@@ -3,25 +3,25 @@ package com.dwarfeng.dutil.basic.num.unit;
 import com.dwarfeng.dutil.basic.num.NumberValue;
 
 /**
- * ÖÊÁ¿Ã¶¾Ù¡£
+ * è´¨é‡æšä¸¾ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public enum Mass implements NumberValue{
 	
-	/**¶Ö*/
+	/**å¨*/
 	T(1d),
-	/**Ç§¿Ë*/
+	/**åƒå…‹*/
 	KG(1000d),
-	/**¿Ë*/
+	/**å…‹*/
 	G(1000000d),
-	/**ºÁ¿Ë*/
+	/**æ¯«å…‹*/
 	MG(1000000000d),
-	/**°»Ë¾*/
+	/**ç›å¸*/
 	OZ(35273.96194958d),
-	/**°õ*/
+	/**ç£…*/
 	LB(2204.62262185d),
-	/**´òÀ¼*/
+	/**æ‰“å…°*/
 	DR(564383.39119329d)
 	;
 

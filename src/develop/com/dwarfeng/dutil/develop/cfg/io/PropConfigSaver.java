@@ -15,14 +15,14 @@ import com.dwarfeng.dutil.develop.cfg.ConfigKey;
 import com.dwarfeng.dutil.develop.cfg.CurrentValueContainer;
 
 /**
- * Properties ÅäÖÃ±£´æÆ÷¡£
+ * Properties é…ç½®ä¿å­˜å™¨ã€‚
  * <p>
- * ¸ÃÅäÖÃ±£´æÆ÷¼ÙÉè´ı±£´æµÄÎÄ¼ş¸ñÊ½·ûºÏ java µÄ properties ÎÄ¼ş¸ñÊ½¡£±ÈÈç <blockquote> <code>
- * 			# ×¢ÊÍ...<br>
+ * è¯¥é…ç½®ä¿å­˜å™¨å‡è®¾å¾…ä¿å­˜çš„æ–‡ä»¶æ ¼å¼ç¬¦åˆ java çš„ properties æ–‡ä»¶æ ¼å¼ã€‚æ¯”å¦‚ <blockquote> <code>
+ * 			# æ³¨é‡Š...<br>
  * 			Config_0 = TURE<br>
  * 			Config_1 = FALSE<br>
  * 			Config_2 = 12.450
- * 		</code> </blockquote> ÆäÖĞ µÈºÅ×ó±ßµÄÊÇ¼ü£¬µÈºÅÓÒ±ßµÄÊÇÖµ¡£
+ * 		</code> </blockquote> å…¶ä¸­ ç­‰å·å·¦è¾¹çš„æ˜¯é”®ï¼Œç­‰å·å³è¾¹çš„æ˜¯å€¼ã€‚
  * 
  * @author DwArFeng
  * @since 0.0.3-beta
@@ -32,12 +32,12 @@ public class PropConfigSaver extends StreamSaver<CurrentValueContainer> {
 	private boolean flag = true;
 
 	/**
-	 * Éú³ÉÒ»¸öĞÂµÄ Properties ÅäÖÃ±£´æÆ÷¡£
+	 * ç”Ÿæˆä¸€ä¸ªæ–°çš„ Properties é…ç½®ä¿å­˜å™¨ã€‚
 	 * 
 	 * @param out
-	 *            Ö¸¶¨µÄÊä³öÁ÷¡£
+	 *            æŒ‡å®šçš„è¾“å‡ºæµã€‚
 	 * @throws NullPointerException
-	 *             Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 *             å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public PropConfigSaver(OutputStream out) {
 		super(out);

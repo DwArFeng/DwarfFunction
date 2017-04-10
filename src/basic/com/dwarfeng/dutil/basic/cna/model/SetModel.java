@@ -6,11 +6,11 @@ import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
 import com.dwarfeng.dutil.basic.prog.ObverserSet;
 
 /**
- * ����ģ�͡�
+ * 集合模型。
  * <p>
- * ��ģ����һ����������ģ�ͣ�����ģ�Ϳ��Դ�����ɸ�����ȵ�Ԫ�أ�����֤Ԫ�ص�˳�� ��ģ���� {@link Set} ��һ��ʵ�֡�
+ * 该模型是一个集合数据模型，集合模型可以存放若干个不相等的元素，不保证元素的顺序。 该模型是 {@link Set} 的一个实现。
  * <p>
- * ���б��е�Ԫ�ر����ӡ�ɾ������յ�ʱ�򣬻Ὣ��Ҫ����Ϣ�ṩ��ע����ģ���ϵ����������ϡ�
+ * 当列表中的元素被增加、删除、清空的时候，会将必要的信息提供给注册在模型上的侦听器集合。
  * 
  * @author DwArFeng
  * @since 0.1.0-beta

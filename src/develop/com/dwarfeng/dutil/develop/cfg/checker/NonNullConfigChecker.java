@@ -5,9 +5,9 @@ import java.util.Objects;
 import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
 
 /**
- * ·Ç¿Õ¼ì²éÆ÷¡£
+ * éç©ºæ£€æŸ¥å™¨ã€‚
  * <p>
- * Ö»ÒªÎÄ±¾²»ÊÇ <code>null</code>£¬¾ÍÊÇÓĞĞ§µÄ¡£
+ * åªè¦æ–‡æœ¬ä¸æ˜¯ <code>null</code>ï¼Œå°±æ˜¯æœ‰æ•ˆçš„ã€‚
  * 
  * @author DwArFeng
  * @since 0.0.2-beta
