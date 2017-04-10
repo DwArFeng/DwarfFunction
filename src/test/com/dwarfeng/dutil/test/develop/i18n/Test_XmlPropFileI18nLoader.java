@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.net.URL;
+import java.io.FileInputStream;
 import java.util.Locale;
 import java.util.Set;
 
@@ -14,19 +14,18 @@ import org.junit.Test;
 import com.dwarfeng.dutil.basic.io.LoadFailedException;
 import com.dwarfeng.dutil.develop.i18n.DelegateI18nHandler;
 import com.dwarfeng.dutil.develop.i18n.I18nHandler;
-import com.dwarfeng.dutil.develop.i18n.io.XmlPropResourceI18nLoader;
+import com.dwarfeng.dutil.develop.i18n.io.XmlPropFileI18nLoader;
 
-public class Test_XmlPropResourceI18nLoader {
+public class Test_XmlPropFileI18nLoader {
 
-	private static final URL XML_URL = Test_XmlPropResourceI18nLoader.class
-			.getResource("/com/dwarfeng/dutil/resource/test/develop/i18n/i18n_resource.xml");
+	private static final String XML_PATH = "bin/com/dwarfeng/dutil/resource/test/develop/i18n/i18n_file.xml";
 	private static I18nHandler handler = null;
-	private static XmlPropResourceI18nLoader loader = null;
+	private static XmlPropFileI18nLoader loader = null;
 
 	@Before
 	public void setUp() throws Exception {
 		handler = new DelegateI18nHandler();
-		loader = new XmlPropResourceI18nLoader(XML_URL.openStream());
+		loader = new XmlPropFileI18nLoader(new FileInputStream(XML_PATH));
 	}
 
 	@Test(expected = LoadFailedException.class)
