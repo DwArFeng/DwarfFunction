@@ -29,11 +29,11 @@ import com.dwarfeng.dutil.develop.i18n.PropUrlI18nInfo;
  * Xml 文件的格式如下：
  * 
  * <pre>
- * &ltroot&gt
- *	 &ltinfo locale="en_US" name="English" file="directory/en_US.properties"/&gt
- *	 &ltinfo locale="zh_CN" name="简体中文" file="directory/zh_CN.properties"/&gt
- *	 &ltinfo locale="ja_JP" name="日本語" file="directory/ja_JP.properties"/&gt
- * &lt/root&gt
+ * &lt;root&gt;
+ *	 &lt;info locale="en_US" name="English" file="directory/en_US.properties"/&gt;
+ *	 &lt;info locale="zh_CN" name="简体中文" file="directory/zh_CN.properties"/&gt;
+ *	 &lt;info locale="ja_JP" name="日本語" file="directory/ja_JP.properties"/&gt;
+ * &lt;/root&gt;
  * </pre>
  * 
  * @author DwArFeng

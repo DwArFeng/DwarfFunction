@@ -116,7 +116,12 @@ Beta_0.1.0_20170403_build_A
 	新增 dutil.develop.backgr 包，提供程序后台的实现
 	新增 dutil.basic.UnsafeGetter<T> 接口
 	
-Beta_0.1.1
+Beta_0.1.0_20170410_build_A
+	该版本可能与之前的版本有轻微的不兼容。
+	在接口 dutil.basic.cna.model.KeyListModel 中添加方法 V get(K)。
+		这可能导致该版本与前一个版本有轻微的不兼容。
+	在接口 dutil.basic.cna.model.KeySetModel 中添加方法 Vget(K)。
+		这可能导致该版本与前一个版本有轻微的不兼容。
 	修正 dutil.basic.cna.model 包中的内容。
 		AbstractMapModel 中的 obversers 属性由 private 改为 protected。
 		AbstractSetModel 中的 obversers 属性由 private 改为 protected。

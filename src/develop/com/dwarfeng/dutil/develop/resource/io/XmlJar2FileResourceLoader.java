@@ -28,11 +28,11 @@ import com.dwarfeng.dutil.develop.resource.Url2FileResource;
  * XML 需要满足以下格式
  * 
  * <pre>
- * &ltroot&gt
- * 	&ltinfo key="key.name.1" path="file_pathl.1" default= "jar_path.1"/&gt
- * 	&ltinfo key="key.name.2" path="file_pathl.2" default= "jar_path.2"/&gt
- * 	&ltinfo key="key.name.3" path="file_pathl.3" default= "jar_path.3"/&gt
- * &lt/root&gt
+ * &lt;root&gt;
+ * 	&lt;info key="key.name.1" path="file_pathl.1" default= "jar_path.1"/&gt;
+ * 	&lt;info key="key.name.2" path="file_pathl.2" default= "jar_path.2"/&gt;
+ * 	&lt;info key="key.name.3" path="file_pathl.3" default= "jar_path.3"/&gt;
+ * &lt;/root&gt;
  * </pre>
  * 
  * @author DwArFeng

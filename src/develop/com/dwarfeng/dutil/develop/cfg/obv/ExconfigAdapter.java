@@ -5,7 +5,7 @@ import com.dwarfeng.dutil.develop.cfg.ConfigKey;
 import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
 /**
- * ExÅäÖÃÄ£ĞÍÊÊÅäÆ÷¡£
+ * Exé…ç½®æ¨¡å‹é€‚é…å™¨ã€‚
  * 
  * @author DwArFeng
  * @since 0.1.0-beta
