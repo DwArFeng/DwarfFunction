@@ -19,6 +19,18 @@ import com.dwarfeng.dutil.basic.prog.WithKey;
  * @since 0.1.0-beta
  */
 public interface KeySetModel<K, V extends WithKey<K>> extends SetModel<V> {
+	
+	/**
+	 * 获取指定的键对应的值。
+	 * 
+	 * <p>
+	 * 如果键值集合模型中没有指定的键，则返回 <code>null</code>。
+	 * 
+	 * @param key
+	 *            指定的键。
+	 * @return 指定的键对应的值。
+	 */
+	public V get(K key);
 
 	/**
 	 * 如果集合包含指定的键，则返回 <code>true</code>。

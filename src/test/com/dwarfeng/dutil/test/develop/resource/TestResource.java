@@ -1,0 +1,37 @@
+package com.dwarfeng.dutil.test.develop.resource;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import com.dwarfeng.dutil.develop.resource.AbstractResource;
+
+public class TestResource extends AbstractResource {
+
+	public static final TestResource A = new TestResource("A");
+	public static final TestResource B = new TestResource("B");
+	public static final TestResource C = new TestResource("C");
+
+	public TestResource(String key) {
+		super(key);
+	}
+
+	@Override
+	public InputStream openInputStream() throws IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public OutputStream openOutputStream() throws IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void reset() throws IOException {
+		// TODO Auto-generated method stub
+
+	}
+
+}

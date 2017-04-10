@@ -81,6 +81,16 @@ public class DelegateI18nHandler implements I18nHandler {
 	/*
 	 * (non-Javadoc)
 	 * 
+	 * @see com.dwarfeng.dutil.basic.cna.model.KeySetModel#get(java.lang.Object)
+	 */
+	@Override
+	public I18nInfo get(Locale key) {
+		return delegate.get(key);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsKey(java.lang.
 	 * Object)
@@ -328,20 +338,10 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	@Override
 	public boolean setCurrentLocale(Locale locale) {
-		I18nInfo tempI18nInfo = null;
-
-		boolean containsFlag = false;
-		for (I18nInfo i18nInfo : this) {
-			if (i18nInfo.getKey().equals(locale)) {
-				containsFlag = true;
-				tempI18nInfo = i18nInfo;
-				break;
-			}
-		}
-
-		if (!containsFlag)
-			return false;
-
+		if(! containsKey(locale)) return false;
+		
+		I18nInfo tempI18nInfo = get(locale);
+		
 		I18n tempI18n = null;
 		try {
 			tempI18n = tempI18nInfo.newI18n();
@@ -369,8 +369,8 @@ public class DelegateI18nHandler implements I18nHandler {
 	 *            新的国际化接口。
 	 */
 	protected void fireCurrentLocaleChanged(Locale oldLocale, Locale newLocale, I18n newI18n) {
-		for(SetObverser<I18nInfo> obverser : delegate.getObversers()){
-			if(Objects.nonNull(obverser) && obverser instanceof I18nObverser){
+		for (SetObverser<I18nInfo> obverser : delegate.getObversers()) {
+			if (Objects.nonNull(obverser) && obverser instanceof I18nObverser) {
 				((I18nObverser) obverser).fireCurrentLocaleChanged(oldLocale, newLocale, newI18n);
 			}
 		}
@@ -378,6 +378,7 @@ public class DelegateI18nHandler implements I18nHandler {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.dwarfeng.dutil.develop.i18n.I18nHandler#getCurrentMutilang()
 	 */
 	@Override

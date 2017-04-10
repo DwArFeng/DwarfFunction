@@ -44,6 +44,20 @@ public class DelegateKeySetModel<K, V extends WithKey<K>> extends DelegateSetMod
 	/*
 	 * (non-Javadoc)
 	 * 
+	 * @see com.dwarfeng.dutil.basic.cna.model.KeySetModel#get(java.lang.Object)
+	 */
+	@Override
+	public V get(K key) {
+		for (V value : this) {
+			if (value.getKey().equals(key))
+				return value;
+		}
+		return null;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsKey(java.lang.
 	 * Object)

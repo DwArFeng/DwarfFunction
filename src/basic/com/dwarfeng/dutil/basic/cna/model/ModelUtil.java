@@ -1257,6 +1257,22 @@ public final class ModelUtil {
 		 * (non-Javadoc)
 		 * 
 		 * @see
+		 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#get(java.lang.Object)
+		 */
+		@Override
+		public V get(K key) {
+			lock.readLock().lock();
+			try {
+				return delegate.get(key);
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
 		 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#containsKey(java.lang
 		 * .Object)
 		 */
@@ -1762,14 +1778,12 @@ public final class ModelUtil {
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public static <K, V extends WithKey<K>> SyncKeySetModel<K, V> syncKeySetModel(
-			KeySetModel<K, V> keySetModel) {
+	public static <K, V extends WithKey<K>> SyncKeySetModel<K, V> syncKeySetModel(KeySetModel<K, V> keySetModel) {
 		Objects.requireNonNull(keySetModel, DwarfUtil.getStringField(StringFieldKey.MODELUTIL_4));
 		return new SyncKeySetModelImpl<>(keySetModel);
 	}
 
-	private static class SyncKeySetModelImpl<K, V extends WithKey<K>>
-			implements SyncKeySetModel<K, V> {
+	private static class SyncKeySetModelImpl<K, V extends WithKey<K>> implements SyncKeySetModel<K, V> {
 
 		private final KeySetModel<K, V> delegate;
 		private final ReadWriteLock lock = new ReentrantReadWriteLock();
@@ -1851,6 +1865,22 @@ public final class ModelUtil {
 				delegate.clearObverser();
 			} finally {
 				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#get(java.lang.Object)
+		 */
+		@Override
+		public V get(K key) {
+			lock.readLock().lock();
+			try {
+				return delegate.get(key);
+			} finally {
+				lock.readLock().unlock();
 			}
 		}
 

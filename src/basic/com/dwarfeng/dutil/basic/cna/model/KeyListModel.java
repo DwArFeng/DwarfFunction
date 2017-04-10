@@ -20,6 +20,18 @@ import com.dwarfeng.dutil.basic.prog.WithKey;
 public interface KeyListModel<K, V extends WithKey<K>> extends ListModel<V> {
 
 	/**
+	 * 获取指定的键对应的值。
+	 * 
+	 * <p>
+	 * 如果键值列表模型中没有指定的键，则返回 <code>null</code>。
+	 * 
+	 * @param key
+	 *            指定的键。
+	 * @return 指定的键对应的值。
+	 */
+	public V get(K key);
+
+	/**
 	 * 如果列表包含指定的键，则返回 <code>true</code>。
 	 * 
 	 * @param key

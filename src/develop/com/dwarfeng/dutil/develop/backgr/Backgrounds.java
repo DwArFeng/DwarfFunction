@@ -11,6 +11,7 @@ package com.dwarfeng.dutil.develop.backgr;
  * @author DwArFeng
  * @since 0.1.0-beta
  */
+@Deprecated
 public final class Backgrounds {
 
 	/**

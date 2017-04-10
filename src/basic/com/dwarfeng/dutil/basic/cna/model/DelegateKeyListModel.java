@@ -47,6 +47,21 @@ public class DelegateKeyListModel<K, V extends WithKey<K>> extends DelegateListM
 	 * (non-Javadoc)
 	 * 
 	 * @see
+	 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#get(java.lang.Object)
+	 */
+	@Override
+	public V get(K key) {
+		for (V value : this) {
+			if (value.getKey().equals(key))
+				return value;
+		}
+		return null;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
 	 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#containsKey(java.lang.
 	 * Object)
 	 */

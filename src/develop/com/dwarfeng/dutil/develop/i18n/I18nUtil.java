@@ -72,6 +72,17 @@ public final class I18nUtil {
 		 * (non-Javadoc)
 		 * 
 		 * @see
+		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#get(java.lang.Object)
+		 */
+		@Override
+		public I18nInfo get(Locale key) {
+			return delegate.get(key);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
 		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsKey(java.lang.
 		 * Object)
 		 */
@@ -441,6 +452,22 @@ public final class I18nUtil {
 			lock.readLock().lock();
 			try {
 				return delegate.getCurrentI18n();
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#get(java.lang.Object)
+		 */
+		@Override
+		public I18nInfo get(Locale key) {
+			lock.readLock().lock();
+			try {
+				return delegate.get(key);
 			} finally {
 				lock.readLock().unlock();
 			}

@@ -266,6 +266,15 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
 
 	/*
 	 * (non-Javadoc)
+	 * @see com.dwarfeng.dutil.basic.cna.model.KeySetModel#get(java.lang.Object)
+	 */
+	@Override
+	public V get(K key) {
+		return map.get(key);
+	}
+
+	/*
+	 * (non-Javadoc)
 	 * 
 	 * @see
 	 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsKey(java.lang.

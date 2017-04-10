@@ -69,6 +69,16 @@ public class DelegateResourceHandler implements ResourceHandler {
 	/*
 	 * (non-Javadoc)
 	 * 
+	 * @see com.dwarfeng.dutil.basic.cna.model.KeySetModel#get(java.lang.Object)
+	 */
+	@Override
+	public Resource get(String key) {
+		return delegate.get(key);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsKey(java.lang.
 	 * Object)

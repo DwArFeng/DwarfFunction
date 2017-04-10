@@ -50,6 +50,17 @@ public final class ResourceUtil {
 		 * (non-Javadoc)
 		 * 
 		 * @see
+		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#get(java.lang.Object)
+		 */
+		@Override
+		public Resource get(String key) {
+			return delegate.get(key);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
 		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsKey(java.lang.
 		 * Object)
 		 */
@@ -310,6 +321,28 @@ public final class ResourceUtil {
 			throw new UnsupportedOperationException();
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.lang.Object#hashCode()
+		 */
+		@Override
+		public int hashCode() {
+			return delegate.hashCode();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.lang.Object#equals(java.lang.Object)
+		 */
+		@Override
+		public boolean equals(Object obj) {
+			if (obj == this)
+				return true;
+			return delegate.equals(obj);
+		}
+
 	}
 
 	/**
@@ -378,6 +411,22 @@ public final class ResourceUtil {
 
 			} finally {
 				lock.writeLock().unlock();
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#get(java.lang.Object)
+		 */
+		@Override
+		public Resource get(String key) {
+			lock.readLock().lock();
+			try {
+				return delegate.get(key);
+			} finally {
+				lock.readLock().unlock();
 			}
 		}
 
