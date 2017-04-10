@@ -3,7 +3,7 @@ package com.dwarfeng.dutil.develop.cfg;
 import com.dwarfeng.dutil.basic.prog.Obverser;
 
 /**
- * ÅäÖÃ¹Û²ìÆ÷¡£
+ * é…ç½®è§‚å¯Ÿå™¨ã€‚
  * 
  * @author DwArFeng
  * @since 0.0.2-beta
@@ -11,49 +11,49 @@ import com.dwarfeng.dutil.basic.prog.Obverser;
 public interface ConfigObverser extends Obverser {
 
 	/**
-	 * Í¨ÖªÅäÖÃÄ£ĞÍÖĞÖ¸¶¨µÄÅäÖÃ¼üµÄµ±Ç°Öµ·¢ÉúÁË¸Ä±ä¡£
+	 * é€šçŸ¥é…ç½®æ¨¡å‹ä¸­æŒ‡å®šçš„é…ç½®é”®çš„å½“å‰å€¼å‘ç”Ÿäº†æ”¹å˜ã€‚
 	 * 
 	 * @param configKey
-	 *            Ö¸¶¨µÄÅäÖÃ¼ü¡£
+	 *            æŒ‡å®šçš„é…ç½®é”®ã€‚
 	 * @param oldValue
-	 *            ÅäÖÃ¼üµÄ¾ÉÖµ¡£
+	 *            é…ç½®é”®çš„æ—§å€¼ã€‚
 	 * @param newValue
-	 *            ÅäÖÃ¼üµÄĞÂÖµ¡£
+	 *            é…ç½®é”®çš„æ–°å€¼ã€‚
 	 * @param validValue
-	 *            ÅäÖÃ¼üµ±Ç°µÄÓĞĞ§Öµ¡£
+	 *            é…ç½®é”®å½“å‰çš„æœ‰æ•ˆå€¼ã€‚
 	 */
 	public void fireCurrentValueChanged(ConfigKey configKey, String oldValue, String newValue, String validValue);
 
 	/**
-	 * Í¨ÖªÅäÖÃÄ£ĞÍÖĞµÄÅäÖÃ¼ü½øĞĞÁËÇå³ı¡£
+	 * é€šçŸ¥é…ç½®æ¨¡å‹ä¸­çš„é…ç½®é”®è¿›è¡Œäº†æ¸…é™¤ã€‚
 	 */
 	public void fireConfigKeyCleared();
 
 	/**
-	 * Í¨ÖªÅäÖÃÄ£ĞÍÖĞÖ¸¶¨µÄÅäÖÃ¼ü½øĞĞÁËÒÆ³ı¡£
+	 * é€šçŸ¥é…ç½®æ¨¡å‹ä¸­æŒ‡å®šçš„é…ç½®é”®è¿›è¡Œäº†ç§»é™¤ã€‚
 	 * 
 	 * @param configKey
-	 *            Ö¸¶¨µÄÅäÖÃ¼ü¡£
+	 *            æŒ‡å®šçš„é…ç½®é”®ã€‚
 	 */
 	public void fireConfigKeyRemoved(ConfigKey configKey);
 
 	/**
-	 * Í¨ÖªÅäÖÃÄ£ĞÍÖĞÖ¸¶¨µÄÅäÖÃ¼ü½øĞĞÁËÌí¼Ó¡£
+	 * é€šçŸ¥é…ç½®æ¨¡å‹ä¸­æŒ‡å®šçš„é…ç½®é”®è¿›è¡Œäº†æ·»åŠ ã€‚
 	 * 
 	 * @param configKey
-	 *            Ö¸¶¨µÄÅäÖÃ¼ü¡£
+	 *            æŒ‡å®šçš„é…ç½®é”®ã€‚
 	 */
 	public void fireConfigKeyAdded(ConfigKey configKey);
 
 	/**
-	 * Í¨ÖªÅäÖÃÄ£ĞÍÖĞÖ¸¶¨µÄÅäÖÃ¼üµÄ¹Ì¶¨ÊôĞÔ·¢ÉúÁË¸Ä±ä¡£
+	 * é€šçŸ¥é…ç½®æ¨¡å‹ä¸­æŒ‡å®šçš„é…ç½®é”®çš„å›ºå®šå±æ€§å‘ç”Ÿäº†æ”¹å˜ã€‚
 	 * 
 	 * @param configKey
-	 *            Ö¸¶¨µÄÅäÖÃ¼ü¡£
+	 *            æŒ‡å®šçš„é…ç½®é”®ã€‚
 	 * @param oldValue
-	 *            Ö¸¶¨ÅäÖÃ¼üµÄ¾ÉµÄ¹Ì¶¨ÊôĞÔ¡£
+	 *            æŒ‡å®šé…ç½®é”®çš„æ—§çš„å›ºå®šå±æ€§ã€‚
 	 * @param newValue
-	 *            Ö¸¶¨µÄÅäÖÃ¼üµÄĞÂµÄ¹Ì¶¨ÊôĞÔ¡£
+	 *            æŒ‡å®šçš„é…ç½®é”®çš„æ–°çš„å›ºå®šå±æ€§ã€‚
 	 */
 	public void fireConfigFirmPropsChanged(ConfigKey configKey, ConfigFirmProps oldValue, ConfigFirmProps newValue);
 

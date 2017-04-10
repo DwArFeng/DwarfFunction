@@ -8,25 +8,25 @@ import com.dwarfeng.dutil.basic.str.Name;
 import com.dwarfeng.dutil.math.MathObject;
 
 /**
- * ±äÁ¿½Ó¿Ú¡£
- * <p> ÊµÏÖ¸Ã½Ó¿ÚÒâÎ¶×ÅÊµÏÖÀàÊÇ¿ÉÒÔ±íÊ¾³ÉÊıµÄ£¬²¢ÇÒ£¬Õâ¸öÊı¿ÉÒÔ±»Ö±½Ó¸ü¸Ä£¨µäĞÍµÄÀı×Ó¾ÍÊÇ {@link QuickFothVariable}£©¡£
- * <br> ÓÉÓÚ¿ÉÒÔÖ±½Ó¸³ÖµµÄ¶ÔÏóÊ®·ÖÌØÊâ£¬ÓÖÊ®·ÖÓĞ×÷ÓÃ£¬Òò´Ë£¬¸Ã½Ó¿Ú¼Ì³Ğ {@link Name}½Ó¿Ú£¬¼°Ã¿¸ö¿ÉÒÔ
- * Ö±½Ó¸³ÖµµÄ¶ÔÏó¶¼¾ßÓĞÒ»¸öÃû³Æ±êÊ¶£¬ÔÚÊıÑ§ÖĞ£¬ÕâÖÖ¶ÔÏóµÄÃû³ÆÒ»°ãÊÇx£¬y£¬z µÈ¡£
+ * å˜é‡æ¥å£ã€‚
+ * <p> å®ç°è¯¥æ¥å£æ„å‘³ç€å®ç°ç±»æ˜¯å¯ä»¥è¡¨ç¤ºæˆæ•°çš„ï¼Œå¹¶ä¸”ï¼Œè¿™ä¸ªæ•°å¯ä»¥è¢«ç›´æ¥æ›´æ”¹ï¼ˆå…¸å‹çš„ä¾‹å­å°±æ˜¯ {@link QuickFothVariable}ï¼‰ã€‚
+ * <br> ç”±äºå¯ä»¥ç›´æ¥èµ‹å€¼çš„å¯¹è±¡ååˆ†ç‰¹æ®Šï¼Œåˆååˆ†æœ‰ä½œç”¨ï¼Œå› æ­¤ï¼Œè¯¥æ¥å£ç»§æ‰¿ {@link Name}æ¥å£ï¼ŒåŠæ¯ä¸ªå¯ä»¥
+ * ç›´æ¥èµ‹å€¼çš„å¯¹è±¡éƒ½å…·æœ‰ä¸€ä¸ªåç§°æ ‡è¯†ï¼Œåœ¨æ•°å­¦ä¸­ï¼Œè¿™ç§å¯¹è±¡çš„åç§°ä¸€èˆ¬æ˜¯xï¼Œyï¼Œz ç­‰ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public interface FothVariable extends MathObject, FothValue, Name{
 
 	/**
-	 * ÉèÖÃ¸Ã½Ó¿ÚµÄÊıÖµ¡£
-	 * @param value ¸Ã½Ó¿ÚµÄÊıÖµ¡£
+	 * è®¾ç½®è¯¥æ¥å£çš„æ•°å€¼ã€‚
+	 * @param value è¯¥æ¥å£çš„æ•°å€¼ã€‚
 	 */
 	public void setValue(double value);
 	
 	/**
-	 * ÉèÖÃ¸Ã½Ó¿ÚµÄÊıÖµÎªÖ¸¶¨Öµ½Ó¿ÚµÄµ±Ç°Öµ¡£
-	 * @param val Ö¸¶¨µÄÖµ½Ó¿Ú¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * è®¾ç½®è¯¥æ¥å£çš„æ•°å€¼ä¸ºæŒ‡å®šå€¼æ¥å£çš„å½“å‰å€¼ã€‚
+	 * @param val æŒ‡å®šçš„å€¼æ¥å£ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public default void setValue(FothValue val){
 		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FothVariable_0));
@@ -34,19 +34,19 @@ public interface FothVariable extends MathObject, FothValue, Name{
 	}
 	
 	/**
-	 * Æ«ÒÆµ±Ç°Öµ¡£
-	 * <p> ÔÚµ±Ç°ÖµµÄ»ù´¡ÉÏÔö¼ÓÖ¸¶¨µÄÖµ¡£
-	 * @param d Ö¸¶¨µÄÖµ¡£
+	 * åç§»å½“å‰å€¼ã€‚
+	 * <p> åœ¨å½“å‰å€¼çš„åŸºç¡€ä¸Šå¢åŠ æŒ‡å®šçš„å€¼ã€‚
+	 * @param d æŒ‡å®šçš„å€¼ã€‚
 	 */
 	public default void offset(double d){
 		setValue(value() + d);
 	}
 	
 	/**
-	 * Æ«ÒÆµ±Ç°Öµ¡£
-	 * <p> ÔÚµ±Ç°»ù´¡ÉÏÔö¼ÓÖ¸¶¨Öµ½Ó¿ÚÖĞµÄµ±Ç°Öµ¡£
-	 * @param val Ö¸¶¨µÄÖµ½Ó¿Ú¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * åç§»å½“å‰å€¼ã€‚
+	 * <p> åœ¨å½“å‰åŸºç¡€ä¸Šå¢åŠ æŒ‡å®šå€¼æ¥å£ä¸­çš„å½“å‰å€¼ã€‚
+	 * @param val æŒ‡å®šçš„å€¼æ¥å£ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public default void offset(FothValue val){
 		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FothVariable_0));

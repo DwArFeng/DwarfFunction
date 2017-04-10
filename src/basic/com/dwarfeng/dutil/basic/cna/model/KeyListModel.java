@@ -6,85 +6,97 @@ import java.util.List;
 import com.dwarfeng.dutil.basic.prog.WithKey;
 
 /**
- * ��ֵ�б�ģ�͡�
+ * 键值列表模型。
  * <p>
- * ģ�Ϳ�������һ�������ӵ��������Ԫ�أ����ṩһϵ�еĲ��������� ��ģ��ͬ�����Զ�Ԫ�ظ����������в�������ģ����һ�� {@link List}ʵ�֡�
+ * 模型可以容纳一组有序的拥有主键的元素，并提供一系列的操作方法。 该模型同样可以对元素根据主键进行操作。该模型是一个 {@link List}实现。
  * 
  * @author DwArFeng
  * @param <K>
- *            ����K������Ԫ�ؼ������͡�
+ *            泛型K，代表元素键的类型。
  * @param <V>
- *            ����V������Ԫ�ص����͡�
+ *            泛型V，代表元素的类型。
  * @since 0.1.0-beta
  */
 public interface KeyListModel<K, V extends WithKey<K>> extends ListModel<V> {
 
 	/**
-	 * ����б�����ָ���ļ����򷵻� <code>true</code>��
+	 * 获取指定的键对应的值。
+	 * 
+	 * <p>
+	 * 如果键值列表模型中没有指定的键，则返回 <code>null</code>。
 	 * 
 	 * @param key
-	 *            ָ���ļ���
-	 * @return �������ָ���ļ����򷵻� <code>true</code>��
+	 *            指定的键。
+	 * @return 指定的键对应的值。
+	 */
+	public V get(K key);
+
+	/**
+	 * 如果列表包含指定的键，则返回 <code>true</code>。
+	 * 
+	 * @param key
+	 *            指定的键。
+	 * @return 如果包含指定的键，则返回 <code>true</code>。
 	 */
 	public boolean containsKey(Object key);
 
 	/**
-	 * ����б�����ָ�� {@link Collection} �����м����򷵻� <code>true</code>��
+	 * 如果列表包含指定 {@link Collection} 的所有键，则返回 <code>true</code>。
 	 * 
 	 * @param c
-	 *            Ҫ���б��м��������Ե� {@link Collection}
-	 * @return ����б�����ָ�� {@link Collection} �����м����򷵻� <code>true</code>��
+	 *            要在列表中检查其包含性的 {@link Collection}
+	 * @return 如果列表包含指定 {@link Collection} 的所有键，则返回 <code>true</code>。
 	 * @throws NullPointerException
-	 *             ��ڲ���Ϊ <code>null</code>��
+	 *             入口参数为 <code>null</code>。
 	 */
 	public boolean containsAllKey(Collection<?> c);
 
 	/**
-	 * ���ش��б��е�һ�γ��ֵ�ָ������������ ������б��������ü����򷵻� <code>-1</code>��
+	 * 返回此列表中第一次出现的指定键的索引； 如果此列表不包含该键，则返回 <code>-1</code>。
 	 * 
 	 * @param o
-	 *            Ҫ�����ļ���
-	 * @return ���б��е�һ�γ��ֵ�ָ����������������б��������ü����򷵻� <code>-1</code>��
+	 *            要搜索的键。
+	 * @return 此列表中第一次出现的指定键的索引，如果列表不包含该键，则返回 <code>-1</code>。
 	 */
 	public int indexOfKey(Object o);
 
 	/**
-	 * ���ش��б������һ�γ��ֵ�ָ������������ ������б��������ü����򷵻� <code>-1</code>��
+	 * 返回此列表中最后一次出现的指定键的索引； 如果此列表不包含该键，则返回 <code>-1</code>。
 	 * 
 	 * @param o
-	 *            Ҫ�����ļ���
-	 * @return ���б������һ�γ��ֵ�ָ����������������б��������ü����򷵻� <code>-1</code>��
+	 *            要搜索的键。
+	 * @return 此列表中最后一次出现的指定键的索引，如果列表不包含该键，则返回 <code>-1</code>。
 	 */
 	public int lastIndexOfKey(Object o);
 
 	/**
-	 * �Ӵ��б����Ƴ���һ�γ��ֵ�ָ������������ڣ�����ѡ��������
+	 * 从此列表中移除第一次出现的指定键（如果存在）（可选操作）。
 	 * 
 	 * @param key
-	 *            Ҫ�Ӹ��б����Ƴ��ļ���
-	 * @return ����б�����ָ���ļ����򷵻� <code>true</code>��
+	 *            要从该列表中移除的键。
+	 * @return 如果列表包含指定的键，则返回 <code>true</code>。
 	 */
 	public boolean removeKey(Object key);
 
 	/**
-	 * ���б����Ƴ�ָ�� {@link Collection} �а�����������Ԫ�أ���ѡ��������
+	 * 从列表中移除指定 {@link Collection} 中包含的其所有元素（可选操作）。
 	 * 
 	 * @param c
-	 *            �����Ӵ��б����Ƴ���Ԫ�ص� {@link Collection}��
-	 * @return ������б����ڵ��ö��������ģ��򷵻� <code>true</code>��
+	 *            包含从此列表中移除的元素的 {@link Collection}。
+	 * @return 如果此列表由于调用而发生更改，则返回 <code>true</code>。
 	 * @throws NullPointerException
-	 *             ��ڲ���Ϊ <code>null</code>��
+	 *             入口参数为 <code>null</code>。
 	 */
 	public boolean removeAllKey(Collection<?> c);
 
 	/**
-	 * �����б��б���ָ�� {@link Collection} ����������Ԫ�أ���ѡ��������
+	 * 仅在列表中保留指定 {@link Collection} 中所包含的元素（可选操作）。
 	 * 
 	 * @param c
-	 *            �����������ڴ��б��е�Ԫ�ص� {@link Collection}��
-	 * @return ������б����ڵ��ö��������ģ��򷵻� <code>true</code>��
+	 *            包含将保留在此列表中的元素的 {@link Collection}。
+	 * @return 如果此列表由于调用而发生更改，则返回 <code>true</code>。
 	 * @throws NullPointerException
-	 *             ��ڲ���Ϊ <code>null</code>��
+	 *             入口参数为 <code>null</code>。
 	 */
 	public boolean retainAllKey(Collection<?> c);
 

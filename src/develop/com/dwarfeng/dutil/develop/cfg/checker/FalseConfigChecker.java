@@ -3,9 +3,9 @@ package com.dwarfeng.dutil.develop.cfg.checker;
 import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
 
 /**
- * ºã¼ÙÅäÖÃÖµ¼ì²éÆ÷¡£
+ * æ’å‡é…ç½®å€¼æ£€æŸ¥å™¨ã€‚
  * <p>
- * ¸ÃÅäÖÃÖµ¼ì²éÆ÷¶ÔÓÚÈÎÒâµÄÖµ£¬¾ù·µ»Ø <code>false</code>£¬»»¾ä»°Ëµ£¬ ¸ÃÅäÖÃÖµ¼ì²éÆ÷¾Ü¾øÒ»ÇĞÖµ¡£
+ * è¯¥é…ç½®å€¼æ£€æŸ¥å™¨å¯¹äºä»»æ„çš„å€¼ï¼Œå‡è¿”å› <code>false</code>ï¼Œæ¢å¥è¯è¯´ï¼Œ è¯¥é…ç½®å€¼æ£€æŸ¥å™¨æ‹’ç»ä¸€åˆ‡å€¼ã€‚
  * 
  * @author DwArFeng
  * @since 0.0.2-beta

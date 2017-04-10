@@ -3,11 +3,11 @@ package com.dwarfeng.dutil.develop.cfg.checker;
 import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
 
 /**
- * ºãÕæÊ½ÅäÖÃÖµ¼ì²éÆ÷¡£
+ * æ’çœŸå¼é…ç½®å€¼æ£€æŸ¥å™¨ã€‚
  * <p>
- * ¸Ã¼ì²éÆ÷¶ÔÒ»¸öÅäÖÃÖĞµÄÒ»ÇĞÖµµÄ¼ì²éºã·µ»Ø <code>true</code>£¬»»¾ä»°Ëµ£¬ ¸ÃÅäÖÃÖµ¼ì²éÆ÷ÔÊĞíÒ»ÇĞÖµ¡£
+ * è¯¥æ£€æŸ¥å™¨å¯¹ä¸€ä¸ªé…ç½®ä¸­çš„ä¸€åˆ‡å€¼çš„æ£€æŸ¥æ’è¿”å› <code>true</code>ï¼Œæ¢å¥è¯è¯´ï¼Œ è¯¥é…ç½®å€¼æ£€æŸ¥å™¨å…è®¸ä¸€åˆ‡å€¼ã€‚
  * 
- * @deprecated ¸Ã¼ì²éÆ÷µÄ¶¨ÒåÓë {@link NonNullConfigChecker} ÖØ¸´£¬²»ÍÆ¼öÊ¹ÓÃ´Ë·½·¨¡£
+ * @deprecated è¯¥æ£€æŸ¥å™¨çš„å®šä¹‰ä¸ {@link NonNullConfigChecker} é‡å¤ï¼Œä¸æ¨èä½¿ç”¨æ­¤æ–¹æ³•ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */

@@ -1,5 +1,5 @@
 /**
- * ³£ÓÃµÄÅäÖÃÎÄ±¾¼ì²éÆ÷¡£
+ * å¸¸ç”¨çš„é…ç½®æ–‡æœ¬æ£€æŸ¥å™¨ã€‚
  * 
  * @author DwArFeng
  * @since 0.0.2-beta

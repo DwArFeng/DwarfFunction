@@ -4,67 +4,67 @@ import com.dwarfeng.dutil.math.MathObject;
 import com.dwarfeng.dutil.math.linalge.Matrix;
 
 /**
- * ������ʽ�ṹ�ľ����ࡣ
+ * 保留算式结构的矩阵类。
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public interface FormulaMatrix extends MathObject, FormulaMatrixLike{
 	
 	/**
-	 * ����ָ���ж�Ӧ����������
-	 * <p> ע�⣺�������ǽṹ�ƻ��Եģ��µľ���ʧȥ��������ľ����ԭ���ṹ��
-	 * @param row ָ���С�
-	 * @return ָ���ж�Ӧ����������
-	 * @throws IndexOutOfBoundsException ָ�����кų��硣
+	 * 返回指定行对应的行向量。
+	 * <p> 注意：该运算是结构破坏性的，新的矩阵将失去参与运算的矩阵的原本结构。
+	 * @param row 指定行。
+	 * @return 指定行对应的行向量。
+	 * @throws IndexOutOfBoundsException 指定的行号超界。
 	 */
 	public FormulaRowVector formulaRowVectorAt(int row);
 	/**
-	 * ����ָ���ж�Ӧ����������
-	 * @param column ָ�����С�
-	 * @return ָ����������Ӧ����������
-	 * @throws IndexOutOfBoundsException ָ�����кų��硣
+	 * 返回指定列对应的列向量。
+	 * @param column 指定的列。
+	 * @return 指定的列所对应的列向量。
+	 * @throws IndexOutOfBoundsException 指定的列号超界。
 	 */
 	public FormulaColumnVector formulaColumnVectorAt(int column);
 	
 	/**
-	 * ����ļӷ���
-	 * <p> �þ�����ָ���ľ�����ӡ�
-	 * <p> ע�⣺�������ǽṹ�ƻ��Եģ��µľ���ʧȥ��������ľ����ԭ���ṹ��
-	 * @param matrix ָ���ľ���
-	 * @return ��ӵõ����µľ���
-	 * @throws NullPointerException ��ڲ���Ϊ <code>null</code>��
-	 * @throws IllegalArgumentException �þ�����ָ����������ˡ�
+	 * 矩阵的加法。
+	 * <p> 该矩阵与指定的矩阵相加。
+	 * <p> 注意：该运算是结构破坏性的，新的矩阵将失去参与运算的矩阵的原本结构。
+	 * @param matrix 指定的矩阵。
+	 * @return 相加得到的新的矩阵。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 * @throws IllegalArgumentException 该矩阵与指定矩阵不能相乘。
 	 */
 	public FormulaMatrix add(FormulaMatrix matrix);
 	
 	/**
-	 * ����ļ�����
-	 * <p> �þ�����ָ�����������
-	 * <p> ע�⣺�������ǽṹ�ƻ��Եģ��µľ���ʧȥ��������ľ����ԭ���ṹ��
-	 * @param matrix ָ���ľ���
-	 * @return ����õ����µľ���
-	 * @throws NullPointerException ��ڲ���Ϊ <code>null</code>��
-	 * @throws IllegalArgumentException �þ�����ָ�������������
+	 * 矩阵的减法。
+	 * <p> 该矩阵与指定矩阵相减。
+	 * <p> 注意：该运算是结构破坏性的，新的矩阵将失去参与运算的矩阵的原本结构。
+	 * @param matrix 指定的矩阵。
+	 * @return 相减得到的新的矩阵。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 * @throws IllegalArgumentException 该矩阵与指定矩阵不能相减。
 	 */
 	public FormulaMatrix minus(FormulaMatrix matrix);
 	
 	/**
-	 * ����ĳ˷���
-	 * <p> �þ�����ָ���ľ�����ˡ�
-	 * <p> ע�⣺�������ǽṹ�ƻ��Եģ��µľ���ʧȥ��������ľ����ԭ���ṹ��
-	 * @param matrix ָ���ľ���
-	 * @return ��˵õ����µľ���
-	 * @throws NullPointerException ��ڲ���Ϊ <code>null</code>��
-	 * @throws IllegalArgumentException �þ�����ָ�������������
+	 * 矩阵的乘法。
+	 * <p> 该矩阵与指定的矩阵相乘。
+	 * <p> 注意：该运算是结构破坏性的，新的矩阵将失去参与运算的矩阵的原本结构。
+	 * @param matrix 指定的矩阵。
+	 * @return 相乘得到的新的矩阵。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 * @throws IllegalArgumentException 该矩阵与指定矩阵不能相减。
 	 */
 	public FormulaMatrix mul(FormulaMatrix matrix);
 	
 	/**
-	 * ������������㡣
-	 * <p>�þ�����ָ����ֵ��ˡ�
-	 * <p> ע�⣺�������ǽṹ�ƻ��Եģ��µľ���ʧȥ��������ľ����ԭ���ṹ��
-	 * @param val ָ����ֵ��
-	 * @return ���ź�õ����µľ���
+	 * 矩阵的缩放运算。
+	 * <p>该矩阵与指定的值相乘。
+	 * <p> 注意：该运算是结构破坏性的，新的矩阵将失去参与运算的矩阵的原本结构。
+	 * @param val 指定的值。
+	 * @return 缩放后得到的新的矩阵。
 	 */
 	public FormulaMatrix scale(double val);
 	
@@ -76,9 +76,9 @@ public interface FormulaMatrix extends MathObject, FormulaMatrixLike{
 	public FormulaMatrix trans();
 	
 	/**
-	 * ���þ���ת��Ϊmath���еľ���
-	 * <p> ת�ò������ƻ��ṹ��
-	 * @return math���еľ���
+	 * 将该矩阵转化为math包中的矩阵。
+	 * <p> 转置操作不破坏结构。
+	 * @return math包中的矩阵。
 	 */
 	public Matrix toMatrix();
 	

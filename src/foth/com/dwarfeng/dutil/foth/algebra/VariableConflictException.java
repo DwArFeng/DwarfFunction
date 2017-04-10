@@ -1,8 +1,8 @@
 package com.dwarfeng.dutil.foth.algebra;
 
 /**
- * ±äÁ¿³åÍ»Òì³£¡£
- * <p> ¸ÃÒì³£Ö¸Ê¾±äÁ¿³åÍ»¡£ËùÎ½±äÁ¿³åÍ»µÄ¶¨Òå£¬Çë²Î¿¼ {@link FothVariableSpace}¡£
+ * å˜é‡å†²çªå¼‚å¸¸ã€‚
+ * <p> è¯¥å¼‚å¸¸æŒ‡ç¤ºå˜é‡å†²çªã€‚æ‰€è°“å˜é‡å†²çªçš„å®šä¹‰ï¼Œè¯·å‚è€ƒ {@link FothVariableSpace}ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
@@ -11,13 +11,13 @@ public class VariableConflictException extends RuntimeException {
 	private static final long serialVersionUID = 4578575180130763488L;
 
 	/**
-	 * ¹¹ÔìÒ»¸ö±äÁ¿³åÍ»Òì³£¡£
+	 * æ„é€ ä¸€ä¸ªå˜é‡å†²çªå¼‚å¸¸ã€‚
 	 */
 	public VariableConflictException() {}
 
 	/**
-	 * ¹¹ÔìÒ»¸ö¾ßÓĞÖ¸¶¨ÃèÊöÎÄ±¾µÄ±äÁ¿³åÍ»Òì³£¡£
-	 * @param message Ö¸¶¨µÄÃèÊöÎÄ±¾¡£
+	 * æ„é€ ä¸€ä¸ªå…·æœ‰æŒ‡å®šæè¿°æ–‡æœ¬çš„å˜é‡å†²çªå¼‚å¸¸ã€‚
+	 * @param message æŒ‡å®šçš„æè¿°æ–‡æœ¬ã€‚
 	 */
 	public VariableConflictException(String message) {
 		super(message);

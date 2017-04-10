@@ -16,34 +16,34 @@ import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
 import com.dwarfeng.dutil.basic.prog.WithKey;
 
 /**
- * Ó³Éä¼üÖµ¼¯ºÏÄ£ĞÍ¡£
+ * æ˜ å°„é”®å€¼é›†åˆæ¨¡å‹ã€‚
  * <p>
- * ¸ÃÄ£ĞÍÖĞÊ¹ÓÃÒ»¸öÓ³ÉäÀ´´¦Àí¼¯ºÏµÄÔªËØ£¬ÕâÊ¹µÃÄ£ĞÍÔÚ´¦Àí¼üµÄÊ±ºòÓµÓĞ½Ï¸ßµÄĞÔÄÜ¡£
+ * è¯¥æ¨¡å‹ä¸­ä½¿ç”¨ä¸€ä¸ªæ˜ å°„æ¥å¤„ç†é›†åˆçš„å…ƒç´ ï¼Œè¿™ä½¿å¾—æ¨¡å‹åœ¨å¤„ç†é”®çš„æ—¶å€™æ‹¥æœ‰è¾ƒé«˜çš„æ€§èƒ½ã€‚
  * 
  * @author DwArFeng
  * @since 0.1.0-beta
  */
 public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V> implements KeySetModel<K, V> {
 
-	/** ¸ºÔğ´¦ÀíÁĞ±íµÄÓ³Éä¡£ */
+	/** è´Ÿè´£å¤„ç†åˆ—è¡¨çš„æ˜ å°„ã€‚ */
 	protected final Map<K, V> map;
 
 	/**
-	 * Éú³ÉÒ»¸öÄ¬ÈÏµÄÓ³Éä¼üÖµ¼¯ºÏÄ£ĞÍ¡£
+	 * ç”Ÿæˆä¸€ä¸ªé»˜è®¤çš„æ˜ å°„é”®å€¼é›†åˆæ¨¡å‹ã€‚
 	 */
 	public MapKeySetModel() {
 		this(new HashMap<>(), Collections.newSetFromMap(new WeakHashMap<>()));
 	}
 
 	/**
-	 * Éú³ÉÒ»¸öÓµÓĞÖ¸¶¨µÄÓ³Éä£¬Ö¸¶¨µÄÕìÌıÆ÷¼¯ºÏµÄÓ³Éä¼üÖµ¼¯ºÏÄ£ĞÍ¡£
+	 * ç”Ÿæˆä¸€ä¸ªæ‹¥æœ‰æŒ‡å®šçš„æ˜ å°„ï¼ŒæŒ‡å®šçš„ä¾¦å¬å™¨é›†åˆçš„æ˜ å°„é”®å€¼é›†åˆæ¨¡å‹ã€‚
 	 * 
 	 * @param map
-	 *            Ö¸¶¨µÄÓ³Éä¡£
+	 *            æŒ‡å®šçš„æ˜ å°„ã€‚
 	 * @param obversers
-	 *            Ö¸¶¨µÄÕìÌıÆ÷¼¯ºÏ¡£
+	 *            æŒ‡å®šçš„ä¾¦å¬å™¨é›†åˆã€‚
 	 * @throws NullPointerException
-	 *             Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 *             å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public MapKeySetModel(Map<K, V> map, Set<SetObverser<V>> obversers) {
 		super(obversers);
@@ -179,7 +179,7 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
 	public boolean remove(Object o) {
 		boolean aFlag = map.values().remove(o);
 		if (aFlag) {
-			// Èç¹ûÄÜ¹»ÔÚÓ³ÉäµÄÖµ¼¯ºÏÖĞÒÆ³ı¶ÔÏó o£¬Ôò o Ò»¶¨ÊôÓÚÀàĞÍ V£¬¹Ê¸Ã×ª»»ÊÇ°²È«µÄ¡£
+			// å¦‚æœèƒ½å¤Ÿåœ¨æ˜ å°„çš„å€¼é›†åˆä¸­ç§»é™¤å¯¹è±¡ oï¼Œåˆ™ o ä¸€å®šå±äºç±»å‹ Vï¼Œæ•…è¯¥è½¬æ¢æ˜¯å®‰å…¨çš„ã€‚
 			@SuppressWarnings("unchecked")
 			V v = (V) o;
 			fireRemoved(v);
@@ -262,6 +262,15 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
 	public void clear() {
 		map.clear();
 		fireCleared();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.dwarfeng.dutil.basic.cna.model.KeySetModel#get(java.lang.Object)
+	 */
+	@Override
+	public V get(K key) {
+		return map.get(key);
 	}
 
 	/*

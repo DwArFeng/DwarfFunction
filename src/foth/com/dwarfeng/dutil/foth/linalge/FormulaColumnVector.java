@@ -6,66 +6,66 @@ import com.dwarfeng.dutil.math.MathObject;
 import com.dwarfeng.dutil.math.linalge.ColumnVector;
 
 /**
- * ╠ёаТкЦй╫╦Яй╫╣дапоРа©║ё
+ * Д©²Г∙≥Г╝≈Е╪▐Ф═╪Е╪▐Г └Е┬≈Е░▒И┤▐Ц─┌
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public interface FormulaColumnVector extends MathObject, FormulaLinalgeVector{
 	
 	/**
-	 * апоРа©╣д╪с╥╗║ё
-	 * <p> ╦цапоРа©сКж╦╤╗╣дапоРа©оЮ╪с║ё
-	 * <p> в╒рБё╨╦цтккЦйг╫А╧╧фф╩╣пт╣дё╛пб╣дапоРа©╫╚й╖х╔╡нсКтккЦ╣дапоРа©╣дт╜╠╬╫А╧╧║ё
-	 * @param columnVector  ж╦╤╗╣дапоРа©║ё
-	 * @return оЮ╪с╣ц╣╫╣дапоРа©║ё
-	 * @throws IllegalArgumentException апоРа©╣д╢Сп║╡╩ф╔еД║ё
-	 * @throws NullPointerException хК©з╡нйЩн╙ <code>null</code>║ё
+	 * Е┬≈Е░▒И┤▐Г └Е┼═ФЁ∙Ц─┌
+	 * <p> Х╞╔Е┬≈Е░▒И┤▐Д╦▌Ф▄┤Е╝ Г └Е┬≈Е░▒И┤▐Г⌡╦Е┼═Ц─┌
+	 * <p> ФЁ╗Ф└▐О╪ Х╞╔Х©░Г╝≈Ф≤╞Г╩⌠Ф·└Г═╢Е²▐Ф─╖Г └О╪▄Ф√╟Г └Е┬≈Е░▒И┤▐Е╟├Е╓╠Е▌╩Е▐┌Д╦▌Х©░Г╝≈Г └Е┬≈Е░▒И┤▐Г └Е▌÷Ф°╛Г╩⌠Ф·└Ц─┌
+	 * @param columnVector  Ф▄┤Е╝ Г └Е┬≈Е░▒И┤▐Ц─┌
+	 * @return Г⌡╦Е┼═Е╬≈Е┬╟Г └Е┬≈Е░▒И┤▐Ц─┌
+	 * @throws IllegalArgumentException Е┬≈Е░▒И┤▐Г └Е╓╖Е╟▐Д╦█Е▄╧И┘█Ц─┌
+	 * @throws NullPointerException Е┘╔Е▐ёЕ▐┌Ф∙╟Д╦╨ <code>null</code>Ц─┌
 	 */
 	public FormulaColumnVector add(FormulaColumnVector columnVector);
 	
 	/**
-	 * апоРа©╣д╪У╥╗║ё
-	 * <p> ╦цапоРа©сКж╦╤╗╣дапоРа©оЮ╪У║ё
-	 * <p> в╒рБё╨╦цтккЦйг╫А╧╧фф╩╣пт╣дё╛пб╣дапоРа©╫╚й╖х╔╡нсКтккЦ╣дапоРа©╣дт╜╠╬╫А╧╧║ё
-	 * @param columnVector  ж╦╤╗╣дапоРа©║ё
-	 * @return оЮ╪У╣ц╣╫╣дапоРа©║ё
-	 * @throws IllegalArgumentException апоРа©╣д╢Сп║╡╩ф╔еД║ё
-	 * @throws NullPointerException хК©з╡нйЩн╙ <code>null</code>║ё
+	 * Е┬≈Е░▒И┤▐Г └Е┤▐ФЁ∙Ц─┌
+	 * <p> Х╞╔Е┬≈Е░▒И┤▐Д╦▌Ф▄┤Е╝ Г └Е┬≈Е░▒И┤▐Г⌡╦Е┤▐Ц─┌
+	 * <p> ФЁ╗Ф└▐О╪ Х╞╔Х©░Г╝≈Ф≤╞Г╩⌠Ф·└Г═╢Е²▐Ф─╖Г └О╪▄Ф√╟Г └Е┬≈Е░▒И┤▐Е╟├Е╓╠Е▌╩Е▐┌Д╦▌Х©░Г╝≈Г └Е┬≈Е░▒И┤▐Г └Е▌÷Ф°╛Г╩⌠Ф·└Ц─┌
+	 * @param columnVector  Ф▄┤Е╝ Г └Е┬≈Е░▒И┤▐Ц─┌
+	 * @return Г⌡╦Е┤▐Е╬≈Е┬╟Г └Е┬≈Е░▒И┤▐Ц─┌
+	 * @throws IllegalArgumentException Е┬≈Е░▒И┤▐Г └Е╓╖Е╟▐Д╦█Е▄╧И┘█Ц─┌
+	 * @throws NullPointerException Е┘╔Е▐ёЕ▐┌Ф∙╟Д╦╨ <code>null</code>Ц─┌
 	 */
 	public FormulaColumnVector minus(FormulaColumnVector columnVector);
 	
 	/**
-	 * апоРа©╣дкУ╥етккЦ║ё
-	 * <p> ╦цапоРа©сКж╦╤╗╣дж╣оЮЁк║ё
-	 * <p> в╒рБё╨╦цтккЦйг╫А╧╧фф╩╣пт╣дё╛пб╣дапоРа©╫╚й╖х╔╡нсКтккЦ╣дапоРа©╣дт╜╠╬╫А╧╧║ё
-	 * @param val ж╦╤╗╣дж╣║ё
-	 * @return кУ╥е╣ц╣╫╣дпб╣дапоРа©║ё
+	 * Е┬≈Е░▒И┤▐Г └Г╪╘Ф■╬Х©░Г╝≈Ц─┌
+	 * <p> Х╞╔Е┬≈Е░▒И┤▐Д╦▌Ф▄┤Е╝ Г └Е─╪Г⌡╦Д╧≤Ц─┌
+	 * <p> ФЁ╗Ф└▐О╪ Х╞╔Х©░Г╝≈Ф≤╞Г╩⌠Ф·└Г═╢Е²▐Ф─╖Г └О╪▄Ф√╟Г └Е┬≈Е░▒И┤▐Е╟├Е╓╠Е▌╩Е▐┌Д╦▌Х©░Г╝≈Г └Е┬≈Е░▒И┤▐Г └Е▌÷Ф°╛Г╩⌠Ф·└Ц─┌
+	 * @param val Ф▄┤Е╝ Г └Е─╪Ц─┌
+	 * @return Г╪╘Ф■╬Е╬≈Е┬╟Г └Ф√╟Г └Е┬≈Е░▒И┤▐Ц─┌
 	 */
 	public default FormulaColumnVector scale(double val){
 		return scale(new QuickFothValue(val));
 	}
 	
 	/**
-	 * апоРа©╣дкУ╥етккЦ║ё
-	 * <p> ╦цапоРа©сКж╦╤╗╣дж╣оЮЁк║ё
-	 * <p> в╒рБё╨╦цтккЦйг╫А╧╧фф╩╣пт╣дё╛пб╣дапоРа©╫╚й╖х╔╡нсКтккЦ╣дапоРа©╣дт╜╠╬╫А╧╧║ё
-	 * @param val ж╦╤╗╣дж╣║ё
-	 * @return кУ╥е╣ц╣╫╣дпб╣дапоРа©║ё
-	 * @throws NullPointerException хК©з╡нйЩн╙ <code>null</code>║ё
+	 * Е┬≈Е░▒И┤▐Г └Г╪╘Ф■╬Х©░Г╝≈Ц─┌
+	 * <p> Х╞╔Е┬≈Е░▒И┤▐Д╦▌Ф▄┤Е╝ Г └Е─╪Г⌡╦Д╧≤Ц─┌
+	 * <p> ФЁ╗Ф└▐О╪ Х╞╔Х©░Г╝≈Ф≤╞Г╩⌠Ф·└Г═╢Е²▐Ф─╖Г └О╪▄Ф√╟Г └Е┬≈Е░▒И┤▐Е╟├Е╓╠Е▌╩Е▐┌Д╦▌Х©░Г╝≈Г └Е┬≈Е░▒И┤▐Г └Е▌÷Ф°╛Г╩⌠Ф·└Ц─┌
+	 * @param val Ф▄┤Е╝ Г └Е─╪Ц─┌
+	 * @return Г╪╘Ф■╬Е╬≈Е┬╟Г └Ф√╟Г └Е┬≈Е░▒И┤▐Ц─┌
+	 * @throws NullPointerException Е┘╔Е▐ёЕ▐┌Ф∙╟Д╦╨ <code>null</code>Ц─┌
 	 */
 	public FormulaColumnVector scale(FothValue val);
 	
 	/**
-	 * апоРа©╣дв╙жцтккЦ║ё
-	 * <p> ╦цапоРа©╣дв╙жц║ё
-	 * <p> в╙жц╡ывВ╡╩фф╩╣╫А╧╧║ё
-	 * @return апоРа©в╙жц╣ц╣╫╣дпб╣дппоРа©║ё
+	 * Е┬≈Е░▒И┤▐Г └Х╫╛Г╫╝Х©░Г╝≈Ц─┌
+	 * <p> Х╞╔Е┬≈Е░▒И┤▐Г └Х╫╛Г╫╝Ц─┌
+	 * <p> Х╫╛Г╫╝Ф⌠█Д╫°Д╦█Г═╢Е²▐Г╩⌠Ф·└Ц─┌
+	 * @return Е┬≈Е░▒И┤▐Х╫╛Г╫╝Е╬≈Е┬╟Г └Ф√╟Г └Х║▄Е░▒И┤▐Ц─┌
 	 */
 	public FormulaRowVector trans();
 
 	/**
-	 * ╫╚╦цапоРа©в╙╩╞н╙math╟Эжп╣дапоРа©║ё
-	 * @return math╟Эжп╣дапоРа©║ё
+	 * Е╟├Х╞╔Е┬≈Е░▒И┤▐Х╫╛Е▄√Д╦╨mathЕ▄┘Д╦╜Г └Е┬≈Е░▒И┤▐Ц─┌
+	 * @return mathЕ▄┘Д╦╜Г └Е┬≈Е░▒И┤▐Ц─┌
 	 */
 	public ColumnVector toColumnVector();
 }

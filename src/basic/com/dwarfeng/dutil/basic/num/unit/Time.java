@@ -3,25 +3,25 @@ package com.dwarfeng.dutil.basic.num.unit;
 import com.dwarfeng.dutil.basic.num.NumberValue;
 
 /**
- * Ê±¼äÃ¶¾Ù¡£
+ * æ—¶é—´æšä¸¾ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public enum Time implements NumberValue{
 	
-	/**ÄÉÃë*/
+	/**çº³ç§’*/
 	NS(86400000000000d),
-	/**Î¢Ãë*/
+	/**å¾®ç§’*/
 	US(86400000000d),
-	/**ºÁÃë*/
+	/**æ¯«ç§’*/
 	MS(86400000d),
-	/**Ãë*/
+	/**ç§’*/
 	SEC(86400d),
-	/**·ÖÖÓ*/
+	/**åˆ†é’Ÿ*/
 	MIN(1440d),
-	/**Ğ¡Ê±*/
+	/**å°æ—¶*/
 	HOR(24d),
-	/**Ìì*/
+	/**å¤©*/
 	DAY(1d);
 
 	private final double val;

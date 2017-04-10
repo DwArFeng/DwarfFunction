@@ -6,8 +6,8 @@ import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 
 /**
- * Ä¬ÈÏÅäÖÃ¹Ì¶¨ÊôĞÔ¡£
- * <p> ÅäÖÃ¹Ì¶¨ÊôĞÔ½Ó¿ÚµÄÄ¬ÈÏÊµÏÖ¡£
+ * é»˜è®¤é…ç½®å›ºå®šå±æ€§ã€‚
+ * <p> é…ç½®å›ºå®šå±æ€§æ¥å£çš„é»˜è®¤å®ç°ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
@@ -17,11 +17,11 @@ public class DefaultConfigFirmProps implements ConfigFirmProps {
 	private final String defaultValue;
 
 	/**
-	 * Éú³ÉÒ»¸öĞÂµÄÄ¬ÈÏÅäÖÃ¹Ì¶¨ÊôĞÔÊµÀı¡£
-	 * @param configChecker Ö¸¶¨µÄÅäÖÃÖµ¼ì²éÆ÷¡£
-	 * @param defaultValue Ö¸¶¨µÄÄ¬ÈÏÅäÖÃÖµ¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
-	 * @throws IllegalArgumentException Ö¸¶¨µÄÄ¬ÈÏÖµÎŞ·¨Í¨¹ıÖ¸¶¨µÄÅäÖÃÖµ¼ì²éÆ÷µÄ¼ìÑé¡£
+	 * ç”Ÿæˆä¸€ä¸ªæ–°çš„é»˜è®¤é…ç½®å›ºå®šå±æ€§å®ä¾‹ã€‚
+	 * @param configChecker æŒ‡å®šçš„é…ç½®å€¼æ£€æŸ¥å™¨ã€‚
+	 * @param defaultValue æŒ‡å®šçš„é»˜è®¤é…ç½®å€¼ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
+	 * @throws IllegalArgumentException æŒ‡å®šçš„é»˜è®¤å€¼æ— æ³•é€šè¿‡æŒ‡å®šçš„é…ç½®å€¼æ£€æŸ¥å™¨çš„æ£€éªŒã€‚
 	 */
 	public DefaultConfigFirmProps(ConfigChecker configChecker, String defaultValue) {
 		Objects.requireNonNull(configChecker, DwarfUtil.getStringField(StringFieldKey.DefaultConfigFirmProps_0));

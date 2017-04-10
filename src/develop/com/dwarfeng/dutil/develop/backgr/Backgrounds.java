@@ -1,54 +1,30 @@
 package com.dwarfeng.dutil.develop.backgr;
 
-import java.util.Objects;
-
-import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
-
 /**
- * ÓĞ¹ØºóÌ¨µÄ¹¤¾ß°ü¡£
+ * æœ‰å…³åå°çš„å·¥å…·åŒ…ã€‚
  * <p>
- * ¸Ã°üÖĞ°üº¬ºóÌ¨µÄ³£ÓÃ·½·¨¡£
+ * è¯¥åŒ…ä¸­åŒ…å«åå°çš„å¸¸ç”¨æ–¹æ³•ã€‚
  * <p>
- * ÓÉÓÚÊÇÖ»º¬ÓĞ¾²Ì¬·½·¨µÄ¹¤¾ß°ü£¬ËùÒÔ¸ÃÀàÎŞ·¨±»¼Ì³Ğ¡£
+ * ç”±äºæ˜¯åªå«æœ‰é™æ€æ–¹æ³•çš„å·¥å…·åŒ…ï¼Œæ‰€ä»¥è¯¥ç±»æ— æ³•è¢«ç»§æ‰¿ã€‚
  * 
+ * @deprecated ç”±äºè¯¥ç±»ä¸ç¬¦åˆå‘½åè§„èŒƒï¼Œå·²ç»ç”± {@link BackgroundUtil}ä»£æ›¿ã€‚
  * @author DwArFeng
  * @since 0.1.0-beta
  */
+@Deprecated
 public final class Backgrounds {
 
 	/**
-	 * ´ÓÖ¸¶¨µÄ {@link Runnable} ÖĞÉú³ÉÒ»¸öĞÂµÄÈÎÎñ¡£
+	 * ä»æŒ‡å®šçš„ {@link Runnable} ä¸­ç”Ÿæˆä¸€ä¸ªæ–°çš„ä»»åŠ¡ã€‚
 	 * 
 	 * @param runnable
-	 *            Ö¸¶¨µÄ {@link Runnable}¡£
-	 * @return ´ÓÖ¸¶¨µÄ {@link Runnable} ÖĞÉú³ÉµÄĞÂÈÎÎñ¡£
+	 *            æŒ‡å®šçš„ {@link Runnable}ã€‚
+	 * @return ä»æŒ‡å®šçš„ {@link Runnable} ä¸­ç”Ÿæˆçš„æ–°ä»»åŠ¡ã€‚
 	 * @throws NullPointerException
-	 *             Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 *             å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static Task newTaskFromRunnable(Runnable runnable) {
-		Objects.requireNonNull(runnable, DwarfUtil.getStringField(StringFieldKey.BACKGROUNDS_0));
-		return new RunnableTask(runnable);
-	}
-
-	private final static class RunnableTask extends AbstractTask {
-
-		private final Runnable runnable;
-
-		public RunnableTask(Runnable runnable) {
-			this.runnable = runnable;
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.develop.backgr.AbstractTask#todo()
-		 */
-		@Override
-		protected void todo() throws Exception {
-			runnable.run();
-		}
-
+		return BackgroundUtil.newTaskFromRunnable(runnable);
 	}
 
 	private Backgrounds() {

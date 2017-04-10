@@ -4,39 +4,39 @@ import com.dwarfeng.dutil.math.MathObject;
 import com.dwarfeng.dutil.math.Region;
 
 /**
- * ±íÊ¾Ò»¸ö¶şÎ¬Í¼ĞÎ¡£
+ * è¡¨ç¤ºä¸€ä¸ªäºŒç»´å›¾å½¢ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public interface Shape2d extends Region<Point2d>, MathObject{
 
 	/**
-	 * ·µ»ØÍ¼ĞÎµÄÃæ»ı¡£
-	 * @return Í¼ĞÎµÄÃæ»ı¡£
+	 * è¿”å›å›¾å½¢çš„é¢ç§¯ã€‚
+	 * @return å›¾å½¢çš„é¢ç§¯ã€‚
 	 */
 	public double area();
 	
 	/**
-	 * ÅĞ¶ÏÖ¸¶¨µÄµãÊÇ·ñÔÚÍ¼ĞÎÖĞ¡£
-	 * @param x Ö¸¶¨µãµÄx×ø±ê¡£
-	 * @param y Ö¸¶¨µãµÄy×ø±ê¡£
-	 * @return Ö¸¶¨µÄµãÊÇ·ñÔÚÍ¼ĞÎÖĞ¡£
+	 * åˆ¤æ–­æŒ‡å®šçš„ç‚¹æ˜¯å¦åœ¨å›¾å½¢ä¸­ã€‚
+	 * @param x æŒ‡å®šç‚¹çš„xåæ ‡ã€‚
+	 * @param y æŒ‡å®šç‚¹çš„yåæ ‡ã€‚
+	 * @return æŒ‡å®šçš„ç‚¹æ˜¯å¦åœ¨å›¾å½¢ä¸­ã€‚
 	 */
 	public default boolean contains(double x, double y){
 		return contains(new Point2d(x, y));
 	}
 	
 	/**
-	 * ÅĞ¶ÏÖ¸¶¨µÄµãÊÇ·ñÔÚÍ¼ĞÎÖĞ¡£
-	 * @param t Ö¸¶¨µÄµã¡£
-	 * @return Ö¸¶¨µÄµãÊÇ·ñÔÚÍ¼ĞÎÖĞ¡£
+	 * åˆ¤æ–­æŒ‡å®šçš„ç‚¹æ˜¯å¦åœ¨å›¾å½¢ä¸­ã€‚
+	 * @param t æŒ‡å®šçš„ç‚¹ã€‚
+	 * @return æŒ‡å®šçš„ç‚¹æ˜¯å¦åœ¨å›¾å½¢ä¸­ã€‚
 	 */
 	@Override
 	public boolean contains(Point2d t);
 	
 	/**
-	 * ·µ»ØÍ¼ĞÎµÄĞÎĞÄ¡£
-	 * @return Í¼ĞÎµÄĞÎĞÄ¡£
+	 * è¿”å›å›¾å½¢çš„å½¢å¿ƒã€‚
+	 * @return å›¾å½¢çš„å½¢å¿ƒã€‚
 	 */
 	public Point2d shapeCenter();
 	

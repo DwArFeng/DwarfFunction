@@ -6,41 +6,41 @@ import java.awt.Image;
 import javax.swing.JPanel;
 
 /**
- * Í¼Æ¬½çÃæÀà£¬Éú³ÉµÄ½çÃæ±»Ö¸¶¨µÄÍ¼Æ¬Ìî³ä¡£
- * @author À´Ô´ÓÚÍøÂç
+ * å›¾ç‰‡ç•Œé¢ç±»ï¼Œç”Ÿæˆçš„ç•Œé¢è¢«æŒ‡å®šçš„å›¾ç‰‡å¡«å……ã€‚
+ * @author æ¥æºäºç½‘ç»œ
  * @since 0.0.2-beta
  */
 public class JImagePanel extends JPanel {	
 	
 	private static final long serialVersionUID = -7734848431940782655L;
 	/**
-	 * ±³¾°Í¼Æ¬¡£
+	 * èƒŒæ™¯å›¾ç‰‡ã€‚
 	 */
 	private Image image = null;
 	/**
-	 * ÊÇ·ñ×ÔÊÊÓ¦¡£
+	 * æ˜¯å¦è‡ªé€‚åº”ã€‚
 	 */
 	private boolean autoResize = false;	
 	/**
-	 * Éú³ÉÄ¬ÈÏµÄÍ¼Æ¬½çÃæÊµÀı£¬Ã»ÓĞÖ¸¶¨µÄÍ¼Æ¬£¬²»¿É×ÔÊÊÓ¦¡£
+	 * ç”Ÿæˆé»˜è®¤çš„å›¾ç‰‡ç•Œé¢å®ä¾‹ï¼Œæ²¡æœ‰æŒ‡å®šçš„å›¾ç‰‡ï¼Œä¸å¯è‡ªé€‚åº”ã€‚
 	 */
 	public JImagePanel() {this(null, false);}
 	/**
-	 *Éú³ÉÍ¼Æ¬½çÃæÊµÀı£¬Ö¸¶¨ÊÇ·ñ×ÔÊÊÓ¦¡£
-	 * @param autoResize ÊÇ·ñ×ÔÊÊÓ¦¡£
+	 *ç”Ÿæˆå›¾ç‰‡ç•Œé¢å®ä¾‹ï¼ŒæŒ‡å®šæ˜¯å¦è‡ªé€‚åº”ã€‚
+	 * @param autoResize æ˜¯å¦è‡ªé€‚åº”ã€‚
 	 */
 	public JImagePanel(boolean autoResize) {
 		this(null, autoResize);
 	}
 	/**
-	 * Éú³É´øÓĞÖ¸¶¨Í¼Æ¬µÄÍ¼Æ¬½çÃæ¡£
-	 * @param image Ö¸¶¨µÄÍ¼Æ¬¡£
+	 * ç”Ÿæˆå¸¦æœ‰æŒ‡å®šå›¾ç‰‡çš„å›¾ç‰‡ç•Œé¢ã€‚
+	 * @param image æŒ‡å®šçš„å›¾ç‰‡ã€‚
 	 */
 	public JImagePanel(Image image) {this(image, false);}	
 	/**
-	 * Éú³É¾ßÓĞÖ¸¶¨Í¼Æ¬£¬ÒÔ¼°Ö¸¶¨ÊÇ·ñ¿ÉÒÔ×ÔÊÊÓ¦µÄÍ¼Æ¬½çÃæ¡£
-	 * @param image Ö¸¶¨µÄÍ¼Æ¬¡£
-	 * @param autoResize ÊÇ·ñ×ÔÊÊÓ¦¡£
+	 * ç”Ÿæˆå…·æœ‰æŒ‡å®šå›¾ç‰‡ï¼Œä»¥åŠæŒ‡å®šæ˜¯å¦å¯ä»¥è‡ªé€‚åº”çš„å›¾ç‰‡ç•Œé¢ã€‚
+	 * @param image æŒ‡å®šçš„å›¾ç‰‡ã€‚
+	 * @param autoResize æ˜¯å¦è‡ªé€‚åº”ã€‚
 	 */
 	public JImagePanel(Image image, boolean autoResize) {
 		super();
@@ -59,26 +59,26 @@ public class JImagePanel extends JPanel {
 		}
 	}
 	/**
-	 * ·µ»Ø±³¾°Í¼Æ¬¡£
-	 * @return ±³¾°Í¼Æ¬¡£
+	 * è¿”å›èƒŒæ™¯å›¾ç‰‡ã€‚
+	 * @return èƒŒæ™¯å›¾ç‰‡ã€‚
 	 */
 	public Image getImage() {return image;}
 	/**
-	 * ÉèÖÃ±³¾°Í¼Æ¬ÎªÖ¸¶¨µÄÍ¼Æ¬¡£
-	 * @param image Ö¸¶¨µÄÍ¼Æ¬¡£
+	 * è®¾ç½®èƒŒæ™¯å›¾ç‰‡ä¸ºæŒ‡å®šçš„å›¾ç‰‡ã€‚
+	 * @param image æŒ‡å®šçš„å›¾ç‰‡ã€‚
 	 */
 	public void setImage(Image image) {
 		this.image = image;
 		repaint();
 	}
 	/**
-	 * ·µ»ØÍ¼Æ¬ÊÇ·ñ×ÔÊÊÓ¦¡£
-	 * @return ÊÇ·ñ×ÔÊÊÓ¦¡£
+	 * è¿”å›å›¾ç‰‡æ˜¯å¦è‡ªé€‚åº”ã€‚
+	 * @return æ˜¯å¦è‡ªé€‚åº”ã€‚
 	 */
 	public boolean isAutoResize() {return autoResize;}
 	/**
-	 * ÉèÖÃÍ¼Æ¬ÊÇ·ñ×ÔÊÊÓ¦¡£
-	 * @param autoResize ÊÇ·ñ×ÔÊÊÓ¦¡£
+	 * è®¾ç½®å›¾ç‰‡æ˜¯å¦è‡ªé€‚åº”ã€‚
+	 * @param autoResize æ˜¯å¦è‡ªé€‚åº”ã€‚
 	 */
 	public void setAutoResize(boolean autoResize) {
 		this.autoResize = autoResize;

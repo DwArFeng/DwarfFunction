@@ -9,20 +9,20 @@ import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 
 /**
- * Á÷±£´æÆ÷¡£
- * <p> ÓÃÁ÷ÊµÏÖµÄ±£´æÆ÷¡£
+ * æµä¿å­˜å™¨ã€‚
+ * <p> ç”¨æµå®ç°çš„ä¿å­˜å™¨ã€‚
  * @author DwArFeng
  * @since 0.0.3-beta
  */
 public abstract class StreamSaver<T> implements Closeable, Saver<T> {
 
-	/**±£´æÆ÷ÖĞµÄÊä³öÁ÷*/
+	/**ä¿å­˜å™¨ä¸­çš„è¾“å‡ºæµ*/
 	protected final OutputStream out;
 	
 	/**
-	 * ĞÂÊµÀı¡£
-	 * @param out Ö¸¶¨µÄÊä³öÁ÷¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * æ–°å®ä¾‹ã€‚
+	 * @param out æŒ‡å®šçš„è¾“å‡ºæµã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public StreamSaver(OutputStream out) {
 		Objects.requireNonNull(out, DwarfUtil.getStringField(StringFieldKey.STREAMSAVER_0));

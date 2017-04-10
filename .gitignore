@@ -32,6 +32,9 @@ local.properties
 /doc/
 /archive/
 /config/
+/lib_src/
 
 /doc/
 /release/
+
+/test/

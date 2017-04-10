@@ -1,17 +1,17 @@
 package com.dwarfeng.dutil.math;
 
 /**
- * Óò¡£
- * <p> Óò½Ó¿Ú±íÃ÷ÁËÆäÊµÏÖÀà¿É±íÊ¾ÎªÒ»¸öÓĞ¹ØÓÚ·ºĞÍ<code>T</code>µÄ·¶Î§¡£
+ * åŸŸã€‚
+ * <p> åŸŸæ¥å£è¡¨æ˜äº†å…¶å®ç°ç±»å¯è¡¨ç¤ºä¸ºä¸€ä¸ªæœ‰å…³äºæ³›å‹<code>T</code>çš„èŒƒå›´ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public interface Region<T> extends MathObject{
 
 	/**
-	 * ÅĞ¶ÏÓòÊÇ·ñ°üº¬Ö¸¶¨ÔªËØ¡£
-	 * @param t Ö¸¶¨µÄÔªËØ¡£
-	 * @return Ö¸¶¨µÄÔªËØÊÇ·ñÊôÓÚÕâ¸öÓò¡£
+	 * åˆ¤æ–­åŸŸæ˜¯å¦åŒ…å«æŒ‡å®šå…ƒç´ ã€‚
+	 * @param t æŒ‡å®šçš„å…ƒç´ ã€‚
+	 * @return æŒ‡å®šçš„å…ƒç´ æ˜¯å¦å±äºè¿™ä¸ªåŸŸã€‚
 	 */
 	public boolean contains(T t);
 	

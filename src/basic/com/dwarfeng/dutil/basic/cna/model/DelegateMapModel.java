@@ -15,32 +15,32 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.cna.model.obv.MapObverser;
 
 /**
- * ´úÀíÓ³ÉäÄ£ĞÍ¡£ Í¨¹ı´úÀíÒ»¸ö {@link Map} ÊµÏÖÓ³ÉäÄ£ĞÍ¡£
+ * ä»£ç†æ˜ å°„æ¨¡å‹ã€‚ é€šè¿‡ä»£ç†ä¸€ä¸ª {@link Map} å®ç°æ˜ å°„æ¨¡å‹ã€‚
  * 
  * @author DwArFeng
  * @since 0.1.0-beta
  */
 public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 
-	/** ¸ÃÓ³ÉäÄ£ĞÍµÄ´úÀí¡£ */
+	/** è¯¥æ˜ å°„æ¨¡å‹çš„ä»£ç†ã€‚ */
 	protected final Map<K, V> delegate;
 
 	/**
-	 * Éú³ÉÒ»¸öÄ¬ÈÏµÄÓ³ÉäÁĞ±íÄ£ĞÍ¡£
+	 * ç”Ÿæˆä¸€ä¸ªé»˜è®¤çš„æ˜ å°„åˆ—è¡¨æ¨¡å‹ã€‚
 	 */
 	public DelegateMapModel() {
 		this(new HashMap<>(), Collections.newSetFromMap(new WeakHashMap<>()));
 	}
 
 	/**
-	 * Éú³ÉÒ»¸öÖ¸¶¨µÄ´úÀí£¬Ö¸¶¨µÄ¹Û²ìÆ÷¼¯ºÏµÄ´úÀíÓ³ÉäÄ£ĞÍ¡£
+	 * ç”Ÿæˆä¸€ä¸ªæŒ‡å®šçš„ä»£ç†ï¼ŒæŒ‡å®šçš„è§‚å¯Ÿå™¨é›†åˆçš„ä»£ç†æ˜ å°„æ¨¡å‹ã€‚
 	 * 
 	 * @param delegate
-	 *            Ö¸¶¨µÄ´úÀíÓ³Éä¡£
+	 *            æŒ‡å®šçš„ä»£ç†æ˜ å°„ã€‚
 	 * @param obversers
-	 *            Ö¸¶¨µÄ´úÀíÓ³ÉäÄ£ĞÍ¡£
+	 *            æŒ‡å®šçš„ä»£ç†æ˜ å°„æ¨¡å‹ã€‚
 	 * @throws NullPointerException
-	 *             Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 *             å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public DelegateMapModel(Map<K, V> delegate, Set<MapObverser<K, V>> obversers) {
 		super(obversers);
@@ -125,7 +125,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 		boolean aFlag = delegate.containsKey(key);
 		V value = delegate.remove(key);
 		if (aFlag) {
-			// Èç¹û´úÀíÖĞ´æÔÚ key£¬Ôò key Ò»¶¨ÊôÓÚ K£¬¸Ã×ª»»ÊÇ°²È«µÄ¡£
+			// å¦‚æœä»£ç†ä¸­å­˜åœ¨ keyï¼Œåˆ™ key ä¸€å®šå±äº Kï¼Œè¯¥è½¬æ¢æ˜¯å®‰å…¨çš„ã€‚
 			@SuppressWarnings("unchecked")
 			K k = (K) key;
 			fireRemoved(k, value);
@@ -298,7 +298,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 		public boolean remove(Object o) {
 			V value = delegate.get(o);
 			if (delegateKeySet.remove(o)) {
-				// Èç¹ûÄÜ¹»ÒÆ³ı£¬Ôò o Ò»¶¨ÊôÓÚ K£¬¸ÃÀàĞÍ×ª»»ÊÇ°²È«µÄ¡£
+				// å¦‚æœèƒ½å¤Ÿç§»é™¤ï¼Œåˆ™ o ä¸€å®šå±äº Kï¼Œè¯¥ç±»å‹è½¬æ¢æ˜¯å®‰å…¨çš„ã€‚
 				@SuppressWarnings("unchecked")
 				K key = (K) o;
 				fireRemoved(key, value);
@@ -557,7 +557,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 		public boolean remove(Object o) {
 			if (!contains(o))
 				return false;
-			// Èç¹û¶ÔÏó o ÔÚÖµ¼¯ºÏÖĞ£¬Ôò¶ÔÏó o Ò»¶¨ÊôÓÚ V£¬¹Ê¸Ã×ª»»ÀàĞÍ°²È«¡£
+			// å¦‚æœå¯¹è±¡ o åœ¨å€¼é›†åˆä¸­ï¼Œåˆ™å¯¹è±¡ o ä¸€å®šå±äº Vï¼Œæ•…è¯¥è½¬æ¢ç±»å‹å®‰å…¨ã€‚
 			@SuppressWarnings("unchecked")
 			V value = (V) o;
 			Set<K> set = findKey(value);
@@ -782,7 +782,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 			Object[] objs = delegateEntrySet.toArray();
 			Object[] dejavu = new Object[objs.length];
 			for (int i = 0; i < objs.length; i++) {
-				// ¸Ã×ª»»ÊÇ°²È«µÄ¡£
+				// è¯¥è½¬æ¢æ˜¯å®‰å…¨çš„ã€‚
 				@SuppressWarnings("unchecked")
 				Map.Entry<K, V> entry = (java.util.Map.Entry<K, V>) objs[i];
 				dejavu[i] = new DelegateEntry(entry);
@@ -832,7 +832,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 			Object k = entry.getKey();
 			V value = delegate.get(k);
 			if (delegateEntrySet.remove(entry)) {
-				// Èç¹ûÄÜ¹»ÒÆ³ı£¬Ôò k Ò»¶¨ÊôÓÚ K£¬¸ÃÀàĞÍ×ª»»ÊÇ°²È«µÄ¡£
+				// å¦‚æœèƒ½å¤Ÿç§»é™¤ï¼Œåˆ™ k ä¸€å®šå±äº Kï¼Œè¯¥ç±»å‹è½¬æ¢æ˜¯å®‰å…¨çš„ã€‚
 				@SuppressWarnings("unchecked")
 				K key = (K) k;
 				fireRemoved(key, value);

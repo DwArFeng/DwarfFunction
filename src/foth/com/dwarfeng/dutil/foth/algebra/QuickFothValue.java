@@ -7,32 +7,32 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.math.AbstractMathObject;
 
 /**
- * ¿ìËÙÖµÀà¡£
- * <p> ¸ÃÀà¶Ô {@link FothValue}½Ó¿Ú½øĞĞÁË×î¼òµ¥µÄÊµÏÖ¡£
- * <p> ¸ÃÀà²»½ÓÊÜ¿É±ä¶ÔÏó£¬ËùÓĞ´«ÈëÆäÖĞµÄÖµ¶ÔÏó¶¼»á½øĞĞÈ¡Öµ£¬ÒÔ<code>double</code>¡£
- * µÄĞÎÊ½´æ´¢¡£
+ * å¿«é€Ÿå€¼ç±»ã€‚
+ * <p> è¯¥ç±»å¯¹ {@link FothValue}æ¥å£è¿›è¡Œäº†æœ€ç®€å•çš„å®ç°ã€‚
+ * <p> è¯¥ç±»ä¸æ¥å—å¯å˜å¯¹è±¡ï¼Œæ‰€æœ‰ä¼ å…¥å…¶ä¸­çš„å€¼å¯¹è±¡éƒ½ä¼šè¿›è¡Œå–å€¼ï¼Œä»¥<code>double</code>ã€‚
+ * çš„å½¢å¼å­˜å‚¨ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public class QuickFothValue extends AbstractMathObject implements FothValue {
 
-	/**´ú±í0*/
+	/**ä»£è¡¨0*/
 	public static final QuickFothValue ZERO = new QuickFothValue();
 	
-	/**¶ÔÏóµÄÖµ*/
+	/**å¯¹è±¡çš„å€¼*/
 	protected final double val;
 	
 	/**
-	 * Éú³ÉÒ»¸öÖµÎª0µÄ¿ìËÙÖµ¶ÔÏó¡£
-	 * <p> ×Ö¶Î {@link QuickFothValue#ZERO}ÓÅÏÈ¼¶Òª¸ßÓÚ¸Ã¹¹Ôì·½·¨¡£
+	 * ç”Ÿæˆä¸€ä¸ªå€¼ä¸º0çš„å¿«é€Ÿå€¼å¯¹è±¡ã€‚
+	 * <p> å­—æ®µ {@link QuickFothValue#ZERO}ä¼˜å…ˆçº§è¦é«˜äºè¯¥æ„é€ æ–¹æ³•ã€‚
 	 */
 	public QuickFothValue() {
 		this(0);
 	}
 	
 	/**
-	 * Éú³ÉÒ»¸ö¿ìËÙÖµ¶ÔÏó¡£
-	 * @param val ¶ÔÏóµÄÖµ¡£
+	 * ç”Ÿæˆä¸€ä¸ªå¿«é€Ÿå€¼å¯¹è±¡ã€‚
+	 * @param val å¯¹è±¡çš„å€¼ã€‚
 	 */
 	public QuickFothValue(double val) {
 		this.val = val;

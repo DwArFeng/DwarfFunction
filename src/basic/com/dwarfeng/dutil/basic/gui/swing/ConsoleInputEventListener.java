@@ -3,16 +3,16 @@ package com.dwarfeng.dutil.basic.gui.swing;
 import java.util.EventListener;
 
 /**
- * ¿ØÖÆÌ¨ÊäÈëµÄÕìÌıÆ÷¡£
- * @deprecated Ëæ×Å {@link JConsole} ¹ıÊ±£¬¸ÃÀàÒ²Ò»²¢¹ıÊ±¡£
+ * æ§åˆ¶å°è¾“å…¥çš„ä¾¦å¬å™¨ã€‚
+ * @deprecated éšç€ {@link JConsole} è¿‡æ—¶ï¼Œè¯¥ç±»ä¹Ÿä¸€å¹¶è¿‡æ—¶ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public interface ConsoleInputEventListener extends EventListener {
 	
 	/**
-	 * µ±¿ØÖÆÌ¨·¢ÉúÊäÈëÊÂ¼şÊ±·¢ÉúµÄµ÷¶È¡£
-	 * @param e ¿ØÖÆÌ¨ÊäÈëÊÂ¼ş¡£
+	 * å½“æ§åˆ¶å°å‘ç”Ÿè¾“å…¥äº‹ä»¶æ—¶å‘ç”Ÿçš„è°ƒåº¦ã€‚
+	 * @param e æ§åˆ¶å°è¾“å…¥äº‹ä»¶ã€‚
 	 */
 	public void onConsoleInput(ConsoleInputEvent e);
 	

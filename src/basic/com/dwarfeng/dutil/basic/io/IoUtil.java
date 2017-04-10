@@ -7,32 +7,43 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
- * ÓëIO½Ó¿ÚÓĞ¹ØµÄÒ»Ğ©¹¦ÄÜ¡£
+ * ä¸IOæ¥å£æœ‰å…³çš„ä¸€äº›åŠŸèƒ½ã€‚
+ * 
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public final class IoUtil {
-	
+
 	/**
-	 * Êı¾İ´«ËÍ·½·¨¡£
-	 * <p>½«Ò»¸öÊäÈëÁ÷ÖĞµÄËùÓĞÊı¾İ´«µİ¸øÒ»¸öÊä³öÁ÷¡£
-	 * @param in Ö¸¶¨µÄÊäÈëÁ÷¡£
-	 * @param out Ö¸¶¨µÄÊä³öÁ÷¡£
-	 * @param bufferSize Ö¸¶¨µÄ»º³åµÄ´óĞ¡¡£
-	 * @throws IOException µ±Êı¾İÎŞ·¨¶ÁÈ¡»òÊı¾İÎŞ·¨Ğ´ÈëÊ±Å×³öµÄÒì³£¡£
+	 * æ•°æ®ä¼ é€æ–¹æ³•ã€‚
+	 * <p>
+	 * å°†ä¸€ä¸ªè¾“å…¥æµä¸­çš„æ‰€æœ‰æ•°æ®ä¼ é€’ç»™ä¸€ä¸ªè¾“å‡ºæµã€‚
+	 * <p>
+	 * è¯¥æ–¹æ³•ä¸ä¼šä¸»åŠ¨å…³é—­ <code>in</code> æˆ–è€… <code>out</code>ã€‚
+	 * 
+	 * @param in
+	 *            æŒ‡å®šçš„è¾“å…¥æµã€‚
+	 * @param out
+	 *            æŒ‡å®šçš„è¾“å‡ºæµã€‚
+	 * @param bufferSize
+	 *            æŒ‡å®šçš„ç¼“å†²çš„å¤§å°ã€‚
+	 * @throws IOException
+	 *             å½“æ•°æ®æ— æ³•è¯»å–æˆ–æ•°æ®æ— æ³•å†™å…¥æ—¶æŠ›å‡ºçš„å¼‚å¸¸ã€‚
 	 */
-	public static  void trans(InputStream in,OutputStream out,int bufferSize) throws IOException{
-		if(in == null || out == null) throw new NullPointerException("InputStream or OutputStream can't be null");
-		BufferedInputStream bin = new BufferedInputStream(in,bufferSize);
-		BufferedOutputStream bout = new BufferedOutputStream(out,bufferSize);
+	public static void trans(InputStream in, OutputStream out, int bufferSize) throws IOException {
+		if (in == null || out == null)
+			throw new NullPointerException("InputStream or OutputStream can't be null");
+		BufferedInputStream bin = new BufferedInputStream(in, bufferSize);
+		BufferedOutputStream bout = new BufferedOutputStream(out, bufferSize);
 		byte[] buffer = new byte[bufferSize];
 		int i = 0;
-		while(( i = bin.read(buffer,0,buffer.length))>= 0){
+		while ((i = bin.read(buffer, 0, buffer.length)) >= 0) {
 			bout.write(buffer, 0, i);
 			bout.flush();
 		}
 	}
-	
-	//½ûÖ¹Íâ²¿Éú³ÉÊµÀı¡£
-	private IoUtil(){}
+
+	// ç¦æ­¢å¤–éƒ¨ç”Ÿæˆå®ä¾‹ã€‚
+	private IoUtil() {
+	}
 }

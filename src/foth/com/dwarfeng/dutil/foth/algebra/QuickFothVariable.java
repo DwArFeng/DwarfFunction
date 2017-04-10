@@ -7,33 +7,33 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.math.AbstractMathObject;
 
 /**
- * ±äÁ¿¡£
- * <p> ¸ÃÀà²»½ÓÊÜ¿É±ä¶ÔÏó£¬ËùÓĞ´«ÈëÆäÖĞµÄÖµ¶ÔÏó¶¼»á½øĞĞÈ¡Öµ£¬ÒÔ<code>double</code>¡£
- * µÄĞÎÊ½´æ´¢¡£
+ * å˜é‡ã€‚
+ * <p> è¯¥ç±»ä¸æ¥å—å¯å˜å¯¹è±¡ï¼Œæ‰€æœ‰ä¼ å…¥å…¶ä¸­çš„å€¼å¯¹è±¡éƒ½ä¼šè¿›è¡Œå–å€¼ï¼Œä»¥<code>double</code>ã€‚
+ * çš„å½¢å¼å­˜å‚¨ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public class QuickFothVariable extends AbstractMathObject implements FothVariable {
 	
-	/**±äÁ¿µÄÖµ*/
+	/**å˜é‡çš„å€¼*/
 	protected double val;
-	/**±äÁ¿µÄÃû³Æ*/
+	/**å˜é‡çš„åç§°*/
 	protected final String name;
 	
 	/**
-	 * Éú³ÉÒ»¸öÄ¬ÈÏµÄ£¬ÖµÎª0µÄ±äÁ¿¡£
-	 * @param name ±äÁ¿µÄÃû³Æ¡£
+	 * ç”Ÿæˆä¸€ä¸ªé»˜è®¤çš„ï¼Œå€¼ä¸º0çš„å˜é‡ã€‚
+	 * @param name å˜é‡çš„åç§°ã€‚
 	 */
 	public QuickFothVariable(String name) {
 		this(name, 0d);
 	}
 	
 	/**
-	 * Éú³ÉÒ»¸öÖµÎªÖ¸¶¨Öµ½Ó¿ÚµÄµ±Ç°ÖµµÄ±äÁ¿¡£
-	 * @param name ±äÁ¿µÄÃû³Æ¡£
-	 * @param val Ö¸¶¨µÄÖµ½Ó¿Ú¡£
-	 * @throws IllegalArgumentException name²ÎÊıÎª <code>null</code>»ò·Ç·¨¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>Ê±Å×³öÒì³£¡£
+	 * ç”Ÿæˆä¸€ä¸ªå€¼ä¸ºæŒ‡å®šå€¼æ¥å£çš„å½“å‰å€¼çš„å˜é‡ã€‚
+	 * @param name å˜é‡çš„åç§°ã€‚
+	 * @param val æŒ‡å®šçš„å€¼æ¥å£ã€‚
+	 * @throws IllegalArgumentException nameå‚æ•°ä¸º <code>null</code>æˆ–éæ³•ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>æ—¶æŠ›å‡ºå¼‚å¸¸ã€‚
 	 */
 	public QuickFothVariable(String name, FothValue val) {
 		if(Objects.isNull(name) || name.equals("")){
@@ -46,10 +46,10 @@ public class QuickFothVariable extends AbstractMathObject implements FothVariabl
 	}
 	
 	/**
-	 * Éú³ÉÒ»¸öÖµÎªÖ¸¶¨ÖµµÄ±äÁ¿¡£
-	 * @param name ±äÁ¿µÄÃû³Æ¡£
-	 * @param d Ö¸¶¨µÄÖµ¡£
-	 * @throws IllegalArgumentException name²ÎÊıÎª <code>null</code> »ò·Ç·¨¡£
+	 * ç”Ÿæˆä¸€ä¸ªå€¼ä¸ºæŒ‡å®šå€¼çš„å˜é‡ã€‚
+	 * @param name å˜é‡çš„åç§°ã€‚
+	 * @param d æŒ‡å®šçš„å€¼ã€‚
+	 * @throws IllegalArgumentException nameå‚æ•°ä¸º <code>null</code> æˆ–éæ³•ã€‚
 	 */
 	public QuickFothVariable(String name, double d) {
 		if(Objects.isNull(name) || name.equals("")){

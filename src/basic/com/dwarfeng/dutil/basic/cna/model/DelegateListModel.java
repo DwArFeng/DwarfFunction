@@ -15,34 +15,34 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.cna.model.obv.ListObverser;
 
 /**
- * ´úÀíÁĞ±íÄ£ĞÍ¡£
+ * ä»£ç†åˆ—è¡¨æ¨¡å‹ã€‚
  * <p>
- * Í¨¹ı´úÀíÒ»¸ö {@link List} ÊµÏÖÁĞ±íÄ£ĞÍ¡£
+ * é€šè¿‡ä»£ç†ä¸€ä¸ª {@link List} å®ç°åˆ—è¡¨æ¨¡å‹ã€‚
  * 
  * @author DwArFeng
  * @since 0.1.0-beta
  */
 public class DelegateListModel<E> extends AbstractListModel<E> {
 
-	/** ¸ÃÁĞ±íÄ£ĞÍµÄ´úÀí¡£ */
+	/** è¯¥åˆ—è¡¨æ¨¡å‹çš„ä»£ç†ã€‚ */
 	protected final List<E> delegate;
 
 	/**
-	 * Éú³ÉÒ»¸öÄ¬ÈÏµÄ´úÀíÁĞ±íÄ£ĞÍ¡£
+	 * ç”Ÿæˆä¸€ä¸ªé»˜è®¤çš„ä»£ç†åˆ—è¡¨æ¨¡å‹ã€‚
 	 */
 	public DelegateListModel() {
 		this(new ArrayList<>(), Collections.newSetFromMap(new WeakHashMap<>()));
 	}
 
 	/**
-	 * Éú³ÉÒ»¸öÖ¸¶¨µÄ´úÀí£¬Ö¸¶¨µÄ¹Û²ìÆ÷¼¯ºÏµÄ´úÀíÁĞ±íÄ£ĞÍ¡£
+	 * ç”Ÿæˆä¸€ä¸ªæŒ‡å®šçš„ä»£ç†ï¼ŒæŒ‡å®šçš„è§‚å¯Ÿå™¨é›†åˆçš„ä»£ç†åˆ—è¡¨æ¨¡å‹ã€‚
 	 * 
 	 * @param delegate
-	 *            Ö¸¶¨µÄ´úÀíÁĞ±í¡£
+	 *            æŒ‡å®šçš„ä»£ç†åˆ—è¡¨ã€‚
 	 * @param obversers
-	 *            Ö¸¶¨µÄ´úÀíÁĞ±íÄ£ĞÍ¡£
+	 *            æŒ‡å®šçš„ä»£ç†åˆ—è¡¨æ¨¡å‹ã€‚
 	 * @throws NullPointerException
-	 *             Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 *             å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public DelegateListModel(List<E> delegate, Set<ListObverser<E>> obversers) {
 		super(obversers);
@@ -186,7 +186,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 	public boolean remove(Object o) {
 		int index = delegate.indexOf(o);
 		if (delegate.remove(o)) {
-			// Ö»Òª´úÀíÄÜÒÆ³ı¸Ã¶ÔÏó£¬¸Ã¶ÔÏóÒ»¶¨ÊôÓÚÀàĞÍE£¬¸Ã×ª»»ÊÇ°²È«µÄ¡£
+			// åªè¦ä»£ç†èƒ½ç§»é™¤è¯¥å¯¹è±¡ï¼Œè¯¥å¯¹è±¡ä¸€å®šå±äºç±»å‹Eï¼Œè¯¥è½¬æ¢æ˜¯å®‰å…¨çš„ã€‚
 			@SuppressWarnings("unchecked")
 			E e = (E) o;
 			fireRemoved(index, e);
@@ -654,7 +654,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 		public boolean remove(Object o) {
 			int index = subDelegate.indexOf(o);
 			if (subDelegate.remove(o)) {
-				// Ö»Òª´úÀíÄÜÒÆ³ı¸Ã¶ÔÏó£¬¸Ã¶ÔÏóÒ»¶¨ÊôÓÚÀàĞÍE£¬¸Ã×ª»»ÊÇ°²È«µÄ¡£
+				// åªè¦ä»£ç†èƒ½ç§»é™¤è¯¥å¯¹è±¡ï¼Œè¯¥å¯¹è±¡ä¸€å®šå±äºç±»å‹Eï¼Œè¯¥è½¬æ¢æ˜¯å®‰å…¨çš„ã€‚
 				@SuppressWarnings("unchecked")
 				E e = (E) o;
 				fireRemoved(index + offset, e);

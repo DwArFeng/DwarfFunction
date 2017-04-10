@@ -4,38 +4,38 @@ import com.dwarfeng.dutil.basic.cna.model.ListModel;
 import com.dwarfeng.dutil.basic.prog.Obverser;
 
 /**
- * ÁĞ±íÄ£ĞÍÕìÌıÆ÷¡£
+ * åˆ—è¡¨æ¨¡å‹ä¾¦å¬å™¨ã€‚
  * @author DwArFeng
  * @since 0.1.0-beta
  */
 public interface ListObverser<E> extends Obverser {
 	
 	/**
-	 * Í¨ÖªÄ£ĞÍÔÚÖ¸¶¨µÄÎ»ÖÃÔö¼ÓÁËÖ¸¶¨µÄÔªËØ¡£
-	 * @param index Ö¸¶¨µÄÎ»ÖÃ¡£
-	 * @param element Ö¸¶¨µÄÔªËØ¡£
+	 * é€šçŸ¥æ¨¡å‹åœ¨æŒ‡å®šçš„ä½ç½®å¢åŠ äº†æŒ‡å®šçš„å…ƒç´ ã€‚
+	 * @param index æŒ‡å®šçš„ä½ç½®ã€‚
+	 * @param element æŒ‡å®šçš„å…ƒç´ ã€‚
 	 */
 	public void fireAdded(int index, E element);
 	
 	/**
-	 * Í¨ÖªÄ£ĞÍÔÚÖ¸¶¨µÄÎ»ÖÃÒÆ³ıÁËÔªËØ¡£
-	 * @param index Ö¸¶¨µÄÎ»ÖÃ¡£
-	 * @param element ±»ÒÆ³ıµÄÔªËØ¡£
+	 * é€šçŸ¥æ¨¡å‹åœ¨æŒ‡å®šçš„ä½ç½®ç§»é™¤äº†å…ƒç´ ã€‚
+	 * @param index æŒ‡å®šçš„ä½ç½®ã€‚
+	 * @param element è¢«ç§»é™¤çš„å…ƒç´ ã€‚
 	 */
 	public void fireRemoved(int index, E element);
 	
 	/**
-	 * Í¨ÖªÄ£ĞÍÔÚÖ¸¶¨µÄÎ»ÖÃ¸Ä±äÁËÖ¸¶¨µÄÔªËØ¡£
-	 * @param index Ö¸¶¨µÄÎ»ÖÃ¡£
-	 * @param oldElement Ö¸¶¨Î»ÖÃ´¦µÄ¾ÉÔªËØ¡£
-	 * @param newElement Ö¸¶¨Î»ÖÃ´¦µÄĞÂÔªËØ¡£
+	 * é€šçŸ¥æ¨¡å‹åœ¨æŒ‡å®šçš„ä½ç½®æ”¹å˜äº†æŒ‡å®šçš„å…ƒç´ ã€‚
+	 * @param index æŒ‡å®šçš„ä½ç½®ã€‚
+	 * @param oldElement æŒ‡å®šä½ç½®å¤„çš„æ—§å…ƒç´ ã€‚
+	 * @param newElement æŒ‡å®šä½ç½®å¤„çš„æ–°å…ƒç´ ã€‚
 	 */
 	public void fireChanged(int index, E oldElement, E newElement);
 	
 	/**
-	 * Í¨ÖªÄ£ĞÍ±»Çå¿Õ¡£
-	 * <p> ¸Ã·½·¨ÎªÁËÌá¸ßĞ§ÂÊ¶ø¶¨ÒåµÄ£¬¹ÊÔÚÄ£ĞÍÖ´ĞĞ {@link ListModel#clear()} ·½·¨µÄÊ±ºò£¬
-	 * »á´¥·¢¸ÃÍ¨Öª¶ø²»ÊÇÒ»ÌõÌõµØ´¥·¢ {@link #fireRemoved(int, Object)}¡£
+	 * é€šçŸ¥æ¨¡å‹è¢«æ¸…ç©ºã€‚
+	 * <p> è¯¥æ–¹æ³•ä¸ºäº†æé«˜æ•ˆç‡è€Œå®šä¹‰çš„ï¼Œæ•…åœ¨æ¨¡å‹æ‰§è¡Œ {@link ListModel#clear()} æ–¹æ³•çš„æ—¶å€™ï¼Œ
+	 * ä¼šè§¦å‘è¯¥é€šçŸ¥è€Œä¸æ˜¯ä¸€æ¡æ¡åœ°è§¦å‘ {@link #fireRemoved(int, Object)}ã€‚
 	 */
 	public void fireCleared();
 

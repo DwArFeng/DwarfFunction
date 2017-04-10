@@ -1,17 +1,17 @@
 package com.dwarfeng.dutil.basic.num;
 
 /**
- * Êı×ÖÖµ¹ıÂËÆ÷¡£
- * <p> ÄÜ¹»¹ıÂËÊı×ÖÖµµÄ½Ó¿Ú¡£
+ * æ•°å­—å€¼è¿‡æ»¤å™¨ã€‚
+ * <p> èƒ½å¤Ÿè¿‡æ»¤æ•°å­—å€¼çš„æ¥å£ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public interface NumberValueFilter{
 
 	/**
-	 * ·µ»Ø¸Ã¹ıÂËÆ÷ÊÇ·ñ½ÓÊÜÖ¸¶¨µÄÊı×ÖÖµ¡£
-	 * @param value Êı×ÖÖµ¡£
-	 * @return ÊÇ·ñ½ÓÊÜÖ¸¶¨µÄÊı×ÖÖµ¡£
+	 * è¿”å›è¯¥è¿‡æ»¤å™¨æ˜¯å¦æ¥å—æŒ‡å®šçš„æ•°å­—å€¼ã€‚
+	 * @param value æ•°å­—å€¼ã€‚
+	 * @return æ˜¯å¦æ¥å—æŒ‡å®šçš„æ•°å­—å€¼ã€‚
 	 */
 	public boolean accept(NumberValue value);
 	

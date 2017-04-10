@@ -3,8 +3,8 @@ package com.dwarfeng.dutil.develop.cfg.parser;
 import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
 /**
- * Ë«¾«¶È¸¡µãÊı½âÎöÆ÷¡£
- * <p> ¸Ã½âÎöÆ÷½âÎöµÄÊÇ <b>double</b> ¶ÔÏó¡£
+ * åŒç²¾åº¦æµ®ç‚¹æ•°è§£æå™¨ã€‚
+ * <p> è¯¥è§£æå™¨è§£æçš„æ˜¯ <b>double</b> å¯¹è±¡ã€‚
  * 
  * @author DwArFeng
  * @since 0.1.0-beta

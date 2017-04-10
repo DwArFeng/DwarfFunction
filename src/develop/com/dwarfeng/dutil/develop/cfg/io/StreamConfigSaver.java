@@ -7,26 +7,26 @@ import java.io.OutputStream;
 import com.dwarfeng.dutil.basic.io.StreamSaver;
 
 /**
- * Á÷ÅäÖÃ±£´æÆ÷¡£
+ * æµé…ç½®ä¿å­˜å™¨ã€‚
  * <p>
- * ÓÃÊä³öÁ÷ÊµÏÖµÄÅäÖÃ±£´æÆ÷¡£
+ * ç”¨è¾“å‡ºæµå®ç°çš„é…ç½®ä¿å­˜å™¨ã€‚
  * 
- * @deprecated ¸ÃÀàÓÉ {@link StreamSaver} Ìæ´ú¡£
+ * @deprecated è¯¥ç±»ç”± {@link StreamSaver} æ›¿ä»£ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public abstract class StreamConfigSaver implements ConfigSaver, Closeable {
 
-	/** Êä³öÁ÷ */
+	/** è¾“å‡ºæµ */
 	protected OutputStream out;
 
 	/**
-	 * Éú³ÉÁ÷ÅäÖÃ±£´æÆ÷¡£
+	 * ç”Ÿæˆæµé…ç½®ä¿å­˜å™¨ã€‚
 	 * 
 	 * @param out
-	 *            Ö¸¶¨µÄÊä³öÁ÷¡£
+	 *            æŒ‡å®šçš„è¾“å‡ºæµã€‚
 	 * @throws NullPointerException
-	 *             Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 *             å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public StreamConfigSaver(OutputStream out) {
 		this.out = out;

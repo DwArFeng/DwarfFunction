@@ -14,28 +14,28 @@ import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 
 /**
- * ÓĞ¹ØÓÚ¼¯ºÏµÄ¹¤¾ß°ü¡£
- * <p> ¸Ã¹¤¾ß°üÖĞ°üº¬¶Ô¼¯ºÏ½øĞĞµÄ³£¼ûµÄ²Ù×÷
- * <p> ÓÉÓÚÊÇÖ»º¬ÓĞ¾²Ì¬·½·¨µÄ¹¤¾ß°ü£¬ËùÒÔ¸ÃÀàÎŞ·¨±»¼Ì³Ğ¡£
+ * æœ‰å…³äºé›†åˆçš„å·¥å…·åŒ…ã€‚
+ * <p> è¯¥å·¥å…·åŒ…ä¸­åŒ…å«å¯¹é›†åˆè¿›è¡Œçš„å¸¸è§çš„æ“ä½œ
+ * <p> ç”±äºæ˜¯åªå«æœ‰é™æ€æ–¹æ³•çš„å·¥å…·åŒ…ï¼Œæ‰€ä»¥è¯¥ç±»æ— æ³•è¢«ç»§æ‰¿ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public final class CollectionUtil {
 
-	//½ûÖ¹Íâ²¿ÊµÀı»¯¡£
+	//ç¦æ­¢å¤–éƒ¨å®ä¾‹åŒ–ã€‚
 	private  CollectionUtil() {}
 
 	/**
-	 * ÔÚÖ¸¶¨¼¯ºÏµÄ»ù´¡ÉÏ»ñµÃ²»ÔÊĞíº¬ÓĞ <code>null</code> ÔªËØµÄ¼¯ºÏ¡£
-	 * <p> »ñµÃµÄ¼¯ºÏ»á×ªÔËÖ¸¶¨µÄ¼¯ºÏÖĞµÄ·½·¨£¬Òò´Ë£¬»ñµÃµÄ¼¯ºÏµÄ±íÏÖÓëÖ¸¶¨µÄ¼¯ºÏÊÇÒ»ÖÂµÄ¡£
-	 * <p> Çë×¢Òâ£¬Èë¿Ú²ÎÊı±ØĞëÊÇ¿ÕµÄ£¬ÒòÎª·Ç¿ÕµÄ²ÎÊı¿ÉÄÜÒÑ¾­°üº¬ÁË <code>null</code>ÔªËØ¡£
-	 * <br> »ñµÃµÄ¼¯ºÏ²»ÔÊĞíÆäÖĞº¬ÓĞnullÔªËØ£¬Òò´Ë£¬ÈÎºÎÊÔÍ¼ÏòÆäÖĞÌí¼Ó <code>null</code>ÔªËØ
-	 * µÄ·½·¨¶¼½«Å×³öÒì³£¡£
-	 * @param set ×ªÔËµÄ¼¯ºÏ¡£
-	 * @param <T> ·ºĞÍT¡£
-	 * @return ²»ÔÊĞíº¬ÓĞ <code>null</code> ÔªËØµÄ¼¯ºÏ¡£
-	 * @throws NullPointerException µ±Èë¿Ú²ÎÊıÎª <code>null</code> Ê±Å×³ö¸ÃÒì³£¡£
-	 * @throws IllegalArgumentException µ±Èë¿ÚµÄ²ÎÊı²»ÊÇ¿ÕµÄÊ±ºòÅ×³ö¸ÃÒì³£¡£
+	 * åœ¨æŒ‡å®šé›†åˆçš„åŸºç¡€ä¸Šè·å¾—ä¸å…è®¸å«æœ‰ <code>null</code> å…ƒç´ çš„é›†åˆã€‚
+	 * <p> è·å¾—çš„é›†åˆä¼šè½¬è¿æŒ‡å®šçš„é›†åˆä¸­çš„æ–¹æ³•ï¼Œå› æ­¤ï¼Œè·å¾—çš„é›†åˆçš„è¡¨ç°ä¸æŒ‡å®šçš„é›†åˆæ˜¯ä¸€è‡´çš„ã€‚
+	 * <p> è¯·æ³¨æ„ï¼Œå…¥å£å‚æ•°å¿…é¡»æ˜¯ç©ºçš„ï¼Œå› ä¸ºéç©ºçš„å‚æ•°å¯èƒ½å·²ç»åŒ…å«äº† <code>null</code>å…ƒç´ ã€‚
+	 * <br> è·å¾—çš„é›†åˆä¸å…è®¸å…¶ä¸­å«æœ‰nullå…ƒç´ ï¼Œå› æ­¤ï¼Œä»»ä½•è¯•å›¾å‘å…¶ä¸­æ·»åŠ  <code>null</code>å…ƒç´ 
+	 * çš„æ–¹æ³•éƒ½å°†æŠ›å‡ºå¼‚å¸¸ã€‚
+	 * @param set è½¬è¿çš„é›†åˆã€‚
+	 * @param <T> æ³›å‹Tã€‚
+	 * @return ä¸å…è®¸å«æœ‰ <code>null</code> å…ƒç´ çš„é›†åˆã€‚
+	 * @throws NullPointerException å½“å…¥å£å‚æ•°ä¸º <code>null</code> æ—¶æŠ›å‡ºè¯¥å¼‚å¸¸ã€‚
+	 * @throws IllegalArgumentException å½“å…¥å£çš„å‚æ•°ä¸æ˜¯ç©ºçš„æ—¶å€™æŠ›å‡ºè¯¥å¼‚å¸¸ã€‚
 	 */
 	public static<T> Set<T> nonNullSet(Set<T> set){
 		Objects.requireNonNull(set, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_0));
@@ -187,16 +187,16 @@ public final class CollectionUtil {
 	}
 	
 	/**
-	 * ÔÚÖ¸¶¨ÁĞ±íµÄ»ù´¡ÉÏ»ñµÃ²»ÔÊĞíº¬ÓĞ <code>null</code> ÔªËØµÄÁĞ±í¡£
-	 * <p> »ñµÃµÄÁĞ±í»á×ªÔËÖ¸¶¨µÄÁĞ±íÖĞµÄ·½·¨£¬Òò´Ë£¬»ñµÃµÄÁĞ±íµÄ±íÏÖÓëÖ¸¶¨µÄÁĞ±íÊÇÒ»ÖÂµÄ¡£
-	 * <p> Çë×¢Òâ£¬Èë¿Ú²ÎÊı±ØĞëÊÇ¿ÕµÄ£¬ÒòÎª·Ç¿ÕµÄ²ÎÊı¿ÉÄÜÒÑ¾­°üº¬ÁË <code>null</code>ÔªËØ¡£
-	 * <br> »ñµÃµÄÁĞ±í²»ÔÊĞíÆäÖĞº¬ÓĞnullÔªËØ£¬Òò´Ë£¬ÈÎºÎÊÔÍ¼ÏòÆäÖĞÌí¼Ó <code>null</code>ÔªËØ
-	 * µÄ·½·¨¶¼½«Å×³öÒì³£¡£
-	 * @param list ×ªÔËµÄÁĞ±í¡£
-	 * @param <T> ·ºĞÍT¡£
-	 * @return ²»ÔÊĞíº¬ÓĞ <code>null</code> ÔªËØµÄÁĞ±í¡£
-	 * @throws NullPointerException µ±Èë¿Ú²ÎÊıÎª <code>null</code> Ê±Å×³ö¸ÃÒì³£¡£
-	 * @throws IllegalArgumentException µ±Èë¿ÚµÄ²ÎÊı²»ÊÇ¿ÕµÄÊ±ºòÅ×³ö¸ÃÒì³£¡£
+	 * åœ¨æŒ‡å®šåˆ—è¡¨çš„åŸºç¡€ä¸Šè·å¾—ä¸å…è®¸å«æœ‰ <code>null</code> å…ƒç´ çš„åˆ—è¡¨ã€‚
+	 * <p> è·å¾—çš„åˆ—è¡¨ä¼šè½¬è¿æŒ‡å®šçš„åˆ—è¡¨ä¸­çš„æ–¹æ³•ï¼Œå› æ­¤ï¼Œè·å¾—çš„åˆ—è¡¨çš„è¡¨ç°ä¸æŒ‡å®šçš„åˆ—è¡¨æ˜¯ä¸€è‡´çš„ã€‚
+	 * <p> è¯·æ³¨æ„ï¼Œå…¥å£å‚æ•°å¿…é¡»æ˜¯ç©ºçš„ï¼Œå› ä¸ºéç©ºçš„å‚æ•°å¯èƒ½å·²ç»åŒ…å«äº† <code>null</code>å…ƒç´ ã€‚
+	 * <br> è·å¾—çš„åˆ—è¡¨ä¸å…è®¸å…¶ä¸­å«æœ‰nullå…ƒç´ ï¼Œå› æ­¤ï¼Œä»»ä½•è¯•å›¾å‘å…¶ä¸­æ·»åŠ  <code>null</code>å…ƒç´ 
+	 * çš„æ–¹æ³•éƒ½å°†æŠ›å‡ºå¼‚å¸¸ã€‚
+	 * @param list è½¬è¿çš„åˆ—è¡¨ã€‚
+	 * @param <T> æ³›å‹Tã€‚
+	 * @return ä¸å…è®¸å«æœ‰ <code>null</code> å…ƒç´ çš„åˆ—è¡¨ã€‚
+	 * @throws NullPointerException å½“å…¥å£å‚æ•°ä¸º <code>null</code> æ—¶æŠ›å‡ºè¯¥å¼‚å¸¸ã€‚
+	 * @throws IllegalArgumentException å½“å…¥å£çš„å‚æ•°ä¸æ˜¯ç©ºçš„æ—¶å€™æŠ›å‡ºè¯¥å¼‚å¸¸ã€‚
 	 */
 	public static<T> List<T> nonNullList(List<T> list){
 		Objects.requireNonNull(list, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_4));
@@ -446,17 +446,17 @@ public final class CollectionUtil {
 	}
 	
 	/**
-	 * ÔÚÖ¸¶¨Ó³ÉäµÄ»ù´¡ÉÏ»ñµÃ²»ÔÊĞíº¬ÓĞ <code>null</code> ÔªËØµÄÓ³Éä¡£
-	 * <p> »ñµÃµÄÓ³Éä»á×ªÔËÖ¸¶¨µÄÓ³ÉäÖĞµÄ·½·¨£¬Òò´Ë£¬»ñµÃµÄÓ³ÉäµÄ±íÏÖÓëÖ¸¶¨µÄÓ³ÉäÊÇÒ»ÖÂµÄ¡£
-	 * <p> Çë×¢Òâ£¬Èë¿Ú²ÎÊı±ØĞëÊÇ¿ÕµÄ£¬ÒòÎª·Ç¿ÕµÄ²ÎÊı¿ÉÄÜÒÑ¾­°üº¬ÁË <code>null</code>¼ü¡£
-	 * <br> »ñµÃµÄÓ³Éä²»ÔÊĞíÆäÖĞº¬ÓĞnull¼ü£¬Òò´Ë£¬ÈÎºÎÊÔÍ¼ÏòÆäÖĞÌí¼Ó <code>null</code>¼ü
-	 * µÄ·½·¨¶¼½«Å×³öÒì³£¡£
-	 * @param map ×ªÔËµÄÓ³Éä¡£
-	 * @param <K> ·ºĞÍK¡£
-	 * @param <V> ·ºĞÍV¡£
-	 * @return ²»ÔÊĞíº¬ÓĞ <code>null</code> ¼üµÄÓ³Éä¡£
-	 * @throws NullPointerException µ±Èë¿Ú²ÎÊıÎª <code>null</code> Ê±Å×³ö¸ÃÒì³£¡£
-	 * @throws IllegalArgumentException µ±Èë¿ÚµÄ²ÎÊı²»ÊÇ¿ÕµÄÊ±ºòÅ×³ö¸ÃÒì³£¡£
+	 * åœ¨æŒ‡å®šæ˜ å°„çš„åŸºç¡€ä¸Šè·å¾—ä¸å…è®¸å«æœ‰ <code>null</code> å…ƒç´ çš„æ˜ å°„ã€‚
+	 * <p> è·å¾—çš„æ˜ å°„ä¼šè½¬è¿æŒ‡å®šçš„æ˜ å°„ä¸­çš„æ–¹æ³•ï¼Œå› æ­¤ï¼Œè·å¾—çš„æ˜ å°„çš„è¡¨ç°ä¸æŒ‡å®šçš„æ˜ å°„æ˜¯ä¸€è‡´çš„ã€‚
+	 * <p> è¯·æ³¨æ„ï¼Œå…¥å£å‚æ•°å¿…é¡»æ˜¯ç©ºçš„ï¼Œå› ä¸ºéç©ºçš„å‚æ•°å¯èƒ½å·²ç»åŒ…å«äº† <code>null</code>é”®ã€‚
+	 * <br> è·å¾—çš„æ˜ å°„ä¸å…è®¸å…¶ä¸­å«æœ‰nullé”®ï¼Œå› æ­¤ï¼Œä»»ä½•è¯•å›¾å‘å…¶ä¸­æ·»åŠ  <code>null</code>é”®
+	 * çš„æ–¹æ³•éƒ½å°†æŠ›å‡ºå¼‚å¸¸ã€‚
+	 * @param map è½¬è¿çš„æ˜ å°„ã€‚
+	 * @param <K> æ³›å‹Kã€‚
+	 * @param <V> æ³›å‹Vã€‚
+	 * @return ä¸å…è®¸å«æœ‰ <code>null</code> é”®çš„æ˜ å°„ã€‚
+	 * @throws NullPointerException å½“å…¥å£å‚æ•°ä¸º <code>null</code> æ—¶æŠ›å‡ºè¯¥å¼‚å¸¸ã€‚
+	 * @throws IllegalArgumentException å½“å…¥å£çš„å‚æ•°ä¸æ˜¯ç©ºçš„æ—¶å€™æŠ›å‡ºè¯¥å¼‚å¸¸ã€‚
 	 */
 	public static<K, V> Map<K, V> nonNullMap(Map<K, V> map){
 		Objects.requireNonNull(map, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_5));
@@ -591,10 +591,10 @@ public final class CollectionUtil {
 	}
 	
 	/**
-	 * ¼ì²éÖ¸¶¨µÄ¼¯ºÏÖĞÊÇ·ñº¬ÓĞ <code>null</code>ÔªËØ¡£
-	 * @param collection Ö¸¶¨µÄ¼¯ºÏ¡£
-	 * @return ÊÇ·ñº¬ÓĞ <code>null</code>ÔªËØ¡£
-	 * @throws NullPointerException µ±Èë¿Ú²ÎÊıÎª <code>null</code>Ê±¡£
+	 * æ£€æŸ¥æŒ‡å®šçš„é›†åˆä¸­æ˜¯å¦å«æœ‰ <code>null</code>å…ƒç´ ã€‚
+	 * @param collection æŒ‡å®šçš„é›†åˆã€‚
+	 * @return æ˜¯å¦å«æœ‰ <code>null</code>å…ƒç´ ã€‚
+	 * @throws NullPointerException å½“å…¥å£å‚æ•°ä¸º <code>null</code>æ—¶ã€‚
 	 */
 	public static boolean conatinsNull(Collection<?> collection){
 		Objects.requireNonNull(collection, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_2));
@@ -605,12 +605,12 @@ public final class CollectionUtil {
 	}
 	
 	/**
-	 * ÒªÇóÖ¸¶¨µÄ¼¯ºÏ²»ÄÜº¬ÓĞ <code>null</code>ÔªËØ¡£
-	 * <p> Èë¿ÚÖ¸¶¨µÄ <code>collection</code>ÖĞº¬ÓĞ <code>null</code>ÔªËØ£¬
-	 * ÔòÅ×³ö {@link NullPointerException}¡£
-	 * @param collection  Ö¸¶¨µÄ¼¯ºÏÔªËØ¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
-	 * @throws NullPointerException <code>collection</code> ÖĞº¬ÓĞ <code>null</code>ÔªËØ¡£
+	 * è¦æ±‚æŒ‡å®šçš„é›†åˆä¸èƒ½å«æœ‰ <code>null</code>å…ƒç´ ã€‚
+	 * <p> å…¥å£æŒ‡å®šçš„ <code>collection</code>ä¸­å«æœ‰ <code>null</code>å…ƒç´ ï¼Œ
+	 * åˆ™æŠ›å‡º {@link NullPointerException}ã€‚
+	 * @param collection  æŒ‡å®šçš„é›†åˆå…ƒç´ ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
+	 * @throws NullPointerException <code>collection</code> ä¸­å«æœ‰ <code>null</code>å…ƒç´ ã€‚
 	 */
 	public static void requireNotContainsNull(Collection<?> collection){
 		Objects.requireNonNull(collection, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_2));
@@ -618,13 +618,13 @@ public final class CollectionUtil {
 	}
 	
 	/**
-	 * ÒªÇóÖ¸¶¨µÄ¼¯ºÏ²»ÄÜº¬ÓĞ <code>null</code>ÔªËØ¡£
-	 * <p> Èë¿ÚÖ¸¶¨µÄ <code>collection</code>ÖĞº¬ÓĞ <code>null</code>ÔªËØ£¬
-	 * ÔòÅ×³öÓµÓĞÖ¸¶¨Òì³£ĞÅÏ¢µÄ {@link NullPointerException}¡£
-	 * @param collection Ö¸¶¨µÄ¼¯ºÏÔªËØ¡£
-	 * @param message Ö¸¶¨µÄÒì³£ĞÅÏ¢¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
-	 * @throws NullPointerException <code>collection</code> ÖĞº¬ÓĞ <code>null</code>ÔªËØ¡£
+	 * è¦æ±‚æŒ‡å®šçš„é›†åˆä¸èƒ½å«æœ‰ <code>null</code>å…ƒç´ ã€‚
+	 * <p> å…¥å£æŒ‡å®šçš„ <code>collection</code>ä¸­å«æœ‰ <code>null</code>å…ƒç´ ï¼Œ
+	 * åˆ™æŠ›å‡ºæ‹¥æœ‰æŒ‡å®šå¼‚å¸¸ä¿¡æ¯çš„ {@link NullPointerException}ã€‚
+	 * @param collection æŒ‡å®šçš„é›†åˆå…ƒç´ ã€‚
+	 * @param message æŒ‡å®šçš„å¼‚å¸¸ä¿¡æ¯ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
+	 * @throws NullPointerException <code>collection</code> ä¸­å«æœ‰ <code>null</code>å…ƒç´ ã€‚
 	 */
 	public static void requireNotContainsNull(Collection<?> collection, String message){
 		Objects.requireNonNull(collection, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_2));
@@ -660,11 +660,11 @@ public final class CollectionUtil {
 	}
 	
 	/**
-	 * Í¨¹ıÖ¸¶¨µÄ {@link Enumeration} Éú³ÉµÄ {@link Iterator}¡£
-	 * @param enumeration Ö¸¶¨µÄÃ¶¾Ù¡£
-	 * @param <T> ·ºĞÍT¡£
-	 * @return Í¨¹ıÖ¸¶¨µÄÃ¶¾ÙÉú³ÉµÄµü´úÆ÷¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * é€šè¿‡æŒ‡å®šçš„ {@link Enumeration} ç”Ÿæˆçš„ {@link Iterator}ã€‚
+	 * @param enumeration æŒ‡å®šçš„æšä¸¾ã€‚
+	 * @param <T> æ³›å‹Tã€‚
+	 * @return é€šè¿‡æŒ‡å®šçš„æšä¸¾ç”Ÿæˆçš„è¿­ä»£å™¨ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static<T> Iterator<T> enumeration2Iterator(Enumeration<T> enumeration){
 		Objects.requireNonNull(enumeration, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_9));
@@ -700,11 +700,11 @@ public final class CollectionUtil {
 	}
 	
 	/**
-	 * Í¨¹ıÖ¸¶¨µÄ {@link Iterator} Éú³ÉµÄ {@link Enumeration}¡£
-	 * @param iterator Ö¸¶¨µÄµü´úÆ÷¡£
-	 * @param <T> ·ºĞÍT¡£
-	 * @return Í¨¹ıÖ¸¶¨µÄµü´úÆ÷Éú³ÉµÄÃ¶¾Ù¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * é€šè¿‡æŒ‡å®šçš„ {@link Iterator} ç”Ÿæˆçš„ {@link Enumeration}ã€‚
+	 * @param iterator æŒ‡å®šçš„è¿­ä»£å™¨ã€‚
+	 * @param <T> æ³›å‹Tã€‚
+	 * @return é€šè¿‡æŒ‡å®šçš„è¿­ä»£å™¨ç”Ÿæˆçš„æšä¸¾ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public static<T> Enumeration<T> iterator2Enumeration(Iterator<T> iterator){
 		Objects.requireNonNull(iterator, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_10));
@@ -712,14 +712,14 @@ public final class CollectionUtil {
 	}
 	
 	/**
-	 * <p>½«Ò»¸öÊı×é×ª»¯ÎªÒ»¸öµü´úÆ÷¡£
-	 * <p> ËäÈ»Êı×é¿ÉÒÔÊ¹ÓÃ for-each Ñ­»·£¬µ«ÊÇÊı×é²»¿ÉÒÔ×÷Îª {@link Iterable} ¶ÔÏó½øĞĞ²ÎÊı´«µİ£¬¸Ã·½·¨ÎªÁË½â¾öÕâÒ»ÎÊÌâ£¬
-	 * ¿ÉÒÔ½«Ò»¸öÊı×é×ª»¯ÎªÒ»¸ö {@link Iterator}¶ÔÏó£¬·½±ãÄ³Ğ©ĞèÒª´«Èëµü´úÆ÷µÄ³¡ºÏ¡£
-	 * @deprecated ¸Ã·½·¨µÄ¹¦ÄÜÓë¸Ã¹¤¾ß°üµÄ¹¦ÄÜ²»·û£¬ÒÑ¾­Í£Ö¹Ê¹ÓÃ£¬¿ÉÒÔÓÃÀàËÆµÄ·½·¨ {@link ArrayUtil#array2Iterable(Object[])}´úÌæ¡£
-	 * @param array Ö¸¶¨µÄÊı×é¡£
-	 * @param <T> ·ºĞÍT¡£
-	 * @return ÓÉÖ¸¶¨µÄÊı×é×ª»¯¶ø³ÉµÄµü´úÆ÷¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * <p>å°†ä¸€ä¸ªæ•°ç»„è½¬åŒ–ä¸ºä¸€ä¸ªè¿­ä»£å™¨ã€‚
+	 * <p> è™½ç„¶æ•°ç»„å¯ä»¥ä½¿ç”¨ for-each å¾ªç¯ï¼Œä½†æ˜¯æ•°ç»„ä¸å¯ä»¥ä½œä¸º {@link Iterable} å¯¹è±¡è¿›è¡Œå‚æ•°ä¼ é€’ï¼Œè¯¥æ–¹æ³•ä¸ºäº†è§£å†³è¿™ä¸€é—®é¢˜ï¼Œ
+	 * å¯ä»¥å°†ä¸€ä¸ªæ•°ç»„è½¬åŒ–ä¸ºä¸€ä¸ª {@link Iterator}å¯¹è±¡ï¼Œæ–¹ä¾¿æŸäº›éœ€è¦ä¼ å…¥è¿­ä»£å™¨çš„åœºåˆã€‚
+	 * @deprecated è¯¥æ–¹æ³•çš„åŠŸèƒ½ä¸è¯¥å·¥å…·åŒ…çš„åŠŸèƒ½ä¸ç¬¦ï¼Œå·²ç»åœæ­¢ä½¿ç”¨ï¼Œå¯ä»¥ç”¨ç±»ä¼¼çš„æ–¹æ³• {@link ArrayUtil#array2Iterable(Object[])}ä»£æ›¿ã€‚
+	 * @param array æŒ‡å®šçš„æ•°ç»„ã€‚
+	 * @param <T> æ³›å‹Tã€‚
+	 * @return ç”±æŒ‡å®šçš„æ•°ç»„è½¬åŒ–è€Œæˆçš„è¿­ä»£å™¨ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	@Deprecated
 	public static<T> Iterator<T> array2Iterator(T[] array){
@@ -728,13 +728,13 @@ public final class CollectionUtil {
 	}
 	
 	/**
-	 * ÓÃÓÚÁ¬½ÓÁ½¸öµü´úÆ÷¡£
-	 * <p> ĞÂµÄµü´úÆ÷Ê×ÏÈµü´ú <code>firstIterator</code>ÖĞµÄÔªËØ£¬µ±ÆäÖĞµÄÔªËØµü´úÍêÖ®ºó£¬¼ÌĞøµü´ú
-	 * <code>secondIterator</code>ÖĞµÄÔªËØ£¬Ö±ÖÁÁ½¸öµü´úÆ÷ÖĞµÄÔªËØÈ«²¿µü´úÍê³É¡£
-	 * @param firstIterator µÚÒ»¸öµü´úÆ÷¡£
-	 * @param secondIterator µÚ¶ş¸öµü´úÆ÷¡£
-	 * @param <T> ·ºĞÍT¡£
-	 * @return Á½¸öµü´úÆ÷Á¬½ÓĞÎ³ÉµÄµü´úÆ÷¡£
+	 * ç”¨äºè¿æ¥ä¸¤ä¸ªè¿­ä»£å™¨ã€‚
+	 * <p> æ–°çš„è¿­ä»£å™¨é¦–å…ˆè¿­ä»£ <code>firstIterator</code>ä¸­çš„å…ƒç´ ï¼Œå½“å…¶ä¸­çš„å…ƒç´ è¿­ä»£å®Œä¹‹åï¼Œç»§ç»­è¿­ä»£
+	 * <code>secondIterator</code>ä¸­çš„å…ƒç´ ï¼Œç›´è‡³ä¸¤ä¸ªè¿­ä»£å™¨ä¸­çš„å…ƒç´ å…¨éƒ¨è¿­ä»£å®Œæˆã€‚
+	 * @param firstIterator ç¬¬ä¸€ä¸ªè¿­ä»£å™¨ã€‚
+	 * @param secondIterator ç¬¬äºŒä¸ªè¿­ä»£å™¨ã€‚
+	 * @param <T> æ³›å‹Tã€‚
+	 * @return ä¸¤ä¸ªè¿­ä»£å™¨è¿æ¥å½¢æˆçš„è¿­ä»£å™¨ã€‚
 	 */
 	public static<T> Iterator<T> contactIterator(Iterator<T> firstIterator, Iterator<T> secondIterator){
 		Objects.requireNonNull(firstIterator, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_13));
@@ -746,18 +746,18 @@ public final class CollectionUtil {
 	}
 	
 	/**
-	 * ½«Ö¸¶¨µÄ¶ÔÏó°´ÕÕË³Ğò²åÈëµ½Ö¸¶¨µÄ±íÖĞ¡£
-	 * <p> ¸Ã·½·¨½«ÓÃÖ¸¶¨µÄ±È½ÏÆ÷Öğ¸ö±È½ÏÖ¸¶¨µÄ¶ÔÏóÓëÁĞ±íÖĞµÄ¶ÔÏó£¬²¢½«Ö¸¶¨µÄ¶ÔÏó²åÈëµ½ÁĞ±íÖĞ<b>µÚÒ»¸ö</b>´óÓÚµÈÓÚÆäµÄÔªËØÖ®Ç°£¬
-	 * ²¢·µ»Ø²åÈëµÄÎ»ÖÃ¡£
-	 * <br> Èç¹ûÖ¸¶¨µÄÁĞ±íÔÚÖ®Ç°ÒÑ¾­°´ÕÕ±È½ÏÆ÷µÄË³ĞòÅÅÁĞºÃ£¬ÄÇÃ´µ÷ÓÃ¸Ã·½·¨Ö®ºó£¬´ËÁĞ±íÒÀÈ»×ñÑ­±È½ÏÆ÷µÄË³Ğò£¬
-	 * ÊÂÊµÉÏ£¬¸Ã·½·¨¾ÍÊÇÎª´ËÉè¼ÆµÄ¡ª¡ª¶ÔÒ»¸öÃ»ÓĞÅÅĞòµÄÁĞ±íµ÷ÓÃ´Ë·½·¨ÊÇÃ»ÓĞÒâÒåµÄ¡£
-	 * <br> ÓĞĞ©ÁĞ±íÔÊĞí <code>null</code>ÔªËØ£¬ÓĞĞ©²»ÔÊĞí¡£¶ÔÓÚÄÇĞ©ÔÊĞí <code>null</code>ÔªËØµÄµÄÁĞ±í£¬Çë×¢Òâ£º
-	 * Ö¸¶¨µÄ±È½ÏÆ÷Ò²ĞèÒªÖ§³Ö <code>null</code>ÔªËØ¡£
-	 * @param <T> ÁĞ±íÖĞµÄÔªËØµÄÀà¡£
-	 * @param list Ö¸¶¨µÄÁĞ±í¡£
-	 * @param obj Ö¸¶¨µÄ¶ÔÏó£¬ÔÊĞíÎª <code>null</code>£¬µ«ÊÇĞèÒªÁĞ±íºÍ±È½ÏÆ÷Ö§³Ö <code>null</code>ÔªËØ¡£
-	 * @param c Ö¸¶¨µÄ±È½ÏÆ÷¡£
-	 * @return ¶ÔÏóµÄ²åÈëÎ»ÖÃ¡£
+	 * å°†æŒ‡å®šçš„å¯¹è±¡æŒ‰ç…§é¡ºåºæ’å…¥åˆ°æŒ‡å®šçš„è¡¨ä¸­ã€‚
+	 * <p> è¯¥æ–¹æ³•å°†ç”¨æŒ‡å®šçš„æ¯”è¾ƒå™¨é€ä¸ªæ¯”è¾ƒæŒ‡å®šçš„å¯¹è±¡ä¸åˆ—è¡¨ä¸­çš„å¯¹è±¡ï¼Œå¹¶å°†æŒ‡å®šçš„å¯¹è±¡æ’å…¥åˆ°åˆ—è¡¨ä¸­<b>ç¬¬ä¸€ä¸ª</b>å¤§äºç­‰äºå…¶çš„å…ƒç´ ä¹‹å‰ï¼Œ
+	 * å¹¶è¿”å›æ’å…¥çš„ä½ç½®ã€‚
+	 * <br> å¦‚æœæŒ‡å®šçš„åˆ—è¡¨åœ¨ä¹‹å‰å·²ç»æŒ‰ç…§æ¯”è¾ƒå™¨çš„é¡ºåºæ’åˆ—å¥½ï¼Œé‚£ä¹ˆè°ƒç”¨è¯¥æ–¹æ³•ä¹‹åï¼Œæ­¤åˆ—è¡¨ä¾ç„¶éµå¾ªæ¯”è¾ƒå™¨çš„é¡ºåºï¼Œ
+	 * äº‹å®ä¸Šï¼Œè¯¥æ–¹æ³•å°±æ˜¯ä¸ºæ­¤è®¾è®¡çš„â€”â€”å¯¹ä¸€ä¸ªæ²¡æœ‰æ’åºçš„åˆ—è¡¨è°ƒç”¨æ­¤æ–¹æ³•æ˜¯æ²¡æœ‰æ„ä¹‰çš„ã€‚
+	 * <br> æœ‰äº›åˆ—è¡¨å…è®¸ <code>null</code>å…ƒç´ ï¼Œæœ‰äº›ä¸å…è®¸ã€‚å¯¹äºé‚£äº›å…è®¸ <code>null</code>å…ƒç´ çš„çš„åˆ—è¡¨ï¼Œè¯·æ³¨æ„ï¼š
+	 * æŒ‡å®šçš„æ¯”è¾ƒå™¨ä¹Ÿéœ€è¦æ”¯æŒ <code>null</code>å…ƒç´ ã€‚
+	 * @param <T> åˆ—è¡¨ä¸­çš„å…ƒç´ çš„ç±»ã€‚
+	 * @param list æŒ‡å®šçš„åˆ—è¡¨ã€‚
+	 * @param obj æŒ‡å®šçš„å¯¹è±¡ï¼Œå…è®¸ä¸º <code>null</code>ï¼Œä½†æ˜¯éœ€è¦åˆ—è¡¨å’Œæ¯”è¾ƒå™¨æ”¯æŒ <code>null</code>å…ƒç´ ã€‚
+	 * @param c æŒ‡å®šçš„æ¯”è¾ƒå™¨ã€‚
+	 * @return å¯¹è±¡çš„æ’å…¥ä½ç½®ã€‚
 	 */
 	public static<T> int insertByOrder(List<T> list, T obj, Comparator<? super T> c){
 		Objects.requireNonNull(list, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_15));

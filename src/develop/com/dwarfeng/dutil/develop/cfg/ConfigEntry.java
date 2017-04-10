@@ -1,9 +1,9 @@
 package com.dwarfeng.dutil.develop.cfg;
 
 /**
- * ������ڡ�
+ * 配置入口。
  * <p>
- * ������ڰ���һ�����ü����Լ����õĹ̶����ԡ� ������������İ���������ģ�͵ļ��Լ�һ�������е����в��ɱ�Ĳ��֣�һЩ����ģ�ͻ��Ըýӿ�Ϊģ����ڡ�
+ * 配置入口包含一个配置键，以及配置的固定属性。 配置入口完整的包含了配置模型的键以及一个配置中的所有不可变的部分，一些配置模型会以该接口为模型入口。
  * 
  * @author DwArFeng
  * @since 0.0.2-beta
@@ -11,16 +11,16 @@ package com.dwarfeng.dutil.develop.cfg;
 public interface ConfigEntry {
 
 	/**
-	 * ��ȡ������ڵ����ü���
+	 * 获取配置入口的配置键。
 	 * 
-	 * @return ������ڵ����ü���
+	 * @return 配置入口的配置键。
 	 */
 	public ConfigKey getConfigKey();
 
 	/**
-	 * ��ȡ������ڵĹ̶����ԡ�
+	 * 获取配置入口的固定属性。
 	 * 
-	 * @return ������ڵĹ̶����ԡ�
+	 * @return 配置入口的固定属性。
 	 */
 	public ConfigFirmProps getConfigFirmProps();
 

@@ -13,16 +13,16 @@ import com.dwarfeng.dutil.basic.prog.Version;
 import com.dwarfeng.dutil.basic.prog.VersionType;
 
 /**
- * DwarfUtil¹¤¾ß°üµÄÖ÷Àà¡£
+ * DwarfUtilå·¥å…·åŒ…çš„ä¸»ç±»ã€‚
  * <p>
- * ¸ÃÀàÊÇDwarfUtil¹¤¾ß°üµÄÖ÷ÀàÓëĞÅÏ¢Àà¡£¸Ã¹¤¾ß°üÖĞµÄ¸÷ÖÖ¸ù¼¶ĞÅÏ¢£¨Èç°æ±¾ĞÅÏ¢£©¶¼¿ÉÒÔÔÚÕâ¸öÀàÖĞ»ñµÃ£»
- * Í¬Ê±£¬¸Ã¹¤¾ß°üµÄËùÓÃ°ü¼¶ÉèÖÃÒ²Í¨¹ı¸ÃÀàµÄ·½·¨À´ÉèÖÃ¡£
+ * è¯¥ç±»æ˜¯DwarfUtilå·¥å…·åŒ…çš„ä¸»ç±»ä¸ä¿¡æ¯ç±»ã€‚è¯¥å·¥å…·åŒ…ä¸­çš„å„ç§æ ¹çº§ä¿¡æ¯ï¼ˆå¦‚ç‰ˆæœ¬ä¿¡æ¯ï¼‰éƒ½å¯ä»¥åœ¨è¿™ä¸ªç±»ä¸­è·å¾—ï¼›
+ * åŒæ—¶ï¼Œè¯¥å·¥å…·åŒ…çš„æ‰€ç”¨åŒ…çº§è®¾ç½®ä¹Ÿé€šè¿‡è¯¥ç±»çš„æ–¹æ³•æ¥è®¾ç½®ã€‚
  * 
  * <p>
- * ¸Ã°üÊÇ¹¤¾ß°ü£¬ËùÓĞµÄ·½·¨½ÔÎª¾²Ì¬·½·¨£¬ÓÉÓÚ¸Ã°üµÄĞÔÖÊ£¬¸Ã°ü²»ÔÊĞíÍâ²¿ÊµÀı»¯£¬²»ÔÊĞí¼Ì³Ğ¡£
+ * è¯¥åŒ…æ˜¯å·¥å…·åŒ…ï¼Œæ‰€æœ‰çš„æ–¹æ³•çš†ä¸ºé™æ€æ–¹æ³•ï¼Œç”±äºè¯¥åŒ…çš„æ€§è´¨ï¼Œè¯¥åŒ…ä¸å…è®¸å¤–éƒ¨å®ä¾‹åŒ–ï¼Œä¸å…è®¸ç»§æ‰¿ã€‚
  * 
  * <p>
- * ¸Ã°üÖĞµÄ·½·¨¶¼ÊÇÏß³Ì²»°²È«µÄ£¬Èç¹ûĞèÒª¶àÏß³Ìµ÷ÓÃ¸Ã°üÖĞµÄ·½·¨£¬ÇëÊ¹ÓÃÍâ²¿Í¬²½´úÂë¡£
+ * è¯¥åŒ…ä¸­çš„æ–¹æ³•éƒ½æ˜¯çº¿ç¨‹ä¸å®‰å…¨çš„ï¼Œå¦‚æœéœ€è¦å¤šçº¿ç¨‹è°ƒç”¨è¯¥åŒ…ä¸­çš„æ–¹æ³•ï¼Œè¯·ä½¿ç”¨å¤–éƒ¨åŒæ­¥ä»£ç ã€‚
  * 
  * @author DwArFeng
  * @since 0.0.2-beta
@@ -34,25 +34,25 @@ public final class DwarfUtil {
 		CT.trace(DwarfUtil.getWelcomeString());
 	}
 
-	// ½ûÖ¹Íâ²¿ÊµÀı»¯
+	// ç¦æ­¢å¤–éƒ¨å®ä¾‹åŒ–
 	private DwarfUtil() {
 	}
 
 	private static final String SF_PATH = "com/dwarfeng/dutil/resource/lang/stringField";
 
 	private static final Version version = new DefaultVersion.Builder().type(VersionType.BETA).firstVersion((byte) 0)
-			.secondVersion((byte) 1).thirdVersion((byte) 0).buildDate("20170403").buildVersion('A').build();
+			.secondVersion((byte) 1).thirdVersion((byte) 0).buildDate("20170410").buildVersion('A').build();
 
 	private static ResourceBundle sf = ResourceBundle.getBundle(SF_PATH, Locale.getDefault(),
 			CT.class.getClassLoader());
 
 	/**
-	 * ½«Òì³£µÄÎÄ±¾×Ö¶ÎÓïÑÔÉèÖÃÎªÖ¸¶¨ÓïÑÔ¡£
+	 * å°†å¼‚å¸¸çš„æ–‡æœ¬å­—æ®µè¯­è¨€è®¾ç½®ä¸ºæŒ‡å®šè¯­è¨€ã€‚
 	 * <p>
-	 * Èç¹û <code>local</code> Îª <code>null</code>£¬ÔòÊ¹ÓÃ {@link Locale#getDefault()}
+	 * å¦‚æœ <code>local</code> ä¸º <code>null</code>ï¼Œåˆ™ä½¿ç”¨ {@link Locale#getDefault()}
 	 * 
 	 * @param locale
-	 *            Ö¸¶¨µÄÓïÑÔ¡£
+	 *            æŒ‡å®šçš„è¯­è¨€ã€‚
 	 */
 	public static void setLocale(Locale locale) {
 		if (Objects.isNull(locale))
@@ -61,13 +61,13 @@ public final class DwarfUtil {
 	}
 
 	/**
-	 * ¸ù¾İÒì³£ÎÄ±¾×Ö¶ÎÖ÷¼üÃ¶¾Ù·µ»ØÆäÖ÷¼ü¶ÔÓ¦µÄÎÄ±¾¡£
+	 * æ ¹æ®å¼‚å¸¸æ–‡æœ¬å­—æ®µä¸»é”®æšä¸¾è¿”å›å…¶ä¸»é”®å¯¹åº”çš„æ–‡æœ¬ã€‚
 	 * <p>
-	 * Èç¹ûÈë¿Ú²ÎÊı <code>key</code> Îª <code>null</code>£¬Ôò·µ»Ø¿Õ×Ö·û´®<code>""</code>¡£
+	 * å¦‚æœå…¥å£å‚æ•° <code>key</code> ä¸º <code>null</code>ï¼Œåˆ™è¿”å›ç©ºå­—ç¬¦ä¸²<code>""</code>ã€‚
 	 * 
 	 * @param key
-	 *            Òì³£ÎÄ±¾×Ö¶ÎÖ÷¼üÃ¶¾Ù¡£
-	 * @return Ö÷¼ü¶ÔÓ¦µÄÎÄ±¾¡£
+	 *            å¼‚å¸¸æ–‡æœ¬å­—æ®µä¸»é”®æšä¸¾ã€‚
+	 * @return ä¸»é”®å¯¹åº”çš„æ–‡æœ¬ã€‚
 	 */
 	public static String getStringField(StringFieldKey key) {
 		if (Objects.isNull(key))
@@ -76,18 +76,18 @@ public final class DwarfUtil {
 	}
 
 	/**
-	 * ·µ»Ø¸Ã¹¤¾ß°üµÄ°æ±¾¡£
+	 * è¿”å›è¯¥å·¥å…·åŒ…çš„ç‰ˆæœ¬ã€‚
 	 * 
-	 * @return ¸Ã¹¤¾ß°üµÄ°æ±¾¡£
+	 * @return è¯¥å·¥å…·åŒ…çš„ç‰ˆæœ¬ã€‚
 	 */
 	public static Version getVersion() {
 		return version;
 	}
 
 	/**
-	 * ·µ»Ø¸Ã°üµÄ»¶Ó­ÎÄ±¾¡£
+	 * è¿”å›è¯¥åŒ…çš„æ¬¢è¿æ–‡æœ¬ã€‚
 	 * 
-	 * @return ¸Ã°üµÄ»¶Ó­
+	 * @return è¯¥åŒ…çš„æ¬¢è¿
 	 */
 	public static String getWelcomeString() {
 		return getStringField(StringFieldKey.WELCOME_STRING) + getVersion().getLongName();
@@ -98,17 +98,17 @@ public final class DwarfUtil {
 	private static final Map<Locale, ResourceBundle> labelFieldMap = new HashMap<>();
 
 	/**
-	 * »ñÈ¡Ö¸¶¨ÓïÑÔ»·¾³ÏÂµÄ±êÇ©×Ö¶Î¡£
+	 * è·å–æŒ‡å®šè¯­è¨€ç¯å¢ƒä¸‹çš„æ ‡ç­¾å­—æ®µã€‚
 	 * <p>
-	 * Èç¹ûÈë¿Ú²ÎÊı <code>key</code> Îª <code>null</code>£¬Ôò·µ»Ø¿Õ×Ö·û´®<code>""</code>¡£
+	 * å¦‚æœå…¥å£å‚æ•° <code>key</code> ä¸º <code>null</code>ï¼Œåˆ™è¿”å›ç©ºå­—ç¬¦ä¸²<code>""</code>ã€‚
 	 * <p>
-	 * Èç¹û <code>local</code> Îª <code>null</code>£¬ÔòÊ¹ÓÃ {@link Locale#getDefault()}
+	 * å¦‚æœ <code>local</code> ä¸º <code>null</code>ï¼Œåˆ™ä½¿ç”¨ {@link Locale#getDefault()}
 	 * 
 	 * @param key
-	 *            Ö¸¶¨µÄ±êÇ©¼ü¡£
+	 *            æŒ‡å®šçš„æ ‡ç­¾é”®ã€‚
 	 * @param locale
-	 *            Ö¸¶¨µÄÓïÑÔ»·¾³¡£
-	 * @return Ö¸¶¨±êÇ©¼üºÍÓïÑÔ»·¾³ÏÂµÄ±êÇ©×Ö¶Î¡£
+	 *            æŒ‡å®šçš„è¯­è¨€ç¯å¢ƒã€‚
+	 * @return æŒ‡å®šæ ‡ç­¾é”®å’Œè¯­è¨€ç¯å¢ƒä¸‹çš„æ ‡ç­¾å­—æ®µã€‚
 	 */
 	public static String getLabelField(LabelFieldKey key, Locale locale) {
 		if (Objects.isNull(key))
@@ -117,7 +117,7 @@ public final class DwarfUtil {
 			locale = Locale.getDefault();
 
 		ResourceBundle rb = labelFieldMap.get(locale);
-		// ÑÓ³Ù¼ÓÔØ
+		// å»¶è¿ŸåŠ è½½
 		if (Objects.isNull(rb)) {
 			rb = ResourceBundle.getBundle(LF_PATH, locale, DwarfUtil.class.getClassLoader());
 			labelFieldMap.put(locale, rb);

@@ -23,28 +23,28 @@ import com.dwarfeng.dutil.develop.cfg.checker.IntegerConfigChecker;
 import com.dwarfeng.dutil.develop.cfg.io.PropConfigLoader;
 
 /**
- * {@link ConfigModel}µÄ´úÂëÊ¾Àı¡£
- * <p> ¸ÃÊ¾Àı½«Éú³ÉÒ»¸ö´°Ìå£¬Õâ¸ö´°ÌåµÄÍâ¹ÛÊ¹ÓÃÅäÖÃÀ´¼ÇÂ¼¡£
+ * {@link ConfigModel}çš„ä»£ç ç¤ºä¾‹ã€‚
+ * <p> è¯¥ç¤ºä¾‹å°†ç”Ÿæˆä¸€ä¸ªçª—ä½“ï¼Œè¿™ä¸ªçª—ä½“çš„å¤–è§‚ä½¿ç”¨é…ç½®æ¥è®°å½•ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public class ConfigModelDemo {
 	
 	/**
-	 * ¸ÃÅäÖÃÊÇÒ»¸ö³ÌĞòÖĞ£¬¹ØÓÚÒ»¸ö´°ÌåµÄÍâ¹ÛµÄÅäÖÃ¡£
+	 * è¯¥é…ç½®æ˜¯ä¸€ä¸ªç¨‹åºä¸­ï¼Œå…³äºä¸€ä¸ªçª—ä½“çš„å¤–è§‚çš„é…ç½®ã€‚
 	 * @author DwArFeng
 	 * @since 0.0.2-beta
 	 */
 	private enum ApperanceConfig implements ConfigEntry{
 		
 		/**
-		 * ´ËÅäÖÃ×Ö¶Î±íÊ¾´°ÌåµÄ¸ß¶È£¬Îª600£»¸ÃÅäÖÃÖµ¼ì²éÆ÷ÊÇÒ»¸öÕûĞÍÊı¼ì²éÆ÷£¬È¡ÖµÔÚ1µ½3000Ö®¼ä¡£
-		 * Ò²¾ÍÊÇËµ£¬¸ÃÅäÖÃÖµ½ÓÊÜËùÓĞ1-3000Ö®¼äµÄÕûÊı¡£
+		 * æ­¤é…ç½®å­—æ®µè¡¨ç¤ºçª—ä½“çš„é«˜åº¦ï¼Œä¸º600ï¼›è¯¥é…ç½®å€¼æ£€æŸ¥å™¨æ˜¯ä¸€ä¸ªæ•´å‹æ•°æ£€æŸ¥å™¨ï¼Œå–å€¼åœ¨1åˆ°3000ä¹‹é—´ã€‚
+		 * ä¹Ÿå°±æ˜¯è¯´ï¼Œè¯¥é…ç½®å€¼æ¥å—æ‰€æœ‰1-3000ä¹‹é—´çš„æ•´æ•°ã€‚
 		 */
 		APPERANCE_HEIGHT("apperance.height","600", new IntegerConfigChecker(1,3000)),
 		
 		/**
-		 * ±íÊ¾´°¿ÚµÄ¸ß¶È£¬Í¬ÉÏ¡£
+		 * è¡¨ç¤ºçª—å£çš„é«˜åº¦ï¼ŒåŒä¸Šã€‚
 		 */
 		APPERANCE_WIDTH("apperance.width", "800", new IntegerConfigChecker(1, 3000)),
 		
@@ -206,14 +206,14 @@ public class ConfigModelDemo {
 
 		private void addListener() {
 			/**
-			 * ÏòÅäÖÃÄ£ĞÍÖĞÌí¼Ó¹Û²ìÆ÷£¬µ±ÅäÖÃ·¢Éú±ä»¯Ê±×ö³öÏàÓ¦µÄÏìÓ¦¡£
+			 * å‘é…ç½®æ¨¡å‹ä¸­æ·»åŠ è§‚å¯Ÿå™¨ï¼Œå½“é…ç½®å‘ç”Ÿå˜åŒ–æ—¶åšå‡ºç›¸åº”çš„å“åº”ã€‚
 			 */
 			configModel.addObverser(obverser);
 		}
 
 		private void applyConfig() {
 			/*
-			 * ÕâÊÇµäĞÍµÄÅäÖÃµÄÓ¦ÓÃ·½·¨
+			 * è¿™æ˜¯å…¸å‹çš„é…ç½®çš„åº”ç”¨æ–¹æ³•
 			 */
 			int width = Integer.parseInt(configModel.getValidValue(ApperanceConfig.APPERANCE_WIDTH.getConfigKey()));
 			int height = Integer.parseInt(configModel.getValidValue(ApperanceConfig.APPERANCE_HEIGHT.getConfigKey()));
@@ -229,13 +229,13 @@ public class ConfigModelDemo {
 	public ConfigModelDemo(){
 		
 		/*
-		 * Ê¹ÓÃÃ¶¾Ù¶¨ÒåÅäÖÃÈë¿ÚµÄºÃ´¦ÊÇ¿ÉÒÔ¿ì½İµØ½«ËùÓĞµÄÅäÖÃÒÔÊı×éµÄĞÎÊ½´«µİµ½ÅäÖÃÄ£ĞÍÖĞ¡£
-		 * Ê¹ÓÃÃ¶¾Ù¶¨ÒåÅäÖÃÈë¿Ú£¬Ã¶¾ÙÒªÊµÏÖ ConfigEntry ½Ó¿Ú¡£
+		 * ä½¿ç”¨æšä¸¾å®šä¹‰é…ç½®å…¥å£çš„å¥½å¤„æ˜¯å¯ä»¥å¿«æ·åœ°å°†æ‰€æœ‰çš„é…ç½®ä»¥æ•°ç»„çš„å½¢å¼ä¼ é€’åˆ°é…ç½®æ¨¡å‹ä¸­ã€‚
+		 * ä½¿ç”¨æšä¸¾å®šä¹‰é…ç½®å…¥å£ï¼Œæšä¸¾è¦å®ç° ConfigEntry æ¥å£ã€‚
 		 */
 		this.configModel = new DefaultConfigModel(ApperanceConfig.values());
 		
 		/**
-		 * ÏÔÊ¾½çÃæ¡£
+		 * æ˜¾ç¤ºç•Œé¢ã€‚
 		 */
 		this.testFrame = new TestFrame();
 		testFrame.setVisible(true);

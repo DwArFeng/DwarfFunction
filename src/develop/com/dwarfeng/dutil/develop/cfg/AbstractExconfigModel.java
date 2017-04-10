@@ -11,32 +11,32 @@ import com.dwarfeng.dutil.develop.cfg.obv.ExconfigObverser;
 import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
 /**
- * ³éÏó ExÅäÖÃÄ£ĞÍ¡£
+ * æŠ½è±¡ Exé…ç½®æ¨¡å‹ã€‚
  * <p>
- * ExÅäÖÃÄ£ĞÍµÄ³éÏóÊµÏÖ¡£
+ * Exé…ç½®æ¨¡å‹çš„æŠ½è±¡å®ç°ã€‚
  * 
  * @author DwArFeng
  * @since 0.1.0-beta
  */
 public abstract class AbstractExconfigModel implements ExconfigModel {
 
-	/** ¹Û²ìÆ÷¼¯ºÏ */
+	/** è§‚å¯Ÿå™¨é›†åˆ */
 	protected final Set<ExconfigObverser> obversers;
 
 	/**
-	 * Éú³ÉÒ»¸öÄ¬ÈÏµÄ³éÏóExÅäÖÃÄ£ĞÍ¡£
+	 * ç”Ÿæˆä¸€ä¸ªé»˜è®¤çš„æŠ½è±¡Exé…ç½®æ¨¡å‹ã€‚
 	 */
 	public AbstractExconfigModel() {
 		this(Collections.newSetFromMap(new WeakHashMap<>()));
 	}
 
 	/**
-	 * Éú³ÉÒ»¸ö¾ßÓĞÖ¸¶¨µÄÕìÌıÆ÷¼¯ºÏµÄµÄ³éÏóExÅäÖÃÄ£ĞÍ¡£
+	 * ç”Ÿæˆä¸€ä¸ªå…·æœ‰æŒ‡å®šçš„ä¾¦å¬å™¨é›†åˆçš„çš„æŠ½è±¡Exé…ç½®æ¨¡å‹ã€‚
 	 * 
 	 * @param obversers
-	 *            Ö¸¶¨µÄÕìÌıÆ÷¼¯ºÏ¡£
+	 *            æŒ‡å®šçš„ä¾¦å¬å™¨é›†åˆã€‚
 	 * @throws NullPointerException
-	 *             Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 *             å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public AbstractExconfigModel(Set<ExconfigObverser> obversers) {
 		Objects.requireNonNull(obversers, DwarfUtil.getStringField(StringFieldKey.ABSTRACTEXCONFIGMODEL_0));
@@ -90,16 +90,16 @@ public abstract class AbstractExconfigModel implements ExconfigModel {
 	}
 
 	/**
-	 * Í¨ÖªÅäÖÃÄ£ĞÍÖĞÖ¸¶¨µÄÅäÖÃ¼üµÄµ±Ç°Öµ·¢ÉúÁË¸Ä±ä¡£
+	 * é€šçŸ¥é…ç½®æ¨¡å‹ä¸­æŒ‡å®šçš„é…ç½®é”®çš„å½“å‰å€¼å‘ç”Ÿäº†æ”¹å˜ã€‚
 	 * 
 	 * @param configKey
-	 *            Ö¸¶¨µÄÅäÖÃ¼ü¡£
+	 *            æŒ‡å®šçš„é…ç½®é”®ã€‚
 	 * @param oldValue
-	 *            ÅäÖÃ¼üµÄ¾ÉÖµ¡£
+	 *            é…ç½®é”®çš„æ—§å€¼ã€‚
 	 * @param newValue
-	 *            ÅäÖÃ¼üµÄĞÂÖµ¡£
+	 *            é…ç½®é”®çš„æ–°å€¼ã€‚
 	 * @param validValue
-	 *            ÅäÖÃ¼üµ±Ç°µÄÓĞĞ§Öµ¡£
+	 *            é…ç½®é”®å½“å‰çš„æœ‰æ•ˆå€¼ã€‚
 	 */
 	protected void fireCurrentValueChanged(ConfigKey configKey, String oldValue, String newValue, String validValue) {
 		for (ExconfigObverser obverser : obversers) {
@@ -109,7 +109,7 @@ public abstract class AbstractExconfigModel implements ExconfigModel {
 	}
 
 	/**
-	 * Í¨ÖªÅäÖÃÄ£ĞÍÖĞµÄÅäÖÃ¼ü½øĞĞÁËÇå³ı¡£
+	 * é€šçŸ¥é…ç½®æ¨¡å‹ä¸­çš„é…ç½®é”®è¿›è¡Œäº†æ¸…é™¤ã€‚
 	 */
 	protected void fireConfigKeyCleared() {
 		for (ExconfigObverser obverser : obversers) {
@@ -119,16 +119,16 @@ public abstract class AbstractExconfigModel implements ExconfigModel {
 	}
 
 	/**
-	 * Í¨ÖªÅäÖÃÄ£ĞÍÖĞÖ¸¶¨µÄÅäÖÃ¼ü½øĞĞÁËÒÆ³ı¡£
+	 * é€šçŸ¥é…ç½®æ¨¡å‹ä¸­æŒ‡å®šçš„é…ç½®é”®è¿›è¡Œäº†ç§»é™¤ã€‚
 	 * 
 	 * @param configKey
-	 *            Ö¸¶¨µÄÅäÖÃ¼ü¡£
+	 *            æŒ‡å®šçš„é…ç½®é”®ã€‚
 	 * @param configFirmProps
-	 *            Ö¸¶¨µÄÅäÖÃ¼ü¶ÔÓ¦µÄ¹Ì¶¨ÊôĞÔ¡£
+	 *            æŒ‡å®šçš„é…ç½®é”®å¯¹åº”çš„å›ºå®šå±æ€§ã€‚
 	 * @param valueParser
-	 *            Ö¸¶¨µÄÅäÖÃ¼ü¶ÔÓ¦µÄÖµ½âÎöÆ÷¡£
+	 *            æŒ‡å®šçš„é…ç½®é”®å¯¹åº”çš„å€¼è§£æå™¨ã€‚
 	 * @param currentValue
-	 *            Ö¸¶¨µÄÅäÖÃ¼ü¶ÔÓ¦µÄµ±Ç°Öµ¡£
+	 *            æŒ‡å®šçš„é…ç½®é”®å¯¹åº”çš„å½“å‰å€¼ã€‚
 	 */
 	protected void fireConfigKeyRemoved(ConfigKey configKey, ConfigFirmProps configFirmProps, ValueParser valueParser,
 			String currentValue) {
@@ -139,16 +139,16 @@ public abstract class AbstractExconfigModel implements ExconfigModel {
 	}
 
 	/**
-	 * Í¨ÖªÅäÖÃÄ£ĞÍÖĞÖ¸¶¨µÄÅäÖÃ¼ü½øĞĞÁËÌí¼Ó¡£
+	 * é€šçŸ¥é…ç½®æ¨¡å‹ä¸­æŒ‡å®šçš„é…ç½®é”®è¿›è¡Œäº†æ·»åŠ ã€‚
 	 * 
 	 * @param configKey
-	 *            Ö¸¶¨µÄÅäÖÃ¼ü¡£
+	 *            æŒ‡å®šçš„é…ç½®é”®ã€‚
 	 * @param configFirmProps
-	 *            Ö¸¶¨µÄÅäÖÃ¼ü¶ÔÓ¦µÄ¹Ì¶¨ÊôĞÔ¡£
+	 *            æŒ‡å®šçš„é…ç½®é”®å¯¹åº”çš„å›ºå®šå±æ€§ã€‚
 	 * @param valueParser
-	 *            Ö¸¶¨µÄÅäÖÃ¼ü¶ÔÓ¦µÄÖµ½âÎöÆ÷¡£
+	 *            æŒ‡å®šçš„é…ç½®é”®å¯¹åº”çš„å€¼è§£æå™¨ã€‚
 	 * @param currentValue
-	 *            Ö¸¶¨µÄÅäÖÃ¼ü¶ÔÓ¦µÄµ±Ç°Öµ¡£
+	 *            æŒ‡å®šçš„é…ç½®é”®å¯¹åº”çš„å½“å‰å€¼ã€‚
 	 */
 	protected void fireConfigKeyAdded(ConfigKey configKey, ConfigFirmProps configFirmProps, ValueParser valueParser,
 			String currentValue) {
@@ -159,14 +159,14 @@ public abstract class AbstractExconfigModel implements ExconfigModel {
 	}
 
 	/**
-	 * Í¨ÖªÅäÖÃÄ£ĞÍÖĞÖ¸¶¨µÄÅäÖÃ¼üµÄ¹Ì¶¨ÊôĞÔ·¢ÉúÁË¸Ä±ä¡£
+	 * é€šçŸ¥é…ç½®æ¨¡å‹ä¸­æŒ‡å®šçš„é…ç½®é”®çš„å›ºå®šå±æ€§å‘ç”Ÿäº†æ”¹å˜ã€‚
 	 * 
 	 * @param configKey
-	 *            Ö¸¶¨µÄÅäÖÃ¼ü¡£
+	 *            æŒ‡å®šçš„é…ç½®é”®ã€‚
 	 * @param oldValue
-	 *            Ö¸¶¨ÅäÖÃ¼üµÄ¾ÉµÄ¹Ì¶¨ÊôĞÔ¡£
+	 *            æŒ‡å®šé…ç½®é”®çš„æ—§çš„å›ºå®šå±æ€§ã€‚
 	 * @param newValue
-	 *            Ö¸¶¨µÄÅäÖÃ¼üµÄĞÂµÄ¹Ì¶¨ÊôĞÔ¡£
+	 *            æŒ‡å®šçš„é…ç½®é”®çš„æ–°çš„å›ºå®šå±æ€§ã€‚
 	 */
 	protected void fireConfigFirmPropsChanged(ConfigKey configKey, ConfigFirmProps oldValue, ConfigFirmProps newValue) {
 		for (ExconfigObverser obverser : obversers) {
@@ -176,14 +176,14 @@ public abstract class AbstractExconfigModel implements ExconfigModel {
 	}
 
 	/**
-	 * Í¨ÖªÅäÖÃÄ£ĞÍÖĞÖ¸¶¨µÄÅäÖÃ¼üµÄÖµ½âÎöÆ÷·¢ÉúÁË¸Ä±ä¡£
+	 * é€šçŸ¥é…ç½®æ¨¡å‹ä¸­æŒ‡å®šçš„é…ç½®é”®çš„å€¼è§£æå™¨å‘ç”Ÿäº†æ”¹å˜ã€‚
 	 * 
 	 * @param configKey
-	 *            Ö¸¶¨µÄÅäÖÃ¼ü¡£
+	 *            æŒ‡å®šçš„é…ç½®é”®ã€‚
 	 * @param oldValue
-	 *            Ö¸¶¨µÄÅäÖÃ¼ü¶ÔÓ¦µÄ¾ÉµÄÖµ½âÎöÆ÷¡£
+	 *            æŒ‡å®šçš„é…ç½®é”®å¯¹åº”çš„æ—§çš„å€¼è§£æå™¨ã€‚
 	 * @param newValue
-	 *            Ö¸¶¨µÄÅäÖÃ¼ü¶ÔÓ¦µÄĞÂµÄÖµ½âÎöÆ÷¡£
+	 *            æŒ‡å®šçš„é…ç½®é”®å¯¹åº”çš„æ–°çš„å€¼è§£æå™¨ã€‚
 	 */
 	protected void fireValueParserChanged(ConfigKey configKey, ValueParser oldValue, ValueParser newValue) {
 		for (ExconfigObverser obverser : obversers) {

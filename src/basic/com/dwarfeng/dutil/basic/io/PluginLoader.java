@@ -15,11 +15,11 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 /**
- * ²å¼ş¶ÁÈ¡Àà£¬ÓÃÓÚ¶ÁÈ¡Ö¸¶¨Î»ÖÃÏÂµÄÖ¸¶¨ÀàĞÍµÄ²å¼ş¡£
- * <p>²å¼ş¶ÁÈ¡ÀàÒ»¾­ÊµÀı»¯£¬Æä¶ÁÈ¡Â·¾¶±ã²»ÄÜÔÙ±»¸ü¸Ä¡£
- * <br>²å¼şµÄ¼ÓÔØÊÇÍ¨¹ı<code>URLClassLoader</code>À´ÊµÏÖµÄ£¬¸Ã·½·¨¼ÓÔØÒÔºó£¬²»»áÖ÷¶¯²»¹Ø±Õ¡£
- * ÒªÏë¹Ø±ÕµÄ»°Çëµ÷ÓÃ{@link PluginLoader#close()}·½·¨£¬¸ÃÀà±»¹Ø±ÕÒÔºó£¬Èç¹û¼ÌĞøÉú³É¼ÓÔØµÄÀàµÄÊµÀıµÄ»°
- * Ôò¿ÉÄÜ³öÏÖÕÒ²»µ½×ÊÔ´µÄÇé¿ö¡£Òò´Ë£¬ÔÚÈ·±£²»»áÓĞĞÂµÄÊµÀıÉú³ÉÒÔºó£¬ÔÙ¹Ø±Õ´ËÀà¡£
+ * æ’ä»¶è¯»å–ç±»ï¼Œç”¨äºè¯»å–æŒ‡å®šä½ç½®ä¸‹çš„æŒ‡å®šç±»å‹çš„æ’ä»¶ã€‚
+ * <p>æ’ä»¶è¯»å–ç±»ä¸€ç»å®ä¾‹åŒ–ï¼Œå…¶è¯»å–è·¯å¾„ä¾¿ä¸èƒ½å†è¢«æ›´æ”¹ã€‚
+ * <br>æ’ä»¶çš„åŠ è½½æ˜¯é€šè¿‡<code>URLClassLoader</code>æ¥å®ç°çš„ï¼Œè¯¥æ–¹æ³•åŠ è½½ä»¥åï¼Œä¸ä¼šä¸»åŠ¨ä¸å…³é—­ã€‚
+ * è¦æƒ³å…³é—­çš„è¯è¯·è°ƒç”¨{@link PluginLoader#close()}æ–¹æ³•ï¼Œè¯¥ç±»è¢«å…³é—­ä»¥åï¼Œå¦‚æœç»§ç»­ç”ŸæˆåŠ è½½çš„ç±»çš„å®ä¾‹çš„è¯
+ * åˆ™å¯èƒ½å‡ºç°æ‰¾ä¸åˆ°èµ„æºçš„æƒ…å†µã€‚å› æ­¤ï¼Œåœ¨ç¡®ä¿ä¸ä¼šæœ‰æ–°çš„å®ä¾‹ç”Ÿæˆä»¥åï¼Œå†å…³é—­æ­¤ç±»ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
@@ -33,31 +33,31 @@ public class PluginLoader<T>{
 	private boolean isClose;
 	
 	/**
-	 * Éú³ÉÒ»¸öÖ¸ÏòÄ¬ÈÏÂ·¾¶µÄ²å¼ş¶ÁÈ¡Àà¡£
-	 * <br>Ä¬ÈÏµÄ¶ÁÈ¡Î»ÖÃÊÇÍ¬Ä¿Â¼ÏÂµÄ<code>plugins</code>ÎÄ¼ş¼Ğ¡£
+	 * ç”Ÿæˆä¸€ä¸ªæŒ‡å‘é»˜è®¤è·¯å¾„çš„æ’ä»¶è¯»å–ç±»ã€‚
+	 * <br>é»˜è®¤çš„è¯»å–ä½ç½®æ˜¯åŒç›®å½•ä¸‹çš„<code>plugins</code>æ–‡ä»¶å¤¹ã€‚
 	 */
 	public PluginLoader(){
 		this(new File(DEFAULT_DIR));
 	}
 	/**
-	 * Éú³ÉÒ»¸öÖ¸ÏòÖ´ĞĞÎÄ±¾¾ö¶¨µÄÂ·¾¶µÄ²å¼ş¶ÁÈ¡Àà¡£
-	 * @param path Ö¸¶¨µÄÂ·¾¶ÎÄ±¾¡£
+	 * ç”Ÿæˆä¸€ä¸ªæŒ‡å‘æ‰§è¡Œæ–‡æœ¬å†³å®šçš„è·¯å¾„çš„æ’ä»¶è¯»å–ç±»ã€‚
+	 * @param path æŒ‡å®šçš„è·¯å¾„æ–‡æœ¬ã€‚
 	 */
 	public PluginLoader(String path){
 		this(new File(path));
 	}
 	/**
-	 * Éú³ÉÒ»¸öÖ¸ÏòÖ¸¶¨ÎÄ¼ş¾ö¶¨µÄÄ¿Â¼µÄ²å¼ş¶ÁÈ¡Àà¡£
-	 * @param dirFile Ö¸¶¨µÄÎÄ¼ş¡£
+	 * ç”Ÿæˆä¸€ä¸ªæŒ‡å‘æŒ‡å®šæ–‡ä»¶å†³å®šçš„ç›®å½•çš„æ’ä»¶è¯»å–ç±»ã€‚
+	 * @param dirFile æŒ‡å®šçš„æ–‡ä»¶ã€‚
 	 */
 	public PluginLoader(File dirFile){
-		//dirFile²»ÄÜÎªnull
+		//dirFileä¸èƒ½ä¸ºnull
 		if(dirFile == null) throw new NullPointerException("Dir file can't be null");
 		this.dirFile = dirFile;
 		File[] tempJarFiles = getDirFile().listFiles(new FileExtensionNameFiliter(".jar"));
-		//ËÑË÷Ä¿Â¼ËùÓĞºó×ºÃûÎª.jarµÄÎÄ¼ş²¢¿¼ÂÇnullµÄÌØÊâÇé¿ö¡£
+		//æœç´¢ç›®å½•æ‰€æœ‰åç¼€åä¸º.jarçš„æ–‡ä»¶å¹¶è€ƒè™‘nullçš„ç‰¹æ®Šæƒ…å†µã€‚
 		jarFiles = tempJarFiles == null ? new File[0] : tempJarFiles;
-		//ÅúÁ¿×ª»¯Îªurl£»
+		//æ‰¹é‡è½¬åŒ–ä¸ºurlï¼›
 		Set<URL> urls = new HashSet<URL>();
 		for(int i = 0 ; i < jarFiles.length ; i ++){
 			try {
@@ -66,20 +66,20 @@ public class PluginLoader<T>{
 				CT.trace("Exception occured while transform file to url :" + jarFiles[i].getName());
 			}
 		}
-		//³õÊ¼»¯loader
+		//åˆå§‹åŒ–loader
 		loader = new URLClassLoader(urls.toArray(new URL[0]),Thread.currentThread().getContextClassLoader());
-		//³õÊ¼»¯ÊÇ·ñ¹Ø±ÕµÄ±ê¼Ç¡£
+		//åˆå§‹åŒ–æ˜¯å¦å…³é—­çš„æ ‡è®°ã€‚
 		isClose = false;
 	}
 	
 	/**
-	 * ·µ»Ø¸Ã²å¼ş¶ÁÈ¡ÀàµÄÖ¸ÏòÂ·¾¶¡£
-	 * @return ¸Ã²å¼ş¶ÁÈ¡ÀàµÄÖ¸ÏòÂ·¾¶¡£
+	 * è¿”å›è¯¥æ’ä»¶è¯»å–ç±»çš„æŒ‡å‘è·¯å¾„ã€‚
+	 * @return è¯¥æ’ä»¶è¯»å–ç±»çš„æŒ‡å‘è·¯å¾„ã€‚
 	 */
 	public File getDirFile(){return this.dirFile;}
 	/**
-	 * ¹Ø±Õµ±Ç°µÄ¶î²å¼ş¼ÓÔØÀà£¬Õâ»áÊ¹ÒÑ¾­¶ÁÈ¡µÄÀàÉú³ÉĞÂµÄÊµÀıÊ±³öÏÖÎÊÌâ¡£
-	 * @throws IOException ³öÏÖ½Ó¿ÚÒì³£»òÕßÒÑ¾­¹Ø±ÕÊ±Å×³öÒì³£¡£
+	 * å…³é—­å½“å‰çš„é¢æ’ä»¶åŠ è½½ç±»ï¼Œè¿™ä¼šä½¿å·²ç»è¯»å–çš„ç±»ç”Ÿæˆæ–°çš„å®ä¾‹æ—¶å‡ºç°é—®é¢˜ã€‚
+	 * @throws IOException å‡ºç°æ¥å£å¼‚å¸¸æˆ–è€…å·²ç»å…³é—­æ—¶æŠ›å‡ºå¼‚å¸¸ã€‚
 	 */
 	public void close() throws IOException{
 		try {
@@ -92,11 +92,11 @@ public class PluginLoader<T>{
 		}
 	}
 	/**
-	 * ¼ÓÔØËùÓĞÊôÓÚ<code>clas</code>×ÓÀà²å¼şµÄÀà¡£
-	 * @param clas Ö¸¶¨µÄ¸¸Àà¡£
-	 * @param <U> ·ºĞÍ¡£
-	 * @return ËùÓĞ±»¼ÓÔØµÄ²å¼şÀàËù×é³ÉµÄ¼¯ºÏ¡£
-	 * @throws IOException µ±¸Ã²å¼ş¼ÓÔØ¶ÔÏóÒÑ¾­±»¹Ø±ÕµÄÊ±ºòÅ×³ö¸ÃÒì³£¡£
+	 * åŠ è½½æ‰€æœ‰å±äº<code>clas</code>å­ç±»æ’ä»¶çš„ç±»ã€‚
+	 * @param clas æŒ‡å®šçš„çˆ¶ç±»ã€‚
+	 * @param <U> æ³›å‹ã€‚
+	 * @return æ‰€æœ‰è¢«åŠ è½½çš„æ’ä»¶ç±»æ‰€ç»„æˆçš„é›†åˆã€‚
+	 * @throws IOException å½“è¯¥æ’ä»¶åŠ è½½å¯¹è±¡å·²ç»è¢«å…³é—­çš„æ—¶å€™æŠ›å‡ºè¯¥å¼‚å¸¸ã€‚
 	 */
 	@SuppressWarnings("unchecked")
 	public<U extends T> Collection<Class<U>> loadPluginClass(Class<U> clas) throws IOException{
@@ -108,7 +108,7 @@ public class PluginLoader<T>{
 			JarFile jf = null;
 			
 			try{
-				//Ñ°ÕÒEntry£¬³öÏÖÒì³£Ö±½Ó·ÅÆúÕû¸öjar°ü£¬½øĞĞÏÂÒ»¸öjar°üµÄµ÷¶È¡£
+				//å¯»æ‰¾Entryï¼Œå‡ºç°å¼‚å¸¸ç›´æ¥æ”¾å¼ƒæ•´ä¸ªjaråŒ…ï¼Œè¿›è¡Œä¸‹ä¸€ä¸ªjaråŒ…çš„è°ƒåº¦ã€‚
 				try {
 					jf = new JarFile(jarFiles[i]);
 					je = jf.entries();
@@ -121,7 +121,7 @@ public class PluginLoader<T>{
 					JarEntry entry = je.nextElement();
 					if(entry.getName() != null && entry.getName().endsWith(".class")){
 						Class<?> c = null;
-						//·Ö±ğ°Ñ¶ÔÓ¦µÄ²å¼şÁĞÈë×¢²á±í¡£³öÏÖÒì³£·ÅÆú¸ÃclassÎÄ¼ş¡£
+						//åˆ†åˆ«æŠŠå¯¹åº”çš„æ’ä»¶åˆ—å…¥æ³¨å†Œè¡¨ã€‚å‡ºç°å¼‚å¸¸æ”¾å¼ƒè¯¥classæ–‡ä»¶ã€‚
 						try{
 							 c = loader.loadClass(entry.getName().replace("/", ".").substring(0,entry.getName().length() - 6));
 							 if(clas.isAssignableFrom(c)) classCollection.add((Class<U>) c);
@@ -144,12 +144,12 @@ public class PluginLoader<T>{
 		return classCollection;
 	}
 	/**
-	 * ¶ÁÈ¡¼ä½Ó¼Ì³ĞÖ¸¶¨ÀàµÄ×ÓÀà£¬²¢½«ÆäÊµÀı»¯¡£
-	 * <p>×¢Òâ£º¸Ã·½·¨Ö»ÄÜÊµÏÖ¾ßÓĞÄ¬ÈÏ¹¹ÔìÆ÷·½·¨µÄÀà£¬Èç¹ûÆäÖĞÓĞµÄÀàÃ»ÓĞÄ¬ÈÏµÄ¹¹ÔìÆ÷·½·¨£¬Ôò»áÌáÊ¾Òì³£¡£
-	 * @param clas Ö±½Ó»ò¼ä½Ó¼Ì³ĞµÄÀà¡£
-	 * @param <U> ·ºĞÍ¡£
-	 * @return ËùÓĞ×ÓÀàµÄÊµÀı»¯¶ÔÏó¼¯ºÏ¡£
-	 * @throws IOException µ±¸Ã²å¼ş¼ÓÔØ¶ÔÏóÒÑ¾­±»¹Ø±ÕµÄÊ±ºòÅ×³ö¸ÃÒì³£¡£
+	 * è¯»å–é—´æ¥ç»§æ‰¿æŒ‡å®šç±»çš„å­ç±»ï¼Œå¹¶å°†å…¶å®ä¾‹åŒ–ã€‚
+	 * <p>æ³¨æ„ï¼šè¯¥æ–¹æ³•åªèƒ½å®ç°å…·æœ‰é»˜è®¤æ„é€ å™¨æ–¹æ³•çš„ç±»ï¼Œå¦‚æœå…¶ä¸­æœ‰çš„ç±»æ²¡æœ‰é»˜è®¤çš„æ„é€ å™¨æ–¹æ³•ï¼Œåˆ™ä¼šæç¤ºå¼‚å¸¸ã€‚
+	 * @param clas ç›´æ¥æˆ–é—´æ¥ç»§æ‰¿çš„ç±»ã€‚
+	 * @param <U> æ³›å‹ã€‚
+	 * @return æ‰€æœ‰å­ç±»çš„å®ä¾‹åŒ–å¯¹è±¡é›†åˆã€‚
+	 * @throws IOException å½“è¯¥æ’ä»¶åŠ è½½å¯¹è±¡å·²ç»è¢«å…³é—­çš„æ—¶å€™æŠ›å‡ºè¯¥å¼‚å¸¸ã€‚
 	 */
 	public<U extends T> Collection<U> loadPluginInstance(Class<U> clas) throws IOException{
 		Collection<U> instanceCollection = new HashSet<U>();

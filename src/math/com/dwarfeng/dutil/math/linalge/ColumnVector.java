@@ -3,44 +3,44 @@ package com.dwarfeng.dutil.math.linalge;
 import com.dwarfeng.dutil.math.MathObject;
 
 /**
- * ╢З╠МапоРа©╣д╫с©з║ё
+ * Д╩ёХ║╗Е┬≈Е░▒И┤▐Г └Ф▌╔Е▐ёЦ─┌
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public interface ColumnVector extends MathObject, LinalgeVector{
 	
 	/**
-	 * апоРа©╣д╪с╥╗║ё
-	 * <p> ╦цапоРа©сКж╦╤╗╣дапоРа©оЮ╪с║ё
-	 * @param columnVector  ж╦╤╗╣дапоРа©║ё
-	 * @return оЮ╪с╣ц╣╫╣дапоРа©║ё
-	 * @throws IllegalArgumentException апоРа©╣д╢Сп║╡╩ф╔еД║ё
-	 * @throws NullPointerException хК©з╡нйЩн╙ <code>null</code>║ё
+	 * Е┬≈Е░▒И┤▐Г └Е┼═ФЁ∙Ц─┌
+	 * <p> Х╞╔Е┬≈Е░▒И┤▐Д╦▌Ф▄┤Е╝ Г └Е┬≈Е░▒И┤▐Г⌡╦Е┼═Ц─┌
+	 * @param columnVector  Ф▄┤Е╝ Г └Е┬≈Е░▒И┤▐Ц─┌
+	 * @return Г⌡╦Е┼═Е╬≈Е┬╟Г └Е┬≈Е░▒И┤▐Ц─┌
+	 * @throws IllegalArgumentException Е┬≈Е░▒И┤▐Г └Е╓╖Е╟▐Д╦█Е▄╧И┘█Ц─┌
+	 * @throws NullPointerException Е┘╔Е▐ёЕ▐┌Ф∙╟Д╦╨ <code>null</code>Ц─┌
 	 */
 	public ColumnVector add(ColumnVector columnVector);
 	
 	/**
-	 * апоРа©╣д╪У╥╗║ё
-	 * <p> ╦цапоРа©сКж╦╤╗╣дапоРа©оЮ╪У║ё
-	 * @param columnVector  ж╦╤╗╣дапоРа©║ё
-	 * @return оЮ╪У╣ц╣╫╣дапоРа©║ё
-	 * @throws IllegalArgumentException апоРа©╣д╢Сп║╡╩ф╔еД║ё
-	 * @throws NullPointerException хК©з╡нйЩн╙ <code>null</code>║ё
+	 * Е┬≈Е░▒И┤▐Г └Е┤▐ФЁ∙Ц─┌
+	 * <p> Х╞╔Е┬≈Е░▒И┤▐Д╦▌Ф▄┤Е╝ Г └Е┬≈Е░▒И┤▐Г⌡╦Е┤▐Ц─┌
+	 * @param columnVector  Ф▄┤Е╝ Г └Е┬≈Е░▒И┤▐Ц─┌
+	 * @return Г⌡╦Е┤▐Е╬≈Е┬╟Г └Е┬≈Е░▒И┤▐Ц─┌
+	 * @throws IllegalArgumentException Е┬≈Е░▒И┤▐Г └Е╓╖Е╟▐Д╦█Е▄╧И┘█Ц─┌
+	 * @throws NullPointerException Е┘╔Е▐ёЕ▐┌Ф∙╟Д╦╨ <code>null</code>Ц─┌
 	 */
 	public ColumnVector minus(ColumnVector columnVector);
 	
 	/**
-	 * апоРа©╣дкУ╥етккЦ║ё
-	 * <p> ╦цапоРа©сКж╦╤╗╣дж╣оЮЁк║ё
-	 * @param val ж╦╤╗╣дж╣║ё
-	 * @return кУ╥е╣ц╣╫╣дпб╣дапоРа©║ё
+	 * Е┬≈Е░▒И┤▐Г └Г╪╘Ф■╬Х©░Г╝≈Ц─┌
+	 * <p> Х╞╔Е┬≈Е░▒И┤▐Д╦▌Ф▄┤Е╝ Г └Е─╪Г⌡╦Д╧≤Ц─┌
+	 * @param val Ф▄┤Е╝ Г └Е─╪Ц─┌
+	 * @return Г╪╘Ф■╬Е╬≈Е┬╟Г └Ф√╟Г └Е┬≈Е░▒И┤▐Ц─┌
 	 */
 	public ColumnVector scale(double val);
 	
 	/**
-	 * апоРа©╣дв╙жцтккЦ║ё
-	 * <p> ╦цапоРа©╣дв╙жц║ё
-	 * @return апоРа©в╙жц╣ц╣╫╣дпб╣дппоРа©║ё
+	 * Е┬≈Е░▒И┤▐Г └Х╫╛Г╫╝Х©░Г╝≈Ц─┌
+	 * <p> Х╞╔Е┬≈Е░▒И┤▐Г └Х╫╛Г╫╝Ц─┌
+	 * @return Е┬≈Е░▒И┤▐Х╫╛Г╫╝Е╬≈Е┬╟Г └Ф√╟Г └Х║▄Е░▒И┤▐Ц─┌
 	 */
 	public RowVector trans();
 

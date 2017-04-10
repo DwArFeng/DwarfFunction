@@ -10,34 +10,34 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.cna.model.obv.ListObverser;
 
 /**
- * ³éÏóÁĞ±íÄ£ĞÍ¡£
+ * æŠ½è±¡åˆ—è¡¨æ¨¡å‹ã€‚
  * <p>
- * ÁĞ±íÄ£ĞÍµÄ³éÏóÊµÏÖ¡£
+ * åˆ—è¡¨æ¨¡å‹çš„æŠ½è±¡å®ç°ã€‚
  * <p>
- * ¸ÃÀàÊµÏÖÁËÄ£ĞÍÖĞÕìÌıÆ÷×¢²áÓëÒÆ³ıµÄ·½·¨£¬ÒÔ¼°Í¨ÖªÕìÌıÆ÷µÄ·½·¨¡£
+ * è¯¥ç±»å®ç°äº†æ¨¡å‹ä¸­ä¾¦å¬å™¨æ³¨å†Œä¸ç§»é™¤çš„æ–¹æ³•ï¼Œä»¥åŠé€šçŸ¥ä¾¦å¬å™¨çš„æ–¹æ³•ã€‚
  * 
  * @author DwArFeng
  * @since 0.1.0-beta
  */
 public abstract class AbstractListModel<E> implements ListModel<E> {
 
-	/** ³éÏóÁĞ±íÄ£ĞÍµÄÕìÌıÆ÷¼¯ºÏ¡£ */
+	/** æŠ½è±¡åˆ—è¡¨æ¨¡å‹çš„ä¾¦å¬å™¨é›†åˆã€‚ */
 	protected final Set<ListObverser<E>> obversers;
 
 	/**
-	 * Éú³ÉÒ»¸öÄ¬ÈÏµÄ³éÏóÁĞ±íÄ£ĞÍ¡£
+	 * ç”Ÿæˆä¸€ä¸ªé»˜è®¤çš„æŠ½è±¡åˆ—è¡¨æ¨¡å‹ã€‚
 	 */
 	public AbstractListModel() {
 		this(Collections.newSetFromMap(new WeakHashMap<>()));
 	}
 
 	/**
-	 * Éú³ÉÒ»¸ö¾ßÓĞÖ¸¶¨µÄÕìÌıÆ÷¼¯ºÏµÄµÄ³éÏóÁĞ±íÄ£ĞÍ¡£
+	 * ç”Ÿæˆä¸€ä¸ªå…·æœ‰æŒ‡å®šçš„ä¾¦å¬å™¨é›†åˆçš„çš„æŠ½è±¡åˆ—è¡¨æ¨¡å‹ã€‚
 	 * 
 	 * @param obversers
-	 *            Ö¸¶¨µÄÕìÌıÆ÷¼¯ºÏ¡£
+	 *            æŒ‡å®šçš„ä¾¦å¬å™¨é›†åˆã€‚
 	 * @throws NullPointerException
-	 *             Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 *             å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public AbstractListModel(Set<ListObverser<E>> obversers) {
 		Objects.requireNonNull(obversers, DwarfUtil.getStringField(StringFieldKey.ABSTRACTLISTMODEL_0));
@@ -89,12 +89,12 @@ public abstract class AbstractListModel<E> implements ListModel<E> {
 	}
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷¸ÃÄ£ĞÍÔÚÖ¸¶¨µÄÎ»ÖÃÌí¼ÓÁËÖ¸¶¨µÄÔªËØ¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨è¯¥æ¨¡å‹åœ¨æŒ‡å®šçš„ä½ç½®æ·»åŠ äº†æŒ‡å®šçš„å…ƒç´ ã€‚
 	 * 
 	 * @param index
-	 *            Ö¸¶¨µÄÎ»ÖÃ¡£
+	 *            æŒ‡å®šçš„ä½ç½®ã€‚
 	 * @param element
-	 *            Ö¸¶¨µÄµÄÔªËØ¡£
+	 *            æŒ‡å®šçš„çš„å…ƒç´ ã€‚
 	 */
 	protected void fireAdded(int index, E element) {
 		for (ListObverser<E> obverser : obversers) {
@@ -104,12 +104,12 @@ public abstract class AbstractListModel<E> implements ListModel<E> {
 	}
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷¸ÃÄ£ĞÍÔÚÖ¸¶¨µÄÎ»ÖÃÒÆ³ıÁËÔªËØ¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨è¯¥æ¨¡å‹åœ¨æŒ‡å®šçš„ä½ç½®ç§»é™¤äº†å…ƒç´ ã€‚
 	 * 
 	 * @param index
-	 *            Ö¸¶¨µÄÎ»ÖÃ¡£
+	 *            æŒ‡å®šçš„ä½ç½®ã€‚
 	 * @param element
-	 *            ±»ÒÆ³ıµÄÔªËØ¡£
+	 *            è¢«ç§»é™¤çš„å…ƒç´ ã€‚
 	 */
 	protected void fireRemoved(int index, E element) {
 		for (ListObverser<E> obverser : obversers) {
@@ -119,14 +119,14 @@ public abstract class AbstractListModel<E> implements ListModel<E> {
 	}
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷¸ÃÄ£ĞÍÖ¸¶¨Î»ÖÃ´¦µÄÔªËØ·¢ÉúÁË¸Ä±ä¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨è¯¥æ¨¡å‹æŒ‡å®šä½ç½®å¤„çš„å…ƒç´ å‘ç”Ÿäº†æ”¹å˜ã€‚
 	 * 
 	 * @param index
-	 *            Ö¸¶¨µÄÎ»ÖÃ¡£
+	 *            æŒ‡å®šçš„ä½ç½®ã€‚
 	 * @param oldElement
-	 *            ¸Ä±äÇ°µÄ¾ÉÔªËØ¡£
+	 *            æ”¹å˜å‰çš„æ—§å…ƒç´ ã€‚
 	 * @param newElement
-	 *            ¸Ä±äºóµÄĞÂÔªËØ¡£
+	 *            æ”¹å˜åçš„æ–°å…ƒç´ ã€‚
 	 */
 	protected void fireChanged(int index, E oldElement, E newElement) {
 		for (ListObverser<E> obverser : obversers) {
@@ -136,7 +136,7 @@ public abstract class AbstractListModel<E> implements ListModel<E> {
 	}
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷¸ÃÄ£ĞÍÒÆ³ıÁËËùÓĞµÄÔªËØ¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨è¯¥æ¨¡å‹ç§»é™¤äº†æ‰€æœ‰çš„å…ƒç´ ã€‚
 	 */
 	protected void fireCleared() {
 		for (ListObverser<E> obverser : obversers) {

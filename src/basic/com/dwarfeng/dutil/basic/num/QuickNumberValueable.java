@@ -2,8 +2,8 @@ package com.dwarfeng.dutil.basic.num;
 
 
 /**
- * ¿ìËÙ¶àÌ¬Öµ½Ó¿Ú¡£
- * <p> ¸ÃÀàÊÇ¶Ô¶àÌ¬Öµ½Ó¿Ú×î¼òµ¥¡¢¿ìËÙµÄÊµÏÖ¡£
+ * å¿«é€Ÿå¤šæ€å€¼æ¥å£ã€‚
+ * <p> è¯¥ç±»æ˜¯å¯¹å¤šæ€å€¼æ¥å£æœ€ç®€å•ã€å¿«é€Ÿçš„å®ç°ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
@@ -11,20 +11,20 @@ public class QuickNumberValueable implements NumberValue {
 
 	public static final QuickNumberValueable ZERO = new QuickNumberValueable();
 	
-	/**¸Ã¶àÌ¨Öµ½Ó¿ÚµÄÖµ*/
+	/**è¯¥å¤šå°å€¼æ¥å£çš„å€¼*/
 	protected final double val;
 	
 	/**
-	 * Éú³ÉÒ»¸ö´óĞ¡Îª0µÄ¿ìËÙÖµ½Ó¿Ú¡£
-	 * <p> ¸Ã¹¹ÔìÆ÷·½·¨µÄÓÅÏÈ¶ÈĞ¡ÓÚ¾²Ì¬×Ö¶Î {@link QuickNumberValueable#ZERO}¡£
+	 * ç”Ÿæˆä¸€ä¸ªå¤§å°ä¸º0çš„å¿«é€Ÿå€¼æ¥å£ã€‚
+	 * <p> è¯¥æ„é€ å™¨æ–¹æ³•çš„ä¼˜å…ˆåº¦å°äºé™æ€å­—æ®µ {@link QuickNumberValueable#ZERO}ã€‚
 	 */
 	public QuickNumberValueable() {
 		this(0);
 	}
 	
 	/**
-	 * Éú³ÉÒ»¸ö¾ßÓĞÖ¸¶¨ÖµµÄ¿ìËÙ¶àÌ¬Öµ½Ó¿Ú¶ÔÏó¡£
-	 * @param val Ö¸¶¨µÄÖµ¡£
+	 * ç”Ÿæˆä¸€ä¸ªå…·æœ‰æŒ‡å®šå€¼çš„å¿«é€Ÿå¤šæ€å€¼æ¥å£å¯¹è±¡ã€‚
+	 * @param val æŒ‡å®šçš„å€¼ã€‚
 	 */
 	public QuickNumberValueable(double val) {
 		this.val = val;

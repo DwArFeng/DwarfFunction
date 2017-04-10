@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileFilter;
 
 /**
- * ¸ù¾İÀ©Õ¹Ãû½øĞĞÎÄ¼şÉ¸Ñ¡µÄÎÄ¼şÉ¸Ñ¡Æ÷¡£
+ * æ ¹æ®æ‰©å±•åè¿›è¡Œæ–‡ä»¶ç­›é€‰çš„æ–‡ä»¶ç­›é€‰å™¨ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
@@ -13,8 +13,8 @@ public final class FileExtensionNameFiliter implements FileFilter {
 	private String extenstionName;
 	
 	/**
-	 * ´´½¨Ò»¸ö¾ßÓĞÖ¸¶¨À©Õ¹ÃûµÄÀ©Õ¹ÃûÉ¸Ñ¡Æ÷¡£
-	 * @param extensionName Ö¸¶¨µÄÀ©Õ¹Ãû¡£
+	 * åˆ›å»ºä¸€ä¸ªå…·æœ‰æŒ‡å®šæ‰©å±•åçš„æ‰©å±•åç­›é€‰å™¨ã€‚
+	 * @param extensionName æŒ‡å®šçš„æ‰©å±•åã€‚
 	 */
 	public FileExtensionNameFiliter(String extensionName) {
 		this.extenstionName = extensionName;

@@ -7,7 +7,7 @@ import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 
 /**
- * ¸ù¾İ{@linkplain Name}¶ÔÏóµÄÃû³ÆÊôĞÔ½øĞĞ±È½ÏµÄ±È½ÏÆ÷¡£
+ * æ ¹æ®{@linkplain Name}å¯¹è±¡çš„åç§°å±æ€§è¿›è¡Œæ¯”è¾ƒçš„æ¯”è¾ƒå™¨ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */

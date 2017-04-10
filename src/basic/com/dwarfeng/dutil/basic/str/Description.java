@@ -1,14 +1,14 @@
 package com.dwarfeng.dutil.basic.str;
 
 /**
- * ¿ÉÃèÊö½Ó¿Ú¡£
+ * å¯æè¿°æ¥å£ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public interface Description {
 	/**
-	 * »ñÈ¡¶ÔÏóÖĞµÄÃèÊö¡£
-	 * @return ¶ÔÏóµÄÃèÊö¡£
+	 * è·å–å¯¹è±¡ä¸­çš„æè¿°ã€‚
+	 * @return å¯¹è±¡çš„æè¿°ã€‚
 	 */
 	public String getDescription();
 }

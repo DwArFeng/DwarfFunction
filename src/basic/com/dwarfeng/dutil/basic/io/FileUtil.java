@@ -8,85 +8,120 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
 /**
- * ÊµÏÖÎÄ¼ş²Ù×÷µÄÀà¡£
- * <p>ÊµÏÖµÄÎÄ¼ş²Ù×÷Ä¿Ç°Îª¸´ÖÆ¡£
+ * å®ç°æ–‡ä»¶æ“ä½œçš„ç±»ã€‚
+ * <p>
+ * å®ç°çš„æ–‡ä»¶æ“ä½œç›®å‰ä¸ºå¤åˆ¶ã€‚
+ * 
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public final class FileUtil {
-	
+
 	/**
-	 * ½«Ò»¸öÎÄ¼ş¸´ÖÆµ½ÁíÒ»¸öÎÄ¼ş¡£
-	 * @param source ĞèÒª¸´ÖÆµÄÔ´ÎÄ¼ş¡£
-	 * @param target ĞèÒª¸´ÖÆµ½µÄÄ¿±êÎÄ¼ş¡£
-	 * @throws IOException ¸´ÖÆ¹ı³ÌÖĞIO·¢ÉúÒì³£Ê±Å×³öµÄÒì³£¡£
+	 * å°†ä¸€ä¸ªæ–‡ä»¶å¤åˆ¶åˆ°å¦ä¸€ä¸ªæ–‡ä»¶ã€‚
+	 * 
+	 * @deprecated è¯¥æ–¹æ³•ä¸ç¬¦åˆå‘½åè§„èŒƒï¼Œå·²ç»è¢« {@link #fileCopy(File, File)} ä»£æ›¿ã€‚
+	 * @param source
+	 *            éœ€è¦å¤åˆ¶çš„æºæ–‡ä»¶ã€‚
+	 * @param target
+	 *            éœ€è¦å¤åˆ¶åˆ°çš„ç›®æ ‡æ–‡ä»¶ã€‚
+	 * @throws IOException
+	 *             å¤åˆ¶è¿‡ç¨‹ä¸­IOå‘ç”Ÿå¼‚å¸¸æ—¶æŠ›å‡ºçš„å¼‚å¸¸ã€‚
 	 */
-	public static void FileCopy(File source,File target) throws IOException{
-		//Èç¹ûtarget²»´æÔÚ£¬Ôò´´½¨targetÒÔ¼°ÆäÄ¿Â¼£¨ÓĞ±ØÒªµÄ»°£©¡£
+	@Deprecated
+	public static void FileCopy(File source, File target) throws IOException {
+		fileCopy(source, target);
+	}
+
+	/**
+	 * å°†ä¸€ä¸ªæ–‡ä»¶å¤åˆ¶åˆ°å¦ä¸€ä¸ªæ–‡ä»¶ã€‚
+	 * 
+	 * @param source
+	 *            éœ€è¦å¤åˆ¶çš„æºæ–‡ä»¶ã€‚
+	 * @param target
+	 *            éœ€è¦å¤åˆ¶åˆ°çš„ç›®æ ‡æ–‡ä»¶ã€‚
+	 * @throws IOException
+	 *             å¤åˆ¶è¿‡ç¨‹ä¸­IOå‘ç”Ÿå¼‚å¸¸æ—¶æŠ›å‡ºçš„å¼‚å¸¸ã€‚
+	 */
+	public static void fileCopy(File source, File target) throws IOException {
+		// å¦‚æœtargetä¸å­˜åœ¨ï¼Œåˆ™åˆ›å»ºtargetä»¥åŠå…¶ç›®å½•ï¼ˆæœ‰å¿…è¦çš„è¯ï¼‰ã€‚
 		createFileIfNotExists(target);
-		//¶¨Òå2MBµÄ»º³å´óĞ¡
+		// å®šä¹‰2MBçš„ç¼“å†²å¤§å°
 		int bufferSize = 2097152;
 		int length = 0;
-		//´´½¨ÊäÈëÊä³öÁ÷
+		// åˆ›å»ºè¾“å…¥è¾“å‡ºæµ
 		FileInputStream in = new FileInputStream(source);
 		FileOutputStream out = new FileOutputStream(target);
-		//»ñÈ¡Í¨µÀ
+		// è·å–é€šé“
 		FileChannel inC = in.getChannel();
 		FileChannel outC = out.getChannel();
-		//¶¨Òå×Ö½Ú»º³å
+		// å®šä¹‰å­—èŠ‚ç¼“å†²
 		ByteBuffer buffer = null;
-		while(true){
-			//ÅĞ¶ÏÍê³É
-			if(inC.position() == inC.size()){
+		while (true) {
+			// åˆ¤æ–­å®Œæˆ
+			if (inC.position() == inC.size()) {
 				in.close();
 				out.close();
 				inC.close();
 				outC.close();
 				return;
 			}
-			//¿ª±Ù×Ö½Ú»º³å
-			length = (int) (inC.size() - inC.position() < bufferSize ? inC.size() - inC.position():bufferSize);
+			// å¼€è¾Ÿå­—èŠ‚ç¼“å†²
+			length = (int) (inC.size() - inC.position() < bufferSize ? inC.size() - inC.position() : bufferSize);
 			buffer = ByteBuffer.allocateDirect(length);
-			//¸´ÖÆÊı¾İ
+			// å¤åˆ¶æ•°æ®
 			inC.read(buffer);
 			buffer.flip();
 			outC.write(buffer);
 		}
 	}
+
 	/**
-	 * ÎÄ¼ş/ÎÄ¼ş¼ĞµÄÉ¾³ı·½·¨¡£
-	 * <p> ¸Ã·½·¨»á¶ÔÄ¿±êÎÄ¼ş½øĞĞÉ¾³ı£¬Èç¹ûÄ¿±êÎÄ¼şÊÇ±ê×¼ÎÄ¼şµÄ»°£¬ÔòÉ¾³ı¸ÃÎÄ¼ş¡£
-	 * <br> Èç¹ûÄ¿±êÎÄ¼şÊÇÎÄ¼ş¼ĞµÄ»°£¬Ôò»áÉ¾³ı¸ÃÎÄ¼ş¼Ğ£¨°üÀ¨ÎÄ¼ş¼ĞÖĞµÄËùÓĞÎÄ¼ş¡¢×ÓÎÄ¼ş¼Ğ¡¢×ÓÎÄ¼ş¼ĞÖĞµÄÎÄ¼şµÈµÈ£©¡£
-	 * @param file Ä¿±êÎÄ¼ş»òÎÄ¼ş¼Ğ¡£
-	 * @return ÎÄ¼ş»òÎÄ¼ş¼ĞÊÇ·ñÉ¾³ı¡£
+	 * æ–‡ä»¶/æ–‡ä»¶å¤¹çš„åˆ é™¤æ–¹æ³•ã€‚
+	 * <p>
+	 * è¯¥æ–¹æ³•ä¼šå¯¹ç›®æ ‡æ–‡ä»¶è¿›è¡Œåˆ é™¤ï¼Œå¦‚æœç›®æ ‡æ–‡ä»¶æ˜¯æ ‡å‡†æ–‡ä»¶çš„è¯ï¼Œåˆ™åˆ é™¤è¯¥æ–‡ä»¶ã€‚ <br>
+	 * å¦‚æœç›®æ ‡æ–‡ä»¶æ˜¯æ–‡ä»¶å¤¹çš„è¯ï¼Œåˆ™ä¼šåˆ é™¤è¯¥æ–‡ä»¶å¤¹ï¼ˆåŒ…æ‹¬æ–‡ä»¶å¤¹ä¸­çš„æ‰€æœ‰æ–‡ä»¶ã€å­æ–‡ä»¶å¤¹ã€å­æ–‡ä»¶å¤¹ä¸­çš„æ–‡ä»¶ç­‰ç­‰ï¼‰ã€‚
+	 * 
+	 * @param file
+	 *            ç›®æ ‡æ–‡ä»¶æˆ–æ–‡ä»¶å¤¹ã€‚
+	 * @return æ–‡ä»¶æˆ–æ–‡ä»¶å¤¹æ˜¯å¦åˆ é™¤ã€‚
 	 */
-	public static boolean deleteFile(File file){
-		if(file.isDirectory()){
+	public static boolean deleteFile(File file) {
+		if (file.isDirectory()) {
 			String[] children = file.list();
-			//µİ¹éÉ¾³ı¸ÃÄ¿Â¼µÄ×ÓÄ¿Â¼ÎÄ¼ş
-			for(int i = 0 ; i < children.length ; i ++){
-				boolean success = deleteFile(new File(file,children[i]));
-				if(!success) return false;
+			// é€’å½’åˆ é™¤è¯¥ç›®å½•çš„å­ç›®å½•æ–‡ä»¶
+			for (int i = 0; i < children.length; i++) {
+				boolean success = deleteFile(new File(file, children[i]));
+				if (!success)
+					return false;
 			}
 		}
-		//Ä¿Â¼´ËÊ±Îª¿Õ£¬¿ÉÒÔÉ¾³ı
+		// ç›®å½•æ­¤æ—¶ä¸ºç©ºï¼Œå¯ä»¥åˆ é™¤
 		return file.delete();
 	}
+
 	/**
-	 * Èç¹ûÖ¸¶¨µÄÎÄ¼ş²»´æÔÚ£¬Ôò³¢ÊÔĞÂ½¨ÎÄ¼şµÄ·½·¨¡£
-	 * <p> ¸Ã·½·¨ÔÚ½¨Á¢ÎÄ¼şÊ±£¬»á½«Æä¸ùÄ¿Â¼Ò»Í¬´´½¨£¨Èç¹û¾ßÓĞ¸ùÄ¿Â¼µÄ»°£©¡£
-	 * @param file Ö¸¶¨µÄÎÄ¼ş¡£
-	 * @throws IOException ÎÄ¼şÎŞ·¨´´½¨»òÕßÍ¨ĞÅ´íÎóÊ±Å×³öµÄÒì³£¡£
+	 * å¦‚æœæŒ‡å®šçš„æ–‡ä»¶ä¸å­˜åœ¨ï¼Œåˆ™å°è¯•æ–°å»ºæ–‡ä»¶çš„æ–¹æ³•ã€‚
+	 * <p>
+	 * è¯¥æ–¹æ³•åœ¨å»ºç«‹æ–‡ä»¶æ—¶ï¼Œä¼šå°†å…¶æ ¹ç›®å½•ä¸€åŒåˆ›å»ºï¼ˆå¦‚æœå…·æœ‰æ ¹ç›®å½•çš„è¯ï¼‰ã€‚
+	 * 
+	 * @param file
+	 *            æŒ‡å®šçš„æ–‡ä»¶ã€‚
+	 * @throws IOException
+	 *             æ–‡ä»¶æ— æ³•åˆ›å»ºæˆ–è€…é€šä¿¡é”™è¯¯æ—¶æŠ›å‡ºçš„å¼‚å¸¸ã€‚
 	 */
-	public static void createFileIfNotExists(File file) throws IOException{
-		//Èç¹ûÎÄ¼ş´æÔÚ£¬ÔòÊ²Ã´ÊÂÒ²²»×ö¡£
-		if(file.exists()) return;
+	public static void createFileIfNotExists(File file) throws IOException {
+		// å¦‚æœæ–‡ä»¶å­˜åœ¨ï¼Œåˆ™ä»€ä¹ˆäº‹ä¹Ÿä¸åšã€‚
+		if (file.exists())
+			return;
 		File parentFile = file.getParentFile();
-		if(parentFile != null && !parentFile.exists()) parentFile.mkdirs();
+		if (parentFile != null && !parentFile.exists())
+			parentFile.mkdirs();
 		file.createNewFile();
 	}
-	
-	//²»ÔÊĞíÊµÀı»¯
-	private FileUtil() {}
+
+	// ä¸å…è®¸å®ä¾‹åŒ–
+	private FileUtil() {
+	}
 
 }

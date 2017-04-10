@@ -7,7 +7,7 @@ import com.dwarfeng.dutil.basic.io.CT;
 import com.dwarfeng.dutil.basic.io.StringOutputStream;
 
 /**
- * {@link StringOutputStream} µÄÊ¾Àý¡£
+ * {@link StringOutputStream} çš„ç¤ºä¾‹ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */

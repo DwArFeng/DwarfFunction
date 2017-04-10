@@ -6,25 +6,25 @@ import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 
 /**
- * Öµ½Ó¿Ú¡£
- * <p> ¸Ã½Ó¿ÚÒâÎ¶×ÅÆäÊµÏÖÀà¿ÉÒÔ×ª»¯ÎªÖµ¡£
+ * å€¼æ¥å£ã€‚
+ * <p> è¯¥æ¥å£æ„å‘³ç€å…¶å®ç°ç±»å¯ä»¥è½¬åŒ–ä¸ºå€¼ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public interface FothValue extends NumberBased{
 	
 	/**
-	 * ·µ»Ø¶ÔÏóµÄÖµ¡£
-	 * @return ¶ÔÏóµÄÖµ¡£
+	 * è¿”å›å¯¹è±¡çš„å€¼ã€‚
+	 * @return å¯¹è±¡çš„å€¼ã€‚
 	 */
 	public double value();
 	
 	/**
-	 * ÓëÖ¸¶¨µÄÖµ¶ÔÏóÏà¼Ó¡£
-	 * <p> ×¢Òâ£¬¸ÃÔËËãÊÇÖµÔËËã£¬ÔËËãµÃµ½µÄ½á¹ûÖ»±£ÁôÖµ£¬²»±£Áô²ÎÓëÔËËãµÄ¶ÔÏóµÄ½á¹¹¡£
-	 * @param val Ö¸¶¨µÄÖµ¶ÔÏó¡£
-	 * @return ¸ÃÖµ¶ÔÏóÓëÖ¸¶¨Öµ¶ÔÏóÏà¼ÓµÃµ½µÄÖµ¶ÔÏó¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * ä¸æŒ‡å®šçš„å€¼å¯¹è±¡ç›¸åŠ ã€‚
+	 * <p> æ³¨æ„ï¼Œè¯¥è¿ç®—æ˜¯å€¼è¿ç®—ï¼Œè¿ç®—å¾—åˆ°çš„ç»“æœåªä¿ç•™å€¼ï¼Œä¸ä¿ç•™å‚ä¸è¿ç®—çš„å¯¹è±¡çš„ç»“æ„ã€‚
+	 * @param val æŒ‡å®šçš„å€¼å¯¹è±¡ã€‚
+	 * @return è¯¥å€¼å¯¹è±¡ä¸æŒ‡å®šå€¼å¯¹è±¡ç›¸åŠ å¾—åˆ°çš„å€¼å¯¹è±¡ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public default FothValue add(FothValue val){
 		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FothValue_0));
@@ -32,11 +32,11 @@ public interface FothValue extends NumberBased{
 	}
 	
 	/**
-	 * ÓëÖ¸¶¨µÄÖµ¶ÔÏóÏà¼õ¡£
-	 * <p> ×¢Òâ£¬¸ÃÔËËãÊÇÖµÔËËã£¬ÔËËãµÃµ½µÄ½á¹ûÖ»±£ÁôÖµ£¬²»±£Áô²ÎÓëÔËËãµÄ¶ÔÏóµÄ½á¹¹¡£
-	 * @param val Ö¸¶¨µÄÖµ¶ÔÏó¡£
-	 * @return ¸ÃÖµ¶ÔÏóÓëÖ¸¶¨Öµ¶ÔÏóÏà¼õµÃµ½µÄÖµ¶ÔÏó¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * ä¸æŒ‡å®šçš„å€¼å¯¹è±¡ç›¸å‡ã€‚
+	 * <p> æ³¨æ„ï¼Œè¯¥è¿ç®—æ˜¯å€¼è¿ç®—ï¼Œè¿ç®—å¾—åˆ°çš„ç»“æœåªä¿ç•™å€¼ï¼Œä¸ä¿ç•™å‚ä¸è¿ç®—çš„å¯¹è±¡çš„ç»“æ„ã€‚
+	 * @param val æŒ‡å®šçš„å€¼å¯¹è±¡ã€‚
+	 * @return è¯¥å€¼å¯¹è±¡ä¸æŒ‡å®šå€¼å¯¹è±¡ç›¸å‡å¾—åˆ°çš„å€¼å¯¹è±¡ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public default FothValue minus(FothValue val){
 		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FothValue_0));
@@ -44,11 +44,11 @@ public interface FothValue extends NumberBased{
 	}
 	
 	/**
-	 * ÓëÖ¸¶¨µÄÖµ¶ÔÏóÏà³Ë¡£
-	 * <p> ×¢Òâ£¬¸ÃÔËËãÊÇÖµÔËËã£¬ÔËËãµÃµ½µÄ½á¹ûÖ»±£ÁôÖµ£¬²»±£Áô²ÎÓëÔËËãµÄ¶ÔÏóµÄ½á¹¹¡£
-	 * @param val Ö¸¶¨µÄÖµ¶ÔÏó¡£
-	 * @return ¸ÃÖµ¶ÔÏóÓëÖ¸¶¨Öµ¶ÔÏóÏà³ËµÃµ½µÄÖµ¶ÔÏó¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * ä¸æŒ‡å®šçš„å€¼å¯¹è±¡ç›¸ä¹˜ã€‚
+	 * <p> æ³¨æ„ï¼Œè¯¥è¿ç®—æ˜¯å€¼è¿ç®—ï¼Œè¿ç®—å¾—åˆ°çš„ç»“æœåªä¿ç•™å€¼ï¼Œä¸ä¿ç•™å‚ä¸è¿ç®—çš„å¯¹è±¡çš„ç»“æ„ã€‚
+	 * @param val æŒ‡å®šçš„å€¼å¯¹è±¡ã€‚
+	 * @return è¯¥å€¼å¯¹è±¡ä¸æŒ‡å®šå€¼å¯¹è±¡ç›¸ä¹˜å¾—åˆ°çš„å€¼å¯¹è±¡ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public default FothValue mul(FothValue val){
 		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FothValue_0));
@@ -56,12 +56,12 @@ public interface FothValue extends NumberBased{
 	}
 	
 	/**
-	 * ÓëÖ¸¶¨µÄÖµ¶ÔÏóÏà³ı¡£
-	 * <p> ×¢Òâ£¬¸ÃÔËËãÊÇÖµÔËËã£¬ÔËËãµÃµ½µÄ½á¹ûÖ»±£ÁôÖµ£¬²»±£Áô²ÎÓëÔËËãµÄ¶ÔÏóµÄ½á¹¹¡£
-	 * @param val Ö¸¶¨µÄÖµ¶ÔÏó¡£
-	 * @return ¸ÃÖµ¶ÔÏóÓëÖ¸¶¨Öµ¶ÔÏóÏà³ıµÃµ½µÄÖµ¶ÔÏó¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
-	 * @throws ArithmeticException µ±valÎª0ÊÇÅ×³öÒì³£¡£
+	 * ä¸æŒ‡å®šçš„å€¼å¯¹è±¡ç›¸é™¤ã€‚
+	 * <p> æ³¨æ„ï¼Œè¯¥è¿ç®—æ˜¯å€¼è¿ç®—ï¼Œè¿ç®—å¾—åˆ°çš„ç»“æœåªä¿ç•™å€¼ï¼Œä¸ä¿ç•™å‚ä¸è¿ç®—çš„å¯¹è±¡çš„ç»“æ„ã€‚
+	 * @param val æŒ‡å®šçš„å€¼å¯¹è±¡ã€‚
+	 * @return è¯¥å€¼å¯¹è±¡ä¸æŒ‡å®šå€¼å¯¹è±¡ç›¸é™¤å¾—åˆ°çš„å€¼å¯¹è±¡ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
+	 * @throws ArithmeticException å½“valä¸º0æ˜¯æŠ›å‡ºå¼‚å¸¸ã€‚
 	 */
 	public default FothValue div(FothValue val){
 		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.FothValue_0));

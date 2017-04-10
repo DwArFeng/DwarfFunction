@@ -1,9 +1,9 @@
 package com.dwarfeng.dutil.basic.prog;
 
 /**
- * ²»°²È« Getter¡£
+ * ä¸å®‰å…¨ Getterã€‚
  * <p>
- * ²»°²È« <code>Getter</code> ÄÜ¹»²»°²È«µØÌá¹©ÁËÒ»¸ö<code>T</code>ÀàĞÍµÄ¶ÔÏó£¬Ìá¹©·½·¨¿ÉÄÜ»áÅ×³öÒì³£¡£
+ * ä¸å®‰å…¨ <code>Getter</code> èƒ½å¤Ÿä¸å®‰å…¨åœ°æä¾›äº†ä¸€ä¸ª<code>T</code>ç±»å‹çš„å¯¹è±¡ï¼Œæä¾›æ–¹æ³•å¯èƒ½ä¼šæŠ›å‡ºå¼‚å¸¸ã€‚
  * 
  * @author DwArFeng
  * @since 0.1.0-beta
@@ -11,11 +11,11 @@ package com.dwarfeng.dutil.basic.prog;
 public interface UnsafeGetter<T> {
 
 	/**
-	 * »ñÈ¡ Getter ÖĞµÄ¶ÔÏ·¡£
+	 * è·å– Getter ä¸­çš„å¯¹è±¡ã€‚
 	 * 
-	 * @return Getter ÖĞµÄ¶ÔÏó¡£
+	 * @return Getter ä¸­çš„å¯¹è±¡ã€‚
 	 * @throws ProcessException
-	 *             ¹ı³ÌÒì³£¡£
+	 *             è¿‡ç¨‹å¼‚å¸¸ã€‚
 	 */
 	public T get() throws ProcessException;
 

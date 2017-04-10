@@ -7,20 +7,20 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.str.Name;
 
 /**
- * ÅäÖÃ¼ü¡£
- * <p> ÅäÖÃ¼üÊÇÒ»¸ö {@link Name}¶ÔÏó£¬·â×°Ò»¸ö×Ö·û´®¡£
+ * é…ç½®é”®ã€‚
+ * <p> é…ç½®é”®æ˜¯ä¸€ä¸ª {@link Name}å¯¹è±¡ï¼Œå°è£…ä¸€ä¸ªå­—ç¬¦ä¸²ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public class ConfigKey implements Name{
 
-	/**ÅäÖÃ¼üµÄÃû³Æ*/
+	/**é…ç½®é”®çš„åç§°*/
 	protected final String name;
 	
 	/**
-	 * ĞÂµÄÅäÖÃ¼ü¡£
-	 * @param name Ö¸¶¨µÄÃû³Æ¡£
-	 * @throws NullPointerException Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 * æ–°çš„é…ç½®é”®ã€‚
+	 * @param name æŒ‡å®šçš„åç§°ã€‚
+	 * @throws NullPointerException å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public ConfigKey(String name) {
 		Objects.requireNonNull(name, DwarfUtil.getStringField(StringFieldKey.ConfigKey_0));

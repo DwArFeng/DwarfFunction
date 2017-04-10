@@ -5,9 +5,9 @@ import java.util.Objects;
 import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
 
 /**
- * Æ¥ÅäÖµ¼ì²éÆ÷¡£
+ * åŒ¹é…å€¼æ£€æŸ¥å™¨ã€‚
  * <p>
- * ÓÃÓÚ¼ì²âÄ¿±êÖµÊÇ·ñÆ¥ÅäÖ¸¶¨µÄÕıÔò±í´ïÊ½¡£
+ * ç”¨äºæ£€æµ‹ç›®æ ‡å€¼æ˜¯å¦åŒ¹é…æŒ‡å®šçš„æ­£åˆ™è¡¨è¾¾å¼ã€‚
  * 
  * @author DwArFeng
  * @since 0.0.2-beta
@@ -17,19 +17,19 @@ public class MatchConfigChecker implements ConfigChecker {
 	private final String regex;
 
 	/**
-	 * ´´½¨Ò»¸öÆ¥ÅäÈÎÒâ×Ö·ûµÄÆ¥ÅäÖµ¼ì²âÆ÷¡£
+	 * åˆ›å»ºä¸€ä¸ªåŒ¹é…ä»»æ„å­—ç¬¦çš„åŒ¹é…å€¼æ£€æµ‹å™¨ã€‚
 	 * <p>
-	 * Ê¹ÓÃ¸Ã·½·¨´´½¨µÄ¼ì²âÆ÷Ö»ÓĞµ± value Îª <code>null</code>Ê±²Å·µ»Ø <code>false</code>¡£
+	 * ä½¿ç”¨è¯¥æ–¹æ³•åˆ›å»ºçš„æ£€æµ‹å™¨åªæœ‰å½“ value ä¸º <code>null</code>æ—¶æ‰è¿”å› <code>false</code>ã€‚
 	 */
 	public MatchConfigChecker() {
 		this("[\\s\\S]*");
 	}
 
 	/**
-	 * ´´½¨Ò»¸öÓµÓĞÖ¸¶¨Æ¥Åä±í´ïÊ½µÄÆ¥ÅäÖµ¼ì²âÆ÷¡£
+	 * åˆ›å»ºä¸€ä¸ªæ‹¥æœ‰æŒ‡å®šåŒ¹é…è¡¨è¾¾å¼çš„åŒ¹é…å€¼æ£€æµ‹å™¨ã€‚
 	 * 
 	 * @param regex
-	 *            Ö¸¶¨µÄÆ¥Åä±í´ïÊ½£¨ÕıÔò±í´ïÊ½£©¡£
+	 *            æŒ‡å®šçš„åŒ¹é…è¡¨è¾¾å¼ï¼ˆæ­£åˆ™è¡¨è¾¾å¼ï¼‰ã€‚
 	 */
 	public MatchConfigChecker(String regex) {
 		this.regex = regex;

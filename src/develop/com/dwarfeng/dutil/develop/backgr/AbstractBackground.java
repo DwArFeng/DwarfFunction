@@ -12,35 +12,35 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.develop.backgr.obv.BackgroundObverser;
 
 /**
- * ³éÏóºóÌ¨¡£
+ * æŠ½è±¡åå°ã€‚
  * 
  * <p>
- * ºóÌ¨µÄ³éÏóÊµÏÖ£¬Ìá¹©ÁËËøºÍ¹Û²ìÆ÷µÄÊµÏÖ¡£
+ * åå°çš„æŠ½è±¡å®ç°ï¼Œæä¾›äº†é”å’Œè§‚å¯Ÿå™¨çš„å®ç°ã€‚
  * 
  * @author DwArFeng
  * @since 0.1.0-beta
  */
 public abstract class AbstractBackground implements Background {
 
-	/** ¹Û²ìÆ÷¼¯ºÏ */
+	/** è§‚å¯Ÿå™¨é›†åˆ */
 	protected final Set<BackgroundObverser> obversers;
-	/** Í¬²½Ëø */
+	/** åŒæ­¥é” */
 	protected final ReadWriteLock lock = new ReentrantReadWriteLock();
 
 	/**
-	 * Éú³ÉÒ»¸öÄ¬ÈÏµÄºóÌ¨¡£
+	 * ç”Ÿæˆä¸€ä¸ªé»˜è®¤çš„åå°ã€‚
 	 */
 	public AbstractBackground() {
 		this(Collections.newSetFromMap(new WeakHashMap<>()));
 	}
 
 	/**
-	 * Éú³ÉÒ»¸ö¾ßÓĞÖ¸¶¨µÄ¹Û²ìÆ÷¼¯ºÏµÄ³éÏóºóÌ¨¡£
+	 * ç”Ÿæˆä¸€ä¸ªå…·æœ‰æŒ‡å®šçš„è§‚å¯Ÿå™¨é›†åˆçš„æŠ½è±¡åå°ã€‚
 	 * 
 	 * @param obversers
-	 *            Ö¸¶¨µÄ¹Û²ìÆ÷¼¯ºÏ¡£
+	 *            æŒ‡å®šçš„è§‚å¯Ÿå™¨é›†åˆã€‚
 	 * @throws NullPointerException
-	 *             Èë¿Ú²ÎÊıÎª <code>null</code>¡£
+	 *             å…¥å£å‚æ•°ä¸º <code>null</code>ã€‚
 	 */
 	public AbstractBackground(Set<BackgroundObverser> obversers) {
 		Objects.requireNonNull(obversers, DwarfUtil.getStringField(StringFieldKey.ABSTRACTBACKGROUND_0));
@@ -123,10 +123,10 @@ public abstract class AbstractBackground implements Background {
 	}
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷Ö¸¶¨µÄÈÎÎñ±»Ìá½»¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨æŒ‡å®šçš„ä»»åŠ¡è¢«æäº¤ã€‚
 	 * 
 	 * @param task
-	 *            Ö¸¶¨µÄÈÎÎñ¡£
+	 *            æŒ‡å®šçš„ä»»åŠ¡ã€‚
 	 */
 	protected void fireTaskSubmitted(Task task) {
 		for (BackgroundObverser obverser : obversers) {
@@ -136,10 +136,10 @@ public abstract class AbstractBackground implements Background {
 	}
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷Ö¸¶¨µÄÈÎÎñ¿ªÊ¼¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨æŒ‡å®šçš„ä»»åŠ¡å¼€å§‹ã€‚
 	 * 
 	 * @param task
-	 *            Ö¸¶¨µÄÈÎÎñ¡£
+	 *            æŒ‡å®šçš„ä»»åŠ¡ã€‚
 	 */
 	protected void fireTaskStarted(Task task) {
 		for (BackgroundObverser obverser : obversers) {
@@ -149,10 +149,10 @@ public abstract class AbstractBackground implements Background {
 	}
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷Ö¸¶¨µÄÈÎÎñ½áÊø¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨æŒ‡å®šçš„ä»»åŠ¡ç»“æŸã€‚
 	 * 
 	 * @param task
-	 *            Ö¸¶¨µÄÈÎÎñ¡£
+	 *            æŒ‡å®šçš„ä»»åŠ¡ã€‚
 	 */
 	protected void fireTaskFinished(Task task) {
 		for (BackgroundObverser obverser : obversers) {
@@ -162,10 +162,10 @@ public abstract class AbstractBackground implements Background {
 	}
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷Ö¸¶¨µÄÈÎÎñ±»ÒÆ³ı¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨æŒ‡å®šçš„ä»»åŠ¡è¢«ç§»é™¤ã€‚
 	 * 
 	 * @param task
-	 *            Ö¸¶¨µÄÈÎÎñ¡£
+	 *            æŒ‡å®šçš„ä»»åŠ¡ã€‚
 	 */
 	protected void fireTaskRemoved(Task task) {
 		for (BackgroundObverser obverser : obversers) {
@@ -175,7 +175,7 @@ public abstract class AbstractBackground implements Background {
 	}
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷ºóÌ¨±»¹Ø±Õ¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨åå°è¢«å…³é—­ã€‚
 	 */
 	protected void fireShutDown() {
 		for (BackgroundObverser obverser : obversers) {
@@ -185,7 +185,7 @@ public abstract class AbstractBackground implements Background {
 	}
 
 	/**
-	 * Í¨Öª¹Û²ìÆ÷ºóÌ¨±»ÖÕ½á¡£
+	 * é€šçŸ¥è§‚å¯Ÿå™¨åå°è¢«ç»ˆç»“ã€‚
 	 */
 	protected void fireTerminated() {
 		for (BackgroundObverser obverser : obversers) {

@@ -1,7 +1,7 @@
 /**
- * �ṹ����
+ * 结构包。
  * <p>
- * �������йصĽṹa
+ * 与配置有关的结构a
  * 
  * @author DwArFeng
  * @since 0.1.0-beta

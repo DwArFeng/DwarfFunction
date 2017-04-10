@@ -9,38 +9,38 @@ import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
- * ÔËĞĞ¶ÓÁĞ¡£
- * <p> ¸ÃÀàÊÇÒ»¸öÓÃÓÚÔËĞĞºóÌ¨·½·¨µÄ¹¤¾ßÀà¡£Õâ¸öÀàÌá¹©µÄ·½·¨ÔÊĞíÔÚÆä¿ª±ÙµÄÒ»¸öºóÌ¨Ïß³ÌÖĞ°´ÕÕFIFOµÄË³ĞòÔËĞĞ
- * Ö¸¶¨µÄ<code>Runnable</code>ĞòÁĞ¡£Ïß³ÌÔÚ<code>Runnable</code>ĞòÁĞÈ«²¿ÔËĞĞ½áÊøÖ®ºóÔİÍ£ÔËĞĞ
- * £¬ÔÚÌí¼ÓĞÂµÄĞòÁĞºóÖØĞÂÔËĞĞ¡£
- * @deprecated  <code>java.util.concurrent</code> °üÖĞÓµÓĞÔ¶±È´ËÍêÉÆµÄ¹¤¾ßÀà£¬¸Ã¹¤¾ßÀàÔÚÒÔºóµÄ°æ±¾ÖĞ²»ÔÙ¿ª·¢£¬²¢ÇÒ²»Ó¦¸Ã¼ÌĞøÊ¹ÓÃ¸Ã¹¤¾ßÀà¡£
+ * è¿è¡Œé˜Ÿåˆ—ã€‚
+ * <p> è¯¥ç±»æ˜¯ä¸€ä¸ªç”¨äºè¿è¡Œåå°æ–¹æ³•çš„å·¥å…·ç±»ã€‚è¿™ä¸ªç±»æä¾›çš„æ–¹æ³•å…è®¸åœ¨å…¶å¼€è¾Ÿçš„ä¸€ä¸ªåå°çº¿ç¨‹ä¸­æŒ‰ç…§FIFOçš„é¡ºåºè¿è¡Œ
+ * æŒ‡å®šçš„<code>Runnable</code>åºåˆ—ã€‚çº¿ç¨‹åœ¨<code>Runnable</code>åºåˆ—å…¨éƒ¨è¿è¡Œç»“æŸä¹‹åæš‚åœè¿è¡Œ
+ * ï¼Œåœ¨æ·»åŠ æ–°çš„åºåˆ—åé‡æ–°è¿è¡Œã€‚
+ * @deprecated  <code>java.util.concurrent</code> åŒ…ä¸­æ‹¥æœ‰è¿œæ¯”æ­¤å®Œå–„çš„å·¥å…·ç±»ï¼Œè¯¥å·¥å…·ç±»åœ¨ä»¥åçš„ç‰ˆæœ¬ä¸­ä¸å†å¼€å‘ï¼Œå¹¶ä¸”ä¸åº”è¯¥ç»§ç»­ä½¿ç”¨è¯¥å·¥å…·ç±»ã€‚
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public class RunnerQueue<T extends Runnable> extends InnerThread {
 
-	/**Ïß³ÌµÄÃû³Æ*/
+	/**çº¿ç¨‹çš„åç§°*/
 	private final static String THREAD_NAME = "RunnerQueue";
 	
-	/**Runnable ¶ÓÁĞ*/
+	/**Runnable é˜Ÿåˆ—*/
 	private Queue<T> queue;
-	/**Ïß³ÌÍ¬²½Ëø*/
+	/**çº¿ç¨‹åŒæ­¥é”*/
 	private Lock threadLock;
-	/**Ïß³Ì×´Ì¬*/
+	/**çº¿ç¨‹çŠ¶æ€*/
 	private Condition threadCondition;
-	/**¶ÓÁĞ¶ÁĞ´Ëø*/
+	/**é˜Ÿåˆ—è¯»å†™é”*/
 	private ReadWriteLock queueLock;
 	
 	/**
-	 * Éú³ÉÒ»¸öÄ¬ÈÏµÄÔËĞĞ¶ÓÁĞ£¬²»ÊÇÊØ»¤Ïß³Ì¡£
+	 * ç”Ÿæˆä¸€ä¸ªé»˜è®¤çš„è¿è¡Œé˜Ÿåˆ—ï¼Œä¸æ˜¯å®ˆæŠ¤çº¿ç¨‹ã€‚
 	 */
 	public RunnerQueue(){
 		this(false);
 	}
 	
 	/**
-	 * Éú³ÉÒ»¸öÖ¸¶¨ÊÇ·ñÎªÊØ»¤Ïß³ÌµÄÔËĞĞ¶ÓÁĞ¡£
-	 * @param isDaemon ÊÇ·ñÎªÊØ»¤Ïß³Ì¡£
+	 * ç”Ÿæˆä¸€ä¸ªæŒ‡å®šæ˜¯å¦ä¸ºå®ˆæŠ¤çº¿ç¨‹çš„è¿è¡Œé˜Ÿåˆ—ã€‚
+	 * @param isDaemon æ˜¯å¦ä¸ºå®ˆæŠ¤çº¿ç¨‹ã€‚
 	 */
 	public RunnerQueue(boolean isDaemon){
 		super(THREAD_NAME,isDaemon);
@@ -51,8 +51,8 @@ public class RunnerQueue<T extends Runnable> extends InnerThread {
 	}
 	
 	/**
-	 * ÏòÎ¬»¤¶ÓÁĞÖĞÌí¼ÓÒ»¸öĞÂµÄRunnable¡£
-	 * @param runnable Ö¸¶¨µÄRunnable¡£
+	 * å‘ç»´æŠ¤é˜Ÿåˆ—ä¸­æ·»åŠ ä¸€ä¸ªæ–°çš„Runnableã€‚
+	 * @param runnable æŒ‡å®šçš„Runnableã€‚
 	 */
 	public void invoke(T runnable){
 		boolean flag = getQueueSize() == 0;
@@ -68,8 +68,8 @@ public class RunnerQueue<T extends Runnable> extends InnerThread {
 	}
 	
 	/**
-	 * »ñÈ¡¶ÓÁĞµÄ³¤¶È¡£
-	 * @return ¶ÓÁĞµÄ³¤¶È¡£
+	 * è·å–é˜Ÿåˆ—çš„é•¿åº¦ã€‚
+	 * @return é˜Ÿåˆ—çš„é•¿åº¦ã€‚
 	 */
 	public int getQueueSize(){
 		queueLock.readLock().lock();
@@ -81,8 +81,8 @@ public class RunnerQueue<T extends Runnable> extends InnerThread {
 	}
 	
 	/**
-	 * »ñÈ¡´ıÖ´ĞĞµÄ¶ÓÁĞ¡£
-	 * @return µÈ´ıÖ´ĞĞµÄ¶ÓÁĞ¡£
+	 * è·å–å¾…æ‰§è¡Œçš„é˜Ÿåˆ—ã€‚
+	 * @return ç­‰å¾…æ‰§è¡Œçš„é˜Ÿåˆ—ã€‚
 	 */
 	public Queue<T> getWaitingQueue(){
 		queueLock.readLock().lock();
@@ -94,8 +94,8 @@ public class RunnerQueue<T extends Runnable> extends InnerThread {
 	}
 	
 	/**
-	 * Ïò¶ÓÁĞµÄÄ©Î²Ìí¼ÓÖ¸¶¨µÄRunnable¡£
-	 * @param runnable Ö¸¶¨µÄRunnable¡£
+	 * å‘é˜Ÿåˆ—çš„æœ«å°¾æ·»åŠ æŒ‡å®šçš„Runnableã€‚
+	 * @param runnable æŒ‡å®šçš„Runnableã€‚
 	 */
 	private void offer(T runnable){
 		queueLock.writeLock().lock();
@@ -139,8 +139,8 @@ public class RunnerQueue<T extends Runnable> extends InnerThread {
 	}
 	
 	/**
-	 * ¼ì²é¶ÓÁĞÖĞ»¹ÓĞÃ»ÓĞ¸ü¶àµÄRunnable
-	 * @return ÓĞÃ»ÓĞ¸ü¶àµÄRunnable
+	 * æ£€æŸ¥é˜Ÿåˆ—ä¸­è¿˜æœ‰æ²¡æœ‰æ›´å¤šçš„Runnable
+	 * @return æœ‰æ²¡æœ‰æ›´å¤šçš„Runnable
 	 */
 	private boolean hasMoreRunnable(){
 		queueLock.readLock().lock();
@@ -152,8 +152,8 @@ public class RunnerQueue<T extends Runnable> extends InnerThread {
 	}
 	
 	/**
-	 * »ñÈ¡µ«²»ÒÆ³ıÎ»ÓÚ¶ÓÁĞÊ×Î»µÄRunnable¡£
-	 * @return ¶ÓÁĞÊ×Î»µÄRunnable¡£
+	 * è·å–ä½†ä¸ç§»é™¤ä½äºé˜Ÿåˆ—é¦–ä½çš„Runnableã€‚
+	 * @return é˜Ÿåˆ—é¦–ä½çš„Runnableã€‚
 	 */
 	private Runnable peek(){
 		queueLock.readLock().lock();
@@ -165,8 +165,8 @@ public class RunnerQueue<T extends Runnable> extends InnerThread {
 	}
 	
 	/**
-	 * »ñÈ¡²¢ÒÆ³ıÎ»ÓÚ¶ÓÁĞÊ×Î»µÄRunnable¡£
-	 * @return ¶ÓÁĞÊ×Î»µÄRunnable¡£
+	 * è·å–å¹¶ç§»é™¤ä½äºé˜Ÿåˆ—é¦–ä½çš„Runnableã€‚
+	 * @return é˜Ÿåˆ—é¦–ä½çš„Runnableã€‚
 	 */
 	private Runnable poll(){
 		queueLock.writeLock().lock();

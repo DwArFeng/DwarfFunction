@@ -3,9 +3,9 @@ package com.dwarfeng.dutil.develop.cfg.struct;
 import com.dwarfeng.dutil.develop.cfg.ConfigEntry;
 
 /**
- * ExÅäÖÃÈë¿Ú¡£
+ * Exé…ç½®å…¥å£ã€‚
  * <p>
- * ÔÚÔ­ÓĞµÄÅäÖÃÈë¿ÚµÄ»ù´¡ÉÏ£¬Ôö¼ÓÁËÖµ½âÎöÆ÷¡£
+ * åœ¨åŸæœ‰çš„é…ç½®å…¥å£çš„åŸºç¡€ä¸Šï¼Œå¢åŠ äº†å€¼è§£æå™¨ã€‚
  * 
  * @author DwArFeng
  * @since 0.1.0-beta
@@ -13,16 +13,16 @@ import com.dwarfeng.dutil.develop.cfg.ConfigEntry;
 public interface ExconfigEntry extends ConfigEntry{
 
 	/**
-	 * »ñÈ¡¸ÃÅäÖÃÈë¿ÚµÄÖµ½âÎöÆ÷¡£
+	 * è·å–è¯¥é…ç½®å…¥å£çš„å€¼è§£æå™¨ã€‚
 	 * 
-	 * @return ¸ÃÅäÖÃÈë¿ÚµÄÖµ½âÎöÆ÷¡£
+	 * @return è¯¥é…ç½®å…¥å£çš„å€¼è§£æå™¨ã€‚
 	 */
 	public ValueParser getValueParser();
 
 	/**
-	 * »ñÈ¡¸ÃÅäÖÃÈë¿ÚµÄµ±Ç°Öµ¡£
+	 * è·å–è¯¥é…ç½®å…¥å£çš„å½“å‰å€¼ã€‚
 	 * 
-	 * @return ¸ÃÅäÖÃÈë¿ÚµÄµ±Ç°Öµ¡£
+	 * @return è¯¥é…ç½®å…¥å£çš„å½“å‰å€¼ã€‚
 	 */
 	public String getCurrentValue();
 

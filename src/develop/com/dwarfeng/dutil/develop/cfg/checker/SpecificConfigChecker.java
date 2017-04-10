@@ -6,9 +6,9 @@ import com.dwarfeng.dutil.basic.cna.ArrayUtil;
 import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
 
 /**
- * ÌØ¶¨ÎÄ±¾¼ì²âÆ÷¡£
+ * ç‰¹å®šæ–‡æœ¬æ£€æµ‹å™¨ã€‚
  * <p>
- * µ±´ı²âÎÄ±¾Îª¼¸¸öÌØ¶¨ÖµÖĞµÄÒ»¸öÊ±£¬¼´ÎªÓĞĞ§¡£
+ * å½“å¾…æµ‹æ–‡æœ¬ä¸ºå‡ ä¸ªç‰¹å®šå€¼ä¸­çš„ä¸€ä¸ªæ—¶ï¼Œå³ä¸ºæœ‰æ•ˆã€‚
  * 
  * @author DwArFeng
  * @since 0.0.2-beta
@@ -18,20 +18,20 @@ public class SpecificConfigChecker implements ConfigChecker {
 	private final String[] arr;
 
 	/**
-	 * Éú³ÉÌØ¶¨ÎÄ±¾¼ì²âÆ÷¡£
+	 * ç”Ÿæˆç‰¹å®šæ–‡æœ¬æ£€æµ‹å™¨ã€‚
 	 * 
 	 * @param arr
-	 *            Ö¸¶¨ÖµÊı×é¡£
+	 *            æŒ‡å®šå€¼æ•°ç»„ã€‚
 	 */
 	public SpecificConfigChecker(String[] arr) {
 		this.arr = arr;
 	}
 
 	/**
-	 * Éú³ÉÌØ¶¨ÎÄ±¾¼ì²âÆ÷¡£
+	 * ç”Ÿæˆç‰¹å®šæ–‡æœ¬æ£€æµ‹å™¨ã€‚
 	 * 
 	 * @param arr
-	 *            Ö¸¶¨µÄ¶ÔÏóÊı×é£¬È¡¶ÔÏóµÄ <code>toString()</code>Öµ¡£
+	 *            æŒ‡å®šçš„å¯¹è±¡æ•°ç»„ï¼Œå–å¯¹è±¡çš„ <code>toString()</code>å€¼ã€‚
 	 */
 	public SpecificConfigChecker(Object[] arr) {
 		if (Objects.isNull(arr)) {

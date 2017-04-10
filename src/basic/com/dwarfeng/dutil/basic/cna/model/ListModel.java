@@ -6,11 +6,11 @@ import com.dwarfeng.dutil.basic.cna.model.obv.ListObverser;
 import com.dwarfeng.dutil.basic.prog.ObverserSet;
 
 /**
- * �б�ģ�͡�
+ * 列表模型。
  * <p>
- * ��ģ����һ���б�����ģ�ͣ�����Ԫ�����б�����һ��ȷ�е���ţ�����ͨ����ѯ��Ż�á� ��ģ���� {@link List} ��һ��ʵ�֡�
+ * 该模型是一个列表数据模型，所有元素在列表具有一个确切的序号，可以通过查询序号获得。 该模型是 {@link List} 的一个实现。
  * <p>
- * ���б��е�Ԫ�ر����ӡ�ɾ�����ı䡢��յ�ʱ�򣬻Ὣ��Ҫ����Ϣ�ṩ��ע����ģ���ϵ����������ϡ�
+ * 当列表中的元素被增加、删除、改变、清空的时候，会将必要的信息提供给注册在模型上的侦听器集合。
  * 
  * @author DwArFeng
  * @since 0.1.0-beta

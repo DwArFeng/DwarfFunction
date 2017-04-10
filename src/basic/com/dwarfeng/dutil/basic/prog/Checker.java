@@ -1,9 +1,9 @@
 package com.dwarfeng.dutil.basic.prog;
 
 /**
- * ¼ì²éÆ÷¡£
+ * æ£€æŸ¥å™¨ã€‚
  * <p>
- * ÓÃÓÚ¼ì²éÖ¸¶¨µÄÖµÊÇ·ñºÏ·¨¡£
+ * ç”¨äºæ£€æŸ¥æŒ‡å®šçš„å€¼æ˜¯å¦åˆæ³•ã€‚
  * 
  * @author DwArFeng
  * @since 0.0.3-beta
@@ -11,20 +11,20 @@ package com.dwarfeng.dutil.basic.prog;
 public interface Checker<T> {
 
 	/**
-	 * ÅĞ¶ÏÒ»¸ö¶ÔÏóÊÇ·ñÓĞĞ§¡£
+	 * åˆ¤æ–­ä¸€ä¸ªå¯¹è±¡æ˜¯å¦æœ‰æ•ˆã€‚
 	 * 
 	 * @param obj
-	 *            Ö¸¶¨µÄ¶ÔÏó¡£
-	 * @return ¸Ã¶ÔÏóÊÇ·ñÓĞĞ§¡£
+	 *            æŒ‡å®šçš„å¯¹è±¡ã€‚
+	 * @return è¯¥å¯¹è±¡æ˜¯å¦æœ‰æ•ˆã€‚
 	 */
 	public boolean isValid(T obj);
 
 	/**
-	 * ÅĞ¶ÏÒ»¸ö¶ÔÏóÊÇ·ñÎŞĞ§¡£
+	 * åˆ¤æ–­ä¸€ä¸ªå¯¹è±¡æ˜¯å¦æ— æ•ˆã€‚
 	 * 
 	 * @param obj
-	 *            Ö¸¶¨µÄ¶ÔÏó¡£
-	 * @return ¸Ã¶ÔÏóÊÇ·ñÎŞĞ§¡£
+	 *            æŒ‡å®šçš„å¯¹è±¡ã€‚
+	 * @return è¯¥å¯¹è±¡æ˜¯å¦æ— æ•ˆã€‚
 	 */
 	public default boolean nonValid(T obj) {
 		return !isValid(obj);
