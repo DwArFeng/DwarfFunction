@@ -57,7 +57,7 @@ Beta_0.0.2_20170112_build_A
 	将 dutil.develop.cfg.io 包中的 ConfigLoader 和 ConfigSaver 中的方法名称更改为符合命名规范的名称。
 	ConfigModel 将禁用值为 null 的配置值。
 	新增 DefaultConfigFirmProps 为 ConfigFirmProps 接口的默认实现。
-	新增 LocaleConfigChecker，用于检验一个字符串是否合乎标准国家/地区代码的规定。
+	新增 LocaleConfigChecker，用于检验一个字符串是否合乎标准国家.地区代码的规定。
 	修改所有的类中的注释：@since 从java版本改为 dwarfutil版本。
 	
 Beta_0.0.2_20170115_build_B
@@ -129,7 +129,13 @@ Beta_0.1.1_20170410_build_A
 	新增 dutil.develop.i18n包，提供国际化的管理工具。
 			
 Beta_0.1.1
-	该版本为 Beta_0.1.1_20170410_build_A 的修复版本，不兼容 Beta_0.1.1_20170410_build_A 版；与之前的版本有轻微的不兼容。
-	更改了命名不规范的类名：
-		dutil.develop.resource.DelegateResourceHandler 改为 KeySetResourceHandler。
-		dutil.develop.I18n
+	该版本为 Beta_0.1.1_20170410_build_A 的更新版本，修复了其中的众多 bug。
+	修改了 dutil.develop.i18n中的bug：
+		DelegateI18nHandler 中的移除方法如果移除了当前语言所在的国际化信息，不会将当前语言置为 null 的 bug。
+	修改了 dutil.basic.cna.model包中的一些 bug：
+		DelegateKeySet 和 DelegateKeyList 的 get 方法在入口参数为 null 的时候行为异常。
+	修改了 dutil.develop.backgr中的一些不足：
+		修改 dutil.develop.backgr.Task 接口， getException() 改为 getThrowable()，这样，即使在 Task 运行的时候抛出 Error，也能正常捕捉。
+	完善了 dutil.develop.cfg 中的方法：
+		将 dutil.develop.cfg.io.PropConfigSaver.countinuousSave(CurrentValueContainer) 的返回集合改成了 LinkedHashSet ，这样的话，异常可以按照产生的顺序进行迭代。
+		将 dutil.develop.cfg.io.PropConfigLoadr.countinuousLoad(CurrentValueContainer) 的返回集合改成了 LinkedHashSet，道理同上。

@@ -19,7 +19,7 @@ import org.junit.Test;
 import com.dwarfeng.dutil.basic.io.FileUtil;
 import com.dwarfeng.dutil.basic.io.IoUtil;
 import com.dwarfeng.dutil.basic.io.LoadFailedException;
-import com.dwarfeng.dutil.develop.resource.KeySetResourceHandler;
+import com.dwarfeng.dutil.develop.resource.DelegateResourceHandler;
 import com.dwarfeng.dutil.develop.resource.Resource;
 import com.dwarfeng.dutil.develop.resource.ResourceHandler;
 import com.dwarfeng.dutil.develop.resource.io.XmlJar2FileResourceLoader;
@@ -31,7 +31,7 @@ public class Test_XmlJar2FileResourceLoader {
 
 	@Before
 	public void setUp() throws Exception {
-		handler = new KeySetResourceHandler();
+		handler = new DelegateResourceHandler();
 		loader = new XmlJar2FileResourceLoader(
 				this.getClass().getResourceAsStream("/com/dwarfeng/dutil/resource/test/develop/resource/paths.xml"));
 

@@ -14,7 +14,7 @@ import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
 import com.dwarfeng.dutil.develop.i18n.obv.I18nObverser;
 
 /**
- * 键值集合国际化处理器。
+ * 代理集合国际化处理器。
  * <p>
  * 通过代理一个 <code>KeySetModel</code>来实现的国际化处理器，并且在此基础上增加了国际化处理器的实现。
  * 
@@ -25,7 +25,7 @@ import com.dwarfeng.dutil.develop.i18n.obv.I18nObverser;
  * @author DwArFeng
  * @since 0.1.1-beta
  */
-public class KeySetI18nHandler implements I18nHandler {
+public class DelegateI18nHandler implements I18nHandler {
 
 	/** 该键值集合国际化处理器的键值集合。 */
 	protected final KeySetModel<Locale, I18nInfo> keySetModel;
@@ -36,7 +36,7 @@ public class KeySetI18nHandler implements I18nHandler {
 	/**
 	 * 生成一个默认的代理国际化处理器。
 	 */
-	public KeySetI18nHandler() {
+	public DelegateI18nHandler() {
 		this(new MapKeySetModel<>());
 	}
 
@@ -48,8 +48,8 @@ public class KeySetI18nHandler implements I18nHandler {
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public KeySetI18nHandler(KeySetModel<Locale, I18nInfo> delegate) {
-		Objects.requireNonNull(delegate, DwarfUtil.getStringField(StringFieldKey.KEYSETI18NHANDLER_0));
+	public DelegateI18nHandler(KeySetModel<Locale, I18nInfo> delegate) {
+		Objects.requireNonNull(delegate, DwarfUtil.getStringField(StringFieldKey.DELEGATEI18NHANDLER_0));
 		this.keySetModel = delegate;
 	}
 
@@ -325,7 +325,7 @@ public class KeySetI18nHandler implements I18nHandler {
 	@Override
 	public boolean remove(Object o) {
 		if (keySetModel.remove(o)) {
-			if (Objects.equals(get(currentLocale), o)) {
+			if (Objects.equals(currentLocale, ((I18nInfo) o).getKey())) {
 				resetDefaultLocale();
 			}
 			return true;
@@ -361,7 +361,14 @@ public class KeySetI18nHandler implements I18nHandler {
 	@Override
 	public boolean retainAll(Collection<?> c) {
 		if (keySetModel.retainAll(c)) {
-			if (!c.contains(get(currentLocale))) {
+			boolean aFlag = true;
+			for (Object obj : c) {
+				if (obj instanceof I18nInfo && Objects.equals(((I18nInfo) obj).getKey(), currentLocale)) {
+					aFlag = false;
+					break;
+				}
+			}
+			if (aFlag) {
 				resetDefaultLocale();
 			}
 			return true;
@@ -377,7 +384,14 @@ public class KeySetI18nHandler implements I18nHandler {
 	@Override
 	public boolean removeAll(Collection<?> c) {
 		if (keySetModel.removeAll(c)) {
-			if (c.contains(get(currentLocale))) {
+			boolean aFlag = false;
+			for (Object obj : c) {
+				if (obj instanceof I18nInfo && Objects.equals(((I18nInfo) obj).getKey(), currentLocale)) {
+					aFlag = true;
+					break;
+				}
+			}
+			if (aFlag) {
 				resetDefaultLocale();
 			}
 			return true;
@@ -393,6 +407,7 @@ public class KeySetI18nHandler implements I18nHandler {
 	@Override
 	public void clear() {
 		keySetModel.clear();
+		resetDefaultLocale();
 	}
 
 	/*

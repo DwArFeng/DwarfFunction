@@ -17,7 +17,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dwarfeng.dutil.basic.cna.model.DelegateKeySetModel;
-import com.dwarfeng.dutil.develop.resource.KeySetResourceHandler;
+import com.dwarfeng.dutil.develop.resource.DelegateResourceHandler;
 import com.dwarfeng.dutil.develop.resource.Resource;
 import com.dwarfeng.dutil.develop.resource.ResourceHandler;
 import com.dwarfeng.dutil.develop.resource.ResourceUtil;
@@ -29,7 +29,7 @@ public class Test_UnmodifiableResourceHandler {
 
 	@Before
 	public void setUp() throws Exception {
-		handler = new KeySetResourceHandler(
+		handler = new DelegateResourceHandler(
 				new DelegateKeySetModel<>(new LinkedHashSet<>(), Collections.newSetFromMap(new WeakHashMap<>())));
 		obv = new TestSetObverser<>();
 		handler.add(TestResource.A);

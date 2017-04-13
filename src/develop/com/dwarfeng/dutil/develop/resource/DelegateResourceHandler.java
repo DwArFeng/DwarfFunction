@@ -12,22 +12,22 @@ import com.dwarfeng.dutil.basic.cna.model.MapKeySetModel;
 import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
 
 /**
- * 键值集合资源管理器。
+ * 代理资源管理器。
  * <p>
  * 通过代理一个 {@link KeySetModel} 来实现具体功能的资源管理器。
  * 
  * @author DwArFeng
  * @since 0.1.1-beta
  */
-public class KeySetResourceHandler implements ResourceHandler {
+public class DelegateResourceHandler implements ResourceHandler {
 
-	/** 该资源管理器的键值集合模型。 */
-	protected final KeySetModel<String, Resource> keySetModel;
+	/** 该资源管理器的代理键值集合模型。 */
+	protected final KeySetModel<String, Resource> delegate;
 
 	/**
 	 * 生成一个默认的代理资源管理器。
 	 */
-	public KeySetResourceHandler() {
+	public DelegateResourceHandler() {
 		this(new MapKeySetModel<>());
 	}
 
@@ -39,9 +39,9 @@ public class KeySetResourceHandler implements ResourceHandler {
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public KeySetResourceHandler(KeySetModel<String, Resource> delegate) {
-		Objects.requireNonNull(delegate, DwarfUtil.getStringField(StringFieldKey.KEYSETRESOURCEHANDLER_0));
-		this.keySetModel = delegate;
+	public DelegateResourceHandler(KeySetModel<String, Resource> delegate) {
+		Objects.requireNonNull(delegate, DwarfUtil.getStringField(StringFieldKey.DELEGATERESOURCEHANDLER_0));
+		this.delegate = delegate;
 	}
 
 	/*
@@ -51,7 +51,7 @@ public class KeySetResourceHandler implements ResourceHandler {
 	 */
 	@Override
 	public Set<SetObverser<Resource>> getObversers() {
-		return keySetModel.getObversers();
+		return delegate.getObversers();
 	}
 
 	/*
@@ -63,7 +63,7 @@ public class KeySetResourceHandler implements ResourceHandler {
 	 */
 	@Override
 	public boolean addObverser(SetObverser<Resource> obverser) {
-		return keySetModel.addObverser(obverser);
+		return delegate.addObverser(obverser);
 	}
 
 	/*
@@ -73,7 +73,7 @@ public class KeySetResourceHandler implements ResourceHandler {
 	 */
 	@Override
 	public Resource get(String key) {
-		return keySetModel.get(key);
+		return delegate.get(key);
 	}
 
 	/*
@@ -85,7 +85,7 @@ public class KeySetResourceHandler implements ResourceHandler {
 	 */
 	@Override
 	public boolean containsKey(Object key) {
-		return keySetModel.containsKey(key);
+		return delegate.containsKey(key);
 	}
 
 	/*
@@ -97,7 +97,7 @@ public class KeySetResourceHandler implements ResourceHandler {
 	 */
 	@Override
 	public boolean removeObverser(SetObverser<Resource> obverser) {
-		return keySetModel.removeObverser(obverser);
+		return delegate.removeObverser(obverser);
 	}
 
 	/*
@@ -109,7 +109,7 @@ public class KeySetResourceHandler implements ResourceHandler {
 	 */
 	@Override
 	public boolean containsAllKey(Collection<?> c) {
-		return keySetModel.containsAllKey(c);
+		return delegate.containsAllKey(c);
 	}
 
 	/*
@@ -119,7 +119,7 @@ public class KeySetResourceHandler implements ResourceHandler {
 	 */
 	@Override
 	public void clearObverser() {
-		keySetModel.clearObverser();
+		delegate.clearObverser();
 	}
 
 	/*
@@ -130,7 +130,7 @@ public class KeySetResourceHandler implements ResourceHandler {
 	 */
 	@Override
 	public boolean removeKey(Object key) {
-		return keySetModel.removeKey(key);
+		return delegate.removeKey(key);
 	}
 
 	/*
@@ -142,7 +142,7 @@ public class KeySetResourceHandler implements ResourceHandler {
 	 */
 	@Override
 	public boolean removeAllKey(Collection<?> c) {
-		return keySetModel.removeAllKey(c);
+		return delegate.removeAllKey(c);
 	}
 
 	/*
@@ -154,7 +154,7 @@ public class KeySetResourceHandler implements ResourceHandler {
 	 */
 	@Override
 	public boolean retainAllKey(Collection<?> c) {
-		return keySetModel.retainAllKey(c);
+		return delegate.retainAllKey(c);
 	}
 
 	/*
@@ -164,7 +164,7 @@ public class KeySetResourceHandler implements ResourceHandler {
 	 */
 	@Override
 	public int size() {
-		return keySetModel.size();
+		return delegate.size();
 	}
 
 	/*
@@ -174,7 +174,7 @@ public class KeySetResourceHandler implements ResourceHandler {
 	 */
 	@Override
 	public boolean isEmpty() {
-		return keySetModel.isEmpty();
+		return delegate.isEmpty();
 	}
 
 	/*
@@ -184,7 +184,7 @@ public class KeySetResourceHandler implements ResourceHandler {
 	 */
 	@Override
 	public boolean contains(Object o) {
-		return keySetModel.contains(o);
+		return delegate.contains(o);
 	}
 
 	/*
@@ -194,7 +194,7 @@ public class KeySetResourceHandler implements ResourceHandler {
 	 */
 	@Override
 	public Iterator<Resource> iterator() {
-		return keySetModel.iterator();
+		return delegate.iterator();
 	}
 
 	/*
@@ -204,7 +204,7 @@ public class KeySetResourceHandler implements ResourceHandler {
 	 */
 	@Override
 	public Object[] toArray() {
-		return keySetModel.toArray();
+		return delegate.toArray();
 	}
 
 	/*
@@ -214,7 +214,7 @@ public class KeySetResourceHandler implements ResourceHandler {
 	 */
 	@Override
 	public <T> T[] toArray(T[] a) {
-		return keySetModel.toArray(a);
+		return delegate.toArray(a);
 	}
 
 	/*
@@ -224,7 +224,7 @@ public class KeySetResourceHandler implements ResourceHandler {
 	 */
 	@Override
 	public boolean add(Resource e) {
-		return keySetModel.add(e);
+		return delegate.add(e);
 	}
 
 	/*
@@ -234,7 +234,7 @@ public class KeySetResourceHandler implements ResourceHandler {
 	 */
 	@Override
 	public boolean remove(Object o) {
-		return keySetModel.remove(o);
+		return delegate.remove(o);
 	}
 
 	/*
@@ -244,7 +244,7 @@ public class KeySetResourceHandler implements ResourceHandler {
 	 */
 	@Override
 	public boolean containsAll(Collection<?> c) {
-		return keySetModel.containsAll(c);
+		return delegate.containsAll(c);
 	}
 
 	/*
@@ -254,7 +254,7 @@ public class KeySetResourceHandler implements ResourceHandler {
 	 */
 	@Override
 	public boolean addAll(Collection<? extends Resource> c) {
-		return keySetModel.addAll(c);
+		return delegate.addAll(c);
 	}
 
 	/*
@@ -264,7 +264,7 @@ public class KeySetResourceHandler implements ResourceHandler {
 	 */
 	@Override
 	public boolean retainAll(Collection<?> c) {
-		return keySetModel.retainAll(c);
+		return delegate.retainAll(c);
 	}
 
 	/*
@@ -274,7 +274,7 @@ public class KeySetResourceHandler implements ResourceHandler {
 	 */
 	@Override
 	public boolean removeAll(Collection<?> c) {
-		return keySetModel.removeAll(c);
+		return delegate.removeAll(c);
 	}
 
 	/*
@@ -284,7 +284,7 @@ public class KeySetResourceHandler implements ResourceHandler {
 	 */
 	@Override
 	public void clear() {
-		keySetModel.clear();
+		delegate.clear();
 	}
 
 	/*
@@ -294,7 +294,7 @@ public class KeySetResourceHandler implements ResourceHandler {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return keySetModel.equals(o);
+		return delegate.equals(o);
 	}
 
 	/*
@@ -304,7 +304,7 @@ public class KeySetResourceHandler implements ResourceHandler {
 	 */
 	@Override
 	public int hashCode() {
-		return keySetModel.hashCode();
+		return delegate.hashCode();
 	}
 
 }

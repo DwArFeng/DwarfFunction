@@ -451,8 +451,8 @@ public enum StringFieldKey implements Name {
 	/** ResourceUtil类第0号文本字段 */
 	RESOURCEUTIL_0(new DefaultName("ResourceUtil.0")),
 
-	/** KeySetResourceHandler类第0号文本字段 */
-	KEYSETRESOURCEHANDLER_0(new DefaultName("KeySetResourceHandler.0")),
+	/** DelegateResourceHandler类第0号文本字段 */
+	DELEGATERESOURCEHANDLER_0(new DefaultName("DelegateResourceHandler.0")),
 	
 	/** AbstractResource类第0号文本字段 */
 	ABSTRACTRESOURCE_0(new DefaultName("AbstractResource.0")),
@@ -478,11 +478,11 @@ public enum StringFieldKey implements Name {
 	/** AbstractI18nInfo类第1号文本字段 */
 	ABSTRACTI18NINFO_1(new DefaultName("AbstractI18nInfo.1")),
 	
-	/** KeySetI18nHandler类第0号文本字段 */
-	I18NUTIL_0(new DefaultName("KeySetI18nHandler.0")),
+	/** DelegateI18nHandler类第0号文本字段 */
+	I18NUTIL_0(new DefaultName("DelegateI18nHandler.0")),
 	
-	/** KeySetI18nHandler类第0号文本字段 */
-	KEYSETI18NHANDLER_0(new DefaultName("KeySetI18nHandler.0")),
+	/** DelegateI18nHandler类第0号文本字段 */
+	DELEGATEI18NHANDLER_0(new DefaultName("DelegateI18nHandler.0")),
 	
 	/** PropUrlI18nInfo类第0号文本字段 */
 	PROPURLI18NINFO_0(new DefaultName("PropUrlI18nInfo.0")),
