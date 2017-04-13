@@ -52,8 +52,19 @@ public interface Task extends Runnable, ExternalReadWriteThreadSafe, ObverserSet
 	 * 如果没有异常，则返回 <code>null</code>。
 	 * 
 	 * @return 任务的异常，如果没有，则返回 <code>null</code>。
+	 * @deprecated 该方法已经被更全面的 {@link #getThrowable()} 取代。
 	 */
+	@Deprecated
 	public Exception getException();
+
+	/**
+	 * 获取任务的可抛出对象。
+	 * <p>
+	 * 如果任务执行一切顺利，没有异常或者错误，则返回 <code>null</code>。
+	 * 
+	 * @return 任务的可抛出对象，如果没有，则返回 <code>null</code>。
+	 */
+	public Throwable getThrowable();
 
 	/**
 	 * 等待该过程执行完毕。
