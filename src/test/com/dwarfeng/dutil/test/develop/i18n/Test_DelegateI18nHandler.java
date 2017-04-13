@@ -14,7 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dwarfeng.dutil.basic.cna.model.DelegateKeySetModel;
-import com.dwarfeng.dutil.develop.i18n.DelegateI18nHandler;
+import com.dwarfeng.dutil.develop.i18n.KeySetI18nHandler;
 import com.dwarfeng.dutil.develop.i18n.I18nHandler;
 
 public class Test_DelegateI18nHandler {
@@ -24,7 +24,7 @@ public class Test_DelegateI18nHandler {
 
 	@Before
 	public void setUp() throws Exception {
-		handler = new DelegateI18nHandler(
+		handler = new KeySetI18nHandler(
 				new DelegateKeySetModel<>(new LinkedHashSet<>(), Collections.newSetFromMap(new WeakHashMap<>())));
 		handler.add(TestI18nInfo.CHINESE);
 		handler.add(TestI18nInfo.ENGLISH);

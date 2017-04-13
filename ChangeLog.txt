@@ -116,7 +116,7 @@ Beta_0.1.0_20170403_build_A
 	新增 dutil.develop.backgr 包，提供程序后台的实现
 	新增 dutil.basic.UnsafeGetter<T> 接口
 	
-Beta_0.1.0_20170410_build_A
+Beta_0.1.1_20170410_build_A
 	该版本可能与之前的版本有轻微的不兼容。
 	在接口 dutil.basic.cna.model.KeyListModel 中添加方法 V get(K)。
 		这可能导致该版本与前一个版本有轻微的不兼容。
@@ -128,3 +128,8 @@ Beta_0.1.0_20170410_build_A
 	新增 dtuil.develop.resource包，提供资源文件管理工具。
 	新增 dutil.develop.i18n包，提供国际化的管理工具。
 			
+Beta_0.1.1
+	该版本为 Beta_0.1.1_20170410_build_A 的修复版本，不兼容 Beta_0.1.1_20170410_build_A 版；与之前的版本有轻微的不兼容。
+	更改了命名不规范的类名：
+		dutil.develop.resource.DelegateResourceHandler 改为 KeySetResourceHandler。
+		dutil.develop.I18n

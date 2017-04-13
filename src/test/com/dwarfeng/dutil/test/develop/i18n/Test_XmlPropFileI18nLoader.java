@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dwarfeng.dutil.basic.io.LoadFailedException;
-import com.dwarfeng.dutil.develop.i18n.DelegateI18nHandler;
+import com.dwarfeng.dutil.develop.i18n.KeySetI18nHandler;
 import com.dwarfeng.dutil.develop.i18n.I18nHandler;
 import com.dwarfeng.dutil.develop.i18n.io.XmlPropFileI18nLoader;
 
@@ -24,7 +24,7 @@ public class Test_XmlPropFileI18nLoader {
 
 	@Before
 	public void setUp() throws Exception {
-		handler = new DelegateI18nHandler();
+		handler = new KeySetI18nHandler();
 		loader = new XmlPropFileI18nLoader(new FileInputStream(XML_PATH));
 	}
 

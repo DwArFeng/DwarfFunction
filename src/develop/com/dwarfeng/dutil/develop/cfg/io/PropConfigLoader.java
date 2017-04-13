@@ -2,7 +2,7 @@ package com.dwarfeng.dutil.develop.cfg.io;
 
 import java.io.InputStream;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
@@ -86,7 +86,7 @@ public class PropConfigLoader extends StreamLoader<CurrentValueContainer> {
 		}
 		Objects.requireNonNull(container, DwarfUtil.getStringField(StringFieldKey.PropertiesConfigLoader_0));
 
-		final Set<LoadFailedException> exceptions = new HashSet<>();
+		final Set<LoadFailedException> exceptions = new LinkedHashSet<>();
 
 		Properties properties = new Properties();
 		try {
