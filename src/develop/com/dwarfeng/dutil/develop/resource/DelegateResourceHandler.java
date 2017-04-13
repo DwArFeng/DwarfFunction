@@ -21,7 +21,7 @@ import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
  */
 public class DelegateResourceHandler implements ResourceHandler {
 
-	/** 该资源管理器的代理。 */
+	/** 该资源管理器的代理键值集合模型。 */
 	protected final KeySetModel<String, Resource> delegate;
 
 	/**

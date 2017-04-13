@@ -49,7 +49,7 @@ public class DelegateKeySetModel<K, V extends WithKey<K>> extends DelegateSetMod
 	@Override
 	public V get(K key) {
 		for (V value : this) {
-			if (value.getKey().equals(key))
+			if (Objects.equals(value == null ? null : value.getKey(), key))
 				return value;
 		}
 		return null;

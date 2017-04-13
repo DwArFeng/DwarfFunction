@@ -116,7 +116,7 @@ Beta_0.1.0_20170403_build_A
 	新增 dutil.develop.backgr 包，提供程序后台的实现
 	新增 dutil.basic.UnsafeGetter<T> 接口
 	
-Beta_0.1.0_20170410_build_A
+Beta_0.1.1_20170410_build_A
 	该版本可能与之前的版本有轻微的不兼容。
 	在接口 dutil.basic.cna.model.KeyListModel 中添加方法 V get(K)。
 		这可能导致该版本与前一个版本有轻微的不兼容。
@@ -128,3 +128,16 @@ Beta_0.1.0_20170410_build_A
 	新增 dtuil.develop.resource包，提供资源文件管理工具。
 	新增 dutil.develop.i18n包，提供国际化的管理工具。
 			
+Beta_0.1.1_20170413_build_B
+	该版本为 Beta_0.1.1_20170410_build_A 的更新版本，修复了其中的众多 bug。
+	修改了程序的版本标志：
+		之前的A版本虽然是Beta_0.1.1版本，但是版本标志还是Beta_0.1.0.
+	修改了 dutil.develop.i18n中的bug：
+		DelegateI18nHandler 中的移除方法如果移除了当前语言所在的国际化信息，不会将当前语言置为 null 的 bug。
+	修改了 dutil.basic.cna.model包中的一些 bug：
+		DelegateKeySet 和 DelegateKeyList 的 get 方法在入口参数为 null 的时候行为异常。
+	修改了 dutil.develop.backgr中的一些不足：
+		修改 dutil.develop.backgr.Task 接口， getException() 改为 getThrowable()，这样，即使在 Task 运行的时候抛出 Error，也能正常捕捉。
+	完善了 dutil.develop.cfg 中的方法：
+		将 dutil.develop.cfg.io.PropConfigSaver.countinuousSave(CurrentValueContainer) 的返回集合改成了 LinkedHashSet ，这样的话，异常可以按照产生的顺序进行迭代。
+		将 dutil.develop.cfg.io.PropConfigLoadr.countinuousLoad(CurrentValueContainer) 的返回集合改成了 LinkedHashSet，道理同上。

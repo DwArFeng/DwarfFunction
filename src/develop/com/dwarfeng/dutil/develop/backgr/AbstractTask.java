@@ -36,7 +36,7 @@ public abstract class AbstractTask implements Task {
 
 	private boolean finishFlag = false;
 	private boolean startFlag = false;
-	private Exception exception = null;
+	private Throwable throwable = null;
 
 	/**
 	 * 抽象任务需要实现的具体任务。
@@ -142,7 +142,7 @@ public abstract class AbstractTask implements Task {
 		try {
 			todo();
 		} catch (Exception e) {
-			exception = e;
+			throwable = e;
 		}
 		// 置位结束标志，并且通知观察器。
 		lock.writeLock().lock();
@@ -220,7 +220,26 @@ public abstract class AbstractTask implements Task {
 	public Exception getException() {
 		lock.readLock().lock();
 		try {
-			return exception;
+			if (throwable instanceof Exception) {
+				return (Exception) throwable;
+			} else {
+				return new Exception(throwable);
+			}
+		} finally {
+			lock.readLock().unlock();
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.dwarfeng.dutil.develop.backgr.Task#geThrowable()
+	 */
+	@Override
+	public Throwable getThrowable() {
+		lock.readLock().lock();
+		try {
+			return throwable;
 		} finally {
 			lock.readLock().unlock();
 		}
@@ -268,11 +287,12 @@ public abstract class AbstractTask implements Task {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "AbstractTask [finishFlag=" + finishFlag + ", startFlag=" + startFlag + ", exception=" + exception + "]";
+		return "AbstractTask [finishFlag=" + finishFlag + ", startFlag=" + startFlag + ", exception=" + throwable + "]";
 	}
 
 }

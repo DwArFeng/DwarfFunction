@@ -20,17 +20,17 @@ class TestI18nObverser implements I18nObverser {
 	public void fireAdded(I18nInfo element) {
 		addedList.add(element);
 	}
-	
+
 	@Override
 	public void fireRemoved(I18nInfo element) {
 		removedList.add(element);
 	}
-	
+
 	@Override
 	public void fireCleared() {
-		cleared ++;
+		cleared++;
 	}
-	
+
 	@Override
 	public void fireCurrentLocaleChanged(Locale oldLocale, Locale newLocale, I18n newMutilang) {
 		changedLocaleOldValue.add(oldLocale);

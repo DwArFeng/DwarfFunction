@@ -14,7 +14,7 @@ import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
 import com.dwarfeng.dutil.develop.i18n.obv.I18nObverser;
 
 /**
- * 代理国际化处理器。
+ * 代理集合国际化处理器。
  * <p>
  * 通过代理一个 <code>KeySetModel</code>来实现的国际化处理器，并且在此基础上增加了国际化处理器的实现。
  * 
@@ -22,16 +22,13 @@ import com.dwarfeng.dutil.develop.i18n.obv.I18nObverser;
  * 在该类初始化后， <code>getCurrentI18n</code> 和 <code>getCurrentLocale</code> 返回的结果都是
  * <code>null</code>， 直到调用 <code>setCurrentLocale</code> 之后，才能正常工作。
  * 
- * <p>
- * 通常情况下，<code>currentLocale</code>为 <code>null</code> 应该代表该国际化处理器正在使用默认的语言。
- * 
  * @author DwArFeng
  * @since 0.1.1-beta
  */
 public class DelegateI18nHandler implements I18nHandler {
 
-	/** 该代理国际化处理器的代理。 */
-	protected final KeySetModel<Locale, I18nInfo> delegate;
+	/** 该键值集合国际化处理器的键值集合。 */
+	protected final KeySetModel<Locale, I18nInfo> keySetModel;
 
 	private Locale currentLocale = null;
 	private I18n currentI18n = null;
@@ -53,7 +50,7 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	public DelegateI18nHandler(KeySetModel<Locale, I18nInfo> delegate) {
 		Objects.requireNonNull(delegate, DwarfUtil.getStringField(StringFieldKey.DELEGATEI18NHANDLER_0));
-		this.delegate = delegate;
+		this.keySetModel = delegate;
 	}
 
 	/*
@@ -63,7 +60,7 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	@Override
 	public Set<SetObverser<I18nInfo>> getObversers() {
-		return delegate.getObversers();
+		return keySetModel.getObversers();
 	}
 
 	/*
@@ -75,7 +72,7 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	@Override
 	public boolean addObverser(SetObverser<I18nInfo> obverser) {
-		return delegate.addObverser(obverser);
+		return keySetModel.addObverser(obverser);
 	}
 
 	/*
@@ -85,7 +82,7 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	@Override
 	public I18nInfo get(Locale key) {
-		return delegate.get(key);
+		return keySetModel.get(key);
 	}
 
 	/*
@@ -97,7 +94,7 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	@Override
 	public boolean containsKey(Object key) {
-		return delegate.containsKey(key);
+		return keySetModel.containsKey(key);
 	}
 
 	/*
@@ -109,7 +106,7 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	@Override
 	public boolean removeObverser(SetObverser<I18nInfo> obverser) {
-		return delegate.removeObverser(obverser);
+		return keySetModel.removeObverser(obverser);
 	}
 
 	/*
@@ -121,7 +118,7 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	@Override
 	public boolean containsAllKey(Collection<?> c) {
-		return delegate.containsAllKey(c);
+		return keySetModel.containsAllKey(c);
 	}
 
 	/*
@@ -131,7 +128,25 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	@Override
 	public void clearObverser() {
-		delegate.clearObverser();
+		keySetModel.clearObverser();
+	}
+
+	private void resetDefaultLocale() {
+		Locale oldLocale = currentLocale;
+
+		currentLocale = null;
+		I18nInfo i18nInfo = get(null);
+		if (Objects.nonNull(i18nInfo)) {
+			try {
+				currentI18n = i18nInfo.newI18n();
+			} catch (Exception e) {
+				currentI18n = null;
+			}
+		} else {
+			currentI18n = null;
+		}
+
+		fireCurrentLocaleChanged(oldLocale, currentLocale, currentI18n);
 	}
 
 	/*
@@ -142,7 +157,13 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	@Override
 	public boolean removeKey(Object key) {
-		return delegate.removeKey(key);
+		if (keySetModel.removeKey(key)) {
+			if (Objects.equals(key, currentLocale)) {
+				resetDefaultLocale();
+			}
+			return true;
+		}
+		return false;
 	}
 
 	/*
@@ -154,7 +175,13 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	@Override
 	public boolean removeAllKey(Collection<?> c) {
-		return delegate.removeAllKey(c);
+		if (keySetModel.removeAllKey(c)) {
+			if (c.contains(currentLocale)) {
+				resetDefaultLocale();
+			}
+			return true;
+		}
+		return false;
 	}
 
 	/*
@@ -166,7 +193,13 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	@Override
 	public boolean retainAllKey(Collection<?> c) {
-		return delegate.retainAllKey(c);
+		if (keySetModel.retainAllKey(c)) {
+			if (!c.contains(currentLocale)) {
+				resetDefaultLocale();
+			}
+			return true;
+		}
+		return false;
 	}
 
 	/*
@@ -176,7 +209,7 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	@Override
 	public int size() {
-		return delegate.size();
+		return keySetModel.size();
 	}
 
 	/*
@@ -186,7 +219,7 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	@Override
 	public boolean isEmpty() {
-		return delegate.isEmpty();
+		return keySetModel.isEmpty();
 	}
 
 	/*
@@ -196,7 +229,7 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	@Override
 	public boolean contains(Object o) {
-		return delegate.contains(o);
+		return keySetModel.contains(o);
 	}
 
 	/*
@@ -206,7 +239,52 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	@Override
 	public Iterator<I18nInfo> iterator() {
-		return delegate.iterator();
+		return new DelegateIterator(keySetModel.iterator());
+	}
+
+	private class DelegateIterator implements Iterator<I18nInfo> {
+
+		private final Iterator<I18nInfo> delegate;
+		private I18nInfo i18nInfo = null;
+
+		public DelegateIterator(Iterator<I18nInfo> delegate) {
+			this.delegate = delegate;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Iterator#hasNext()
+		 */
+		@Override
+		public boolean hasNext() {
+			return delegate.hasNext();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Iterator#next()
+		 */
+		@Override
+		public I18nInfo next() {
+			i18nInfo = delegate.next();
+			return i18nInfo;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Iterator#remove()
+		 */
+		@Override
+		public void remove() {
+			delegate.remove();
+			if (Objects.equals(i18nInfo.getKey(), currentLocale)) {
+				resetDefaultLocale();
+			}
+		}
+
 	}
 
 	/*
@@ -216,7 +294,7 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	@Override
 	public Object[] toArray() {
-		return delegate.toArray();
+		return keySetModel.toArray();
 	}
 
 	/*
@@ -226,7 +304,7 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	@Override
 	public <T> T[] toArray(T[] a) {
-		return delegate.toArray(a);
+		return keySetModel.toArray(a);
 	}
 
 	/*
@@ -236,7 +314,7 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	@Override
 	public boolean add(I18nInfo e) {
-		return delegate.add(e);
+		return keySetModel.add(e);
 	}
 
 	/*
@@ -246,7 +324,13 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	@Override
 	public boolean remove(Object o) {
-		return delegate.remove(o);
+		if (keySetModel.remove(o)) {
+			if (Objects.equals(currentLocale, ((I18nInfo) o).getKey())) {
+				resetDefaultLocale();
+			}
+			return true;
+		}
+		return false;
 	}
 
 	/*
@@ -256,7 +340,7 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	@Override
 	public boolean containsAll(Collection<?> c) {
-		return delegate.containsAll(c);
+		return keySetModel.containsAll(c);
 	}
 
 	/*
@@ -266,7 +350,7 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	@Override
 	public boolean addAll(Collection<? extends I18nInfo> c) {
-		return delegate.addAll(c);
+		return keySetModel.addAll(c);
 	}
 
 	/*
@@ -276,7 +360,20 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	@Override
 	public boolean retainAll(Collection<?> c) {
-		return delegate.retainAll(c);
+		if (keySetModel.retainAll(c)) {
+			boolean aFlag = true;
+			for (Object obj : c) {
+				if (obj instanceof I18nInfo && Objects.equals(((I18nInfo) obj).getKey(), currentLocale)) {
+					aFlag = false;
+					break;
+				}
+			}
+			if (aFlag) {
+				resetDefaultLocale();
+			}
+			return true;
+		}
+		return false;
 	}
 
 	/*
@@ -286,7 +383,20 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	@Override
 	public boolean removeAll(Collection<?> c) {
-		return delegate.removeAll(c);
+		if (keySetModel.removeAll(c)) {
+			boolean aFlag = false;
+			for (Object obj : c) {
+				if (obj instanceof I18nInfo && Objects.equals(((I18nInfo) obj).getKey(), currentLocale)) {
+					aFlag = true;
+					break;
+				}
+			}
+			if (aFlag) {
+				resetDefaultLocale();
+			}
+			return true;
+		}
+		return false;
 	}
 
 	/*
@@ -296,7 +406,8 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	@Override
 	public void clear() {
-		delegate.clear();
+		keySetModel.clear();
+		resetDefaultLocale();
 	}
 
 	/*
@@ -306,7 +417,7 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return delegate.equals(o);
+		return keySetModel.equals(o);
 	}
 
 	/*
@@ -316,7 +427,7 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	@Override
 	public int hashCode() {
-		return delegate.hashCode();
+		return keySetModel.hashCode();
 	}
 
 	/*
@@ -338,10 +449,11 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	@Override
 	public boolean setCurrentLocale(Locale locale) {
-		if(! containsKey(locale)) return false;
-		
+		if (!containsKey(locale))
+			return false;
+
 		I18nInfo tempI18nInfo = get(locale);
-		
+
 		I18n tempI18n = null;
 		try {
 			tempI18n = tempI18nInfo.newI18n();
@@ -369,7 +481,7 @@ public class DelegateI18nHandler implements I18nHandler {
 	 *            新的国际化接口。
 	 */
 	protected void fireCurrentLocaleChanged(Locale oldLocale, Locale newLocale, I18n newI18n) {
-		for (SetObverser<I18nInfo> obverser : delegate.getObversers()) {
+		for (SetObverser<I18nInfo> obverser : keySetModel.getObversers()) {
 			if (Objects.nonNull(obverser) && obverser instanceof I18nObverser) {
 				((I18nObverser) obverser).fireCurrentLocaleChanged(oldLocale, newLocale, newI18n);
 			}

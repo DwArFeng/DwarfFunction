@@ -390,7 +390,6 @@ public final class ResourceUtil {
 			lock.readLock().lock();
 			try {
 				return delegate.getObversers();
-
 			} finally {
 				lock.readLock().unlock();
 			}
@@ -408,7 +407,6 @@ public final class ResourceUtil {
 			lock.writeLock().lock();
 			try {
 				return delegate.addObverser(obverser);
-
 			} finally {
 				lock.writeLock().unlock();
 			}
@@ -442,7 +440,6 @@ public final class ResourceUtil {
 			lock.readLock().lock();
 			try {
 				return delegate.containsKey(key);
-
 			} finally {
 				lock.readLock().unlock();
 			}
@@ -460,7 +457,6 @@ public final class ResourceUtil {
 			lock.writeLock().lock();
 			try {
 				return delegate.removeObverser(obverser);
-
 			} finally {
 				lock.writeLock().unlock();
 			}
@@ -478,7 +474,6 @@ public final class ResourceUtil {
 			lock.readLock().lock();
 			try {
 				return delegate.containsAllKey(c);
-
 			} finally {
 				lock.readLock().unlock();
 			}
@@ -494,7 +489,6 @@ public final class ResourceUtil {
 			lock.writeLock().lock();
 			try {
 				delegate.clearObverser();
-
 			} finally {
 				lock.writeLock().unlock();
 			}
@@ -512,7 +506,6 @@ public final class ResourceUtil {
 			lock.writeLock().lock();
 			try {
 				return delegate.removeKey(key);
-
 			} finally {
 				lock.writeLock().unlock();
 			}
@@ -530,7 +523,6 @@ public final class ResourceUtil {
 			lock.writeLock().lock();
 			try {
 				return delegate.removeAllKey(c);
-
 			} finally {
 				lock.writeLock().unlock();
 			}
@@ -548,7 +540,6 @@ public final class ResourceUtil {
 			lock.writeLock().lock();
 			try {
 				return delegate.retainAllKey(c);
-
 			} finally {
 				lock.writeLock().unlock();
 			}
@@ -564,7 +555,6 @@ public final class ResourceUtil {
 			lock.readLock().lock();
 			try {
 				return delegate.size();
-
 			} finally {
 				lock.readLock().unlock();
 			}
@@ -580,7 +570,6 @@ public final class ResourceUtil {
 			lock.readLock().lock();
 			try {
 				return delegate.isEmpty();
-
 			} finally {
 				lock.readLock().unlock();
 			}
@@ -596,7 +585,6 @@ public final class ResourceUtil {
 			lock.readLock().lock();
 			try {
 				return delegate.contains(o);
-
 			} finally {
 				lock.readLock().unlock();
 			}
@@ -612,7 +600,6 @@ public final class ResourceUtil {
 			lock.readLock().lock();
 			try {
 				return delegate.iterator();
-
 			} finally {
 				lock.readLock().unlock();
 			}
@@ -628,7 +615,6 @@ public final class ResourceUtil {
 			lock.readLock().lock();
 			try {
 				return delegate.toArray();
-
 			} finally {
 				lock.readLock().unlock();
 			}
@@ -644,7 +630,6 @@ public final class ResourceUtil {
 			lock.readLock().lock();
 			try {
 				return delegate.toArray(a);
-
 			} finally {
 				lock.readLock().unlock();
 			}
@@ -660,7 +645,6 @@ public final class ResourceUtil {
 			lock.writeLock().lock();
 			try {
 				return delegate.add(e);
-
 			} finally {
 				lock.writeLock().unlock();
 			}
@@ -676,7 +660,6 @@ public final class ResourceUtil {
 			lock.writeLock().lock();
 			try {
 				return delegate.remove(o);
-
 			} finally {
 				lock.writeLock().unlock();
 			}
@@ -692,7 +675,6 @@ public final class ResourceUtil {
 			lock.readLock().lock();
 			try {
 				return delegate.containsAll(c);
-
 			} finally {
 				lock.readLock().unlock();
 			}
@@ -708,7 +690,6 @@ public final class ResourceUtil {
 			lock.writeLock().lock();
 			try {
 				return delegate.addAll(c);
-
 			} finally {
 				lock.writeLock().unlock();
 			}
@@ -724,7 +705,6 @@ public final class ResourceUtil {
 			lock.writeLock().lock();
 			try {
 				return delegate.retainAll(c);
-
 			} finally {
 				lock.writeLock().unlock();
 			}
@@ -740,7 +720,6 @@ public final class ResourceUtil {
 			lock.writeLock().lock();
 			try {
 				return delegate.removeAll(c);
-
 			} finally {
 				lock.writeLock().unlock();
 			}
@@ -756,7 +735,6 @@ public final class ResourceUtil {
 			lock.writeLock().lock();
 			try {
 				delegate.clear();
-
 			} finally {
 				lock.writeLock().unlock();
 			}
@@ -789,7 +767,6 @@ public final class ResourceUtil {
 			lock.readLock().lock();
 			try {
 				return delegate.hashCode();
-
 			} finally {
 				lock.readLock().unlock();
 			}
