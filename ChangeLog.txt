@@ -128,7 +128,7 @@ Beta_0.1.1_20170410_build_A
 	新增 dtuil.develop.resource包，提供资源文件管理工具。
 	新增 dutil.develop.i18n包，提供国际化的管理工具。
 			
-Beta_0.1.1
+Beta_0.1.0_20170413_build_B
 	该版本为 Beta_0.1.1_20170410_build_A 的更新版本，修复了其中的众多 bug。
 	修改了 dutil.develop.i18n中的bug：
 		DelegateI18nHandler 中的移除方法如果移除了当前语言所在的国际化信息，不会将当前语言置为 null 的 bug。
