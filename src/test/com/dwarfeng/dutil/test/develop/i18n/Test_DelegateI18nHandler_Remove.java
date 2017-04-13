@@ -1,6 +1,7 @@
 package com.dwarfeng.dutil.test.develop.i18n;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -10,13 +11,12 @@ import java.util.Locale;
 import java.util.WeakHashMap;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.dwarfeng.dutil.basic.cna.model.DelegateKeySetModel;
+import com.dwarfeng.dutil.develop.i18n.DelegateI18nHandler;
 import com.dwarfeng.dutil.develop.i18n.I18nHandler;
 import com.dwarfeng.dutil.develop.i18n.I18nInfo;
-import com.dwarfeng.dutil.develop.i18n.DelegateI18nHandler;
 
 public class Test_DelegateI18nHandler_Remove {
 
