@@ -26,7 +26,7 @@ public abstract class I18nAdapter implements I18nObverser {
 	}
 
 	@Override
-	public void fireCurrentLocaleChanged(Locale oldLocale, Locale newLocale, I18n newMutilang) {
+	public void fireCurrentLocaleChanged(Locale oldLocale, Locale newLocale, I18n newI18n) {
 	}
 
 }

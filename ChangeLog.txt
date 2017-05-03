@@ -145,3 +145,7 @@ Beta_0.1.1_20170413_build_B
 Beta_0.1.2
 	命名规范化
 		新增 dutil.develop.cfg.parser.LocaleValueParser，用于替代不符合命名规范的 LocaleParser。
+	参数名称规范化
+		修改 dutil.develop.i18n.obv.I18nObverser 以及 I18nAdapter 方法中的参数名称。
+		
+		

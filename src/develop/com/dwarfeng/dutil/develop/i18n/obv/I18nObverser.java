@@ -20,9 +20,9 @@ public interface I18nObverser extends SetObverser<I18nInfo> {
 	 *            旧的语言地点。
 	 * @param newLocale
 	 *            新的语言地点。
-	 * @param newMutilang
+	 * @param newI18n
 	 *            新的国际化接口。
 	 */
-	public void fireCurrentLocaleChanged(Locale oldLocale, Locale newLocale, I18n newMutilang);
+	public void fireCurrentLocaleChanged(Locale oldLocale, Locale newLocale, I18n newI18n);
 	
 }
