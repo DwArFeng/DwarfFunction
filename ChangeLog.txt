@@ -148,5 +148,5 @@ Beta_0.1.2
 	参数名称规范化
 		修改 dutil.develop.i18n.obv.I18nObverser 以及 I18nAdapter 方法中的参数名称。
 	新增 dutil.develop.cfg.parser.StringValueParser，作为配置文本与String相互转换的值解析器。
-		
+	新增方法 <E> dutil.basic.cna.CollectionUtil.unmodifiableIterator(Iterator<E>)，用以返回根据指定的迭代器生成的不可编辑的迭代器。
 		
