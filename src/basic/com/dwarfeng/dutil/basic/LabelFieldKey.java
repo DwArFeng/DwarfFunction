@@ -42,5 +42,14 @@ public enum LabelFieldKey implements Name {
 	public String getName() {
 		return name.getName();
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Enum#toString()
+	 */
+	@Override
+	public String toString() {
+		return name.getName();
+	}
 
 }

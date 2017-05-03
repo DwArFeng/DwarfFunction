@@ -1,17 +1,18 @@
 package com.dwarfeng.dutil.develop.cfg.parser;
 
-import java.util.Locale;
-import java.util.StringTokenizer;
-
 import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
 /**
  * 地区值解析器。
  * 
+ * @deprecated 该类由于命名不规范，
  * @author DwArFeng
  * @since 0.1.0-beta
  */
+@Deprecated
 public class LocaleParser implements ValueParser {
+
+	private final LocaleValueParser parser = new LocaleValueParser();
 
 	/*
 	 * (non-Javadoc)
@@ -22,12 +23,7 @@ public class LocaleParser implements ValueParser {
 	 */
 	@Override
 	public Object parseValue(String value) {
-		StringTokenizer tokenizer = new StringTokenizer(value, "_");
-		String language = tokenizer.hasMoreTokens() ? tokenizer.nextToken() : "";
-		String country = tokenizer.hasMoreTokens() ? tokenizer.nextToken() : "";
-		String variant = tokenizer.hasMoreTokens() ? tokenizer.nextToken() : "";
-
-		return new Locale(language, country, variant);
+		return parser.parseValue(value);
 	}
 
 	/*
@@ -39,8 +35,7 @@ public class LocaleParser implements ValueParser {
 	 */
 	@Override
 	public String parseObject(Object object) {
-		Locale locale = (Locale) object;
-		return String.format("%s_%s_%s", locale.getLanguage(), locale.getCountry(), locale.getVariant());
+		return parser.parseObject(object);
 	}
 
 }

@@ -141,3 +141,7 @@ Beta_0.1.1_20170413_build_B
 	完善了 dutil.develop.cfg 中的方法：
 		将 dutil.develop.cfg.io.PropConfigSaver.countinuousSave(CurrentValueContainer) 的返回集合改成了 LinkedHashSet ，这样的话，异常可以按照产生的顺序进行迭代。
 		将 dutil.develop.cfg.io.PropConfigLoadr.countinuousLoad(CurrentValueContainer) 的返回集合改成了 LinkedHashSet，道理同上。
+		
+Beta_0.1.2
+	命名规范化
+		新增 dutil.develop.cfg.parser.LocaleValueParser，用于替代不符合命名规范的 LocaleParser。
