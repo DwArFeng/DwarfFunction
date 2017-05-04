@@ -1,11 +1,18 @@
 package com.dwarfeng.dutil.basic.io;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import com.dwarfeng.dutil.basic.DwarfUtil;
+import com.dwarfeng.dutil.basic.StringFieldKey;
 
 /**
  * 实现文件操作的类。
@@ -118,6 +125,58 @@ public final class FileUtil {
 		if (parentFile != null && !parentFile.exists())
 			parentFile.mkdirs();
 		file.createNewFile();
+	}
+
+	/**
+	 * 列出一个文件夹中的所有文件，包括子文件夹下的文件。
+	 * <p>
+	 * 如果指定的文件不是文件夹，则返回自己。
+	 * 
+	 * @param file
+	 *            指定的文件。
+	 * @return 指定的文件下的所有文件。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static File[] listAllFile(File file) {
+		return listAllFile(file, null);
+	}
+
+	/**
+	 * 列出一个文件夹中的所有符合过滤器文件，包括子文件夹下的文件。
+	 * <p>
+	 * 如果指定的文件不是文件夹，则返回自己。
+	 * 
+	 * @param file
+	 *            指定的文件。
+	 * @param filter
+	 *            指定的过滤器，如果为 <code>null</code>，则接受所有文件。
+	 * @return 指定文件夹下的符合要求的所有文件。
+	 */
+	public static File[] listAllFile(File file, FileFilter filter) {
+		Objects.requireNonNull(file, DwarfUtil.getStringField(StringFieldKey.FILEUTIL_0));
+
+		if (!file.isDirectory()) {
+			return Objects.isNull(filter) || filter.accept(file) ? new File[] { file } : new File[0];
+		}
+
+		List<File> list = new ArrayList<>();
+		scanFile(file, filter, list);
+		return list.toArray(new File[0]);
+	}
+
+	private static void scanFile(File file, FileFilter filter, List<File> list) {
+		if (Objects.isNull(filter) || filter.accept(file))
+			list.add(file);
+
+		if (!file.isDirectory()) {
+			return;
+		}
+
+		File[] currFolder = file.listFiles();
+		for (File currFile : currFolder) {
+			scanFile(currFile, filter, list);
+		}
 	}
 
 	// 不允许实例化

@@ -502,6 +502,9 @@ public enum StringFieldKey implements Name {
 	/** ThreadSafeUtil类第0号文本字段 */
 	THREADSAFEUTIL_0(new DefaultName("ThreadSafeUtil.0")),
 	
+	/** FileUtil类第0号文本字段 */
+	FILEUTIL_0(new DefaultName("FileUtil.0")),
+	
 	;
 
 	private final Name name;

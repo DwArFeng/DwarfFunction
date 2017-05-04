@@ -150,4 +150,7 @@ Beta_0.1.2
 	新增 dutil.develop.cfg.parser.StringValueParser，作为配置文本与String相互转换的值解析器。
 	新增方法 <E> dutil.basic.cna.CollectionUtil.unmodifiableIterator(Iterator<E>)，用以返回根据指定的迭代器生成的不可编辑的迭代器。
 	新增工具类 dutil.basic.threads.ThreadSafeUtil，用于提供外部线程安全接口的锁定以及解锁方法。
+	新增方法 
+		duitl.basic.io.FileUtil.listAllFile(File) 用于列出一个文件夹下的所有文件以及子文件夹下的所有文件。
+		duitl.basic.io.FileUtil.listAllFile(File file, FileFilter filter)，在之上方法的基础下筛选符合要求的文件。
 		
