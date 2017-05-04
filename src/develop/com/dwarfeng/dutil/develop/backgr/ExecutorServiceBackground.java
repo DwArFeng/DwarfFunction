@@ -42,7 +42,8 @@ public class ExecutorServiceBackground extends AbstractBackground {
 
 	private final Lock runningLock = new ReentrantLock();
 	private final Condition runningCondition = runningLock.newCondition();
-
+	private final Set<TaskInspector> inspecRefs = new HashSet<>();
+	
 	private boolean shutdownFlag = false;
 	private boolean terminateFlag = false;
 
@@ -86,10 +87,12 @@ public class ExecutorServiceBackground extends AbstractBackground {
 				return false;
 			if (tasks.contains(task))
 				return false;
-			if (!task.addObverser(new TaskInspector(task)))
+			TaskInspector inspector = new TaskInspector(task);
+			if (!task.addObverser(inspector))
 				return false;
 
-			try {
+			try {	
+				inspecRefs.add(inspector);
 				executorService.submit(task);
 				tasks.add(task);
 				fireTaskSubmitted(task);
@@ -263,6 +266,7 @@ public class ExecutorServiceBackground extends AbstractBackground {
 				fireTaskFinished(task);
 				tasks.remove(task);
 				fireTaskRemoved(task);
+				inspecRefs.remove(this);
 				if (isShutdown() && tasks.isEmpty()) {
 					runningLock.lock();
 					try {

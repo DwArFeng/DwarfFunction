@@ -57,7 +57,7 @@ Beta_0.0.2_20170112_build_A
 	将 dutil.develop.cfg.io 包中的 ConfigLoader 和 ConfigSaver 中的方法名称更改为符合命名规范的名称。
 	ConfigModel 将禁用值为 null 的配置值。
 	新增 DefaultConfigFirmProps 为 ConfigFirmProps 接口的默认实现。
-	新增 LocaleConfigChecker，用于检验一个字符串是否合乎标准国家/地区代码的规定。
+	新增 LocaleConfigChecker，用于检验一个字符串是否合乎标准国家.地区代码的规定。
 	修改所有的类中的注释：@since 从java版本改为 dwarfutil版本。
 	
 Beta_0.0.2_20170115_build_B
@@ -156,3 +156,4 @@ Beta_0.1.2
 	新增方法
 		dutil.basic.gui.swing.SwingUtil.invokeInEventQueue(Runnable) 用于在Swing的EventQueue中执行一个 runnable。
 		dutil.basic.gui.swing.SwingUtil.invokeAndWaitInEventQueue(Runnable) 用于在Swing的EventQueue中执行一个 runnable，并等待执行完成。
+	修复 dutil.develop.backgr.ExecutorServiceBackground中的一处bug。
