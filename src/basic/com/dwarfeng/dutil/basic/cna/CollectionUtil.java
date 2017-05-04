@@ -893,6 +893,8 @@ public final class CollectionUtil {
 	 * 
 	 * @param iterator
 	 *            指定的迭代器。
+	 * @param <E>
+	 *            泛型E。
 	 * @return 不可编辑的迭代器。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
