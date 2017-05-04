@@ -153,4 +153,6 @@ Beta_0.1.2
 	新增方法 
 		duitl.basic.io.FileUtil.listAllFile(File) 用于列出一个文件夹下的所有文件以及子文件夹下的所有文件。
 		duitl.basic.io.FileUtil.listAllFile(File file, FileFilter filter)，在之上方法的基础下筛选符合要求的文件。
-		
+	新增方法
+		dutil.basic.gui.swing.SwingUtil.invokeInEventQueue(Runnable) 用于在Swing的EventQueue中执行一个 runnable。
+		dutil.basic.gui.swing.SwingUtil.invokeAndWaitInEventQueue(Runnable) 用于在Swing的EventQueue中执行一个 runnable，并等待执行完成。

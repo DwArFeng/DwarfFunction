@@ -297,7 +297,10 @@ public enum StringFieldKey implements Name {
 	ConfigKey_0(new DefaultName("ConfigKey.0")),
 
 	/** SwingUtil类第0号文本字段 */
-	SwingUtil_0(new DefaultName("SwingUtil.0")),
+	SWINGUTIL_0(new DefaultName("SwingUtil.0")),
+	/** SwingUtil类第1号文本字段 */
+	SWINGUTIL_1(new DefaultName("SwingUtil.1")),
+
 
 	/** ConfigViewModel类第0号文本字段 */
 	ConfigViewModel_0(new DefaultName("ConfigViewModel.0")),
