@@ -158,5 +158,5 @@ Beta_0.1.2_20170504_build_A
 		dutil.basic.gui.swing.SwingUtil.invokeAndWaitInEventQueue(Runnable) 用于在Swing的EventQueue中执行一个 runnable，并等待执行完成。
 	修复 dutil.develop.backgr.ExecutorServiceBackground中的一处bug。
 	
-	Beta_0.1.2_20170504_build_A
-		修复 dutil.basic.threads.ThreadSafeUtil 中的一系列bug。
+Beta_0.1.2_20170505_build_B
+	修复 dutil.basic.threads.ThreadSafeUtil 中的一系列bug。
