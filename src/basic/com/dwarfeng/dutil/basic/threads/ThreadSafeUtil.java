@@ -43,7 +43,7 @@ public final class ThreadSafeUtil {
 		Objects.requireNonNull(object, DwarfUtil.getStringField(StringFieldKey.THREADSAFEUTIL_0));
 
 		if (object instanceof ExternalReadWriteThreadSafe) {
-			((ExternalReadWriteThreadSafe) object).getLock().readLock().lock();
+			((ExternalReadWriteThreadSafe) object).getLock().readLock().unlock();
 		}
 	}
 
@@ -75,7 +75,7 @@ public final class ThreadSafeUtil {
 		Objects.requireNonNull(object, DwarfUtil.getStringField(StringFieldKey.THREADSAFEUTIL_0));
 
 		if (object instanceof ExternalReadWriteThreadSafe) {
-			((ExternalReadWriteThreadSafe) object).getLock().readLock().lock();
+			((ExternalReadWriteThreadSafe) object).getLock().writeLock().unlock();
 		}
 	}
 
@@ -107,7 +107,7 @@ public final class ThreadSafeUtil {
 		Objects.requireNonNull(object, DwarfUtil.getStringField(StringFieldKey.THREADSAFEUTIL_0));
 
 		if (object instanceof ExternalThreadSafe) {
-			((ExternalThreadSafe) object).getLock().lock();
+			((ExternalThreadSafe) object).getLock().unlock();
 		}
 	}
 
