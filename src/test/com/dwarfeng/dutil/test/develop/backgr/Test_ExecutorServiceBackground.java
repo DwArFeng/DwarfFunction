@@ -153,7 +153,6 @@ public class Test_ExecutorServiceBackground {
 				try {
 					Thread.sleep(100);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				task_1.finishTask();
@@ -179,7 +178,6 @@ public class Test_ExecutorServiceBackground {
 				try {
 					Thread.sleep(100);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				task_1.finishTask();

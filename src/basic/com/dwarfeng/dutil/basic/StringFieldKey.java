@@ -301,7 +301,6 @@ public enum StringFieldKey implements Name {
 	/** SwingUtil类第1号文本字段 */
 	SWINGUTIL_1(new DefaultName("SwingUtil.1")),
 
-
 	/** ConfigViewModel类第0号文本字段 */
 	ConfigViewModel_0(new DefaultName("ConfigViewModel.0")),
 	/** ConfigViewModel类第1号文本字段 */
@@ -450,21 +449,21 @@ public enum StringFieldKey implements Name {
 
 	/** BackgroundUtil类第0号文本字段 */
 	BACKGROUNDUTIL_0(new DefaultName("BackgroundUtil.0")),
-	
+
 	/** ResourceUtil类第0号文本字段 */
 	RESOURCEUTIL_0(new DefaultName("ResourceUtil.0")),
 
 	/** DelegateResourceHandler类第0号文本字段 */
 	DELEGATERESOURCEHANDLER_0(new DefaultName("DelegateResourceHandler.0")),
-	
+
 	/** AbstractResource类第0号文本字段 */
 	ABSTRACTRESOURCE_0(new DefaultName("AbstractResource.0")),
-	
+
 	/** Url2FileResource类第0号文本字段 */
 	URL2FILERESOURCE_0(new DefaultName("Url2FileResource.0")),
 	/** Url2FileResource类第1号文本字段 */
 	URL2FILERESOURCE_1(new DefaultName("Url2FileResource.1")),
-	
+
 	/** XmlJar2FileResourceLoader类第0号文本字段 */
 	XMLJAR2FILERESOURCELOADER_0(new DefaultName("XmlJar2FileResourceLoader.0")),
 	/** XmlJar2FileResourceLoader类第1号文本字段 */
@@ -475,24 +474,24 @@ public enum StringFieldKey implements Name {
 	XMLJAR2FILERESOURCELOADER_3(new DefaultName("XmlJar2FileResourceLoader.3")),
 	/** XmlJar4FileResourceLoader类第4号文本字段 */
 	XMLJAR2FILERESOURCELOADER_4(new DefaultName("XmlJar2FileResourceLoader.4")),
-	
+
 	/** AbstractI18nInfo类第0号文本字段 */
 	ABSTRACTI18NINFO_0(new DefaultName("AbstractI18nInfo.0")),
 	/** AbstractI18nInfo类第1号文本字段 */
 	ABSTRACTI18NINFO_1(new DefaultName("AbstractI18nInfo.1")),
-	
+
 	/** DelegateI18nHandler类第0号文本字段 */
 	I18NUTIL_0(new DefaultName("DelegateI18nHandler.0")),
-	
+
 	/** DelegateI18nHandler类第0号文本字段 */
 	DELEGATEI18NHANDLER_0(new DefaultName("DelegateI18nHandler.0")),
-	
+
 	/** PropUrlI18nInfo类第0号文本字段 */
 	PROPURLI18NINFO_0(new DefaultName("PropUrlI18nInfo.0")),
-	
+
 	/** PropertiesI18n类第0号文本字段 */
 	PROPERTIESI18N_0(new DefaultName("PropertiesI18n.0")),
-	
+
 	/** XmlPropFileI18nLoader类第0号文本字段 */
 	XMLPROPFILEI18NLOADER_0(new DefaultName("XmlPropFileI18nLoader.0")),
 	/** XmlPropFileI18nLoader类第1号文本字段 */
@@ -501,12 +500,25 @@ public enum StringFieldKey implements Name {
 	XMLPROPFILEI18NLOADER_2(new DefaultName("XmlPropFileI18nLoader.2")),
 	/** XmlPropFileI18nLoader类第3号文本字段 */
 	XMLPROPFILEI18NLOADER_3(new DefaultName("XmlPropFileI18nLoader.3")),
-	
+
 	/** ThreadSafeUtil类第0号文本字段 */
 	THREADSAFEUTIL_0(new DefaultName("ThreadSafeUtil.0")),
-	
+
 	/** FileUtil类第0号文本字段 */
 	FILEUTIL_0(new DefaultName("FileUtil.0")),
+
+	/** Interval类第0号文本字段 */
+	INTERVAL_0(new DefaultName("Interval.0")),
+	/** Interval类第1号文本字段 */
+	INTERVAL_1(new DefaultName("Interval.1")),
+	/** Interval类第2号文本字段 */
+	INTERVAL_2(new DefaultName("Interval.2")),
+	/** Interval类第3号文本字段 */
+	INTERVAL_3(new DefaultName("Interval.3")),
+	/** Interval类第4号文本字段 */
+	INTERVAL_4(new DefaultName("Interval.4")),
+	/** Interval类第5号文本字段 */
+	INTERVAL_5(new DefaultName("Interval.5")),
 	
 	;
 

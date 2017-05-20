@@ -18,20 +18,16 @@ public class TestResource extends AbstractResource {
 
 	@Override
 	public InputStream openInputStream() throws IOException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public OutputStream openOutputStream() throws IOException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void reset() throws IOException {
-		// TODO Auto-generated method stub
-
 	}
 
 }
