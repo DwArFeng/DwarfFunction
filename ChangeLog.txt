@@ -168,5 +168,6 @@ Beta_0.1.3
 	命名规范化
 		使用 com.dwarfeng.dutil.basic.str.NameComparator 代替原来的 NameableComparator。
 	添加新功能
-		新增 dutil.basic.num.Interval，用于表示数学中的区间。
-		在 dutil.basic.num.NumberUtil 中新增用于检测一个数是否处于一个区间中以及要求一个数应该处于一个区间中的方法。
+		新增 basic.num.Interval，用于表示数学中的区间。
+		在 basic.num.NumberUtil 中新增用于检测一个数是否处于一个区间中以及要求一个数应该处于一个区间中的方法。
+		新增 basic.prog.ProgramObverser 类，用于侦听一个程序的状态，在程序状态改变时可以调用观察器中的方法。
