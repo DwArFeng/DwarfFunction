@@ -283,9 +283,11 @@ public enum StringFieldKey implements Name {
 	JointIterator_2(new DefaultName("JointIterator.2")),
 
 	/** NumberUtil类第0号文本字段 */
-	NumberUtil_0(new DefaultName("NumberUtil.0")),
+	NUMBERUTIL_0(new DefaultName("NumberUtil.0")),
 	/** NumberUtil类第1号文本字段 */
-	NumberUtil_1(new DefaultName("NumberUtil.1")),
+	NUMBERUTIL_1(new DefaultName("NumberUtil.1")),
+	/** NumberUtil类第2号文本字段 */
+	NUMBERUTIL_2(new DefaultName("NumberUtil.2")),
 
 	/** StreamConfigLoader类第0号文本字段 */
 	StreamConfigLoader_0(new DefaultName("StreamConfigLoader.0")),

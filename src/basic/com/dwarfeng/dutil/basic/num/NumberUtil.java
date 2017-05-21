@@ -1,5 +1,6 @@
 package com.dwarfeng.dutil.basic.num;
 
+import java.math.BigDecimal;
 import java.nio.ByteBuffer;
 import java.util.Objects;
 
@@ -411,7 +412,7 @@ public final class NumberUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static int max(int... is) {
-		Objects.requireNonNull(is, DwarfUtil.getStringField(StringFieldKey.NumberUtil_0));
+		Objects.requireNonNull(is, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_0));
 		if (is.length == 0)
 			return 0;
 		if (is.length == 1)
@@ -437,7 +438,7 @@ public final class NumberUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static int min(int... is) {
-		Objects.requireNonNull(is, DwarfUtil.getStringField(StringFieldKey.NumberUtil_0));
+		Objects.requireNonNull(is, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_0));
 		if (is.length == 0)
 			return 0;
 		if (is.length == 1)
@@ -463,7 +464,7 @@ public final class NumberUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static double max(double... ds) {
-		Objects.requireNonNull(ds, DwarfUtil.getStringField(StringFieldKey.NumberUtil_1));
+		Objects.requireNonNull(ds, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_1));
 		if (ds.length == 0)
 			return 0;
 		if (ds.length == 1)
@@ -489,7 +490,7 @@ public final class NumberUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static double min(double... ds) {
-		Objects.requireNonNull(ds, DwarfUtil.getStringField(StringFieldKey.NumberUtil_1));
+		Objects.requireNonNull(ds, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_1));
 		if (ds.length == 0)
 			return 0;
 		if (ds.length == 1)
@@ -501,6 +502,342 @@ public final class NumberUtil {
 			min = Math.min(min, ds[i]);
 		}
 		return min;
+	}
+
+	/**
+	 * 判断一个数是否在一个区间之内。
+	 * 
+	 * @param value
+	 *            指定的数值。
+	 * @param interval
+	 *            指定的区间。
+	 * @return 指定的数值是否在指定的区间之内。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static boolean isInInterval(int value, Interval interval) {
+		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		return interval.contains(value);
+	}
+
+	/**
+	 * 判断一个数是否在一个区间之内。
+	 * 
+	 * @param value
+	 *            指定的数值。
+	 * @param interval
+	 *            指定的区间。
+	 * @return 指定的数值是否在指定的区间之内。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static boolean isInInterval(double value, Interval interval) {
+		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		return interval.contains(value);
+	}
+
+	/**
+	 * 判断一个数是否在一个区间之内。
+	 * 
+	 * @param value
+	 *            指定的数值。
+	 * @param interval
+	 *            指定的区间。
+	 * @return 指定的数值是否在指定的区间之内。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static boolean isInInterval(BigDecimal value, Interval interval) {
+		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		return interval.contains(value);
+	}
+
+	/**
+	 * 判断一个数是否在一个区间之内。
+	 * 
+	 * @param value
+	 *            指定的数值。
+	 * @param interval
+	 *            指定的区间的字符串形式。
+	 * @return 指定的数值是否在指定的区间之内。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 * @throws IllegalArgumentException
+	 *             参数 <code>interval</code>不符区间的合格式要求。
+	 * @see Interval#parseInterval(String)
+	 */
+	public static boolean isInInterval(int value, String interval) {
+		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		return isInInterval(value, Interval.parseInterval(interval));
+	}
+
+	/**
+	 * 判断一个数是否在一个区间之内。
+	 * 
+	 * @param value
+	 *            指定的数值。
+	 * @param interval
+	 *            指定的区间的字符串形式。
+	 * @return 指定的数值是否在指定的区间之内。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 * @throws IllegalArgumentException
+	 *             参数 <code>interval</code>不符区间的合格式要求。
+	 * @see Interval#parseInterval(String)
+	 */
+	public static boolean isInInterval(double value, String interval) {
+		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		return isInInterval(value, Interval.parseInterval(interval));
+	}
+
+	/**
+	 * 判断一个数是否在一个区间之内。
+	 * 
+	 * @param value
+	 *            指定的数值。
+	 * @param interval
+	 *            指定的区间的字符串形式。
+	 * @return 指定的数值是否在指定的区间之内。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 * @throws IllegalArgumentException
+	 *             参数 <code>interval</code>不符区间的合格式要求。
+	 * @see Interval#parseInterval(String)
+	 */
+	public static boolean isInInterval(BigDecimal value, String interval) {
+		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		return isInInterval(value, Interval.parseInterval(interval));
+	}
+
+	/**
+	 * 要求指定的数值在指定的区间之内。
+	 * 
+	 * @param value
+	 *            指定的数值。
+	 * @param interval
+	 *            指定的区间的文本形式。
+	 * @throws OutOfIntervalException
+	 *             指定的数值不在指定的区间之内。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static void requireInInterval(int value, Interval interval) throws OutOfIntervalException {
+		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		requireInInterval(value, interval, null);
+	}
+
+	/**
+	 * 要求指定的数值在指定的区间之内。
+	 * 
+	 * @param value
+	 *            指定的数值。
+	 * @param interval
+	 *            指定的区间。
+	 * @throws OutOfIntervalException
+	 *             指定的数值不在指定的区间之内。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static void requireInInterval(double value, Interval interval) throws OutOfIntervalException {
+		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		requireInInterval(value, interval, null);
+	}
+
+	/**
+	 * 要求指定的数值在指定的区间之内。
+	 * 
+	 * @param value
+	 *            指定的数值。
+	 * @param interval
+	 *            指定的区间。
+	 * @throws OutOfIntervalException
+	 *             指定的数值不在指定的区间之内。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static void requireInInterval(BigDecimal value, Interval interval) throws OutOfIntervalException {
+		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		requireInInterval(value, interval, null);
+	}
+
+	/**
+	 * 要求指定的数值在指定的区间之内。
+	 * 
+	 * @param value
+	 *            指定的数值。
+	 * @param interval
+	 *            指定的区间的文本形式。
+	 * @throws OutOfIntervalException
+	 *             指定的数值不在指定的区间之内。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static void requireInInterval(int value, String interval) throws OutOfIntervalException {
+		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		requireInInterval(value, interval, null);
+	}
+
+	/**
+	 * 要求指定的数值在指定的区间之内。
+	 * 
+	 * @param value
+	 *            指定的数值。
+	 * @param interval
+	 *            指定的区间的文本形式。
+	 * @throws OutOfIntervalException
+	 *             指定的数值不在指定的区间之内。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static void requireInInterval(double value, String interval) throws OutOfIntervalException {
+		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		requireInInterval(value, interval, null);
+	}
+
+	/**
+	 * 要求指定的数值在指定的区间之内。
+	 * 
+	 * @param value
+	 *            指定的数值。
+	 * @param interval
+	 *            指定的区间的文本形式。
+	 * @throws OutOfIntervalException
+	 *             指定的数值不在指定的区间之内。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static void requireInInterval(BigDecimal value, String interval) throws OutOfIntervalException {
+		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		requireInInterval(value, interval, null);
+	}
+
+	/**
+	 * 要求指定的数值在指定的区间之内。
+	 * 
+	 * @param value
+	 *            指定的数值。
+	 * @param interval
+	 *            指定的区间。
+	 * @param message
+	 *            指定的异常信息。
+	 * @throws OutOfIntervalException
+	 *             指定的数值不在指定的区间之内。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static void requireInInterval(int value, Interval interval, String message) throws OutOfIntervalException {
+		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		if (!isInInterval(value, interval))
+			throw new OutOfIntervalException(message);
+	}
+
+	/**
+	 * 要求指定的数值在指定的区间之内。
+	 * 
+	 * @param value
+	 *            指定的数值。
+	 * @param interval
+	 *            指定的区间。
+	 * @param message
+	 *            指定的异常信息。
+	 * @throws OutOfIntervalException
+	 *             指定的数值不在指定的区间之内。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static void requireInInterval(double value, Interval interval, String message)
+			throws OutOfIntervalException {
+		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		if (!isInInterval(value, interval))
+			throw new OutOfIntervalException(message);
+	}
+
+	/**
+	 * 要求指定的数值在指定的区间之内。
+	 * 
+	 * @param value
+	 *            指定的数值。
+	 * @param interval
+	 *            指定的区间。
+	 * @param message
+	 *            指定的异常信息。
+	 * @throws OutOfIntervalException
+	 *             指定的数值不在指定的区间之内。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static void requireInInterval(BigDecimal value, Interval interval, String message)
+			throws OutOfIntervalException {
+		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		if (!isInInterval(value, interval))
+			throw new OutOfIntervalException(message);
+	}
+
+	/**
+	 * 要求指定的数值在指定的区间之内。
+	 * 
+	 * @param value
+	 *            指定的数值。
+	 * @param interval
+	 *            指定的区间的文本形式。
+	 * @param message
+	 *            指定的异常信息。
+	 * @throws OutOfIntervalException
+	 *             指定的数值不在指定的区间之内。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 * @throws IllegalArgumentException
+	 *             参数 <code>interval</code>不符区间的合格式要求。
+	 * @see Interval#parseInterval(String)
+	 */
+	public static void requireInInterval(int value, String interval, String message) throws OutOfIntervalException {
+		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		requireInInterval(value, Interval.parseInterval(interval), message);
+	}
+
+	/**
+	 * 要求指定的数值在指定的区间之内。
+	 * 
+	 * @param value
+	 *            指定的数值。
+	 * @param interval
+	 *            指定的区间的文本形式。
+	 * @param message
+	 *            指定的异常信息。
+	 * @throws OutOfIntervalException
+	 *             指定的数值不在指定的区间之内。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 * @throws IllegalArgumentException
+	 *             参数 <code>interval</code>不符区间的合格式要求。
+	 * @see Interval#parseInterval(String)
+	 */
+	public static void requireInInterval(double value, String interval, String message) throws OutOfIntervalException {
+		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		requireInInterval(value, Interval.parseInterval(interval), message);
+	}
+
+	/**
+	 * 要求指定的数值在指定的区间之内。
+	 * 
+	 * @param value
+	 *            指定的数值。
+	 * @param interval
+	 *            指定的区间的文本形式。
+	 * @param message
+	 *            指定的异常信息。
+	 * @throws OutOfIntervalException
+	 *             指定的数值不在指定的区间之内。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 * @throws IllegalArgumentException
+	 *             参数 <code>interval</code>不符区间的合格式要求。
+	 * @see Interval#parseInterval(String)
+	 */
+	public static void requireInInterval(BigDecimal value, String interval, String message)
+			throws OutOfIntervalException {
+		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		requireInInterval(value, Interval.parseInterval(interval), message);
 	}
 
 }
