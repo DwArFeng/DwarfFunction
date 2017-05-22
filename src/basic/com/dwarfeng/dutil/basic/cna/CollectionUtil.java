@@ -9,10 +9,10 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-import java.util.function.Consumer;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.prog.ReadOnlyGenerator;
 
 /**
  * 有关于集合的工具包。
@@ -49,9 +49,9 @@ public final class CollectionUtil {
 	 *             当入口的参数不是空的时候抛出该异常。
 	 */
 	public static <T> Set<T> nonNullSet(Set<T> set) {
-		Objects.requireNonNull(set, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_0));
+		Objects.requireNonNull(set, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_0));
 		if (!set.isEmpty()) {
-			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.CollectionUtil_8));
+			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_8));
 		}
 		return new NonNullSet<T>(set);
 	}
@@ -131,7 +131,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean add(E e) {
-			Objects.requireNonNull(e, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_1));
+			Objects.requireNonNull(e, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_1));
 			return set.add(e);
 		}
 
@@ -162,9 +162,9 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean addAll(Collection<? extends E> c) {
-			Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_1));
+			Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_1));
 			if (CollectionUtil.conatinsNull(c)) {
-				throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.CollectionUtil_3));
+				throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_3));
 			}
 			return set.addAll(c);
 		}
@@ -229,9 +229,9 @@ public final class CollectionUtil {
 	 *             当入口的参数不是空的时候抛出该异常。
 	 */
 	public static <T> List<T> nonNullList(List<T> list) {
-		Objects.requireNonNull(list, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_4));
+		Objects.requireNonNull(list, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_4));
 		if (!list.isEmpty()) {
-			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.CollectionUtil_8));
+			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_8));
 		}
 		return new NonNullList<T>(list);
 	}
@@ -311,7 +311,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean add(E e) {
-			Objects.requireNonNull(e, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_1));
+			Objects.requireNonNull(e, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_1));
 			return list.add(e);
 		}
 
@@ -342,9 +342,9 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean addAll(Collection<? extends E> c) {
-			Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_1));
+			Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_1));
 			if (CollectionUtil.conatinsNull(c)) {
-				throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.CollectionUtil_3));
+				throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_3));
 			}
 			return list.addAll(c);
 		}
@@ -356,9 +356,9 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean addAll(int index, Collection<? extends E> c) {
-			Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_1));
+			Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_1));
 			if (CollectionUtil.conatinsNull(c)) {
-				throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.CollectionUtil_3));
+				throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_3));
 			}
 			return list.addAll(index, c);
 		}
@@ -410,7 +410,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public E set(int index, E element) {
-			Objects.requireNonNull(element, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_1));
+			Objects.requireNonNull(element, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_1));
 			return list.set(index, element);
 		}
 
@@ -421,7 +421,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public void add(int index, E element) {
-			Objects.requireNonNull(element, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_1));
+			Objects.requireNonNull(element, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_1));
 			list.add(index, element);
 		}
 
@@ -518,9 +518,9 @@ public final class CollectionUtil {
 	 *             当入口的参数不是空的时候抛出该异常。
 	 */
 	public static <K, V> Map<K, V> nonNullMap(Map<K, V> map) {
-		Objects.requireNonNull(map, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_5));
+		Objects.requireNonNull(map, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_5));
 		if (!map.isEmpty()) {
-			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.CollectionUtil_8));
+			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_8));
 		}
 		return new NonNullMap<K, V>(map);
 	}
@@ -590,7 +590,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public V put(K key, V value) {
-			Objects.requireNonNull(key, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_6));
+			Objects.requireNonNull(key, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_6));
 			return map.put(key, value);
 		}
 
@@ -611,9 +611,9 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public void putAll(Map<? extends K, ? extends V> m) {
-			Objects.requireNonNull(m, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_7));
+			Objects.requireNonNull(m, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_7));
 			if (CollectionUtil.conatinsNull(m.keySet())) {
-				throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.CollectionUtil_6));
+				throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_6));
 			}
 			map.putAll(m);
 		}
@@ -670,7 +670,7 @@ public final class CollectionUtil {
 	 *             当入口参数为 <code>null</code>时。
 	 */
 	public static boolean conatinsNull(Collection<?> collection) {
-		Objects.requireNonNull(collection, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_2));
+		Objects.requireNonNull(collection, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_2));
 		for (Object obj : collection) {
 			if (Objects.isNull(obj))
 				return true;
@@ -692,7 +692,7 @@ public final class CollectionUtil {
 	 *             <code>collection</code> 中含有 <code>null</code>元素。
 	 */
 	public static void requireNotContainsNull(Collection<?> collection) {
-		Objects.requireNonNull(collection, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_2));
+		Objects.requireNonNull(collection, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_2));
 		if (conatinsNull(collection))
 			throw new NullPointerException();
 	}
@@ -713,7 +713,7 @@ public final class CollectionUtil {
 	 *             <code>collection</code> 中含有 <code>null</code>元素。
 	 */
 	public static void requireNotContainsNull(Collection<?> collection, String message) {
-		Objects.requireNonNull(collection, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_2));
+		Objects.requireNonNull(collection, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_2));
 		if (conatinsNull(collection))
 			throw new NullPointerException(message);
 	}
@@ -760,7 +760,7 @@ public final class CollectionUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static <T> Iterator<T> enumeration2Iterator(Enumeration<T> enumeration) {
-		Objects.requireNonNull(enumeration, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_9));
+		Objects.requireNonNull(enumeration, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_9));
 		return new EnumerationIterator<>(enumeration);
 	}
 
@@ -806,7 +806,7 @@ public final class CollectionUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static <T> Enumeration<T> iterator2Enumeration(Iterator<T> iterator) {
-		Objects.requireNonNull(iterator, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_10));
+		Objects.requireNonNull(iterator, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_10));
 		return new IteratorEnumeration<>(iterator);
 	}
 
@@ -829,7 +829,7 @@ public final class CollectionUtil {
 	 */
 	@Deprecated
 	public static <T> Iterator<T> array2Iterator(T[] array) {
-		Objects.requireNonNull(array, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_11));
+		Objects.requireNonNull(array, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_11));
 		return ArrayUtil.array2Iterable(array).iterator();
 	}
 
@@ -848,8 +848,8 @@ public final class CollectionUtil {
 	 * @return 两个迭代器连接形成的迭代器。
 	 */
 	public static <T> Iterator<T> contactIterator(Iterator<T> firstIterator, Iterator<T> secondIterator) {
-		Objects.requireNonNull(firstIterator, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_13));
-		Objects.requireNonNull(secondIterator, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_14));
+		Objects.requireNonNull(firstIterator, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_13));
+		Objects.requireNonNull(secondIterator, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_14));
 		return new JointIterator.Builder<T>().append(firstIterator).append(secondIterator).build();
 	}
 
@@ -874,8 +874,8 @@ public final class CollectionUtil {
 	 * @return 对象的插入位置。
 	 */
 	public static <T> int insertByOrder(List<T> list, T obj, Comparator<? super T> c) {
-		Objects.requireNonNull(list, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_15));
-		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_16));
+		Objects.requireNonNull(list, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_15));
+		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_16));
 
 		for (int i = 0; i < list.size(); i++) {
 			T t = list.get(i);
@@ -900,7 +900,7 @@ public final class CollectionUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static <E> Iterator<E> unmodifiableIterator(Iterator<E> iterator) {
-		Objects.requireNonNull(iterator, DwarfUtil.getStringField(StringFieldKey.CollectionUtil_10));
+		Objects.requireNonNull(iterator, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_10));
 		return new UnmodifiableIterator<>(iterator);
 	}
 
@@ -932,24 +932,181 @@ public final class CollectionUtil {
 			return delegate.next();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Iterator#forEachRemaining(java.util.function.Consumer)
-		 */
-		@Override
-		public void forEachRemaining(Consumer<? super E> action) {
-			delegate.forEachRemaining(action);
+	}
+
+	/**
+	 * 根据指定的迭代器和指定的只读生成器生成一个只读的迭代器。
+	 * 
+	 * @param iterator
+	 *            指定的迭代器。
+	 * @param generator
+	 *            指定的只读生成器。
+	 * @return 根据指定的迭代器和指定的只读生成器生成的只读迭代器。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static <E> Iterator<E> readOnlyIterator(Iterator<E> iterator, ReadOnlyGenerator<E> generator) {
+		Objects.requireNonNull(iterator, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_10));
+		Objects.requireNonNull(generator, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_17));
+		return new ReadOnlyIterator<>(iterator, generator);
+	}
+
+	private final static class ReadOnlyIterator<E> implements Iterator<E> {
+
+		private final Iterator<E> delegate;
+		private final ReadOnlyGenerator<E> generator;
+
+		public ReadOnlyIterator(Iterator<E> delegate, ReadOnlyGenerator<E> generator) {
+			this.delegate = delegate;
+			this.generator = generator;
 		}
 
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see java.util.Iterator#remove()
+		 * @see java.util.Iterator#hasNext()
 		 */
 		@Override
-		public void remove() {
-			throw new UnsupportedOperationException();
+		public boolean hasNext() {
+			return delegate.hasNext();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Iterator#next()
+		 */
+		@Override
+		public E next() {
+			return generator.readOnly(delegate.next());
+		}
+
+	}
+
+	/**
+	 * 根据指定的集合和指定的只读生成器生成一个只读的集合。
+	 * 
+	 * @param collection
+	 *            指定的集合。
+	 * @param generator
+	 *            指定的只读生成器。
+	 * @return 根据指定的集合和指定的只读生成器生成的只读集合。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static <E> Collection<E> readOnlyCollection(Collection<E> collection, ReadOnlyGenerator<E> generator) {
+		Objects.requireNonNull(collection, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_2));
+		Objects.requireNonNull(generator, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_17));
+		return new ReadOnlyCollection<>(collection, generator);
+	}
+
+	private static final class ReadOnlyCollection<E> implements Collection<E> {
+
+		private final Collection<E> deleage;
+		private final ReadOnlyGenerator<E> generator;
+
+		public ReadOnlyCollection(Collection<E> delegate, ReadOnlyGenerator<E> generator) {
+			this.deleage = delegate;
+			this.generator = generator;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Collection#size()
+		 */
+		@Override
+		public int size() {
+			return deleage.size();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Collection#isEmpty()
+		 */
+		@Override
+		public boolean isEmpty() {
+			return deleage.isEmpty();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Collection#contains(java.lang.Object)
+		 */
+		@Override
+		public boolean contains(Object o) {
+			return deleage.contains(o);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Collection#iterator()
+		 */
+		@Override
+		public Iterator<E> iterator() {
+			return readOnlyIterator(deleage.iterator(), generator);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Collection#toArray()
+		 */
+		@Override
+		public Object[] toArray() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public <T> T[] toArray(T[] a) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public boolean add(E e) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public boolean remove(Object o) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public boolean containsAll(Collection<?> c) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public boolean addAll(Collection<? extends E> c) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public boolean removeAll(Collection<?> c) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public boolean retainAll(Collection<?> c) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public void clear() {
+			// TODO Auto-generated method stub
+
 		}
 
 	}

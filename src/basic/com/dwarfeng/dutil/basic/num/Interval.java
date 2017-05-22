@@ -19,7 +19,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
  * @author DwArFeng
  * @since 0.1.3-beta
  */
-public class Interval {
+public class Interval implements NumberValueFilter {
 
 	/** 一个表示所有实数的区间，等于 <code>(-∞,+∞)</code> */
 	public static final Interval INTERVAL_REALNUMBER = new Interval(BoundaryType.OPENED, BoundaryType.OPENED, null,
@@ -349,6 +349,19 @@ public class Interval {
 		sb.append(rightValue == null ? "+∞" : rightValue.setScale(scale, roundingMode).toString());
 		sb.append(rightBoundaryType == BoundaryType.CLOSED ? " ]" : " )");
 		return sb.toString();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.dwarfeng.dutil.basic.num.NumberValueFilter#accept(com.dwarfeng.dutil.
+	 * basic.num.NumberValue)
+	 */
+	@Override
+	public boolean accept(NumberValue value) {
+		Objects.requireNonNull(value, DwarfUtil.getStringField(StringFieldKey.INTERVAL_6));
+		return contains(value.doubleValue());
 	}
 
 }
