@@ -76,7 +76,7 @@ public enum StringFieldKey implements Name {
 	ARRAYUTIL_3(new DefaultName("ArrayUtil.3")),
 	/** ArrayUtil类第4号文本字段 */
 	ARRAYUTIL_4(new DefaultName("ArrayUtil.4")),
-	
+
 	/** FothAlgebraUtill类第0号文本字段 */
 	FOTHALGEBRAUTIL_0(new DefaultName("FothAlgebraUtil.0")),
 	/** FothAlgebraUtill类第1号文本字段 */
@@ -134,7 +134,15 @@ public enum StringFieldKey implements Name {
 	COLLECTIONUTIL_16(new DefaultName("CollectionUtil.16")),
 	/** CollectionUtil类第17号文本字段 */
 	COLLECTIONUTIL_17(new DefaultName("CollectionUtil.17")),
-
+	/** CollectionUtil类第18号文本字段 */
+	COLLECTIONUTIL_18(new DefaultName("CollectionUtil.18")),
+	/** CollectionUtil类第19号文本字段 */
+	COLLECTIONUTIL_19(new DefaultName("CollectionUtil.19")),
+	/** CollectionUtil类第20号文本字段 */
+	COLLECTIONUTIL_20(new DefaultName("CollectionUtil.20")),
+	/** CollectionUtil类第21号文本字段 */
+	COLLECTIONUTIL_21(new DefaultName("CollectionUtil.21")),
+	
 	/** NameableComparator类第0号文本字段 */
 	NameableComparator_0(new DefaultName("NameableComparator.0")),
 
@@ -404,6 +412,12 @@ public enum StringFieldKey implements Name {
 	MODELUTIL_3(new DefaultName("ModelUtil.3")),
 	/** ModelUtil类第4号文本字段 */
 	MODELUTIL_4(new DefaultName("ModelUtil.4")),
+	/** ModelUtil类第5号文本字段 */
+	MODELUTIL_5(new DefaultName("ModelUtil.5")),
+	/** ModelUtil类第6号文本字段 */
+	MODELUTIL_6(new DefaultName("ModelUtil.6")),
+	/** ModelUtil类第7号文本字段 */
+	MODELUTIL_7(new DefaultName("ModelUtil.7")),
 
 	/** AbstractExconfigModel类第0号文本字段 */
 	ABSTRACTEXCONFIGMODEL_0(new DefaultName("AbstractExconfigModel.0")),
@@ -529,7 +543,7 @@ public enum StringFieldKey implements Name {
 	INTERVAL_5(new DefaultName("Interval.5")),
 	/** Interval类第6号文本字段 */
 	INTERVAL_6(new DefaultName("Interval.6")),
-	
+
 	;
 
 	private final Name name;

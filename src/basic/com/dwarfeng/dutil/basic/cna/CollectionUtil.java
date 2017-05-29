@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Set;
 
@@ -984,6 +985,240 @@ public final class CollectionUtil {
 	}
 
 	/**
+	 * 根据指定的列表迭代器生成一个不可编辑的列表迭代器。
+	 * 
+	 * @param listIterator
+	 *            指定的列表迭代器。
+	 * @return 根据指定的列表迭代器生成的不可编辑的列表迭代器。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static <E> ListIterator<E> unmodifiableListIterator(ListIterator<E> listIterator) {
+		Objects.requireNonNull(listIterator, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_18));
+		return new UnmodifiableListIterator<>(listIterator);
+	}
+
+	private final static class UnmodifiableListIterator<E> implements ListIterator<E> {
+
+		private final ListIterator<E> delegate;
+
+		public UnmodifiableListIterator(ListIterator<E> delegate) {
+			this.delegate = delegate;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.ListIterator#hasNext()
+		 */
+		@Override
+		public boolean hasNext() {
+			return delegate.hasNext();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.ListIterator#next()
+		 */
+		@Override
+		public E next() {
+			return delegate.next();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.ListIterator#hasPrevious()
+		 */
+		@Override
+		public boolean hasPrevious() {
+			return delegate.hasPrevious();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.ListIterator#previous()
+		 */
+		@Override
+		public E previous() {
+			return delegate.previous();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.ListIterator#nextIndex()
+		 */
+		@Override
+		public int nextIndex() {
+			return delegate.nextIndex();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.ListIterator#previousIndex()
+		 */
+		@Override
+		public int previousIndex() {
+			return delegate.previousIndex();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.ListIterator#remove()
+		 */
+		@Override
+		public void remove() {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.ListIterator#set(java.lang.Object)
+		 */
+		@Override
+		public void set(E e) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.ListIterator#add(java.lang.Object)
+		 */
+		@Override
+		public void add(E e) {
+			throw new UnsupportedOperationException();
+		}
+
+	}
+
+	/**
+	 * 根据指定的列表迭代器和指定的只读生成器生成一个只读的列表迭代器。
+	 * 
+	 * @param listIterator
+	 *            指定的列表迭代器。
+	 * @param generator
+	 *            指定的只读生成器。
+	 * @return 根据指定的列表迭代器和指定的只读生成器生成的只读的列表迭代器。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static <E> ListIterator<E> readOnlyListIterator(ListIterator<E> listIterator,
+			ReadOnlyGenerator<E> generator) {
+		Objects.requireNonNull(listIterator, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_18));
+		Objects.requireNonNull(generator, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_17));
+		return new ReadOnlyListIterator<>(listIterator, generator);
+	}
+
+	private static final class ReadOnlyListIterator<E> implements ListIterator<E> {
+
+		private final ListIterator<E> delegate;
+		private final ReadOnlyGenerator<E> generator;
+
+		public ReadOnlyListIterator(ListIterator<E> delegate, ReadOnlyGenerator<E> generator) {
+			this.delegate = delegate;
+			this.generator = generator;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.ListIterator#hasNext()
+		 */
+		@Override
+		public boolean hasNext() {
+			return delegate.hasNext();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.ListIterator#next()
+		 */
+		@Override
+		public E next() {
+			return generator.readOnly(delegate.next());
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.ListIterator#hasPrevious()
+		 */
+		@Override
+		public boolean hasPrevious() {
+			return delegate.hasPrevious();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.ListIterator#previous()
+		 */
+		@Override
+		public E previous() {
+			return generator.readOnly(delegate.previous());
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.ListIterator#nextIndex()
+		 */
+		@Override
+		public int nextIndex() {
+			return delegate.nextIndex();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.ListIterator#previousIndex()
+		 */
+		@Override
+		public int previousIndex() {
+			return delegate.previousIndex();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.ListIterator#remove()
+		 */
+		@Override
+		public void remove() {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.ListIterator#set(java.lang.Object)
+		 */
+		@Override
+		public void set(E e) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.ListIterator#add(java.lang.Object)
+		 */
+		@Override
+		public void add(E e) {
+			throw new UnsupportedOperationException();
+		}
+
+	}
+
+	/**
 	 * 根据指定的集合和指定的只读生成器生成一个只读的集合。
 	 * 
 	 * @param collection
@@ -1002,11 +1237,11 @@ public final class CollectionUtil {
 
 	private static final class ReadOnlyCollection<E> implements Collection<E> {
 
-		private final Collection<E> deleage;
+		private final Collection<E> delegate;
 		private final ReadOnlyGenerator<E> generator;
 
 		public ReadOnlyCollection(Collection<E> delegate, ReadOnlyGenerator<E> generator) {
-			this.deleage = delegate;
+			this.delegate = delegate;
 			this.generator = generator;
 		}
 
@@ -1017,7 +1252,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public int size() {
-			return deleage.size();
+			return delegate.size();
 		}
 
 		/*
@@ -1027,7 +1262,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean isEmpty() {
-			return deleage.isEmpty();
+			return delegate.isEmpty();
 		}
 
 		/*
@@ -1037,7 +1272,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean contains(Object o) {
-			return deleage.contains(o);
+			return delegate.contains(o);
 		}
 
 		/*
@@ -1047,7 +1282,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public Iterator<E> iterator() {
-			return readOnlyIterator(deleage.iterator(), generator);
+			return readOnlyIterator(delegate.iterator(), generator);
 		}
 
 		/*
@@ -1057,56 +1292,885 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public Object[] toArray() {
-			// TODO Auto-generated method stub
-			return null;
+			@SuppressWarnings("unchecked")
+			E[] eArray = (E[]) delegate.toArray();
+			return ArrayUtil.readOnlyArray(eArray, generator);
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Collection#toArray(java.lang.Object[])
+		 */
+		@SuppressWarnings("unchecked")
 		@Override
 		public <T> T[] toArray(T[] a) {
-			// TODO Auto-generated method stub
-			return null;
+			T[] tArray = delegate.toArray(a);
+			return (T[]) ArrayUtil.readOnlyArray(((E[]) tArray), generator);
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Collection#add(java.lang.Object)
+		 */
 		@Override
 		public boolean add(E e) {
-			// TODO Auto-generated method stub
-			return false;
+			throw new UnsupportedOperationException();
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Collection#remove(java.lang.Object)
+		 */
 		@Override
 		public boolean remove(Object o) {
-			// TODO Auto-generated method stub
-			return false;
+			throw new UnsupportedOperationException();
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Collection#containsAll(java.util.Collection)
+		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
-			// TODO Auto-generated method stub
-			return false;
+			return delegate.containsAll(c);
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Collection#addAll(java.util.Collection)
+		 */
 		@Override
 		public boolean addAll(Collection<? extends E> c) {
-			// TODO Auto-generated method stub
-			return false;
+			throw new UnsupportedOperationException();
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Collection#removeAll(java.util.Collection)
+		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
-			// TODO Auto-generated method stub
-			return false;
+			throw new UnsupportedOperationException();
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Collection#retainAll(java.util.Collection)
+		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
-			// TODO Auto-generated method stub
-			return false;
+			throw new UnsupportedOperationException();
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Collection#clear()
+		 */
 		@Override
 		public void clear() {
-			// TODO Auto-generated method stub
+			throw new UnsupportedOperationException();
+		}
 
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.lang.Object#toString()
+		 */
+		@Override
+		public String toString() {
+			return delegate.toString();
+		}
+
+	}
+
+	/**
+	 * 根据指定的集合和指定的只读生成器生成一个只读的集合。
+	 * 
+	 * @param set
+	 *            指定的集合。
+	 * @param generator
+	 *            指定的只读生成器。
+	 * @return 根据指定的集合和指定的只读生成器生成的只读集合。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static <E> Set<E> readOnlySet(Set<E> set, ReadOnlyGenerator<E> generator) {
+		Objects.requireNonNull(generator, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_0));
+		Objects.requireNonNull(generator, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_17));
+		return new ReadOnlySet<>(set, generator);
+	}
+
+	private final static class ReadOnlySet<E> implements Set<E> {
+
+		private final Set<E> delegate;
+		private final ReadOnlyGenerator<E> generator;
+
+		public ReadOnlySet(Set<E> delegate, ReadOnlyGenerator<E> generator) {
+			this.delegate = delegate;
+			this.generator = generator;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Set#size()
+		 */
+		@Override
+		public int size() {
+			return delegate.size();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Set#isEmpty()
+		 */
+		@Override
+		public boolean isEmpty() {
+			return delegate.isEmpty();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Set#contains(java.lang.Object)
+		 */
+		@Override
+		public boolean contains(Object o) {
+			return delegate.contains(o);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Set#iterator()
+		 */
+		@Override
+		public Iterator<E> iterator() {
+			return readOnlyIterator(delegate.iterator(), generator);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Set#toArray()
+		 */
+		@Override
+		public Object[] toArray() {
+			@SuppressWarnings("unchecked")
+			E[] eArray = (E[]) delegate.toArray();
+			return ArrayUtil.readOnlyArray(eArray, generator);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Set#toArray(java.lang.Object[])
+		 */
+		@SuppressWarnings("unchecked")
+		@Override
+		public <T> T[] toArray(T[] a) {
+			T[] tArray = delegate.toArray(a);
+			return (T[]) ArrayUtil.readOnlyArray(((E[]) tArray), generator);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Set#add(java.lang.Object)
+		 */
+		@Override
+		public boolean add(E e) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Set#remove(java.lang.Object)
+		 */
+		@Override
+		public boolean remove(Object o) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Set#containsAll(java.util.Collection)
+		 */
+		@Override
+		public boolean containsAll(Collection<?> c) {
+			return delegate.containsAll(c);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Set#addAll(java.util.Collection)
+		 */
+		@Override
+		public boolean addAll(Collection<? extends E> c) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Set#retainAll(java.util.Collection)
+		 */
+		@Override
+		public boolean retainAll(Collection<?> c) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Set#removeAll(java.util.Collection)
+		 */
+		@Override
+		public boolean removeAll(Collection<?> c) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Set#clear()
+		 */
+		@Override
+		public void clear() {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.lang.Object#hashCode()
+		 */
+		@Override
+		public int hashCode() {
+			return delegate.hashCode();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.lang.Object#equals(java.lang.Object)
+		 */
+		@Override
+		public boolean equals(Object obj) {
+			if (obj == delegate)
+				return true;
+			if (obj == this)
+				return true;
+			return delegate.equals(obj);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.lang.Object#toString()
+		 */
+		@Override
+		public String toString() {
+			return delegate.toString();
+		}
+
+	}
+
+	/**
+	 * 根据指定的列表和指定的只读生成器生成一个只读的列表。
+	 * 
+	 * @param list
+	 *            指定的列表。
+	 * @param generator
+	 *            指定的只读生成器。
+	 * @return 根据指定的列表和指定的只读生成器生成的只读列表。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static <E> List<E> readOnlyList(List<E> list, ReadOnlyGenerator<E> generator) {
+		Objects.requireNonNull(list, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_4));
+		Objects.requireNonNull(generator, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_17));
+		return new ReadOnlyList<>(list, generator);
+	}
+
+	private final static class ReadOnlyList<E> implements List<E> {
+
+		private final List<E> delegate;
+		private final ReadOnlyGenerator<E> generator;
+
+		public ReadOnlyList(List<E> delegate, ReadOnlyGenerator<E> generator) {
+			this.delegate = delegate;
+			this.generator = generator;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.List#size()
+		 */
+		@Override
+		public int size() {
+			return delegate.size();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.List#isEmpty()
+		 */
+		@Override
+		public boolean isEmpty() {
+			return delegate.isEmpty();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.List#contains(java.lang.Object)
+		 */
+		@Override
+		public boolean contains(Object o) {
+			return delegate.contains(o);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.List#iterator()
+		 */
+		@Override
+		public Iterator<E> iterator() {
+			return CollectionUtil.readOnlyIterator(delegate.iterator(), generator);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.List#toArray()
+		 */
+		@Override
+		public Object[] toArray() {
+			@SuppressWarnings("unchecked")
+			E[] eArray = (E[]) delegate.toArray();
+			return ArrayUtil.readOnlyArray(eArray, generator);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.List#toArray(java.lang.Object[])
+		 */
+		@SuppressWarnings("unchecked")
+		@Override
+		public <T> T[] toArray(T[] a) {
+			T[] tArray = delegate.toArray(a);
+			return (T[]) ArrayUtil.readOnlyArray(((E[]) tArray), generator);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.List#add(java.lang.Object)
+		 */
+		@Override
+		public boolean add(E e) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.List#remove(java.lang.Object)
+		 */
+		@Override
+		public boolean remove(Object o) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.List#containsAll(java.util.Collection)
+		 */
+		@Override
+		public boolean containsAll(Collection<?> c) {
+			return delegate.containsAll(c);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.List#addAll(java.util.Collection)
+		 */
+		@Override
+		public boolean addAll(Collection<? extends E> c) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.List#addAll(int, java.util.Collection)
+		 */
+		@Override
+		public boolean addAll(int index, Collection<? extends E> c) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.List#removeAll(java.util.Collection)
+		 */
+		@Override
+		public boolean removeAll(Collection<?> c) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.List#retainAll(java.util.Collection)
+		 */
+		@Override
+		public boolean retainAll(Collection<?> c) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.List#clear()
+		 */
+		@Override
+		public void clear() {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.List#get(int)
+		 */
+		@Override
+		public E get(int index) {
+			return generator.readOnly(delegate.get(index));
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.List#set(int, java.lang.Object)
+		 */
+		@Override
+		public E set(int index, E element) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.List#add(int, java.lang.Object)
+		 */
+		@Override
+		public void add(int index, E element) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.List#remove(int)
+		 */
+		@Override
+		public E remove(int index) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.List#indexOf(java.lang.Object)
+		 */
+		@Override
+		public int indexOf(Object o) {
+			return delegate.indexOf(o);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.List#lastIndexOf(java.lang.Object)
+		 */
+		@Override
+		public int lastIndexOf(Object o) {
+			return delegate.lastIndexOf(o);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.List#listIterator()
+		 */
+		@Override
+		public ListIterator<E> listIterator() {
+			return readOnlyListIterator(delegate.listIterator(), generator);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.List#listIterator(int)
+		 */
+		@Override
+		public ListIterator<E> listIterator(int index) {
+			return readOnlyListIterator(delegate.listIterator(index), generator);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.List#subList(int, int)
+		 */
+		@Override
+		public List<E> subList(int fromIndex, int toIndex) {
+			return new ReadOnlyList<>(delegate.subList(fromIndex, toIndex), generator);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.lang.Object#hashCode()
+		 */
+		@Override
+		public int hashCode() {
+			return delegate.hashCode();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.lang.Object#equals(java.lang.Object)
+		 */
+		@Override
+		public boolean equals(Object obj) {
+			if (obj == delegate)
+				return true;
+			if (obj == this)
+				return true;
+			return delegate.equals(obj);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.lang.Object#toString()
+		 */
+		@Override
+		public String toString() {
+			return delegate.toString();
+		}
+
+	}
+
+	/**
+	 * 根据指定的映射入口和指定的只读生成器生成一个只读的映射入口。
+	 * 
+	 * @param entry
+	 *            指定的映射入口。
+	 * @param keyGen
+	 *            指定的键只读生成器。
+	 * @param valueGen
+	 *            指定的值只读生成器
+	 * @return 根据指定的映射入口和指定的只读生成器生成的只读映射入口。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static <K, V> Map.Entry<K, V> readOnlyMapEntry(Map.Entry<K, V> entry, ReadOnlyGenerator<K> keyGen,
+			ReadOnlyGenerator<V> valueGen) {
+		Objects.requireNonNull(entry, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_21));
+		Objects.requireNonNull(keyGen, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_19));
+		Objects.requireNonNull(valueGen, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_20));
+		return new ReadOnlyMapEntry<>(entry, keyGen, valueGen);
+	}
+
+	private static final class ReadOnlyMapEntry<K, V> implements Map.Entry<K, V> {
+
+		private final Map.Entry<K, V> delegate;
+		private final ReadOnlyGenerator<K> keyGen;
+		private final ReadOnlyGenerator<V> valueGen;
+
+		public ReadOnlyMapEntry(Entry<K, V> delegate, ReadOnlyGenerator<K> keyGen, ReadOnlyGenerator<V> valueGen) {
+			this.delegate = delegate;
+			this.keyGen = keyGen;
+			this.valueGen = valueGen;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Map.Entry#getKey()
+		 */
+		@Override
+		public K getKey() {
+			return keyGen.readOnly(delegate.getKey());
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Map.Entry#getValue()
+		 */
+		@Override
+		public V getValue() {
+			return valueGen.readOnly(delegate.getValue());
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Map.Entry#setValue(java.lang.Object)
+		 */
+		@Override
+		public V setValue(V value) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.lang.Object#hashCode()
+		 */
+		@Override
+		public int hashCode() {
+			return delegate.hashCode();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.lang.Object#equals(java.lang.Object)
+		 */
+		@Override
+		public boolean equals(Object obj) {
+			if (obj == delegate)
+				return true;
+			if (obj == this)
+				return true;
+			return delegate.equals(obj);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.lang.Object#toString()
+		 */
+		@Override
+		public String toString() {
+			return delegate.toString();
+		}
+
+	}
+
+	/**
+	 * 根据指定的映射和指定的只读生成器生成一个只读的映射。
+	 * 
+	 * @param map
+	 *            指定的映射。
+	 * @param keyGen
+	 *            指定的键只读生成器。
+	 * @param valueGen
+	 *            指定的值只读生成器
+	 * @return 根据指定的映射和指定的只读生成器生成的只读映射。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static <K, V> Map<K, V> readOnlyMap(Map<K, V> map, ReadOnlyGenerator<K> keyGen,
+			ReadOnlyGenerator<V> valueGen) {
+		Objects.requireNonNull(map, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_5));
+		Objects.requireNonNull(keyGen, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_19));
+		Objects.requireNonNull(valueGen, DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_20));
+		return new ReadOnlyMap<>(map, keyGen, valueGen);
+	}
+
+	private static final class ReadOnlyMap<K, V> implements Map<K, V> {
+
+		private final Map<K, V> delegate;
+		private final ReadOnlyGenerator<K> keyGen;
+		private final ReadOnlyGenerator<V> valueGen;
+
+		public ReadOnlyMap(Map<K, V> delegate, ReadOnlyGenerator<K> keyGen, ReadOnlyGenerator<V> valueGen) {
+			this.delegate = delegate;
+			this.keyGen = keyGen;
+			this.valueGen = valueGen;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Map#size()
+		 */
+		@Override
+		public int size() {
+			return delegate.size();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Map#isEmpty()
+		 */
+		@Override
+		public boolean isEmpty() {
+			return delegate.isEmpty();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Map#containsKey(java.lang.Object)
+		 */
+		@Override
+		public boolean containsKey(Object key) {
+			return delegate.containsKey(key);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Map#containsValue(java.lang.Object)
+		 */
+		@Override
+		public boolean containsValue(Object value) {
+			return delegate.containsValue(value);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Map#get(java.lang.Object)
+		 */
+		@Override
+		public V get(Object key) {
+			return valueGen.readOnly(delegate.get(key));
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Map#put(java.lang.Object, java.lang.Object)
+		 */
+		@Override
+		public V put(K key, V value) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Map#remove(java.lang.Object)
+		 */
+		@Override
+		public V remove(Object key) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Map#putAll(java.util.Map)
+		 */
+		@Override
+		public void putAll(Map<? extends K, ? extends V> m) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Map#clear()
+		 */
+		@Override
+		public void clear() {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Map#keySet()
+		 */
+		@Override
+		public Set<K> keySet() {
+			return readOnlySet(delegate.keySet(), keyGen);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Map#values()
+		 */
+		@Override
+		public Collection<V> values() {
+			return readOnlyCollection(delegate.values(), valueGen);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Map#entrySet()
+		 */
+		@Override
+		public Set<Entry<K, V>> entrySet() {
+			return readOnlySet(delegate.entrySet(), element -> {
+				return readOnlyMapEntry(element, keyGen, valueGen);
+			});
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.lang.Object#hashCode()
+		 */
+		@Override
+		public int hashCode() {
+			return delegate.hashCode();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.lang.Object#equals(java.lang.Object)
+		 */
+		@Override
+		public boolean equals(Object obj) {
+			if (obj == delegate)
+				return true;
+			if (obj == this)
+				return true;
+			return delegate.equals(obj);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.lang.Object#toString()
+		 */
+		@Override
+		public String toString() {
+			return delegate.toString();
 		}
 
 	}
