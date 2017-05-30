@@ -471,7 +471,9 @@ public enum StringFieldKey implements Name {
 
 	/** BackgroundUtil类第0号文本字段 */
 	BACKGROUNDUTIL_0(new DefaultName("BackgroundUtil.0")),
-
+	/** BackgroundUtil类第1号文本字段 */
+	BACKGROUNDUTIL_1(new DefaultName("BackgroundUtil.1")),
+	
 	/** ResourceUtil类第0号文本字段 */
 	RESOURCEUTIL_0(new DefaultName("ResourceUtil.0")),
 
@@ -544,6 +546,9 @@ public enum StringFieldKey implements Name {
 	/** Interval类第6号文本字段 */
 	INTERVAL_6(new DefaultName("Interval.6")),
 
+	/** ThreadUtil类第0号文本字段 */
+	THREADUTIL_0(new DefaultName("ThreadUtil.0")),
+	
 	;
 
 	private final Name name;

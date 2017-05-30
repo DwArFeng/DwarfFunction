@@ -171,3 +171,8 @@ Beta_0.1.3
 		新增 basic.num.Interval，用于表示数学中的区间。
 		在 basic.num.NumberUtil 中新增用于检测一个数是否处于一个区间中以及要求一个数应该处于一个区间中的方法。
 		新增 basic.prog.ProgramObverser 类，用于侦听一个程序的状态，在程序状态改变时可以调用观察器中的方法。
+	过时的类
+		过时 basic.threads.ThreadSafeUtil 用 basic.threads.ThreadUtil 代替。
+	新增只读结构
+		只读结构用于集合，其特性是除了不能操作本身的编辑方法之外，从该集合中返回的对象也不能编辑。
+		为各集合方法和大部分 develop 包中的模型提供了只读结构的工厂方法。

@@ -1,0 +1,25 @@
+package com.dwarfeng.dutil.test.basic.threads;
+
+import static org.junit.Assert.*;
+
+import java.util.concurrent.locks.ReentrantLock;
+
+import org.junit.Test;
+
+import com.dwarfeng.dutil.basic.threads.ThreadUtil;
+
+
+public class ThreadUtilTest {
+
+	@Test
+	public void testUnmodifiableLock_0() {
+		ThreadUtil.unmodifiableLock(new ReentrantLock());
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testUnmodifiableLock_1() {
+		ThreadUtil.unmodifiableLock(null);
+	}
+
+
+}

@@ -12,6 +12,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
  * 
  * @author DwArFeng
  * @since 0.1.2-beta
+ * @deprecated 该类已经由 {@link ThreadUtil}代替。
  */
 public final class ThreadSafeUtil {
 
@@ -111,7 +112,7 @@ public final class ThreadSafeUtil {
 		}
 	}
 
-	//禁止外部实例化。
+	// 禁止外部实例化。
 	private ThreadSafeUtil() {
 	}
 

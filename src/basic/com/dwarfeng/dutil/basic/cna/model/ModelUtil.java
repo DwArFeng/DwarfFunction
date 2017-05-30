@@ -1,13 +1,11 @@
 package com.dwarfeng.dutil.basic.cna.model;
 
-import java.nio.channels.FileChannel.MapMode;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.locks.ReadWriteLock;
@@ -5021,11 +5019,304 @@ public final class ModelUtil {
 			ReadOnlyGenerator<V> generator) {
 		Objects.requireNonNull(keySetModel, DwarfUtil.getStringField(StringFieldKey.MODELUTIL_4));
 		Objects.requireNonNull(generator, DwarfUtil.getStringField(StringFieldKey.MODELUTIL_5));
-		//TODO 待完成。
-		return null;
-		//return new ReadOnlyKeySetModel<>(keySetModel, generator);
+		return new ReadOnlyKeySetModel<>(keySetModel, generator);
 	}
-	
+
+	private static final class ReadOnlyKeySetModel<K, V extends WithKey<K>> implements KeySetModel<K, V> {
+
+		private final KeySetModel<K, V> delegate;
+		private final ReadOnlyGenerator<V> generator;
+
+		public ReadOnlyKeySetModel(KeySetModel<K, V> delegate, ReadOnlyGenerator<V> generator) {
+			this.delegate = delegate;
+			this.generator = generator;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Set#size()
+		 */
+		@Override
+		public int size() {
+			return delegate.size();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Set#isEmpty()
+		 */
+		@Override
+		public boolean isEmpty() {
+			return delegate.isEmpty();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Set#contains(java.lang.Object)
+		 */
+		@Override
+		public boolean contains(Object o) {
+			return delegate.contains(o);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Set#iterator()
+		 */
+		@Override
+		public Iterator<V> iterator() {
+			return CollectionUtil.readOnlyIterator(delegate.iterator(), generator);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Set#toArray()
+		 */
+		@Override
+		public Object[] toArray() {
+			@SuppressWarnings("unchecked")
+			V[] eArray = (V[]) delegate.toArray();
+			return ArrayUtil.readOnlyArray(eArray, generator);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Set#toArray(java.lang.Object[])
+		 */
+		@SuppressWarnings("unchecked")
+		@Override
+		public <T> T[] toArray(T[] a) {
+			T[] tArray = delegate.toArray(a);
+			return (T[]) ArrayUtil.readOnlyArray(((V[]) tArray), generator);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Set#add(java.lang.Object)
+		 */
+		@Override
+		public boolean add(V e) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Set#remove(java.lang.Object)
+		 */
+		@Override
+		public boolean remove(Object o) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Set#containsAll(java.util.Collection)
+		 */
+		@Override
+		public boolean containsAll(Collection<?> c) {
+			return delegate.containsAll(c);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Set#addAll(java.util.Collection)
+		 */
+		@Override
+		public boolean addAll(Collection<? extends V> c) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Set#retainAll(java.util.Collection)
+		 */
+		@Override
+		public boolean retainAll(Collection<?> c) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Set#removeAll(java.util.Collection)
+		 */
+		@Override
+		public boolean removeAll(Collection<?> c) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Set#clear()
+		 */
+		@Override
+		public void clear() {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		 */
+		@Override
+		public Set<SetObverser<V>> getObversers() {
+			return delegate.getObversers();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
+		 * dutil.basic.prog.Obverser)
+		 */
+		@Override
+		public boolean addObverser(SetObverser<V> obverser) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
+		 * .dutil.basic.prog.Obverser)
+		 */
+		@Override
+		public boolean removeObverser(SetObverser<V> obverser) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		 */
+		@Override
+		public void clearObverser() {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#get(java.lang.Object)
+		 */
+		@Override
+		public V get(K key) {
+			return generator.readOnly(delegate.get(key));
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsKey(java.lang.
+		 * Object)
+		 */
+		@Override
+		public boolean containsKey(Object key) {
+			return delegate.containsKey(key);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsAllKey(java.
+		 * util.Collection)
+		 */
+		@Override
+		public boolean containsAllKey(Collection<?> c) {
+			return delegate.containsAllKey(c);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeKey(java.lang.
+		 * Object)
+		 */
+		@Override
+		public boolean removeKey(Object key) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeAllKey(java.util
+		 * .Collection)
+		 */
+		@Override
+		public boolean removeAllKey(Collection<?> c) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#retainAllKey(java.util
+		 * .Collection)
+		 */
+		@Override
+		public boolean retainAllKey(Collection<?> c) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.lang.Object#hashCode()
+		 */
+		@Override
+		public int hashCode() {
+			return delegate.hashCode();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.lang.Object#equals(java.lang.Object)
+		 */
+		@Override
+		public boolean equals(Object obj) {
+			if (obj == delegate)
+				return true;
+			if (obj == this)
+				return false;
+			return delegate.equals(obj);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.lang.Object#toString()
+		 */
+		@Override
+		public String toString() {
+			return delegate.toString();
+		}
+
+	}
+
 	// 禁止外部实例化。
 	private ModelUtil() {
 	};
