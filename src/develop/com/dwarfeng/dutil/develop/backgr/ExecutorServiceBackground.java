@@ -16,6 +16,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.cna.CollectionUtil;
 import com.dwarfeng.dutil.basic.threads.NumberedThreadFactory;
 import com.dwarfeng.dutil.develop.backgr.obv.BackgroundObverser;
 import com.dwarfeng.dutil.develop.backgr.obv.TaskObverser;
@@ -43,7 +44,7 @@ public class ExecutorServiceBackground extends AbstractBackground {
 	private final Lock runningLock = new ReentrantLock();
 	private final Condition runningCondition = runningLock.newCondition();
 	private final Set<TaskInspector> inspecRefs = new HashSet<>();
-	
+
 	private boolean shutdownFlag = false;
 	private boolean terminateFlag = false;
 
@@ -91,7 +92,7 @@ public class ExecutorServiceBackground extends AbstractBackground {
 			if (!task.addObverser(inspector))
 				return false;
 
-			try {	
+			try {
 				inspecRefs.add(inspector);
 				executorService.submit(task);
 				tasks.add(task);
@@ -232,7 +233,9 @@ public class ExecutorServiceBackground extends AbstractBackground {
 	 */
 	@Override
 	public Set<Task> tasks() {
-		return Collections.unmodifiableSet(tasks);
+		return CollectionUtil.readOnlySet(tasks, task -> {
+			return BackgroundUtil.unmodifiableTask(task);
+		});
 	}
 
 	private class TaskInspector implements TaskObverser {

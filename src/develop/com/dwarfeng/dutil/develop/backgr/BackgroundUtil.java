@@ -1,14 +1,15 @@
 package com.dwarfeng.dutil.develop.backgr;
 
+import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.threads.ThreadUtil;
+import com.dwarfeng.dutil.develop.backgr.obv.BackgroundObverser;
 import com.dwarfeng.dutil.develop.backgr.obv.TaskObverser;
 
 /**
@@ -240,8 +241,204 @@ public final class BackgroundUtil {
 		}
 
 	}
-	
-	
+
+	/**
+	 * 根据指定的后台生成一个不可编辑的后台。
+	 * 
+	 * @param background
+	 *            指定的后台。
+	 * @return 由指定的后台生成的不可编辑的后台。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static Background unmodifiableBackground(Background background) {
+		Objects.requireNonNull(background, DwarfUtil.getStringField(StringFieldKey.BACKGROUNDUTIL_2));
+		return new UnmodifiableBackground(background);
+	}
+
+	private static final class UnmodifiableBackground implements Background {
+
+		private final Background delegate;
+
+		public UnmodifiableBackground(Background delegate) {
+			this.delegate = delegate;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		 */
+		@Override
+		public Set<BackgroundObverser> getObversers() {
+			return delegate.getObversers();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
+		 * dutil.basic.prog.Obverser)
+		 */
+		@Override
+		public boolean addObverser(BackgroundObverser obverser) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
+		 * .dutil.basic.prog.Obverser)
+		 */
+		@Override
+		public boolean removeObverser(BackgroundObverser obverser) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		 */
+		@Override
+		public void clearObverser() {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.basic.threads.ExternalReadWriteThreadSafe#getLock(
+		 * )
+		 */
+		@Override
+		public ReadWriteLock getLock() {
+			return ThreadUtil.unmodifiableReadWriteLock(delegate.getLock());
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.backgr.Background#submit(com.dwarfeng.
+		 * dutil.develop.backgr.Task)
+		 */
+		@Override
+		public boolean submit(Task task) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.backgr.Background#submitAll(java.util.
+		 * Collection)
+		 */
+		@Override
+		public boolean submitAll(Collection<? extends Task> c) {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.backgr.Background#shutdown()
+		 */
+		@Override
+		public void shutdown() {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.backgr.Background#isShutdown()
+		 */
+		@Override
+		public boolean isShutdown() {
+			return delegate.isShutdown();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.backgr.Background#isTerminated()
+		 */
+		@Override
+		public boolean isTerminated() {
+			return delegate.isTerminated();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.backgr.Background#awaitTermination()
+		 */
+		@Override
+		public void awaitTermination() throws InterruptedException {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * com.dwarfeng.dutil.develop.backgr.Background#awaitTermination(long,
+		 * java.util.concurrent.TimeUnit)
+		 */
+		@Override
+		public boolean awaitTermination(long timeout, TimeUnit unit) throws InterruptedException {
+			throw new UnsupportedOperationException();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see com.dwarfeng.dutil.develop.backgr.Background#tasks()
+		 */
+		@Override
+		public Set<Task> tasks() {
+			return delegate.tasks();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.lang.Object#hashCode()
+		 */
+		@Override
+		public int hashCode() {
+			return delegate.hashCode();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.lang.Object#equals(java.lang.Object)
+		 */
+		@Override
+		public boolean equals(Object obj) {
+			if (delegate.equals(obj))
+				return true;
+			return super.equals(obj);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.lang.Object#toString()
+		 */
+		@Override
+		public String toString() {
+			return delegate.toString();
+		}
+
+	}
 
 	private BackgroundUtil() {
 	}

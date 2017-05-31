@@ -473,6 +473,8 @@ public enum StringFieldKey implements Name {
 	BACKGROUNDUTIL_0(new DefaultName("BackgroundUtil.0")),
 	/** BackgroundUtil类第1号文本字段 */
 	BACKGROUNDUTIL_1(new DefaultName("BackgroundUtil.1")),
+	/** BackgroundUtil类第2号文本字段 */
+	BACKGROUNDUTIL_2(new DefaultName("BackgroundUtil.2")),
 	
 	/** ResourceUtil类第0号文本字段 */
 	RESOURCEUTIL_0(new DefaultName("ResourceUtil.0")),
@@ -504,9 +506,13 @@ public enum StringFieldKey implements Name {
 	/** AbstractI18nInfo类第1号文本字段 */
 	ABSTRACTI18NINFO_1(new DefaultName("AbstractI18nInfo.1")),
 
-	/** DelegateI18nHandler类第0号文本字段 */
-	I18NUTIL_0(new DefaultName("DelegateI18nHandler.0")),
-
+	/** I18nUtil类第0号文本字段 */
+	I18NUTIL_0(new DefaultName("I18nUtil.0")),
+	/** I18nUtil类第1号文本字段 */
+	I18NUTIL_1(new DefaultName("I18nUtil.1")),
+	/** I28nUtil类第2号文本字段 */
+	I18NUTIL_2(new DefaultName("I28nUtil.2")),
+	
 	/** DelegateI18nHandler类第0号文本字段 */
 	DELEGATEI18NHANDLER_0(new DefaultName("DelegateI18nHandler.0")),
 
