@@ -1,7 +1,5 @@
 package com.dwarfeng.dutil.test.basic.cna;
 
-import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;

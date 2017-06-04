@@ -12,7 +12,7 @@ import com.dwarfeng.dutil.basic.StringFieldKey;
 import com.dwarfeng.dutil.basic.cna.ArrayUtil;
 import com.dwarfeng.dutil.basic.cna.CollectionUtil;
 import com.dwarfeng.dutil.basic.prog.Buildable;
-import com.dwarfeng.dutil.basic.str.NameableComparator;
+import com.dwarfeng.dutil.basic.str.NameComparator;
 import com.dwarfeng.dutil.math.AbstractMathObject;
 import com.dwarfeng.dutil.math.Region;
 
@@ -144,7 +144,7 @@ Iterable<FothVariable>, Region<FothVariable>{
 		@Override
 		public FothVariableSpace build() {
 			FothVariable[] vars = set.toArray(new FothVariable[0]);
-			Arrays.sort(vars, new NameableComparator());
+			Arrays.sort(vars, new NameComparator());
 			return new FothVariableSpace(vars);
 		}
 		

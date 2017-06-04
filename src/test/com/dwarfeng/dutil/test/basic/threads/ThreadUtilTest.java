@@ -1,7 +1,5 @@
 package com.dwarfeng.dutil.test.basic.threads;
 
-import static org.junit.Assert.*;
-
 import java.util.concurrent.locks.ReentrantLock;
 
 import org.junit.Test;
