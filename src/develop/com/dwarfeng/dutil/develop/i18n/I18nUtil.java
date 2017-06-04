@@ -905,6 +905,20 @@ public final class I18nUtil {
 	}
 
 	/**
+	 * 由指定的国际化处理器生成一个只读的国际化处理器。
+	 * 
+	 * @param i18nHandler
+	 *            指定的国际化处理器。
+	 * @return 由指定的国际化处理器生成的只读的国际化处理器。
+	 */
+	public static I18nHandler readOnlyI18nHandler(I18nHandler i18nHandler) {
+		Objects.requireNonNull(i18nHandler, DwarfUtil.getStringField(StringFieldKey.I18NUTIL_0));
+		return readOnlyI18nHandler(i18nHandler, i18nInfo -> {
+			return unmodifiableI18nInfo(i18nInfo);
+		});
+	}
+
+	/**
 	 * 由指定的国际化处理器和指定的只读生成器生成一个只读的国际化处理器。
 	 * 
 	 * @param i18nHandler
@@ -1217,8 +1231,7 @@ public final class I18nUtil {
 		 */
 		@Override
 		public int hashCode() {
-			// TODO Auto-generated method stub
-			return super.hashCode();
+			return delegate.hashCode();
 		}
 
 		/*

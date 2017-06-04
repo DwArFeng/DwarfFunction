@@ -478,7 +478,11 @@ public enum StringFieldKey implements Name {
 	
 	/** ResourceUtil类第0号文本字段 */
 	RESOURCEUTIL_0(new DefaultName("ResourceUtil.0")),
-
+	/** ResourceUtil类第1号文本字段 */
+	RESOURCEUTIL_1(new DefaultName("ResourceUtil.1")),
+	/** ResourceUtil类第2号文本字段 */
+	RESOURCEUTIL_2(new DefaultName("ResourceUtil.2")),
+	
 	/** DelegateResourceHandler类第0号文本字段 */
 	DELEGATERESOURCEHANDLER_0(new DefaultName("DelegateResourceHandler.0")),
 

@@ -1,5 +1,9 @@
 package com.dwarfeng.dutil.develop.resource;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 import com.dwarfeng.dutil.basic.cna.model.KeySetModel;
 
 /**
@@ -12,5 +16,49 @@ import com.dwarfeng.dutil.basic.cna.model.KeySetModel;
  * @since 0.1.1-beta
  */
 public interface ResourceHandler extends KeySetModel<String, Resource> {
+
+	/**
+	 * 打开指定键对应的资源的输入流。
+	 * 
+	 * @param key
+	 *            指定的键。
+	 * @return 指定的键对应资源的输入流。
+	 * @throws IOException
+	 *             IO异常。
+	 * @throws IllegalArgumentException
+	 *             处理器不存在指定的键。
+	 */
+	public default InputStream openInputStream(String key) throws IOException, IllegalArgumentException{
+		return get(key).openInputStream();
+	}
+
+	/**
+	 * 打开指定键对应的资源的输出流。
+	 * 
+	 * @param key
+	 *            指定的资源对应的键。
+	 * @return 指定的键对应的资源的输出流。
+	 * @throws IOException
+	 *             IO异常。
+	 * @throws IllegalArgumentException
+	 *             处理器不存在指定的键。
+	 */
+	public default OutputStream openOutputStream(String key) throws IOException, IllegalArgumentException {
+		return get(key).openOutputStream();
+	}
+
+	/**
+	 * 重置指定的键对应的资源。
+	 * 
+	 * @param key
+	 *            指定的资源对应的键。
+	 * @throws IOException
+	 *             IO异常。
+	 * @throws IllegalArgumentException
+	 *             处理器中不存在指定的键。
+	 */
+	public default void reset(String key) throws IOException, IllegalArgumentException {
+		get(key).reset();
+	}
 
 }
