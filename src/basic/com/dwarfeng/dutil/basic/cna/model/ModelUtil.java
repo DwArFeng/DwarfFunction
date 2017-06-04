@@ -368,13 +368,15 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * 由指定的列表模型生成一个只读的列表模型。
+	 * 由指定的列表模型和指定的只读生成器生成一个只读的列表模型。
 	 * 
 	 * @param listModel
 	 *            指定的列表模型。
+	 * @param generator
+	 *            指定的只读生成器。
 	 * @param <E>
 	 *            列表模型的元素类型。
-	 * @return 由指定的列表模型生成的只读的列表模型。
+	 * @return 由指定的列表模型和指定的只读生成器生成的只读的列表模型。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
@@ -1781,13 +1783,15 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * 由指定的集合模型生成一个只读的集合模型。
+	 * 由指定的集合模型和指定的只读生成器生成一个只读的集合模型。
 	 * 
-	 * @param listModel
+	 * @param setModel
 	 *            指定的集合模型。
+	 * @param generator
+	 *            指定的只读生成器。
 	 * @param <E>
 	 *            集合模型的元素类型。
-	 * @return 由指定的集合模型生成的只读的集合模型。
+	 * @return 由指定的集合模型和指定的只读生成器生成的只读的集合模型。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
@@ -2571,6 +2575,10 @@ public final class ModelUtil {
 	 *            指定的键只读生成器。
 	 * @param valueGen
 	 *            指定的值只读生成器。
+	 * @param <K>
+	 *            只读生成器的键的泛型。
+	 * @param <V>
+	 *            只读生成器的值的泛型。
 	 * @return 由指定的映射模型和指定的只读生成器生成的只读映射模型。
 	 */
 	public static <K, V> MapModel<K, V> readOnlyMapModel(MapModel<K, V> mapModel, ReadOnlyGenerator<K> keyGen,
@@ -3849,6 +3857,10 @@ public final class ModelUtil {
 	 *            指定的键值列表模型。
 	 * @param generator
 	 *            指定的只读生成器。
+	 * @param <K>
+	 *            只读生成器的键的泛型。
+	 * @param <V>
+	 *            只读生成器的值的泛型。
 	 * @return 由指定的键值列表模型和指定的只读生成器生成的只读键值列表模型。
 	 */
 	public static <K, V extends WithKey<K>> KeyListModel<K, V> readOnlyKeyListModel(KeyListModel<K, V> keyListModel,
@@ -5011,6 +5023,10 @@ public final class ModelUtil {
 	 *            指定的键值集合模型。
 	 * @param generator
 	 *            指定的只读生成器。
+	 * @param <K>
+	 *            只读生成器的键的泛型。
+	 * @param <V>
+	 *            只读生成器的值的泛型。
 	 * @return 由指定的键值集合模型和指定的只读生成器生成一个指定的只读键值集合模型。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。

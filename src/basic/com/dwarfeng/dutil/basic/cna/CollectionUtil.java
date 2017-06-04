@@ -942,6 +942,8 @@ public final class CollectionUtil {
 	 *            指定的迭代器。
 	 * @param generator
 	 *            指定的只读生成器。
+	 * @param <E>
+	 *            迭代器的泛型。
 	 * @return 根据指定的迭代器和指定的只读生成器生成的只读迭代器。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
@@ -989,6 +991,8 @@ public final class CollectionUtil {
 	 * 
 	 * @param listIterator
 	 *            指定的列表迭代器。
+	 * @param <E>
+	 *            列表迭代器的泛型。
 	 * @return 根据指定的列表迭代器生成的不可编辑的列表迭代器。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
@@ -1105,6 +1109,8 @@ public final class CollectionUtil {
 	 *            指定的列表迭代器。
 	 * @param generator
 	 *            指定的只读生成器。
+	 * @param <E>
+	 *            列表迭代器的泛型。
 	 * @return 根据指定的列表迭代器和指定的只读生成器生成的只读的列表迭代器。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
@@ -1225,6 +1231,8 @@ public final class CollectionUtil {
 	 *            指定的集合。
 	 * @param generator
 	 *            指定的只读生成器。
+	 * @param <E>
+	 *            只读集合的泛型。
 	 * @return 根据指定的集合和指定的只读生成器生成的只读集合。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
@@ -1398,6 +1406,8 @@ public final class CollectionUtil {
 	 *            指定的集合。
 	 * @param generator
 	 *            指定的只读生成器。
+	 * @param <E>
+	 *            只读集合的泛型。
 	 * @return 根据指定的集合和指定的只读生成器生成的只读集合。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
@@ -1595,6 +1605,8 @@ public final class CollectionUtil {
 	 *            指定的列表。
 	 * @param generator
 	 *            指定的只读生成器。
+	 * @param <E>
+	 *            只读列表的泛型。
 	 * @return 根据指定的列表和指定的只读生成器生成的只读列表。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
@@ -1894,6 +1906,10 @@ public final class CollectionUtil {
 	 *            指定的键只读生成器。
 	 * @param valueGen
 	 *            指定的值只读生成器
+	 * @param <K>
+	 *            只读映射的键的泛型。
+	 * @param <V>
+	 *            只读映射的值的泛型。
 	 * @return 根据指定的映射入口和指定的只读生成器生成的只读映射入口。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
@@ -1993,6 +2009,10 @@ public final class CollectionUtil {
 	 *            指定的键只读生成器。
 	 * @param valueGen
 	 *            指定的值只读生成器
+	 * @param <K>
+	 *            只读映射的键的泛型。
+	 * @param <V>
+	 *            只读的映射的值的泛型。
 	 * @return 根据指定的映射和指定的只读生成器生成的只读映射。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。

@@ -710,6 +710,8 @@ public final class ArrayUtil {
 	 *            指定的数组。
 	 * @param generator
 	 *            指定的只读生成器。
+	 * @param <T>
+	 *            数组的类型。
 	 * @return 根据指定的数组和指定的只读生成器生成一个只读的数组。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
