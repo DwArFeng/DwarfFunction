@@ -449,25 +449,30 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	@Override
 	public boolean setCurrentLocale(Locale locale) {
-		if (!containsKey(locale))
-			return false;
+		if (Objects.isNull(locale)) {
+			resetDefaultLocale();
+			return true;
+		} else {
+			if (!containsKey(locale))
+				return false;
 
-		I18nInfo tempI18nInfo = get(locale);
+			I18nInfo tempI18nInfo = get(locale);
 
-		I18n tempI18n = null;
-		try {
-			tempI18n = tempI18nInfo.newI18n();
-		} catch (Exception e) {
-			return false;
+			I18n tempI18n = null;
+			try {
+				tempI18n = tempI18nInfo.newI18n();
+			} catch (Exception e) {
+				return false;
+			}
+
+			Locale oldLocale = currentLocale;
+			currentLocale = locale;
+			currentI18n = tempI18n;
+
+			fireCurrentLocaleChanged(oldLocale, locale, tempI18n);
+
+			return true;
 		}
-
-		Locale oldLocale = currentLocale;
-		currentLocale = locale;
-		currentI18n = tempI18n;
-
-		fireCurrentLocaleChanged(oldLocale, locale, tempI18n);
-
-		return true;
 	}
 
 	/**

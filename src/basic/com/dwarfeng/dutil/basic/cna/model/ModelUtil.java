@@ -1214,9 +1214,9 @@ public final class ModelUtil {
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 * @deprecated 该方法由于命名错误，已经过时，由
-	 *             {@link ModelUtil#syncSetModel(SyncSetModel)}代替。
+	 *             {@link ModelUtil#syncSetModel(SetModel)}代替。
 	 */
-	public static <E> SyncSetModel<E> syncSetMdel(SyncSetModel<E> setModel) {
+	public static <E> SyncSetModel<E> syncSetMdel(SetModel<E> setModel) {
 		Objects.requireNonNull(setModel, DwarfUtil.getStringField(StringFieldKey.MODELUTIL_1));
 		return new SyncSetModelImpl<>(setModel);
 	}
@@ -1232,7 +1232,7 @@ public final class ModelUtil {
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public static <E> SyncSetModel<E> syncSetModel(SyncSetModel<E> setModel) {
+	public static <E> SyncSetModel<E> syncSetModel(SetModel<E> setModel) {
 		return syncSetMdel(setModel);
 	}
 

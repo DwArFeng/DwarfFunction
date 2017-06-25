@@ -475,6 +475,8 @@ public enum StringFieldKey implements Name {
 	BACKGROUNDUTIL_1(new DefaultName("BackgroundUtil.1")),
 	/** BackgroundUtil类第2号文本字段 */
 	BACKGROUNDUTIL_2(new DefaultName("BackgroundUtil.2")),
+	/** BackgroundUtil类第3号文本字段 */
+	BACKGROUNDUTIL_3(new DefaultName("BackgroundUtil.3")),
 	
 	/** ResourceUtil类第0号文本字段 */
 	RESOURCEUTIL_0(new DefaultName("ResourceUtil.0")),

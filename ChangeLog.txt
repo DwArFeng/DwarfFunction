@@ -184,3 +184,10 @@ Beta_0.1.3_20170604_build_A
 		develop.resource.ResourceHandler.openInputStream(String)
 		develop.resource.ResourceHandler.openOutputStream(String)
 		develop.resource.ResourceHandler.reset(String)
+		
+Beta_0.1.4_20170625_build_A
+	修复bug
+		修复 develop.i18n.DelegateI18nHandler.setCurrentLocale(null) 时不接受null值的bug 。
+		修复 com.dwarfeng.dutil.basic.cna.model.ModelUtil.syncSetModel 方法入口参数类型不正确的 bug。
+	新增只读结构
+		新增方法 develop.backgr.BackgroundUtil.readOnlyBackground

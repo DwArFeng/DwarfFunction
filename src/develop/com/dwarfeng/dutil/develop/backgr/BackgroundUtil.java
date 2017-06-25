@@ -8,6 +8,8 @@ import java.util.concurrent.locks.ReadWriteLock;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.cna.CollectionUtil;
+import com.dwarfeng.dutil.basic.prog.ReadOnlyGenerator;
 import com.dwarfeng.dutil.basic.threads.ThreadUtil;
 import com.dwarfeng.dutil.develop.backgr.obv.BackgroundObverser;
 import com.dwarfeng.dutil.develop.backgr.obv.TaskObverser;
@@ -436,6 +438,155 @@ public final class BackgroundUtil {
 		@Override
 		public String toString() {
 			return delegate.toString();
+		}
+
+	}
+
+	/**
+	 * 由指定的后台和指定的只读生成器生成一个只读后台。
+	 * 
+	 * @param background
+	 *            指定的后台。
+	 * @param generator
+	 *            指定的只读生成器。
+	 * @return 由指定的后台和指定的只读生成器生成的只读后台。
+	 */
+	public static Background readOnlyBackground(Background background, ReadOnlyGenerator<Task> generator) {
+		Objects.requireNonNull(background, DwarfUtil.getStringField(StringFieldKey.BACKGROUNDUTIL_2));
+		Objects.requireNonNull(generator, DwarfUtil.getStringField(StringFieldKey.BACKGROUNDUTIL_3));
+
+		return new ReadOnlyBackground(background, generator);
+	}
+
+	/**
+	 * 根据指定的后台生成一个只读的后台。
+	 * 
+	 * @param background
+	 *            指定的后台。
+	 * @return 由指定的后台生成的只读后台。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static Background readOnlyBackground(Background background) {
+		Objects.requireNonNull(background, DwarfUtil.getStringField(StringFieldKey.BACKGROUNDUTIL_2));
+
+		return new ReadOnlyBackground(background, task -> {
+			return unmodifiableTask(task);
+		});
+	}
+
+	private static final class ReadOnlyBackground implements Background {
+
+		private final Background delegate;
+		private final ReadOnlyGenerator<Task> generator;
+
+		public ReadOnlyBackground(Background delegate, ReadOnlyGenerator<Task> generator) {
+			this.delegate = delegate;
+			this.generator = generator;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public ReadWriteLock getLock() {
+			return delegate.getLock();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public Set<BackgroundObverser> getObversers() {
+			return delegate.getObversers();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean addObverser(BackgroundObverser obverser) {
+			throw new UnsupportedOperationException();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean removeObverser(BackgroundObverser obverser) {
+			throw new UnsupportedOperationException();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public void clearObverser() {
+			throw new UnsupportedOperationException();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean submit(Task task) {
+			throw new UnsupportedOperationException();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean submitAll(Collection<? extends Task> c) {
+			throw new UnsupportedOperationException();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public void shutdown() {
+			throw new UnsupportedOperationException();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean isShutdown() {
+			return delegate.isShutdown();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean isTerminated() {
+			return delegate.isTerminated();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public void awaitTermination() throws InterruptedException {
+			throw new UnsupportedOperationException();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean awaitTermination(long timeout, TimeUnit unit) throws InterruptedException {
+			throw new UnsupportedOperationException();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public Set<Task> tasks() {
+			return CollectionUtil.readOnlySet(delegate.tasks(), generator);
 		}
 
 	}
