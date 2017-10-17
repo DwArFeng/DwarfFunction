@@ -191,3 +191,9 @@ Beta_0.1.4_20170625_build_A
 		修复 com.dwarfeng.dutil.basic.cna.model.ModelUtil.syncSetModel 方法入口参数类型不正确的 bug。
 	新增只读结构
 		新增方法 develop.backgr.BackgroundUtil.readOnlyBackground
+		
+Beta_0.1.5_20170625_build_A
+	新增引用模型 dutil.basic.cna.model.ReferenceModel<E>，用以监控单一元素。
+	过时dutil.basic.cna.model.ModelUtil.unmodifiableKeySetModel(KeySetModel<K, V>, ReadOnlyGenerator<V>)方法。
+	新增dutil.basic.cna.model.ModelUtil.unmodifiableKeySetModel(KeySetModel<K, V>)代替。
+		

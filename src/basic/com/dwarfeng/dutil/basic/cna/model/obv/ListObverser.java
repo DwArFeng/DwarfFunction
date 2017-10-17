@@ -4,7 +4,7 @@ import com.dwarfeng.dutil.basic.cna.model.ListModel;
 import com.dwarfeng.dutil.basic.prog.Obverser;
 
 /**
- * 列表模型侦听器。
+ * 列表模型观察器。
  * @author DwArFeng
  * @since 0.1.0-beta
  */

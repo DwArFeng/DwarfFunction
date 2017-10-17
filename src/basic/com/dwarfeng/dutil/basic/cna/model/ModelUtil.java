@@ -17,6 +17,7 @@ import com.dwarfeng.dutil.basic.cna.ArrayUtil;
 import com.dwarfeng.dutil.basic.cna.CollectionUtil;
 import com.dwarfeng.dutil.basic.cna.model.obv.ListObverser;
 import com.dwarfeng.dutil.basic.cna.model.obv.MapObverser;
+import com.dwarfeng.dutil.basic.cna.model.obv.ReferenceObverser;
 import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
 import com.dwarfeng.dutil.basic.prog.ReadOnlyGenerator;
 import com.dwarfeng.dutil.basic.prog.WithKey;
@@ -1213,8 +1214,7 @@ public final class ModelUtil {
 	 * @return 由指定的集合模型生成的线程安全的集合模型。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
-	 * @deprecated 该方法由于命名错误，已经过时，由
-	 *             {@link ModelUtil#syncSetModel(SetModel)}代替。
+	 * @deprecated 该方法由于命名错误，已经过时，由 {@link ModelUtil#syncSetModel(SetModel)}代替。
 	 */
 	public static <E> SyncSetModel<E> syncSetMdel(SetModel<E> setModel) {
 		Objects.requireNonNull(setModel, DwarfUtil.getStringField(StringFieldKey.MODELUTIL_1));
@@ -3419,7 +3419,7 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * 由指定的键值列表模型生成一个线程安全的键值列表模型。
+	 * 由指定的键值列表模型生成一个不可更改的键值列表模型。
 	 * 
 	 * @param keyListModel
 	 *            指定的键值列表模型。
@@ -3427,7 +3427,7 @@ public final class ModelUtil {
 	 *            键值列表模型的键的类型。
 	 * @param <V>
 	 *            键值列表的值的模型。
-	 * @return 由指定的键值列表模型生成的线程安全的键值列表模型。
+	 * @return 由指定的键值列表模型生成的不可更改的键值列表模型。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
@@ -4721,8 +4721,33 @@ public final class ModelUtil {
 
 	}
 
+	/**
+	 * 由指定的键值列表模型和指定的只读生成器生成不可编辑的键值列表模型。
+	 * 
+	 * @param keySetModel
+	 *            指定的键值列表模型。
+	 * @param generator
+	 *            指定的只读生成器。
+	 * @return 由指定的键值列表模型和指定的只读生成器生成的不可编辑的键值列表模型。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 * @deprecated 该方法由于错误的拥有一个多余的参数，已经由
+	 *             <code>unmodifiableKeySetModel(KeySetModel&ltK,V&gt)</code>代替。
+	 */
 	public static <K, V extends WithKey<K>> KeySetModel<K, V> unmodifiableKeySetModel(KeySetModel<K, V> keySetModel,
 			ReadOnlyGenerator<V> generator) {
+		Objects.requireNonNull(keySetModel, DwarfUtil.getStringField(StringFieldKey.MODELUTIL_4));
+		return new UnmodifiableKeySetModel<>(keySetModel);
+	}
+
+	/**
+	 * 有指定的键值列表模型生成不可编辑的键值列表模型。
+	 * 
+	 * @param keySetModel
+	 *            指定的键值列表模型。
+	 * @return 由指定的键值列表模型生成的不可编辑的键值列表模型。
+	 */
+	public static <K, V extends WithKey<K>> KeySetModel<K, V> unmodifiableKeySetModel(KeySetModel<K, V> keySetModel) {
 		Objects.requireNonNull(keySetModel, DwarfUtil.getStringField(StringFieldKey.MODELUTIL_4));
 		return new UnmodifiableKeySetModel<>(keySetModel);
 	}
@@ -5325,6 +5350,385 @@ public final class ModelUtil {
 		 * (non-Javadoc)
 		 * 
 		 * @see java.lang.Object#toString()
+		 */
+		@Override
+		public String toString() {
+			return delegate.toString();
+		}
+
+	}
+
+	/**
+	 * 由指定的引用模型生成一个线程安全的引用模型。
+	 * 
+	 * @param referenceModel
+	 *            指定的引用模型。
+	 * @return 由指定的引用模型生成的线程安全的引用模型。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static <E> SyncReferenceModel<E> syncReferenceModel(ReferenceModel<E> referenceModel) {
+		Objects.requireNonNull(referenceModel, DwarfUtil.getStringField(StringFieldKey.MODELUTIL_8));
+		return new SyncReferenceModelImpl<>(referenceModel);
+	}
+
+	private static final class SyncReferenceModelImpl<E> implements SyncReferenceModel<E> {
+
+		private final ReferenceModel<E> delegate;
+		private final ReadWriteLock lock = new ReentrantReadWriteLock();
+
+		public SyncReferenceModelImpl(ReferenceModel<E> delegate) {
+			this.delegate = delegate;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public E get() {
+			lock.readLock().lock();
+			try {
+				return delegate.get();
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public E set(E element) {
+			lock.writeLock().lock();
+			try {
+				return delegate.set(element);
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public void clear() {
+			lock.writeLock().lock();
+			try {
+				delegate.clear();
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public Set<ReferenceObverser<E>> getObversers() {
+			lock.readLock().lock();
+			try {
+				return delegate.getObversers();
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean addObverser(ReferenceObverser<E> obverser) {
+			lock.writeLock().lock();
+			try {
+				return delegate.addObverser(obverser);
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean removeObverser(ReferenceObverser<E> obverser) {
+			lock.writeLock().lock();
+			try {
+				return delegate.removeObverser(obverser);
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public void clearObverser() {
+			lock.writeLock().lock();
+			try {
+				delegate.clearObverser();
+			} finally {
+				lock.writeLock().unlock();
+			}
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public ReadWriteLock getLock() {
+			return lock;
+		}
+
+		@Override
+		public int hashCode() {
+			lock.readLock().lock();
+			try {
+				return delegate.hashCode();
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean equals(Object obj) {
+			if (obj == delegate)
+				return true;
+			if (obj == this)
+				return true;
+			return delegate.equals(obj);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public String toString() {
+			lock.readLock().lock();
+			try {
+				return delegate.toString();
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+	}
+
+	/**
+	 * 根据已有的引用模型生成一个不可编辑的引用模型。
+	 * 
+	 * @param referenceModel
+	 *            已有的引用模型。
+	 * @return 根据已有的引用模型生成的不可编辑的引用模型。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static <E> ReferenceModel<E> unmodifiableReferenceModel(ReferenceModel<E> referenceModel) {
+		Objects.requireNonNull(referenceModel, DwarfUtil.getStringField(StringFieldKey.MODELUTIL_8));
+		return new UnmodifiableReferenceModel<>(referenceModel);
+	}
+
+	private static final class UnmodifiableReferenceModel<E> implements ReferenceModel<E> {
+
+		private final ReferenceModel<E> delegate;
+
+		public UnmodifiableReferenceModel(ReferenceModel<E> delegate) {
+			this.delegate = delegate;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public Set<ReferenceObverser<E>> getObversers() {
+			return delegate.getObversers();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean addObverser(ReferenceObverser<E> obverser) {
+			throw new UnsupportedOperationException("addObverser");
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean removeObverser(ReferenceObverser<E> obverser) {
+			throw new UnsupportedOperationException("removeObverser");
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public void clearObverser() {
+			throw new UnsupportedOperationException("clearObverser");
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public E get() {
+			return delegate.get();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public E set(E element) {
+			throw new UnsupportedOperationException("set");
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public void clear() {
+			throw new UnsupportedOperationException("clear");
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public int hashCode() {
+			return delegate.hashCode();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean equals(Object obj) {
+			if (obj == delegate)
+				return true;
+			if (obj == this)
+				return true;
+			return delegate.equals(obj);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public String toString() {
+			return delegate.toString();
+		}
+
+	}
+
+	/**
+	 * 由指定的引用模型和指定的只读生成器生成的只读引用模型。
+	 * 
+	 * @param referenceModel
+	 *            指定的引用模型。
+	 * @param generator
+	 *            指定的只读生成器。
+	 * @return 由指定的引用模型和指定的只读生成器生成的只读引用模型。
+	 */
+	public static <E> ReferenceModel<E> readOnlyReferenceModel(ReferenceModel<E> referenceModel,
+			ReadOnlyGenerator<E> generator) {
+		Objects.requireNonNull(referenceModel, DwarfUtil.getStringField(StringFieldKey.MODELUTIL_8));
+		Objects.requireNonNull(generator, DwarfUtil.getStringField(StringFieldKey.MODELUTIL_5));
+		return new ReadOnlyReferenceModel<>(referenceModel, generator);
+	}
+
+	private static final class ReadOnlyReferenceModel<E> implements ReferenceModel<E> {
+
+		private final ReferenceModel<E> delegate;
+		private final ReadOnlyGenerator<E> generator;
+
+		public ReadOnlyReferenceModel(ReferenceModel<E> delegate, ReadOnlyGenerator<E> generator) {
+			this.delegate = delegate;
+			this.generator = generator;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public Set<ReferenceObverser<E>> getObversers() {
+			return delegate.getObversers();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean addObverser(ReferenceObverser<E> obverser) {
+			throw new UnsupportedOperationException("addObverser");
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean removeObverser(ReferenceObverser<E> obverser) {
+			throw new UnsupportedOperationException("removeObverser");
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public void clearObverser() {
+			throw new UnsupportedOperationException("clearObverser");
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public E get() {
+			return generator.readOnly(delegate.get());
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public E set(E element) {
+			throw new UnsupportedOperationException("set");
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public void clear() {
+			throw new UnsupportedOperationException("clear");
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public int hashCode() {
+			return delegate.hashCode();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean equals(Object obj) {
+			if (obj == delegate)
+				return true;
+			if (obj == this)
+				return true;
+			return delegate.equals(obj);
+		}
+
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String toString() {

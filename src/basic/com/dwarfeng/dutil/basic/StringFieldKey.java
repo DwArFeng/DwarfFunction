@@ -142,7 +142,7 @@ public enum StringFieldKey implements Name {
 	COLLECTIONUTIL_20(new DefaultName("CollectionUtil.20")),
 	/** CollectionUtil类第21号文本字段 */
 	COLLECTIONUTIL_21(new DefaultName("CollectionUtil.21")),
-	
+
 	/** NameableComparator类第0号文本字段 */
 	NameableComparator_0(new DefaultName("NameableComparator.0")),
 
@@ -418,6 +418,8 @@ public enum StringFieldKey implements Name {
 	MODELUTIL_6(new DefaultName("ModelUtil.6")),
 	/** ModelUtil类第7号文本字段 */
 	MODELUTIL_7(new DefaultName("ModelUtil.7")),
+	/** ModelUtil类第8号文本字段 */
+	MODELUTIL_8(new DefaultName("ModelUtil.8")),
 
 	/** AbstractExconfigModel类第0号文本字段 */
 	ABSTRACTEXCONFIGMODEL_0(new DefaultName("AbstractExconfigModel.0")),
@@ -477,14 +479,14 @@ public enum StringFieldKey implements Name {
 	BACKGROUNDUTIL_2(new DefaultName("BackgroundUtil.2")),
 	/** BackgroundUtil类第3号文本字段 */
 	BACKGROUNDUTIL_3(new DefaultName("BackgroundUtil.3")),
-	
+
 	/** ResourceUtil类第0号文本字段 */
 	RESOURCEUTIL_0(new DefaultName("ResourceUtil.0")),
 	/** ResourceUtil类第1号文本字段 */
 	RESOURCEUTIL_1(new DefaultName("ResourceUtil.1")),
 	/** ResourceUtil类第2号文本字段 */
 	RESOURCEUTIL_2(new DefaultName("ResourceUtil.2")),
-	
+
 	/** DelegateResourceHandler类第0号文本字段 */
 	DELEGATERESOURCEHANDLER_0(new DefaultName("DelegateResourceHandler.0")),
 
@@ -518,7 +520,7 @@ public enum StringFieldKey implements Name {
 	I18NUTIL_1(new DefaultName("I18nUtil.1")),
 	/** I28nUtil类第2号文本字段 */
 	I18NUTIL_2(new DefaultName("I28nUtil.2")),
-	
+
 	/** DelegateI18nHandler类第0号文本字段 */
 	DELEGATEI18NHANDLER_0(new DefaultName("DelegateI18nHandler.0")),
 
@@ -560,7 +562,10 @@ public enum StringFieldKey implements Name {
 
 	/** ThreadUtil类第0号文本字段 */
 	THREADUTIL_0(new DefaultName("ThreadUtil.0")),
-	
+
+	/** AbstractReferenceModel类第0号文本字段 */
+	ABSTRACTREFERENCEMODEL_0(new DefaultName("AbstractReferenceModel.0")),
+
 	;
 
 	private final Name name;
