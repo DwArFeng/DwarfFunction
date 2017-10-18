@@ -15,7 +15,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 
 /**
  * 可调整的边界布局面板。
@@ -230,7 +230,7 @@ public class JAdjustableBorderPanel extends JPanel{
 			setCenter(component);
 			return;
 		}
-		throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.JADJUSTABLEBORDERPANEL_0));
+		throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.JADJUSTABLEBORDERPANEL_0));
 	}
 	/**
 	 * 获取该控件的北方组件。

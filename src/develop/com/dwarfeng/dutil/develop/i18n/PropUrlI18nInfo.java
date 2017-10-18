@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.Properties;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 
 /**
  * Properties URL国际化信息。
@@ -43,7 +43,7 @@ public class PropUrlI18nInfo extends AbstractI18nInfo {
 	public PropUrlI18nInfo(Locale key, String name, URL url) {
 		super(key, name);
 
-		Objects.requireNonNull(url, DwarfUtil.getStringField(StringFieldKey.PROPURLI18NINFO_0));
+		Objects.requireNonNull(url, DwarfUtil.getExecptionString(ExceptionStringKey.PROPURLI18NINFO_0));
 		this.url = url;
 	}
 

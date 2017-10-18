@@ -3,7 +3,7 @@ package com.dwarfeng.dutil.basic.str;
 import java.util.Objects;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 
 /**
  * 默认标签。
@@ -24,8 +24,8 @@ public class DefaultTag implements Tag{
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public DefaultTag(String name, String description) {
-		Objects.requireNonNull(name, DwarfUtil.getStringField(StringFieldKey.DefaultTag_0));
-		Objects.requireNonNull(name, DwarfUtil.getStringField(StringFieldKey.DefaultTag_1));
+		Objects.requireNonNull(name, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultTag_0));
+		Objects.requireNonNull(name, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultTag_1));
 		this.name = name;
 		this.description = description;
 	}

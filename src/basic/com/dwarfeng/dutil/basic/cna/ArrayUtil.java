@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.Vector;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.prog.ReadOnlyGenerator;
 
 /**
@@ -137,8 +137,8 @@ public final class ArrayUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static <T> T[] concat(T[] first, T[] second) {
-		Objects.requireNonNull(first, DwarfUtil.getStringField(StringFieldKey.ARRAYUTIL_0));
-		Objects.requireNonNull(second, DwarfUtil.getStringField(StringFieldKey.ARRAYUTIL_1));
+		Objects.requireNonNull(first, DwarfUtil.getExecptionString(ExceptionStringKey.ARRAYUTIL_0));
+		Objects.requireNonNull(second, DwarfUtil.getExecptionString(ExceptionStringKey.ARRAYUTIL_1));
 
 		int totalLength = first.length + second.length;
 		T[] result = Arrays.copyOf(first, totalLength);
@@ -163,7 +163,7 @@ public final class ArrayUtil {
 	 *             入口参数 <code>rest</code>为 <code>null</code>。
 	 */
 	public static <T> T[] concat(T[] first, T[][] rest) {
-		Objects.requireNonNull(first, DwarfUtil.getStringField(StringFieldKey.ARRAYUTIL_0));
+		Objects.requireNonNull(first, DwarfUtil.getExecptionString(ExceptionStringKey.ARRAYUTIL_0));
 
 		if (Objects.isNull(rest))
 			return first;
@@ -246,7 +246,7 @@ public final class ArrayUtil {
 	public static byte[] unpack(Byte[] target) {
 
 		if (target == null)
-			throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_11));
+			throw new NullPointerException(DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_11));
 
 		target = getNotNull(target, new Byte[0]);
 
@@ -267,7 +267,7 @@ public final class ArrayUtil {
 	public static short[] unpack(Short[] target) {
 
 		if (target == null)
-			throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_11));
+			throw new NullPointerException(DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_11));
 
 		target = getNotNull(target, new Short[0]);
 
@@ -288,7 +288,7 @@ public final class ArrayUtil {
 	public static int[] unpack(Integer[] target) {
 
 		if (target == null)
-			throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_11));
+			throw new NullPointerException(DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_11));
 
 		target = getNotNull(target, new Integer[0]);
 
@@ -309,7 +309,7 @@ public final class ArrayUtil {
 	public static float[] unpack(Float[] target) {
 
 		if (target == null)
-			throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_11));
+			throw new NullPointerException(DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_11));
 
 		target = getNotNull(target, new Float[0]);
 
@@ -330,7 +330,7 @@ public final class ArrayUtil {
 	public static long[] unpack(Long[] target) {
 
 		if (target == null)
-			throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_11));
+			throw new NullPointerException(DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_11));
 
 		target = getNotNull(target, new Long[0]);
 
@@ -351,7 +351,7 @@ public final class ArrayUtil {
 	public static char[] unpack(Character[] target) {
 
 		if (target == null)
-			throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_11));
+			throw new NullPointerException(DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_11));
 
 		target = getNotNull(target, new Character[0]);
 
@@ -372,7 +372,7 @@ public final class ArrayUtil {
 	public static boolean[] unpack(Boolean[] target) {
 
 		if (target == null)
-			throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_11));
+			throw new NullPointerException(DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_11));
 
 		target = getNotNull(target, new Boolean[0]);
 
@@ -393,7 +393,7 @@ public final class ArrayUtil {
 	public static Byte[] pack(byte[] target) {
 
 		if (target == null)
-			throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_11));
+			throw new NullPointerException(DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_11));
 
 		Byte[] bytes = new Byte[target.length];
 		for (int i = 0; i < target.length; i++) {
@@ -412,7 +412,7 @@ public final class ArrayUtil {
 	public static Short[] pack(short[] target) {
 
 		if (target == null)
-			throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_11));
+			throw new NullPointerException(DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_11));
 
 		Short[] shorts = new Short[target.length];
 		for (int i = 0; i < target.length; i++) {
@@ -431,7 +431,7 @@ public final class ArrayUtil {
 	public static Integer[] pack(int[] target) {
 
 		if (target == null)
-			throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_11));
+			throw new NullPointerException(DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_11));
 
 		Integer[] integers = new Integer[target.length];
 		for (int i = 0; i < target.length; i++) {
@@ -450,7 +450,7 @@ public final class ArrayUtil {
 	public static Long[] pack(long[] target) {
 
 		if (target == null)
-			throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_11));
+			throw new NullPointerException(DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_11));
 
 		Long[] longs = new Long[target.length];
 		for (int i = 0; i < target.length; i++) {
@@ -483,7 +483,7 @@ public final class ArrayUtil {
 	public static Float[] pack(float[] target) {
 
 		if (target == null)
-			throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_11));
+			throw new NullPointerException(DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_11));
 
 		Float[] floats = new Float[target.length];
 		for (int i = 0; i < target.length; i++) {
@@ -517,7 +517,7 @@ public final class ArrayUtil {
 	public static Double[] pack(double[] target) {
 
 		if (target == null)
-			throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_11));
+			throw new NullPointerException(DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_11));
 
 		Double[] doubles = new Double[target.length];
 		for (int i = 0; i < target.length; i++) {
@@ -550,7 +550,7 @@ public final class ArrayUtil {
 	public static Character[] pack(char[] target) {
 
 		if (target == null)
-			throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_11));
+			throw new NullPointerException(DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_11));
 
 		Character[] characters = new Character[target.length];
 		for (int i = 0; i < target.length; i++) {
@@ -583,7 +583,7 @@ public final class ArrayUtil {
 	public static Boolean[] pack(boolean[] target) {
 
 		if (target == null)
-			throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.COLLECTIONUTIL_11));
+			throw new NullPointerException(DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_11));
 
 		Boolean[] booleans = new Boolean[target.length];
 		for (int i = 0; i < target.length; i++) {
@@ -699,7 +699,7 @@ public final class ArrayUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static <T> Iterable<T> array2Iterable(T[] array) {
-		Objects.requireNonNull(array, DwarfUtil.getStringField(StringFieldKey.ARRAYUTIL_2));
+		Objects.requireNonNull(array, DwarfUtil.getExecptionString(ExceptionStringKey.ARRAYUTIL_2));
 		return new ArrayIterable<>(array);
 	}
 
@@ -717,8 +717,8 @@ public final class ArrayUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static <T> T[] readOnlyArray(T[] array, ReadOnlyGenerator<T> generator) {
-		Objects.requireNonNull(array, DwarfUtil.getStringField(StringFieldKey.ARRAYUTIL_3));
-		Objects.requireNonNull(generator, DwarfUtil.getStringField(StringFieldKey.ARRAYUTIL_4));
+		Objects.requireNonNull(array, DwarfUtil.getExecptionString(ExceptionStringKey.ARRAYUTIL_3));
+		Objects.requireNonNull(generator, DwarfUtil.getExecptionString(ExceptionStringKey.ARRAYUTIL_4));
 
 		@SuppressWarnings("unchecked")
 		T[] tarArr = (T[]) java.lang.reflect.Array.newInstance(array.getClass().getComponentType(), array.length);

@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.Properties;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.io.SaveFailedException;
 import com.dwarfeng.dutil.develop.cfg.ConfigKey;
 import com.dwarfeng.dutil.develop.cfg.CurrentValueContainer;
@@ -51,7 +51,7 @@ public class PropertiesConfigSaver extends StreamConfigSaver implements ConfigSa
 	@Override
 	@Deprecated
 	public void saveConfig(CurrentValueContainer container) throws SaveFailedException {
-		Objects.requireNonNull(container, DwarfUtil.getStringField(StringFieldKey.PropertiesConfigSaver_0));
+		Objects.requireNonNull(container, DwarfUtil.getExecptionString(ExceptionStringKey.PropertiesConfigSaver_0));
 
 		Properties properties = new Properties();
 		for (Map.Entry<ConfigKey, String> entry : container.getAllCurrentValue().entrySet()) {

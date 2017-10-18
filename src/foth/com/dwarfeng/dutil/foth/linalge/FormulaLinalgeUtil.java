@@ -3,7 +3,7 @@ package com.dwarfeng.dutil.foth.linalge;
 import java.util.Objects;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 
 /**
  * 有关于结构保留线性代数的工具包。
@@ -22,8 +22,8 @@ public final class FormulaLinalgeUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public static boolean checkForMutiply(FormulaRowVector rowVector, FormulaColumnVector columnVector){
-		Objects.requireNonNull(rowVector, DwarfUtil.getStringField(StringFieldKey.FormulaLinalgeUtil_0));
-		Objects.requireNonNull(columnVector, DwarfUtil.getStringField(StringFieldKey.FormulaLinalgeUtil_1));
+		Objects.requireNonNull(rowVector, DwarfUtil.getExecptionString(ExceptionStringKey.FormulaLinalgeUtil_0));
+		Objects.requireNonNull(columnVector, DwarfUtil.getExecptionString(ExceptionStringKey.FormulaLinalgeUtil_1));
 		
 		return rowVector.size() == columnVector.size();
 	}
@@ -37,8 +37,8 @@ public final class FormulaLinalgeUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public static void requireForMutiply(FormulaRowVector rowVector, FormulaColumnVector columnVector){
-		Objects.requireNonNull(rowVector, DwarfUtil.getStringField(StringFieldKey.FormulaLinalgeUtil_0));
-		Objects.requireNonNull(columnVector, DwarfUtil.getStringField(StringFieldKey.FormulaLinalgeUtil_1));
+		Objects.requireNonNull(rowVector, DwarfUtil.getExecptionString(ExceptionStringKey.FormulaLinalgeUtil_0));
+		Objects.requireNonNull(columnVector, DwarfUtil.getExecptionString(ExceptionStringKey.FormulaLinalgeUtil_1));
 		
 		if(rowVector.size() != columnVector.size()){
 			throw new IllegalArgumentException();
@@ -55,8 +55,8 @@ public final class FormulaLinalgeUtil {
 	 * @throws NullPointerException 入口参数为  <code>null</code>。
 	 */
 	public static void requireForMutiply(FormulaRowVector rowVector, FormulaColumnVector columnVector, String message){
-		Objects.requireNonNull(rowVector, DwarfUtil.getStringField(StringFieldKey.FormulaLinalgeUtil_0));
-		Objects.requireNonNull(columnVector, DwarfUtil.getStringField(StringFieldKey.FormulaLinalgeUtil_1));
+		Objects.requireNonNull(rowVector, DwarfUtil.getExecptionString(ExceptionStringKey.FormulaLinalgeUtil_0));
+		Objects.requireNonNull(columnVector, DwarfUtil.getExecptionString(ExceptionStringKey.FormulaLinalgeUtil_1));
 		
 		if(rowVector.size() != columnVector.size()){
 			throw new IllegalArgumentException(message);

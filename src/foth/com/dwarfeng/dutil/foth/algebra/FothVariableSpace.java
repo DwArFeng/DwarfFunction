@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.cna.ArrayUtil;
 import com.dwarfeng.dutil.basic.cna.CollectionUtil;
 import com.dwarfeng.dutil.basic.prog.Buildable;
@@ -195,7 +195,7 @@ Iterable<FothVariable>, Region<FothVariable>{
 	 */
 	@Override
 	public String getMathName() {
-		return DwarfUtil.getStringField(StringFieldKey.Algebra_VariableSpace);
+		return DwarfUtil.getExecptionString(ExceptionStringKey.Algebra_VariableSpace);
 	}
 	
 	/**
@@ -268,7 +268,7 @@ Iterable<FothVariable>, Region<FothVariable>{
 	 */
 	public void setValue(double[] vals){
 		if(vals.length != vars.length){
-			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.FothValue_0));
+			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.FothValue_0));
 		}
 		for(int i = 0 ; i < vars.length ; i ++){
 			vars[i].setValue(vals[i]);
@@ -282,9 +282,9 @@ Iterable<FothVariable>, Region<FothVariable>{
 	 * @throws IllegalArgumentException 入口数组大小与变量空间中的变量个数不一致。
 	 */
 	public void setValue(FothValue[] vals){
-		ArrayUtil.requireNotContainsNull(vals, DwarfUtil.getStringField(StringFieldKey.FothVariableSpace_1));
+		ArrayUtil.requireNotContainsNull(vals, DwarfUtil.getExecptionString(ExceptionStringKey.FothVariableSpace_1));
 		if(vals.length != vars.length){
-			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.FothVariableSpace_0));
+			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.FothVariableSpace_0));
 		}
 		for(int i = 0 ; i < vars.length ; i ++){
 			vars[i].setValue(vals[i]);
@@ -298,7 +298,7 @@ Iterable<FothVariable>, Region<FothVariable>{
 	 */
 	public void offset(double[] vals){
 		if(vals.length != vars.length){
-			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.FothValue_0));
+			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.FothValue_0));
 		}
 		for(int i = 0 ; i < vars.length ; i ++){
 			vars[i].offset(vals[i]);
@@ -312,9 +312,9 @@ Iterable<FothVariable>, Region<FothVariable>{
 	 * @throws IllegalArgumentException 入口数组大小与变量空间中的变量个数不一致。
 	 */
 	public void offset(FothValue[] vals){
-		ArrayUtil.requireNotContainsNull(vals, DwarfUtil.getStringField(StringFieldKey.FothVariableSpace_1));
+		ArrayUtil.requireNotContainsNull(vals, DwarfUtil.getExecptionString(ExceptionStringKey.FothVariableSpace_1));
 		if(vals.length != vars.length){
-			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.FothVariableSpace_0));
+			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.FothVariableSpace_0));
 		}
 		for(int i = 0 ; i < vars.length ; i ++){
 			vars[i].offset(vals[i]);

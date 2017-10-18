@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.WeakHashMap;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
 
 /**
@@ -44,7 +44,7 @@ public class DelegateSetModel<E> extends AbstractSetModel<E> {
 	 */
 	public DelegateSetModel(Set<E> delegate, Set<SetObverser<E>> obversers) {
 		super(obversers);
-		Objects.requireNonNull(delegate, DwarfUtil.getStringField(StringFieldKey.DELEGATESETMODEL_0));
+		Objects.requireNonNull(delegate, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATESETMODEL_0));
 		this.delegate = delegate;
 	}
 
@@ -190,7 +190,7 @@ public class DelegateSetModel<E> extends AbstractSetModel<E> {
 	 */
 	@Override
 	public boolean containsAll(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.DELEGATESETMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATESETMODEL_1));
 		return delegate.containsAll(c);
 	}
 
@@ -201,7 +201,7 @@ public class DelegateSetModel<E> extends AbstractSetModel<E> {
 	 */
 	@Override
 	public boolean addAll(Collection<? extends E> c) {
-		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.DELEGATESETMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATESETMODEL_1));
 
 		boolean aFlag = false;
 		for (E e : c) {
@@ -219,7 +219,7 @@ public class DelegateSetModel<E> extends AbstractSetModel<E> {
 	 */
 	@Override
 	public boolean removeAll(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.DELEGATESETMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATESETMODEL_1));
 		return batchRemove(c, true);
 	}
 
@@ -230,7 +230,7 @@ public class DelegateSetModel<E> extends AbstractSetModel<E> {
 	 */
 	@Override
 	public boolean retainAll(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.DELEGATESETMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATESETMODEL_1));
 		return batchRemove(c, false);
 	}
 

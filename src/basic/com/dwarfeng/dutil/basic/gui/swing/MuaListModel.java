@@ -11,7 +11,7 @@ import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 
 /**
  * 多重操作列表模型。
@@ -41,7 +41,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E>{
 	 */
 	public MuaListModel(List<E> list){
 		super();
-		Objects.requireNonNull(list, DwarfUtil.getStringField(StringFieldKey.MUALISTMODEL_0));
+		Objects.requireNonNull(list, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_0));
 		this.delegate = list;
 	}
 	

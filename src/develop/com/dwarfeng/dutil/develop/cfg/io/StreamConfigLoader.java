@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.util.Objects;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.io.StreamLoader;
 
 /**
@@ -32,7 +32,7 @@ public abstract class StreamConfigLoader implements ConfigLoader, Closeable {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public StreamConfigLoader(InputStream in) {
-		Objects.requireNonNull(in, DwarfUtil.getStringField(StringFieldKey.StreamConfigLoader_0));
+		Objects.requireNonNull(in, DwarfUtil.getExecptionString(ExceptionStringKey.StreamConfigLoader_0));
 		this.in = in;
 	}
 

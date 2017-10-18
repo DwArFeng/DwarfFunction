@@ -3,7 +3,7 @@ package com.dwarfeng.dutil.basic.threads;
 import java.util.Objects;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.str.Tag;
 
 /**
@@ -26,8 +26,8 @@ public class TagRunnable implements Runnable, Tag{
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public TagRunnable(Runnable runnable, Tag tag){
-		Objects.requireNonNull(runnable, DwarfUtil.getStringField(StringFieldKey.TAGRUNNER_0));
-		Objects.requireNonNull(tag, DwarfUtil.getStringField(StringFieldKey.TAGRUNNER_1));
+		Objects.requireNonNull(runnable, DwarfUtil.getExecptionString(ExceptionStringKey.TAGRUNNER_0));
+		Objects.requireNonNull(tag, DwarfUtil.getExecptionString(ExceptionStringKey.TAGRUNNER_1));
 		this.runnable = runnable;
 		this.tag = tag;
 	}

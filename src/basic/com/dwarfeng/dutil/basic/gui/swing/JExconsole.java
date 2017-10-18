@@ -44,8 +44,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.text.BadLocationException;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.LabelFieldKey;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.LabelStringKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.num.NumberUtil;
 import com.dwarfeng.dutil.basic.threads.NumberedThreadFactory;
 
@@ -144,9 +144,9 @@ public class JExconsole extends JPanel {
 	 * @throws IllegalArgumentException 入口参数不符合要求。
 	 */
 	public JExconsole(int maxLine, double cleanRatio, Integer maxRollback, boolean creatDefaultPopup){
-		if(maxLine <=  0) throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.JEXCONSOLE_1));
-		if(cleanRatio <= 0 || cleanRatio > 1) throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.JEXCONSOLE_2));
-		if(maxRollback < 0) throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.JEXCONSOLE_3));
+		if(maxLine <=  0) throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.JEXCONSOLE_1));
+		if(cleanRatio <= 0 || cleanRatio > 1) throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.JEXCONSOLE_2));
+		if(maxRollback < 0) throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.JEXCONSOLE_3));
 		
 		this.maxLine = maxLine;
 		this.cleanRatio = cleanRatio;
@@ -183,7 +183,7 @@ public class JExconsole extends JPanel {
 					inputLock.lock();
 					try{
 						if(disposeFlag.get()){
-							throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.JEXCONSOLE_0));
+							throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.JEXCONSOLE_0));
 						}
 						
 						InnerInputStream in = (InnerInputStream) JExconsole.this.in;
@@ -341,7 +341,7 @@ public class JExconsole extends JPanel {
 	 * @throws IllegalArgumentException 入口参数不符合要求。
 	 */
 	public void setMaxLine(int maxLine) {
-		if(maxLine <=  0) throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.JEXCONSOLE_1));
+		if(maxLine <=  0) throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.JEXCONSOLE_1));
 		
 		renderLock.lock();
 		try{
@@ -366,7 +366,7 @@ public class JExconsole extends JPanel {
 	 * @throws IllegalArgumentException 入口参数不符合要求。
 	 */
 	public void setCleanRatio(double cleanRatio) {
-		if(cleanRatio <= 0 || cleanRatio > 1) throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.JEXCONSOLE_2));
+		if(cleanRatio <= 0 || cleanRatio > 1) throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.JEXCONSOLE_2));
 		
 		renderLock.lock();
 		try{
@@ -391,7 +391,7 @@ public class JExconsole extends JPanel {
 	 * @throws IllegalArgumentException 入口参数不符合要求。
 	 */
 	public void setMaxRollback(int maxRollback) {
-		if(maxLine <=  0) throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.JEXCONSOLE_1));
+		if(maxLine <=  0) throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.JEXCONSOLE_1));
 		this.maxRollback = maxRollback;
 		if(rollbackStrings.size() > maxRollback){
 			for(int i = 0 ; i < maxRollback - rollbackStrings.size() ; i ++){
@@ -428,7 +428,7 @@ public class JExconsole extends JPanel {
 		inputLock.lock();
 		try{
 			if(disposeFlag.get()){
-				throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.JEXCONSOLE_0));
+				throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.JEXCONSOLE_0));
 			}
 			
 			InnerInputStream in = (InnerInputStream) JExconsole.this.in;
@@ -455,7 +455,7 @@ public class JExconsole extends JPanel {
 		inputLock.lock();
 		try{
 			if(disposeFlag.get()){
-				throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.JEXCONSOLE_0));
+				throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.JEXCONSOLE_0));
 			}
 			
 			InnerInputStream in = (InnerInputStream) JExconsole.this.in;
@@ -508,7 +508,7 @@ public class JExconsole extends JPanel {
 		@Override
 		public int read() throws IOException {
 			if(disposeFlag.get()){
-				throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.JEXCONSOLE_0));
+				throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.JEXCONSOLE_0));
 			}
 			
 			inputLock.lock();
@@ -585,7 +585,7 @@ public class JExconsole extends JPanel {
 		@Override
 		public void write(int b) throws IOException {
 			if(disposeFlag.get()){
-				throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.JEXCONSOLE_0));
+				throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.JEXCONSOLE_0));
 			}
 			
 			outputLock.lock();
@@ -609,7 +609,7 @@ public class JExconsole extends JPanel {
 		@Override
 		public void flush() throws IOException {
 			if(disposeFlag.get()){
-				throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.JEXCONSOLE_0));
+				throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.JEXCONSOLE_0));
 			}
 			
 			String str = null;
@@ -657,7 +657,7 @@ public class JExconsole extends JPanel {
 			selectAllMenuItem = add(
 					new JMenuItemAction.Builder()
 					.icon(new ImageIcon(DwarfUtil.class.getResource("/com/dwarfeng/dutil/resource/image/selectAll.png")))
-					.name(DwarfUtil.getLabelField(LabelFieldKey.JEXCONSOLE_0, getDefaultLocale()))
+					.name(DwarfUtil.getLabelString(LabelStringKey.JEXCONSOLE_0, getDefaultLocale()))
 					.keyStorke(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_DOWN_MASK))
 					.mnemonic('A')
 					.listener(new ActionListener() {
@@ -679,7 +679,7 @@ public class JExconsole extends JPanel {
 			cleanScreenMenuItem = add(
 					new JMenuItemAction.Builder()
 					.icon(new ImageIcon(DwarfUtil.class.getResource("/com/dwarfeng/dutil/resource/image/cleanScreen.png")))
-					.name(DwarfUtil.getLabelField(LabelFieldKey.JEXCONSOLE_1, getDefaultLocale()))
+					.name(DwarfUtil.getLabelString(LabelStringKey.JEXCONSOLE_1, getDefaultLocale()))
 					.keyStorke(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_DOWN_MASK))
 					.mnemonic('E')
 					.listener(new ActionListener() {
@@ -700,7 +700,7 @@ public class JExconsole extends JPanel {
 			
 			addSeparator();
 			
-			lineWrapMenuItem = new JCheckBoxMenuItem(DwarfUtil.getLabelField(LabelFieldKey.JEXCONSOLE_2, getDefaultLocale()));
+			lineWrapMenuItem = new JCheckBoxMenuItem(DwarfUtil.getLabelString(LabelStringKey.JEXCONSOLE_2, getDefaultLocale()));
 			lineWrapMenuItem.setIcon(new ImageIcon(DwarfUtil.class.getResource("/com/dwarfeng/dutil/resource/image/lineWrap.png")));
 			lineWrapMenuItem.setMnemonic('W');
 			lineWrapMenuItem.addActionListener(new ActionListener() {
@@ -724,9 +724,9 @@ public class JExconsole extends JPanel {
 		 */
 		@Override
 		public void setLocale(Locale l) {
-			selectAllMenuItem.setText(DwarfUtil.getLabelField(LabelFieldKey.JEXCONSOLE_0, l));
-			cleanScreenMenuItem.setText(DwarfUtil.getLabelField(LabelFieldKey.JEXCONSOLE_1, l));
-			lineWrapMenuItem.setText(DwarfUtil.getLabelField(LabelFieldKey.JEXCONSOLE_2, l));
+			selectAllMenuItem.setText(DwarfUtil.getLabelString(LabelStringKey.JEXCONSOLE_0, l));
+			cleanScreenMenuItem.setText(DwarfUtil.getLabelString(LabelStringKey.JEXCONSOLE_1, l));
+			lineWrapMenuItem.setText(DwarfUtil.getLabelString(LabelStringKey.JEXCONSOLE_2, l));
 			super.setLocale(l);
 		}
 	}

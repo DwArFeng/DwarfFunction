@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.WeakHashMap;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 
 /**
  * 用于存放事件侦听器的弱引用集合。
@@ -125,7 +125,7 @@ public class EventListenerWeakSet implements Set<EventListener>{
 	 */
 	@Override
 	public boolean add(EventListener e) {
-		if(e == null) throw new NullPointerException(DwarfUtil.getStringField(StringFieldKey.EVENTLISTENERWEAKSET_0));
+		if(e == null) throw new NullPointerException(DwarfUtil.getExecptionString(ExceptionStringKey.EVENTLISTENERWEAKSET_0));
 		return set.add(e);
 	}
 

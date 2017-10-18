@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Properties;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.io.LoadFailedException;
 import com.dwarfeng.dutil.develop.cfg.ConfigKey;
 import com.dwarfeng.dutil.develop.cfg.ConfigModel;
@@ -77,7 +77,7 @@ public class PropertiesConfigLoader extends StreamConfigLoader implements Config
 	@Override
 	@Deprecated
 	public void loadConfig(CurrentValueContainer container) throws LoadFailedException {
-		Objects.requireNonNull(container, DwarfUtil.getStringField(StringFieldKey.PropertiesConfigLoader_0));
+		Objects.requireNonNull(container, DwarfUtil.getExecptionString(ExceptionStringKey.PropertiesConfigLoader_0));
 
 		Properties properties = new Properties();
 		try {

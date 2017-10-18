@@ -11,7 +11,7 @@ import java.util.Set;
 import java.util.WeakHashMap;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.cna.model.obv.ListObverser;
 
 /**
@@ -46,7 +46,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 	 */
 	public DelegateListModel(List<E> delegate, Set<ListObverser<E>> obversers) {
 		super(obversers);
-		Objects.requireNonNull(delegate, DwarfUtil.getStringField(StringFieldKey.DELEGATELISTMODEL_0));
+		Objects.requireNonNull(delegate, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELISTMODEL_0));
 		this.delegate = delegate;
 	}
 
@@ -202,7 +202,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 	 */
 	@Override
 	public boolean containsAll(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.DELEGATELISTMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELISTMODEL_1));
 		return delegate.containsAll(c);
 	}
 
@@ -213,7 +213,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 	 */
 	@Override
 	public boolean addAll(Collection<? extends E> c) {
-		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.DELEGATELISTMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELISTMODEL_1));
 		boolean aFlag = false;
 		for (E e : c) {
 			if (add(e))
@@ -229,7 +229,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 	 */
 	@Override
 	public boolean addAll(int index, Collection<? extends E> c) {
-		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.DELEGATELISTMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELISTMODEL_1));
 		int size = delegate.size();
 		int i = 0;
 		for (E e : c) {
@@ -245,7 +245,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 	 */
 	@Override
 	public boolean removeAll(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.DELEGATELISTMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELISTMODEL_1));
 		return batchRemove(c, true);
 	}
 
@@ -256,7 +256,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 	 */
 	@Override
 	public boolean retainAll(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.DELEGATELISTMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELISTMODEL_1));
 		return batchRemove(c, false);
 	}
 
@@ -670,7 +670,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
-			Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.DELEGATELISTMODEL_1));
+			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELISTMODEL_1));
 			return subDelegate.containsAll(c);
 		}
 
@@ -681,7 +681,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 		 */
 		@Override
 		public boolean addAll(Collection<? extends E> c) {
-			Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.DELEGATELISTMODEL_1));
+			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELISTMODEL_1));
 			boolean aFlag = false;
 			for (E e : c) {
 				if (add(e))
@@ -697,7 +697,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 		 */
 		@Override
 		public boolean addAll(int index, Collection<? extends E> c) {
-			Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.DELEGATELISTMODEL_1));
+			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELISTMODEL_1));
 			int size = subDelegate.size();
 			int i = 0;
 			for (E e : c) {
@@ -713,7 +713,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
-			Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.DELEGATELISTMODEL_1));
+			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELISTMODEL_1));
 			return batchRemove(c, true);
 		}
 
@@ -724,7 +724,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
-			Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.DELEGATELISTMODEL_1));
+			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELISTMODEL_1));
 			return batchRemove(c, false);
 		}
 

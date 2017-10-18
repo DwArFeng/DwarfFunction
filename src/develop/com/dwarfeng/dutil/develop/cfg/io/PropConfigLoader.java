@@ -9,7 +9,7 @@ import java.util.Properties;
 import java.util.Set;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.io.LoadFailedException;
 import com.dwarfeng.dutil.basic.io.StreamLoader;
 import com.dwarfeng.dutil.develop.cfg.ConfigKey;
@@ -54,9 +54,9 @@ public class PropConfigLoader extends StreamLoader<CurrentValueContainer> {
 		if (flag) {
 			flag = false;
 		} else {
-			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.PropertiesConfigLoader_1));
+			throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.PropertiesConfigLoader_1));
 		}
-		Objects.requireNonNull(container, DwarfUtil.getStringField(StringFieldKey.PropertiesConfigLoader_0));
+		Objects.requireNonNull(container, DwarfUtil.getExecptionString(ExceptionStringKey.PropertiesConfigLoader_0));
 
 		Properties properties = new Properties();
 		try {
@@ -82,9 +82,9 @@ public class PropConfigLoader extends StreamLoader<CurrentValueContainer> {
 		if (flag) {
 			flag = false;
 		} else {
-			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.PropertiesConfigLoader_1));
+			throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.PropertiesConfigLoader_1));
 		}
-		Objects.requireNonNull(container, DwarfUtil.getStringField(StringFieldKey.PropertiesConfigLoader_0));
+		Objects.requireNonNull(container, DwarfUtil.getExecptionString(ExceptionStringKey.PropertiesConfigLoader_0));
 
 		final Set<LoadFailedException> exceptions = new LinkedHashSet<>();
 

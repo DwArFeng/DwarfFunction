@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.StringTokenizer;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 
 /**
  * 提供一些使用String作为入口参数的工厂方法。
@@ -31,9 +31,9 @@ public final class FactoriesByString {
 	 *             入口参数不是标准的国家/地区代码格式。
 	 */
 	public static Locale newLocale(String string) {
-		Objects.requireNonNull(string, DwarfUtil.getStringField(StringFieldKey.FactoriesByString_0));
+		Objects.requireNonNull(string, DwarfUtil.getExecptionString(ExceptionStringKey.FactoriesByString_0));
 		if (!string.matches("[a-z]+(_[A-Z]+(_[a-zA-Z]+)?)?")) {
-			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.FactoriesByString_1));
+			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.FactoriesByString_1));
 		}
 
 		StringTokenizer tokenizer = new StringTokenizer(string, "_");

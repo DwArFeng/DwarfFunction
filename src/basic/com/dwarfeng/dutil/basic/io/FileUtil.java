@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Objects;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 
 /**
  * 实现文件操作的类。
@@ -154,7 +154,7 @@ public final class FileUtil {
 	 * @return 指定文件夹下的符合要求的所有文件。
 	 */
 	public static File[] listAllFile(File file, FileFilter filter) {
-		Objects.requireNonNull(file, DwarfUtil.getStringField(StringFieldKey.FILEUTIL_0));
+		Objects.requireNonNull(file, DwarfUtil.getExecptionString(ExceptionStringKey.FILEUTIL_0));
 
 		if (!file.isDirectory()) {
 			return Objects.isNull(filter) || filter.accept(file) ? new File[] { file } : new File[0];

@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.WeakHashMap;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.develop.cfg.obv.ExconfigObverser;
 import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
@@ -39,7 +39,7 @@ public abstract class AbstractExconfigModel implements ExconfigModel {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public AbstractExconfigModel(Set<ExconfigObverser> obversers) {
-		Objects.requireNonNull(obversers, DwarfUtil.getStringField(StringFieldKey.ABSTRACTEXCONFIGMODEL_0));
+		Objects.requireNonNull(obversers, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTEXCONFIGMODEL_0));
 		this.obversers = obversers;
 	}
 

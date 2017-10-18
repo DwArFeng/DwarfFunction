@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.Objects;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 
 /**
  * 值比较器。
@@ -20,8 +20,8 @@ public class FothValueComparator implements Comparator<FothValue> {
 	 */
 	@Override
 	public int compare(FothValue o1, FothValue o2) {
-		Objects.requireNonNull(o1, DwarfUtil.getStringField(StringFieldKey.FothValueComparator_0));
-		Objects.requireNonNull(o2, DwarfUtil.getStringField(StringFieldKey.FothValueComparator_0));
+		Objects.requireNonNull(o1, DwarfUtil.getExecptionString(ExceptionStringKey.FothValueComparator_0));
+		Objects.requireNonNull(o2, DwarfUtil.getExecptionString(ExceptionStringKey.FothValueComparator_0));
 		return Double.compare(o1.value(), o2.value());
 	}
 

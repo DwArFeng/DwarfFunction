@@ -3,7 +3,7 @@ package com.dwarfeng.dutil.foth.algebra;
 import java.util.Objects;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.cna.ArrayUtil;
 import com.dwarfeng.dutil.basic.num.NumberValue;
 import com.dwarfeng.dutil.basic.num.QuickNumberValueable;
@@ -23,7 +23,7 @@ public final class FothAlgebraUtil {
 	 * @throws NullPointerException 入口数组为 <code>null</code> 或者其中含有 <code>null</code>元素。
 	 */
 	public static double[] takeValues(FothValue[] vals){
-		ArrayUtil.requireNotContainsNull(vals, DwarfUtil.getStringField(StringFieldKey.FOTHALGEBRAUTIL_0));
+		ArrayUtil.requireNotContainsNull(vals, DwarfUtil.getExecptionString(ExceptionStringKey.FOTHALGEBRAUTIL_0));
 		double[] dous = new double[vals.length];
 		for(int i = 0 ; i < dous.length ; i ++){
 			dous[i] = vals[i].value();
@@ -49,7 +49,7 @@ public final class FothAlgebraUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public static FothValue[] toFothValues(double[] ds){
-		Objects.requireNonNull(ds, DwarfUtil.getStringField(StringFieldKey.FOTHALGEBRAUTIL_1));
+		Objects.requireNonNull(ds, DwarfUtil.getExecptionString(ExceptionStringKey.FOTHALGEBRAUTIL_1));
 		
 		FothValue[] valueables = new FothValue[ds.length];
 		for(int i = 0 ; i < ds.length ; i ++){
@@ -67,8 +67,8 @@ public final class FothAlgebraUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public static boolean checkConflict(FothVariable v1, FothVariable v2){
-		Objects.requireNonNull(v1, DwarfUtil.getStringField(StringFieldKey.FOTHALGEBRAUTIL_2));
-		Objects.requireNonNull(v2, DwarfUtil.getStringField(StringFieldKey.FOTHALGEBRAUTIL_2));
+		Objects.requireNonNull(v1, DwarfUtil.getExecptionString(ExceptionStringKey.FOTHALGEBRAUTIL_2));
+		Objects.requireNonNull(v2, DwarfUtil.getExecptionString(ExceptionStringKey.FOTHALGEBRAUTIL_2));
 		
 		return v1 != v2 && v1.getName().equals(v2.getName());
 	}

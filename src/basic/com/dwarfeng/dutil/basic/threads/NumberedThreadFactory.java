@@ -5,7 +5,7 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 
 /**
  * 编号线程工厂。
@@ -42,7 +42,7 @@ public class NumberedThreadFactory implements ThreadFactory {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public NumberedThreadFactory(String prefix, boolean daemonFlag, int priority) {
-		Objects.requireNonNull(prefix, DwarfUtil.getStringField(StringFieldKey.NumberedThreadFactory_0));
+		Objects.requireNonNull(prefix, DwarfUtil.getExecptionString(ExceptionStringKey.NumberedThreadFactory_0));
 		
         SecurityManager s = System.getSecurityManager();
         group = (s != null) ? s.getThreadGroup() :

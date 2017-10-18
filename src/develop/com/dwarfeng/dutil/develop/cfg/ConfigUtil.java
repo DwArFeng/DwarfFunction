@@ -9,7 +9,7 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.develop.cfg.obv.ExconfigObverser;
 import com.dwarfeng.dutil.develop.cfg.struct.ExconfigEntry;
 import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
@@ -98,7 +98,7 @@ public final class ConfigUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static ConfigModel unmodifiableConfigModel(ConfigModel configModel) {
-		Objects.requireNonNull(configModel, DwarfUtil.getStringField(StringFieldKey.CONFIGUTIL_0));
+		Objects.requireNonNull(configModel, DwarfUtil.getExecptionString(ExceptionStringKey.CONFIGUTIL_0));
 		return new UnmodifiableConfigModel(configModel);
 	}
 
@@ -424,7 +424,7 @@ public final class ConfigUtil {
 	 * @return 由指定Ex配置模型生成的线程安全的Ex配置模型。
 	 */
 	public static SyncExconfigModel syncExconfigModel(ExconfigModel exconfigModel) {
-		Objects.requireNonNull(exconfigModel, DwarfUtil.getStringField(StringFieldKey.CONFIGUTIL_1));
+		Objects.requireNonNull(exconfigModel, DwarfUtil.getExecptionString(ExceptionStringKey.CONFIGUTIL_1));
 		return new SyncExconfigModelImpl(exconfigModel);
 	}
 
@@ -924,7 +924,7 @@ public final class ConfigUtil {
 	}
 
 	public static SyncConfigModel syncConfigModel(ConfigModel configModel) {
-		Objects.requireNonNull(configModel, DwarfUtil.getStringField(StringFieldKey.CONFIGUTIL_0));
+		Objects.requireNonNull(configModel, DwarfUtil.getExecptionString(ExceptionStringKey.CONFIGUTIL_0));
 		return new SyncConfigModelImpl(configModel);
 	}
 
@@ -1349,7 +1349,7 @@ public final class ConfigUtil {
 	 * @return 不可编辑的Ex配置模型。
 	 */
 	public static ExconfigModel unmodifiableExconfigModel(ExconfigModel exconfigModel) {
-		Objects.requireNonNull(exconfigModel, DwarfUtil.getStringField(StringFieldKey.CONFIGUTIL_1));
+		Objects.requireNonNull(exconfigModel, DwarfUtil.getExecptionString(ExceptionStringKey.CONFIGUTIL_1));
 		return new UnmodifiableExconfigModel(exconfigModel);
 	}
 

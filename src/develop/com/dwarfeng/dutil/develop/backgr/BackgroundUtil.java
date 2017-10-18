@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReadWriteLock;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.cna.CollectionUtil;
 import com.dwarfeng.dutil.basic.prog.ReadOnlyGenerator;
 import com.dwarfeng.dutil.basic.threads.ThreadUtil;
@@ -36,7 +36,7 @@ public final class BackgroundUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static Task newTaskFromRunnable(Runnable runnable) {
-		Objects.requireNonNull(runnable, DwarfUtil.getStringField(StringFieldKey.BACKGROUNDUTIL_0));
+		Objects.requireNonNull(runnable, DwarfUtil.getExecptionString(ExceptionStringKey.BACKGROUNDUTIL_0));
 		return new RunnableTask(runnable);
 	}
 
@@ -70,7 +70,7 @@ public final class BackgroundUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static Task unmodifiableTask(Task task) {
-		Objects.requireNonNull(task, DwarfUtil.getStringField(StringFieldKey.BACKGROUNDUTIL_1));
+		Objects.requireNonNull(task, DwarfUtil.getExecptionString(ExceptionStringKey.BACKGROUNDUTIL_1));
 		return new UnmodifiableTask(task);
 	}
 
@@ -254,7 +254,7 @@ public final class BackgroundUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static Background unmodifiableBackground(Background background) {
-		Objects.requireNonNull(background, DwarfUtil.getStringField(StringFieldKey.BACKGROUNDUTIL_2));
+		Objects.requireNonNull(background, DwarfUtil.getExecptionString(ExceptionStringKey.BACKGROUNDUTIL_2));
 		return new UnmodifiableBackground(background);
 	}
 
@@ -452,8 +452,8 @@ public final class BackgroundUtil {
 	 * @return 由指定的后台和指定的只读生成器生成的只读后台。
 	 */
 	public static Background readOnlyBackground(Background background, ReadOnlyGenerator<Task> generator) {
-		Objects.requireNonNull(background, DwarfUtil.getStringField(StringFieldKey.BACKGROUNDUTIL_2));
-		Objects.requireNonNull(generator, DwarfUtil.getStringField(StringFieldKey.BACKGROUNDUTIL_3));
+		Objects.requireNonNull(background, DwarfUtil.getExecptionString(ExceptionStringKey.BACKGROUNDUTIL_2));
+		Objects.requireNonNull(generator, DwarfUtil.getExecptionString(ExceptionStringKey.BACKGROUNDUTIL_3));
 
 		return new ReadOnlyBackground(background, generator);
 	}
@@ -468,7 +468,7 @@ public final class BackgroundUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static Background readOnlyBackground(Background background) {
-		Objects.requireNonNull(background, DwarfUtil.getStringField(StringFieldKey.BACKGROUNDUTIL_2));
+		Objects.requireNonNull(background, DwarfUtil.getExecptionString(ExceptionStringKey.BACKGROUNDUTIL_2));
 
 		return new ReadOnlyBackground(background, task -> {
 			return unmodifiableTask(task);

@@ -5,7 +5,7 @@ import java.nio.ByteBuffer;
 import java.util.Objects;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.num.unit.Angle;
 
 /**
@@ -412,7 +412,7 @@ public final class NumberUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static int max(int... is) {
-		Objects.requireNonNull(is, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_0));
+		Objects.requireNonNull(is, DwarfUtil.getExecptionString(ExceptionStringKey.NUMBERUTIL_0));
 		if (is.length == 0)
 			return 0;
 		if (is.length == 1)
@@ -438,7 +438,7 @@ public final class NumberUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static int min(int... is) {
-		Objects.requireNonNull(is, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_0));
+		Objects.requireNonNull(is, DwarfUtil.getExecptionString(ExceptionStringKey.NUMBERUTIL_0));
 		if (is.length == 0)
 			return 0;
 		if (is.length == 1)
@@ -464,7 +464,7 @@ public final class NumberUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static double max(double... ds) {
-		Objects.requireNonNull(ds, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_1));
+		Objects.requireNonNull(ds, DwarfUtil.getExecptionString(ExceptionStringKey.NUMBERUTIL_1));
 		if (ds.length == 0)
 			return 0;
 		if (ds.length == 1)
@@ -490,7 +490,7 @@ public final class NumberUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static double min(double... ds) {
-		Objects.requireNonNull(ds, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_1));
+		Objects.requireNonNull(ds, DwarfUtil.getExecptionString(ExceptionStringKey.NUMBERUTIL_1));
 		if (ds.length == 0)
 			return 0;
 		if (ds.length == 1)
@@ -516,7 +516,7 @@ public final class NumberUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static boolean isInInterval(int value, Interval interval) {
-		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		Objects.requireNonNull(interval, DwarfUtil.getExecptionString(ExceptionStringKey.NUMBERUTIL_2));
 		return interval.contains(value);
 	}
 
@@ -532,7 +532,7 @@ public final class NumberUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static boolean isInInterval(double value, Interval interval) {
-		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		Objects.requireNonNull(interval, DwarfUtil.getExecptionString(ExceptionStringKey.NUMBERUTIL_2));
 		return interval.contains(value);
 	}
 
@@ -548,7 +548,7 @@ public final class NumberUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static boolean isInInterval(BigDecimal value, Interval interval) {
-		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		Objects.requireNonNull(interval, DwarfUtil.getExecptionString(ExceptionStringKey.NUMBERUTIL_2));
 		return interval.contains(value);
 	}
 
@@ -567,7 +567,7 @@ public final class NumberUtil {
 	 * @see Interval#parseInterval(String)
 	 */
 	public static boolean isInInterval(int value, String interval) {
-		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		Objects.requireNonNull(interval, DwarfUtil.getExecptionString(ExceptionStringKey.NUMBERUTIL_2));
 		return isInInterval(value, Interval.parseInterval(interval));
 	}
 
@@ -586,7 +586,7 @@ public final class NumberUtil {
 	 * @see Interval#parseInterval(String)
 	 */
 	public static boolean isInInterval(double value, String interval) {
-		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		Objects.requireNonNull(interval, DwarfUtil.getExecptionString(ExceptionStringKey.NUMBERUTIL_2));
 		return isInInterval(value, Interval.parseInterval(interval));
 	}
 
@@ -605,7 +605,7 @@ public final class NumberUtil {
 	 * @see Interval#parseInterval(String)
 	 */
 	public static boolean isInInterval(BigDecimal value, String interval) {
-		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		Objects.requireNonNull(interval, DwarfUtil.getExecptionString(ExceptionStringKey.NUMBERUTIL_2));
 		return isInInterval(value, Interval.parseInterval(interval));
 	}
 
@@ -622,7 +622,7 @@ public final class NumberUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static void requireInInterval(int value, Interval interval) throws OutOfIntervalException {
-		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		Objects.requireNonNull(interval, DwarfUtil.getExecptionString(ExceptionStringKey.NUMBERUTIL_2));
 		requireInInterval(value, interval, null);
 	}
 
@@ -639,7 +639,7 @@ public final class NumberUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static void requireInInterval(double value, Interval interval) throws OutOfIntervalException {
-		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		Objects.requireNonNull(interval, DwarfUtil.getExecptionString(ExceptionStringKey.NUMBERUTIL_2));
 		requireInInterval(value, interval, null);
 	}
 
@@ -656,7 +656,7 @@ public final class NumberUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static void requireInInterval(BigDecimal value, Interval interval) throws OutOfIntervalException {
-		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		Objects.requireNonNull(interval, DwarfUtil.getExecptionString(ExceptionStringKey.NUMBERUTIL_2));
 		requireInInterval(value, interval, null);
 	}
 
@@ -673,7 +673,7 @@ public final class NumberUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static void requireInInterval(int value, String interval) throws OutOfIntervalException {
-		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		Objects.requireNonNull(interval, DwarfUtil.getExecptionString(ExceptionStringKey.NUMBERUTIL_2));
 		requireInInterval(value, interval, null);
 	}
 
@@ -690,7 +690,7 @@ public final class NumberUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static void requireInInterval(double value, String interval) throws OutOfIntervalException {
-		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		Objects.requireNonNull(interval, DwarfUtil.getExecptionString(ExceptionStringKey.NUMBERUTIL_2));
 		requireInInterval(value, interval, null);
 	}
 
@@ -707,7 +707,7 @@ public final class NumberUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static void requireInInterval(BigDecimal value, String interval) throws OutOfIntervalException {
-		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		Objects.requireNonNull(interval, DwarfUtil.getExecptionString(ExceptionStringKey.NUMBERUTIL_2));
 		requireInInterval(value, interval, null);
 	}
 
@@ -726,7 +726,7 @@ public final class NumberUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static void requireInInterval(int value, Interval interval, String message) throws OutOfIntervalException {
-		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		Objects.requireNonNull(interval, DwarfUtil.getExecptionString(ExceptionStringKey.NUMBERUTIL_2));
 		if (!isInInterval(value, interval))
 			throw new OutOfIntervalException(message);
 	}
@@ -747,7 +747,7 @@ public final class NumberUtil {
 	 */
 	public static void requireInInterval(double value, Interval interval, String message)
 			throws OutOfIntervalException {
-		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		Objects.requireNonNull(interval, DwarfUtil.getExecptionString(ExceptionStringKey.NUMBERUTIL_2));
 		if (!isInInterval(value, interval))
 			throw new OutOfIntervalException(message);
 	}
@@ -768,7 +768,7 @@ public final class NumberUtil {
 	 */
 	public static void requireInInterval(BigDecimal value, Interval interval, String message)
 			throws OutOfIntervalException {
-		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		Objects.requireNonNull(interval, DwarfUtil.getExecptionString(ExceptionStringKey.NUMBERUTIL_2));
 		if (!isInInterval(value, interval))
 			throw new OutOfIntervalException(message);
 	}
@@ -791,7 +791,7 @@ public final class NumberUtil {
 	 * @see Interval#parseInterval(String)
 	 */
 	public static void requireInInterval(int value, String interval, String message) throws OutOfIntervalException {
-		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		Objects.requireNonNull(interval, DwarfUtil.getExecptionString(ExceptionStringKey.NUMBERUTIL_2));
 		requireInInterval(value, Interval.parseInterval(interval), message);
 	}
 
@@ -813,7 +813,7 @@ public final class NumberUtil {
 	 * @see Interval#parseInterval(String)
 	 */
 	public static void requireInInterval(double value, String interval, String message) throws OutOfIntervalException {
-		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		Objects.requireNonNull(interval, DwarfUtil.getExecptionString(ExceptionStringKey.NUMBERUTIL_2));
 		requireInInterval(value, Interval.parseInterval(interval), message);
 	}
 
@@ -836,7 +836,7 @@ public final class NumberUtil {
 	 */
 	public static void requireInInterval(BigDecimal value, String interval, String message)
 			throws OutOfIntervalException {
-		Objects.requireNonNull(interval, DwarfUtil.getStringField(StringFieldKey.NUMBERUTIL_2));
+		Objects.requireNonNull(interval, DwarfUtil.getExecptionString(ExceptionStringKey.NUMBERUTIL_2));
 		requireInInterval(value, Interval.parseInterval(interval), message);
 	}
 

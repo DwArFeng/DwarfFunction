@@ -3,7 +3,7 @@ package com.dwarfeng.dutil.foth.linalge;
 import java.util.Objects;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.cna.ArrayUtil;
 import com.dwarfeng.dutil.foth.algebra.FothVariableSpace;
 import com.dwarfeng.dutil.foth.algebra.FothAlgebraUtil;
@@ -35,7 +35,7 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public DefalutFormulaColumnVector(ColumnVector columnVector) {
-		Objects.requireNonNull(columnVector, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_3));
+		Objects.requireNonNull(columnVector, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaColumnVector_3));
 		
 		FothValue[] vals = new FothValue[columnVector.size()];
 		for(int i = 0 ; i < vals.length ; i ++){
@@ -55,9 +55,9 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 	 * @throws IllegalArgumentException 元素数组无效。
 	 */
 	public DefalutFormulaColumnVector(double[] vals) {
-		Objects.requireNonNull(vals, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_1));
+		Objects.requireNonNull(vals, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaColumnVector_1));
 		if(vals.length < 1){
-			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_0));
+			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaColumnVector_0));
 		}
 		
 		this.vals = FothAlgebraUtil.toFothValues(vals);
@@ -73,9 +73,9 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 	 * @throws IllegalArgumentException 值接口数组无效。 
 	 */
 	public DefalutFormulaColumnVector(FothValue[] valueables){
-		ArrayUtil.requireNotContainsNull(valueables, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_2));
+		ArrayUtil.requireNotContainsNull(valueables, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaColumnVector_2));
 		if(valueables.length < 1){
-			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_0));
+			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaColumnVector_0));
 		}
 		
 		this.vals = valueables;
@@ -111,7 +111,7 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 	 */
 	@Override
 	public String getMathName() {
-		return DwarfUtil.getStringField(StringFieldKey.Linalge_ColVector);
+		return DwarfUtil.getExecptionString(ExceptionStringKey.Linalge_ColVector);
 	}
 
 	/*
@@ -129,7 +129,7 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 	 */
 	@Override
 	public FothValue fothValueAt(int index) {
-		LinalgeUtil.requireIndexInBound(this, index, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_6));
+		LinalgeUtil.requireIndexInBound(this, index, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaColumnVector_6));
 		return vals[index];
 	}
 
@@ -148,8 +148,8 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 	 */
 	@Override
 	public FormulaColumnVector add(FormulaColumnVector columnVector) {
-		Objects.requireNonNull(columnVector, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_3));
-		LinalgeUtil.requireSpecificSize(columnVector, size(), DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_4));
+		Objects.requireNonNull(columnVector, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaColumnVector_3));
+		LinalgeUtil.requireSpecificSize(columnVector, size(), DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaColumnVector_4));
 
 		FothValue[] vs = new FothValue[vals.length];
 		for(int i = 0 ; i < vs.length ; i ++){
@@ -160,8 +160,8 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 
 	@Override
 	public FormulaColumnVector minus(FormulaColumnVector columnVector) {
-		Objects.requireNonNull(columnVector, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_3));
-		LinalgeUtil.requireSpecificSize(columnVector, size(), DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_4));
+		Objects.requireNonNull(columnVector, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaColumnVector_3));
+		LinalgeUtil.requireSpecificSize(columnVector, size(), DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaColumnVector_4));
 
 		FothValue[] vs = new FothValue[vals.length];
 		for(int i = 0 ; i < vs.length ; i ++){
@@ -176,7 +176,7 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 	 */
 	@Override
 	public FormulaColumnVector scale(FothValue val){
-		Objects.requireNonNull(val, DwarfUtil.getStringField(StringFieldKey.DefaultFormulaColumnVector_5));
+		Objects.requireNonNull(val, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaColumnVector_5));
 		
 		FothValue[] vs = new FothValue[vals.length];
 		for(int i = 0 ; i < vs.length ; i ++){

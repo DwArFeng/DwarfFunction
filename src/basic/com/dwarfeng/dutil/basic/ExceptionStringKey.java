@@ -6,15 +6,15 @@ import com.dwarfeng.dutil.basic.str.Name;
 /**
  * 关于这个工具包的所有异常文本字段的主键枚举。
  * <p>
- * 此枚举是对内使用的，它的主要作用是返回程序中所需要的一些字段（尤其是异常字段）。 <br>
- * 请不要在外部程序中调用此包的枚举，因为该包主要是对内使用，其本身不保证兼容性。
+ * 此枚举是对内使用的，它的主要作用是返回内部类所需要的一些字段（尤其是异常字段）。 <br>
+ * 请不要在外部程序中调用此包的枚举，因为该枚举对内使用，其本身不保证兼容性。
  * <p>
- * <b>注意：</b> 该类在设计的时候不考虑兼容性，当发生不向上兼容的改动时，作者没有义务在变更日志中说明。
+ * <b>注意：</b> 该枚举在设计的时候不考虑兼容性，当发生不向上兼容的改动时，作者没有义务在变更日志中说明。
  * 
  * @author DwArFeng
  * @since 0.0.2-beta
  */
-public enum StringFieldKey implements Name {
+public enum ExceptionStringKey implements Name {
 
 	/** 欢迎文本字段 */
 	WELCOME_STRING(new DefaultName("WelcomeString")),
@@ -566,11 +566,22 @@ public enum StringFieldKey implements Name {
 	/** AbstractReferenceModel类第0号文本字段 */
 	ABSTRACTREFERENCEMODEL_0(new DefaultName("AbstractReferenceModel.0")),
 
+	/** ImageUtil类第0号文本字段 */
+	IMAGEUTIL_0(new DefaultName("ImageUtil.0")),
+	/** ImageUtil类第1号文本字段 */
+	IMAGEUTIL_1(new DefaultName("ImageUtil.1")),
+	/** ImageUtil类第2号文本字段 */
+	IMAGEUTIL_2(new DefaultName("ImageUtil.2")),
+	/** ImageUtil类第3号文本字段 */
+	IMAGEUTIL_3(new DefaultName("ImageUtil.3")),
+	/** ImageUtil类第4号文本字段 */
+	IMAGEUTIL_4(new DefaultName("ImageUtil.4")),
+	
 	;
 
 	private final Name name;
 
-	private StringFieldKey(Name name) {
+	private ExceptionStringKey(Name name) {
 		this.name = name;
 	}
 

@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.cna.model.KeySetModel;
 import com.dwarfeng.dutil.basic.cna.model.MapKeySetModel;
 import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
@@ -49,7 +49,7 @@ public class DelegateI18nHandler implements I18nHandler {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public DelegateI18nHandler(KeySetModel<Locale, I18nInfo> delegate) {
-		Objects.requireNonNull(delegate, DwarfUtil.getStringField(StringFieldKey.DELEGATEI18NHANDLER_0));
+		Objects.requireNonNull(delegate, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATEI18NHANDLER_0));
 		this.delegate = delegate;
 	}
 

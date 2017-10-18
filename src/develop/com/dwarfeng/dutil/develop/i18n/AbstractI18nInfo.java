@@ -4,7 +4,7 @@ import java.util.Locale;
 import java.util.Objects;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 
 /**
  * 抽象国际化信息。
@@ -32,8 +32,8 @@ public abstract class AbstractI18nInfo implements I18nInfo {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public AbstractI18nInfo(Locale key, String name) {
-		Objects.requireNonNull(key, DwarfUtil.getStringField(StringFieldKey.ABSTRACTI18NINFO_0));
-		Objects.requireNonNull(name, DwarfUtil.getStringField(StringFieldKey.ABSTRACTI18NINFO_1));
+		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTI18NINFO_0));
+		Objects.requireNonNull(name, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTI18NINFO_1));
 		
 		this.key = key;
 		this.name = name;

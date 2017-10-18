@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.util.Objects;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 
 /**
  * 流记读取器。
@@ -25,7 +25,7 @@ public abstract class StreamLoader<T> implements Closeable, Loader<T>{
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public StreamLoader(InputStream in) {
-		Objects.requireNonNull(in, DwarfUtil.getStringField(StringFieldKey.STREAMLOADER_0));
+		Objects.requireNonNull(in, DwarfUtil.getExecptionString(ExceptionStringKey.STREAMLOADER_0));
 		this.in = in;
 	}
 

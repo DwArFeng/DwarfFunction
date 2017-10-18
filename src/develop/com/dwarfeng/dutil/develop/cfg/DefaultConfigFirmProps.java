@@ -3,7 +3,7 @@ package com.dwarfeng.dutil.develop.cfg;
 import java.util.Objects;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 
 /**
  * 默认配置固定属性。
@@ -24,11 +24,11 @@ public class DefaultConfigFirmProps implements ConfigFirmProps {
 	 * @throws IllegalArgumentException 指定的默认值无法通过指定的配置值检查器的检验。
 	 */
 	public DefaultConfigFirmProps(ConfigChecker configChecker, String defaultValue) {
-		Objects.requireNonNull(configChecker, DwarfUtil.getStringField(StringFieldKey.DefaultConfigFirmProps_0));
-		Objects.requireNonNull(defaultValue, DwarfUtil.getStringField(StringFieldKey.DefaultConfigFirmProps_1));
+		Objects.requireNonNull(configChecker, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultConfigFirmProps_0));
+		Objects.requireNonNull(defaultValue, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultConfigFirmProps_1));
 		
 		if(configChecker.nonValid(defaultValue)){
-			throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.DefaultConfigFirmProps_2));
+			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.DefaultConfigFirmProps_2));
 		}
 		
 		this.ConfigChecker = configChecker;

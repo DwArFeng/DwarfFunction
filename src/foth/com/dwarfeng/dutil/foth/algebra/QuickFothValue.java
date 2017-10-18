@@ -3,7 +3,7 @@ package com.dwarfeng.dutil.foth.algebra;
 import java.util.Objects;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.math.AbstractMathObject;
 
 /**
@@ -53,7 +53,7 @@ public class QuickFothValue extends AbstractMathObject implements FothValue {
 	 */
 	@Override
 	public String getMathName() {
-		return DwarfUtil.getStringField(StringFieldKey.ALGEBRA_REALNUMBER);
+		return DwarfUtil.getExecptionString(ExceptionStringKey.ALGEBRA_REALNUMBER);
 	}
 
 	/*

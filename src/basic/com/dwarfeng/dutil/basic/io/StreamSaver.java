@@ -6,7 +6,7 @@ import java.io.OutputStream;
 import java.util.Objects;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 
 /**
  * 流保存器。
@@ -25,7 +25,7 @@ public abstract class StreamSaver<T> implements Closeable, Saver<T> {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public StreamSaver(OutputStream out) {
-		Objects.requireNonNull(out, DwarfUtil.getStringField(StringFieldKey.STREAMSAVER_0));
+		Objects.requireNonNull(out, DwarfUtil.getExecptionString(ExceptionStringKey.STREAMSAVER_0));
 		this.out = out;
 	}
 

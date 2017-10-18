@@ -12,7 +12,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 
 /**
  * 默认配置模型。
@@ -87,16 +87,16 @@ public class DefaultConfigModel extends AbstractConfigModel {
 	 */
 	public DefaultConfigModel(Collection<ConfigEntry> configEntries, Map<ConfigKey, String> currentValueMap,
 			Map<ConfigKey, ConfigFirmProps> firmPropsMap) {
-		Objects.requireNonNull(configEntries, DwarfUtil.getStringField(StringFieldKey.DefaultConfigModel_0));
-		Objects.requireNonNull(currentValueMap, DwarfUtil.getStringField(StringFieldKey.DefaultConfigModel_4));
-		Objects.requireNonNull(firmPropsMap, DwarfUtil.getStringField(StringFieldKey.DefaultConfigModel_5));
+		Objects.requireNonNull(configEntries, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultConfigModel_0));
+		Objects.requireNonNull(currentValueMap, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultConfigModel_4));
+		Objects.requireNonNull(firmPropsMap, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultConfigModel_5));
 
 		this.currentValueMap = currentValueMap;
 		this.firmPropsMap = firmPropsMap;
 
 		for (ConfigEntry configEntry : configEntries) {
 			if (ConfigUtil.nonValid(configEntry)) {
-				throw new IllegalArgumentException(DwarfUtil.getStringField(StringFieldKey.DefaultConfigModel_2));
+				throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.DefaultConfigModel_2));
 			}
 		}
 		for (ConfigEntry configEntry : configEntries) {
@@ -210,7 +210,7 @@ public class DefaultConfigModel extends AbstractConfigModel {
 	 */
 	@Override
 	public boolean addAll(Collection<ConfigEntry> configEntries) {
-		Objects.requireNonNull(configEntries, DwarfUtil.getStringField(StringFieldKey.DefaultConfigModel_0));
+		Objects.requireNonNull(configEntries, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultConfigModel_0));
 
 		boolean aFlag = false;
 
@@ -249,7 +249,7 @@ public class DefaultConfigModel extends AbstractConfigModel {
 	 */
 	@Override
 	public boolean removeAll(Collection<ConfigKey> configKeys) {
-		Objects.requireNonNull(configKeys, DwarfUtil.getStringField(StringFieldKey.DEFAULTEXCONFIGMODEL_2));
+		Objects.requireNonNull(configKeys, DwarfUtil.getExecptionString(ExceptionStringKey.DEFAULTEXCONFIGMODEL_2));
 		return batchRemove(configKeys, true);
 	}
 
@@ -261,7 +261,7 @@ public class DefaultConfigModel extends AbstractConfigModel {
 	 */
 	@Override
 	public boolean retainAll(Collection<ConfigKey> configKeys) {
-		Objects.requireNonNull(configKeys, DwarfUtil.getStringField(StringFieldKey.DEFAULTEXCONFIGMODEL_2));
+		Objects.requireNonNull(configKeys, DwarfUtil.getExecptionString(ExceptionStringKey.DEFAULTEXCONFIGMODEL_2));
 		return batchRemove(configKeys, false);
 	}
 
@@ -399,7 +399,7 @@ public class DefaultConfigModel extends AbstractConfigModel {
 	 */
 	@Override
 	public boolean setAllCurrentValue(Map<ConfigKey, String> map) {
-		Objects.requireNonNull(map, DwarfUtil.getStringField(StringFieldKey.DefaultConfigModel_3));
+		Objects.requireNonNull(map, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultConfigModel_3));
 
 		boolean aFlag = false;
 

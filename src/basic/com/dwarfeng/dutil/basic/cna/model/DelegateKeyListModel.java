@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.cna.model.obv.ListObverser;
 import com.dwarfeng.dutil.basic.prog.WithKey;
 
@@ -84,7 +84,7 @@ public class DelegateKeyListModel<K, V extends WithKey<K>> extends DelegateListM
 	 */
 	@Override
 	public boolean containsAllKey(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.DELEGATEKEYLISTMODEL_0));
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATEKEYLISTMODEL_0));
 		for (Iterator<?> i = c.iterator(); i.hasNext();) {
 			Object o = i.next();
 			if (!containsKey(o))
@@ -158,7 +158,7 @@ public class DelegateKeyListModel<K, V extends WithKey<K>> extends DelegateListM
 	 */
 	@Override
 	public boolean removeAllKey(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.DELEGATEKEYLISTMODEL_0));
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATEKEYLISTMODEL_0));
 		return batchRemoveKey(c, true);
 	}
 
@@ -171,7 +171,7 @@ public class DelegateKeyListModel<K, V extends WithKey<K>> extends DelegateListM
 	 */
 	@Override
 	public boolean retainAllKey(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.DELEGATEKEYLISTMODEL_0));
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATEKEYLISTMODEL_0));
 		return batchRemoveKey(c, false);
 
 	}

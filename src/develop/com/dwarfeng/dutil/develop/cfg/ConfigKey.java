@@ -3,7 +3,7 @@ package com.dwarfeng.dutil.develop.cfg;
 import java.util.Objects;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.str.Name;
 
 /**
@@ -23,7 +23,7 @@ public class ConfigKey implements Name{
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public ConfigKey(String name) {
-		Objects.requireNonNull(name, DwarfUtil.getStringField(StringFieldKey.ConfigKey_0));
+		Objects.requireNonNull(name, DwarfUtil.getExecptionString(ExceptionStringKey.ConfigKey_0));
 		this.name = name;
 	}
 

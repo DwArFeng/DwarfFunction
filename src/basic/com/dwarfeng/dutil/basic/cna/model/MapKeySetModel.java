@@ -11,7 +11,7 @@ import java.util.Set;
 import java.util.WeakHashMap;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
 import com.dwarfeng.dutil.basic.prog.WithKey;
 
@@ -47,7 +47,7 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
 	 */
 	public MapKeySetModel(Map<K, V> map, Set<SetObverser<V>> obversers) {
 		super(obversers);
-		Objects.requireNonNull(map, DwarfUtil.getStringField(StringFieldKey.MAPKEYSETMODEL_0));
+		Objects.requireNonNull(map, DwarfUtil.getExecptionString(ExceptionStringKey.MAPKEYSETMODEL_0));
 		this.map = map;
 	}
 
@@ -195,7 +195,7 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
 	 */
 	@Override
 	public boolean containsAll(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.MAPKEYSETMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MAPKEYSETMODEL_1));
 		return map.values().containsAll(c);
 	}
 
@@ -206,7 +206,7 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
 	 */
 	@Override
 	public boolean addAll(Collection<? extends V> c) {
-		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.MAPKEYSETMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MAPKEYSETMODEL_1));
 		boolean aFlag = false;
 		for (V v : c) {
 			if (add(v))
@@ -222,7 +222,7 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
 	 */
 	@Override
 	public boolean removeAll(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.MAPKEYSETMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MAPKEYSETMODEL_1));
 		return batchRemove(c, true);
 	}
 
@@ -233,7 +233,7 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
 	 */
 	@Override
 	public boolean retainAll(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.MAPKEYSETMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MAPKEYSETMODEL_1));
 		return batchRemove(c, false);
 	}
 
@@ -294,7 +294,7 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
 	 */
 	@Override
 	public boolean containsAllKey(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.MAPKEYSETMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MAPKEYSETMODEL_1));
 		return map.keySet().containsAll(c);
 	}
 
@@ -323,13 +323,13 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
 	 */
 	@Override
 	public boolean removeAllKey(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.MAPKEYSETMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MAPKEYSETMODEL_1));
 		return batchRemoveKey(c, true);
 	}
 
 	@Override
 	public boolean retainAllKey(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.MAPKEYSETMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MAPKEYSETMODEL_1));
 		return batchRemoveKey(c, false);
 	}
 

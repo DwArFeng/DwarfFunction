@@ -8,7 +8,7 @@ import java.util.Properties;
 import java.util.Set;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.io.SaveFailedException;
 import com.dwarfeng.dutil.basic.io.StreamSaver;
 import com.dwarfeng.dutil.develop.cfg.ConfigKey;
@@ -53,9 +53,9 @@ public class PropConfigSaver extends StreamSaver<CurrentValueContainer> {
 		if (flag) {
 			flag = false;
 		} else {
-			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.PropertiesConfigSaver_1));
+			throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.PropertiesConfigSaver_1));
 		}
-		Objects.requireNonNull(container, DwarfUtil.getStringField(StringFieldKey.PropertiesConfigSaver_0));
+		Objects.requireNonNull(container, DwarfUtil.getExecptionString(ExceptionStringKey.PropertiesConfigSaver_0));
 
 		Properties properties = new Properties();
 		for (Map.Entry<ConfigKey, String> entry : container.getAllCurrentValue().entrySet()) {
@@ -78,9 +78,9 @@ public class PropConfigSaver extends StreamSaver<CurrentValueContainer> {
 		if (flag) {
 			flag = false;
 		} else {
-			throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.PropertiesConfigSaver_1));
+			throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.PropertiesConfigSaver_1));
 		}
-		Objects.requireNonNull(container, DwarfUtil.getStringField(StringFieldKey.PropertiesConfigSaver_0));
+		Objects.requireNonNull(container, DwarfUtil.getExecptionString(ExceptionStringKey.PropertiesConfigSaver_0));
 
 		final Set<SaveFailedException> exceptions = new LinkedHashSet<>();
 

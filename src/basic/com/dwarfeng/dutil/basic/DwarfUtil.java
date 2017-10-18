@@ -1,10 +1,14 @@
 package com.dwarfeng.dutil.basic;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.ResourceBundle;
+
+import javax.imageio.ImageIO;
 
 import com.dwarfeng.dutil.basic.io.CT;
 import com.dwarfeng.dutil.basic.io.CT.OutputType;
@@ -29,15 +33,6 @@ import com.dwarfeng.dutil.basic.prog.VersionType;
  */
 public final class DwarfUtil {
 
-	public static void main(String[] args) {
-		CT.setOutputType(OutputType.NO_DATE);
-		CT.trace(DwarfUtil.getWelcomeString());
-	}
-
-	// 禁止外部实例化
-	private DwarfUtil() {
-	}
-
 	private static final String SF_PATH = "com/dwarfeng/dutil/resource/lang/stringField";
 
 	private static final Version version = new DefaultVersion.Builder().type(VersionType.BETA).firstVersion((byte) 0)
@@ -46,18 +41,79 @@ public final class DwarfUtil {
 	private static ResourceBundle sf = ResourceBundle.getBundle(SF_PATH, Locale.getDefault(),
 			CT.class.getClassLoader());
 
+	private static final String LF_PATH = "com/dwarfeng/dutil/resource/lang/labelField";
+
+	private static final Map<Locale, ResourceBundle> labelFieldMap = new HashMap<>();
+
+	private static final String IMAGE_ROOT = "/com/dwarfeng/dutil/resource/image/";
+
 	/**
-	 * 将异常的文本字段语言设置为指定语言。
+	 * 获得指定的图片键对应的图片。
+	 * 
+	 * <p>
+	 * 如果入口参数为 <code>null</code>，或是找不到指定的图片，则返回 <code>null</code>。
+	 * 
+	 * <p>
+	 * 此方法是对内使用的，它的主要作用是返回内部类所需要的图片。 <br>
+	 * 请不要在外部程序中调用此包的方法，因为该方法对内使用，其本身不保证兼容性。
+	 * <p>
+	 * <b>注意：</b> 该方法在设计的时候不考虑兼容性，当发生不向上兼容的改动时，作者没有义务在变更日志中说明。
+	 * 
+	 * @param imageKey
+	 *            指定的图片键。
+	 * @return 指定的图片键对应的图片。
+	 */
+	public final static Image getImage(ImageKey imageKey) {
+		if (Objects.isNull(imageKey)) {
+			return null;
+		}
+
+		try {
+			BufferedImage image = ImageIO.read(DwarfUtil.class.getResource(IMAGE_ROOT + imageKey.getName()));
+			return image;
+		} catch (Exception e) {
+			try {
+				BufferedImage image = ImageIO.read(DwarfUtil.class.getResource(ImageKey.IMG_LOAD_FAILED.getName()));
+				return image;
+			} catch (Exception e1) {
+				return null;
+			}
+		}
+	}
+
+	/**
+	 * 获取指定语言环境下的标签字段。
+	 * <p>
+	 * 如果入口参数 <code>key</code> 为 <code>null</code>，则返回空字符串<code>""</code>。
 	 * <p>
 	 * 如果 <code>local</code> 为 <code>null</code>，则使用 {@link Locale#getDefault()}
 	 * 
+	 * <p>
+	 * 此方法是对内使用的，它的主要作用是返回内部类所需要的标签字段。 <br>
+	 * 请不要在外部程序中调用此包的方法，因为该方法对内使用，其本身不保证兼容性。
+	 * <p>
+	 * <b>注意：</b> 该方法在设计的时候不考虑兼容性，当发生不向上兼容的改动时，作者没有义务在变更日志中说明。
+	 * 
+	 * @param key
+	 *            指定的标签键。
 	 * @param locale
-	 *            指定的语言。
+	 *            指定的语言环境。
+	 * @return 指定标签键和语言环境下的标签字段。
 	 */
-	public static void setLocale(Locale locale) {
+	public static String getLabelString(LabelStringKey key, Locale locale) {
+		if (Objects.isNull(key))
+			return "";
 		if (Objects.isNull(locale))
 			locale = Locale.getDefault();
-		sf = ResourceBundle.getBundle(SF_PATH, locale, DwarfUtil.class.getClassLoader());
+
+		ResourceBundle rb = labelFieldMap.get(locale);
+		// 延迟加载
+		if (Objects.isNull(rb)) {
+			rb = ResourceBundle.getBundle(LF_PATH, locale, DwarfUtil.class.getClassLoader());
+			labelFieldMap.put(locale, rb);
+		}
+
+		return rb.getString(key.toString());
 	}
 
 	/**
@@ -65,11 +121,17 @@ public final class DwarfUtil {
 	 * <p>
 	 * 如果入口参数 <code>key</code> 为 <code>null</code>，则返回空字符串<code>""</code>。
 	 * 
+	 * <p>
+	 * 此方法是对内使用的，它的主要作用是返回内部类所需要的异常文本。 <br>
+	 * 请不要在外部程序中调用此包的方法，因为该方法对内使用，其本身不保证兼容性。
+	 * <p>
+	 * <b>注意：</b> 该方法在设计的时候不考虑兼容性，当发生不向上兼容的改动时，作者没有义务在变更日志中说明。
+	 * 
 	 * @param key
 	 *            异常文本字段主键枚举。
 	 * @return 主键对应的文本。
 	 */
-	public static String getStringField(StringFieldKey key) {
+	public static String getExecptionString(ExceptionStringKey key) {
 		if (Objects.isNull(key))
 			return "";
 		return sf.getString(key.getName());
@@ -90,40 +152,30 @@ public final class DwarfUtil {
 	 * @return 该包的欢迎
 	 */
 	public static String getWelcomeString() {
-		return getStringField(StringFieldKey.WELCOME_STRING) + getVersion().getLongName();
+		return getExecptionString(ExceptionStringKey.WELCOME_STRING) + getVersion().getLongName();
 	}
 
-	private static final String LF_PATH = "com/dwarfeng/dutil/resource/lang/labelField";
-
-	private static final Map<Locale, ResourceBundle> labelFieldMap = new HashMap<>();
+	public static void main(String[] args) {
+		CT.setOutputType(OutputType.NO_DATE);
+		CT.trace(DwarfUtil.getWelcomeString());
+	}
 
 	/**
-	 * 获取指定语言环境下的标签字段。
-	 * <p>
-	 * 如果入口参数 <code>key</code> 为 <code>null</code>，则返回空字符串<code>""</code>。
+	 * 将异常的文本字段语言设置为指定语言。
 	 * <p>
 	 * 如果 <code>local</code> 为 <code>null</code>，则使用 {@link Locale#getDefault()}
 	 * 
-	 * @param key
-	 *            指定的标签键。
 	 * @param locale
-	 *            指定的语言环境。
-	 * @return 指定标签键和语言环境下的标签字段。
+	 *            指定的语言。
 	 */
-	public static String getLabelField(LabelFieldKey key, Locale locale) {
-		if (Objects.isNull(key))
-			return "";
+	public static void setLocale(Locale locale) {
 		if (Objects.isNull(locale))
 			locale = Locale.getDefault();
+		sf = ResourceBundle.getBundle(SF_PATH, locale, DwarfUtil.class.getClassLoader());
+	}
 
-		ResourceBundle rb = labelFieldMap.get(locale);
-		// 延迟加载
-		if (Objects.isNull(rb)) {
-			rb = ResourceBundle.getBundle(LF_PATH, locale, DwarfUtil.class.getClassLoader());
-			labelFieldMap.put(locale, rb);
-		}
-
-		return rb.getString(key.toString());
+	// 禁止外部实例化
+	private DwarfUtil() {
 	}
 
 }

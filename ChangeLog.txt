@@ -198,3 +198,18 @@ Beta_0.1.5_20170625_build_A
 	新增 dutil.basic.cna.model.ModelUtil.unmodifiableKeySetModel(KeySetModel<K, V>) 方法，用以代替上面的过时方法。
 	添加 dutil.develop.cfg.parser.FontValueParser，用于转换 java.awt.Font 类。
 	添加 dutil.develop.cfg.parser.FileValueParser，用于转换 java.awt.Font 类。
+	对 dutil.basic.DwarfUtil类中的内部方法名称进行了更改，现在的名称更符合方法的功能。
+		该更改会引起兼容性问题，但只要按照文档所说的，不在外部调用这些方法，便不会有任何问题。
+	更改 dutil.basic包中的内部使用的枚举名称，现在的名称更符合枚举的用途。
+		该更改会引起兼容性问题，但只要按照文档所说的，不在外部调用这些方法，便不会有任何问题。
+	新建接口，用于表示一个对象具有一维/二维/三维尺寸:
+		dutil.basic.gui.awt.Size1D
+		dutil.basic.gui.awt.Size2D
+		dutil.basic.gui.awt.Size3D
+	过时 dutil.basic.num.QuickNumberValueable 类。
+	新建 com.dwarfeng.dutil.basic.num.DefaultNumberValue 类，用于替代上面的过时类。
+	提供不同的 dutil.basic.num.NumberValue 实现，用于不同的使用情况:
+		dutil.basic.num.BigDecimalNumberValue
+		dutil.basic.num.IntNumberValue
+		dutil.basic.num.LongNumberValue
+	新增 dutil.basic.gui.awt.ImageUtil 类，封装最基本的图片操作方法。

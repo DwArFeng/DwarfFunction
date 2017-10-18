@@ -11,7 +11,7 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.cna.ArrayUtil;
 import com.dwarfeng.dutil.basic.cna.CollectionUtil;
 import com.dwarfeng.dutil.basic.cna.model.obv.SetObverser;
@@ -40,7 +40,7 @@ public final class ResourceUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static ResourceHandler unmodifiableResourceHandler(ResourceHandler resourceHandler) {
-		Objects.requireNonNull(resourceHandler, DwarfUtil.getStringField(StringFieldKey.RESOURCEUTIL_0));
+		Objects.requireNonNull(resourceHandler, DwarfUtil.getExecptionString(ExceptionStringKey.RESOURCEUTIL_0));
 		return new UnmodifiableResourceHandler(resourceHandler);
 	}
 
@@ -361,7 +361,7 @@ public final class ResourceUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static SyncResourceHandler syncResourceHandler(ResourceHandler resourceHandler) {
-		Objects.requireNonNull(resourceHandler, DwarfUtil.getStringField(StringFieldKey.RESOURCEUTIL_0));
+		Objects.requireNonNull(resourceHandler, DwarfUtil.getExecptionString(ExceptionStringKey.RESOURCEUTIL_0));
 		return new SyncResourceHandlerImpl(resourceHandler);
 	}
 
@@ -790,7 +790,7 @@ public final class ResourceUtil {
 	 *             指定的入口参数为 <code> null </code>。
 	 */
 	public static Resource unmodifiableResource(Resource resource) {
-		Objects.requireNonNull(DwarfUtil.getStringField(StringFieldKey.RESOURCEUTIL_1));
+		Objects.requireNonNull(DwarfUtil.getExecptionString(ExceptionStringKey.RESOURCEUTIL_1));
 		return new UnmodifiableResource(resource);
 	}
 
@@ -886,7 +886,7 @@ public final class ResourceUtil {
 	 *             指定的入口参数为 <code> null </code>。
 	 */
 	public static ResourceHandler readOnlyResourceHandler(ResourceHandler resourceHandler) {
-		Objects.requireNonNull(resourceHandler, DwarfUtil.getStringField(StringFieldKey.RESOURCEUTIL_0));
+		Objects.requireNonNull(resourceHandler, DwarfUtil.getExecptionString(ExceptionStringKey.RESOURCEUTIL_0));
 		return readOnlyResourceHandler(resourceHandler, resource -> {
 			return unmodifiableResource(resource);
 		});
@@ -905,8 +905,8 @@ public final class ResourceUtil {
 	 */
 	public static ResourceHandler readOnlyResourceHandler(ResourceHandler resourceHandler,
 			ReadOnlyGenerator<Resource> generator) {
-		Objects.requireNonNull(resourceHandler, DwarfUtil.getStringField(StringFieldKey.RESOURCEUTIL_0));
-		Objects.requireNonNull(generator, DwarfUtil.getStringField(StringFieldKey.RESOURCEUTIL_2));
+		Objects.requireNonNull(resourceHandler, DwarfUtil.getExecptionString(ExceptionStringKey.RESOURCEUTIL_0));
+		Objects.requireNonNull(generator, DwarfUtil.getExecptionString(ExceptionStringKey.RESOURCEUTIL_2));
 		return new ReadOnlyResourceHandler(resourceHandler, generator);
 	}
 

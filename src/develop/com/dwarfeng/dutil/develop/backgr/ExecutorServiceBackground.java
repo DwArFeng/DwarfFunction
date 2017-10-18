@@ -15,7 +15,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.cna.CollectionUtil;
 import com.dwarfeng.dutil.basic.threads.NumberedThreadFactory;
 import com.dwarfeng.dutil.develop.backgr.obv.BackgroundObverser;
@@ -67,7 +67,7 @@ public class ExecutorServiceBackground extends AbstractBackground {
 	 */
 	public ExecutorServiceBackground(ExecutorService executorService, Set<BackgroundObverser> obversers) {
 		super(obversers);
-		Objects.requireNonNull(executorService, DwarfUtil.getStringField(StringFieldKey.EXECUTORSERVICEBACKGROUND_0));
+		Objects.requireNonNull(executorService, DwarfUtil.getExecptionString(ExceptionStringKey.EXECUTORSERVICEBACKGROUND_0));
 		this.executorService = executorService;
 	}
 
@@ -83,7 +83,7 @@ public class ExecutorServiceBackground extends AbstractBackground {
 		lock.writeLock().lock();
 		try {
 			if (isShutdown())
-				throw new IllegalStateException(DwarfUtil.getStringField(StringFieldKey.EXECUTORSERVICEBACKGROUND_1));
+				throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.EXECUTORSERVICEBACKGROUND_1));
 			if (Objects.isNull(task))
 				return false;
 			if (tasks.contains(task))
@@ -114,7 +114,7 @@ public class ExecutorServiceBackground extends AbstractBackground {
 	 */
 	@Override
 	public boolean submitAll(Collection<? extends Task> c) {
-		Objects.requireNonNull(c, DwarfUtil.getStringField(StringFieldKey.EXECUTORSERVICEBACKGROUND_2));
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.EXECUTORSERVICEBACKGROUND_2));
 
 		lock.writeLock().lock();
 		try {

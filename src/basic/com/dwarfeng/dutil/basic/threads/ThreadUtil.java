@@ -7,7 +7,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 
 /**
  * 有关线程安全的工具类。
@@ -107,7 +107,7 @@ public final class ThreadUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static Lock unmodifiableLock(Lock lock) {
-		Objects.requireNonNull(lock, DwarfUtil.getStringField(StringFieldKey.THREADUTIL_0));
+		Objects.requireNonNull(lock, DwarfUtil.getExecptionString(ExceptionStringKey.THREADUTIL_0));
 		return new UnmodifiableLock(lock);
 	}
 
@@ -224,7 +224,7 @@ public final class ThreadUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static ReadWriteLock unmodifiableReadWriteLock(ReadWriteLock lock) {
-		Objects.requireNonNull(lock, DwarfUtil.getStringField(StringFieldKey.THREADUTIL_0));
+		Objects.requireNonNull(lock, DwarfUtil.getExecptionString(ExceptionStringKey.THREADUTIL_0));
 		return new UnmodifiableReadWriteLock(lock);
 	}
 

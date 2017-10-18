@@ -8,7 +8,7 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.develop.backgr.obv.BackgroundObverser;
 
 /**
@@ -43,7 +43,7 @@ public abstract class AbstractBackground implements Background {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public AbstractBackground(Set<BackgroundObverser> obversers) {
-		Objects.requireNonNull(obversers, DwarfUtil.getStringField(StringFieldKey.ABSTRACTBACKGROUND_0));
+		Objects.requireNonNull(obversers, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTBACKGROUND_0));
 		this.obversers = obversers;
 	}
 

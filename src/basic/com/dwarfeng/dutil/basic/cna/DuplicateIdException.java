@@ -1,7 +1,7 @@
 package com.dwarfeng.dutil.basic.cna;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 
 /**
  * ID重复异常。
@@ -65,7 +65,7 @@ class DuplicateIdException extends Exception {
 	@Override
 	public String getMessage(){
 		if(super.getMessage() == null || super.getMessage().equals(""))
-			return DwarfUtil.getStringField(StringFieldKey.DUPLICATEIDEXCEPTION_0) + getID();
+			return DwarfUtil.getExecptionString(ExceptionStringKey.DUPLICATEIDEXCEPTION_0) + getID();
 		return super.getMessage();
 	}
 }

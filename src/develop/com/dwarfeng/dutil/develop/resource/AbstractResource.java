@@ -3,7 +3,7 @@ package com.dwarfeng.dutil.develop.resource;
 import java.util.Objects;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 
 /**
  * 抽象资源。
@@ -27,7 +27,7 @@ public abstract class AbstractResource implements Resource {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public AbstractResource(String key) {
-		Objects.requireNonNull(key, DwarfUtil.getStringField(StringFieldKey.ABSTRACTRESOURCE_0));
+		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTRESOURCE_0));
 		this.key = key;
 	}
 

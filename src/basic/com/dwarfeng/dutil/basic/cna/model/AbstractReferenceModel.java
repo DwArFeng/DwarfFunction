@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.WeakHashMap;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.StringFieldKey;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.cna.model.obv.ReferenceObverser;
 
 /**
@@ -40,7 +40,7 @@ public abstract class AbstractReferenceModel<E> implements ReferenceModel<E> {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public AbstractReferenceModel(Set<ReferenceObverser<E>> obversers) {
-		Objects.requireNonNull(obversers, DwarfUtil.getStringField(StringFieldKey.ABSTRACTREFERENCEMODEL_0));
+		Objects.requireNonNull(obversers, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTREFERENCEMODEL_0));
 		this.obversers = obversers;
 	}
 
