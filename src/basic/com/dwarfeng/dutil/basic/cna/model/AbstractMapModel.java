@@ -99,7 +99,11 @@ public abstract class AbstractMapModel<K, V> implements MapModel<K, V> {
 	protected void firePut(K key, V value) {
 		for (MapObverser<K, V> obverser : obversers) {
 			if (Objects.nonNull(obverser))
-				obverser.firePut(key, value);
+				try {
+					obverser.firePut(key, value);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		}
 	}
 
@@ -114,7 +118,11 @@ public abstract class AbstractMapModel<K, V> implements MapModel<K, V> {
 	protected void fireRemoved(K key, V value) {
 		for (MapObverser<K, V> obverser : obversers) {
 			if (Objects.nonNull(obverser))
-				obverser.fireRemoved(key, value);
+				try {
+					obverser.fireRemoved(key, value);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		}
 	}
 
@@ -131,7 +139,11 @@ public abstract class AbstractMapModel<K, V> implements MapModel<K, V> {
 	protected void fireChanged(K key, V oldValue, V newValue) {
 		for (MapObverser<K, V> obverser : obversers) {
 			if (Objects.nonNull(obverser))
-				obverser.fireChanged(key, oldValue, newValue);
+				try {
+					obverser.fireChanged(key, oldValue, newValue);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		}
 	}
 
@@ -141,7 +153,11 @@ public abstract class AbstractMapModel<K, V> implements MapModel<K, V> {
 	protected void fireCleared() {
 		for (MapObverser<K, V> obverser : obversers) {
 			if (Objects.nonNull(obverser))
-				obverser.fireCleared();
+				try {
+					obverser.fireCleared();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		}
 	}
 

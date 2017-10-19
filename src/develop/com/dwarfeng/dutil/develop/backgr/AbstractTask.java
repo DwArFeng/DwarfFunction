@@ -39,47 +39,7 @@ public abstract class AbstractTask implements Task {
 	private Throwable throwable = null;
 
 	/**
-	 * 抽象任务需要实现的具体任务。
-	 * <p>
-	 * 该方法允许抛出异常，如果抛出异常，任务则会终止，并且调用 <code>getException</code>方法会返回抛出的异常。
-	 * 
-	 * @throws Exception
-	 *             抛出的异常。
-	 */
-	protected abstract void todo() throws Exception;
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.threads.ExternalReadWriteThreadSafe#getLock()
-	 */
-	@Override
-	public ReadWriteLock getLock() {
-		return lock;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
-	 */
-	@Override
-	public Set<TaskObverser> getObversers() {
-		lock.readLock().lock();
-		try {
-			return obversers;
-		} finally {
-			lock.readLock().unlock();
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.dutil.
-	 * basic.prog.Obverser)
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean addObverser(TaskObverser obverser) {
@@ -91,27 +51,43 @@ public abstract class AbstractTask implements Task {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng.
-	 * dutil.basic.prog.Obverser)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean removeObverser(TaskObverser obverser) {
-		lock.writeLock().lock();
+	public void awaitFinish() throws InterruptedException {
+		runningLock.lock();
 		try {
-			return obversers.remove(obverser);
+			while (!finishFlag) {
+				runningCondition.await();
+			}
 		} finally {
-			lock.writeLock().unlock();
+			runningLock.unlock();
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean awaitFinish(long timeout, TimeUnit unit) throws InterruptedException {
+		runningLock.lock();
+		try {
+			long nanosTimeout = unit.toNanos(timeout);
+			while (!finishFlag) {
+				if (nanosTimeout > 0)
+					nanosTimeout = runningCondition.awaitNanos(nanosTimeout);
+				else
+					return false;
+			}
+			return true;
+		} finally {
+			runningLock.unlock();
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void clearObverser() {
@@ -123,10 +99,98 @@ public abstract class AbstractTask implements Task {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Runnable#run()
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Exception getException() {
+		lock.readLock().lock();
+		try {
+			if (throwable instanceof Exception) {
+				return (Exception) throwable;
+			} else {
+				return new Exception(throwable);
+			}
+		} finally {
+			lock.readLock().unlock();
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public ReadWriteLock getLock() {
+		return lock;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Set<TaskObverser> getObversers() {
+		lock.readLock().lock();
+		try {
+			return obversers;
+		} finally {
+			lock.readLock().unlock();
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Throwable getThrowable() {
+		lock.readLock().lock();
+		try {
+			return throwable;
+		} finally {
+			lock.readLock().unlock();
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean isFinished() {
+		lock.readLock().lock();
+		try {
+			return finishFlag;
+		} finally {
+			lock.readLock().unlock();
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean isStarted() {
+		lock.readLock().lock();
+		try {
+			return startFlag;
+		} finally {
+			lock.readLock().unlock();
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean removeObverser(TaskObverser obverser) {
+		lock.writeLock().lock();
+		try {
+			return obversers.remove(obverser);
+		} finally {
+			lock.writeLock().unlock();
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void run() {
@@ -162,13 +226,11 @@ public abstract class AbstractTask implements Task {
 	}
 
 	/**
-	 * 通知观察器任务开始。
+	 * {@inheritDoc}
 	 */
-	protected void fireStarted() {
-		for (TaskObverser obverser : obversers) {
-			if (Objects.nonNull(obverser))
-				obverser.fireStarted();
-		}
+	@Override
+	public String toString() {
+		return "AbstractTask [finishFlag=" + finishFlag + ", startFlag=" + startFlag + ", exception=" + throwable + "]";
 	}
 
 	/**
@@ -177,122 +239,36 @@ public abstract class AbstractTask implements Task {
 	protected void fireFinished() {
 		for (TaskObverser obverser : obversers) {
 			if (Objects.nonNull(obverser))
-				obverser.fireFinished();
+				try {
+					obverser.fireFinished();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.backgr.Task#isStarted()
+	/**
+	 * 通知观察器任务开始。
 	 */
-	@Override
-	public boolean isStarted() {
-		lock.readLock().lock();
-		try {
-			return startFlag;
-		} finally {
-			lock.readLock().unlock();
+	protected void fireStarted() {
+		for (TaskObverser obverser : obversers) {
+			if (Objects.nonNull(obverser))
+				try {
+					obverser.fireStarted();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * 抽象任务需要实现的具体任务。
+	 * <p>
+	 * 该方法允许抛出异常，如果抛出异常，任务则会终止，并且调用 <code>getException</code>方法会返回抛出的异常。
 	 * 
-	 * @see com.dwarfeng.dutil.develop.backgr.Task#isFinish()
+	 * @throws Exception
+	 *             抛出的异常。
 	 */
-	@Override
-	public boolean isFinished() {
-		lock.readLock().lock();
-		try {
-			return finishFlag;
-		} finally {
-			lock.readLock().unlock();
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.backgr.Task#getException()
-	 */
-	@Override
-	public Exception getException() {
-		lock.readLock().lock();
-		try {
-			if (throwable instanceof Exception) {
-				return (Exception) throwable;
-			} else {
-				return new Exception(throwable);
-			}
-		} finally {
-			lock.readLock().unlock();
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.backgr.Task#geThrowable()
-	 */
-	@Override
-	public Throwable getThrowable() {
-		lock.readLock().lock();
-		try {
-			return throwable;
-		} finally {
-			lock.readLock().unlock();
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.backgr.Task#awaitFinish()
-	 */
-	@Override
-	public void awaitFinish() throws InterruptedException {
-		runningLock.lock();
-		try {
-			while (!finishFlag) {
-				runningCondition.await();
-			}
-		} finally {
-			runningLock.unlock();
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.backgr.Task#awaitFinish(long,
-	 * java.util.concurrent.TimeUnit)
-	 */
-	@Override
-	public boolean awaitFinish(long timeout, TimeUnit unit) throws InterruptedException {
-		runningLock.lock();
-		try {
-			long nanosTimeout = unit.toNanos(timeout);
-			while (!finishFlag) {
-				if (nanosTimeout > 0)
-					nanosTimeout = runningCondition.awaitNanos(nanosTimeout);
-				else
-					return false;
-			}
-			return true;
-		} finally {
-			runningLock.unlock();
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "AbstractTask [finishFlag=" + finishFlag + ", startFlag=" + startFlag + ", exception=" + throwable + "]";
-	}
+	protected abstract void todo() throws Exception;
 
 }

@@ -97,7 +97,11 @@ public abstract class AbstractSetModel<E> implements SetModel<E> {
 	protected void fireAdded(E element) {
 		for (SetObverser<E> obverser : obversers) {
 			if (Objects.nonNull(obverser))
-				obverser.fireAdded(element);
+				try {
+					obverser.fireAdded(element);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		}
 	}
 
@@ -110,7 +114,11 @@ public abstract class AbstractSetModel<E> implements SetModel<E> {
 	protected void fireRemoved(E element) {
 		for (SetObverser<E> obverser : obversers) {
 			if (Objects.nonNull(obverser))
-				obverser.fireRemoved(element);
+				try {
+					obverser.fireRemoved(element);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		}
 	}
 
@@ -120,7 +128,11 @@ public abstract class AbstractSetModel<E> implements SetModel<E> {
 	protected void fireCleared() {
 		for (SetObverser<E> obverser : obversers) {
 			if (Objects.nonNull(obverser))
-				obverser.fireCleared();
+				try {
+					obverser.fireCleared();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		}
 	}
 

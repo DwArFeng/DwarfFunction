@@ -47,21 +47,16 @@ public abstract class AbstractBackground implements Background {
 		this.obversers = obversers;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.threads.ExternalReadWriteThreadSafe#getLock()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public ReadWriteLock getLock() {
 		return lock;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Set<BackgroundObverser> getObversers() {
@@ -73,12 +68,8 @@ public abstract class AbstractBackground implements Background {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.dutil.
-	 * basic.prog.Obverser)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean addObverser(BackgroundObverser obverser) {
@@ -90,12 +81,8 @@ public abstract class AbstractBackground implements Background {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng.
-	 * dutil.basic.prog.Obverser)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean removeObverser(BackgroundObverser obverser) {
@@ -107,10 +94,8 @@ public abstract class AbstractBackground implements Background {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void clearObverser() {
@@ -131,7 +116,11 @@ public abstract class AbstractBackground implements Background {
 	protected void fireTaskSubmitted(Task task) {
 		for (BackgroundObverser obverser : obversers) {
 			if (Objects.nonNull(obverser))
-				obverser.fireTaskSubmitted(task);
+				try {
+					obverser.fireTaskSubmitted(task);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		}
 	}
 
@@ -144,7 +133,11 @@ public abstract class AbstractBackground implements Background {
 	protected void fireTaskStarted(Task task) {
 		for (BackgroundObverser obverser : obversers) {
 			if (Objects.nonNull(obverser))
-				obverser.fireTaskStarted(task);
+				try {
+					obverser.fireTaskStarted(task);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		}
 	}
 
@@ -157,7 +150,11 @@ public abstract class AbstractBackground implements Background {
 	protected void fireTaskFinished(Task task) {
 		for (BackgroundObverser obverser : obversers) {
 			if (Objects.nonNull(obverser))
-				obverser.fireTaskFinished(task);
+				try {
+					obverser.fireTaskFinished(task);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		}
 	}
 
@@ -170,7 +167,11 @@ public abstract class AbstractBackground implements Background {
 	protected void fireTaskRemoved(Task task) {
 		for (BackgroundObverser obverser : obversers) {
 			if (Objects.nonNull(obverser))
-				obverser.fireTaskRemoved(task);
+				try {
+					obverser.fireTaskRemoved(task);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		}
 	}
 
@@ -180,7 +181,11 @@ public abstract class AbstractBackground implements Background {
 	protected void fireShutDown() {
 		for (BackgroundObverser obverser : obversers) {
 			if (Objects.nonNull(obverser))
-				obverser.fireShutDown();
+				try {
+					obverser.fireShutDown();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		}
 	}
 
@@ -190,7 +195,11 @@ public abstract class AbstractBackground implements Background {
 	protected void fireTerminated() {
 		for (BackgroundObverser obverser : obversers) {
 			if (Objects.nonNull(obverser))
-				obverser.fireTerminated();
+				try {
+					obverser.fireTerminated();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		}
 	}
 

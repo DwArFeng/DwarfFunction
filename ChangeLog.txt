@@ -215,3 +215,4 @@ Beta_0.1.5_20170625_build_A
 	新增 dutil.basic.gui.awt.ImageUtil 类，封装最基本的图片操作方法。
 	新增 dutil.basic.io.ByteBufferInputStream，用于从一个 ByteBuffer 中读取有关数据。
 	新增 dutil.basic.io.ByteBufferOutputStream，用于向一个 ByteBuffer 中写入有关数据。
+	修复模型广播侦听器如果有一个侦听器抛出了异常，则模型不会广播剩下的侦听器的问题。

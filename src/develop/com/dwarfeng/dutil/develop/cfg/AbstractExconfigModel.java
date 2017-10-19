@@ -43,22 +43,16 @@ public abstract class AbstractExconfigModel implements ExconfigModel {
 		this.obversers = obversers;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Set<ExconfigObverser> getObversers() {
 		return Collections.unmodifiableSet(obversers);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.dutil.
-	 * basic.prog.Obverser)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean addObverser(ExconfigObverser obverser) {
@@ -67,22 +61,16 @@ public abstract class AbstractExconfigModel implements ExconfigModel {
 		return obversers.add(obverser);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng.
-	 * dutil.basic.prog.Obverser)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean removeObverser(ExconfigObverser obverser) {
 		return obversers.remove(obverser);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void clearObverser() {
@@ -104,7 +92,11 @@ public abstract class AbstractExconfigModel implements ExconfigModel {
 	protected void fireCurrentValueChanged(ConfigKey configKey, String oldValue, String newValue, String validValue) {
 		for (ExconfigObverser obverser : obversers) {
 			if (Objects.nonNull(obverser))
-				obverser.fireCurrentValueChanged(configKey, oldValue, newValue, validValue);
+				try {
+					obverser.fireCurrentValueChanged(configKey, oldValue, newValue, validValue);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		}
 	}
 
@@ -114,7 +106,11 @@ public abstract class AbstractExconfigModel implements ExconfigModel {
 	protected void fireConfigKeyCleared() {
 		for (ExconfigObverser obverser : obversers) {
 			if (Objects.nonNull(obverser))
-				obverser.fireConfigKeyCleared();
+				try {
+					obverser.fireConfigKeyCleared();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		}
 	}
 
@@ -134,7 +130,11 @@ public abstract class AbstractExconfigModel implements ExconfigModel {
 			String currentValue) {
 		for (ExconfigObverser obverser : obversers) {
 			if (Objects.nonNull(obverser))
-				obverser.fireConfigKeyRemoved(configKey, configFirmProps, valueParser, currentValue);
+				try {
+					obverser.fireConfigKeyRemoved(configKey, configFirmProps, valueParser, currentValue);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		}
 	}
 
@@ -154,7 +154,11 @@ public abstract class AbstractExconfigModel implements ExconfigModel {
 			String currentValue) {
 		for (ExconfigObverser obverser : obversers) {
 			if (Objects.nonNull(obverser))
-				obverser.fireConfigKeyAdded(configKey, configFirmProps, valueParser, currentValue);
+				try {
+					obverser.fireConfigKeyAdded(configKey, configFirmProps, valueParser, currentValue);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		}
 	}
 
@@ -171,7 +175,11 @@ public abstract class AbstractExconfigModel implements ExconfigModel {
 	protected void fireConfigFirmPropsChanged(ConfigKey configKey, ConfigFirmProps oldValue, ConfigFirmProps newValue) {
 		for (ExconfigObverser obverser : obversers) {
 			if (Objects.nonNull(obverser))
-				obverser.fireConfigFirmPropsChanged(configKey, oldValue, newValue);
+				try {
+					obverser.fireConfigFirmPropsChanged(configKey, oldValue, newValue);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		}
 	}
 
@@ -188,7 +196,11 @@ public abstract class AbstractExconfigModel implements ExconfigModel {
 	protected void fireValueParserChanged(ConfigKey configKey, ValueParser oldValue, ValueParser newValue) {
 		for (ExconfigObverser obverser : obversers) {
 			if (Objects.nonNull(obverser))
-				obverser.fireValueParserChanged(configKey, oldValue, newValue);
+				try {
+					obverser.fireValueParserChanged(configKey, oldValue, newValue);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		}
 	}
 

@@ -87,7 +87,11 @@ public abstract class AbstractListModel<E> implements ListModel<E> {
 	protected void fireAdded(int index, E element) {
 		for (ListObverser<E> obverser : obversers) {
 			if (Objects.nonNull(obverser))
-				obverser.fireAdded(index, element);
+				try {
+					obverser.fireAdded(index, element);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		}
 	}
 
@@ -102,7 +106,11 @@ public abstract class AbstractListModel<E> implements ListModel<E> {
 	protected void fireRemoved(int index, E element) {
 		for (ListObverser<E> obverser : obversers) {
 			if (Objects.nonNull(obverser))
-				obverser.fireRemoved(index, element);
+				try {
+					obverser.fireRemoved(index, element);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		}
 	}
 
@@ -119,7 +127,11 @@ public abstract class AbstractListModel<E> implements ListModel<E> {
 	protected void fireChanged(int index, E oldElement, E newElement) {
 		for (ListObverser<E> obverser : obversers) {
 			if (Objects.nonNull(obverser))
-				obverser.fireChanged(index, oldElement, newElement);
+				try {
+					obverser.fireChanged(index, oldElement, newElement);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		}
 	}
 
@@ -129,7 +141,11 @@ public abstract class AbstractListModel<E> implements ListModel<E> {
 	protected void fireCleared() {
 		for (ListObverser<E> obverser : obversers) {
 			if (Objects.nonNull(obverser))
-				obverser.fireCleared();
+				try {
+					obverser.fireCleared();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		}
 	}
 

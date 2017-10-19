@@ -27,221 +27,6 @@ import com.dwarfeng.dutil.develop.i18n.obv.I18nObverser;
  */
 public class DelegateI18nHandler implements I18nHandler {
 
-	/** 该键值集合国际化处理器的键值集合。 */
-	protected final KeySetModel<Locale, I18nInfo> delegate;
-
-	private Locale currentLocale = null;
-	private I18n currentI18n = null;
-
-	/**
-	 * 生成一个默认的代理国际化处理器。
-	 */
-	public DelegateI18nHandler() {
-		this(new MapKeySetModel<>());
-	}
-
-	/**
-	 * 生成一个具有指定代理的新的代理国际化处理器。
-	 * 
-	 * @param delegate
-	 *            指定的代理。
-	 * @throws NullPointerException
-	 *             入口参数为 <code>null</code>。
-	 */
-	public DelegateI18nHandler(KeySetModel<Locale, I18nInfo> delegate) {
-		Objects.requireNonNull(delegate, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATEI18NHANDLER_0));
-		this.delegate = delegate;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
-	 */
-	@Override
-	public Set<SetObverser<I18nInfo>> getObversers() {
-		return delegate.getObversers();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.dutil.
-	 * basic.prog.Obverser)
-	 */
-	@Override
-	public boolean addObverser(SetObverser<I18nInfo> obverser) {
-		return delegate.addObverser(obverser);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.cna.model.KeySetModel#get(java.lang.Object)
-	 */
-	@Override
-	public I18nInfo get(Locale key) {
-		return delegate.get(key);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsKey(java.lang.
-	 * Object)
-	 */
-	@Override
-	public boolean containsKey(Object key) {
-		return delegate.containsKey(key);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng.
-	 * dutil.basic.prog.Obverser)
-	 */
-	@Override
-	public boolean removeObverser(SetObverser<I18nInfo> obverser) {
-		return delegate.removeObverser(obverser);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsAllKey(java.util.
-	 * Collection)
-	 */
-	@Override
-	public boolean containsAllKey(Collection<?> c) {
-		return delegate.containsAllKey(c);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
-	 */
-	@Override
-	public void clearObverser() {
-		delegate.clearObverser();
-	}
-
-	private void resetDefaultLocale() {
-		Locale oldLocale = currentLocale;
-
-		currentLocale = null;
-		I18nInfo i18nInfo = get(null);
-		if (Objects.nonNull(i18nInfo)) {
-			try {
-				currentI18n = i18nInfo.newI18n();
-			} catch (Exception e) {
-				currentI18n = null;
-			}
-		} else {
-			currentI18n = null;
-		}
-
-		fireCurrentLocaleChanged(oldLocale, currentLocale, currentI18n);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeKey(java.lang.
-	 * Object)
-	 */
-	@Override
-	public boolean removeKey(Object key) {
-		if (delegate.removeKey(key)) {
-			if (Objects.equals(key, currentLocale)) {
-				resetDefaultLocale();
-			}
-			return true;
-		}
-		return false;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeAllKey(java.util.
-	 * Collection)
-	 */
-	@Override
-	public boolean removeAllKey(Collection<?> c) {
-		if (delegate.removeAllKey(c)) {
-			if (c.contains(currentLocale)) {
-				resetDefaultLocale();
-			}
-			return true;
-		}
-		return false;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#retainAllKey(java.util.
-	 * Collection)
-	 */
-	@Override
-	public boolean retainAllKey(Collection<?> c) {
-		if (delegate.retainAllKey(c)) {
-			if (!c.contains(currentLocale)) {
-				resetDefaultLocale();
-			}
-			return true;
-		}
-		return false;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#size()
-	 */
-	@Override
-	public int size() {
-		return delegate.size();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#isEmpty()
-	 */
-	@Override
-	public boolean isEmpty() {
-		return delegate.isEmpty();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#contains(java.lang.Object)
-	 */
-	@Override
-	public boolean contains(Object o) {
-		return delegate.contains(o);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#iterator()
-	 */
-	@Override
-	public Iterator<I18nInfo> iterator() {
-		return new DelegateIterator(delegate.iterator());
-	}
-
 	private class DelegateIterator implements Iterator<I18nInfo> {
 
 		private final Iterator<I18nInfo> delegate;
@@ -287,24 +72,30 @@ public class DelegateI18nHandler implements I18nHandler {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#toArray()
+	/** 该键值集合国际化处理器的键值集合。 */
+	protected final KeySetModel<Locale, I18nInfo> delegate;
+	private Locale currentLocale = null;
+
+	private I18n currentI18n = null;
+
+	/**
+	 * 生成一个默认的代理国际化处理器。
 	 */
-	@Override
-	public Object[] toArray() {
-		return delegate.toArray();
+	public DelegateI18nHandler() {
+		this(new MapKeySetModel<>());
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * 生成一个具有指定代理的新的代理国际化处理器。
 	 * 
-	 * @see java.util.Set#toArray(java.lang.Object[])
+	 * @param delegate
+	 *            指定的代理。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
 	 */
-	@Override
-	public <T> T[] toArray(T[] a) {
-		return delegate.toArray(a);
+	public DelegateI18nHandler(KeySetModel<Locale, I18nInfo> delegate) {
+		Objects.requireNonNull(delegate, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATEI18NHANDLER_0));
+		this.delegate = delegate;
 	}
 
 	/*
@@ -320,17 +111,54 @@ public class DelegateI18nHandler implements I18nHandler {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see java.util.Set#remove(java.lang.Object)
+	 * @see java.util.Set#addAll(java.util.Collection)
 	 */
 	@Override
-	public boolean remove(Object o) {
-		if (delegate.remove(o)) {
-			if (Objects.equals(currentLocale, ((I18nInfo) o).getKey())) {
-				resetDefaultLocale();
-			}
-			return true;
-		}
-		return false;
+	public boolean addAll(Collection<? extends I18nInfo> c) {
+		return delegate.addAll(c);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.dutil.
+	 * basic.prog.Obverser)
+	 */
+	@Override
+	public boolean addObverser(SetObverser<I18nInfo> obverser) {
+		return delegate.addObverser(obverser);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.util.Set#clear()
+	 */
+	@Override
+	public void clear() {
+		delegate.clear();
+		resetDefaultLocale();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+	 */
+	@Override
+	public void clearObverser() {
+		delegate.clearObverser();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.util.Set#contains(java.lang.Object)
+	 */
+	@Override
+	public boolean contains(Object o) {
+		return delegate.contains(o);
 	}
 
 	/*
@@ -346,29 +174,116 @@ public class DelegateI18nHandler implements I18nHandler {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see java.util.Set#addAll(java.util.Collection)
+	 * @see
+	 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsAllKey(java.util.
+	 * Collection)
 	 */
 	@Override
-	public boolean addAll(Collection<? extends I18nInfo> c) {
-		return delegate.addAll(c);
+	public boolean containsAllKey(Collection<?> c) {
+		return delegate.containsAllKey(c);
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see java.util.Set#retainAll(java.util.Collection)
+	 * @see
+	 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsKey(java.lang.
+	 * Object)
 	 */
 	@Override
-	public boolean retainAll(Collection<?> c) {
-		if (delegate.retainAll(c)) {
-			boolean aFlag = true;
-			for (Object obj : c) {
-				if (obj instanceof I18nInfo && Objects.equals(((I18nInfo) obj).getKey(), currentLocale)) {
-					aFlag = false;
-					break;
-				}
-			}
-			if (aFlag) {
+	public boolean containsKey(Object key) {
+		return delegate.containsKey(key);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object o) {
+		return delegate.equals(o);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.dwarfeng.dutil.basic.cna.model.KeySetModel#get(java.lang.Object)
+	 */
+	@Override
+	public I18nInfo get(Locale key) {
+		return delegate.get(key);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.dwarfeng.dutil.develop.i18n.I18nHandler#getCurrentMutilang()
+	 */
+	@Override
+	public I18n getCurrentI18n() {
+		return currentI18n;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.dwarfeng.dutil.develop.i18n.I18nHandler#getCurrentLocale()
+	 */
+	@Override
+	public Locale getCurrentLocale() {
+		return currentLocale;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+	 */
+	@Override
+	public Set<SetObverser<I18nInfo>> getObversers() {
+		return delegate.getObversers();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		return delegate.hashCode();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.util.Set#isEmpty()
+	 */
+	@Override
+	public boolean isEmpty() {
+		return delegate.isEmpty();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.util.Set#iterator()
+	 */
+	@Override
+	public Iterator<I18nInfo> iterator() {
+		return new DelegateIterator(delegate.iterator());
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.util.Set#remove(java.lang.Object)
+	 */
+	@Override
+	public boolean remove(Object o) {
+		if (delegate.remove(o)) {
+			if (Objects.equals(currentLocale, ((I18nInfo) o).getKey())) {
 				resetDefaultLocale();
 			}
 			return true;
@@ -402,42 +317,89 @@ public class DelegateI18nHandler implements I18nHandler {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see java.util.Set#clear()
+	 * @see
+	 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeAllKey(java.util.
+	 * Collection)
 	 */
 	@Override
-	public void clear() {
-		delegate.clear();
-		resetDefaultLocale();
+	public boolean removeAllKey(Collection<?> c) {
+		if (delegate.removeAllKey(c)) {
+			if (c.contains(currentLocale)) {
+				resetDefaultLocale();
+			}
+			return true;
+		}
+		return false;
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
+	 * @see com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeKey(java.lang.
+	 * Object)
 	 */
 	@Override
-	public boolean equals(Object o) {
-		return delegate.equals(o);
+	public boolean removeKey(Object key) {
+		if (delegate.removeKey(key)) {
+			if (Objects.equals(key, currentLocale)) {
+				resetDefaultLocale();
+			}
+			return true;
+		}
+		return false;
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see java.lang.Object#hashCode()
+	 * @see
+	 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng.
+	 * dutil.basic.prog.Obverser)
 	 */
 	@Override
-	public int hashCode() {
-		return delegate.hashCode();
+	public boolean removeObverser(SetObverser<I18nInfo> obverser) {
+		return delegate.removeObverser(obverser);
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.dwarfeng.dutil.develop.i18n.I18nHandler#getCurrentLocale()
+	 * @see java.util.Set#retainAll(java.util.Collection)
 	 */
 	@Override
-	public Locale getCurrentLocale() {
-		return currentLocale;
+	public boolean retainAll(Collection<?> c) {
+		if (delegate.retainAll(c)) {
+			boolean aFlag = true;
+			for (Object obj : c) {
+				if (obj instanceof I18nInfo && Objects.equals(((I18nInfo) obj).getKey(), currentLocale)) {
+					aFlag = false;
+					break;
+				}
+			}
+			if (aFlag) {
+				resetDefaultLocale();
+			}
+			return true;
+		}
+		return false;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#retainAllKey(java.util.
+	 * Collection)
+	 */
+	@Override
+	public boolean retainAllKey(Collection<?> c) {
+		if (delegate.retainAllKey(c)) {
+			if (!c.contains(currentLocale)) {
+				resetDefaultLocale();
+			}
+			return true;
+		}
+		return false;
 	}
 
 	/*
@@ -475,6 +437,36 @@ public class DelegateI18nHandler implements I18nHandler {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.util.Set#size()
+	 */
+	@Override
+	public int size() {
+		return delegate.size();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.util.Set#toArray()
+	 */
+	@Override
+	public Object[] toArray() {
+		return delegate.toArray();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.util.Set#toArray(java.lang.Object[])
+	 */
+	@Override
+	public <T> T[] toArray(T[] a) {
+		return delegate.toArray(a);
+	}
+
 	/**
 	 * 通知观察器指当前语言发生了改变。
 	 * 
@@ -488,19 +480,31 @@ public class DelegateI18nHandler implements I18nHandler {
 	protected void fireCurrentLocaleChanged(Locale oldLocale, Locale newLocale, I18n newI18n) {
 		for (SetObverser<I18nInfo> obverser : delegate.getObversers()) {
 			if (Objects.nonNull(obverser) && obverser instanceof I18nObverser) {
-				((I18nObverser) obverser).fireCurrentLocaleChanged(oldLocale, newLocale, newI18n);
+				try {
+					((I18nObverser) obverser).fireCurrentLocaleChanged(oldLocale, newLocale, newI18n);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.i18n.I18nHandler#getCurrentMutilang()
-	 */
-	@Override
-	public I18n getCurrentI18n() {
-		return currentI18n;
+	private void resetDefaultLocale() {
+		Locale oldLocale = currentLocale;
+
+		currentLocale = null;
+		I18nInfo i18nInfo = get(null);
+		if (Objects.nonNull(i18nInfo)) {
+			try {
+				currentI18n = i18nInfo.newI18n();
+			} catch (Exception e) {
+				currentI18n = null;
+			}
+		} else {
+			currentI18n = null;
+		}
+
+		fireCurrentLocaleChanged(oldLocale, currentLocale, currentI18n);
 	}
 
 }

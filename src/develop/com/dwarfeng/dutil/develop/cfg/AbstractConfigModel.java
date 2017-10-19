@@ -16,22 +16,16 @@ public abstract class AbstractConfigModel implements ConfigModel {
 	/** 观察器集合 */
 	protected final Set<ConfigObverser> obversers = Collections.newSetFromMap(new WeakHashMap<>());
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Set<ConfigObverser> getObversers() {
 		return Collections.unmodifiableSet(obversers);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.dutil.
-	 * basic.prog.Obverser)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean addObverser(ConfigObverser obverser) {
@@ -40,22 +34,16 @@ public abstract class AbstractConfigModel implements ConfigModel {
 		return obversers.add(obverser);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng.
-	 * dutil.basic.prog.Obverser)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean removeObverser(ConfigObverser obverser) {
 		return obversers.remove(obverser);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void clearObverser() {
@@ -67,7 +55,11 @@ public abstract class AbstractConfigModel implements ConfigModel {
 	 */
 	protected void fireConfigKeyCleared() {
 		for (ConfigObverser obverser : obversers) {
-			obverser.fireConfigKeyCleared();
+			try {
+				obverser.fireConfigKeyCleared();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -79,7 +71,11 @@ public abstract class AbstractConfigModel implements ConfigModel {
 	 */
 	protected void fireConfigKeyAdded(ConfigKey configKey) {
 		for (ConfigObverser obverser : obversers) {
-			obverser.fireConfigKeyAdded(configKey);
+			try {
+				obverser.fireConfigKeyAdded(configKey);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -91,7 +87,11 @@ public abstract class AbstractConfigModel implements ConfigModel {
 	 */
 	protected void fireConfigKeyRemoved(ConfigKey configKey) {
 		for (ConfigObverser obverser : obversers) {
-			obverser.fireConfigKeyRemoved(configKey);
+			try {
+				obverser.fireConfigKeyRemoved(configKey);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -107,7 +107,11 @@ public abstract class AbstractConfigModel implements ConfigModel {
 	 */
 	protected void fireConfigFirmPropsChanged(ConfigKey configKey, ConfigFirmProps oldValue, ConfigFirmProps newValue) {
 		for (ConfigObverser obverser : obversers) {
-			obverser.fireConfigFirmPropsChanged(configKey, oldValue, newValue);
+			try {
+				obverser.fireConfigFirmPropsChanged(configKey, oldValue, newValue);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -125,7 +129,11 @@ public abstract class AbstractConfigModel implements ConfigModel {
 	 */
 	protected void fireCurrentValueChanged(ConfigKey configKey, String oldValue, String newValue, String validValue) {
 		for (ConfigObverser obverser : obversers) {
-			obverser.fireCurrentValueChanged(configKey, oldValue, newValue, validValue);
+			try {
+				obverser.fireCurrentValueChanged(configKey, oldValue, newValue, validValue);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
