@@ -10,7 +10,7 @@ import com.dwarfeng.dutil.basic.ExceptionStringKey;
 
 /**
  * 字符串输入流。
- * <p> 该输入流从指定的字符串中读入数据，是文本与输入流之间的桥梁。
+ * <p> 该输入流从指定的字符串中读入数据。
  * @author DwArFeng
  * @since 0.0.2-beta
  */

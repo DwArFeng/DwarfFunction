@@ -213,3 +213,5 @@ Beta_0.1.5_20170625_build_A
 		dutil.basic.num.IntNumberValue
 		dutil.basic.num.LongNumberValue
 	新增 dutil.basic.gui.awt.ImageUtil 类，封装最基本的图片操作方法。
+	新增 dutil.basic.io.ByteBufferInputStream，用于从一个 ByteBuffer 中读取有关数据。
+	新增 dutil.basic.io.ByteBufferOutputStream，用于向一个 ByteBuffer 中写入有关数据。
