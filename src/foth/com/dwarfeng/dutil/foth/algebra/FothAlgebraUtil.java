@@ -5,8 +5,8 @@ import java.util.Objects;
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.cna.ArrayUtil;
+import com.dwarfeng.dutil.basic.num.DefaultNumberValue;
 import com.dwarfeng.dutil.basic.num.NumberValue;
-import com.dwarfeng.dutil.basic.num.QuickNumberValueable;
 
 /**
  * 代数包工具类。
@@ -38,7 +38,7 @@ public final class FothAlgebraUtil {
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public static NumberValue toMusValueable(FothValue val){
-		return new QuickNumberValueable(val.value());
+		return new DefaultNumberValue(val.value());
 	}
 	
 	

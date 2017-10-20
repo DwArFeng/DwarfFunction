@@ -4728,11 +4728,15 @@ public final class ModelUtil {
 	 *            指定的键值列表模型。
 	 * @param generator
 	 *            指定的只读生成器。
+	 * @param <K>
+	 *            映射模型的键的类型。
+	 * @param <V>
+	 *            映射的值的模型。
 	 * @return 由指定的键值列表模型和指定的只读生成器生成的不可编辑的键值列表模型。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 * @deprecated 该方法由于错误的拥有一个多余的参数，已经由
-	 *             <code>unmodifiableKeySetModel(KeySetModel&ltK,V&gt)</code>代替。
+	 *             <code>unmodifiableKeySetModel(KeySetModel&lt;K,V&gt;)</code>代替。
 	 */
 	public static <K, V extends WithKey<K>> KeySetModel<K, V> unmodifiableKeySetModel(KeySetModel<K, V> keySetModel,
 			ReadOnlyGenerator<V> generator) {
@@ -4745,6 +4749,10 @@ public final class ModelUtil {
 	 * 
 	 * @param keySetModel
 	 *            指定的键值列表模型。
+	 * @param <K>
+	 *            映射模型的键的类型。
+	 * @param <V>
+	 *            映射的值的模型。
 	 * @return 由指定的键值列表模型生成的不可编辑的键值列表模型。
 	 */
 	public static <K, V extends WithKey<K>> KeySetModel<K, V> unmodifiableKeySetModel(KeySetModel<K, V> keySetModel) {
@@ -5363,6 +5371,8 @@ public final class ModelUtil {
 	 * 
 	 * @param referenceModel
 	 *            指定的引用模型。
+	 * @param <E>
+	 *            引用模型的元素类型。
 	 * @return 由指定的引用模型生成的线程安全的引用模型。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
@@ -5522,6 +5532,8 @@ public final class ModelUtil {
 	 * 
 	 * @param referenceModel
 	 *            已有的引用模型。
+	 * @param <E>
+	 *            引用模型的元素类型。
 	 * @return 根据已有的引用模型生成的不可编辑的引用模型。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
@@ -5632,6 +5644,8 @@ public final class ModelUtil {
 	 *            指定的引用模型。
 	 * @param generator
 	 *            指定的只读生成器。
+	 * @param <E>
+	 *            引用模型的元素类型。
 	 * @return 由指定的引用模型和指定的只读生成器生成的只读引用模型。
 	 */
 	public static <E> ReferenceModel<E> readOnlyReferenceModel(ReferenceModel<E> referenceModel,
