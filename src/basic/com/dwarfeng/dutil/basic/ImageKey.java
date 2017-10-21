@@ -21,7 +21,7 @@ public enum ImageKey implements Name {
 	/** 清除屏幕对应的图片键。 */
 	CLEAN_SCREEN("clean_screen.png"),
 	/** 换行对应的图片键。 */
-	LINE_WRAP("line_wrap.png"),
+	LINE_WRAP("line_warp.png"),
 	/** 全部选择对应的图片键。 */
 	SELECT_ALL("select_all.png"),
 	/** 未知的图片键 */
