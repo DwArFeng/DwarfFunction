@@ -217,5 +217,23 @@ Beta_0.1.5_20171020_build_A
 	新增 dutil.basic.io.ByteBufferOutputStream，用于向一个 ByteBuffer 中写入有关数据。
 	修复模型广播侦听器如果有一个侦听器抛出了异常，则模型不会广播剩下的侦听器的问题。
 	
-Beta_0.1.5_20171021_build_B
+Beta_0.1.5_20171022_build_B
 	修复了 basic.gui.swing.JExconsole 的异常行为。
+	针对 basic.gui.awt.ImageUtil 做出了一系列的修改：
+		过期 basic.gui.awt.ImageUtil.defaultImage()
+		过期 basic.gui.awt.ImageUtil.defaultImage(ImageSize)
+		添加 basic.gui.awt.ImageUtil.getDefaultImage()
+		添加 basic.gui.awt.ImageUtil.getDefaultImage(Size2D)
+		添加 basic.gui.awt.ImageUtil.getInternalImage(Name, Image, Size2D)
+		添加 basic.gui.awt.ImageUtil.isImageSize2D(Size2D)
+		添加 basic.gui.awt.ImageUtil.newImageSize2D(Image)
+		添加 basic.gui.awt.ImageUtil.newImageSize2D(int, int)
+		添加 basic.gui.awt.ImageUtil.requireImageSize2D(Size2D)
+		添加 basic.gui.awt.ImageUtil.requireImageSize2D(Size2D, String)
+		过期 basic.gui.awt.ImageUtil.unknownImage(ImageSize)
+		过期 basic.gui.awt.ImageUtil.unknownImageIfNull(Image, ImageSize)
+	更改工具包的资源结构
+	新增 com.dwarfeng.dutil.basic.gui.awt.InternalIconLib 包含常用的图标。
+	在 com.dwarfeng.dutil.basic.num.Interval 中增加了一些静态字段：
+		com.dwarfeng.dutil.basic.num.Interval.INTERVAL_NEGATIVE 表示负区间。
+		com.dwarfeng.dutil.basic.num.Interval.INTERVAL_NOT_POSITIVE 表示非正区间。

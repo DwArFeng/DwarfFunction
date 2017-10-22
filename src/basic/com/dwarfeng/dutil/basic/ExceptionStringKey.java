@@ -576,13 +576,21 @@ public enum ExceptionStringKey implements Name {
 	IMAGEUTIL_3(new DefaultName("ImageUtil.3")),
 	/** ImageUtil类第4号文本字段 */
 	IMAGEUTIL_4(new DefaultName("ImageUtil.4")),
-	
+	/** ImageUtil类第5号文本字段 */
+	IMAGEUTIL_5(new DefaultName("ImageUtil.5")),
+	/** ImageUtil类第6号文本字段 */
+	IMAGEUTIL_6(new DefaultName("ImageUtil.6")),
+	/** ImageUtil类第7号文本字段 */
+	IMAGEUTIL_7(new DefaultName("ImageUtil.7")),
+	/** ImageUtil类第8号文本字段 */
+	IMAGEUTIL_8(new DefaultName("ImageUtil.8")),
+
 	/** ByteBufferInputStream类第0号文本字段 */
 	BYTEBUFFERINPUTSTREAM_0(new DefaultName("ByteBufferInputStream.0")),
-	
+
 	/** ByteBufferOutputStream类第0号文本字段 */
 	BYTEBUFFEROUTPUTSTREAM_0(new DefaultName("ByteBufferOutputStream.0")),
-	
+
 	;
 
 	private final Name name;

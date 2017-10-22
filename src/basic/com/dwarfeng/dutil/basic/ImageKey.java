@@ -17,15 +17,13 @@ import com.dwarfeng.dutil.basic.str.Name;
 public enum ImageKey implements Name {
 
 	/** 图片读取失败对应的图片键。 */
-	IMG_LOAD_FAILED("img_load_failed.png"),
+	IMG_LOAD_FAILED("img_load_failed_blue.png"),
 	/** 清除屏幕对应的图片键。 */
 	CLEAN_SCREEN("clean_screen.png"),
 	/** 换行对应的图片键。 */
 	LINE_WRAP("line_warp.png"),
 	/** 全部选择对应的图片键。 */
 	SELECT_ALL("select_all.png"),
-	/** 未知的图片键 */
-	UNKNOWN("unknown.png"),
 
 	;
 
@@ -35,23 +33,11 @@ public enum ImageKey implements Name {
 		this.name = name;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.str.Name#getName()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getName() {
-		return name;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Enum#toString()
-	 */
-	@Override
-	public String toString() {
 		return name;
 	}
 

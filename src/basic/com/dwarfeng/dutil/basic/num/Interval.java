@@ -21,20 +21,45 @@ import com.dwarfeng.dutil.basic.ExceptionStringKey;
  */
 public class Interval implements NumberValueFilter {
 
+	/**
+	 * 区间的边界类型。
+	 * 
+	 * @author DwArFeng
+	 * @since 0.1.3-beta
+	 */
+	public enum BoundaryType {
+		/** 表示该边界是开。 */
+		OPENED,
+		/** 表示该边界是闭。 */
+		CLOSED,
+	}
+
 	/** 一个表示所有实数的区间，等于 <code>(-∞,+∞)</code> */
 	public static final Interval INTERVAL_REALNUMBER = new Interval(BoundaryType.OPENED, BoundaryType.OPENED, null,
 			null);
 	/** 一个表示所有正实数的区间，等于<code>(0,+∞)</code> */
 	public static final Interval INTERVAL_POSITIVE = new Interval(BoundaryType.OPENED, BoundaryType.OPENED,
 			BigDecimal.ZERO, null);
-	/** 一个表示所有非负实数的区间，等于<code>[0,+∞)</code> */
+	/**
+	 * 一个表示所有非负实数的区间，等于<code>[0,+∞)</code>
+	 * 
+	 * @deprecated 拼写不正确，已经由 {@link #INTERVAL_NOT_NEGATIVE}代替。
+	 */
 	public static final Interval INTERVAL_NOT_NEGETIVE = new Interval(BoundaryType.CLOSED, BoundaryType.OPENED,
 			BigDecimal.ZERO, null);
+	/** 一个表示所有非负实数的区间，等于<code>[0,+∞)</code> */
+	public static final Interval INTERVAL_NOT_NEGATIVE = INTERVAL_NOT_NEGETIVE;
+	/** 一个表示所有负实数的区间，等于<code>(-∞,0)</code> */
+	public static final Interval INTERVAL_NEGATIVE = new Interval(BoundaryType.OPENED, BoundaryType.OPENED, null,
+			BigDecimal.ZERO);
+	/** 一个表示所有非正实数的区间，等于<code>(-∞,0]</code> */
+	public static final Interval INTERVAL_NOT_POSITIVE = new Interval(BoundaryType.OPENED, BoundaryType.CLOSED, null,
+			BigDecimal.ZERO);
 
 	/**
 	 * 将指定的文本值转化为区间。
 	 * <p>
-	 * 文本必须符合类似于<code>[ 0 , 1 )</code>、<code>( -infinity , 0 ]</code>、<code>( -infinity , infinity )</code>这样的格式。
+	 * 文本必须符合类似于<code>[ 0 , 1 )</code>、<code>( -infinity , 0 ]</code>、<code>( -infinity , infinity )</code>这样的格式（<b>不能省略空格</b>）。
 	 * <br>
 	 * 注意事项有： <blockquote> 1、负无穷只能以 "-infinity"的形式出现在逗号左边，
 	 * 而正无穷只能以"infinity"的形式出现在逗号右边。<br>
@@ -112,19 +137,6 @@ public class Interval implements NumberValueFilter {
 		return new Interval(leftBoundaryType, rightBoundaryType, leftValue, rightValue);
 	}
 
-	/**
-	 * 区间的边界类型。
-	 * 
-	 * @author DwArFeng
-	 * @since 0.1.3-beta
-	 */
-	public enum BoundaryType {
-		/** 表示该边界是开。 */
-		OPENED,
-		/** 表示该边界是闭。 */
-		CLOSED,
-	}
-
 	private final BoundaryType leftBoundaryType;
 	private final BoundaryType rightBoundaryType;
 	private final BigDecimal leftValue;
@@ -159,6 +171,19 @@ public class Interval implements NumberValueFilter {
 		this.rightBoundaryType = rightBoundaryType;
 		this.leftValue = leftValue;
 		this.rightValue = rightValue;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.dwarfeng.dutil.basic.num.NumberValueFilter#accept(com.dwarfeng.dutil.
+	 * basic.num.NumberValue)
+	 */
+	@Override
+	public boolean accept(NumberValue value) {
+		Objects.requireNonNull(value, DwarfUtil.getExecptionString(ExceptionStringKey.INTERVAL_6));
+		return contains(value.doubleValue());
 	}
 
 	/**
@@ -220,58 +245,6 @@ public class Interval implements NumberValueFilter {
 		return contains(new BigDecimal(value));
 	}
 
-	/**
-	 * 获取区间的左边界类型。
-	 * 
-	 * @return 区间的左边界类型。
-	 */
-	public BoundaryType getLeftBoundaryType() {
-		return leftBoundaryType;
-	}
-
-	/**
-	 * 获取区间的右边界类型。
-	 * 
-	 * @return 区间的右边界类型。
-	 */
-	public BoundaryType getRightBoundaryType() {
-		return rightBoundaryType;
-	}
-
-	/**
-	 * 获取区间的左边界值。
-	 * 
-	 * @return 区间的做边界值，返回 <code>null</code>代表负无穷大。
-	 */
-	public BigDecimal getLeftValue() {
-		return leftValue;
-	}
-
-	/**
-	 * 获取区间的右边界值。
-	 * 
-	 * @return 区间的右边界值，返回 <code>null</code>代表正无穷大。
-	 */
-	public BigDecimal getRightValue() {
-		return rightValue;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((leftBoundaryType == null) ? 0 : leftBoundaryType.hashCode());
-		result = prime * result + ((leftValue == null) ? 0 : leftValue.hashCode());
-		result = prime * result + ((rightBoundaryType == null) ? 0 : rightBoundaryType.hashCode());
-		result = prime * result + ((rightValue == null) ? 0 : rightValue.hashCode());
-		return result;
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -312,6 +285,58 @@ public class Interval implements NumberValueFilter {
 		return true;
 	}
 
+	/**
+	 * 获取区间的左边界类型。
+	 * 
+	 * @return 区间的左边界类型。
+	 */
+	public BoundaryType getLeftBoundaryType() {
+		return leftBoundaryType;
+	}
+
+	/**
+	 * 获取区间的左边界值。
+	 * 
+	 * @return 区间的做边界值，返回 <code>null</code>代表负无穷大。
+	 */
+	public BigDecimal getLeftValue() {
+		return leftValue;
+	}
+
+	/**
+	 * 获取区间的右边界类型。
+	 * 
+	 * @return 区间的右边界类型。
+	 */
+	public BoundaryType getRightBoundaryType() {
+		return rightBoundaryType;
+	}
+
+	/**
+	 * 获取区间的右边界值。
+	 * 
+	 * @return 区间的右边界值，返回 <code>null</code>代表正无穷大。
+	 */
+	public BigDecimal getRightValue() {
+		return rightValue;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((leftBoundaryType == null) ? 0 : leftBoundaryType.hashCode());
+		result = prime * result + ((leftValue == null) ? 0 : leftValue.hashCode());
+		result = prime * result + ((rightBoundaryType == null) ? 0 : rightBoundaryType.hashCode());
+		result = prime * result + ((rightValue == null) ? 0 : rightValue.hashCode());
+		return result;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -349,19 +374,6 @@ public class Interval implements NumberValueFilter {
 		sb.append(rightValue == null ? "+∞" : rightValue.setScale(scale, roundingMode).toString());
 		sb.append(rightBoundaryType == BoundaryType.CLOSED ? " ]" : " )");
 		return sb.toString();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.num.NumberValueFilter#accept(com.dwarfeng.dutil.
-	 * basic.num.NumberValue)
-	 */
-	@Override
-	public boolean accept(NumberValue value) {
-		Objects.requireNonNull(value, DwarfUtil.getExecptionString(ExceptionStringKey.INTERVAL_6));
-		return contains(value.doubleValue());
 	}
 
 }

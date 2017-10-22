@@ -12,6 +12,7 @@ public class Test_JExconsole {
 
 	public static void main(String[] args) {
 		JExconsole console = new JExconsole();
+		//console.setLocale(Locale.US);
 		JComponentTester tester = new JComponentTester(console);
 		try {
 			SwingUtil.invokeAndWaitInEventQueue(() -> {

@@ -33,19 +33,43 @@ import com.dwarfeng.dutil.basic.prog.VersionType;
  */
 public final class DwarfUtil {
 
-	private static final String SF_PATH = "com/dwarfeng/dutil/resource/lang/stringField";
+	/** 图片资源的根目录路径。 */
+	public static final String IMAGE_ROOT = "/com/dwarfeng/dutil/resource/image/";
 
-	private static final Version version = new DefaultVersion.Builder().type(VersionType.BETA).firstVersion((byte) 0)
-			.secondVersion((byte) 1).thirdVersion((byte) 5).buildDate("20171020").buildVersion('A').build();
+	/** 标签文本的路径。 */
+	public static final String LF_PATH = "com/dwarfeng/dutil/resource/i18n/label_string";
 
-	private static ResourceBundle sf = ResourceBundle.getBundle(SF_PATH, Locale.getDefault(),
+	/** 异常文本的路径。 */
+	public static final String EXCEPTION_STRING_PATH = "com/dwarfeng/dutil/resource/i18n/exception_string";
+
+	private static final Map<Locale, ResourceBundle> LABEL_FIELD_MAP = new HashMap<>();
+
+	private static ResourceBundle sf = ResourceBundle.getBundle(EXCEPTION_STRING_PATH, Locale.getDefault(),
 			CT.class.getClassLoader());
 
-	private static final String LF_PATH = "com/dwarfeng/dutil/resource/lang/labelField";
+	private static final Version version = new DefaultVersion.Builder().type(VersionType.BETA).firstVersion((byte) 0)
+			.secondVersion((byte) 1).thirdVersion((byte) 5).buildDate("20171022").buildVersion('A').build();
 
-	private static final Map<Locale, ResourceBundle> labelFieldMap = new HashMap<>();
-
-	private static final String IMAGE_ROOT = "/com/dwarfeng/dutil/resource/image/";
+	/**
+	 * 根据异常文本字段主键枚举返回其主键对应的文本。
+	 * <p>
+	 * 如果入口参数 <code>key</code> 为 <code>null</code>，则返回空字符串<code>""</code>。
+	 * 
+	 * <p>
+	 * 此方法是对内使用的，它的主要作用是返回内部类所需要的异常文本。 <br>
+	 * 请不要在外部程序中调用此包的方法，因为该方法对内使用，其本身不保证兼容性。
+	 * <p>
+	 * <b>注意：</b> 该方法在设计的时候不考虑兼容性，当发生不向上兼容的改动时，作者没有义务在变更日志中说明。
+	 * 
+	 * @param key
+	 *            异常文本字段主键枚举。
+	 * @return 主键对应的文本。
+	 */
+	public static String getExecptionString(ExceptionStringKey key) {
+		if (Objects.isNull(key))
+			return "";
+		return sf.getString(key.getName());
+	}
 
 	/**
 	 * 获得指定的图片键对应的图片。
@@ -106,35 +130,14 @@ public final class DwarfUtil {
 		if (Objects.isNull(locale))
 			locale = Locale.getDefault();
 
-		ResourceBundle rb = labelFieldMap.get(locale);
+		ResourceBundle rb = LABEL_FIELD_MAP.get(locale);
 		// 延迟加载
 		if (Objects.isNull(rb)) {
 			rb = ResourceBundle.getBundle(LF_PATH, locale, DwarfUtil.class.getClassLoader());
-			labelFieldMap.put(locale, rb);
+			LABEL_FIELD_MAP.put(locale, rb);
 		}
 
 		return rb.getString(key.toString());
-	}
-
-	/**
-	 * 根据异常文本字段主键枚举返回其主键对应的文本。
-	 * <p>
-	 * 如果入口参数 <code>key</code> 为 <code>null</code>，则返回空字符串<code>""</code>。
-	 * 
-	 * <p>
-	 * 此方法是对内使用的，它的主要作用是返回内部类所需要的异常文本。 <br>
-	 * 请不要在外部程序中调用此包的方法，因为该方法对内使用，其本身不保证兼容性。
-	 * <p>
-	 * <b>注意：</b> 该方法在设计的时候不考虑兼容性，当发生不向上兼容的改动时，作者没有义务在变更日志中说明。
-	 * 
-	 * @param key
-	 *            异常文本字段主键枚举。
-	 * @return 主键对应的文本。
-	 */
-	public static String getExecptionString(ExceptionStringKey key) {
-		if (Objects.isNull(key))
-			return "";
-		return sf.getString(key.getName());
 	}
 
 	/**
@@ -171,7 +174,7 @@ public final class DwarfUtil {
 	public static void setLocale(Locale locale) {
 		if (Objects.isNull(locale))
 			locale = Locale.getDefault();
-		sf = ResourceBundle.getBundle(SF_PATH, locale, DwarfUtil.class.getClassLoader());
+		sf = ResourceBundle.getBundle(EXCEPTION_STRING_PATH, locale, DwarfUtil.class.getClassLoader());
 	}
 
 	// 禁止外部实例化
