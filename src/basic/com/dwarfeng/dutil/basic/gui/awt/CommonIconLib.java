@@ -4,22 +4,24 @@ import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.str.Name;
 
 /**
- * 内部图标库。
+ * 公共图标库。
  * 
  * <p>
  * 该图片库整合了大量的图标，所有的图标都具有黑、蓝、紫、绿、红、黄六色。 <br>
  * 调用图标的代码如下：
  * 
- * <pre><code>
+ * <pre>
+ * <code>
  * public final static Image getInternalIconLib(InternalIconLib name, Size2D size){
  * 	<b>return ImageUtil.getInternalImage(name,size);</b>
  * }
- * </code></pre>
+ * </code>
+ * </pre>
  * 
  * @author DwArFeng
  * @since 0.1.5-beta
  */
-public enum InternalIconLib implements Name {
+public enum CommonIconLib implements Name {
 
 	/** 未知图标，圆圈问号图案 */
 	UNKNOWN_BLACK("unknown_black.png"),
@@ -105,12 +107,36 @@ public enum InternalIconLib implements Name {
 	PASTE_RED("paste_red.png"),
 	/** 粘贴图片，剪贴板文件图案 */
 	PASTE_YELLOW("paste_yellow.png"),
+	/** 撤销图片，左箭头图案 */
+	UNDO_BLACK("undo_black.png"),
+	/** 撤销图片，左箭头图案 */
+	UNDO_BLUE("undo_blue.png"),
+	/** 撤销图片，左箭头图案 */
+	UNDO_PURPLE("undo_purple.png"),
+	/** 撤销图片，左箭头图案 */
+	UNDO_GREEN("undo_green.png"),
+	/** 撤销图片，左箭头图案 */
+	UNDO_RED("undo_red.png"),
+	/** 撤销图片，左箭头图案 */
+	UNDO_YELLOW("undo_yellow.png"),
+	/** 重做图片，右箭头图案 */
+	REDO_BLACK("redo_black.png"),
+	/** 重做图片，右箭头图案 */
+	REDO_BLUE("redo_blue.png"),
+	/** 重做图片，右箭头图案 */
+	REDO_PURPLE("redo_purple.png"),
+	/** 重做图片，右箭头图案 */
+	REDO_GREEN("redo_green.png"),
+	/** 重做图片，右箭头图案 */
+	REDO_RED("redo_red.png"),
+	/** 重做图片，右箭头图案 */
+	REDO_YELLOW("redo_yellow.png"),
 
 	;
 
 	private String name;
 
-	private InternalIconLib(String name) {
+	private CommonIconLib(String name) {
 		this.name = name;
 	}
 

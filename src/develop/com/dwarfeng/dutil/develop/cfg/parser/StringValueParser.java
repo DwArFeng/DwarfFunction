@@ -17,24 +17,16 @@ import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
  */
 public class StringValueParser implements ValueParser {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.struct.ValueParser#parseValue(java.lang.
-	 * String)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Object parseValue(String value) {
 		return value;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.struct.ValueParser#parseObject(java.lang.
-	 * Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String parseObject(Object object) {

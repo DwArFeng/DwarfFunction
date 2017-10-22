@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import com.dwarfeng.dutil.basic.gui.awt.ImageSize;
 import com.dwarfeng.dutil.basic.gui.awt.ImageUtil;
-import com.dwarfeng.dutil.basic.gui.awt.InternalIconLib;
+import com.dwarfeng.dutil.basic.gui.awt.CommonIconLib;
 import com.dwarfeng.dutil.basic.gui.awt.Size2D;
 import com.dwarfeng.dutil.basic.num.IntNumberValue;
 import com.dwarfeng.dutil.basic.num.NumberValue;
@@ -80,7 +80,7 @@ public class Test_ImageUtil {
 
 	@Test
 	public void testGetInternalImageName() {
-		assertNotNull(ImageUtil.getInternalImage(InternalIconLib.UNKNOWN_BLACK));
+		assertNotNull(ImageUtil.getInternalImage(CommonIconLib.UNKNOWN_BLACK));
 	}
 
 	@Test

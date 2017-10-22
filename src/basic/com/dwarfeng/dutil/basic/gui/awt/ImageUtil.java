@@ -453,7 +453,7 @@ public final class ImageUtil {
 	 */
 	public final static Image unknownImage(ImageSize imageSize) {
 		Objects.requireNonNull(imageSize, "入口参数 imageSize 不能为 null。");
-		return getInternalImage(InternalIconLib.UNKNOWN_BLUE, DEFAULT_IMAGE, imageSize);
+		return getInternalImage(CommonIconLib.UNKNOWN_BLUE, DEFAULT_IMAGE, imageSize);
 	}
 
 	/**
@@ -473,7 +473,7 @@ public final class ImageUtil {
 		if (Objects.nonNull(imageSize)) {
 			return scaleImage(image, imageSize);
 		}
-		return getInternalImage(InternalIconLib.UNKNOWN_BLUE, DEFAULT_IMAGE, imageSize);
+		return getInternalImage(CommonIconLib.UNKNOWN_BLUE, DEFAULT_IMAGE, imageSize);
 	}
 
 	// 禁止外部实例化

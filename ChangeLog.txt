@@ -233,7 +233,7 @@ Beta_0.1.5_20171022_build_B
 		过期 basic.gui.awt.ImageUtil.unknownImage(ImageSize)
 		过期 basic.gui.awt.ImageUtil.unknownImageIfNull(Image, ImageSize)
 	更改工具包的资源结构
-	新增 com.dwarfeng.dutil.basic.gui.awt.InternalIconLib 包含常用的图标。
+	新增 com.dwarfeng.dutil.basic.gui.awt.CommonIconLib 公共图标库，包含常用的图标。
 	在 com.dwarfeng.dutil.basic.num.Interval 中增加了一些静态字段：
 		com.dwarfeng.dutil.basic.num.Interval.INTERVAL_NEGATIVE 表示负区间。
 		com.dwarfeng.dutil.basic.num.Interval.INTERVAL_NOT_POSITIVE 表示非正区间。

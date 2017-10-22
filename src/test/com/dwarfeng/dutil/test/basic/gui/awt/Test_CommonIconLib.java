@@ -19,16 +19,16 @@ import javax.swing.border.EmptyBorder;
 
 import com.dwarfeng.dutil.basic.gui.awt.ImageSize;
 import com.dwarfeng.dutil.basic.gui.awt.ImageUtil;
-import com.dwarfeng.dutil.basic.gui.awt.InternalIconLib;
+import com.dwarfeng.dutil.basic.gui.awt.CommonIconLib;
 import com.dwarfeng.dutil.basic.gui.swing.MuaListModel;
 
-public class Test_InternalImageLib extends JFrame {
+public class Test_CommonIconLib extends JFrame {
 
 	private static final long serialVersionUID = -3397499927603691799L;
 
 	private JPanel contentPane;
 
-	private final EnumMap<InternalIconLib, Icon> imageMap = new EnumMap<>(InternalIconLib.class);
+	private final EnumMap<CommonIconLib, Icon> imageMap = new EnumMap<>(CommonIconLib.class);
 
 	/**
 	 * Launch the application.
@@ -39,7 +39,7 @@ public class Test_InternalImageLib extends JFrame {
 			@Override
 			public void run() {
 				try {
-					Test_InternalImageLib frame = new Test_InternalImageLib();
+					Test_CommonIconLib frame = new Test_CommonIconLib();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,7 +51,7 @@ public class Test_InternalImageLib extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Test_InternalImageLib() {
+	public Test_CommonIconLib() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -62,7 +62,7 @@ public class Test_InternalImageLib extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		contentPane.add(scrollPane, BorderLayout.CENTER);
 
-		JList<InternalIconLib> list = new JList<>();
+		JList<CommonIconLib> list = new JList<>();
 		list.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 		list.setVisibleRowCount(0);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -82,9 +82,9 @@ public class Test_InternalImageLib extends JFrame {
 				if (imageMap.containsKey(value)) {
 					setIcon(imageMap.get(value));
 				} else {
-					Icon icon = new ImageIcon(ImageUtil.getInternalImage((InternalIconLib) value,
+					Icon icon = new ImageIcon(ImageUtil.getInternalImage((CommonIconLib) value,
 							ImageUtil.getDefaultImage(), ImageSize.ICON_LARGE));
-					imageMap.put((InternalIconLib) value, icon);
+					imageMap.put((CommonIconLib) value, icon);
 					setIcon(icon);
 				}
 
@@ -95,8 +95,8 @@ public class Test_InternalImageLib extends JFrame {
 			}
 		});
 
-		MuaListModel<InternalIconLib> listModel = new MuaListModel<>();
-		listModel.addAll(Arrays.asList(InternalIconLib.values()));
+		MuaListModel<CommonIconLib> listModel = new MuaListModel<>();
+		listModel.addAll(Arrays.asList(CommonIconLib.values()));
 
 		list.setModel(listModel);
 	}

@@ -13,7 +13,7 @@ import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
  * @author DwArFeng
  * @since 0.1.5-beta
  */
-final class FontValueParser implements ValueParser {
+public final class FontValueParser implements ValueParser {
 
 	/**
 	 * {@inheritDoc}
