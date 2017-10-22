@@ -7,8 +7,6 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.awt.Image;
-
 import org.junit.Test;
 
 import com.dwarfeng.dutil.basic.gui.awt.ImageSize;
