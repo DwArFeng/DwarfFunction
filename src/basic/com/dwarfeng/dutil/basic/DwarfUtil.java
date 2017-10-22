@@ -48,7 +48,7 @@ public final class DwarfUtil {
 			CT.class.getClassLoader());
 
 	private static final Version version = new DefaultVersion.Builder().type(VersionType.BETA).firstVersion((byte) 0)
-			.secondVersion((byte) 1).thirdVersion((byte) 5).buildDate("20171022").buildVersion('A').build();
+			.secondVersion((byte) 1).thirdVersion((byte) 5).buildDate("20171022").buildVersion('B').build();
 
 	/**
 	 * 根据异常文本字段主键枚举返回其主键对应的文本。
