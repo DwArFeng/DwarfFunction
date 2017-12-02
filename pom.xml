@@ -5,7 +5,7 @@
 
 	<groupId>com.dwarfeng</groupId>
 	<artifactId>dutil</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>beta-0.1.5.b</version>
 	<packaging>pom</packaging>
 
 	<name>dutil</name>
@@ -34,4 +34,5 @@
 		<module>dutil-math</module>
 		<module>dutil-phic</module>
 	</modules>
+
 </project>
