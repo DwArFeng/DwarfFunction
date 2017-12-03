@@ -243,3 +243,10 @@ Beta_0.1.5_20171203_build_C (maven)
 	调整资源和test文件位置。
 	调整了部分test的测试方法，以适应maven。
 	
+Beta_0.2.0__build_A (maven)
+	增加了过滤器相关的接口与实现
+		basic.prog.Filter<T>
+		basic.prog.NameFilter<T>
+		basic.prog.TagFilter<T>
+		basic.prog.DefaultNameFilter<T>
+		basic.prog.DefaultTagFilter<T>

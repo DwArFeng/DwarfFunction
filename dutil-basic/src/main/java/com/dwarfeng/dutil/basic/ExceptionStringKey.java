@@ -591,7 +591,13 @@ public enum ExceptionStringKey implements Name {
 	/** ByteBufferOutputStream类第0号文本字段 */
 	BYTEBUFFEROUTPUTSTREAM_0(new DefaultName("ByteBufferOutputStream.0")),
 
-	;
+	/** DefaultNameFilter类第0号文本字段 */
+	DEFAULTNAMEFILTER_0(new DefaultName("DefaultNameFilter.0")),
+	/** DefaultNameFilter类第1号文本字段 */
+	DEFAULTNAMEFILTER_1(new DefaultName("DefaultNameFilter.1")),
+
+	/** DefaultTagFilter类第0号文本字段 */
+	DEFAULTTAGFILTER_0(new DefaultName("DefaultTagFilter.0")),;
 
 	private final Name name;
 
@@ -599,10 +605,8 @@ public enum ExceptionStringKey implements Name {
 		this.name = name;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.str.Name#getName()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getName() {
