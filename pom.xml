@@ -5,7 +5,7 @@
 
 	<groupId>com.dwarfeng</groupId>
 	<artifactId>dutil</artifactId>
-	<version>beta-0.1.5.b</version>
+	<version>beta-0.1.5.c</version>
 	<packaging>pom</packaging>
 
 	<name>dutil</name>

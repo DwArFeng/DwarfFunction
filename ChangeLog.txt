@@ -237,3 +237,9 @@ Beta_0.1.5_20171022_build_B
 	在 com.dwarfeng.dutil.basic.num.Interval 中增加了一些静态字段：
 		com.dwarfeng.dutil.basic.num.Interval.INTERVAL_NEGATIVE 表示负区间。
 		com.dwarfeng.dutil.basic.num.Interval.INTERVAL_NOT_POSITIVE 表示非正区间。
+		
+Beta_0.1.5_20171203_build_C (maven)
+	将项目重构为maven项目。
+	调整资源和test文件位置。
+	调整了部分test的测试方法，以适应maven。
+	
