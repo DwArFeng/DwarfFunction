@@ -10,8 +10,8 @@
 		<version>beta-0.2.0.a-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>dutil-foth</artifactId>
-	<name>foth</name>
+	<artifactId>dutil-dstruc</artifactId>
+	<name>dutil-dstruc</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -26,16 +26,6 @@
 			<artifactId>junit</artifactId>
 			<version>3.8.1</version>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.dwarfeng</groupId>
-			<artifactId>dutil-math</artifactId>
-			<version>beta-0.2.0.a-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.dwarfeng</groupId>
-			<artifactId>dutil-basic</artifactId>
-			<version>beta-0.2.0.a-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>

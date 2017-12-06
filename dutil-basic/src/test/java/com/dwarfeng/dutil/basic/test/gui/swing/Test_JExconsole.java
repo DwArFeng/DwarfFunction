@@ -6,14 +6,14 @@ import java.util.Scanner;
 import com.dwarfeng.dutil.basic.gui.swing.JExconsole;
 import com.dwarfeng.dutil.basic.gui.swing.SwingUtil;
 import com.dwarfeng.dutil.basic.io.CT;
-import com.dwarfeng.dutil.detool.gui.swing.JComponentTester;
+import com.dwarfeng.dutil.basic.test.gui.awt.ComponentTester;
 
 public class Test_JExconsole {
 
 	public static void main(String[] args) {
 		JExconsole console = new JExconsole();
-		//console.setLocale(Locale.US);
-		JComponentTester tester = new JComponentTester(console);
+		// console.setLocale(Locale.US);
+		ComponentTester tester = new ComponentTester(console);
 		try {
 			SwingUtil.invokeAndWaitInEventQueue(() -> {
 				tester.setVisible(true);
@@ -34,13 +34,13 @@ public class Test_JExconsole {
 		Scanner scanner = new Scanner(System.in);
 		CT.trace("您说的是：" + scanner.nextLine());
 		scanner.close();
-		
+
 		CT.trace("请说点什么x2");
 
 		scanner = new Scanner(System.in);
 		CT.trace("您说的是：" + scanner.nextLine());
 		scanner.close();
-		
+
 		CT.trace("功能测试完毕！");
 	}
 
