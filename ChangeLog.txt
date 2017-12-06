@@ -250,3 +250,6 @@ Beta_0.2.0__build_A (maven)
 		basic.prog.TagFilter<T>
 		basic.prog.DefaultNameFilter<T>
 		basic.prog.DefaultTagFilter<T>
+	增加了数据结构子模块
+	对部分异常文本进行了修复。
+	更新的README.md
