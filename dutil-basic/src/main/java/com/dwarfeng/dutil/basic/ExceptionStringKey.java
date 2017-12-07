@@ -597,7 +597,20 @@ public enum ExceptionStringKey implements Name {
 	DEFAULTNAMEFILTER_1(new DefaultName("DefaultNameFilter.1")),
 
 	/** DefaultTagFilter类第0号文本字段 */
-	DEFAULTTAGFILTER_0(new DefaultName("DefaultTagFilter.0")),;
+	DEFAULTTAGFILTER_0(new DefaultName("DefaultTagFilter.0")),
+
+	/** Log4jLoggerInfo类第0号文本字段 */
+	LOG4JLOGGERINFO_0(new DefaultName("Log4jLoggerInfo.0")),
+
+	/** AbstractLoggerInfo类第0号文本字段 */
+	ABSTRACTLOGGERINFO_0(new DefaultName("AbstractLoggerInfo.0")),
+
+	/** DelegateLoggerHandler类第0号文本字段 */
+	DELEGATELOGGERHANDLER_0(new DefaultName("DelegateLoggerHandler.0")),
+	/** DelegateLoggerHandler类第1号文本字段 */
+	DELEGATELOGGERHANDLER_1(new DefaultName("DelegateLoggerHandler.1")),
+
+	;
 
 	private final Name name;
 
