@@ -42,6 +42,8 @@ public final class IoUtil {
 			bout.flush();
 		}
 	}
+	
+	
 
 	// 禁止外部生成实例。
 	private IoUtil() {

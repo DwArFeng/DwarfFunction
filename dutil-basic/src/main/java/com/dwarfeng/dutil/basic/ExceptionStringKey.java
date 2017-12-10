@@ -610,6 +610,19 @@ public enum ExceptionStringKey implements Name {
 	/** DelegateLoggerHandler类第1号文本字段 */
 	DELEGATELOGGERHANDLER_1(new DefaultName("DelegateLoggerHandler.1")),
 
+	/** WriterLogger类第0号文本字段 */
+	WRITERLOGGER_0(new DefaultName("WriterLogger.0")),
+	
+	/** OutputStreamLogger类第0号文本字段 */
+	OUTPUTSTREAMLOGGER_0(new DefaultName("OutputStreamLogger.0")),
+
+	/** CT类第0号文本字段 */
+	CT_0(new DefaultName("CT.0")),
+	/** CT类第1号文本字段 */
+	CT_1(new DefaultName("CT.1")),
+	/** CT类第2号文本字段 */
+	CT_2(new DefaultName("CT.2")),
+
 	;
 
 	private final Name name;

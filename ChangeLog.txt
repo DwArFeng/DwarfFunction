@@ -244,6 +244,7 @@ Beta_0.1.5_20171203_build_C (maven)
 	调整了部分test的测试方法，以适应maven。
 	
 Beta_0.2.0__build_A (maven)
+	修复了v0.1.5.c-beta版本 dutil 资源的路径问题。
 	增加了过滤器相关的接口与实现
 		basic.prog.Filter<T>
 		basic.prog.NameFilter<T>
@@ -255,5 +256,13 @@ Beta_0.2.0__build_A (maven)
 	对部分异常文本进行了修复。
 	修复 basic.threads.InnerThread 存在的问题。
 	更新部分类的JavaDoc文档。
-	更新了 test 部分的包结构。
+	更新了 maven test 部分的包结构。
+	新增 develop.logger 工具包，用于快速开发具有特定行为的记录模块。
+	更新了 basic.io.CT 的行为，规范了输出的时间格式以及增加了更多的多行文本处理方式。
+	新增 basic.str.StringUtil，提供了额外的文本工具。
+		StringUtil.isMultiline(String) 判断一个文本是否是多行文本。
+		StringUtil.isEmailAddress(String) 判断一个文本是否是电子邮件地址。
+	新增同步输入/输出流
+		basic.io.SyncInputStream 同步输入流。
+		basic.io.SyncOutputStream 同步输出流。
 	更新的README.md

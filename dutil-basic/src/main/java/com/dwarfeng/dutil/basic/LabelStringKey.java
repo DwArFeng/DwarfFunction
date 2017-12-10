@@ -33,19 +33,16 @@ public enum LabelStringKey implements Name {
 		this.name = name;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.str.Name#getName()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getName() {
 		return name.getName();
 	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see java.lang.Enum#toString()
+
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String toString() {

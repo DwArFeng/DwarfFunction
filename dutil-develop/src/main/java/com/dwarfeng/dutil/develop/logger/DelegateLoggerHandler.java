@@ -58,7 +58,7 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 		@Override
 		public void remove() {
 			delegate.remove();
-			unuseOne(loggerInfo == null ? null : loggerInfo.getKey());
+			unuseOne(loggerInfo == null ? null : loggerInfo.getKey(), true);
 		}
 
 	}
@@ -314,7 +314,7 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	@Override
 	public boolean removeKey(Object key) {
 		if (delegateKeySet.removeKey(key)) {
-			unuseOne((String) key);
+			unuseOne((String) key, true);
 			return true;
 		}
 		return false;
@@ -390,7 +390,7 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 
 		boolean aFlag = false;
 		for (String key : keys) {
-			if (useOne(key)) {
+			if (useOne(key, true)) {
 				aFlag = true;
 			}
 		}
@@ -404,8 +404,9 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	public boolean unuseAll() {
 		boolean aFlag = false;
 		for (LoggerInfo loggerInfo : this) {
-			unuseOne(loggerInfo == null ? null : loggerInfo.getKey());
+			unuseOne(loggerInfo == null ? null : loggerInfo.getKey(), false);
 		}
+		fireLoggerUnusedAll();
 		return aFlag;
 	}
 
@@ -418,7 +419,7 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 
 		boolean aFlag = false;
 		for (String key : keys) {
-			if (useOne(key))
+			if (useOne(key, true))
 				aFlag = true;
 		}
 		return aFlag;
@@ -431,8 +432,9 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	public boolean useAll() {
 		boolean aFlag = false;
 		for (LoggerInfo loggerInfo : this) {
-			useOne(loggerInfo == null ? null : loggerInfo.getKey());
+			useOne(loggerInfo == null ? null : loggerInfo.getKey(), false);
 		}
+		fireLoggerUsedAll();
 		return aFlag;
 	}
 
@@ -507,6 +509,36 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 		}
 	}
 
+	/**
+	 * 通知观察器记录器处理器使用了全部的记录器。
+	 */
+	protected void fireLoggerUsedAll() {
+		for (SetObverser<LoggerInfo> obverser : delegateKeySet.getObversers()) {
+			if (Objects.nonNull(obverser) && obverser instanceof LoggerObverser) {
+				try {
+					((LoggerObverser) obverser).fireLoggerUsedAll();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	/**
+	 * 通知观察器记录器处理器禁用了全部的记录器。
+	 */
+	protected void fireLoggerUnusedAll() {
+		for (SetObverser<LoggerInfo> obverser : delegateKeySet.getObversers()) {
+			if (Objects.nonNull(obverser) && obverser instanceof LoggerObverser) {
+				try {
+					((LoggerObverser) obverser).fireLoggerUnusedAll();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
 	private boolean batchRemove(Collection<?> c, boolean aFlag) {
 		boolean result = false;
 
@@ -535,15 +567,17 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 		return result;
 	}
 
-	private boolean unuseOne(String key) {
+	private boolean unuseOne(String key, boolean isObvTrigger) {
 		if (!delegateMap.containsKey(key))
 			return false;
 		Logger logger = delegateMap.remove(key);
-		fireLoggerUnused(key, logger);
+		if (isObvTrigger) {
+			fireLoggerUnused(key, logger);
+		}
 		return true;
 	}
 
-	private boolean useOne(String key) {
+	private boolean useOne(String key, boolean isObvTrigger) {
 		if (!containsKey(key))
 			return false;
 		LoggerInfo loggerInfo = get(key);
@@ -552,7 +586,9 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 		try {
 			Logger logger = loggerInfo.newLogger();
 			delegateMap.put(key, logger);
-			fireLoggerUsed(key, logger);
+			if (isObvTrigger) {
+				fireLoggerUsed(key, logger);
+			}
 			return true;
 		} catch (Exception e) {
 			return false;

@@ -1,7 +1,14 @@
 package com.dwarfeng.dutil.basic.io;
 
 import java.io.PrintStream;
-import java.util.Calendar;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Objects;
+import java.util.StringTokenizer;
+
+import com.dwarfeng.dutil.basic.DwarfUtil;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
+import com.dwarfeng.dutil.basic.str.StringUtil;
 
 /**
  * 控制台输出工具
@@ -10,15 +17,10 @@ import java.util.Calendar;
  * 该类不能被继承。
  * 
  * @see PrintStream#println()
- * @author 丰沛
+ * @author DwArFeng
  * @since 0.0.2-beta
  */
 public final class CT {
-
-	public static void main(String[] args) {
-		// CT.dateTraceFlag = false;
-		CT.trace(123);
-	}
 
 	/**
 	 * 输出工具的输出形式。
@@ -35,7 +37,43 @@ public final class CT {
 		FULL_DATE;
 	}
 
+	/**
+	 * 输出工具处理多行文本的方式
+	 * 
+	 * @author DwArFeng
+	 * @since 0.2.0-beta
+	 */
+	public static enum MultiLineType {
+		/**
+		 * 平铺式。
+		 * <p>
+		 * 示例<br>
+		 * <blockquote> [22:07:03,872] 中国智造，惠及全球。<br>
+		 * [22:07:03,873] the quick fox jumps over a lazy dog. </blockquote>
+		 */
+		TYPE_1,
+		/**
+		 * 标题式。
+		 * <p>
+		 * 示例<br>
+		 * <blockquote>[2017-07-09 22:07:03,874] 多行文本<br>
+		 * 中国智造，惠及全球。<br>
+		 * the quick fox jumps over a lazy dog.</blockquote>
+		 */
+		TYPE_2,
+		/**
+		 * 缩进式。
+		 * <p>
+		 * 示例<br>
+		 * <blockquote>[2017-07-09 22:07:03,874]<br>
+		 * 中国智造，惠及全球。<br>
+		 * the quick fox jumps over a lazy dog.</blockquote>
+		 */
+		TYPE_3;
+	}
+
 	private static OutputType outputType = OutputType.HALF_DATE;
+	private static MultiLineType mutiLineType = MultiLineType.TYPE_2;
 
 	/**
 	 * 返回输出类型。
@@ -53,7 +91,28 @@ public final class CT {
 	 *            指定的输出类型。
 	 */
 	public static void setOutputType(OutputType outputType) {
+		Objects.requireNonNull(outputType, DwarfUtil.getExecptionString(ExceptionStringKey.CT_1));
 		CT.outputType = outputType;
+	}
+
+	/**
+	 * 返回多行文本的处理类型。
+	 * 
+	 * @return 多行文本的处理类型。
+	 */
+	public static MultiLineType getMultiLineType() {
+		return mutiLineType;
+	}
+
+	/**
+	 * 设置多行文本的处理类型。
+	 * 
+	 * @param mutiLineType
+	 *            指定的多行文本处理类型。
+	 */
+	public static void setMutiLineType(MultiLineType mutiLineType) {
+		Objects.requireNonNull(mutiLineType, DwarfUtil.getExecptionString(ExceptionStringKey.CT_2));
+		CT.mutiLineType = mutiLineType;
 	}
 
 	/**
@@ -64,7 +123,7 @@ public final class CT {
 	 * @return 传入文本对应的要输出的文本。
 	 */
 	public static String toString(String s) {
-		return getTimePrefix() + s;
+		return toString0(s);
 	}
 
 	/**
@@ -87,7 +146,7 @@ public final class CT {
 	 * @return 传入布尔变量对应的要输出的文本。
 	 */
 	public static String toString(boolean b) {
-		return getTimePrefix() + b;
+		return toString0(Boolean.toString(b));
 	}
 
 	/**
@@ -110,7 +169,7 @@ public final class CT {
 	 * @return 传入整型变量对应的要输出的文本。
 	 */
 	public static String toString(int i) {
-		return getTimePrefix() + i;
+		return toString0(Integer.toString(i));
 	}
 
 	/**
@@ -133,7 +192,7 @@ public final class CT {
 	 * @return 传入单精度浮点变量对应的要输出的文本。
 	 */
 	public static String toString(float f) {
-		return getTimePrefix() + f;
+		return toString0(Float.toString(f));
 	}
 
 	/**
@@ -156,7 +215,7 @@ public final class CT {
 	 * @return 传入双精度浮点变量对应的要输出的文本。
 	 */
 	public static String toString(double d) {
-		return getTimePrefix() + d;
+		return toString0(Double.toString(d));
 	}
 
 	/**
@@ -179,7 +238,7 @@ public final class CT {
 	 * @return 传入长整型变量对应的要输出的文本。
 	 */
 	public static String toString(long l) {
-		return getTimePrefix() + l;
+		return toString0(Long.toString(l));
 	}
 
 	/**
@@ -202,7 +261,7 @@ public final class CT {
 	 * @return 传入字符变量对应的要输出的文本。
 	 */
 	public static String toString(char c) {
-		return getTimePrefix() + c;
+		return toString0(Character.toString(c));
 	}
 
 	/**
@@ -225,7 +284,10 @@ public final class CT {
 	 * @return 传入对象对应的要输出的文本。
 	 */
 	public static String toString(Object o) {
-		return getTimePrefix() + o;
+		if (Objects.isNull(o)) {
+			return toString0("null");
+		}
+		return toString0(o.toString());
 	}
 
 	/**
@@ -240,25 +302,117 @@ public final class CT {
 		return toString(o);
 	}
 
-	// 输出年月日时分秒或者时分秒格式的系统时间
-	private static String getTimePrefix() {
+	/** 处理有可能输入的多行文本，以及空的时间前缀。 */
+	private static String toString0(String string) {
+		String prefix = getTimePrefix();
 
-		Calendar C;
+		// 如果没有前缀，那么一切如常。
+		if (Objects.isNull(string)) {
+			string = "null";
+		}
+		string = string.replace("\r", "");
+		if (prefix.length() == 0) {
+			return string;
+		}
+
+		/**
+		 * 如果有前缀，则需要：<br>
+		 * 1. 先判断指定的文本是否是多行文本。<br>
+		 * 1.1 如果不是多行文本，则按照单行输出的样式进行输出。<br>
+		 * 1.2 如果是多行文本，则按照mutiLineType中的样式分类进行输出。<br>
+		 */
+
+		if (!StringUtil.isMultiline(string)) {
+			return String.format("%s\t%s", prefix, string);
+		}
+
+		switch (mutiLineType) {
+		case TYPE_1:
+			return multiLine1(prefix, string);
+		case TYPE_2:
+			return multiLine2(prefix, string);
+		case TYPE_3:
+			return multiLine3(prefix, string);
+		default:
+			return String.format("%s\t%s", prefix, string);
+		}
+
+	}
+
+	/** 输出年月日时分秒或者时分秒格式的系统时间 */
+	private static String getTimePrefix() {
+		SimpleDateFormat formatter;
 
 		switch (outputType) {
 		case FULL_DATE:
-			C = Calendar.getInstance();
-			return "" + C.get(Calendar.YEAR) + "-" + C.get(Calendar.MONTH) + "-" + C.get(Calendar.DATE) + " "
-					+ C.get(Calendar.HOUR_OF_DAY) + ":" + C.get(Calendar.MINUTE) + ":" + C.get(Calendar.SECOND) + "\t";
+			formatter = new SimpleDateFormat("[yyyy-MM-dd HH:mm:ss,SSS]");
+			return formatter.format(new Date());
 		case HALF_DATE:
-			C = Calendar.getInstance();
-			return C.get(Calendar.HOUR_OF_DAY) + ":" + C.get(Calendar.MINUTE) + ":" + C.get(Calendar.SECOND) + "\t";
+			formatter = new SimpleDateFormat("[HH:mm:ss,SSS]");
+			return formatter.format(new Date());
 		case NO_DATE:
 			return "";
 		default:
 			return "";
 		}
 
+	}
+
+	private static String multiLine1(String prefix, String string) {
+		StringTokenizer st = new StringTokenizer(string, "\n");
+		StringBuilder sb = new StringBuilder();
+
+		while (st.hasMoreTokens()) {
+			String token = st.nextToken();
+			// sb.append(String.format("%s\t%s", prefix, token));
+			sb.append(prefix).append("\t").append(token);
+
+			if (st.hasMoreTokens()) {
+				sb.append("\n");
+			}
+		}
+
+		return sb.toString();
+	}
+
+	private static String multiLine2(String prefix, String string) {
+		StringTokenizer st = new StringTokenizer(string, "\n");
+		StringBuilder sb = new StringBuilder();
+
+		// sb.append(String.format("%s\t%s\n", prefix,
+		// DwarfUtil.getExecptionString(ExceptionStringKey.CT_0)));
+		sb.append(prefix).append("\t").append(DwarfUtil.getExecptionString(ExceptionStringKey.CT_0)).append("\n");
+
+		while (st.hasMoreTokens()) {
+			String token = st.nextToken();
+			sb.append("\t").append(token);
+
+			if (st.hasMoreTokens()) {
+				sb.append("\n");
+			}
+		}
+
+		return sb.toString();
+	}
+
+	private static String multiLine3(String prefix, String string) {
+		StringTokenizer st = new StringTokenizer(string, "\n");
+		StringBuilder sb = new StringBuilder();
+
+		// sb.append(String.format("%s\t%s\n", prefix,
+		// DwarfUtil.getExecptionString(ExceptionStringKey.CT_0)));
+		sb.append(prefix).append("\n");
+
+		while (st.hasMoreTokens()) {
+			String token = st.nextToken();
+			sb.append("\t").append(token);
+
+			if (st.hasMoreTokens()) {
+				sb.append("\n");
+			}
+		}
+
+		return sb.toString();
 	}
 
 	// 不可见的构造器方法
