@@ -612,7 +612,7 @@ public enum ExceptionStringKey implements Name {
 
 	/** WriterLogger类第0号文本字段 */
 	WRITERLOGGER_0(new DefaultName("WriterLogger.0")),
-	
+
 	/** OutputStreamLogger类第0号文本字段 */
 	OUTPUTSTREAMLOGGER_0(new DefaultName("OutputStreamLogger.0")),
 
@@ -622,6 +622,11 @@ public enum ExceptionStringKey implements Name {
 	CT_1(new DefaultName("CT.1")),
 	/** CT类第2号文本字段 */
 	CT_2(new DefaultName("CT.2")),
+
+	/** LoggerHandler类第0号文本字段 */
+	LOGGERHANDLER_0(new DefaultName("LoggerHandler.0")),
+	/** LoggerHandler类第1号文本字段 */
+	LOGGERHANDLER_1(new DefaultName("LoggerHandler.1")),
 
 	;
 

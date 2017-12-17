@@ -185,45 +185,10 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void debug(String message) {
-		Objects.requireNonNull(message, "入口参数 message 不能为 null。");
-		delegateMap.values().forEach(logger -> {
-			logger.debug(message);
-		});
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
 	public boolean equals(Object o) {
 		if (o == this)
 			return true;
 		return delegateKeySet.equals(o);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void error(String message, Throwable t) {
-		Objects.requireNonNull(message, "入口参数 message 不能为 null。");
-		Objects.requireNonNull(t, "入口参数 t 不能为 null。");
-		delegateMap.values().forEach(logger -> {
-			logger.error(message, t);
-		});
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void fatal(String message, Throwable t) {
-		Objects.requireNonNull(message, "入口参数 message 不能为 null。");
-		Objects.requireNonNull(t, "入口参数 t 不能为 null。");
-		delegateMap.values().forEach(logger -> {
-			logger.fatal(message, t);
-		});
 	}
 
 	/**
@@ -248,17 +213,6 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	@Override
 	public int hashCode() {
 		return delegateKeySet.hashCode();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void info(String message) {
-		Objects.requireNonNull(message, "入口参数 message 不能为 null。");
-		delegateMap.values().forEach(logger -> {
-			logger.info(message);
-		});
 	}
 
 	/**
@@ -374,17 +328,6 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void trace(String message) {
-		Objects.requireNonNull(message, "入口参数 message 不能为 null。");
-		delegateMap.values().forEach(logger -> {
-			logger.trace(message);
-		});
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
 	public boolean unuse(String... keys) {
 		Objects.requireNonNull(keys, "入口参数 keys 不能为 null。");
 
@@ -444,29 +387,6 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	@Override
 	public Collection<Logger> usedLoggers() {
 		return Collections.unmodifiableCollection(delegateMap.values());
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void warn(String message) {
-		Objects.requireNonNull(message, "入口参数 message 不能为 null。");
-		delegateMap.values().forEach(logger -> {
-			logger.warn(message);
-		});
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void warn(String message, Throwable t) {
-		Objects.requireNonNull(message, "入口参数 message 不能为 null。");
-		Objects.requireNonNull(t, "入口参数 t 不能为 null。");
-		delegateMap.values().forEach(logger -> {
-			logger.warn(message, t);
-		});
 	}
 
 	/**
@@ -542,10 +462,12 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	private boolean batchRemove(Collection<?> c, boolean aFlag) {
 		boolean result = false;
 
-		for (LoggerInfo loggerInfo : delegateKeySet) {
+		for (Iterator<LoggerInfo> i = delegateKeySet.iterator(); i.hasNext();) {
+			LoggerInfo loggerInfo = i.next();
 
 			if (c.contains(loggerInfo) == aFlag) {
-				remove(loggerInfo);
+				i.remove();
+				//TODO unuseOne(key, isObvTrigger)
 				result = true;
 			}
 		}
@@ -556,10 +478,11 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	private boolean batchRemoveKey(Collection<?> c, boolean aFlag) {
 		boolean result = false;
 
-		for (LoggerInfo loggerInfo : delegateKeySet) {
+		for (Iterator<LoggerInfo> i = delegateKeySet.iterator(); i.hasNext();) {
+			LoggerInfo loggerInfo = i.next();
 
 			if (c.contains(loggerInfo == null ? null : loggerInfo.getKey()) == aFlag) {
-				removeKey(loggerInfo);
+				i.remove();
 				result = true;
 			}
 		}
