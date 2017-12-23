@@ -36,7 +36,7 @@ class TestLoggerObverser extends LoggerAdapter {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void fireLoggerUnused(String key, Logger logger) {
+	public void fireLoggerUnused(String key, LoggerInfo loggerInfo, Logger logger) {
 		unusedKeyList.add(key);
 	}
 
@@ -52,7 +52,7 @@ class TestLoggerObverser extends LoggerAdapter {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void fireLoggerUsed(String key, Logger logger) {
+	public void fireLoggerUsed(String key, LoggerInfo loggerInfo, Logger logger) {
 		usedKeyList.add(key);
 	}
 

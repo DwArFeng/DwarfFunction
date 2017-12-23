@@ -100,6 +100,37 @@ public abstract class ObjectLogger implements Logger, Closeable {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((writer == null) ? 0 : writer.hashCode());
+		return result;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof ObjectLogger))
+			return false;
+		ObjectLogger other = (ObjectLogger) obj;
+		if (writer == null) {
+			if (other.writer != null)
+				return false;
+		} else if (!writer.equals(other.writer))
+			return false;
+		return true;
+	}
+
+	/**
 	 * 由指定的对象生成打印流。
 	 * 
 	 * @param object

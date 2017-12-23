@@ -20,7 +20,7 @@ public abstract class LoggerAdapter implements LoggerObverser {
 	}
 
 	@Override
-	public void fireLoggerUnused(String key, Logger logger) {
+	public void fireLoggerUnused(String key, LoggerInfo loggerInfo, Logger logger) {
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public abstract class LoggerAdapter implements LoggerObverser {
 	}
 
 	@Override
-	public void fireLoggerUsed(String key, Logger logger) {
+	public void fireLoggerUsed(String key, LoggerInfo loggerInfo, Logger logger) {
 	}
 
 	@Override

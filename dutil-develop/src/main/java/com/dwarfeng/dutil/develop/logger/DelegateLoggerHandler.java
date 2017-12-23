@@ -58,7 +58,7 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 		@Override
 		public void remove() {
 			delegate.remove();
-			unuseOne(loggerInfo == null ? null : loggerInfo.getKey(), true);
+			unuseOne(loggerInfo, true);
 		}
 
 	}
@@ -66,9 +66,8 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	/** 被代理的键值集合。 */
 	protected final KeySetModel<String, LoggerInfo> delegateKeySet;
 
-	// TODO 将该映射也转变为代理映射。
 	/** 被代理的映射。 */
-	protected final Map<String, Logger> delegateMap;
+	protected final Map<LoggerInfo, Logger> delegateMap;
 
 	/**
 	 * 生成一个默认的代理记录器处理器。
@@ -99,7 +98,7 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public DelegateLoggerHandler(KeySetModel<String, LoggerInfo> delegateKeySet, Map<String, Logger> delegateMap) {
+	public DelegateLoggerHandler(KeySetModel<String, LoggerInfo> delegateKeySet, Map<LoggerInfo, Logger> delegateMap) {
 		Objects.requireNonNull(delegateKeySet,
 				DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_0));
 		Objects.requireNonNull(delegateMap, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_1));
@@ -238,7 +237,7 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	public boolean remove(Object o) {
 		if (delegateKeySet.remove(o)) {
 			LoggerInfo loggerInfo = (LoggerInfo) o;
-			unuse(loggerInfo == null ? null : loggerInfo.getKey());
+			unuse(loggerInfo == null ? null : loggerInfo);
 			return true;
 		}
 		return false;
@@ -267,11 +266,14 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	 */
 	@Override
 	public boolean removeKey(Object key) {
-		if (delegateKeySet.removeKey(key)) {
-			unuseOne((String) key, true);
-			return true;
+		if (!containsKey(key)) {
+			return false;
 		}
-		return false;
+		// 如果该记录器处理器包含此键的话，则该键一定是 String 类型，故该类型转换安全。
+		LoggerInfo loggerInfo = get((String) key);
+		delegateKeySet.removeKey(key);
+		unuseOne(loggerInfo, true);
+		return true;
 	}
 
 	/**
@@ -328,57 +330,108 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean unuse(String... keys) {
-		Objects.requireNonNull(keys, "入口参数 keys 不能为 null。");
-
-		boolean aFlag = false;
-		for (String key : keys) {
-			if (useOne(key, true)) {
-				aFlag = true;
-			}
-		}
-		return aFlag;
+	public boolean use(LoggerInfo loggerInfo) {
+		return useOne(loggerInfo, true);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean unuseAll() {
-		boolean aFlag = false;
+	public boolean unuse(LoggerInfo loggerInfo) {
+		return unuseOne(loggerInfo, true);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean useKey(String key) {
+		return useOne(get(key), true);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean unuseKey(String key) {
+		return unuseOne(get(key), true);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void useAll() {
 		for (LoggerInfo loggerInfo : this) {
-			unuseOne(loggerInfo == null ? null : loggerInfo.getKey(), false);
-		}
-		fireLoggerUnusedAll();
-		return aFlag;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean use(String... keys) {
-		Objects.requireNonNull(keys, "入口参数 keys 不能为 null。");
-
-		boolean aFlag = false;
-		for (String key : keys) {
-			if (useOne(key, true))
-				aFlag = true;
-		}
-		return aFlag;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean useAll() {
-		boolean aFlag = false;
-		for (LoggerInfo loggerInfo : this) {
-			useOne(loggerInfo == null ? null : loggerInfo.getKey(), false);
+			useOne(loggerInfo, false);
 		}
 		fireLoggerUsedAll();
-		return aFlag;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void unuseAll() {
+		for (LoggerInfo loggerInfo : this) {
+			unuseOne(loggerInfo, false);
+		}
+		fireLoggerUnusedAll();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean useAll(Collection<LoggerInfo> c) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean unuseAll(Collection<LoggerInfo> c) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean useAllKey(Collection<String> c) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean unuseAllKey(Collection<String> c) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean retainUse(Collection<LoggerInfo> c) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean retainUseKey(Collection<String> c) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	/**
@@ -390,18 +443,20 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	}
 
 	/**
-	 * 通知观察器指定的记录器停止使用。
+	 * 通知观察器记录器处理器使用了指定的记录器。
 	 * 
 	 * @param key
-	 *            指定的记录器对应的键。
+	 *            相关记录器信息的键。
+	 * @param loggerInfo
+	 *            相关的记录器信息。
 	 * @param logger
-	 *            指定的记录器。
+	 *            使用的记录器。
 	 */
-	protected void fireLoggerUnused(String key, Logger logger) {
+	protected void fireLoggerUsed(String key, LoggerInfo loggerInfo, Logger logger) {
 		for (SetObverser<LoggerInfo> obverser : delegateKeySet.getObversers()) {
 			if (Objects.nonNull(obverser) && obverser instanceof LoggerObverser) {
 				try {
-					((LoggerObverser) obverser).fireLoggerUnused(key, logger);
+					((LoggerObverser) obverser).fireLoggerUsed(key, loggerInfo, logger);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -410,18 +465,20 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	}
 
 	/**
-	 * 通知观察器指定的记录器被使用。
+	 * 通知观察器记录器处理器禁用了指定的记录器。
 	 * 
 	 * @param key
-	 *            指定的记录器对应的键。
+	 *            相关记录器信息的键。
+	 * @param loggerInfo
+	 *            相关的记录器信息。
 	 * @param logger
-	 *            指定的记录器。
+	 *            禁用的记录器。
 	 */
-	protected void fireLoggerUsed(String key, Logger logger) {
+	protected void fireLoggerUnused(String key, LoggerInfo loggerInfo, Logger logger) {
 		for (SetObverser<LoggerInfo> obverser : delegateKeySet.getObversers()) {
 			if (Objects.nonNull(obverser) && obverser instanceof LoggerObverser) {
 				try {
-					((LoggerObverser) obverser).fireLoggerUsed(key, logger);
+					((LoggerObverser) obverser).fireLoggerUnused(key, loggerInfo, logger);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -467,7 +524,7 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 
 			if (c.contains(loggerInfo) == aFlag) {
 				i.remove();
-				//TODO unuseOne(key, isObvTrigger)
+				unuseOne(loggerInfo, true);
 				result = true;
 			}
 		}
@@ -490,27 +547,28 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 		return result;
 	}
 
-	private boolean unuseOne(String key, boolean isObvTrigger) {
-		if (!delegateMap.containsKey(key))
+	private boolean unuseOne(LoggerInfo loggerInfo, boolean isObvTrigger) {
+		if (!delegateMap.containsKey(loggerInfo))
 			return false;
-		Logger logger = delegateMap.remove(key);
+		Logger logger = delegateMap.remove(loggerInfo);
 		if (isObvTrigger) {
-			fireLoggerUnused(key, logger);
+			fireLoggerUnused(loggerInfo.getKey(), loggerInfo, logger);
 		}
 		return true;
 	}
 
-	private boolean useOne(String key, boolean isObvTrigger) {
-		if (!containsKey(key))
+	private boolean useOne(LoggerInfo loggerInfo, boolean isObvTrigger) {
+		if (!contains(loggerInfo))
 			return false;
-		LoggerInfo loggerInfo = get(key);
 		if (Objects.isNull(loggerInfo))
+			return false;
+		if (delegateMap.containsKey(loggerInfo))
 			return false;
 		try {
 			Logger logger = loggerInfo.newLogger();
-			delegateMap.put(key, logger);
+			delegateMap.put(loggerInfo, logger);
 			if (isObvTrigger) {
-				fireLoggerUsed(key, logger);
+				fireLoggerUsed(loggerInfo.getKey(), loggerInfo, logger);
 			}
 			return true;
 		} catch (Exception e) {
