@@ -1,5 +1,6 @@
 package com.dwarfeng.dutil.develop.backgr;
 
+/*
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -17,9 +18,11 @@ import org.junit.Test;
 
 import com.dwarfeng.dutil.develop.backgr.ExecutorServiceBackground;
 import com.dwarfeng.dutil.develop.backgr.Task;
+*/
 
 public class Test_ExcutorSerivceBackground_Tasks {
 
+	/*
 	private ExecutorServiceBackground background = null;
 	private TestBackgroundObverser obv = null;
 	private Set<Task> tasks = null;
@@ -157,5 +160,6 @@ public class Test_ExcutorSerivceBackground_Tasks {
 	public void clear() {
 		tasks.clear();
 	}
+	*/
 
 }

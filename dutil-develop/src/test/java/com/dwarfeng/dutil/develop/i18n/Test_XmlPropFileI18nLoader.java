@@ -18,7 +18,7 @@ import com.dwarfeng.dutil.develop.i18n.io.XmlPropFileI18nLoader;
 
 public class Test_XmlPropFileI18nLoader {
 
-	private static final String XML_PATH = "target/test-classes/com/dwarfeng/dutil/resource/test/develop/i18n/i18n_file.xml";
+	private static final String XML_PATH = "target/test-classes/com/dwarfeng/dutil/resources/test/develop/i18n/i18n_file.xml";
 	private static I18nHandler handler = null;
 	private static XmlPropFileI18nLoader loader = null;
 
@@ -37,9 +37,9 @@ public class Test_XmlPropFileI18nLoader {
 	public void testLoad() {
 		try {
 			loader.load(handler);
-		} catch (LoadFailedException | IllegalStateException e) {
-			e.printStackTrace();
+		} catch (LoadFailedException | IllegalStateException ignore) {
 		}
+		
 		assertEquals(2, handler.size());
 		assertTrue(handler.containsKey(Locale.CHINA));
 		assertTrue(handler.containsKey(Locale.US));

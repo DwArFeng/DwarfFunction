@@ -33,10 +33,10 @@ public class Test_XmlJar2FileResourceLoader {
 	public void setUp() throws Exception {
 		handler = new DelegateResourceHandler();
 		loader = new XmlJar2FileResourceLoader(
-				this.getClass().getResourceAsStream("/com/dwarfeng/dutil/resource/test/develop/resource/paths.xml"));
+				this.getClass().getResourceAsStream("/com/dwarfeng/dutil/resources/test/develop/resource/paths.xml"));
 
 		InputStream in = this.getClass()
-				.getResourceAsStream("/com/dwarfeng/dutil/resource/test/develop/resource/hello.txt");
+				.getResourceAsStream("/com/dwarfeng/dutil/resources/test/develop/resource/hello.txt");
 		File file = new File("test/hello.txt");
 		FileUtil.createFileIfNotExists(file);
 		OutputStream out = new FileOutputStream(file);
@@ -56,9 +56,9 @@ public class Test_XmlJar2FileResourceLoader {
 	public void testLoad() {
 		try {
 			loader.load(handler);
-		} catch (LoadFailedException | IllegalStateException e) {
-			e.printStackTrace();
+		} catch (LoadFailedException | IllegalStateException ignore) {
 		}
+		
 		assertEquals(0, handler.size());
 	}
 

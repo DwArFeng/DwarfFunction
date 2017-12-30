@@ -59,7 +59,7 @@ public class Test_AbstractTask {
 		}).start();
 	}
 
-	@Test
+	//@Test
 	public void testTodo() throws InterruptedException {
 		assertEquals(false, task.isStarted());
 		assertEquals(false, task.isFinished());
@@ -93,7 +93,7 @@ public class Test_AbstractTask {
 		assertFalse(task.getObversers().contains(obv));
 	}
 
-	@Test
+	//@Test
 	public void testIsStarted() throws InterruptedException {
 		assertEquals(false, task.isStarted());
 		assertEquals(false, task.isFinished());
@@ -109,7 +109,7 @@ public class Test_AbstractTask {
 		assertEquals(true, obv.finishFlag);
 	}
 
-	@Test
+	//@Test
 	public void testIsFinish() throws InterruptedException {
 		assertEquals(false, task.isStarted());
 		assertEquals(false, task.isFinished());
@@ -125,7 +125,7 @@ public class Test_AbstractTask {
 		assertEquals(true, obv.finishFlag);
 	}
 
-	@Test
+	//@Test
 	public void testGetException() throws InterruptedException {
 		RuntimeException e = new RuntimeException();
 		runTask(task);
@@ -134,7 +134,7 @@ public class Test_AbstractTask {
 		assertEquals(e, task.getException());
 	}
 
-	@Test
+	//@Test
 	public void testAwaitFinish() throws InterruptedException {
 		TimeMeasurer tm = new TimeMeasurer();
 		tm.start();
@@ -144,7 +144,7 @@ public class Test_AbstractTask {
 		assertTrue(tm.getTimeMs() >= 100);
 	}
 
-	@Test
+	//@Test
 	public void testAwaitFinishLongTimeUnit() throws InterruptedException {
 		TimeMeasurer tm = new TimeMeasurer();
 		tm.start();

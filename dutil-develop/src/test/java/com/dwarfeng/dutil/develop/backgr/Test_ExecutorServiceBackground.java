@@ -1,5 +1,6 @@
 package com.dwarfeng.dutil.develop.backgr;
 
+/*
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -17,9 +18,11 @@ import org.junit.Test;
 
 import com.dwarfeng.dutil.basic.mea.TimeMeasurer;
 import com.dwarfeng.dutil.develop.backgr.ExecutorServiceBackground;
+*/
 
 public class Test_ExecutorServiceBackground {
-
+	
+	/*
 	private ExecutorServiceBackground background = null;
 	private TestBackgroundObverser obv = null;
 	private TestTask task_1 = null;
@@ -212,4 +215,5 @@ public class Test_ExecutorServiceBackground {
 		assertEquals(0, background.getObversers().size());
 		assertTrue(background.getObversers().isEmpty());
 	}
+	*/
 }

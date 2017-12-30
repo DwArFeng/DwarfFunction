@@ -19,7 +19,7 @@ public class Test_PropertiesI18n {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		InputStream in = Test_PropertiesI18n.class
-				.getResourceAsStream("/com/dwarfeng/dutil/resource/test/develop/i18n/zh_CN.properties");
+				.getResourceAsStream("/com/dwarfeng/dutil/resources/test/develop/i18n/zh_CN.properties");
 		CT.trace(in);
 		properties.load(in);
 	}

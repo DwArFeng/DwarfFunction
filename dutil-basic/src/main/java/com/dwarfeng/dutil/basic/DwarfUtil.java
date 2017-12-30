@@ -34,13 +34,13 @@ import com.dwarfeng.dutil.basic.prog.VersionType;
 public final class DwarfUtil {
 
 	/** 图片资源的根目录路径。 */
-	public static final String IMAGE_ROOT = "/com/dwarfeng/dutil/resource/image/";
+	public static final String IMAGE_ROOT = "/com/dwarfeng/dutil/resources/image/";
 
 	/** 标签文本的路径。 */
-	public static final String LF_PATH = "com/dwarfeng/dutil/resource/i18n/label_string";
+	public static final String LF_PATH = "com/dwarfeng/dutil/resources/i18n/label_string";
 
 	/** 异常文本的路径。 */
-	public static final String EXCEPTION_STRING_PATH = "com/dwarfeng/dutil/resource/i18n/exception_string";
+	public static final String EXCEPTION_STRING_PATH = "com/dwarfeng/dutil/resources/i18n/exception_string";
 
 	private static final Map<Locale, ResourceBundle> LABEL_FIELD_MAP = new HashMap<>();
 

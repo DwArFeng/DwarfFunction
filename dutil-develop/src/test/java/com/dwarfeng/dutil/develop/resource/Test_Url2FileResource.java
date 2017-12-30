@@ -26,10 +26,10 @@ public class Test_Url2FileResource {
 	@Before
 	public void setUp() throws Exception {
 		resource = new Url2FileResource("test.foo",
-				this.getClass().getResource("/com/dwarfeng/dutil/resource/test/develop/resource/hello.txt"),
+				this.getClass().getResource("/com/dwarfeng/dutil/resources/test/develop/resource/hello.txt"),
 				new File("test/hello.txt"));
 		InputStream in = this.getClass()
-				.getResourceAsStream("/com/dwarfeng/dutil/resource/test/develop/resource/hello.txt");
+				.getResourceAsStream("/com/dwarfeng/dutil/resources/test/develop/resource/hello.txt");
 		File file = new File("test/hello.txt");
 		FileUtil.createFileIfNotExists(file);
 		OutputStream out = new FileOutputStream(file);
@@ -48,7 +48,7 @@ public class Test_Url2FileResource {
 	@Test
 	public void testHashCode() {
 		Url2FileResource anotherResource = new Url2FileResource("test.foo",
-				this.getClass().getResource("/com/dwarfeng/dutil/resource/test/develop/resource/hello.txt"),
+				this.getClass().getResource("/com/dwarfeng/dutil/resources/test/develop/resource/hello.txt"),
 				new File("test/hello.txt"));
 		assertEquals(anotherResource.hashCode(), resource.hashCode());
 	}
@@ -89,7 +89,7 @@ public class Test_Url2FileResource {
 	@Test
 	public void testEqualsObject() {
 		Url2FileResource anotherResource = new Url2FileResource("test.foo",
-				this.getClass().getResource("/com/dwarfeng/dutil/resource/test/develop/resource/hello.txt"),
+				this.getClass().getResource("/com/dwarfeng/dutil/resources/test/develop/resource/hello.txt"),
 				new File("test/hello.txt"));
 		assertEquals(anotherResource.hashCode(), resource.hashCode());
 	}

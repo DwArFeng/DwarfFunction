@@ -19,7 +19,7 @@ import com.dwarfeng.dutil.develop.i18n.io.XmlPropResourceI18nLoader;
 public class Test_XmlPropResourceI18nLoader {
 
 	private static final URL XML_URL = Test_XmlPropResourceI18nLoader.class
-			.getResource("/com/dwarfeng/dutil/resource/test/develop/i18n/i18n_resource.xml");
+			.getResource("/com/dwarfeng/dutil/resources/test/develop/i18n/i18n_resource.xml");
 	private static I18nHandler handler = null;
 	private static XmlPropResourceI18nLoader loader = null;
 
@@ -38,9 +38,9 @@ public class Test_XmlPropResourceI18nLoader {
 	public void testLoad() {
 		try {
 			loader.load(handler);
-		} catch (LoadFailedException | IllegalStateException e) {
-			e.printStackTrace();
+		} catch (LoadFailedException | IllegalStateException ignore) {
 		}
+
 		assertEquals(2, handler.size());
 		assertTrue(handler.containsKey(Locale.CHINA));
 		assertTrue(handler.containsKey(Locale.US));
@@ -49,6 +49,11 @@ public class Test_XmlPropResourceI18nLoader {
 		assertEquals("你好", handler.getCurrentI18n().getString("hello"));
 		assertTrue(handler.setCurrentLocale(Locale.US));
 		assertEquals("hello", handler.getCurrentI18n().getString("hello"));
+	}
+
+	@Test(expected = LoadFailedException.class)
+	public void testLoad1() throws LoadFailedException, IllegalStateException {
+		loader.load(handler);
 	}
 
 	@Test
