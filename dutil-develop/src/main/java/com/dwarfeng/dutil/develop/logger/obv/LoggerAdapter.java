@@ -24,15 +24,7 @@ public abstract class LoggerAdapter implements LoggerObverser {
 	}
 
 	@Override
-	public void fireLoggerUnusedAll() {
-	}
-
-	@Override
 	public void fireLoggerUsed(String key, LoggerInfo loggerInfo, Logger logger) {
-	}
-
-	@Override
-	public void fireLoggerUsedAll() {
 	}
 
 	@Override

@@ -12,8 +12,6 @@ class TestLoggerObverser extends LoggerAdapter {
 	final AtomicBoolean clearedFlag = new AtomicBoolean(false);
 	final List<String> usedKeyList = new ArrayList<>();
 	final List<String> unusedKeyList = new ArrayList<>();
-	final AtomicBoolean usedAllFlag = new AtomicBoolean(false);
-	final AtomicBoolean unusedAllFlag = new AtomicBoolean(false);
 	final List<LoggerInfo> removedList = new ArrayList<>();
 
 	/**
@@ -44,24 +42,8 @@ class TestLoggerObverser extends LoggerAdapter {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void fireLoggerUnusedAll() {
-		unusedAllFlag.set(true);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
 	public void fireLoggerUsed(String key, LoggerInfo loggerInfo, Logger logger) {
 		usedKeyList.add(key);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void fireLoggerUsedAll() {
-		usedAllFlag.set(true);
 	}
 
 	/**

@@ -1,6 +1,11 @@
 package com.dwarfeng.dutil.develop.logger;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -12,9 +17,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.dwarfeng.dutil.basic.cna.ArrayUtil;
 import com.dwarfeng.dutil.basic.io.CT;
-import com.dwarfeng.dutil.basic.io.StringOutputStream;
 import com.dwarfeng.dutil.basic.io.CT.OutputType;
+import com.dwarfeng.dutil.basic.io.StringOutputStream;
 
 public class Test_DelegateLoggerHandler {
 
@@ -227,102 +233,162 @@ public class Test_DelegateLoggerHandler {
 	@Test
 	public void testRemove() {
 		handler.addAll(Arrays.asList(loggerInfo1, loggerInfo2, null));
+		handler.use(loggerInfo1);
 		assertTrue(handler.remove(loggerInfo1));
 		assertFalse(handler.remove(loggerInfo1));
 		assertTrue(handler.remove(null));
 		assertTrue(handler.remove(loggerInfo2));
 		assertTrue(handler.isEmpty());
 		assertArrayEquals(new Object[] { loggerInfo1, null, loggerInfo2 }, obv.removedList.toArray());
+		assertArrayEquals(new Object[] { "out1" }, obv.unusedKeyList.toArray());
 	}
 
 	@Test
 	public void testRemoveAll() {
 		handler.addAll(Arrays.asList(loggerInfo1, loggerInfo2, null));
+		handler.useAll();
 		assertTrue(handler.removeAll(Arrays.asList(loggerInfo1, null)));
 		assertTrue(handler.removeAll(Arrays.asList(loggerInfo1, loggerInfo2)));
 		assertFalse(handler.removeAll(Arrays.asList(loggerInfo1, loggerInfo2, null)));
 		assertTrue(handler.isEmpty());
-		assertArrayEquals(new Object[] { loggerInfo1, null, loggerInfo2 }, obv.removedList.toArray());
+		assertTrue(obv.removedList.containsAll(Arrays.asList(loggerInfo1, loggerInfo2, null)));
+		assertTrue(obv.unusedKeyList.contains("out1"));
+		assertTrue(obv.unusedKeyList.contains("out2"));
 	}
 
 	@Test
 	public void testRemoveAllKey() {
-		fail("Not yet implemented"); // TODO
+		handler.addAll(Arrays.asList(loggerInfo1, loggerInfo2, null));
+		handler.useAll();
+		assertTrue(handler.removeAllKey(Arrays.asList("out2")));
+		assertFalse(handler.removeAllKey(Arrays.asList("out2")));
+		assertEquals(1, handler.usedLoggers().size());
+		assertTrue(handler.removeAllKey(Arrays.asList("out1")));
+		assertFalse(handler.removeAllKey(Arrays.asList("out1")));
+		assertEquals(0, handler.usedLoggers().size());
+		assertEquals(1, handler.size());
+		assertTrue(obv.removedList.contains(loggerInfo1));
+		assertTrue(obv.removedList.contains(loggerInfo2));
+		assertFalse(obv.removedList.contains(null));
 	}
 
 	@Test
 	public void testRemoveKey() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public void testRemoveObverser() {
-		fail("Not yet implemented"); // TODO
+		handler.addAll(Arrays.asList(loggerInfo1, loggerInfo2, null));
+		handler.useAll();
+		assertTrue(handler.removeKey("out2"));
+		assertFalse(handler.removeKey("out2"));
+		assertEquals(1, handler.usedLoggers().size());
+		assertTrue(handler.removeKey("out1"));
+		assertFalse(handler.removeKey("out1"));
+		assertEquals(0, handler.usedLoggers().size());
+		assertEquals(1, handler.size());
+		assertTrue(obv.removedList.contains(loggerInfo1));
+		assertTrue(obv.removedList.contains(loggerInfo2));
+		assertFalse(obv.removedList.contains(null));
 	}
 
 	@Test
 	public void testRetainAll() {
-		fail("Not yet implemented"); // TODO
+		handler.addAll(Arrays.asList(loggerInfo1, loggerInfo2, null));
+		handler.useAll();
+		assertTrue(handler.retainAll(Arrays.asList(loggerInfo1, loggerInfo2)));
+		assertFalse(handler.contains(null));
+		assertTrue(handler.contains(loggerInfo1));
+		assertTrue(handler.contains(loggerInfo2));
+		assertTrue(handler.retainAll(Arrays.asList(loggerInfo1)));
+		assertFalse(handler.retainAll(Arrays.asList(loggerInfo1)));
+		assertTrue(handler.contains(loggerInfo1));
+		assertEquals(1, handler.size());
+		assertArrayEquals(new Object[] { null, loggerInfo2 }, obv.removedList.toArray());
 	}
 
 	@Test
 	public void testRetainAllKey() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public void testSize() {
-		fail("Not yet implemented"); // TODO
+		handler.addAll(Arrays.asList(loggerInfo1, loggerInfo2, null));
+		handler.useAll();
+		assertTrue(handler.retainAllKey(Arrays.asList("out1", "out2")));
+		assertFalse(handler.contains(null));
+		assertTrue(handler.contains(loggerInfo1));
+		assertTrue(handler.contains(loggerInfo2));
+		assertTrue(handler.retainAllKey(Arrays.asList("out1")));
+		assertFalse(handler.retainAllKey(Arrays.asList("out1")));
+		assertTrue(handler.contains(loggerInfo1));
+		assertEquals(1, handler.size());
+		assertArrayEquals(new Object[] { null, loggerInfo2 }, obv.removedList.toArray());
 	}
 
 	@Test
 	public void testToArray() {
-		fail("Not yet implemented"); // TODO
+		handler.addAll(Arrays.asList(loggerInfo1, loggerInfo2, null));
+		assertTrue(ArrayUtil.containsAll(handler.toArray(), new Object[] { loggerInfo1, loggerInfo2, null }));
+		assertEquals(3, handler.toArray().length);
 	}
 
 	@Test
 	public void testToArrayTArray() {
-		fail("Not yet implemented"); // TODO
+		handler.addAll(Arrays.asList(loggerInfo1, loggerInfo2, null));
+		assertTrue(ArrayUtil.containsAll(handler.toArray(new LoggerInfo[0]),
+				new Object[] { loggerInfo1, loggerInfo2, null }));
+		assertEquals(3, handler.toArray(new LoggerInfo[0]).length);
+		assertEquals(5, handler.toArray(new LoggerInfo[5]).length);
+	}
+
+	@Test(expected = ArrayStoreException.class)
+	public void testToArrayTArray1() {
+		handler.addAll(Arrays.asList(loggerInfo1, loggerInfo2, null));
+		handler.toArray(new Logger[5]);
 	}
 
 	@Test
 	public void testTrace() {
-		fail("Not yet implemented"); // TODO
+		handler.addAll(Arrays.asList(loggerInfo1, loggerInfo2, null));
+		handler.useAll();
+		handler.trace("中国智造，惠及全球");
+		assertTrue(cutString(out1).endsWith("[TRACE]\t中国智造，惠及全球"));
+		assertTrue(cutString(out2).endsWith("[TRACE]\t中国智造，惠及全球"));
 	}
 
 	@Test
 	public void testUsedLoggers() {
-		fail("Not yet implemented"); // TODO
+		handler.addAll(Arrays.asList(loggerInfo1, loggerInfo2, null));
+		assertTrue(handler.usedLoggers().isEmpty());
+		handler.useAll();
+		assertEquals(2, handler.usedLoggers().size());
+	}
+
+	@Test(expected = UnsupportedOperationException.class)
+	public void testUsedLoggers1() {
+		handler.addAll(Arrays.asList(loggerInfo1, loggerInfo2, null));
+		handler.useAll();
+		handler.usedLoggers().clear();
+	}
+
+	@Test(expected = UnsupportedOperationException.class)
+	public void testUsedLoggers2() {
+		handler.addAll(Arrays.asList(loggerInfo1, loggerInfo2, null));
+		handler.useAll();
+		Iterator<Logger> i = handler.usedLoggers().iterator();
+		i.next();
+		i.remove();
 	}
 
 	@Test
 	public void testWarnString() {
-		fail("Not yet implemented"); // TODO
+		handler.addAll(Arrays.asList(loggerInfo1, loggerInfo2, null));
+		handler.useAll();
+		handler.warn("中国智造，惠及全球");
+		assertTrue(cutString(out1).endsWith("[WARN]\t中国智造，惠及全球"));
+		assertTrue(cutString(out2).endsWith("[WARN]\t中国智造，惠及全球"));
 	}
 
 	@Test
 	public void testWarnStringThrowable() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public void testFireLoggerUnused() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public void testFireLoggerUsed() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public void testFireLoggerUsedAll() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public void testFireLoggerUnusedAll() {
-		fail("Not yet implemented"); // TODO
+		handler.addAll(Arrays.asList(loggerInfo1, loggerInfo2, null));
+		handler.useAll();
+		handler.warn("中国智造，惠及全球", exception);
+		assertTrue(cutString(out1).indexOf("测试用异常") > 0);
+		assertTrue(cutString(out2).indexOf("测试用异常") > 0);
 	}
 
 	@Test
@@ -363,7 +429,8 @@ public class Test_DelegateLoggerHandler {
 		handler.addAll(Arrays.asList(loggerInfo1, loggerInfo2, null));
 		handler.useAll();
 		assertEquals(2, handler.usedLoggers().size());
-		assertTrue(obv.usedAllFlag.get());
+		assertTrue(obv.usedKeyList.contains("out1"));
+		assertTrue(obv.usedKeyList.contains("out2"));
 	}
 
 	@Test
@@ -371,8 +438,9 @@ public class Test_DelegateLoggerHandler {
 		handler.addAll(Arrays.asList(loggerInfo1, loggerInfo2, null));
 		handler.useAll();
 		handler.unuseAll();
-		assertEquals(0, handler.usedLoggers());
-		assertTrue(obv.unusedAllFlag.get());
+		assertEquals(0, handler.usedLoggers().size());
+		assertTrue(obv.unusedKeyList.contains("out1"));
+		assertTrue(obv.unusedKeyList.contains("out2"));
 	}
 
 	@Test
@@ -387,6 +455,50 @@ public class Test_DelegateLoggerHandler {
 		handler.addAll(Arrays.asList(loggerInfo2));
 		assertTrue(handler.useKey("out2"));
 		assertFalse(handler.useKey("out2"));
+	}
+
+	@Test
+	public void testUseAllCollectionOfLoggerInfo() {
+		assertFalse(handler.useAll(Arrays.asList(loggerInfo1, loggerInfo2)));
+		handler.add(loggerInfo2);
+		assertTrue(handler.useAll(Arrays.asList(loggerInfo1, loggerInfo2)));
+		handler.add(loggerInfo1);
+		assertTrue(handler.useAll(Arrays.asList(loggerInfo1, loggerInfo2)));
+		assertFalse(handler.useAll(Arrays.asList(loggerInfo1, loggerInfo2)));
+		assertArrayEquals(new Object[] { "out2", "out1" }, obv.usedKeyList.toArray());
+	}
+
+	@Test
+	public void testUnuseAllCollectionOfLoggerInfo() {
+		handler.addAll(Arrays.asList(loggerInfo1, loggerInfo2, null));
+		handler.useAll();
+		assertTrue(handler.unuseAll(Arrays.asList(loggerInfo2)));
+		assertFalse(handler.unuseAll(Arrays.asList(loggerInfo2)));
+		assertTrue(handler.unuseAll(Arrays.asList(loggerInfo1)));
+		assertFalse(handler.unuseAll(Arrays.asList(loggerInfo1)));
+		assertArrayEquals(new Object[] { "out2", "out1" }, obv.unusedKeyList.toArray());
+	}
+
+	@Test
+	public void testuseAllKeyKey() {
+		assertFalse(handler.useAllKey(Arrays.asList("out1", "out2")));
+		handler.add(loggerInfo2);
+		assertTrue(handler.useAllKey(Arrays.asList("out1", "out2")));
+		handler.add(loggerInfo1);
+		assertTrue(handler.useAllKey(Arrays.asList("out1", "out2")));
+		assertFalse(handler.useAllKey(Arrays.asList("out1", "out2")));
+		assertArrayEquals(new Object[] { "out2", "out1" }, obv.usedKeyList.toArray());
+	}
+
+	@Test
+	public void testUnuseAllKey() {
+		handler.addAll(Arrays.asList(loggerInfo1, loggerInfo2, null));
+		handler.useAll();
+		assertTrue(handler.unuseAllKey(Arrays.asList("out2")));
+		assertFalse(handler.unuseAllKey(Arrays.asList("out2")));
+		assertTrue(handler.unuseAllKey(Arrays.asList("out1")));
+		assertFalse(handler.unuseAllKey(Arrays.asList("out1")));
+		assertArrayEquals(new Object[] { "out2", "out1" }, obv.unusedKeyList.toArray());
 	}
 
 	private String cutString(StringOutputStream out) {

@@ -248,7 +248,7 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	 */
 	@Override
 	public boolean removeAll(Collection<?> c) {
-		Objects.requireNonNull(c, "入口参数 c 不能为 null。");
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
 		return batchRemove(c, true);
 	}
 
@@ -257,7 +257,7 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	 */
 	@Override
 	public boolean removeAllKey(Collection<?> c) {
-		Objects.requireNonNull(c, "入口参数 c 不能为 null。");
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
 		return batchRemoveKey(c, true);
 	}
 
@@ -289,7 +289,7 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	 */
 	@Override
 	public boolean retainAll(Collection<?> c) {
-		Objects.requireNonNull(c, "入口参数 c 不能为 null。");
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
 		return batchRemove(c, false);
 	}
 
@@ -298,7 +298,7 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	 */
 	@Override
 	public boolean retainAllKey(Collection<?> c) {
-		Objects.requireNonNull(c, "入口参数 c 不能为 null。");
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
 		return batchRemoveKey(c, false);
 	}
 
@@ -364,9 +364,8 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	@Override
 	public void useAll() {
 		for (LoggerInfo loggerInfo : this) {
-			useOne(loggerInfo, false);
+			useOne(loggerInfo, true);
 		}
-		fireLoggerUsedAll();
 	}
 
 	/**
@@ -375,9 +374,8 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	@Override
 	public void unuseAll() {
 		for (LoggerInfo loggerInfo : this) {
-			unuseOne(loggerInfo, false);
+			unuseOne(loggerInfo, true);
 		}
-		fireLoggerUnusedAll();
 	}
 
 	/**
@@ -385,8 +383,15 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	 */
 	@Override
 	public boolean useAll(Collection<LoggerInfo> c) {
-		// TODO Auto-generated method stub
-		return false;
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
+
+		boolean result = false;
+		for (LoggerInfo loggerInfo : c) {
+			if (useOne(loggerInfo, true)) {
+				result = true;
+			}
+		}
+		return result;
 	}
 
 	/**
@@ -394,8 +399,15 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	 */
 	@Override
 	public boolean unuseAll(Collection<LoggerInfo> c) {
-		// TODO Auto-generated method stub
-		return false;
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
+		return batchUnuse(c, true);
+		// boolean result = false;
+		// for (LoggerInfo loggerInfo : c) {
+		// if (unuseOne(loggerInfo, true)) {
+		// result = true;
+		// }
+		// }
+		// return result;
 	}
 
 	/**
@@ -403,8 +415,15 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	 */
 	@Override
 	public boolean useAllKey(Collection<String> c) {
-		// TODO Auto-generated method stub
-		return false;
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
+
+		boolean result = false;
+		for (String key : c) {
+			if (useOne(get(key), true)) {
+				result = true;
+			}
+		}
+		return result;
 	}
 
 	/**
@@ -412,8 +431,15 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	 */
 	@Override
 	public boolean unuseAllKey(Collection<String> c) {
-		// TODO Auto-generated method stub
-		return false;
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
+		return batchUnuseKey(c, true);
+		// boolean result = false;
+		// for (String key : c) {
+		// if (unuseOne(get(key), true)) {
+		// result = true;
+		// }
+		// }
+		// return result;
 	}
 
 	/**
@@ -421,8 +447,8 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	 */
 	@Override
 	public boolean retainUse(Collection<LoggerInfo> c) {
-		// TODO Auto-generated method stub
-		return false;
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
+		return batchUnuse(c, false);
 	}
 
 	/**
@@ -430,8 +456,8 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	 */
 	@Override
 	public boolean retainUseKey(Collection<String> c) {
-		// TODO Auto-generated method stub
-		return false;
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
+		return batchUnuseKey(c, false);
 	}
 
 	/**
@@ -486,36 +512,6 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 		}
 	}
 
-	/**
-	 * 通知观察器记录器处理器使用了全部的记录器。
-	 */
-	protected void fireLoggerUsedAll() {
-		for (SetObverser<LoggerInfo> obverser : delegateKeySet.getObversers()) {
-			if (Objects.nonNull(obverser) && obverser instanceof LoggerObverser) {
-				try {
-					((LoggerObverser) obverser).fireLoggerUsedAll();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
-
-	/**
-	 * 通知观察器记录器处理器禁用了全部的记录器。
-	 */
-	protected void fireLoggerUnusedAll() {
-		for (SetObverser<LoggerInfo> obverser : delegateKeySet.getObversers()) {
-			if (Objects.nonNull(obverser) && obverser instanceof LoggerObverser) {
-				try {
-					((LoggerObverser) obverser).fireLoggerUnusedAll();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
-
 	private boolean batchRemove(Collection<?> c, boolean aFlag) {
 		boolean result = false;
 
@@ -540,6 +536,35 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 
 			if (c.contains(loggerInfo == null ? null : loggerInfo.getKey()) == aFlag) {
 				i.remove();
+				unuseOne(loggerInfo, true);
+				result = true;
+			}
+		}
+
+		return result;
+	}
+
+	private boolean batchUnuse(Collection<?> c, boolean aFlag) {
+		boolean result = false;
+
+		for (Iterator<LoggerInfo> i = delegateKeySet.iterator(); i.hasNext();) {
+			LoggerInfo loggerInfo = i.next();
+
+			if (c.contains(loggerInfo) == aFlag && unuseOne(loggerInfo, true)) {
+				result = true;
+			}
+		}
+
+		return result;
+	}
+
+	private boolean batchUnuseKey(Collection<?> c, boolean aFlag) {
+		boolean result = false;
+
+		for (Iterator<LoggerInfo> i = delegateKeySet.iterator(); i.hasNext();) {
+			LoggerInfo loggerInfo = i.next();
+
+			if (c.contains(loggerInfo == null ? null : loggerInfo.getKey()) == aFlag && unuseOne(loggerInfo, true)) {
 				result = true;
 			}
 		}

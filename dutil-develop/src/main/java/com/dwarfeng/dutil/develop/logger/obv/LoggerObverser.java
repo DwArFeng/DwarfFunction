@@ -25,11 +25,6 @@ public interface LoggerObverser extends SetObverser<LoggerInfo> {
 	public void fireLoggerUnused(String key, LoggerInfo loggerInfo, Logger logger);
 
 	/**
-	 * 通知观察器记录器处理器禁用了全部的记录器。
-	 */
-	public void fireLoggerUnusedAll();
-
-	/**
 	 * 通知观察器记录器处理器使用了指定的记录器。
 	 * 
 	 * @param key
@@ -40,10 +35,5 @@ public interface LoggerObverser extends SetObverser<LoggerInfo> {
 	 *            使用的记录器。
 	 */
 	public void fireLoggerUsed(String key, LoggerInfo loggerInfo, Logger logger);
-
-	/**
-	 * 通知观察器记录器处理器使用了全部的记录器。
-	 */
-	public void fireLoggerUsedAll();
 
 }

@@ -45,7 +45,7 @@ public final class ArrayUtil {
 		if (Objects.isNull(objects))
 			return false;
 		for (Object o : objects) {
-			if (o.equals(object))
+			if (Objects.equals(o, object))
 				return true;
 		}
 		return false;
