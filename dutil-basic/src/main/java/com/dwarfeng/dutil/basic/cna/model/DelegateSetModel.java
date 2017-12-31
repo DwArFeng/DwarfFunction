@@ -48,40 +48,32 @@ public class DelegateSetModel<E> extends AbstractSetModel<E> {
 		this.delegate = delegate;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#size()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int size() {
 		return delegate.size();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#isEmpty()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean isEmpty() {
 		return delegate.isEmpty();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#contains(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean contains(Object o) {
 		return delegate.contains(o);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#iterator()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Iterator<E> iterator() {
@@ -97,20 +89,16 @@ public class DelegateSetModel<E> extends AbstractSetModel<E> {
 			this.itr = itr;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Iterator#hasNext()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean hasNext() {
 			return itr.hasNext();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Iterator#next()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public E next() {
@@ -118,10 +106,8 @@ public class DelegateSetModel<E> extends AbstractSetModel<E> {
 			return cursor;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Iterator#remove()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void remove() {
@@ -132,30 +118,24 @@ public class DelegateSetModel<E> extends AbstractSetModel<E> {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#toArray()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Object[] toArray() {
 		return delegate.toArray();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#toArray(java.lang.Object[])
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public <T> T[] toArray(T[] a) {
 		return delegate.toArray(a);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#add(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean add(E e) {
@@ -166,10 +146,8 @@ public class DelegateSetModel<E> extends AbstractSetModel<E> {
 		return false;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#remove(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean remove(Object o) {
@@ -183,10 +161,8 @@ public class DelegateSetModel<E> extends AbstractSetModel<E> {
 		return false;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#containsAll(java.util.Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean containsAll(Collection<?> c) {
@@ -194,10 +170,8 @@ public class DelegateSetModel<E> extends AbstractSetModel<E> {
 		return delegate.containsAll(c);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#addAll(java.util.Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean addAll(Collection<? extends E> c) {
@@ -212,10 +186,8 @@ public class DelegateSetModel<E> extends AbstractSetModel<E> {
 		return aFlag;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#removeAll(java.util.Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean removeAll(Collection<?> c) {
@@ -223,10 +195,8 @@ public class DelegateSetModel<E> extends AbstractSetModel<E> {
 		return batchRemove(c, true);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#retainAll(java.util.Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean retainAll(Collection<?> c) {
@@ -250,10 +220,8 @@ public class DelegateSetModel<E> extends AbstractSetModel<E> {
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#clear()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void clear() {
@@ -261,20 +229,16 @@ public class DelegateSetModel<E> extends AbstractSetModel<E> {
 		fireCleared();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int hashCode() {
 		return delegate.hashCode();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -283,10 +247,8 @@ public class DelegateSetModel<E> extends AbstractSetModel<E> {
 		return delegate.equals(obj);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String toString() {

@@ -100,30 +100,24 @@ class TestI18nInfo implements I18nInfo {
 		this.i18n = i18n;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.prog.WithKey#getKey()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Locale getKey() {
 		return key;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.str.Name#getName()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getName() {
 		return name;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.i18n.I18nInfo#newI18n()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public I18n newI18n() throws Exception {

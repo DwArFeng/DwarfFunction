@@ -32,22 +32,16 @@ public class PropertiesI18n implements I18n {
 		this.properties = properties;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.i18n.I18n#getString(java.lang.String)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getString(String key) {
 		return properties.getProperty(key);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.i18n.I18n#getStringOrDefault(java.lang.String,
-	 * java.lang.String)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getStringOrDefault(String key, String defaultString) {

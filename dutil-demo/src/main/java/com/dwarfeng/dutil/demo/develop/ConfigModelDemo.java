@@ -58,22 +58,16 @@ public class ConfigModelDemo {
 		private final ConfigChecker checker;
 		private final ConfigFirmProps configFirmProps = new ConfigFirmProps() {
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see
-			 * com.dwarfeng.dutil.develop.cfg.ConfigFirmProps#getDefaultValue()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public String getDefaultValue() {
 				return defaultValue;
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see
-			 * com.dwarfeng.dutil.develop.cfg.ConfigFirmProps#getConfigChecker()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public ConfigChecker getConfigChecker() {
@@ -87,20 +81,16 @@ public class ConfigModelDemo {
 			this.checker = checker;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigEntry#getConfigKey()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public ConfigKey getConfigKey() {
 			return new ConfigKey(key);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.develop.cfg.ConfigEntry#getConfigFirmProps()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public ConfigFirmProps getConfigFirmProps() {

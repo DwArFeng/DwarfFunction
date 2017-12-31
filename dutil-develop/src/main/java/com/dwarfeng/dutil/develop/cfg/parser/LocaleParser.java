@@ -14,24 +14,16 @@ public class LocaleParser implements ValueParser {
 
 	private final LocaleValueParser parser = new LocaleValueParser();
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.struct.ValueParser#parseValue(java.lang.
-	 * String)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Object parseValue(String value) {
 		return parser.parseValue(value);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.struct.ValueParser#parseObject(java.lang.
-	 * Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String parseObject(Object object) {

@@ -67,23 +67,21 @@ public class ExecutorServiceBackground extends AbstractBackground {
 	 */
 	public ExecutorServiceBackground(ExecutorService executorService, Set<BackgroundObverser> obversers) {
 		super(obversers);
-		Objects.requireNonNull(executorService, DwarfUtil.getExecptionString(ExceptionStringKey.EXECUTORSERVICEBACKGROUND_0));
+		Objects.requireNonNull(executorService,
+				DwarfUtil.getExecptionString(ExceptionStringKey.EXECUTORSERVICEBACKGROUND_0));
 		this.executorService = executorService;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.backgr.BackGround#submit(com.dwarfeng.dutil.
-	 * develop.backgr.Task)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean submit(Task task) {
 		lock.writeLock().lock();
 		try {
 			if (isShutdown())
-				throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.EXECUTORSERVICEBACKGROUND_1));
+				throw new IllegalStateException(
+						DwarfUtil.getExecptionString(ExceptionStringKey.EXECUTORSERVICEBACKGROUND_1));
 			if (Objects.isNull(task))
 				return false;
 			if (tasks.contains(task))
@@ -106,11 +104,8 @@ public class ExecutorServiceBackground extends AbstractBackground {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.backgr.BackGround#submitAll(java.util.
-	 * Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean submitAll(Collection<? extends Task> c) {
@@ -129,10 +124,8 @@ public class ExecutorServiceBackground extends AbstractBackground {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.backgr.BackGround#shutdown()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void shutdown() {
@@ -156,10 +149,8 @@ public class ExecutorServiceBackground extends AbstractBackground {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.backgr.BackGround#isShutdown()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean isShutdown() {
@@ -171,10 +162,8 @@ public class ExecutorServiceBackground extends AbstractBackground {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.backgr.BackGround#isTerminated()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean isTerminated() {
@@ -186,10 +175,8 @@ public class ExecutorServiceBackground extends AbstractBackground {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.backgr.BackGround#awaitTermination()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void awaitTermination() throws InterruptedException {
@@ -203,11 +190,8 @@ public class ExecutorServiceBackground extends AbstractBackground {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.backgr.BackGround#awaitTermination(long,
-	 * java.util.concurrent.TimeUnit)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean awaitTermination(long timeout, TimeUnit unit) throws InterruptedException {
@@ -226,10 +210,8 @@ public class ExecutorServiceBackground extends AbstractBackground {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.backgr.BackGround#tasks()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Set<Task> tasks() {
@@ -246,21 +228,16 @@ public class ExecutorServiceBackground extends AbstractBackground {
 			this.task = task;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.develop.backgr.obv.TaskObverser#fireStarted()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void fireStarted() {
 			fireTaskStarted(task);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.develop.backgr.obv.TaskObverser#fireFinished()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void fireFinished() {

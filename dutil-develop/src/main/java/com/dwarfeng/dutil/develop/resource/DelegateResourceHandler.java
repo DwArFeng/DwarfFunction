@@ -44,263 +44,200 @@ public class DelegateResourceHandler implements ResourceHandler {
 		this.delegate = delegate;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Set<SetObverser<Resource>> getObversers() {
 		return delegate.getObversers();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.dutil.
-	 * basic.prog.Obverser)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean addObverser(SetObverser<Resource> obverser) {
 		return delegate.addObverser(obverser);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.cna.model.KeySetModel#get(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Resource get(String key) {
 		return delegate.get(key);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsKey(java.lang.
-	 * Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean containsKey(Object key) {
 		return delegate.containsKey(key);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng.
-	 * dutil.basic.prog.Obverser)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean removeObverser(SetObverser<Resource> obverser) {
 		return delegate.removeObverser(obverser);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsAllKey(java.util.
-	 * Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean containsAllKey(Collection<?> c) {
 		return delegate.containsAllKey(c);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void clearObverser() {
 		delegate.clearObverser();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeKey(java.lang.
-	 * Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean removeKey(Object key) {
 		return delegate.removeKey(key);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeAllKey(java.util.
-	 * Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean removeAllKey(Collection<?> c) {
 		return delegate.removeAllKey(c);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#retainAllKey(java.util.
-	 * Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean retainAllKey(Collection<?> c) {
 		return delegate.retainAllKey(c);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#size()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int size() {
 		return delegate.size();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#isEmpty()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean isEmpty() {
 		return delegate.isEmpty();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#contains(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean contains(Object o) {
 		return delegate.contains(o);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#iterator()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Iterator<Resource> iterator() {
 		return delegate.iterator();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#toArray()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Object[] toArray() {
 		return delegate.toArray();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#toArray(java.lang.Object[])
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public <T> T[] toArray(T[] a) {
 		return delegate.toArray(a);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#add(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean add(Resource e) {
 		return delegate.add(e);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#remove(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean remove(Object o) {
 		return delegate.remove(o);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#containsAll(java.util.Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean containsAll(Collection<?> c) {
 		return delegate.containsAll(c);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#addAll(java.util.Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean addAll(Collection<? extends Resource> c) {
 		return delegate.addAll(c);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#retainAll(java.util.Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean retainAll(Collection<?> c) {
 		return delegate.retainAll(c);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#removeAll(java.util.Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean removeAll(Collection<?> c) {
 		return delegate.removeAll(c);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#clear()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void clear() {
 		delegate.clear();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean equals(Object o) {
 		return delegate.equals(o);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int hashCode() {

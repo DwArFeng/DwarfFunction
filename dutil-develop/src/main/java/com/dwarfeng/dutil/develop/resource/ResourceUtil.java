@@ -52,111 +52,80 @@ public final class ResourceUtil {
 			this.delegate = delegate;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#get(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Resource get(String key) {
 			return delegate.get(key);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsKey(java.lang.
-		 * Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsKey(Object key) {
 			return delegate.containsKey(key);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsAllKey(java.
-		 * util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAllKey(Collection<?> c) {
 			return delegate.containsAllKey(c);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeKey(java.lang.
-		 * Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeKey(Object key) {
 			throw new UnsupportedOperationException("removeKey");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeAllKey(java.util
-		 * .Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAllKey(Collection<?> c) {
 			throw new UnsupportedOperationException("removeAllKey");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#retainAllKey(java.util
-		 * .Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAllKey(Collection<?> c) {
 			throw new UnsupportedOperationException("retainAllKey");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#size()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int size() {
 			return delegate.size();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#isEmpty()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isEmpty() {
 			return delegate.isEmpty();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#contains(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean contains(Object o) {
 			return delegate.contains(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#iterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Iterator<Resource> iterator() {
@@ -171,20 +140,16 @@ public final class ResourceUtil {
 				this.delegateIterator = delegateIterator;
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.util.Iterator#hasNext()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public boolean hasNext() {
 				return delegateIterator.hasNext();
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.util.Iterator#next()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public Resource next() {
@@ -193,154 +158,120 @@ public final class ResourceUtil {
 
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#toArray()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Object[] toArray() {
 			return delegate.toArray();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#toArray(java.lang.Object[])
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public <T> T[] toArray(T[] a) {
 			return delegate.toArray(a);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#add(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean add(Resource e) {
 			throw new UnsupportedOperationException("add");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#remove(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean remove(Object o) {
 			throw new UnsupportedOperationException("remove");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#containsAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
 			return delegate.containsAll(c);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#addAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(Collection<? extends Resource> c) {
 			throw new UnsupportedOperationException("addAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#retainAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
 			throw new UnsupportedOperationException("retainAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#removeAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
 			throw new UnsupportedOperationException("removeAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#clear()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clear() {
 			throw new UnsupportedOperationException("clear");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<SetObverser<Resource>> getObversers() {
 			return delegate.getObversers();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
-		 * dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addObverser(SetObverser<Resource> obverser) {
 			throw new UnsupportedOperationException("addObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
-		 * .dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeObverser(SetObverser<Resource> obverser) {
 			throw new UnsupportedOperationException("removeObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clearObverser() {
 			throw new UnsupportedOperationException("clearObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {
 			return delegate.hashCode();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean equals(Object obj) {
@@ -374,22 +305,16 @@ public final class ResourceUtil {
 			this.delegate = delegate;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.threads.ExternalReadWriteThreadSafe#getLock(
-		 * )
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public ReadWriteLock getLock() {
 			return lock;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<SetObverser<Resource>> getObversers() {
@@ -401,12 +326,8 @@ public final class ResourceUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
-		 * dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addObverser(SetObverser<Resource> obverser) {
@@ -418,11 +339,8 @@ public final class ResourceUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#get(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Resource get(String key) {
@@ -434,12 +352,8 @@ public final class ResourceUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsKey(java.lang.
-		 * Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsKey(Object key) {
@@ -451,12 +365,8 @@ public final class ResourceUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
-		 * .dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeObverser(SetObverser<Resource> obverser) {
@@ -468,12 +378,8 @@ public final class ResourceUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsAllKey(java.
-		 * util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAllKey(Collection<?> c) {
@@ -485,10 +391,8 @@ public final class ResourceUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clearObverser() {
@@ -500,12 +404,8 @@ public final class ResourceUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeKey(java.lang.
-		 * Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeKey(Object key) {
@@ -517,12 +417,8 @@ public final class ResourceUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeAllKey(java.util
-		 * .Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAllKey(Collection<?> c) {
@@ -534,12 +430,8 @@ public final class ResourceUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#retainAllKey(java.util
-		 * .Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAllKey(Collection<?> c) {
@@ -551,10 +443,8 @@ public final class ResourceUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#size()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int size() {
@@ -566,10 +456,8 @@ public final class ResourceUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#isEmpty()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isEmpty() {
@@ -581,10 +469,8 @@ public final class ResourceUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#contains(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean contains(Object o) {
@@ -596,10 +482,8 @@ public final class ResourceUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#iterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Iterator<Resource> iterator() {
@@ -611,10 +495,8 @@ public final class ResourceUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#toArray()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Object[] toArray() {
@@ -626,10 +508,8 @@ public final class ResourceUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#toArray(java.lang.Object[])
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public <T> T[] toArray(T[] a) {
@@ -641,10 +521,8 @@ public final class ResourceUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#add(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean add(Resource e) {
@@ -656,10 +534,8 @@ public final class ResourceUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#remove(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean remove(Object o) {
@@ -671,10 +547,8 @@ public final class ResourceUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#containsAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
@@ -686,10 +560,8 @@ public final class ResourceUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#addAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(Collection<? extends Resource> c) {
@@ -701,10 +573,8 @@ public final class ResourceUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#retainAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
@@ -716,10 +586,8 @@ public final class ResourceUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#removeAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
@@ -731,10 +599,8 @@ public final class ResourceUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#clear()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clear() {
@@ -746,10 +612,8 @@ public final class ResourceUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean equals(Object o) {
@@ -763,10 +627,8 @@ public final class ResourceUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {
@@ -802,60 +664,48 @@ public final class ResourceUtil {
 			this.delegate = delegate;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.WithKey#getKey()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String getKey() {
 			return delegate.getKey();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.develop.resource.Resource#openInputStream()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public InputStream openInputStream() throws IOException {
 			throw new UnsupportedOperationException("openInputStream");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.develop.resource.Resource#openOutputStream()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public OutputStream openOutputStream() throws IOException {
 			throw new UnsupportedOperationException("openOutputStream");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.develop.resource.Resource#reset()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void reset() throws IOException {
 			throw new UnsupportedOperationException("reset");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {
 			return delegate.hashCode();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean equals(Object obj) {
@@ -864,10 +714,8 @@ public final class ResourceUtil {
 			return delegate.equals(obj);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#toString()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String toString() {
@@ -919,165 +767,120 @@ public final class ResourceUtil {
 			this.generator = generator;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#get(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Resource get(String key) {
 			return generator.readOnly(delegate.get(key));
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsKey(java.lang.
-		 * Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsKey(Object key) {
 			return delegate.containsKey(key);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsAllKey(java.
-		 * util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAllKey(Collection<?> c) {
 			return delegate.containsAllKey(c);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeKey(java.lang.
-		 * Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeKey(Object key) {
 			throw new UnsupportedOperationException("removeKey");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeAllKey(java.util
-		 * .Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAllKey(Collection<?> c) {
 			throw new UnsupportedOperationException("removeAllKey");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#retainAllKey(java.util
-		 * .Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAllKey(Collection<?> c) {
 			throw new UnsupportedOperationException("retainAllKey");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<SetObverser<Resource>> getObversers() {
 			return delegate.getObversers();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
-		 * dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addObverser(SetObverser<Resource> obverser) {
 			throw new UnsupportedOperationException("addObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
-		 * .dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeObverser(SetObverser<Resource> obverser) {
 			throw new UnsupportedOperationException("removeObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clearObverser() {
 			throw new UnsupportedOperationException("clearObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#size()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int size() {
 			return delegate.size();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#isEmpty()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isEmpty() {
 			return delegate.isEmpty();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#contains(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean contains(Object o) {
 			return delegate.contains(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#iterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Iterator<Resource> iterator() {
 			return CollectionUtil.readOnlyIterator(delegate.iterator(), generator);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#toArray()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Object[] toArray() {
@@ -1085,10 +888,8 @@ public final class ResourceUtil {
 			return ArrayUtil.readOnlyArray(eArray, generator);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#toArray(java.lang.Object[])
+		/**
+		 * {@inheritDoc}
 		 */
 		@SuppressWarnings("unchecked")
 		@Override
@@ -1097,126 +898,96 @@ public final class ResourceUtil {
 			return (T[]) ArrayUtil.readOnlyArray(((Resource[]) tArray), generator);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#add(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean add(Resource e) {
 			throw new UnsupportedOperationException("add");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#remove(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean remove(Object o) {
 			throw new UnsupportedOperationException("remove");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#containsAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
 			return delegate.containsAll(c);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#addAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(Collection<? extends Resource> c) {
 			throw new UnsupportedOperationException("addAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#retainAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
 			throw new UnsupportedOperationException("retainAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#removeAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
 			throw new UnsupportedOperationException("removeAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#clear()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clear() {
 			throw new UnsupportedOperationException("clear");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.develop.resource.ResourceHandler#openInputStream(
-		 * java.lang.String)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public InputStream openInputStream(String key) throws IOException, IllegalArgumentException {
 			throw new UnsupportedOperationException("openInputStream");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.develop.resource.ResourceHandler#openOutputStream(
-		 * java.lang.String)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public OutputStream openOutputStream(String key) throws IOException, IllegalArgumentException {
 			throw new UnsupportedOperationException("openOutputStream");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.develop.resource.ResourceHandler#reset(java.lang.
-		 * String)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void reset(String key) throws IOException, IllegalArgumentException {
 			throw new UnsupportedOperationException("reset");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {
 			return delegate.hashCode();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean equals(Object obj) {
@@ -1227,10 +998,8 @@ public final class ResourceUtil {
 			return delegate.equals(obj);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#toString()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String toString() {

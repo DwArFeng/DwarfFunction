@@ -2,37 +2,20 @@ package com.dwarfeng.dutil.math;
 
 /**
  * 数学对象抽象类。
- * <p> 该类是所有数学对象的抽象类，它定义了所有数学对象都应该具有的抽象方法。
+ * <p>
+ * 该类是所有数学对象的抽象类，它定义了所有数学对象都应该具有的抽象方法。
+ * 
  * @author DwArFeng
  * @since 0.0.2-beta
  */
-public abstract class AbstractMathObject implements MathObject{
+public abstract class AbstractMathObject implements MathObject {
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dmath.DMath#getMathName()
-	 */
-	@Override
-	public abstract String getMathName();
-	
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dmath.DMath#getExpression()
-	 */
-	@Override
-	public abstract String getExpression();
-	
-	/*
-	 * (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String toString() {
-		return new StringBuilder()
-				.append(getMathName())
-				.append(" : ")
-				.append(getExpression())
-				.toString();
+		return new StringBuilder().append(getMathName()).append(" : ").append(getExpression()).toString();
 	}
-	
+
 }

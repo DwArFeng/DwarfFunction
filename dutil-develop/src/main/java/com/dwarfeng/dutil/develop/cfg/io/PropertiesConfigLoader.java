@@ -43,10 +43,8 @@ public class PropertiesConfigLoader extends StreamConfigLoader implements Config
 		super(in);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.cfg.io.ConfigLoader#loadConfig()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	@Deprecated
@@ -67,12 +65,8 @@ public class PropertiesConfigLoader extends StreamConfigLoader implements Config
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.io.ConfigLoader#loadConfig(com.dwarfeng.
-	 * dutil.develop.cfg.io.CurrentValueContainer)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	@Deprecated
@@ -95,12 +89,8 @@ public class PropertiesConfigLoader extends StreamConfigLoader implements Config
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.io.ConfigLoader#load(com.dwarfeng.dutil.
-	 * develop.cfg.io.CurrentValueContainer)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void load(CurrentValueContainer container) throws LoadFailedException {

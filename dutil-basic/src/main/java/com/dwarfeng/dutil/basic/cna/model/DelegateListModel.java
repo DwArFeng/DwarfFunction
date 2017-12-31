@@ -50,40 +50,32 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 		this.delegate = delegate;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.List#size()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int size() {
 		return delegate.size();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.List#isEmpty()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean isEmpty() {
 		return delegate.isEmpty();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.List#contains(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean contains(Object o) {
 		return delegate.contains(o);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.List#iterator()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Iterator<E> iterator() {
@@ -100,20 +92,16 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 			this.itr = itr;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Iterator#hasNext()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean hasNext() {
 			return itr.hasNext();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Iterator#next()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public E next() {
@@ -123,16 +111,14 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 			return itr.next();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Iterator#remove()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void remove() {
 			if (lastRet < 0)
 				throw new IllegalStateException();
-			
+
 			cursor = lastRet;
 			E element = delegate.get(lastRet);
 			itr.remove();
@@ -142,30 +128,24 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.List#toArray()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Object[] toArray() {
 		return delegate.toArray();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.List#toArray(java.lang.Object[])
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public <T> T[] toArray(T[] a) {
 		return delegate.toArray(a);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.List#add(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean add(E e) {
@@ -177,10 +157,8 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 		return false;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.List#remove(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean remove(Object o) {
@@ -195,10 +173,8 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 		return false;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.List#containsAll(java.util.Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean containsAll(Collection<?> c) {
@@ -206,10 +182,8 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 		return delegate.containsAll(c);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.List#addAll(java.util.Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean addAll(Collection<? extends E> c) {
@@ -222,10 +196,8 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 		return aFlag;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.List#addAll(int, java.util.Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean addAll(int index, Collection<? extends E> c) {
@@ -238,10 +210,8 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 		return size != delegate.size();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.List#removeAll(java.util.Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean removeAll(Collection<?> c) {
@@ -249,10 +219,8 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 		return batchRemove(c, true);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.List#retainAll(java.util.Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean retainAll(Collection<?> c) {
@@ -277,10 +245,8 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.List#clear()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void clear() {
@@ -288,20 +254,16 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 		fireCleared();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.List#get(int)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public E get(int index) {
 		return delegate.get(index);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.List#set(int, java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public E set(int index, E element) {
@@ -310,10 +272,8 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 		return oldElement;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.List#add(int, java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void add(int index, E element) {
@@ -321,10 +281,8 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 		fireAdded(index, element);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.List#remove(int)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public E remove(int index) {
@@ -333,40 +291,32 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 		return element;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.List#indexOf(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int indexOf(Object o) {
 		return delegate.indexOf(o);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.List#lastIndexOf(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int lastIndexOf(Object o) {
 		return delegate.lastIndexOf(o);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.List#listIterator()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public ListIterator<E> listIterator() {
 		return new InnerListIterator(delegate.listIterator(), 0);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.List#listIterator(int)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public ListIterator<E> listIterator(int index) {
@@ -384,20 +334,16 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 			this.cursor = cursor;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.ListIterator#hasNext()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean hasNext() {
 			return litr.hasNext();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.ListIterator#next()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public E next() {
@@ -407,20 +353,16 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 			return litr.next();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.ListIterator#hasPrevious()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean hasPrevious() {
 			return litr.hasPrevious();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.ListIterator#previous()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public E previous() {
@@ -430,36 +372,30 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 			return litr.previous();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.ListIterator#nextIndex()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int nextIndex() {
 			return litr.nextIndex();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.ListIterator#previousIndex()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int previousIndex() {
 			return litr.previousIndex();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.ListIterator#remove()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void remove() {
-            if (lastRet < 0)
-                throw new IllegalStateException();
-            
+			if (lastRet < 0)
+				throw new IllegalStateException();
+
 			cursor = lastRet;
 			E element = delegate.get(lastRet);
 			litr.remove();
@@ -467,25 +403,21 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 			lastRet = -1;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.ListIterator#set(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void set(E e) {
-            if (lastRet < 0)
-                throw new IllegalStateException();
-            
+			if (lastRet < 0)
+				throw new IllegalStateException();
+
 			E oldValue = delegate.get(lastRet);
 			litr.set(e);
 			fireChanged(lastRet, oldValue, e);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.ListIterator#add(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void add(E e) {
@@ -498,10 +430,8 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.List#subList(int, int)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public List<E> subList(int fromIndex, int toIndex) {
@@ -518,40 +448,32 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 			this.subDelegate = subDelegate;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#size()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int size() {
 			return subDelegate.size();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#isEmpty()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isEmpty() {
 			return subDelegate.isEmpty();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#contains(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean contains(Object o) {
 			return subDelegate.contains(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#iterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Iterator<E> iterator() {
@@ -568,20 +490,16 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 				this.itr = itr;
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.util.Iterator#hasNext()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public boolean hasNext() {
 				return itr.hasNext();
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.util.Iterator#next()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public E next() {
@@ -591,16 +509,14 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 				return itr.next();
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.util.Iterator#remove()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public void remove() {
-	            if (lastRet < 0)
-	                throw new IllegalStateException();
-				
+				if (lastRet < 0)
+					throw new IllegalStateException();
+
 				cursor = lastRet;
 				E element = subDelegate.get(lastRet);
 				itr.remove();
@@ -610,30 +526,24 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#toArray()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Object[] toArray() {
 			return subDelegate.toArray();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#toArray(java.lang.Object[])
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public <T> T[] toArray(T[] a) {
 			return subDelegate.toArray(a);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#add(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean add(E e) {
@@ -645,10 +555,8 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 			return false;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#remove(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean remove(Object o) {
@@ -663,10 +571,8 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 			return false;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#containsAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
@@ -674,10 +580,8 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 			return subDelegate.containsAll(c);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#addAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(Collection<? extends E> c) {
@@ -690,10 +594,8 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 			return aFlag;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#addAll(int, java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(int index, Collection<? extends E> c) {
@@ -706,10 +608,8 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 			return size != subDelegate.size();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#removeAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
@@ -717,10 +617,8 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 			return batchRemove(c, true);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#retainAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
@@ -745,10 +643,8 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 			return result;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#clear()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clear() {
@@ -758,20 +654,16 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#get(int)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public E get(int index) {
 			return subDelegate.get(index);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#set(int, java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public E set(int index, E element) {
@@ -780,10 +672,8 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 			return oldElement;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#add(int, java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void add(int index, E element) {
@@ -791,10 +681,8 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 			fireAdded(index + offset, element);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#remove(int)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public E remove(int index) {
@@ -803,40 +691,32 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 			return element;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#indexOf(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int indexOf(Object o) {
 			return subDelegate.indexOf(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#lastIndexOf(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int lastIndexOf(Object o) {
 			return subDelegate.lastIndexOf(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#listIterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public ListIterator<E> listIterator() {
 			return new SubListIterator(subDelegate.listIterator(), 0);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#listIterator(int)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public ListIterator<E> listIterator(int index) {
@@ -854,20 +734,16 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 				this.cursor = cursor;
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.util.ListIterator#hasNext()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public boolean hasNext() {
 				return litr.hasNext();
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.util.ListIterator#next()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public E next() {
@@ -877,20 +753,16 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 				return litr.next();
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.util.ListIterator#hasPrevious()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public boolean hasPrevious() {
 				return litr.hasPrevious();
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.util.ListIterator#previous()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public E previous() {
@@ -900,36 +772,30 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 				return litr.previous();
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.util.ListIterator#nextIndex()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public int nextIndex() {
 				return litr.nextIndex();
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.util.ListIterator#previousIndex()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public int previousIndex() {
 				return litr.previousIndex();
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.util.ListIterator#remove()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public void remove() {
-	            if (lastRet < 0)
-	                throw new IllegalStateException();
-				
+				if (lastRet < 0)
+					throw new IllegalStateException();
+
 				cursor = lastRet;
 				E element = subDelegate.get(lastRet);
 				litr.remove();
@@ -937,25 +803,21 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 				lastRet = -1;
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.util.ListIterator#set(java.lang.Object)
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public void set(E e) {
-	            if (lastRet < 0)
-	                throw new IllegalStateException();
-				
+				if (lastRet < 0)
+					throw new IllegalStateException();
+
 				E oldValue = subDelegate.get(lastRet);
 				litr.set(e);
 				fireChanged(lastRet + offset, oldValue, e);
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.util.ListIterator#add(java.lang.Object)
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public void add(E e) {
@@ -968,30 +830,24 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#subList(int, int)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public List<E> subList(int fromIndex, int toIndex) {
 			return new SubList(offset + fromIndex, subDelegate.subList(fromIndex, toIndex));
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {
 			return subDelegate.hashCode();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean equals(Object obj) {
@@ -1000,10 +856,8 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 			return subDelegate.equals(obj);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#toString()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String toString() {
@@ -1012,20 +866,16 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int hashCode() {
 		return delegate.hashCode();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -1034,10 +884,8 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 		return delegate.equals(obj);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String toString() {

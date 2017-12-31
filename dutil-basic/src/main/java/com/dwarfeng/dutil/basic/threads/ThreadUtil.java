@@ -119,81 +119,64 @@ public final class ThreadUtil {
 			this.delegate = delegate;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.concurrent.locks.Lock#lock()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void lock() {
 			throw new UnsupportedOperationException("lock");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.concurrent.locks.Lock#lockInterruptibly()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void lockInterruptibly() throws InterruptedException {
 			throw new UnsupportedOperationException("lockInterruptibly");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.concurrent.locks.Lock#tryLock()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean tryLock() {
 			throw new UnsupportedOperationException("tryLock");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.concurrent.locks.Lock#tryLock(long,
-		 * java.util.concurrent.TimeUnit)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean tryLock(long time, TimeUnit unit) throws InterruptedException {
 			throw new UnsupportedOperationException("tryLock");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.concurrent.locks.Lock#unlock()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void unlock() {
 			throw new UnsupportedOperationException("unlock");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.concurrent.locks.Lock#newCondition()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Condition newCondition() {
 			throw new UnsupportedOperationException("newCondition");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {
 			return delegate.hashCode();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean equals(Object obj) {
@@ -202,10 +185,8 @@ public final class ThreadUtil {
 			return super.equals(obj);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#toString()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String toString() {
@@ -236,20 +217,16 @@ public final class ThreadUtil {
 			this.delegate = delegate;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.concurrent.locks.ReadWriteLock#readLock()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Lock readLock() {
 			return unmodifiableLock(delegate.readLock());
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.concurrent.locks.ReadWriteLock#writeLock()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Lock writeLock() {

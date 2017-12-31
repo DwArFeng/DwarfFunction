@@ -41,10 +41,8 @@ public class DelegateKeySetModel<K, V extends WithKey<K>> extends DelegateSetMod
 		super(delegate, obversers);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.cna.model.KeySetModel#get(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public V get(K key) {
@@ -55,12 +53,8 @@ public class DelegateKeySetModel<K, V extends WithKey<K>> extends DelegateSetMod
 		return null;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsKey(java.lang.
-	 * Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean containsKey(Object key) {
@@ -73,12 +67,8 @@ public class DelegateKeySetModel<K, V extends WithKey<K>> extends DelegateSetMod
 		return false;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsAllKey(java.util.
-	 * Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean containsAllKey(Collection<?> c) {
@@ -91,11 +81,8 @@ public class DelegateKeySetModel<K, V extends WithKey<K>> extends DelegateSetMod
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeKey(java.lang.
-	 * Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean removeKey(Object key) {
@@ -114,12 +101,8 @@ public class DelegateKeySetModel<K, V extends WithKey<K>> extends DelegateSetMod
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeAllKey(java.util.
-	 * Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean removeAllKey(Collection<?> c) {
@@ -127,12 +110,8 @@ public class DelegateKeySetModel<K, V extends WithKey<K>> extends DelegateSetMod
 		return batchRemoveKey(c, true);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#retainAllKey(java.util.
-	 * Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean retainAllKey(Collection<?> c) {
@@ -156,10 +135,8 @@ public class DelegateKeySetModel<K, V extends WithKey<K>> extends DelegateSetMod
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#add(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean add(V e) {
@@ -172,10 +149,8 @@ public class DelegateKeySetModel<K, V extends WithKey<K>> extends DelegateSetMod
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#addAll(java.util.Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean addAll(Collection<? extends V> c) {

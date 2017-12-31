@@ -41,12 +41,8 @@ public class PropertiesConfigSaver extends StreamConfigSaver implements ConfigSa
 		super(out);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.io.ConfigSaver#saveConfig(com.dwarfeng.
-	 * dutil.develop.cfg.io.CurrentValueContainer)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	@Deprecated
@@ -66,12 +62,8 @@ public class PropertiesConfigSaver extends StreamConfigSaver implements ConfigSa
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.io.ConfigSaver#save(com.dwarfeng.dutil.
-	 * develop.cfg.io.CurrentValueContainer)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void save(CurrentValueContainer container) throws SaveFailedException {

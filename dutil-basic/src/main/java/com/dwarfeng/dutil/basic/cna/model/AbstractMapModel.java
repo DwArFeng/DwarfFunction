@@ -44,44 +44,32 @@ public abstract class AbstractMapModel<K, V> implements MapModel<K, V> {
 		this.obversers = obversers;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Set<MapObverser<K, V>> getObversers() {
 		return Collections.unmodifiableSet(obversers);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.dutil.
-	 * basic.prog.Obverser)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean addObverser(MapObverser<K, V> obverser) {
 		return obversers.add(obverser);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng.
-	 * dutil.basic.prog.Obverser)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean removeObverser(MapObverser<K, V> obverser) {
 		return obversers.remove(obverser);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void clearObverser() {

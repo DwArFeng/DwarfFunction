@@ -35,11 +35,8 @@ public class MatchConfigChecker implements ConfigChecker {
 		this.regex = regex;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.ConfigChecker#isValid(java.lang.String)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean isValid(String value) {

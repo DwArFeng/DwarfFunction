@@ -44,11 +44,8 @@ public class SpecificConfigChecker implements ConfigChecker {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.ConfigChecker#isValid(java.lang.String)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean isValid(String value) {

@@ -32,10 +32,8 @@ public abstract class StreamConfigSaver implements ConfigSaver, Closeable {
 		this.out = out;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.io.Closeable#close()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void close() throws IOException {

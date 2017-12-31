@@ -45,17 +45,18 @@ public class XmlPropFileI18nLoader extends StreamLoader<I18nHandler> {
 
 	/**
 	 * 生成一个具有指定输入流的 xml属性文件国际化读取器。
-	 * @param in 指定的输入流。
-	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 * 
+	 * @param in
+	 *            指定的输入流。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
 	 */
 	public XmlPropFileI18nLoader(InputStream in) {
 		super(in);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.io.Loader#load(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void load(I18nHandler i18nHandler) throws LoadFailedException, IllegalStateException {
@@ -82,7 +83,8 @@ public class XmlPropFileI18nLoader extends StreamLoader<I18nHandler> {
 				String fileString = info.attributeValue("file");
 
 				if (Objects.isNull(localeString) || Objects.isNull(nameString) || Objects.isNull(fileString)) {
-					throw new LoadFailedException(DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_3));
+					throw new LoadFailedException(
+							DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_3));
 				}
 
 				URL url = new File(fileString).toURI().toURL();
@@ -96,10 +98,8 @@ public class XmlPropFileI18nLoader extends StreamLoader<I18nHandler> {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.io.Loader#countinuousLoad(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Set<LoadFailedException> countinuousLoad(I18nHandler i18nHandler) throws IllegalStateException {
@@ -129,7 +129,8 @@ public class XmlPropFileI18nLoader extends StreamLoader<I18nHandler> {
 					String fileString = info.attributeValue("file");
 
 					if (Objects.isNull(localeString) || Objects.isNull(nameString) || Objects.isNull(fileString)) {
-						throw new LoadFailedException(DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_3));
+						throw new LoadFailedException(
+								DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_3));
 					}
 
 					URL url = new File(fileString).toURI().toURL();
@@ -144,8 +145,8 @@ public class XmlPropFileI18nLoader extends StreamLoader<I18nHandler> {
 			}
 
 		} catch (Exception e) {
-			exceptions
-					.add(new LoadFailedException(DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_2), e));
+			exceptions.add(new LoadFailedException(
+					DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_2), e));
 		}
 
 		return exceptions;

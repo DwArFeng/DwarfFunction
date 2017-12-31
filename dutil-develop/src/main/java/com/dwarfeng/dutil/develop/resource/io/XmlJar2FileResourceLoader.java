@@ -46,17 +46,17 @@ public class XmlJar2FileResourceLoader extends StreamLoader<ResourceHandler> {
 		super(in);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.io.Loader#load(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void load(ResourceHandler resourceHandler) throws LoadFailedException, IllegalStateException {
 		if (readFlag)
-			throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_0));
+			throw new IllegalStateException(
+					DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_0));
 
-		Objects.requireNonNull(resourceHandler, DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_1));
+		Objects.requireNonNull(resourceHandler,
+				DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_1));
 
 		try {
 			readFlag = true;
@@ -76,13 +76,15 @@ public class XmlJar2FileResourceLoader extends StreamLoader<ResourceHandler> {
 				String key = info.attributeValue("key");
 
 				if (Objects.isNull(defString) || Objects.isNull(resString) || Objects.isNull(key)) {
-					throw new LoadFailedException(DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_3));
+					throw new LoadFailedException(
+							DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_3));
 				}
 
 				URL def = DwarfUtil.class.getResource(defString);
 
 				if (Objects.isNull(def)) {
-					throw new LoadFailedException(DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_4));
+					throw new LoadFailedException(
+							DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_4));
 				}
 
 				File res = new File(resString);
@@ -91,22 +93,23 @@ public class XmlJar2FileResourceLoader extends StreamLoader<ResourceHandler> {
 			}
 
 		} catch (Exception e) {
-			throw new LoadFailedException(DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_2), e);
+			throw new LoadFailedException(DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_2),
+					e);
 		}
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.io.Loader#countinuousLoad(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Set<LoadFailedException> countinuousLoad(ResourceHandler resourceHandler) throws IllegalStateException {
 		if (readFlag)
-			throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_0));
+			throw new IllegalStateException(
+					DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_0));
 
-		Objects.requireNonNull(resourceHandler, DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_1));
+		Objects.requireNonNull(resourceHandler,
+				DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_1));
 
 		final Set<LoadFailedException> exceptions = new LinkedHashSet<>();
 		try {
@@ -128,13 +131,15 @@ public class XmlJar2FileResourceLoader extends StreamLoader<ResourceHandler> {
 					String key = info.attributeValue("key");
 
 					if (Objects.isNull(defString) || Objects.isNull(resString) || Objects.isNull(key)) {
-						throw new LoadFailedException(DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_3));
+						throw new LoadFailedException(
+								DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_3));
 					}
 
 					URL def = DwarfUtil.class.getResource(defString);
 
 					if (Objects.isNull(def)) {
-						throw new LoadFailedException(DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_4));
+						throw new LoadFailedException(
+								DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_4));
 					}
 
 					File res = new File(resString);
@@ -148,8 +153,8 @@ public class XmlJar2FileResourceLoader extends StreamLoader<ResourceHandler> {
 			}
 
 		} catch (Exception e) {
-			exceptions.add(
-					new LoadFailedException(DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_2), e));
+			exceptions.add(new LoadFailedException(
+					DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_2), e));
 		}
 
 		return exceptions;

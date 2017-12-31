@@ -7,21 +7,26 @@ import com.dwarfeng.dutil.basic.ExceptionStringKey;
 
 /**
  * 默认标签。
+ * 
  * @author DwArFeng
  * @since 0.0.2-beta
  */
-public class DefaultTag implements Tag{
+public class DefaultTag implements Tag {
 
-	/**名称*/
+	/** 名称 */
 	protected final String name;
-	/**描述*/
+	/** 描述 */
 	protected final String description;
-	
+
 	/**
 	 * 新建一个具有指定名称，指定描述的默认标签。
-	 * @param name 指定的名称。
-	 * @param description 指定的描述。
-	 * @throws NullPointerException 入口参数为 <code>null</code>。
+	 * 
+	 * @param name
+	 *            指定的名称。
+	 * @param description
+	 *            指定的描述。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
 	 */
 	public DefaultTag(String name, String description) {
 		Objects.requireNonNull(name, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultTag_0));
@@ -30,18 +35,16 @@ public class DefaultTag implements Tag{
 		this.description = description;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.basic.str.Name#getName()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getName() {
 		return this.name;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.basic.str.Description#getDescription()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getDescription() {

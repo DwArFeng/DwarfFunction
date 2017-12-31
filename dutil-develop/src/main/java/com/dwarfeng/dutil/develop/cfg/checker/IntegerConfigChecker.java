@@ -41,11 +41,8 @@ public class IntegerConfigChecker implements ConfigChecker {
 		this.minValue = minValue;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.ConfigChecker#isValid(java.lang.String)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean isValid(String value) {

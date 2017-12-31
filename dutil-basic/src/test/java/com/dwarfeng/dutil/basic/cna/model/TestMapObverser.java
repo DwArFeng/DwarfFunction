@@ -16,12 +16,8 @@ class TestMapObverser implements MapObverser<String, String> {
 	public final List<String> removeValueList = new ArrayList<>();
 	public int cleared = 0;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.cna.model.obv.MapObverser#firePut(java.lang.
-	 * Object, java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void firePut(String key, String value) {
@@ -29,12 +25,8 @@ class TestMapObverser implements MapObverser<String, String> {
 		putValueList.add(value);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.cna.model.obv.MapObverser#fireChanged(java.
-	 * lang.Object, java.lang.Object, java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void fireChanged(String key, String oldValue, String newValue) {
@@ -43,12 +35,8 @@ class TestMapObverser implements MapObverser<String, String> {
 		changedNewValueList.add(newValue);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.cna.model.obv.MapObverser#fireRemoved(java.
-	 * lang.Object, java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void fireRemoved(String key, String value) {
@@ -56,10 +44,8 @@ class TestMapObverser implements MapObverser<String, String> {
 		removeValueList.add(value);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.cna.model.obv.MapObverser#fireCleared()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void fireCleared() {

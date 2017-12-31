@@ -14,11 +14,8 @@ public class LocaleConfigChecker implements ConfigChecker {
 
 	private final MatchConfigChecker delegate = new MatchConfigChecker("[a-z]+(_[A-Z]+(_[a-zA-Z]+)?)?");
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.ConfigChecker#isValid(java.lang.String)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean isValid(String value) {

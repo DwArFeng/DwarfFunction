@@ -4,31 +4,24 @@ import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
 /**
  * 双精度浮点数解析器。
- * <p> 该解析器解析的是 <b>double</b> 对象。
+ * <p>
+ * 该解析器解析的是 <b>double</b> 对象。
  * 
  * @author DwArFeng
  * @since 0.1.0-beta
  */
 public class DoubleValueParser implements ValueParser {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.struct.ValueParser#parseValue(java.lang.
-	 * String)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Object parseValue(String value) {
 		return Double.parseDouble(value);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.struct.ValueParser#parseObject(java.lang.
-	 * Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String parseObject(Object object) {

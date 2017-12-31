@@ -43,10 +43,8 @@ public class PropConfigSaver extends StreamSaver<CurrentValueContainer> {
 		super(out);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.io.Saver#save(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void save(CurrentValueContainer container) throws SaveFailedException {
@@ -68,10 +66,8 @@ public class PropConfigSaver extends StreamSaver<CurrentValueContainer> {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.io.Saver#countinuousSave(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Set<SaveFailedException> countinuousSave(CurrentValueContainer container) throws IllegalStateException {

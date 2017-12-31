@@ -173,12 +173,8 @@ public class Interval implements NumberValueFilter {
 		this.rightValue = rightValue;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.num.NumberValueFilter#accept(com.dwarfeng.dutil.
-	 * basic.num.NumberValue)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean accept(NumberValue value) {
@@ -245,10 +241,8 @@ public class Interval implements NumberValueFilter {
 		return contains(new BigDecimal(value));
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -321,10 +315,8 @@ public class Interval implements NumberValueFilter {
 		return rightValue;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int hashCode() {
@@ -337,10 +329,8 @@ public class Interval implements NumberValueFilter {
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String toString() {

@@ -25,10 +25,8 @@ public class TestWithKey implements WithKey<String> {
 		this.value = value;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.prog.WithKey#getKey()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getKey() {
@@ -39,12 +37,8 @@ public class TestWithKey implements WithKey<String> {
 		return value;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.prog.WithKey#isConflict(com.dwarfeng.dutil.basic
-	 * .prog.WithKey)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean isConflict(WithKey<String> element) {
@@ -55,10 +49,8 @@ public class TestWithKey implements WithKey<String> {
 		return !Objects.equals(element, this);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -70,20 +62,16 @@ public class TestWithKey implements WithKey<String> {
 		return that.key.equals(this.key) && that.value.equals(this.value);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int hashCode() {
 		return key.hashCode() * 17 + value.hashCode();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String toString() {

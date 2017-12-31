@@ -44,10 +44,8 @@ public class PropConfigLoader extends StreamLoader<CurrentValueContainer> {
 		super(in);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.io.Loader#load(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void load(CurrentValueContainer container) throws LoadFailedException {
@@ -72,10 +70,8 @@ public class PropConfigLoader extends StreamLoader<CurrentValueContainer> {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.io.Loader#countinuousLoad(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Set<LoadFailedException> countinuousLoad(CurrentValueContainer container) throws IllegalStateException {

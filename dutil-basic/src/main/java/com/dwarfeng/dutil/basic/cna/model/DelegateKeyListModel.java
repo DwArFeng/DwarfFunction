@@ -43,11 +43,8 @@ public class DelegateKeyListModel<K, V extends WithKey<K>> extends DelegateListM
 		super(delegate, obversers);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#get(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public V get(K key) {
@@ -58,12 +55,8 @@ public class DelegateKeyListModel<K, V extends WithKey<K>> extends DelegateListM
 		return null;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#containsKey(java.lang.
-	 * Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean containsKey(Object key) {
@@ -75,12 +68,8 @@ public class DelegateKeyListModel<K, V extends WithKey<K>> extends DelegateListM
 		return false;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#containsAllKey(java.util.
-	 * Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean containsAllKey(Collection<?> c) {
@@ -93,12 +82,8 @@ public class DelegateKeyListModel<K, V extends WithKey<K>> extends DelegateListM
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#indexOfKey(java.lang.
-	 * Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int indexOfKey(Object o) {
@@ -111,12 +96,8 @@ public class DelegateKeyListModel<K, V extends WithKey<K>> extends DelegateListM
 		return -1;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#lastIndexOfKey(java.lang.
-	 * Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int lastIndexOfKey(Object o) {
@@ -129,11 +110,8 @@ public class DelegateKeyListModel<K, V extends WithKey<K>> extends DelegateListM
 		return -1;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.cna.model.KeyListModel#removeKey(java.lang.
-	 * Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean removeKey(Object key) {
@@ -149,12 +127,8 @@ public class DelegateKeyListModel<K, V extends WithKey<K>> extends DelegateListM
 		return false;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#removeAllKey(java.util.
-	 * Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean removeAllKey(Collection<?> c) {
@@ -162,12 +136,8 @@ public class DelegateKeyListModel<K, V extends WithKey<K>> extends DelegateListM
 		return batchRemoveKey(c, true);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#retainAllKey(java.util.
-	 * Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean retainAllKey(Collection<?> c) {

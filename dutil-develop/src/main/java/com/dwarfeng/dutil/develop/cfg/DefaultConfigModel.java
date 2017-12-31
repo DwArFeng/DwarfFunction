@@ -96,7 +96,8 @@ public class DefaultConfigModel extends AbstractConfigModel {
 
 		for (ConfigEntry configEntry : configEntries) {
 			if (ConfigUtil.nonValid(configEntry)) {
-				throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.DefaultConfigModel_2));
+				throw new IllegalArgumentException(
+						DwarfUtil.getExecptionString(ExceptionStringKey.DefaultConfigModel_2));
 			}
 		}
 		for (ConfigEntry configEntry : configEntries) {
@@ -104,10 +105,8 @@ public class DefaultConfigModel extends AbstractConfigModel {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#clear()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void clear() {
@@ -116,24 +115,16 @@ public class DefaultConfigModel extends AbstractConfigModel {
 		fireConfigKeyCleared();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.ConfigModel#containsKey(com.dwarfeng.dutil
-	 * .develop.cfg.ConfigKey)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean containsKey(ConfigKey configKey) {
 		return firmPropsMap.containsKey(configKey);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.CurrentValueContainer#getCurrentValue(com.
-	 * dwarfeng.dutil.develop.cfg.ConfigKey)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getCurrentValue(ConfigKey configKey) {
@@ -146,43 +137,32 @@ public class DefaultConfigModel extends AbstractConfigModel {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.CurrentValueContainer#getAllCurrentValue()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Map<ConfigKey, String> getAllCurrentValue() {
 		return Collections.unmodifiableMap(currentValueMap);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#isEmpty()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean isEmpty() {
 		return firmPropsMap.isEmpty();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#configKeySet()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Set<ConfigKey> keySet() {
 		return Collections.unmodifiableSet(firmPropsMap.keySet());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.ConfigModel#add(com.dwarfeng.dutil.develop
-	 * .cfg.ConfigEntry)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean add(ConfigEntry configEntry) {
@@ -202,11 +182,8 @@ public class DefaultConfigModel extends AbstractConfigModel {
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.ConfigModel#addAll(java.util.Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean addAll(Collection<ConfigEntry> configEntries) {
@@ -222,12 +199,8 @@ public class DefaultConfigModel extends AbstractConfigModel {
 		return aFlag;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.ConfigModel#remove(com.dwarfeng.dutil.
-	 * develop.cfg.ConfigKey)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean remove(ConfigKey configKey) {
@@ -241,11 +214,8 @@ public class DefaultConfigModel extends AbstractConfigModel {
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#removeAll(java.util.
-	 * Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean removeAll(Collection<ConfigKey> configKeys) {
@@ -253,11 +223,8 @@ public class DefaultConfigModel extends AbstractConfigModel {
 		return batchRemove(configKeys, true);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#retainAll(java.util.
-	 * Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean retainAll(Collection<ConfigKey> configKeys) {
@@ -283,22 +250,16 @@ public class DefaultConfigModel extends AbstractConfigModel {
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#size()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int size() {
 		return firmPropsMap.size();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.ConfigModel#isValueValid(com.dwarfeng.
-	 * dutil.develop.cfg.ConfigKey, java.lang.String)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean isValueValid(ConfigKey configKey, String value) {
@@ -316,12 +277,8 @@ public class DefaultConfigModel extends AbstractConfigModel {
 		return configChecker.isValid(currentValue);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.ConfigModel#getValidValue(com.dwarfeng.
-	 * dutil.develop.cfg.ConfigKey)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getValidValue(ConfigKey configKey) {
@@ -331,23 +288,16 @@ public class DefaultConfigModel extends AbstractConfigModel {
 		return isValueValid(configKey, currentValue) ? currentValue : defaultValue;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#getConfigFirmProps(com.
-	 * dwarfeng.dutil.develop.cfg.ConfigKey)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public ConfigFirmProps getConfigFirmProps(ConfigKey configKey) {
 		return firmPropsMap.get(configKey);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#setConfigFirmProps(com.
-	 * dwarfeng.dutil.develop.cfg.ConfigKey,
-	 * com.dwarfeng.dutil.develop.cfg.ConfigFirmProps)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean setConfigFirmProps(ConfigKey configKey, ConfigFirmProps configFirmProps) {
@@ -365,12 +315,8 @@ public class DefaultConfigModel extends AbstractConfigModel {
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.io.CurrentValueContainer#setCurrentValue(
-	 * com.dwarfeng.dutil.develop.cfg.ConfigKey, java.lang.String)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean setCurrentValue(ConfigKey configKey, String currentValue) {
@@ -391,11 +337,8 @@ public class DefaultConfigModel extends AbstractConfigModel {
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.cfg.io.CurrentValueContainer#
-	 * setAllCurrentValue(java.util.Map)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean setAllCurrentValue(Map<ConfigKey, String> map) {
@@ -411,22 +354,16 @@ public class DefaultConfigModel extends AbstractConfigModel {
 		return aFlag;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.ConfigModel#resetValue(com.dwarfeng.dutil.
-	 * develop.cfg.ConfigKey)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean resetCurrentValue(ConfigKey configKey) {
 		return setCurrentValue(configKey, getConfigFirmProps(configKey).getDefaultValue());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.cfg.ConfigModel#resetAllCurrentValue()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean resetAllCurrentValue() {

@@ -24,42 +24,32 @@ public class MapI18n implements I18n {
 		this.map = map;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.i18n.I18n#getString(java.lang.String)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getString(String key) {
 		return map.get(key);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.i18n.I18n#getStringOrDefault(java.lang.String,
-	 * java.lang.String)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getStringOrDefault(String key, String defaultString) {
 		return map.getOrDefault(key, defaultString);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int hashCode() {
 		return map.hashCode() * 17;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean equals(Object obj) {

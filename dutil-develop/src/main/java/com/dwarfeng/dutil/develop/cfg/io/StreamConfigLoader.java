@@ -36,10 +36,8 @@ public abstract class StreamConfigLoader implements ConfigLoader, Closeable {
 		this.in = in;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.io.Closeable#close()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void close() throws IOException {

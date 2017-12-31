@@ -25,10 +25,8 @@ public enum VersionType implements Name {
 		this.name = name;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dwarffunction.interfaces.Nameable#getName()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getName() {

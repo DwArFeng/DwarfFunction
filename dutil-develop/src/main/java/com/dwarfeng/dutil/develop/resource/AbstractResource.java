@@ -31,10 +31,8 @@ public abstract class AbstractResource implements Resource {
 		this.key = key;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.prog.WithKey#getKey()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getKey() {

@@ -124,10 +124,8 @@ public class DefaultVersion implements Version {
 			return this;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.infs.Buildable#build()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public DefaultVersion build() {
@@ -146,20 +144,16 @@ public class DefaultVersion implements Version {
 		this.buildVersion = Character.toUpperCase(buildVersion);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dwarffunction.program.PVersion#getVersionType()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public VersionType getVersionType() {
 		return this.type;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dwarffunction.program.PVersion#getLongName()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getLongName() {
@@ -167,20 +161,16 @@ public class DefaultVersion implements Version {
 				+ FIELD_SEP + buildDate + FIELD_SEP + BUILD_TEXT + FIELD_SEP + buildVersion;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dwarffunction.program.PVersion#getShortName()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getShortName() {
 		return type.getName() + FIELD_SEP + firstVersion + VERSION_SEP + secondVersion + VERSION_SEP + thirdVersion;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String toString() {

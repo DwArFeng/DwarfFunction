@@ -194,11 +194,8 @@ public class JExconsole extends JPanel {
 		textField = new JTextField();
 		textField.setBorder(new EmptyBorder(0, 0, 0, 0));
 		textField.addKeyListener(new KeyAdapter() {
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see
-			 * java.awt.event.KeyAdapter#keyPressed(java.awt.event.KeyEvent)
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -300,10 +297,8 @@ public class JExconsole extends JPanel {
 		renderer.start();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.swing.JComponent#setFont(java.awt.Font)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setFont(Font font) {
@@ -314,10 +309,8 @@ public class JExconsole extends JPanel {
 		super.setFont(font);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.swing.JComponent#setForeground(java.awt.Color)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setForeground(Color fg) {
@@ -328,10 +321,8 @@ public class JExconsole extends JPanel {
 		super.setForeground(fg);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.swing.JComponent#setBackground(java.awt.Color)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setBackground(Color bg) {
@@ -565,10 +556,8 @@ public class JExconsole extends JPanel {
 		private boolean readFlag = false;
 		private boolean blockFlag = false;
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.io.InputStream#read()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int read() throws IOException {
@@ -610,20 +599,16 @@ public class JExconsole extends JPanel {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.io.InputStream#markSupported()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean markSupported() {
 			return false;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.io.InputStream#close()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void close() throws IOException {
@@ -646,10 +631,8 @@ public class JExconsole extends JPanel {
 		private byte[] bs = new byte[1024];
 		private int pos = 0;
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.io.OutputStream#write(int)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void write(int b) throws IOException {
@@ -671,10 +654,8 @@ public class JExconsole extends JPanel {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.io.OutputStream#flush()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void flush() throws IOException {
@@ -705,10 +686,8 @@ public class JExconsole extends JPanel {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.io.OutputStream#close()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void close() throws IOException {
@@ -786,10 +765,8 @@ public class JExconsole extends JPanel {
 			add(lineWrapMenuItem);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.awt.Component#setLocale(java.util.Locale)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void setLocale(Locale l) {

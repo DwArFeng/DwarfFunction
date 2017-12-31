@@ -15,10 +15,8 @@ import com.dwarfeng.dutil.basic.ExceptionStringKey;
  */
 public final class NameableComparator implements Comparator<Name> {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int compare(Name o1, Name o2) {

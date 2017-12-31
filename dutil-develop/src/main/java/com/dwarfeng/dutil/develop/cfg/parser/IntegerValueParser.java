@@ -4,7 +4,9 @@ import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
 /**
  * 整型数值解析器。
- *  <p> 该解析器解析的是 <code>int</code> 对象。
+ * <p>
+ * 该解析器解析的是 <code>int</code> 对象。
+ * 
  * @author DwArFeng
  * @since 0.1.0-beta
  */
@@ -30,24 +32,16 @@ public class IntegerValueParser implements ValueParser {
 		this.radix = radix;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.struct.ValueParser#parseValue(java.lang.
-	 * String)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Object parseValue(String value) {
 		return Integer.parseInt(value, radix);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.struct.ValueParser#parseObject(java.lang.
-	 * Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String parseObject(Object object) {

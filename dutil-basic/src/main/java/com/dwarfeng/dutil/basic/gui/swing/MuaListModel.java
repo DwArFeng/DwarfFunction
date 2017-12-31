@@ -15,293 +15,278 @@ import com.dwarfeng.dutil.basic.ExceptionStringKey;
 
 /**
  * 多重操作列表模型。
- * <p> 该列表模型具有 {@link DefaultListModel}的所有功能，同时优化了结构类型，并且对批量操作进行了优化。
+ * <p>
+ * 该列表模型具有 {@link DefaultListModel}的所有功能，同时优化了结构类型，并且对批量操作进行了优化。
  * 同时，这个类是一个真正的列表的实现。
- * <p> 该类可以通过指定入口的参数来保证列表的不同实现，如用同步列表作为实现就可以保证其中方法的同步。
+ * <p>
+ * 该类可以通过指定入口的参数来保证列表的不同实现，如用同步列表作为实现就可以保证其中方法的同步。
+ * 
  * @author DwArFeng
  * @since 0.0.2-beta
  */
-public class MuaListModel<E> extends AbstractListModel<E> implements List<E>{
+public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 
 	private static final long serialVersionUID = -9035220797049152472L;
-	
+
 	private final List<E> delegate;
-	
+
 	/**
 	 * 生成一个默认的，由 {@link ArrayList}实现的列表模型。
 	 */
 	public MuaListModel() {
 		this(new ArrayList<E>());
 	}
-	
+
 	/**
 	 * 生成一个由指定列表实现的列表模型。
-	 * @param list 指定的列表。
-	 * @throws NullPointerException 入口参数为 <code>null</code>
+	 * 
+	 * @param list
+	 *            指定的列表。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>
 	 */
-	public MuaListModel(List<E> list){
+	public MuaListModel(List<E> list) {
 		super();
 		Objects.requireNonNull(list, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_0));
 		this.delegate = list;
 	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see javax.swing.ListModel#getSize()
+
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int getSize() {
 		return delegate.size();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see javax.swing.ListModel#getElementAt(int)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public E getElementAt(int index) {
 		return delegate.get(index);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.util.List#size()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int size() {
 		return delegate.size();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.util.List#isEmpty()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean isEmpty() {
 		return delegate.isEmpty();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.util.List#contains(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean contains(Object o) {
 		return delegate.contains(o);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.util.List#iterator()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Iterator<E> iterator() {
 		return delegate.iterator();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.util.List#toArray()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Object[] toArray() {
 		return delegate.toArray();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.util.List#toArray(java.lang.Object[])
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public <T> T[] toArray(T[] a) {
 		return delegate.toArray(a);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.util.List#add(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean add(E e) {
 		boolean aFlag = delegate.add(e);
 		int index = delegate.size();
-		if(aFlag) fireIntervalAdded(this, index, index);
-		 return aFlag;
+		if (aFlag)
+			fireIntervalAdded(this, index, index);
+		return aFlag;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.util.List#remove(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean remove(Object o) {
-        int index = indexOf(o);
-        boolean rv = delegate.remove(o);
-        if (index >= 0) {
-            fireIntervalRemoved(this, index, index);
-        }
-        return rv;
+		int index = indexOf(o);
+		boolean rv = delegate.remove(o);
+		if (index >= 0) {
+			fireIntervalRemoved(this, index, index);
+		}
+		return rv;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.util.List#containsAll(java.util.Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean containsAll(Collection<?> c) {
 		return delegate.containsAll(c);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.util.List#addAll(java.util.Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean addAll(Collection<? extends E> c) {
 		int index = delegate.size();
 		boolean aFlag = delegate.addAll(c);
-		if(aFlag == true){
+		if (aFlag == true) {
 			fireIntervalAdded(this, index, delegate.size());
 		}
 		return aFlag;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.util.List#addAll(int, java.util.Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean addAll(int index, Collection<? extends E> c) {
 		int aIndex = delegate.size();
 		boolean aFlag = delegate.addAll(index, c);
-		if(aFlag == true){
+		if (aFlag == true) {
 			fireIntervalAdded(this, index, index + delegate.size() - aIndex);
 		}
 		return aFlag;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.util.List#removeAll(java.util.Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean removeAll(Collection<?> c) {
 		boolean aFlag = false;
-        for(Object o : c){
-        	if(remove(o)) aFlag = true;
-        }
-        return aFlag;
+		for (Object o : c) {
+			if (remove(o))
+				aFlag = true;
+		}
+		return aFlag;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.util.List#retainAll(java.util.Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean retainAll(Collection<?> c) {
 		Collection<Object> col = new ArrayList<Object>();
-		for(Object o : delegate){
-			if(!c.contains(o)) col.add(o);
+		for (Object o : delegate) {
+			if (!c.contains(o))
+				col.add(o);
 		}
 		return removeAll(col);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.util.List#clear()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void clear() {
-        int index1 = delegate.size()-1;
-        delegate.clear();
-        if (index1 >= 0) {
-            fireIntervalRemoved(this, 0, index1);
-        }
+		int index1 = delegate.size() - 1;
+		delegate.clear();
+		if (index1 >= 0) {
+			fireIntervalRemoved(this, 0, index1);
+		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.util.List#get(int)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public E get(int index) {
 		return delegate.get(index);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.util.List#set(int, java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public E set(int index, E element) {
-        E rv = delegate.get(index);
-        delegate.set(index, element);
-        fireContentsChanged(this, index, index);
-        return rv;
+		E rv = delegate.get(index);
+		delegate.set(index, element);
+		fireContentsChanged(this, index, index);
+		return rv;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.util.List#add(int, java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void add(int index, E element) {
 		int size = size();
-        delegate.add(index, element);
-        if(size != getSize()) fireIntervalAdded(this, index, index);
+		delegate.add(index, element);
+		if (size != getSize())
+			fireIntervalAdded(this, index, index);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.util.List#remove(int)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public E remove(int index) {
-        E rv = delegate.get(index);
-        delegate.remove(index);
-        fireIntervalRemoved(this, index, index);
-        return rv;
+		E rv = delegate.get(index);
+		delegate.remove(index);
+		fireIntervalRemoved(this, index, index);
+		return rv;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.util.List#indexOf(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int indexOf(Object o) {
 		return delegate.indexOf(o);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.util.List#lastIndexOf(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int lastIndexOf(Object o) {
 		return delegate.lastIndexOf(o);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.util.List#listIterator()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public ListIterator<E> listIterator() {
 		return delegate.listIterator();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.util.List#listIterator(int)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public ListIterator<E> listIterator(int index) {
 		return listIterator(index);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.util.List#subList(int, int)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public List<E> subList(int fromIndex, int toIndex) {

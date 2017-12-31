@@ -8,15 +8,16 @@ import com.dwarfeng.dutil.basic.ExceptionStringKey;
 
 /**
  * 值比较器。
- * <p> 该比较器可比较两个值对象的值大小。
+ * <p>
+ * 该比较器可比较两个值对象的值大小。
+ * 
  * @author DwArFeng
  * @since 0.0.2-beta
  */
 public class FothValueComparator implements Comparator<FothValue> {
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int compare(FothValue o1, FothValue o2) {

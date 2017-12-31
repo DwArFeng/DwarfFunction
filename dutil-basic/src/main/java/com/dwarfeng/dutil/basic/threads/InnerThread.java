@@ -157,10 +157,8 @@ public abstract class InnerThread implements Name {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dwarffunction.interfaces.Nameable#getName()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getName() {
@@ -198,10 +196,8 @@ public abstract class InnerThread implements Name {
 	private Thread createThread() {
 		t = new Thread(new Runnable() {
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.lang.Runnable#run()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public void run() {

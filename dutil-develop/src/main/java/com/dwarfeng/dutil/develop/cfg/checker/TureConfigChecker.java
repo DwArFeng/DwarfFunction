@@ -14,11 +14,8 @@ import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
 @Deprecated
 public class TureConfigChecker implements ConfigChecker {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.ConfigChecker#isValid(java.lang.String)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean isValid(String value) {

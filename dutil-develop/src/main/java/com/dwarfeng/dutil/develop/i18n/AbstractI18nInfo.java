@@ -34,25 +34,21 @@ public abstract class AbstractI18nInfo implements I18nInfo {
 	public AbstractI18nInfo(Locale key, String name) {
 		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTI18NINFO_0));
 		Objects.requireNonNull(name, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTI18NINFO_1));
-		
+
 		this.key = key;
 		this.name = name;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.prog.WithKey#getKey()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Locale getKey() {
 		return key;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.str.Name#getName()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getName() {

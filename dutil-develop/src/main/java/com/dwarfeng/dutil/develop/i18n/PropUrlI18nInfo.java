@@ -47,10 +47,8 @@ public class PropUrlI18nInfo extends AbstractI18nInfo {
 		this.url = url;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.i18n.I18nInfo#newI18n()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public I18n newI18n() throws Exception {

@@ -13,10 +13,8 @@ public final class NameComparator implements Comparator<Name> {
 	@SuppressWarnings("deprecation")
 	private NameableComparator comp = new NameableComparator();
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@SuppressWarnings("deprecation")
 	@Override

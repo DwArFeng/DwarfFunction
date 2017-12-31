@@ -52,30 +52,24 @@ public class Url2FileResource extends AbstractResource {
 		this.res = res;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.tp.core.model.struct.Resource#openInputStream()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public InputStream openInputStream() throws IOException {
 		return new FileInputStream(res);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.tp.core.model.struct.Resource#openOutputStream()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public OutputStream openOutputStream() throws IOException {
 		return new FileOutputStream(res);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.tp.core.model.struct.Resource#reset()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void reset() throws IOException {
@@ -98,20 +92,16 @@ public class Url2FileResource extends AbstractResource {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int hashCode() {
 		return key.hashCode() * 177 + def.hashCode() + res.hashCode();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean equals(Object obj) {

@@ -647,10 +647,8 @@ public final class ArrayUtil {
 			this.arr = arr;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Iterable#iterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Iterator<T> iterator() {
@@ -661,20 +659,16 @@ public final class ArrayUtil {
 
 			private int index = 0;
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.util.Iterator#hasNext()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public boolean hasNext() {
 				return index < arr.length;
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.util.Iterator#next()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public T next() {

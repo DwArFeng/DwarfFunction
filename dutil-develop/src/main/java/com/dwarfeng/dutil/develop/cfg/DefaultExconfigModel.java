@@ -186,10 +186,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#clear()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void clear() {
@@ -197,24 +195,16 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		fireConfigKeyCleared();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#containsKey(com.dwarfeng.
-	 * dutil.develop.cfg.ConfigKey)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean containsKey(ConfigKey configKey) {
 		return delegate.containsKey(configKey);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.io.CurrentValueContainer#getCurrentValue(
-	 * com.dwarfeng.dutil.develop.cfg.ConfigKey)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getCurrentValue(ConfigKey configKey) {
@@ -223,42 +213,32 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		return delegate.get(configKey).getCurrentValue();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.CurrentValueContainer#getAllCurrentValue()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Map<ConfigKey, String> getAllCurrentValue() {
 		return new CurrentValueMap();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#isEmpty()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean isEmpty() {
 		return delegate.isEmpty();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#keySet()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Set<ConfigKey> keySet() {
 		return delegate.keySet();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#add(com.dwarfeng.dutil.
-	 * develop.cfg.struct.ExconfigEntry)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean add(ExconfigEntry exconfigEntry) {
@@ -275,11 +255,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#addAll(java.util.Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean addAll(Collection<ExconfigEntry> exconfigEntries) {
@@ -291,12 +268,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		return aFlag;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#remove(com.dwarfeng.dutil.
-	 * develop.cfg.ConfigKey)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean remove(ConfigKey configKey) {
@@ -307,11 +280,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#removeAll(java.util.
-	 * Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean removeAll(Collection<ConfigKey> configKeys) {
@@ -319,11 +289,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		return batchRemove(configKeys, true);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#retainAll(java.util.
-	 * Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean retainAll(Collection<ConfigKey> configKeys) {
@@ -351,22 +318,16 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#size()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int size() {
 		return delegate.size();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#isValueValid(com.dwarfeng.
-	 * dutil.develop.cfg.ConfigKey, java.lang.String)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean isValueValid(ConfigKey configKey, String value) {
@@ -384,12 +345,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		return configChecker.isValid(currentValue);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#getValidValue(com.dwarfeng.
-	 * dutil.develop.cfg.ConfigKey)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getValidValue(ConfigKey configKey) {
@@ -405,11 +362,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		return isValueValid(configKey, currentValue) ? currentValue : defaultValue;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#getConfigFirmProps(com.
-	 * dwarfeng.dutil.develop.cfg.ConfigKey)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public ConfigFirmProps getConfigFirmProps(ConfigKey configKey) {
@@ -418,12 +372,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		return delegate.get(configKey).getConfigFirmProps();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#setConfigFirmProps(com.
-	 * dwarfeng.dutil.develop.cfg.ConfigKey,
-	 * com.dwarfeng.dutil.develop.cfg.ConfigFirmProps)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean setConfigFirmProps(ConfigKey configKey, ConfigFirmProps configFirmProps) {
@@ -441,12 +391,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.io.CurrentValueContainer#setCurrentValue(
-	 * com.dwarfeng.dutil.develop.cfg.ConfigKey, java.lang.String)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean setCurrentValue(ConfigKey configKey, String currentValue) {
@@ -467,11 +413,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.cfg.io.CurrentValueContainer#
-	 * setAllCurrentValue(java.util.Map)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean setAllCurrentValue(Map<ConfigKey, String> map) {
@@ -487,11 +430,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		return aFlag;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#resetCurrentValue(com.
-	 * dwarfeng.dutil.develop.cfg.ConfigKey)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean resetCurrentValue(ConfigKey configKey) {
@@ -500,10 +440,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		return setCurrentValue(configKey, getConfigFirmProps(configKey).getDefaultValue());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.develop.cfg.ExconfigModel#resetAllCurrentValue()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean resetAllCurrentValue() {
@@ -517,12 +455,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		return aFlag;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#getValueParser(com.dwarfeng.
-	 * dutil.develop.cfg.ConfigKey)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public ValueParser getValueParser(ConfigKey configKey) {
@@ -531,13 +465,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		return delegate.get(configKey).getValueParser();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#setValueParser(com.dwarfeng.
-	 * dutil.develop.cfg.ConfigKey,
-	 * com.dwarfeng.dutil.develop.cfg.struct.ValueParser)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean setValueParser(ConfigKey configKey, ValueParser valueParser) {
@@ -558,12 +487,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#getParsedValue(com.dwarfeng.
-	 * dutil.develop.cfg.ConfigKey)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Object getParsedValue(ConfigKey configKey) {
@@ -578,12 +503,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		return valueParser.parseValue(validValue);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#getParsedValue(com.dwarfeng.
-	 * dutil.develop.cfg.ConfigKey, java.lang.Class)
+	/**
+	 * {@inheritDoc}
 	 */
 
 	@Override
@@ -603,12 +524,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		return t;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.ExconfigModel#setParsedValue(com.dwarfeng.
-	 * dutil.develop.cfg.ConfigKey, java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean setParsedValue(ConfigKey configKey, Object obj) {
@@ -626,40 +543,32 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 
 	private class CurrentValueMap implements Map<ConfigKey, String> {
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#size()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int size() {
 			return delegate.size();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#isEmpty()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isEmpty() {
 			return delegate.isEmpty();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#containsKey(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsKey(Object key) {
 			return delegate.containsKey(key);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#containsValue(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsValue(Object value) {
@@ -670,10 +579,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			return false;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#get(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String get(Object key) {
@@ -682,10 +589,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			return delegate.get(key).getCurrentValue();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#put(java.lang.Object, java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String put(ConfigKey key, String value) {
@@ -693,10 +598,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			throw new UnsupportedOperationException("put");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#remove(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String remove(Object key) {
@@ -704,10 +607,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			throw new UnsupportedOperationException("remove");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#putAll(java.util.Map)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void putAll(Map<? extends ConfigKey, ? extends String> m) {
@@ -715,10 +616,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			throw new UnsupportedOperationException("putAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#clear()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clear() {
@@ -730,10 +629,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		private transient Set<Map.Entry<ConfigKey, String>> entrySet;
 		private transient Collection<String> values;
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#keySet()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<ConfigKey> keySet() {
@@ -742,10 +639,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			return keySet;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#values()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Collection<String> values() {
@@ -755,10 +650,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			return values;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#entrySet()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<java.util.Map.Entry<ConfigKey, String>> entrySet() {
@@ -778,30 +671,24 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			this.delegate = delegate;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Collection#size()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int size() {
 			return delegate.size();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Collection#isEmpty()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isEmpty() {
 			return delegate.isEmpty();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Collection#contains(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean contains(Object o) {
@@ -812,20 +699,16 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			return false;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Collection#iterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Iterator<String> iterator() {
 			return new TransValuesIterator(delegate.iterator());
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Collection#toArray()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Object[] toArray() {
@@ -838,10 +721,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			return strArr;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Collection#toArray(java.lang.Object[])
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public <T> T[] toArray(T[] a) {
@@ -859,10 +740,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			return r;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Collection#add(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean add(String e) {
@@ -870,10 +749,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			throw new UnsupportedOperationException("add");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Collection#remove(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean remove(Object o) {
@@ -881,10 +758,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			throw new UnsupportedOperationException("remove");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Collection#containsAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
@@ -896,10 +771,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			return true;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Collection#addAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(Collection<? extends String> c) {
@@ -907,10 +780,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			throw new UnsupportedOperationException("addAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Collection#removeAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
@@ -918,10 +789,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			throw new UnsupportedOperationException("removeAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Collection#retainAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
@@ -929,10 +798,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			throw new UnsupportedOperationException("retainAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Collection#clear()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clear() {
@@ -950,20 +817,16 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			this.delegate = delegate;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Iterator#hasNext()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean hasNext() {
 			return delegate.hasNext();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Iterator#next()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String next() {
@@ -980,30 +843,24 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			this.delegate = delegate;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#size()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int size() {
 			return delegate.size();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#isEmpty()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isEmpty() {
 			return delegate.isEmpty();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#contains(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean contains(Object o) {
@@ -1016,20 +873,16 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			return false;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#iterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Iterator<Entry<ConfigKey, String>> iterator() {
 			return new TransEntrySetIterator(delegate.iterator());
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#toArray()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Object[] toArray() {
@@ -1044,10 +897,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			return strArr;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#toArray(java.lang.Object[])
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public <T> T[] toArray(T[] a) {
@@ -1065,10 +916,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			return r;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#add(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean add(Entry<ConfigKey, String> e) {
@@ -1076,10 +925,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			throw new UnsupportedOperationException("add");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#remove(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean remove(Object o) {
@@ -1087,10 +934,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			throw new UnsupportedOperationException("remove");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#containsAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
@@ -1102,10 +947,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			return true;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#addAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(Collection<? extends Entry<ConfigKey, String>> c) {
@@ -1113,10 +956,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			throw new UnsupportedOperationException("addAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#retainAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
@@ -1124,10 +965,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			throw new UnsupportedOperationException("retainAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#removeAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
@@ -1135,10 +974,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			throw new UnsupportedOperationException("removeAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#clear()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clear() {
@@ -1156,20 +993,16 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			this.delegate = delegate;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Iterator#hasNext()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean hasNext() {
 			return delegate.hasNext();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Iterator#next()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Entry<ConfigKey, String> next() {
@@ -1186,30 +1019,24 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			this.delegate = delegate;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map.Entry#getKey()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public ConfigKey getKey() {
 			return delegate.getKey();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map.Entry#getValue()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String getValue() {
 			return delegate.getValue().getCurrentValue();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map.Entry#setValue(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String setValue(String value) {
@@ -1217,10 +1044,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			throw new UnsupportedOperationException("setValue");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean equals(Object obj) {
@@ -1234,10 +1059,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			return Objects.equals(this.getKey(), that.getKey()) && Objects.equals(this.getValue(), that.getValue());
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {

@@ -48,10 +48,8 @@ public final class BackgroundUtil {
 			this.runnable = runnable;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.develop.backgr.AbstractTask#todo()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		protected void todo() throws Exception {
@@ -82,96 +80,72 @@ public final class BackgroundUtil {
 			this.delegate = delegate;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Runnable#run()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void run() {
 			throw new UnsupportedOperationException("run");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<TaskObverser> getObversers() {
 			return delegate.getObversers();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
-		 * dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addObverser(TaskObverser obverser) {
 			throw new UnsupportedOperationException("addObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
-		 * .dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeObverser(TaskObverser obverser) {
 			throw new UnsupportedOperationException("removeObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clearObverser() {
 			throw new UnsupportedOperationException("clearObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.threads.ExternalReadWriteThreadSafe#getLock(
-		 * )
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public ReadWriteLock getLock() {
 			return ThreadUtil.unmodifiableReadWriteLock(delegate.getLock());
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.develop.backgr.Task#isStarted()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isStarted() {
 			return delegate.isStarted();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.develop.backgr.Task#isFinished()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isFinished() {
 			return delegate.isFinished();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.develop.backgr.Task#getException()
+		/**
+		 * {@inheritDoc}
 		 */
 		@SuppressWarnings("deprecation")
 		@Override
@@ -179,51 +153,40 @@ public final class BackgroundUtil {
 			return delegate.getException();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.develop.backgr.Task#getThrowable()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Throwable getThrowable() {
 			return delegate.getThrowable();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.develop.backgr.Task#awaitFinish()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void awaitFinish() throws InterruptedException {
 			throw new UnsupportedOperationException("awaitFinish");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.develop.backgr.Task#awaitFinish(long,
-		 * java.util.concurrent.TimeUnit)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean awaitFinish(long timeout, TimeUnit unit) throws InterruptedException {
 			throw new UnsupportedOperationException("awaitFinish");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {
 			return delegate.hashCode();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean equals(Object obj) {
@@ -232,10 +195,8 @@ public final class BackgroundUtil {
 			return super.equals(obj);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#toString()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String toString() {
@@ -266,162 +227,120 @@ public final class BackgroundUtil {
 			this.delegate = delegate;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<BackgroundObverser> getObversers() {
 			return delegate.getObversers();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
-		 * dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addObverser(BackgroundObverser obverser) {
 			throw new UnsupportedOperationException("addObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
-		 * .dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeObverser(BackgroundObverser obverser) {
 			throw new UnsupportedOperationException("removeObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clearObverser() {
 			throw new UnsupportedOperationException("clearObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.threads.ExternalReadWriteThreadSafe#getLock(
-		 * )
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public ReadWriteLock getLock() {
 			return ThreadUtil.unmodifiableReadWriteLock(delegate.getLock());
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.develop.backgr.Background#submit(com.dwarfeng.
-		 * dutil.develop.backgr.Task)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean submit(Task task) {
 			throw new UnsupportedOperationException("submit");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.develop.backgr.Background#submitAll(java.util.
-		 * Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean submitAll(Collection<? extends Task> c) {
 			throw new UnsupportedOperationException("submitAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.develop.backgr.Background#shutdown()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void shutdown() {
 			throw new UnsupportedOperationException("shutdown");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.develop.backgr.Background#isShutdown()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isShutdown() {
 			return delegate.isShutdown();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.develop.backgr.Background#isTerminated()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isTerminated() {
 			return delegate.isTerminated();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.develop.backgr.Background#awaitTermination()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void awaitTermination() throws InterruptedException {
 			throw new UnsupportedOperationException("awaitTermination");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.develop.backgr.Background#awaitTermination(long,
-		 * java.util.concurrent.TimeUnit)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean awaitTermination(long timeout, TimeUnit unit) throws InterruptedException {
 			throw new UnsupportedOperationException("awaitTermination");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.develop.backgr.Background#tasks()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<Task> tasks() {
 			return delegate.tasks();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {
 			return delegate.hashCode();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean equals(Object obj) {
@@ -430,10 +349,8 @@ public final class BackgroundUtil {
 			return super.equals(obj);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#toString()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String toString() {

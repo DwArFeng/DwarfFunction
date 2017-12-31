@@ -51,40 +51,32 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
 		this.map = map;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#size()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int size() {
 		return map.size();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#isEmpty()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean isEmpty() {
 		return map.isEmpty();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#contains(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean contains(Object o) {
 		return map.values().contains(o);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#iterator()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Iterator<V> iterator() {
@@ -100,20 +92,16 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
 			this.delegateIterator = delegateIterator;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Iterator#hasNext()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean hasNext() {
 			return delegateIterator.hasNext();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Iterator#next()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public V next() {
@@ -121,10 +109,8 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
 			return value;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Iterator#remove()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void remove() {
@@ -134,30 +120,24 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#toArray()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Object[] toArray() {
 		return map.values().toArray();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#toArray(java.lang.Object[])
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public <T> T[] toArray(T[] a) {
 		return map.values().toArray(a);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#add(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean add(V e) {
@@ -170,10 +150,8 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#remove(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean remove(Object o) {
@@ -188,10 +166,8 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
 		return false;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#containsAll(java.util.Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean containsAll(Collection<?> c) {
@@ -199,10 +175,8 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
 		return map.values().containsAll(c);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#addAll(java.util.Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean addAll(Collection<? extends V> c) {
@@ -215,10 +189,8 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
 		return aFlag;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#removeAll(java.util.Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean removeAll(Collection<?> c) {
@@ -226,10 +198,8 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
 		return batchRemove(c, true);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#retainAll(java.util.Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean retainAll(Collection<?> c) {
@@ -253,10 +223,8 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Set#clear()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void clear() {
@@ -264,33 +232,24 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
 		fireCleared();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.dwarfeng.dutil.basic.cna.model.KeySetModel#get(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public V get(K key) {
 		return map.get(key);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsKey(java.lang.
-	 * Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean containsKey(Object key) {
 		return map.keySet().contains(key);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsAllKey(java.util.
-	 * Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean containsAllKey(Collection<?> c) {
@@ -298,11 +257,8 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
 		return map.keySet().containsAll(c);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeKey(java.lang.
-	 * Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean removeKey(Object key) {
@@ -314,12 +270,8 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
 		return aFlag;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeAllKey(java.util.
-	 * Collection)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean removeAllKey(Collection<?> c) {
@@ -354,10 +306,8 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
 		return new HashSet<>(map.values()).hashCode();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -366,10 +316,8 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
 		return new HashSet<>(map.values()).equals(obj);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String toString() {

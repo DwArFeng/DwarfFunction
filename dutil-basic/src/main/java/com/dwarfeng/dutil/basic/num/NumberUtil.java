@@ -226,10 +226,8 @@ public final class NumberUtil {
 
 		return new NumberValue() {
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see com.dwarfeng.dmath.algebra.Valable#value()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public double doubleValue() {
@@ -253,10 +251,8 @@ public final class NumberUtil {
 
 		return new NumberValue() {
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see com.dwarfeng.dmath.algebra.Valable#value()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public double doubleValue() {
@@ -280,10 +276,8 @@ public final class NumberUtil {
 
 		return new NumberValue() {
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see com.dwarfeng.dmath.algebra.Valable#value()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public double doubleValue() {
@@ -307,10 +301,8 @@ public final class NumberUtil {
 
 		return new NumberValue() {
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see com.dwarfeng.dmath.algebra.Valable#value()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public double doubleValue() {
@@ -334,10 +326,8 @@ public final class NumberUtil {
 
 		return new NumberValue() {
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see com.dwarfeng.dmath.algebra.Valable#value()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public double doubleValue() {
@@ -361,10 +351,8 @@ public final class NumberUtil {
 
 		return new NumberValue() {
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see com.dwarfeng.dmath.algebra.Valable#value()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public double doubleValue() {
@@ -388,10 +376,8 @@ public final class NumberUtil {
 
 		return new NumberValue() {
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see com.dwarfeng.dmath.algebra.Valable#value()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public double doubleValue() {

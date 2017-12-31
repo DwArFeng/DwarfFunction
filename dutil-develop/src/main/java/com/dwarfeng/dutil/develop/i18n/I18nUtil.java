@@ -49,297 +49,224 @@ public final class I18nUtil {
 			this.delegate = delegate;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<SetObverser<I18nInfo>> getObversers() {
 			return delegate.getObversers();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
-		 * dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addObverser(SetObverser<I18nInfo> obverser) {
 			throw new UnsupportedOperationException("addObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#get(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public I18nInfo get(Locale key) {
 			return delegate.get(key);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsKey(java.lang.
-		 * Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsKey(Object key) {
 			return delegate.containsKey(key);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.develop.i18n.I18nHandler#getCurrentLocale()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Locale getCurrentLocale() {
 			return delegate.getCurrentLocale();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
-		 * .dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeObverser(SetObverser<I18nInfo> obverser) {
 			throw new UnsupportedOperationException("removeObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsAllKey(java.
-		 * util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAllKey(Collection<?> c) {
 			return delegate.containsAllKey(c);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.develop.i18n.I18nHandler#setCurrentLocale(java.
-		 * util.Locale)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean setCurrentLocale(Locale locale) {
 			throw new UnsupportedOperationException("setCurrentLocale");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clearObverser() {
 			throw new UnsupportedOperationException("clearObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.develop.i18n.I18nHandler#getCurrentMutilang()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public I18n getCurrentI18n() {
 			return delegate.getCurrentI18n();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeKey(java.lang.
-		 * Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeKey(Object key) {
 			throw new UnsupportedOperationException("removeKey");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeAllKey(java.util
-		 * .Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAllKey(Collection<?> c) {
 			throw new UnsupportedOperationException("removeAllKey");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#retainAllKey(java.util
-		 * .Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAllKey(Collection<?> c) {
 			throw new UnsupportedOperationException("retainAllKey");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#size()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int size() {
 			return delegate.size();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#isEmpty()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isEmpty() {
 			return delegate.isEmpty();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#contains(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean contains(Object o) {
 			return delegate.contains(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#iterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Iterator<I18nInfo> iterator() {
 			return CollectionUtil.unmodifiableIterator(delegate.iterator());
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#toArray()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Object[] toArray() {
 			return delegate.toArray();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#toArray(java.lang.Object[])
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public <T> T[] toArray(T[] a) {
 			return delegate.toArray(a);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#add(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean add(I18nInfo e) {
 			throw new UnsupportedOperationException("add");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#remove(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean remove(Object o) {
 			throw new UnsupportedOperationException("remove");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#containsAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
 			return delegate.containsAll(c);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#addAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(Collection<? extends I18nInfo> c) {
 			throw new UnsupportedOperationException("addAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#retainAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
 			throw new UnsupportedOperationException("retainAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#removeAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
 			throw new UnsupportedOperationException("removeAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#clear()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clear() {
 			throw new UnsupportedOperationException("clear");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean equals(Object o) {
 			return delegate.equals(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {
@@ -371,22 +298,16 @@ public final class I18nUtil {
 			this.delegate = delegate;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.threads.ExternalReadWriteThreadSafe#getLock(
-		 * )
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public ReadWriteLock getLock() {
 			return lock;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.develop.i18n.I18nHandler#getCurrentLocale()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Locale getCurrentLocale() {
@@ -398,12 +319,8 @@ public final class I18nUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.develop.i18n.I18nHandler#setCurrentLocale(java.
-		 * util.Locale)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean setCurrentLocale(Locale locale) {
@@ -415,10 +332,8 @@ public final class I18nUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.develop.i18n.I18nHandler#getCurrentMutilang()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public I18n getCurrentI18n() {
@@ -430,11 +345,8 @@ public final class I18nUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#get(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public I18nInfo get(Locale key) {
@@ -446,12 +358,8 @@ public final class I18nUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsKey(java.lang.
-		 * Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsKey(Object key) {
@@ -463,12 +371,8 @@ public final class I18nUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsAllKey(java.
-		 * util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAllKey(Collection<?> c) {
@@ -480,12 +384,8 @@ public final class I18nUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeKey(java.lang.
-		 * Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeKey(Object key) {
@@ -497,12 +397,8 @@ public final class I18nUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeAllKey(java.util
-		 * .Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAllKey(Collection<?> c) {
@@ -514,12 +410,8 @@ public final class I18nUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#retainAllKey(java.util
-		 * .Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAllKey(Collection<?> c) {
@@ -531,10 +423,8 @@ public final class I18nUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#size()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int size() {
@@ -546,10 +436,8 @@ public final class I18nUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#isEmpty()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isEmpty() {
@@ -561,10 +449,8 @@ public final class I18nUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#contains(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean contains(Object o) {
@@ -576,10 +462,8 @@ public final class I18nUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#iterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Iterator<I18nInfo> iterator() {
@@ -591,10 +475,8 @@ public final class I18nUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#toArray()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Object[] toArray() {
@@ -606,10 +488,8 @@ public final class I18nUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#toArray(java.lang.Object[])
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public <T> T[] toArray(T[] a) {
@@ -621,10 +501,8 @@ public final class I18nUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#add(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean add(I18nInfo e) {
@@ -636,10 +514,8 @@ public final class I18nUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#remove(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean remove(Object o) {
@@ -651,10 +527,8 @@ public final class I18nUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#containsAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
@@ -666,10 +540,8 @@ public final class I18nUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#addAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(Collection<? extends I18nInfo> c) {
@@ -681,10 +553,8 @@ public final class I18nUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#retainAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
@@ -696,10 +566,8 @@ public final class I18nUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#removeAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
@@ -711,10 +579,8 @@ public final class I18nUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#clear()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clear() {
@@ -726,10 +592,8 @@ public final class I18nUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<SetObverser<I18nInfo>> getObversers() {
@@ -741,12 +605,8 @@ public final class I18nUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
-		 * dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addObverser(SetObverser<I18nInfo> obverser) {
@@ -758,12 +618,8 @@ public final class I18nUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
-		 * .dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeObverser(SetObverser<I18nInfo> obverser) {
@@ -775,10 +631,8 @@ public final class I18nUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clearObverser() {
@@ -790,10 +644,8 @@ public final class I18nUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean equals(Object obj) {
@@ -807,10 +659,8 @@ public final class I18nUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {
@@ -845,30 +695,24 @@ public final class I18nUtil {
 			this.delegate = delegate;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.WithKey#getKey()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Locale getKey() {
 			return delegate.getKey();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.str.Name#getName()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String getName() {
 			return delegate.getName();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.develop.i18n.I18nInfo#newI18n()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public I18n newI18n() throws Exception {
@@ -882,20 +726,16 @@ public final class I18nUtil {
 			return super.equals(obj);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {
 			return delegate.hashCode();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#toString()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String toString() {
@@ -944,121 +784,88 @@ public final class I18nUtil {
 			this.generator = generator;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#get(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public I18nInfo get(Locale key) {
 			return generator.readOnly(delegate.get(key));
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsKey(java.lang.
-		 * Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsKey(Object key) {
 			return delegate.containsKey(key);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsAllKey(java.
-		 * util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAllKey(Collection<?> c) {
 			return delegate.containsAllKey(c);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeKey(java.lang.
-		 * Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeKey(Object key) {
 			throw new UnsupportedOperationException("removeKey");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeAllKey(java.util
-		 * .Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAllKey(Collection<?> c) {
 			throw new UnsupportedOperationException("removeAllKey");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#retainAllKey(java.util
-		 * .Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAllKey(Collection<?> c) {
 			throw new UnsupportedOperationException("retainAllKey");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#size()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int size() {
 			return delegate.size();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#isEmpty()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isEmpty() {
 			return delegate.isEmpty();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#contains(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean contains(Object o) {
 			return delegate.contains(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#iterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Iterator<I18nInfo> iterator() {
 			return CollectionUtil.readOnlyIterator(delegate.iterator(), generator);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#toArray()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Object[] toArray() {
@@ -1066,10 +873,8 @@ public final class I18nUtil {
 			return ArrayUtil.readOnlyArray(eArray, generator);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Collection#toArray(java.lang.Object[])
+		/**
+		 * {@inheritDoc}
 		 */
 		@SuppressWarnings("unchecked")
 		@Override
@@ -1078,166 +883,128 @@ public final class I18nUtil {
 			return (T[]) ArrayUtil.readOnlyArray(((I18nInfo[]) tArray), generator);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#add(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean add(I18nInfo e) {
 			throw new UnsupportedOperationException("add");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#remove(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean remove(Object o) {
 			throw new UnsupportedOperationException("remove");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#containsAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
 			return delegate.containsAll(c);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#addAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(Collection<? extends I18nInfo> c) {
 			throw new UnsupportedOperationException("addAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#retainAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
 			throw new UnsupportedOperationException("retainAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#removeAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
 			throw new UnsupportedOperationException("removeAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#clear()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clear() {
 			throw new UnsupportedOperationException("clear");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<SetObverser<I18nInfo>> getObversers() {
 			return delegate.getObversers();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
-		 * dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addObverser(SetObverser<I18nInfo> obverser) {
 			throw new UnsupportedOperationException("addObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
-		 * .dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeObverser(SetObverser<I18nInfo> obverser) {
 			throw new UnsupportedOperationException("removeObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clearObverser() {
 			throw new UnsupportedOperationException("clearObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.develop.i18n.I18nHandler#getCurrentLocale()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Locale getCurrentLocale() {
 			return delegate.getCurrentLocale();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.develop.i18n.I18nHandler#setCurrentLocale(java.
-		 * util.Locale)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean setCurrentLocale(Locale locale) {
 			throw new UnsupportedOperationException("setCurrentLocale");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.develop.i18n.I18nHandler#getCurrentI18n()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public I18n getCurrentI18n() {
 			return delegate.getCurrentI18n();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {
 			return delegate.hashCode();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean equals(Object obj) {
@@ -1248,10 +1015,8 @@ public final class I18nUtil {
 			return delegate.equals(obj);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#toString()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String toString() {

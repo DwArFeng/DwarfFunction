@@ -13,12 +13,8 @@ import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
  */
 public class LocaleValueParser implements ValueParser {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.struct.ValueParser#parseValue(java.lang.
-	 * String)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Object parseValue(String value) {
@@ -30,12 +26,8 @@ public class LocaleValueParser implements ValueParser {
 		return new Locale(language, country, variant);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.dwarfeng.dutil.develop.cfg.struct.ValueParser#parseObject(java.lang.
-	 * Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String parseObject(Object object) {

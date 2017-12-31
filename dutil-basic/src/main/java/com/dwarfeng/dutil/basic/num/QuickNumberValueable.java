@@ -35,20 +35,16 @@ public class QuickNumberValueable implements NumberValue {
 		this.val = val;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dwarfeng.dfunc.infs.MusValueable#doubleValue()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public double doubleValue() {
 		return val;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -62,20 +58,16 @@ public class QuickNumberValueable implements NumberValue {
 		return v.val == val;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int hashCode() {
 		return Double.hashCode(val) * 17;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String toString() {
