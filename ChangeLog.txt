@@ -269,4 +269,5 @@ Beta_0.2.0__build_A (maven)
 	修复了 basic.cna.ArrayUtil.contains(Object[], Object) 方法的BUG。
 		当入口参数 Object[] 中含有 null 元素的时候，该方法会导致意料之外的 NullPointerException。
 	修改了资源文件的结构。
+	完善了所有不可更改类的编辑方法中抛出UnsupportedOperationException的描述。
 	更新的README.md

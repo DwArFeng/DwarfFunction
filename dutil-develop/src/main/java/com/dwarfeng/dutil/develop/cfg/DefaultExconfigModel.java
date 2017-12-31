@@ -690,7 +690,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		@Override
 		public String put(ConfigKey key, String value) {
 			// 该类是只读的。
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("put");
 		}
 
 		/*
@@ -701,7 +701,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		@Override
 		public String remove(Object key) {
 			// 该类是只读的。
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
 		/*
@@ -712,7 +712,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		@Override
 		public void putAll(Map<? extends ConfigKey, ? extends String> m) {
 			// 该类是只读的。
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("putAll");
 		}
 
 		/*
@@ -723,7 +723,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		@Override
 		public void clear() {
 			// 该类是只读的。
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clear");
 		}
 
 		private transient Set<ConfigKey> keySet;
@@ -867,7 +867,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		@Override
 		public boolean add(String e) {
 			// 该类是只读的
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("add");
 		}
 
 		/*
@@ -878,7 +878,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		@Override
 		public boolean remove(Object o) {
 			// 该类是只读的
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
 		/*
@@ -904,7 +904,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		@Override
 		public boolean addAll(Collection<? extends String> c) {
 			// 该类是只读的
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addAll");
 		}
 
 		/*
@@ -915,7 +915,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		@Override
 		public boolean removeAll(Collection<?> c) {
 			// 该类是只读的
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeAll");
 		}
 
 		/*
@@ -926,7 +926,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		@Override
 		public boolean retainAll(Collection<?> c) {
 			// 该类是只读的
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("retainAll");
 		}
 
 		/*
@@ -937,7 +937,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		@Override
 		public void clear() {
 			// 该类是只读的
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clear");
 		}
 
 	}
@@ -1073,7 +1073,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		@Override
 		public boolean add(Entry<ConfigKey, String> e) {
 			// 该类是只读的
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("add");
 		}
 
 		/*
@@ -1084,7 +1084,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		@Override
 		public boolean remove(Object o) {
 			// 该类是只读的
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
 		/*
@@ -1110,7 +1110,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		@Override
 		public boolean addAll(Collection<? extends Entry<ConfigKey, String>> c) {
 			// 该类是只读的
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addAll");
 		}
 
 		/*
@@ -1121,7 +1121,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		@Override
 		public boolean retainAll(Collection<?> c) {
 			// 该类是只读的
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("retainAll");
 		}
 
 		/*
@@ -1132,7 +1132,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		@Override
 		public boolean removeAll(Collection<?> c) {
 			// 该类是只读的
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeAll");
 		}
 
 		/*
@@ -1143,7 +1143,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		@Override
 		public void clear() {
 			// 该类是只读的
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clear");
 		}
 
 	}
@@ -1214,7 +1214,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 		@Override
 		public String setValue(String value) {
 			// 该类是只读的
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("setValue");
 		}
 
 		/*

@@ -48,60 +48,48 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 		this.delegate = delegate;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Map#size()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int size() {
 		return delegate.size();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Map#isEmpty()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean isEmpty() {
 		return delegate.isEmpty();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Map#containsKey(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean containsKey(Object key) {
 		return delegate.containsKey(key);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Map#containsValue(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean containsValue(Object value) {
 		return delegate.containsValue(value);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Map#get(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public V get(Object key) {
 		return delegate.get(key);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Map#put(java.lang.Object, java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public V put(K key, V value) {
@@ -115,10 +103,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 		return oldValue;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Map#remove(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public V remove(Object key) {
@@ -133,10 +119,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 		return value;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Map#putAll(java.util.Map)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void putAll(Map<? extends K, ? extends V> m) {
@@ -146,10 +130,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Map#clear()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void clear() {
@@ -157,10 +139,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 		fireCleared();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Map#keySet()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Set<K> keySet() {
@@ -175,40 +155,32 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 			this.delegateKeySet = delegateKeySet;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#size()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int size() {
 			return delegateKeySet.size();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#isEmpty()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isEmpty() {
 			return delegateKeySet.isEmpty();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#contains(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean contains(Object o) {
 			return delegateKeySet.contains(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#iterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Iterator<K> iterator() {
@@ -224,20 +196,16 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 				this.delegateIterator = delegateIterator;
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.util.Iterator#hasNext()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public boolean hasNext() {
 				return delegateIterator.hasNext();
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.util.Iterator#next()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public K next() {
@@ -245,10 +213,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 				return key;
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.util.Iterator#remove()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public void remove() {
@@ -259,40 +225,32 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#toArray()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Object[] toArray() {
 			return delegateKeySet.toArray();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#toArray(java.lang.Object[])
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public <T> T[] toArray(T[] a) {
 			return delegateKeySet.toArray(a);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#add(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean add(K e) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("add");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#remove(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean remove(Object o) {
@@ -307,10 +265,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 			return false;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#containsAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
@@ -318,20 +274,16 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 			return delegateKeySet.containsAll(c);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#addAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(Collection<? extends K> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#removeAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
@@ -339,10 +291,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 			return batchRemove(c, true);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#retainAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
@@ -367,10 +317,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 			return result;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#clear()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clear() {
@@ -378,20 +326,16 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 			fireCleared();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {
 			return delegateKeySet.hashCode();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean equals(Object obj) {
@@ -400,10 +344,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 			return delegateKeySet.equals(obj);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#toString()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String toString() {
@@ -412,10 +354,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Map#values()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Collection<V> values() {
@@ -430,40 +370,32 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 			this.delegateValues = delegateValues;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Collection#size()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int size() {
 			return delegateValues.size();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Collection#isEmpty()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isEmpty() {
 			return delegateValues.isEmpty();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Collection#contains(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean contains(Object o) {
 			return delegateValues.contains(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Collection#iterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Iterator<V> iterator() {
@@ -479,20 +411,16 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 				this.delegateIterator = delegateIterator;
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.util.Iterator#hasNext()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public boolean hasNext() {
 				return delegateIterator.hasNext();
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.util.Iterator#next()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public V next() {
@@ -500,10 +428,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 				return value;
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.util.Iterator#remove()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public void remove() {
@@ -518,40 +444,32 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Collection#toArray()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Object[] toArray() {
 			return delegateValues.toArray();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Collection#toArray(java.lang.Object[])
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public <T> T[] toArray(T[] a) {
 			return delegateValues.toArray(a);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Collection#add(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean add(V e) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("add");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Collection#remove(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean remove(Object o) {
@@ -572,10 +490,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 			return false;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Collection#containsAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
@@ -583,21 +499,17 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 			return delegateValues.containsAll(c);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Collection#addAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(Collection<? extends V> c) {
 			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATEMAPMODEL_2));
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Collection#removeAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
@@ -605,10 +517,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 			return batchRemove(c, true);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Collection#retainAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
@@ -646,10 +556,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 			return set;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Collection#clear()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clear() {
@@ -657,10 +565,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 			fireCleared();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#toString()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String toString() {
@@ -669,10 +575,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Map#entrySet()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Set<java.util.Map.Entry<K, V>> entrySet() {
@@ -687,40 +591,32 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 			this.delegateEntrySet = delegateEntrySet;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#size()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int size() {
 			return delegateEntrySet.size();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#isEmpty()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isEmpty() {
 			return delegateEntrySet.isEmpty();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#contains(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean contains(Object o) {
 			return delegateEntrySet.contains(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#iterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Iterator<java.util.Map.Entry<K, V>> iterator() {
@@ -736,20 +632,16 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 				this.delegateIterator = delegateIterator;
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.util.Iterator#hasNext()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public boolean hasNext() {
 				return delegateIterator.hasNext();
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.util.Iterator#next()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public java.util.Map.Entry<K, V> next() {
@@ -757,10 +649,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 				return new DelegateEntry(entry);
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.util.Iterator#remove()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public void remove() {
@@ -772,10 +662,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#toArray()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Object[] toArray() {
@@ -790,10 +678,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 			return dejavu;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#toArray(java.lang.Object[])
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public <T> T[] toArray(T[] a) {
@@ -809,20 +695,16 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 			return r;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#add(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean add(java.util.Map.Entry<K, V> e) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("add");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#remove(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean remove(Object o) {
@@ -841,10 +723,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 			return false;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#containsAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
@@ -852,20 +732,16 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 			return delegateEntrySet.containsAll(c);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#addAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(Collection<? extends java.util.Map.Entry<K, V>> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#removeAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
@@ -873,10 +749,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 			return batchRemove(c, true);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#retainAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
@@ -901,10 +775,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 			return result;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#clear()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clear() {
@@ -912,20 +784,16 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 			fireCleared();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {
 			return delegateEntrySet.hashCode();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean equals(Object obj) {
@@ -934,10 +802,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 			return delegateEntrySet.equals(obj);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#toString()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String toString() {
@@ -952,10 +818,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 				this.delegateEntry = delegateEntry;
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.util.Map.Entry#getKey()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public K getKey() {
@@ -967,10 +831,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 				return delegateEntry.getValue();
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.util.Map.Entry#setValue(java.lang.Object)
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public V setValue(V value) {
@@ -983,20 +845,16 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 				return oldValue;
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.lang.Object#hashCode()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public int hashCode() {
 				return delegateEntry.hashCode();
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.lang.Object#equals(java.lang.Object)
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public boolean equals(Object obj) {
@@ -1005,10 +863,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 				return delegateEntry.equals(obj);
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.lang.Object#toString()
+			/**
+			 * {@inheritDoc}
 			 */
 			@Override
 			public String toString() {
@@ -1019,20 +875,16 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int hashCode() {
 		return delegate.hashCode();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -1041,10 +893,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 		return delegate.equals(obj);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String toString() {

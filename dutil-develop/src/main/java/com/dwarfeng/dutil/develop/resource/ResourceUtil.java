@@ -96,7 +96,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public boolean removeKey(Object key) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeKey");
 		}
 
 		/*
@@ -108,7 +108,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public boolean removeAllKey(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeAllKey");
 		}
 
 		/*
@@ -120,7 +120,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public boolean retainAllKey(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("retainAllKey");
 		}
 
 		/*
@@ -220,7 +220,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public boolean add(Resource e) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("add");
 		}
 
 		/*
@@ -230,7 +230,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public boolean remove(Object o) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
 		/*
@@ -250,7 +250,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public boolean addAll(Collection<? extends Resource> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addAll");
 		}
 
 		/*
@@ -260,7 +260,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("retainAll");
 		}
 
 		/*
@@ -270,7 +270,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeAll");
 		}
 
 		/*
@@ -280,7 +280,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public void clear() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clear");
 		}
 
 		/*
@@ -302,7 +302,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public boolean addObverser(SetObverser<Resource> obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addObverser");
 		}
 
 		/*
@@ -314,7 +314,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public boolean removeObverser(SetObverser<Resource> obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeObverser");
 		}
 
 		/*
@@ -324,7 +324,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public void clearObverser() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clearObverser");
 		}
 
 		/*
@@ -819,7 +819,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public InputStream openInputStream() throws IOException {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("openInputStream");
 		}
 
 		/*
@@ -829,7 +829,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public OutputStream openOutputStream() throws IOException {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("openOutputStream");
 		}
 
 		/*
@@ -839,7 +839,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public void reset() throws IOException {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("reset");
 		}
 
 		/*
@@ -963,7 +963,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public boolean removeKey(Object key) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeKey");
 		}
 
 		/*
@@ -975,7 +975,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public boolean removeAllKey(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeAllKey");
 		}
 
 		/*
@@ -987,7 +987,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public boolean retainAllKey(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("retainAllKey");
 		}
 
 		/*
@@ -1009,7 +1009,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public boolean addObverser(SetObverser<Resource> obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addObverser");
 		}
 
 		/*
@@ -1021,7 +1021,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public boolean removeObverser(SetObverser<Resource> obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeObverser");
 		}
 
 		/*
@@ -1031,7 +1031,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public void clearObverser() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clearObverser");
 		}
 
 		/*
@@ -1104,7 +1104,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public boolean add(Resource e) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("add");
 		}
 
 		/*
@@ -1114,7 +1114,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public boolean remove(Object o) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
 		/*
@@ -1134,7 +1134,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public boolean addAll(Collection<? extends Resource> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addAll");
 		}
 
 		/*
@@ -1144,7 +1144,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("retainAll");
 		}
 
 		/*
@@ -1154,7 +1154,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeAll");
 		}
 
 		/*
@@ -1164,7 +1164,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public void clear() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clear");
 		}
 
 		/*
@@ -1176,7 +1176,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public InputStream openInputStream(String key) throws IOException, IllegalArgumentException {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("openInputStream");
 		}
 
 		/*
@@ -1188,7 +1188,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public OutputStream openOutputStream(String key) throws IOException, IllegalArgumentException {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("openOutputStream");
 		}
 
 		/*
@@ -1200,7 +1200,7 @@ public final class ResourceUtil {
 		 */
 		@Override
 		public void reset(String key) throws IOException, IllegalArgumentException {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("reset");
 		}
 
 		/*

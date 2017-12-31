@@ -161,7 +161,7 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public void clear() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clear");
 		}
 
 		/*
@@ -227,7 +227,7 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public boolean add(ConfigEntry configEntry) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("add");
 		}
 
 		/*
@@ -238,7 +238,7 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public boolean addAll(Collection<ConfigEntry> configEntries) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addAll");
 		}
 
 		/*
@@ -250,7 +250,7 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public boolean remove(ConfigKey configKey) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
 		/*
@@ -261,7 +261,7 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public boolean removeAll(Collection<ConfigKey> configKeys) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeAll");
 		}
 
 		/*
@@ -272,7 +272,7 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public boolean retainAll(Collection<ConfigKey> configKeys) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("retainAll");
 		}
 
 		/*
@@ -331,7 +331,7 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public boolean setConfigFirmProps(ConfigKey configKey, ConfigFirmProps configFirmProps) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("setConfigFirmProps");
 		}
 
 		/*
@@ -1392,7 +1392,7 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public boolean addObverser(ExconfigObverser obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addObverser");
 		}
 
 		/*
@@ -1415,7 +1415,7 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public boolean removeObverser(ExconfigObverser obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeObverser");
 		}
 
 		/*
@@ -1425,7 +1425,7 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public void clear() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clear");
 		}
 
 		/*
@@ -1437,7 +1437,7 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public boolean setCurrentValue(ConfigKey configKey, String currentValue) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("setCurrentValue");
 		}
 
 		/*
@@ -1447,7 +1447,7 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public void clearObverser() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clearObverser");
 		}
 
 		/*
@@ -1490,7 +1490,7 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public boolean setAllCurrentValue(Map<ConfigKey, String> map) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("setAllCurrentValue");
 		}
 
 		/*
@@ -1502,7 +1502,7 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public boolean add(ExconfigEntry exconfigEntry) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("add");
 		}
 
 		/*
@@ -1513,7 +1513,7 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public boolean addAll(Collection<ExconfigEntry> exconfigEntries) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addAll");
 		}
 
 		/*
@@ -1525,7 +1525,7 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public boolean remove(ConfigKey configKey) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
 		/*
@@ -1537,7 +1537,7 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public boolean removeAll(Collection<ConfigKey> configKeys) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeAll");
 		}
 
 		/*
@@ -1549,7 +1549,7 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public boolean retainAll(Collection<ConfigKey> configKeys) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("retainAll");
 		}
 
 		/*
@@ -1606,7 +1606,7 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public boolean setConfigFirmProps(ConfigKey configKey, ConfigFirmProps configFirmProps) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("setConfigFirmProps");
 		}
 
 		/*
@@ -1618,7 +1618,7 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public boolean resetCurrentValue(ConfigKey configKey) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("resetCurrentValue");
 		}
 
 		/*
@@ -1629,7 +1629,7 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public boolean resetAllCurrentValue() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("resetAllCurrentValue");
 		}
 
 		/*
@@ -1652,7 +1652,7 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public boolean setValueParser(ConfigKey configKey, ValueParser valueParser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("setValueParser");
 		}
 
 		/*
@@ -1685,7 +1685,7 @@ public final class ConfigUtil {
 		 */
 		@Override
 		public boolean setParsedValue(ConfigKey configKey, Object obj) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("setParsedValue");
 		}
 
 	}

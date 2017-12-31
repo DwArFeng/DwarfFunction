@@ -1077,7 +1077,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public void remove() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
 		/*
@@ -1087,7 +1087,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public void set(E e) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("set");
 		}
 
 		/*
@@ -1097,7 +1097,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public void add(E e) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("add");
 		}
 
 	}
@@ -1199,7 +1199,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public void remove() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
 		/*
@@ -1209,7 +1209,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public void set(E e) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("set");
 		}
 
 		/*
@@ -1219,7 +1219,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public void add(E e) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("add");
 		}
 
 	}
@@ -1324,7 +1324,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean add(E e) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("add");
 		}
 
 		/*
@@ -1334,7 +1334,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean remove(Object o) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
 		/*
@@ -1354,7 +1354,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean addAll(Collection<? extends E> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addAll");
 		}
 
 		/*
@@ -1364,7 +1364,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeAll");
 		}
 
 		/*
@@ -1374,7 +1374,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("retainAll");
 		}
 
 		/*
@@ -1384,7 +1384,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public void clear() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clear");
 		}
 
 		/*
@@ -1499,7 +1499,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean add(E e) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("add");
 		}
 
 		/*
@@ -1509,7 +1509,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean remove(Object o) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
 		/*
@@ -1529,7 +1529,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean addAll(Collection<? extends E> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addAll");
 		}
 
 		/*
@@ -1539,7 +1539,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("retainAll");
 		}
 
 		/*
@@ -1549,7 +1549,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeAll");
 		}
 
 		/*
@@ -1559,7 +1559,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public void clear() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clear");
 		}
 
 		/*
@@ -1698,7 +1698,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean add(E e) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("add");
 		}
 
 		/*
@@ -1708,7 +1708,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean remove(Object o) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
 		/*
@@ -1728,7 +1728,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean addAll(Collection<? extends E> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addAll");
 		}
 
 		/*
@@ -1738,7 +1738,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean addAll(int index, Collection<? extends E> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addAll");
 		}
 
 		/*
@@ -1748,7 +1748,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeAll");
 		}
 
 		/*
@@ -1758,7 +1758,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("retainAll");
 		}
 
 		/*
@@ -1768,7 +1768,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public void clear() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clear");
 		}
 
 		/*
@@ -1788,7 +1788,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public E set(int index, E element) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("set");
 		}
 
 		/*
@@ -1798,7 +1798,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public void add(int index, E element) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("add");
 		}
 
 		/*
@@ -1808,7 +1808,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public E remove(int index) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
 		/*
@@ -1961,7 +1961,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public V setValue(V value) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("setValue");
 		}
 
 		/*
@@ -2094,7 +2094,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public V put(K key, V value) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("put");
 		}
 
 		/*
@@ -2104,7 +2104,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public V remove(Object key) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
 		/*
@@ -2114,7 +2114,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public void putAll(Map<? extends K, ? extends V> m) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("putAll");
 		}
 
 		/*
@@ -2124,7 +2124,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public void clear() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clear");
 		}
 
 		/*

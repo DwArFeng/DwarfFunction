@@ -89,7 +89,7 @@ public final class BackgroundUtil {
 		 */
 		@Override
 		public void run() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("run");
 		}
 
 		/*
@@ -111,7 +111,7 @@ public final class BackgroundUtil {
 		 */
 		@Override
 		public boolean addObverser(TaskObverser obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addObverser");
 		}
 
 		/*
@@ -123,7 +123,7 @@ public final class BackgroundUtil {
 		 */
 		@Override
 		public boolean removeObverser(TaskObverser obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeObverser");
 		}
 
 		/*
@@ -133,7 +133,7 @@ public final class BackgroundUtil {
 		 */
 		@Override
 		public void clearObverser() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clearObverser");
 		}
 
 		/*
@@ -196,7 +196,7 @@ public final class BackgroundUtil {
 		 */
 		@Override
 		public void awaitFinish() throws InterruptedException {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("awaitFinish");
 		}
 
 		/*
@@ -207,7 +207,7 @@ public final class BackgroundUtil {
 		 */
 		@Override
 		public boolean awaitFinish(long timeout, TimeUnit unit) throws InterruptedException {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("awaitFinish");
 		}
 
 		/*
@@ -285,7 +285,7 @@ public final class BackgroundUtil {
 		 */
 		@Override
 		public boolean addObverser(BackgroundObverser obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addObverser");
 		}
 
 		/*
@@ -297,7 +297,7 @@ public final class BackgroundUtil {
 		 */
 		@Override
 		public boolean removeObverser(BackgroundObverser obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeObverser");
 		}
 
 		/*
@@ -307,7 +307,7 @@ public final class BackgroundUtil {
 		 */
 		@Override
 		public void clearObverser() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clearObverser");
 		}
 
 		/*
@@ -331,7 +331,7 @@ public final class BackgroundUtil {
 		 */
 		@Override
 		public boolean submit(Task task) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("submit");
 		}
 
 		/*
@@ -343,7 +343,7 @@ public final class BackgroundUtil {
 		 */
 		@Override
 		public boolean submitAll(Collection<? extends Task> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("submitAll");
 		}
 
 		/*
@@ -353,7 +353,7 @@ public final class BackgroundUtil {
 		 */
 		@Override
 		public void shutdown() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("shutdown");
 		}
 
 		/*
@@ -383,7 +383,7 @@ public final class BackgroundUtil {
 		 */
 		@Override
 		public void awaitTermination() throws InterruptedException {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("awaitTermination");
 		}
 
 		/*
@@ -395,7 +395,7 @@ public final class BackgroundUtil {
 		 */
 		@Override
 		public boolean awaitTermination(long timeout, TimeUnit unit) throws InterruptedException {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("awaitTermination");
 		}
 
 		/*
@@ -506,7 +506,7 @@ public final class BackgroundUtil {
 		 */
 		@Override
 		public boolean addObverser(BackgroundObverser obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addObverser");
 		}
 
 		/**
@@ -514,7 +514,7 @@ public final class BackgroundUtil {
 		 */
 		@Override
 		public boolean removeObverser(BackgroundObverser obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeObverser");
 		}
 
 		/**
@@ -522,7 +522,7 @@ public final class BackgroundUtil {
 		 */
 		@Override
 		public void clearObverser() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clearObverser");
 		}
 
 		/**
@@ -530,7 +530,7 @@ public final class BackgroundUtil {
 		 */
 		@Override
 		public boolean submit(Task task) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("submit");
 		}
 
 		/**
@@ -538,7 +538,7 @@ public final class BackgroundUtil {
 		 */
 		@Override
 		public boolean submitAll(Collection<? extends Task> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("submitAll");
 		}
 
 		/**
@@ -546,7 +546,7 @@ public final class BackgroundUtil {
 		 */
 		@Override
 		public void shutdown() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("shutdown");
 		}
 
 		/**
@@ -570,7 +570,7 @@ public final class BackgroundUtil {
 		 */
 		@Override
 		public void awaitTermination() throws InterruptedException {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("awaitTermination");
 		}
 
 		/**
@@ -578,7 +578,7 @@ public final class BackgroundUtil {
 		 */
 		@Override
 		public boolean awaitTermination(long timeout, TimeUnit unit) throws InterruptedException {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("awaitTermination");
 		}
 
 		/**

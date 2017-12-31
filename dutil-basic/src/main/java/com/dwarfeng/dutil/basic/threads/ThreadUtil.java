@@ -126,7 +126,7 @@ public final class ThreadUtil {
 		 */
 		@Override
 		public void lock() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("lock");
 		}
 
 		/*
@@ -136,7 +136,7 @@ public final class ThreadUtil {
 		 */
 		@Override
 		public void lockInterruptibly() throws InterruptedException {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("lockInterruptibly");
 		}
 
 		/*
@@ -146,7 +146,7 @@ public final class ThreadUtil {
 		 */
 		@Override
 		public boolean tryLock() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("tryLock");
 		}
 
 		/*
@@ -157,7 +157,7 @@ public final class ThreadUtil {
 		 */
 		@Override
 		public boolean tryLock(long time, TimeUnit unit) throws InterruptedException {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("tryLock");
 		}
 
 		/*
@@ -167,7 +167,7 @@ public final class ThreadUtil {
 		 */
 		@Override
 		public void unlock() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("unlock");
 		}
 
 		/*
@@ -177,7 +177,7 @@ public final class ThreadUtil {
 		 */
 		@Override
 		public Condition newCondition() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("newCondition");
 		}
 
 		/*

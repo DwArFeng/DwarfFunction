@@ -68,7 +68,7 @@ public final class I18nUtil {
 		 */
 		@Override
 		public boolean addObverser(SetObverser<I18nInfo> obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addObverser");
 		}
 
 		/*
@@ -113,7 +113,7 @@ public final class I18nUtil {
 		 */
 		@Override
 		public boolean removeObverser(SetObverser<I18nInfo> obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeObverser");
 		}
 
 		/*
@@ -137,7 +137,7 @@ public final class I18nUtil {
 		 */
 		@Override
 		public boolean setCurrentLocale(Locale locale) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("setCurrentLocale");
 		}
 
 		/*
@@ -147,7 +147,7 @@ public final class I18nUtil {
 		 */
 		@Override
 		public void clearObverser() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clearObverser");
 		}
 
 		/*
@@ -169,7 +169,7 @@ public final class I18nUtil {
 		 */
 		@Override
 		public boolean removeKey(Object key) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeKey");
 		}
 
 		/*
@@ -181,7 +181,7 @@ public final class I18nUtil {
 		 */
 		@Override
 		public boolean removeAllKey(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeAllKey");
 		}
 
 		/*
@@ -193,7 +193,7 @@ public final class I18nUtil {
 		 */
 		@Override
 		public boolean retainAllKey(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("retainAllKey");
 		}
 
 		/*
@@ -263,7 +263,7 @@ public final class I18nUtil {
 		 */
 		@Override
 		public boolean add(I18nInfo e) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("add");
 		}
 
 		/*
@@ -273,7 +273,7 @@ public final class I18nUtil {
 		 */
 		@Override
 		public boolean remove(Object o) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
 		/*
@@ -293,7 +293,7 @@ public final class I18nUtil {
 		 */
 		@Override
 		public boolean addAll(Collection<? extends I18nInfo> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addAll");
 		}
 
 		/*
@@ -303,7 +303,7 @@ public final class I18nUtil {
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("retainAll");
 		}
 
 		/*
@@ -313,7 +313,7 @@ public final class I18nUtil {
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeAll");
 		}
 
 		/*
@@ -323,7 +323,7 @@ public final class I18nUtil {
 		 */
 		@Override
 		public void clear() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clear");
 		}
 
 		/*
@@ -872,7 +872,7 @@ public final class I18nUtil {
 		 */
 		@Override
 		public I18n newI18n() throws Exception {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("newI18n");
 		}
 
 		@Override
@@ -988,7 +988,7 @@ public final class I18nUtil {
 		 */
 		@Override
 		public boolean removeKey(Object key) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeKey");
 		}
 
 		/*
@@ -1000,7 +1000,7 @@ public final class I18nUtil {
 		 */
 		@Override
 		public boolean removeAllKey(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeAllKey");
 		}
 
 		/*
@@ -1012,7 +1012,7 @@ public final class I18nUtil {
 		 */
 		@Override
 		public boolean retainAllKey(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("retainAllKey");
 		}
 
 		/*
@@ -1085,7 +1085,7 @@ public final class I18nUtil {
 		 */
 		@Override
 		public boolean add(I18nInfo e) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("add");
 		}
 
 		/*
@@ -1095,7 +1095,7 @@ public final class I18nUtil {
 		 */
 		@Override
 		public boolean remove(Object o) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
 		/*
@@ -1115,7 +1115,7 @@ public final class I18nUtil {
 		 */
 		@Override
 		public boolean addAll(Collection<? extends I18nInfo> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addAll");
 		}
 
 		/*
@@ -1125,7 +1125,7 @@ public final class I18nUtil {
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("retainAll");
 		}
 
 		/*
@@ -1135,7 +1135,7 @@ public final class I18nUtil {
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeAll");
 		}
 
 		/*
@@ -1145,7 +1145,7 @@ public final class I18nUtil {
 		 */
 		@Override
 		public void clear() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clear");
 		}
 
 		/*
@@ -1167,7 +1167,7 @@ public final class I18nUtil {
 		 */
 		@Override
 		public boolean addObverser(SetObverser<I18nInfo> obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addObverser");
 		}
 
 		/*
@@ -1179,7 +1179,7 @@ public final class I18nUtil {
 		 */
 		@Override
 		public boolean removeObverser(SetObverser<I18nInfo> obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeObverser");
 		}
 
 		/*
@@ -1189,7 +1189,7 @@ public final class I18nUtil {
 		 */
 		@Override
 		public void clearObverser() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clearObverser");
 		}
 
 		/*
@@ -1211,7 +1211,7 @@ public final class I18nUtil {
 		 */
 		@Override
 		public boolean setCurrentLocale(Locale locale) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("setCurrentLocale");
 		}
 
 		/*

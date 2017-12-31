@@ -58,294 +58,232 @@ public final class ModelUtil {
 			this.delegate = delegate;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#size()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int size() {
 			return delegate.size();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#isEmpty()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isEmpty() {
 			return delegate.isEmpty();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#contains(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean contains(Object o) {
 			return delegate.contains(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#iterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Iterator<E> iterator() {
 			return CollectionUtil.unmodifiableIterator(delegate.iterator());
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#toArray()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Object[] toArray() {
 			return delegate.toArray();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#toArray(java.lang.Object[])
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public <T> T[] toArray(T[] a) {
 			return delegate.toArray(a);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#add(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean add(E e) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("add");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#remove(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean remove(Object o) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#containsAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
 			return delegate.containsAll(c);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#addAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(Collection<? extends E> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#addAll(int, java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(int index, Collection<? extends E> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#removeAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#retainAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("retainAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#clear()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clear() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clear");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#get(int)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public E get(int index) {
 			return delegate.get(index);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#set(int, java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public E set(int index, E element) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("set");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#add(int, java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void add(int index, E element) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("add");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#remove(int)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public E remove(int index) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#indexOf(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int indexOf(Object o) {
 			return delegate.indexOf(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#lastIndexOf(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int lastIndexOf(Object o) {
 			return delegate.lastIndexOf(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#listIterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public ListIterator<E> listIterator() {
 			return CollectionUtil.unmodifiableListIterator(delegate.listIterator());
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#listIterator(int)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public ListIterator<E> listIterator(int index) {
 			return CollectionUtil.unmodifiableListIterator(delegate.listIterator(index));
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#subList(int, int)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public List<E> subList(int fromIndex, int toIndex) {
 			return Collections.unmodifiableList(delegate.subList(fromIndex, toIndex));
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<ListObverser<E>> getObversers() {
 			return delegate.getObversers();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
-		 * dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addObverser(ListObverser<E> obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
-		 * .dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeObverser(ListObverser<E> obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clearObverser() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clearObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {
 			return delegate.hashCode();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean equals(Object obj) {
@@ -356,10 +294,8 @@ public final class ModelUtil {
 			return delegate.equals(obj);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#toString()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String toString() {
@@ -397,50 +333,40 @@ public final class ModelUtil {
 			this.generator = generator;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#size()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int size() {
 			return delegate.size();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#isEmpty()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isEmpty() {
 			return delegate.isEmpty();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#contains(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean contains(Object o) {
 			return delegate.contains(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#iterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Iterator<E> iterator() {
 			return CollectionUtil.readOnlyIterator(delegate.iterator(), generator);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#toArray()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Object[] toArray() {
@@ -449,10 +375,8 @@ public final class ModelUtil {
 			return ArrayUtil.readOnlyArray(eArray, generator);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#toArray(java.lang.Object[])
+		/**
+		 * {@inheritDoc}
 		 */
 		@SuppressWarnings("unchecked")
 		@Override
@@ -461,234 +385,184 @@ public final class ModelUtil {
 			return (T[]) ArrayUtil.readOnlyArray(((E[]) tArray), generator);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#add(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean add(E e) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("add");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#remove(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean remove(Object o) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#containsAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
 			return delegate.containsAll(c);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#addAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(Collection<? extends E> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#addAll(int, java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(int index, Collection<? extends E> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#removeAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#retainAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("retainAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#clear()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clear() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clear");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#get(int)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public E get(int index) {
 			return generator.readOnly(delegate.get(index));
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#set(int, java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public E set(int index, E element) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("set");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#add(int, java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void add(int index, E element) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("add");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#remove(int)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public E remove(int index) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#indexOf(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int indexOf(Object o) {
 			return delegate.indexOf(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#lastIndexOf(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int lastIndexOf(Object o) {
 			return delegate.lastIndexOf(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#listIterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public ListIterator<E> listIterator() {
 			return CollectionUtil.readOnlyListIterator(delegate.listIterator(), generator);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#listIterator(int)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public ListIterator<E> listIterator(int index) {
 			return CollectionUtil.readOnlyListIterator(delegate.listIterator(index), generator);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#subList(int, int)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public List<E> subList(int fromIndex, int toIndex) {
 			return CollectionUtil.readOnlyList(delegate.subList(fromIndex, toIndex), generator);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<ListObverser<E>> getObversers() {
 			return delegate.getObversers();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
-		 * dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addObverser(ListObverser<E> obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
-		 * .dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeObverser(ListObverser<E> obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clearObverser() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clearObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {
 			return delegate.hashCode();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean equals(Object obj) {
@@ -699,10 +573,8 @@ public final class ModelUtil {
 			return delegate.equals(obj);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#toString()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String toString() {
@@ -736,22 +608,16 @@ public final class ModelUtil {
 			this.delegate = delegate;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.threads.ExternalReadWriteThreadSafe#getLock(
-		 * )
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public ReadWriteLock getLock() {
 			return lock;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<ListObverser<E>> getObversers() {
@@ -763,12 +629,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
-		 * dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addObverser(ListObverser<E> obverser) {
@@ -780,12 +642,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
-		 * .dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeObverser(ListObverser<E> obverser) {
@@ -797,10 +655,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clearObverser() {
@@ -812,10 +668,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#size()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int size() {
@@ -827,10 +681,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#isEmpty()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isEmpty() {
@@ -842,10 +694,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#contains(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean contains(Object o) {
@@ -857,10 +707,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#iterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Iterator<E> iterator() {
@@ -872,10 +720,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#toArray()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Object[] toArray() {
@@ -887,10 +733,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#toArray(java.lang.Object[])
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public <T> T[] toArray(T[] a) {
@@ -902,10 +746,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#add(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean add(E e) {
@@ -917,10 +759,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#remove(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean remove(Object o) {
@@ -932,10 +772,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#containsAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
@@ -947,10 +785,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#addAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(Collection<? extends E> c) {
@@ -962,10 +798,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#addAll(int, java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(int index, Collection<? extends E> c) {
@@ -977,10 +811,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#removeAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
@@ -992,10 +824,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#retainAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
@@ -1007,10 +837,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#clear()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clear() {
@@ -1022,10 +850,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean equals(Object o) {
@@ -1037,10 +863,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {
@@ -1052,10 +876,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#get(int)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public E get(int index) {
@@ -1067,10 +889,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#set(int, java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public E set(int index, E element) {
@@ -1082,10 +902,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#add(int, java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void add(int index, E element) {
@@ -1097,10 +915,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#remove(int)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public E remove(int index) {
@@ -1112,10 +928,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#indexOf(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int indexOf(Object o) {
@@ -1127,10 +941,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#lastIndexOf(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int lastIndexOf(Object o) {
@@ -1142,10 +954,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#listIterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public ListIterator<E> listIterator() {
@@ -1157,10 +967,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#listIterator(int)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public ListIterator<E> listIterator(int index) {
@@ -1172,10 +980,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#subList(int, int)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public List<E> subList(int fromIndex, int toIndex) {
@@ -1187,10 +993,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#toString()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String toString() {
@@ -1245,22 +1049,16 @@ public final class ModelUtil {
 			this.delegate = delegate;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.threads.ExternalReadWriteThreadSafe#getLock(
-		 * )
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public ReadWriteLock getLock() {
 			return lock;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<SetObverser<E>> getObversers() {
@@ -1272,12 +1070,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
-		 * dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addObverser(SetObverser<E> obverser) {
@@ -1289,12 +1083,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
-		 * .dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeObverser(SetObverser<E> obverser) {
@@ -1306,10 +1096,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clearObverser() {
@@ -1321,10 +1109,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#size()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int size() {
@@ -1336,10 +1122,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#isEmpty()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isEmpty() {
@@ -1351,10 +1135,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#contains(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean contains(Object o) {
@@ -1366,10 +1148,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#iterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Iterator<E> iterator() {
@@ -1381,10 +1161,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#toArray()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Object[] toArray() {
@@ -1396,10 +1174,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#toArray(java.lang.Object[])
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public <T> T[] toArray(T[] a) {
@@ -1411,10 +1187,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#add(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean add(E e) {
@@ -1426,10 +1200,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#remove(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean remove(Object o) {
@@ -1441,10 +1213,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#containsAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
@@ -1456,10 +1226,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#addAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(Collection<? extends E> c) {
@@ -1471,10 +1239,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#retainAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
@@ -1486,10 +1252,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#removeAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
@@ -1501,10 +1265,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#clear()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clear() {
@@ -1516,10 +1278,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean equals(Object o) {
@@ -1531,10 +1291,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {
@@ -1572,194 +1330,152 @@ public final class ModelUtil {
 			this.delegate = delegate;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<SetObverser<E>> getObversers() {
 			return delegate.getObversers();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
-		 * dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addObverser(SetObverser<E> obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
-		 * .dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeObverser(SetObverser<E> obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clearObverser() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clearObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#size()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int size() {
 			return delegate.size();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#isEmpty()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isEmpty() {
 			return delegate.isEmpty();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#contains(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean contains(Object o) {
 			return delegate.contains(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#iterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Iterator<E> iterator() {
 			return CollectionUtil.unmodifiableIterator(delegate.iterator());
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#toArray()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Object[] toArray() {
 			return delegate.toArray();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#toArray(java.lang.Object[])
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public <T> T[] toArray(T[] a) {
 			return delegate.toArray(a);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#add(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean add(E e) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("add");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#remove(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean remove(Object o) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#containsAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
 			return delegate.containsAll(c);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#addAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(Collection<? extends E> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#retainAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("retainAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#removeAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#clear()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clear() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clear");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {
 			return delegate.hashCode();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean equals(Object obj) {
@@ -1770,10 +1486,8 @@ public final class ModelUtil {
 			return delegate.equals(obj);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#toString()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String toString() {
@@ -1811,94 +1525,72 @@ public final class ModelUtil {
 			this.generator = generator;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<SetObverser<E>> getObversers() {
 			return delegate.getObversers();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
-		 * dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addObverser(SetObverser<E> obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
-		 * .dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeObverser(SetObverser<E> obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clearObverser() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clearObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#size()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int size() {
 			return delegate.size();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#isEmpty()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isEmpty() {
 			return delegate.isEmpty();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#contains(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean contains(Object o) {
 			return delegate.contains(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#iterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Iterator<E> iterator() {
 			return CollectionUtil.readOnlyIterator(delegate.iterator(), generator);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#toArray()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Object[] toArray() {
@@ -1907,10 +1599,8 @@ public final class ModelUtil {
 			return ArrayUtil.readOnlyArray(eArray, generator);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#toArray(java.lang.Object[])
+		/**
+		 * {@inheritDoc}
 		 */
 		@SuppressWarnings("unchecked")
 		@Override
@@ -1919,90 +1609,72 @@ public final class ModelUtil {
 			return (T[]) ArrayUtil.readOnlyArray(((E[]) tArray), generator);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#add(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean add(E e) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("add");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#remove(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean remove(Object o) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#containsAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
 			return delegate.containsAll(c);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#addAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(Collection<? extends E> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#retainAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("retainAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#removeAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#clear()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clear() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clear");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {
 			return delegate.hashCode();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean equals(Object obj) {
@@ -2013,10 +1685,8 @@ public final class ModelUtil {
 			return delegate.equals(obj);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#toString()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String toString() {
@@ -2052,22 +1722,16 @@ public final class ModelUtil {
 			this.delegate = delegate;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.threads.ExternalReadWriteThreadSafe#getLock(
-		 * )
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public ReadWriteLock getLock() {
 			return lock;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<MapObverser<K, V>> getObversers() {
@@ -2079,12 +1743,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
-		 * dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addObverser(MapObverser<K, V> obverser) {
@@ -2096,12 +1756,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
-		 * .dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeObverser(MapObverser<K, V> obverser) {
@@ -2113,10 +1769,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clearObverser() {
@@ -2128,10 +1782,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#size()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int size() {
@@ -2143,10 +1795,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#isEmpty()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isEmpty() {
@@ -2158,10 +1808,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#containsKey(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsKey(Object key) {
@@ -2173,10 +1821,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#containsValue(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsValue(Object value) {
@@ -2188,10 +1834,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#get(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public V get(Object key) {
@@ -2203,10 +1847,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#put(java.lang.Object, java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public V put(K key, V value) {
@@ -2218,10 +1860,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#remove(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public V remove(Object key) {
@@ -2233,10 +1873,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#putAll(java.util.Map)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void putAll(Map<? extends K, ? extends V> m) {
@@ -2248,10 +1886,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#clear()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clear() {
@@ -2263,10 +1899,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#keySet()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<K> keySet() {
@@ -2278,10 +1912,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#values()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Collection<V> values() {
@@ -2293,10 +1925,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#entrySet()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<java.util.Map.Entry<K, V>> entrySet() {
@@ -2308,10 +1938,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean equals(Object o) {
@@ -2323,10 +1951,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {
@@ -2366,184 +1992,144 @@ public final class ModelUtil {
 			this.delegate = delegate;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#size()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int size() {
 			return delegate.size();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#isEmpty()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isEmpty() {
 			return delegate.isEmpty();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#containsKey(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsKey(Object key) {
 			return delegate.containsKey(key);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#containsValue(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsValue(Object value) {
 			return delegate.containsValue(value);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#get(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public V get(Object key) {
 			return delegate.get(key);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#put(java.lang.Object, java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public V put(K key, V value) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("put");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#remove(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public V remove(Object key) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#putAll(java.util.Map)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void putAll(Map<? extends K, ? extends V> m) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("putAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#clear()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clear() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clear");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#keySet()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<K> keySet() {
 			return Collections.unmodifiableSet(delegate.keySet());
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#values()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Collection<V> values() {
 			return Collections.unmodifiableCollection(delegate.values());
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#entrySet()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<Entry<K, V>> entrySet() {
 			return Collections.unmodifiableSet(delegate.entrySet());
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<MapObverser<K, V>> getObversers() {
 			return delegate.getObversers();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
-		 * dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addObverser(MapObverser<K, V> obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
-		 * .dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeObverser(MapObverser<K, V> obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clearObverser() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clearObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {
 			return delegate.hashCode();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean equals(Object obj) {
@@ -2554,10 +2140,8 @@ public final class ModelUtil {
 			return delegate.equals(obj);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#toString()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String toString() {
@@ -2601,164 +2185,128 @@ public final class ModelUtil {
 			this.valueGen = valueGen;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<MapObverser<K, V>> getObversers() {
 			return delegate.getObversers();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
-		 * dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addObverser(MapObverser<K, V> obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
-		 * .dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeObverser(MapObverser<K, V> obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clearObverser() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clearObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#size()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int size() {
 			return delegate.size();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#isEmpty()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isEmpty() {
 			return delegate.isEmpty();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#containsKey(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsKey(Object key) {
 			return delegate.containsKey(key);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#containsValue(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsValue(Object value) {
 			return delegate.containsValue(value);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#get(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public V get(Object key) {
 			return valueGen.readOnly(delegate.get(key));
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#put(java.lang.Object, java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public V put(K key, V value) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("put");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#remove(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public V remove(Object key) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#putAll(java.util.Map)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void putAll(Map<? extends K, ? extends V> m) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("putAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#clear()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clear() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clear");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#keySet()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<K> keySet() {
 			return CollectionUtil.readOnlySet(delegate.keySet(), keyGen);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#values()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Collection<V> values() {
 			return CollectionUtil.readOnlyCollection(delegate.values(), valueGen);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Map#entrySet()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<Entry<K, V>> entrySet() {
@@ -2767,20 +2315,16 @@ public final class ModelUtil {
 			});
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {
 			return delegate.hashCode();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean equals(Object obj) {
@@ -2791,10 +2335,8 @@ public final class ModelUtil {
 			return delegate.equals(obj);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#toString()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String toString() {
@@ -2830,22 +2372,16 @@ public final class ModelUtil {
 			this.delegate = delegate;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.threads.ExternalReadWriteThreadSafe#getLock(
-		 * )
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public ReadWriteLock getLock() {
 			return lock;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<ListObverser<V>> getObversers() {
@@ -2857,12 +2393,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
-		 * dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addObverser(ListObverser<V> obverser) {
@@ -2874,12 +2406,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
-		 * .dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeObverser(ListObverser<V> obverser) {
@@ -2891,10 +2419,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clearObverser() {
@@ -2906,11 +2432,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#get(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public V get(K key) {
@@ -2922,12 +2445,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#containsKey(java.lang
-		 * .Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsKey(Object key) {
@@ -2939,12 +2458,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#containsAllKey(java.
-		 * util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAllKey(Collection<?> c) {
@@ -2956,12 +2471,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#indexOfKey(java.lang.
-		 * Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int indexOfKey(Object o) {
@@ -2973,12 +2484,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#lastIndexOfKey(java.
-		 * lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int lastIndexOfKey(Object o) {
@@ -2990,12 +2497,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#removeKey(java.lang.
-		 * Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeKey(Object key) {
@@ -3007,12 +2510,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#removeAllKey(java.
-		 * util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAllKey(Collection<?> c) {
@@ -3024,12 +2523,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#retainAllKey(java.
-		 * util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAllKey(Collection<?> c) {
@@ -3041,10 +2536,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#subList(int, int)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public List<V> subList(int fromIndex, int toIndex) {
@@ -3056,10 +2549,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#size()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int size() {
@@ -3071,10 +2562,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#isEmpty()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isEmpty() {
@@ -3086,10 +2575,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#contains(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean contains(Object o) {
@@ -3101,10 +2588,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#iterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Iterator<V> iterator() {
@@ -3116,10 +2601,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#toArray()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Object[] toArray() {
@@ -3131,10 +2614,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#toArray(java.lang.Object[])
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public <T> T[] toArray(T[] a) {
@@ -3146,10 +2627,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#add(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean add(V e) {
@@ -3161,10 +2640,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#remove(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean remove(Object o) {
@@ -3176,10 +2653,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#containsAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
@@ -3191,10 +2666,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#addAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(Collection<? extends V> c) {
@@ -3206,10 +2679,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#addAll(int, java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(int index, Collection<? extends V> c) {
@@ -3221,10 +2692,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#removeAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
@@ -3236,10 +2705,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#retainAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
@@ -3251,10 +2718,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#clear()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clear() {
@@ -3266,10 +2731,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean equals(Object o) {
@@ -3281,10 +2744,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {
@@ -3296,10 +2757,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#get(int)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public V get(int index) {
@@ -3311,10 +2770,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#set(int, java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public V set(int index, V element) {
@@ -3326,10 +2783,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#add(int, java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void add(int index, V element) {
@@ -3341,10 +2796,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#remove(int)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public V remove(int index) {
@@ -3356,10 +2809,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#indexOf(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int indexOf(Object o) {
@@ -3371,10 +2822,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#lastIndexOf(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int lastIndexOf(Object o) {
@@ -3386,10 +2835,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#listIterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public ListIterator<V> listIterator() {
@@ -3401,10 +2848,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#listIterator(int)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public ListIterator<V> listIterator(int index) {
@@ -3445,389 +2890,296 @@ public final class ModelUtil {
 			this.delegate = delegate;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#size()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int size() {
 			return delegate.size();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#isEmpty()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isEmpty() {
 			return delegate.isEmpty();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#contains(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean contains(Object o) {
 			return delegate.contains(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#iterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Iterator<V> iterator() {
 			return CollectionUtil.unmodifiableIterator(delegate.iterator());
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#toArray()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Object[] toArray() {
 			return delegate.toArray();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#toArray(java.lang.Object[])
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public <T> T[] toArray(T[] a) {
 			return delegate.toArray(a);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#add(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean add(V e) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("add");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#remove(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean remove(Object o) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#containsAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
 			return containsAll(c);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#addAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(Collection<? extends V> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#addAll(int, java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(int index, Collection<? extends V> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#removeAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#retainAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("retainAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#clear()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clear() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clear");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#get(int)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public V get(int index) {
 			return delegate.get(index);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#set(int, java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public V set(int index, V element) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("set");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#add(int, java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void add(int index, V element) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("add");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#remove(int)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public V remove(int index) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#indexOf(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int indexOf(Object o) {
 			return delegate.indexOf(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#lastIndexOf(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int lastIndexOf(Object o) {
 			return delegate.lastIndexOf(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#listIterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public ListIterator<V> listIterator() {
 			return CollectionUtil.unmodifiableListIterator(delegate.listIterator());
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#listIterator(int)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public ListIterator<V> listIterator(int index) {
 			return CollectionUtil.unmodifiableListIterator(delegate.listIterator(index));
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#subList(int, int)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public List<V> subList(int fromIndex, int toIndex) {
 			return delegate.subList(fromIndex, toIndex);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<ListObverser<V>> getObversers() {
 			return delegate.getObversers();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
-		 * dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addObverser(ListObverser<V> obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
-		 * .dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeObverser(ListObverser<V> obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clearObverser() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clearObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#get(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public V get(K key) {
 			return delegate.get(key);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#containsKey(java.lang
-		 * .Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsKey(Object key) {
 			return delegate.containsKey(key);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#containsAllKey(java.
-		 * util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAllKey(Collection<?> c) {
 			return delegate.containsAllKey(c);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#indexOfKey(java.lang.
-		 * Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int indexOfKey(Object o) {
 			return delegate.indexOfKey(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#lastIndexOfKey(java.
-		 * lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int lastIndexOfKey(Object o) {
 			return delegate.lastIndexOfKey(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#removeKey(java.lang.
-		 * Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeKey(Object key) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeKey");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#removeAllKey(java.
-		 * util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAllKey(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeAllKey");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#retainAllKey(java.
-		 * util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAllKey(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("retainAllKey");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {
 			return delegate.hashCode();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean equals(Object obj) {
@@ -3838,10 +3190,8 @@ public final class ModelUtil {
 			return delegate.equals(obj);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#toString()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String toString() {
@@ -3880,50 +3230,40 @@ public final class ModelUtil {
 			this.generator = generator;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#size()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int size() {
 			return delegate.size();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#isEmpty()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isEmpty() {
 			return delegate.isEmpty();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#contains(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean contains(Object o) {
 			return delegate.contains(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#iterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Iterator<V> iterator() {
 			return CollectionUtil.readOnlyIterator(delegate.iterator(), generator);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#toArray()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Object[] toArray() {
@@ -3932,10 +3272,8 @@ public final class ModelUtil {
 			return ArrayUtil.readOnlyArray(eArray, generator);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#toArray(java.lang.Object[])
+		/**
+		 * {@inheritDoc}
 		 */
 		@SuppressWarnings("unchecked")
 		@Override
@@ -3944,329 +3282,248 @@ public final class ModelUtil {
 			return (T[]) ArrayUtil.readOnlyArray(((V[]) tArray), generator);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#add(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean add(V e) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("add");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#remove(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean remove(Object o) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#containsAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
 			return delegate.containsAll(c);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#addAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(Collection<? extends V> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#addAll(int, java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(int index, Collection<? extends V> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#removeAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#retainAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("retainAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#clear()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clear() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clear");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#get(int)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public V get(int index) {
 			return generator.readOnly(delegate.get(index));
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#set(int, java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public V set(int index, V element) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("set");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#add(int, java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void add(int index, V element) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("add");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#remove(int)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public V remove(int index) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#indexOf(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int indexOf(Object o) {
 			return delegate.indexOf(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#lastIndexOf(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int lastIndexOf(Object o) {
 			return delegate.lastIndexOf(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#listIterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public ListIterator<V> listIterator() {
 			return CollectionUtil.readOnlyListIterator(delegate.listIterator(), generator);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#listIterator(int)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public ListIterator<V> listIterator(int index) {
 			return CollectionUtil.readOnlyListIterator(delegate.listIterator(index), generator);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.List#subList(int, int)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public List<V> subList(int fromIndex, int toIndex) {
 			return CollectionUtil.readOnlyList(delegate.subList(fromIndex, toIndex), generator);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<ListObverser<V>> getObversers() {
 			return delegate.getObversers();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
-		 * dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addObverser(ListObverser<V> obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
-		 * .dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeObverser(ListObverser<V> obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clearObverser() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clearObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#get(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public V get(K key) {
 			return delegate.get(key);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#containsKey(java.lang
-		 * .Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsKey(Object key) {
 			return delegate.containsKey(key);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#containsAllKey(java.
-		 * util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAllKey(Collection<?> c) {
 			return delegate.containsAllKey(c);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#indexOfKey(java.lang.
-		 * Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int indexOfKey(Object o) {
 			return delegate.indexOfKey(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#lastIndexOfKey(java.
-		 * lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int lastIndexOfKey(Object o) {
 			return delegate.lastIndexOfKey(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#removeKey(java.lang.
-		 * Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeKey(Object key) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeKey");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#removeAllKey(java.
-		 * util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAllKey(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeAllKey");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeyListModel#retainAllKey(java.
-		 * util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAllKey(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("retainAllKey");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {
 			return delegate.hashCode();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean equals(Object obj) {
@@ -4277,10 +3534,8 @@ public final class ModelUtil {
 			return delegate.equals(obj);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#toString()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String toString() {
@@ -4316,22 +3571,16 @@ public final class ModelUtil {
 			this.delegate = delegate;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.threads.ExternalReadWriteThreadSafe#getLock(
-		 * )
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public ReadWriteLock getLock() {
 			return lock;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<SetObverser<V>> getObversers() {
@@ -4343,12 +3592,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
-		 * dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addObverser(SetObverser<V> obverser) {
@@ -4360,12 +3605,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
-		 * .dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeObverser(SetObverser<V> obverser) {
@@ -4377,10 +3618,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clearObverser() {
@@ -4392,11 +3631,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#get(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public V get(K key) {
@@ -4408,12 +3644,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsKey(java.lang.
-		 * Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsKey(Object key) {
@@ -4425,12 +3657,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsAllKey(java.
-		 * util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAllKey(Collection<?> c) {
@@ -4442,12 +3670,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeKey(java.lang.
-		 * Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeKey(Object key) {
@@ -4459,12 +3683,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeAllKey(java.util
-		 * .Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAllKey(Collection<?> c) {
@@ -4476,12 +3696,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#retainAllKey(java.util
-		 * .Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAllKey(Collection<?> c) {
@@ -4493,10 +3709,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#size()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int size() {
@@ -4508,10 +3722,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#isEmpty()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isEmpty() {
@@ -4523,10 +3735,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#contains(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean contains(Object o) {
@@ -4538,10 +3748,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#iterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Iterator<V> iterator() {
@@ -4553,10 +3761,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#toArray()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Object[] toArray() {
@@ -4568,10 +3774,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#toArray(java.lang.Object[])
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public <T> T[] toArray(T[] a) {
@@ -4583,10 +3787,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#add(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean add(V e) {
@@ -4598,10 +3800,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#remove(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean remove(Object o) {
@@ -4613,10 +3813,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#containsAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
@@ -4628,10 +3826,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#addAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(Collection<? extends V> c) {
@@ -4643,10 +3839,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#retainAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
@@ -4658,10 +3852,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#removeAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
@@ -4673,10 +3865,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#clear()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clear() {
@@ -4688,10 +3878,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 
@@ -4704,10 +3892,8 @@ public final class ModelUtil {
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {
@@ -4768,265 +3954,200 @@ public final class ModelUtil {
 			this.delegate = delegate;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<SetObverser<V>> getObversers() {
 			return delegate.getObversers();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
-		 * dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addObverser(SetObverser<V> obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
-		 * .dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeObverser(SetObverser<V> obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clearObverser() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clearObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#size()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int size() {
 			return delegate.size();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#isEmpty()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isEmpty() {
 			return delegate.isEmpty();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#contains(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean contains(Object o) {
 			return delegate.contains(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#iterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Iterator<V> iterator() {
 			return CollectionUtil.unmodifiableIterator(delegate.iterator());
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#toArray()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Object[] toArray() {
 			return delegate.toArray();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#toArray(java.lang.Object[])
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public <T> T[] toArray(T[] a) {
 			return delegate.toArray(a);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#add(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean add(V e) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("add");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#remove(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean remove(Object o) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#containsAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
 			return delegate.containsAll(c);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#addAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(Collection<? extends V> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#retainAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("retainAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#removeAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#clear()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clear() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clear");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#get(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public V get(K key) {
 			return delegate.get(key);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsKey(java.lang.
-		 * Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsKey(Object key) {
 			return delegate.containsKey(key);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsAllKey(java.
-		 * util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAllKey(Collection<?> c) {
 			return delegate.containsAllKey(c);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeKey(java.lang.
-		 * Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeKey(Object key) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeKey");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeAllKey(java.util
-		 * .Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAllKey(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeAllKey");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#retainAllKey(java.util
-		 * .Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAllKey(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("retainAllKey");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {
 			return delegate.hashCode();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean equals(Object obj) {
@@ -5037,10 +4158,8 @@ public final class ModelUtil {
 			return delegate.equals(obj);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#toString()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String toString() {
@@ -5081,50 +4200,40 @@ public final class ModelUtil {
 			this.generator = generator;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#size()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int size() {
 			return delegate.size();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#isEmpty()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isEmpty() {
 			return delegate.isEmpty();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#contains(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean contains(Object o) {
 			return delegate.contains(o);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#iterator()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Iterator<V> iterator() {
 			return CollectionUtil.readOnlyIterator(delegate.iterator(), generator);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#toArray()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Object[] toArray() {
@@ -5133,10 +4242,8 @@ public final class ModelUtil {
 			return ArrayUtil.readOnlyArray(eArray, generator);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#toArray(java.lang.Object[])
+		/**
+		 * {@inheritDoc}
 		 */
 		@SuppressWarnings("unchecked")
 		@Override
@@ -5145,205 +4252,152 @@ public final class ModelUtil {
 			return (T[]) ArrayUtil.readOnlyArray(((V[]) tArray), generator);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#add(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean add(V e) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("add");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#remove(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean remove(Object o) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("remove");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#containsAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
 			return delegate.containsAll(c);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#addAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addAll(Collection<? extends V> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#retainAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("retainAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#removeAll(java.util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeAll");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Set#clear()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clear() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clear");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#getObversers()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public Set<SetObverser<V>> getObversers() {
 			return delegate.getObversers();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#addObverser(com.dwarfeng.
-		 * dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean addObverser(SetObverser<V> obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("addObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.prog.ObverserSet#removeObverser(com.dwarfeng
-		 * .dutil.basic.prog.Obverser)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeObverser(SetObverser<V> obverser) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.dwarfeng.dutil.basic.prog.ObverserSet#clearObverser()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void clearObverser() {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("clearObverser");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#get(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public V get(K key) {
 			return generator.readOnly(delegate.get(key));
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsKey(java.lang.
-		 * Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsKey(Object key) {
 			return delegate.containsKey(key);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#containsAllKey(java.
-		 * util.Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean containsAllKey(Collection<?> c) {
 			return delegate.containsAllKey(c);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeKey(java.lang.
-		 * Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeKey(Object key) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeKey");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#removeAllKey(java.util
-		 * .Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean removeAllKey(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("removeAllKey");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * com.dwarfeng.dutil.basic.cna.model.KeySetModel#retainAllKey(java.util
-		 * .Collection)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean retainAllKey(Collection<?> c) {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("retainAllKey");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#hashCode()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public int hashCode() {
 			return delegate.hashCode();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#equals(java.lang.Object)
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean equals(Object obj) {
@@ -5354,10 +4408,8 @@ public final class ModelUtil {
 			return delegate.equals(obj);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#toString()
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String toString() {
