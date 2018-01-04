@@ -14,6 +14,8 @@ import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
  */
 public class IntegerConfigChecker implements ConfigChecker {
 
+	private static final String REGEX_TO_MATCH = "-*[0-9]+";
+
 	private final int minValue;
 	private final int maxValue;
 
@@ -48,7 +50,7 @@ public class IntegerConfigChecker implements ConfigChecker {
 	public boolean isValid(String value) {
 		if (Objects.isNull(value))
 			return false;
-		if (!value.matches("-*[0-9]+"))
+		if (!value.matches(REGEX_TO_MATCH))
 			return false;
 		try {
 			int i = Integer.parseInt(value);

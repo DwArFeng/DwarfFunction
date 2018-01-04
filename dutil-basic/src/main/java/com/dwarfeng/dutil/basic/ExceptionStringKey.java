@@ -630,6 +630,9 @@ public enum ExceptionStringKey implements Name {
 	/** LoggerHandler类第1号文本字段 */
 	LOGGERHANDLER_1(new DefaultName("LoggerHandler.1")),
 
+	/** IntegralValueParser类第0号文本字段 */
+	INTEGRALVALUEPARSER_0(new DefaultName("IntegralValueParser.0")),
+
 	;
 
 	private final Name name;

@@ -270,4 +270,15 @@ Beta_0.2.0__build_A (maven)
 		当入口参数 Object[] 中含有 null 元素的时候，该方法会导致意料之外的 NullPointerException。
 	修改了资源文件的结构。
 	完善了所有不可更改类的编辑方法中抛出UnsupportedOperationException的描述。
+	在 develop.cfg.checker 中添加了多个工具
+		develop.cfg.checker.LongConfigChecker
+		develop.cfg.checker.ShortConfigChecker
+		develop.cfg.checker.ByteConfigChecker
+		develop.cfg.checker.DoubleConfigChecker
+		develop.cfg.checker.FloatConfigChecker
+	在 develop.cfg.parser 中添加了多个工具
+		develop.cfg.parser.LongValueParser
+		develop.cfg.parser.ShortValueParser
+		develop.cfg.parser.ByteValueParser
+		develop.cfg.parser.FloatValueChecker
 	更新的README.md

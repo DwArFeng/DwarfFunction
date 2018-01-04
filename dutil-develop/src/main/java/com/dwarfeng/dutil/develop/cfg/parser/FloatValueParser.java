@@ -3,21 +3,21 @@ package com.dwarfeng.dutil.develop.cfg.parser;
 import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
 /**
- * 双精度浮点数解析器。
+ * 浮点数解析器。
  * <p>
- * 该解析器解析的是 <code>double</code> 对象。
+ * 该解析器解析的是 <code>float</code> 对象。
  * 
  * @author DwArFeng
- * @since 0.1.0-beta
+ * @since 0.2.0-beta
  */
-public class DoubleValueParser implements ValueParser {
+public class FloatValueParser implements ValueParser {
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public Object parseValue(String value) {
-		return Double.parseDouble(value);
+		return Float.parseFloat(value);
 	}
 
 	/**
@@ -25,7 +25,7 @@ public class DoubleValueParser implements ValueParser {
 	 */
 	@Override
 	public String parseObject(Object object) {
-		return Double.toString((double) object);
+		return Float.toString((float) object);
 	}
 
 }

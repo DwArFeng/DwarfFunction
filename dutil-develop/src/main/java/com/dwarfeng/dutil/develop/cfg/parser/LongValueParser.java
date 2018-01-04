@@ -3,24 +3,24 @@ package com.dwarfeng.dutil.develop.cfg.parser;
 import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
 /**
- * 整型数值解析器。
+ * 长整型数值解析器。
  * <p>
- * 该解析器解析的是 <code>int</code> 对象。
+ * 该解析器解析的是 <code>long</code> 对象。
  * 
  * @author DwArFeng
- * @since 0.1.0-beta
+ * @since 0.2.0-beta
  */
-public class IntegerValueParser extends IntegralValueParser implements ValueParser {
+public class LongValueParser extends IntegralValueParser implements ValueParser {
 
 	/**
-	 * 生成一个十进制的整型数值解析器。
+	 * 生成一个十进制的长整型数值解析器。
 	 */
-	public IntegerValueParser() {
+	public LongValueParser() {
 		this(10);
 	}
 
 	/**
-	 * 生成一个进制为指定值的整型数值解析器。
+	 * 生成一个进制为指定值的长整型数值解析器。
 	 * 
 	 * @param radix
 	 *            指定的进制。
@@ -28,7 +28,7 @@ public class IntegerValueParser extends IntegralValueParser implements ValuePars
 	 *             进制小于 {@link Character#MIN_RADIX} 或大于
 	 *             {@link Character#MAX_RADIX}。
 	 */
-	public IntegerValueParser(int radix) {
+	protected LongValueParser(int radix) {
 		super(radix);
 	}
 
@@ -37,7 +37,7 @@ public class IntegerValueParser extends IntegralValueParser implements ValuePars
 	 */
 	@Override
 	public Object parseValue(String value) {
-		return Integer.parseInt(value, radix);
+		return Long.parseLong(value, radix);
 	}
 
 	/**
@@ -45,7 +45,7 @@ public class IntegerValueParser extends IntegralValueParser implements ValuePars
 	 */
 	@Override
 	public String parseObject(Object object) {
-		return Integer.toString((int) object, radix);
+		return Long.toString((long) object, radix);
 	}
 
 }
