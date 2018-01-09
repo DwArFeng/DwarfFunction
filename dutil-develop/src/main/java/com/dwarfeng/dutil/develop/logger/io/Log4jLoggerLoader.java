@@ -20,8 +20,9 @@ import com.dwarfeng.dutil.develop.logger.LoggerHandler;
  * <p>
  * 通过读取符合 <code>log4j</code> 格式的配置文件向指定的记录处理器中读取记录器信息。
  * <p>
- * 配置文件的具体格式请参照 <a href="log4j配置教程">
- * http://logging.apache.org/log4j/2.x/manual/configuration.html </a>
+ * 配置文件的具体格式请参照
+ * <a href="http://logging.apache.org/log4j/2.x/manual/configuration.html">
+ * log4j配置手册 </a>
  * 
  * @author DwArFeng
  * @since 0.2.0-beta

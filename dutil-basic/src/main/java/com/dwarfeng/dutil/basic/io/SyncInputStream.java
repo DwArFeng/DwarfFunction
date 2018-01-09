@@ -3,9 +3,12 @@ package com.dwarfeng.dutil.basic.io;
 import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Objects;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import com.dwarfeng.dutil.basic.DwarfUtil;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.threads.ExternalThreadSafe;
 
 /**
@@ -31,6 +34,7 @@ public class SyncInputStream extends FilterInputStream implements ExternalThread
 	 */
 	public SyncInputStream(InputStream in) {
 		super(in);
+		Objects.requireNonNull(in, DwarfUtil.getExecptionString(ExceptionStringKey.SYNCINPUTSTREAM_0));
 	}
 
 	/**

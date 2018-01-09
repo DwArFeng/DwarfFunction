@@ -130,6 +130,8 @@ public interface Tree<E> extends Iterable<E> {
 		 * 
 		 * @param a
 		 *            指定的数组。
+		 * @param <T>
+		 *            数组中元素的类型。
 		 * @return 以数组的形式返回该路径中的所有的元素， 数组的类型是指定的数组的类型。
 		 */
 		public <T> T[] toArray(T[] a);
@@ -416,6 +418,8 @@ public interface Tree<E> extends Iterable<E> {
 	 * 
 	 * @param a
 	 *            指定的数组。
+	 * @param <T>
+	 *            数组中元素的类型。
 	 * @return 该树中的所有元素。
 	 */
 	public <T> T[] toArray(T[] a);

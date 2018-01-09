@@ -57,14 +57,23 @@ public enum ExceptionStringKey implements Name {
 
 	/** EventListenerWeakSet类第0号文本字段 */
 	EVENTLISTENERWEAKSET_0(new DefaultName("EventListenerWeakSet.0")),
+
 	/** MuaListModel类第0号文本字段 */
 	MUALISTMODEL_0(new DefaultName("MuaListModel.0")),
-	/** StringBuilderOutputStream类第0号文本字段 */
+
+	/** StringOutputStream类第0号文本字段 */
 	STRINGOUTPUTSTREAM_0(new DefaultName("StringOutputStream.0")),
-	/** StringBuilderInputStream类第0号文本字段 */
+
+	/** StringInputStream类第0号文本字段 */
 	STRINGINPUTSTREAM_0(new DefaultName("StringInputStream.0")),
-	/** StringBuilderInputStream类第0号文本字段 */
+	/** StringInputStream类第1号文本字段 */
 	STRINGINPUTSTREAM_1(new DefaultName("StringInputStream.1")),
+	/** StringInputStream类第2号文本字段 */
+	STRINGINPUTSTREAM_2(new DefaultName("StringInputStream.2")),
+	/** StringInputStream类第3号文本字段 */
+	STRINGINPUTSTREAM_3(new DefaultName("StringInputStream.3")),
+	/** StringInputStream类第4号文本字段 */
+	STRINGINPUTSTREAM_4(new DefaultName("StringInputStream.4")),
 
 	/** ArrayUtil类第0号文本字段 */
 	ARRAYUTIL_0(new DefaultName("ArrayUtil.0")),
@@ -633,6 +642,23 @@ public enum ExceptionStringKey implements Name {
 	/** IntegralValueParser类第0号文本字段 */
 	INTEGRALVALUEPARSER_0(new DefaultName("IntegralValueParser.0")),
 
+	/** LoggerUtil类第0号文本字段 */
+	LOGGERUTIL_0(new DefaultName("LoggerUtil.0")),
+	/** LoggerUtil类第1号文本字段 */
+	LOGGERUTIL_1(new DefaultName("LoggerUtil.1")),
+	/** LoggerUtil类第2号文本字段 */
+	LOGGERUTIL_2(new DefaultName("LoggerUtil.2")),
+	/** LoggerUtil类第3号文本字段 */
+	LOGGERUTIL_3(new DefaultName("LoggerUtil.3")),
+	/** LoggerUtil类第4号文本字段 */
+	LOGGERUTIL_4(new DefaultName("LoggerUtil.4")),
+
+	/** SyncInputStream类第0号文本字段 */
+	SYNCINPUTSTREAM_0(new DefaultName("SyncInputStream.0")),
+
+	/** SyncOutputStream类第0号文本字段 */
+	SYNCOUTPUTSTREAM_0(new DefaultName("SyncOutputStream.0")),
+	
 	;
 
 	private final Name name;
