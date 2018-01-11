@@ -15,7 +15,7 @@ import com.dwarfeng.dutil.basic.io.FileUtil;
 import com.dwarfeng.dutil.basic.io.IoUtil;
 
 /**
- * Url到文件的资源。
+ * URL到文件的资源。
  * <p>
  * 该资源的位置在本地，资源文件为磁盘中的 <code>File</code> 文件，而默认资源的地址则以 Url 的形式提供。
  * 
@@ -35,7 +35,7 @@ public class Url2FileResource extends AbstractResource {
 	 * @param key
 	 *            指定的键。
 	 * @param def
-	 *            默认资源的位置。
+	 *            默认资源的URL。
 	 * @param res
 	 *            资源指向的文件。
 	 * 

@@ -658,6 +658,17 @@ public enum ExceptionStringKey implements Name {
 
 	/** SyncOutputStream类第0号文本字段 */
 	SYNCOUTPUTSTREAM_0(new DefaultName("SyncOutputStream.0")),
+
+	/** XmlJar2RepoResourceLoader类第0号文本字段 */
+	XMLJAR2REPORESOURCELOADER_0(new DefaultName("XmlJar2RepoResourceLoader.0")),
+	/** XmlJar2RepoResourceLoader类第1号文本字段 */
+	XMLJAR2REPORESOURCELOADER_1(new DefaultName("XmlJar2RepoResourceLoader.1")),
+	/** XmlJar2RepoResourceLoader类第2号文本字段 */
+	XMLJAR2REPORESOURCELOADER_2(new DefaultName("XmlJar2RepoResourceLoader.2")),
+	/** XmlJar3RepoResourceLoader类第3号文本字段 */
+	XMLJAR3REPORESOURCELOADER_3(new DefaultName("XmlJar3RepoResourceLoader.3")),
+	/** XmlJar4RepoResourceLoader类第4号文本字段 */
+	XMLJAR4REPORESOURCELOADER_4(new DefaultName("XmlJar4RepoResourceLoader.4")),
 	
 	;
 

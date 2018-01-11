@@ -283,4 +283,6 @@ Beta_0.2.0__build_A (maven)
 		develop.cfg.parser.ShortValueParser
 		develop.cfg.parser.ByteValueParser
 		develop.cfg.parser.FloatValueChecker
+	新增 develop.resource.Url2RepoRresource 用以构建基于资源仓库的资源。
+		新增 dutil.develop.resource.io.XmlJar2RepoResourceLoader 通过XML配置读取资源列表。
 	更新的README.md
