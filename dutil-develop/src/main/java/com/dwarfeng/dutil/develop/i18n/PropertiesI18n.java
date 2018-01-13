@@ -44,8 +44,39 @@ public class PropertiesI18n implements I18n {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public String getStringOrDefault(String key, String defaultString) {
-		return properties.getProperty(key, defaultString);
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((properties == null) ? 0 : properties.hashCode());
+		return result;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof PropertiesI18n))
+			return false;
+		PropertiesI18n other = (PropertiesI18n) obj;
+		if (properties == null) {
+			if (other.properties != null)
+				return false;
+		} else if (!properties.equals(other.properties))
+			return false;
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String toString() {
+		return "PropertiesI18n [properties=" + properties + "]";
 	}
 
 }

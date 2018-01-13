@@ -2,9 +2,6 @@ package com.dwarfeng.dutil.develop.i18n;
 
 import java.util.Locale;
 
-import com.dwarfeng.dutil.develop.i18n.I18n;
-import com.dwarfeng.dutil.develop.i18n.I18nInfo;
-
 class TestI18nInfo implements I18nInfo {
 
 	public static final TestI18nInfo CHINESE = new TestI18nInfo(Locale.CHINA, "简体中文", new I18n() {

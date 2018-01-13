@@ -36,14 +36,6 @@ public class MapI18n implements I18n {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public String getStringOrDefault(String key, String defaultString) {
-		return map.getOrDefault(key, defaultString);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
 	public int hashCode() {
 		return map.hashCode() * 17;
 	}
@@ -61,6 +53,14 @@ public class MapI18n implements I18n {
 			return false;
 		MapI18n that = (MapI18n) obj;
 		return this.map.equals(that.map);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String toString() {
+		return "MapI18n [map=" + map + "]";
 	}
 
 }

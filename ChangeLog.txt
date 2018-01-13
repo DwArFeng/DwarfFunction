@@ -285,4 +285,9 @@ Beta_0.2.0__build_A (maven)
 		develop.cfg.parser.FloatValueChecker
 	新增 develop.resource.Url2RepoRresource 用以构建基于资源仓库的资源。
 		新增 dutil.develop.resource.io.XmlJar2RepoResourceLoader 通过XML配置读取资源列表。
+	新增 develop.i18n.I18nHandler 功能，用于快速获取当前国际化接口中的文本字段
+		I18nHandler.getString(String)
+		I18nHandler.getString(Name)
+		I18nHandler.getStringOrDefault(String, String)
+		I18nHandler.getStringOrDefault(Name, String)
 	更新的README.md

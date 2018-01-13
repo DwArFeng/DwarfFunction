@@ -1,8 +1,10 @@
 package com.dwarfeng.dutil.develop.i18n;
 
 import java.util.Locale;
+import java.util.Objects;
 
 import com.dwarfeng.dutil.basic.cna.model.KeySetModel;
+import com.dwarfeng.dutil.basic.str.Name;
 import com.dwarfeng.dutil.develop.i18n.obv.I18nObverser;
 
 /**
@@ -61,5 +63,89 @@ public interface I18nHandler extends KeySetModel<Locale, I18nInfo> {
 	 * @return 该处理器正在使用的国际化接口。
 	 */
 	public I18n getCurrentI18n();
+
+	/**
+	 * 获取该国际化处理器正在使用的国际化接口中的指定键对应的国际化文本字段。
+	 * 
+	 * <p>
+	 * 如果该国际化处理器没有正在使用的国际化接口，则返回 <code>null</code>，否则返回
+	 * <code>getCurrentI18n().getString(key);</code>
+	 * 
+	 * @param key
+	 *            指定的键。
+	 * @return 该国际化处理器正在使用的国际化接口中的指定键对应的国际化文本字段。
+	 */
+	public default String getString(String key) {
+		I18n currentI18n;
+		if (Objects.isNull((currentI18n = getCurrentI18n()))) {
+			return null;
+		}
+		return currentI18n.getString(key);
+	}
+
+	/**
+	 * 获取该国际化处理器正在使用的国际化接口中的指定键对应的国际化文本字段。
+	 * 
+	 * <p>
+	 * 如果指定的名称接口为 <code>null</code>， 则返回 <code>null</code>
+	 * <p>
+	 * 如果该国际化处理器没有正在使用的国际化接口，则返回 <code>null</code>，否则返回
+	 * <code>getCurrentI18n().getString(name.getName());</code>
+	 * 
+	 * @param name
+	 *            指定的名称接口。
+	 * @return 该国际化处理器正在使用的国际化接口中的指定键对应的国际化文本字段。
+	 */
+	public default String getString(Name name) {
+		I18n currentI18n;
+		if (Objects.isNull((currentI18n = getCurrentI18n()))) {
+			return null;
+		}
+		return currentI18n.getString(name.getName());
+	}
+
+	/**
+	 * 获取该国际化处理器正在使用的国际化接口中的指定键对应的国际化文本字段。
+	 * 
+	 * <p>
+	 * 如果该国际化处理器没有正在使用的国际化接口，则返回 <code>defaultString</code>，否则返回
+	 * <code>getCurrentI18n().getStringOrDefault(key, defaultString);</code>
+	 * 
+	 * @param key
+	 *            指定的键。
+	 * @param defaultString
+	 *            默认值。
+	 * @return 该国际化处理器正在使用的国际化接口中的指定键对应的国际化文本字段。
+	 */
+	public default String getStringOrDefault(String key, String defaultString) {
+		I18n currentI18n;
+		if (Objects.isNull((currentI18n = getCurrentI18n()))) {
+			return defaultString;
+		}
+		return currentI18n.getStringOrDefault(key, defaultString);
+	}
+
+	/**
+	 * 获取该国际化处理器正在使用的国际化接口中的指定键对应的国际化文本字段。
+	 * 
+	 * <p>
+	 * 如果指定的名称接口为 <code>null</code>， 则返回 <code>defaultString</code>
+	 * <p>
+	 * 如果该国际化处理器没有正在使用的国际化接口，则返回 <code>defaultString</code>，否则返回
+	 * <code>getCurrentI18n().getStringOrDefault(name.getName(), defaultString);</code>
+	 * 
+	 * @param key
+	 *            指定的键。
+	 * @param defaultString
+	 *            默认值。
+	 * @return 该国际化处理器正在使用的国际化接口中的指定键对应的国际化文本字段。
+	 */
+	public default String getStringOrDefault(Name name, String defaultString) {
+		I18n currentI18n;
+		if (Objects.isNull((currentI18n = getCurrentI18n()))) {
+			return defaultString;
+		}
+		return currentI18n.getStringOrDefault(name.getName(), defaultString);
+	}
 
 }

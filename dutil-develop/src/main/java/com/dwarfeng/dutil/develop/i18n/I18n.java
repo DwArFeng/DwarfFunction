@@ -1,5 +1,7 @@
 package com.dwarfeng.dutil.develop.i18n;
 
+import java.util.Objects;
+
 /**
  * 国际化接口。
  * 
@@ -28,10 +30,18 @@ public interface I18n {
 	 * <p>
 	 * 如果该国际化接口含有指定的键的话，则返回指定的键对应的文本；否则，返回默认的文本。
 	 * 
-	 * @param key 指定的键。
-	 * @param defaultString 指定的默认文本。
+	 * @param key
+	 *            指定的键。
+	 * @param defaultString
+	 *            指定的默认文本。
 	 * @return 指定的键对应的文本，或者是默认文本。
 	 */
-	public String getStringOrDefault(String key, String defaultString);
+	public default String getStringOrDefault(String key, String defaultString) {
+		String string;
+		if (Objects.isNull((string = getString(key)))) {
+			string = defaultString;
+		}
+		return string;
+	}
 
 }
