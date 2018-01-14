@@ -292,6 +292,8 @@ Beta_0.2.0__build_A (maven)
 		I18nHandler.getStringOrDefault(Name, String)
 	修改 develop.i18n.io.XmlPropResourceI18nLoader
 		新增了对默认语言读取的支持。
+	修改 develop.i18n.io.XmlPropFileI18nLoader
+		新增了对默认语言读取的支持。
 	修改 develop.i18n.AbstractI18nInfo
 		现在支持值为 null 的键了。
 	更新的README.md

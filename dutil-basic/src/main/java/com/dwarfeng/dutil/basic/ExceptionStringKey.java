@@ -545,6 +545,15 @@ public enum ExceptionStringKey implements Name {
 	XMLPROPFILEI18NLOADER_2(new DefaultName("XmlPropFileI18nLoader.2")),
 	/** XmlPropFileI18nLoader类第3号文本字段 */
 	XMLPROPFILEI18NLOADER_3(new DefaultName("XmlPropFileI18nLoader.3")),
+	
+	/** XmlPropResourceI18nLoader类第0号文本字段 */
+	XMLPROPRESOURCEI18NLOADER_0(new DefaultName("XmlPropResourceI18nLoader.0")),
+	/** XmlPropResourceI18nLoader类第1号文本字段 */
+	XMLPROPRESOURCEI18NLOADER_1(new DefaultName("XmlPropResourceI18nLoader.1")),
+	/** XmlPropResourceI18nLoader类第2号文本字段 */
+	XMLPROPRESOURCEI18NLOADER_2(new DefaultName("XmlPropResourceI18nLoader.2")),
+	/** XmlPropResourceI18nLoader类第3号文本字段 */
+	XMLPROPRESOURCEI18NLOADER_3(new DefaultName("XmlPropResourceI18nLoader.3")),
 
 	/** ThreadSafeUtil类第0号文本字段 */
 	THREADSAFEUTIL_0(new DefaultName("ThreadSafeUtil.0")),

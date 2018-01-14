@@ -30,6 +30,7 @@ import com.dwarfeng.dutil.develop.i18n.PropUrlI18nInfo;
  * <pre>
  * &lt;root&gt;
  * 	 &lt;info-default name="默认" resource="directory/zh_CN.properties"/&gt;
+ * 	 &lt;info locale="en_US" name="English" file="directory/en_US.properties"/&gt;
  *	 &lt;info locale="en_US" name="English" resource="directory/en_US.properties"/&gt;
  *	 &lt;info locale="zh_CN" name="简体中文" resource="directory/zh_CN.properties"/&gt;
  *	 &lt;info locale="ja_JP" name="日本語" resource="directory/ja_JP.properties"/&gt;
@@ -61,9 +62,11 @@ public class XmlPropResourceI18nLoader extends StreamLoader<I18nHandler> {
 	@Override
 	public void load(I18nHandler i18nHandler) throws LoadFailedException, IllegalStateException {
 		if (readFlag)
-			throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_0));
+			throw new IllegalStateException(
+					DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_0));
 
-		Objects.requireNonNull(i18nHandler, DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_1));
+		Objects.requireNonNull(i18nHandler,
+				DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_1));
 
 		try {
 			readFlag = true;
@@ -71,17 +74,20 @@ public class XmlPropResourceI18nLoader extends StreamLoader<I18nHandler> {
 			SAXReader reader = new SAXReader();
 			Element root = reader.read(in).getRootElement();
 
-			Element info_default = root.element("info-default");
-			String defaultNameString = info_default.attributeValue("name");
-			String defaultResourceString = info_default.attributeValue("resource");
+			Element info_default;
+			if (Objects.nonNull(info_default = root.element("info-default"))) {
+				String defaultNameString = info_default.attributeValue("name");
+				String defaultResourceString = info_default.attributeValue("resource");
 
-			if (Objects.isNull(defaultNameString) || Objects.isNull(defaultResourceString)) {
-				throw new LoadFailedException(DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_3));
+				if (Objects.isNull(defaultNameString) || Objects.isNull(defaultResourceString)) {
+					throw new LoadFailedException(
+							DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_3));
+				}
+
+				URL defaultUrl = XmlPropResourceI18nLoader.class.getResource(defaultResourceString);
+
+				i18nHandler.add(new PropUrlI18nInfo(null, defaultNameString, defaultUrl));
 			}
-
-			URL defaultRrl = XmlPropResourceI18nLoader.class.getResource(defaultResourceString);
-
-			i18nHandler.add(new PropUrlI18nInfo(null, defaultNameString, defaultRrl));
 
 			/*
 			 * 根据 dom4j 的相关说明，此处转换是安全的。
@@ -96,7 +102,7 @@ public class XmlPropResourceI18nLoader extends StreamLoader<I18nHandler> {
 
 				if (Objects.isNull(localeString) || Objects.isNull(nameString) || Objects.isNull(resourceString)) {
 					throw new LoadFailedException(
-							DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_3));
+							DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_3));
 				}
 
 				URL url = XmlPropResourceI18nLoader.class.getResource(resourceString);
@@ -106,7 +112,7 @@ public class XmlPropResourceI18nLoader extends StreamLoader<I18nHandler> {
 			}
 
 		} catch (Exception e) {
-			throw new LoadFailedException(DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_2));
+			throw new LoadFailedException(DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_2));
 		}
 	}
 
@@ -115,11 +121,12 @@ public class XmlPropResourceI18nLoader extends StreamLoader<I18nHandler> {
 	 */
 	@Override
 	public Set<LoadFailedException> countinuousLoad(I18nHandler i18nHandler) throws IllegalStateException {
-
 		if (readFlag)
-			throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_0));
+			throw new IllegalStateException(
+					DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_0));
 
-		Objects.requireNonNull(i18nHandler, DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_1));
+		Objects.requireNonNull(i18nHandler,
+				DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_1));
 
 		final Set<LoadFailedException> exceptions = new LinkedHashSet<>();
 		try {
@@ -129,21 +136,23 @@ public class XmlPropResourceI18nLoader extends StreamLoader<I18nHandler> {
 			Element root = reader.read(in).getRootElement();
 
 			try {
-				Element info_default = root.element("info-default");
-				String defaultNameString = info_default.attributeValue("name");
-				String defaultResourceString = info_default.attributeValue("resource");
+				Element info_default;
+				if (Objects.nonNull(info_default = root.element("info-default"))) {
+					String defaultNameString = info_default.attributeValue("name");
+					String defaultResourceString = info_default.attributeValue("resource");
 
-				if (Objects.isNull(defaultNameString) || Objects.isNull(defaultResourceString)) {
-					throw new LoadFailedException(
-							DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_3));
+					if (Objects.isNull(defaultNameString) || Objects.isNull(defaultResourceString)) {
+						throw new LoadFailedException(
+								DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_3));
+					}
+
+					URL defaultRrl = XmlPropResourceI18nLoader.class.getResource(defaultResourceString);
+
+					i18nHandler.add(new PropUrlI18nInfo(null, defaultNameString, defaultRrl));
 				}
-
-				URL defaultRrl = XmlPropResourceI18nLoader.class.getResource(defaultResourceString);
-
-				i18nHandler.add(new PropUrlI18nInfo(null, defaultNameString, defaultRrl));
-			} catch (LoadFailedException e) {
+			} catch (Exception e) {
 				exceptions.add(new LoadFailedException(
-						DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_2), e));
+						DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_2), e));
 			}
 
 			/*
@@ -160,7 +169,7 @@ public class XmlPropResourceI18nLoader extends StreamLoader<I18nHandler> {
 
 					if (Objects.isNull(localeString) || Objects.isNull(nameString) || Objects.isNull(resourceString)) {
 						throw new LoadFailedException(
-								DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_3));
+								DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_3));
 					}
 
 					URL url = XmlPropResourceI18nLoader.class.getResource(resourceString);
@@ -169,14 +178,14 @@ public class XmlPropResourceI18nLoader extends StreamLoader<I18nHandler> {
 					i18nHandler.add(new PropUrlI18nInfo(locale, nameString, url));
 				} catch (Exception e) {
 					exceptions.add(new LoadFailedException(
-							DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_2), e));
+							DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_2), e));
 				}
 
 			}
 
 		} catch (Exception e) {
 			exceptions.add(new LoadFailedException(
-					DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_2), e));
+					DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_2), e));
 		}
 
 		return exceptions;

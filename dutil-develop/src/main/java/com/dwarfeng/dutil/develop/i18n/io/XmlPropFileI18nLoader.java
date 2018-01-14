@@ -71,6 +71,21 @@ public class XmlPropFileI18nLoader extends StreamLoader<I18nHandler> {
 			SAXReader reader = new SAXReader();
 			Element root = reader.read(in).getRootElement();
 
+			Element info_default;
+			if (Objects.nonNull(info_default = root.element("info-default"))) {
+				String defaultNameString = info_default.attributeValue("name");
+				String defaultFileString = info_default.attributeValue("resource");
+
+				if (Objects.isNull(defaultNameString) || Objects.isNull(defaultFileString)) {
+					throw new LoadFailedException(
+							DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_3));
+				}
+
+				URL defaultUrl = new File(defaultFileString).toURI().toURL();
+
+				i18nHandler.add(new PropUrlI18nInfo(null, defaultNameString, defaultUrl));
+			}
+
 			/*
 			 * 根据 dom4j 的相关说明，此处转换是安全的。
 			 */
@@ -115,6 +130,26 @@ public class XmlPropFileI18nLoader extends StreamLoader<I18nHandler> {
 
 			SAXReader reader = new SAXReader();
 			Element root = reader.read(in).getRootElement();
+
+			try {
+				Element info_default;
+				if (Objects.nonNull(info_default = root.element("info-default"))) {
+					String defaultNameString = info_default.attributeValue("name");
+					String defaultFileString = info_default.attributeValue("resource");
+
+					if (Objects.isNull(defaultNameString) || Objects.isNull(defaultFileString)) {
+						throw new LoadFailedException(
+								DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_3));
+					}
+
+					URL defaultUrl = new File(defaultFileString).toURI().toURL();
+
+					i18nHandler.add(new PropUrlI18nInfo(null, defaultNameString, defaultUrl));
+				}
+			} catch (Exception e) {
+				exceptions.add(new LoadFailedException(
+						DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_2), e));
+			}
 
 			/*
 			 * 根据 dom4j 的相关说明，此处转换是安全的。
