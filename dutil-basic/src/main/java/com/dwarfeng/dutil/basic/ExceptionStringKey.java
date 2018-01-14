@@ -518,8 +518,6 @@ public enum ExceptionStringKey implements Name {
 	/** XmlJar4FileResourceLoader类第4号文本字段 */
 	XMLJAR2FILERESOURCELOADER_4(new DefaultName("XmlJar2FileResourceLoader.4")),
 
-	/** AbstractI18nInfo类第0号文本字段 */
-	ABSTRACTI18NINFO_0(new DefaultName("AbstractI18nInfo.0")),
 	/** AbstractI18nInfo类第1号文本字段 */
 	ABSTRACTI18NINFO_1(new DefaultName("AbstractI18nInfo.1")),
 
@@ -666,9 +664,9 @@ public enum ExceptionStringKey implements Name {
 	/** XmlJar2RepoResourceLoader类第2号文本字段 */
 	XMLJAR2REPORESOURCELOADER_2(new DefaultName("XmlJar2RepoResourceLoader.2")),
 	/** XmlJar3RepoResourceLoader类第3号文本字段 */
-	XMLJAR3REPORESOURCELOADER_3(new DefaultName("XmlJar3RepoResourceLoader.3")),
+	XMLJAR2REPORESOURCELOADER_3(new DefaultName("XmlJar2RepoResourceLoader.3")),
 	/** XmlJar4RepoResourceLoader类第4号文本字段 */
-	XMLJAR4REPORESOURCELOADER_4(new DefaultName("XmlJar4RepoResourceLoader.4")),
+	XMLJAR2REPORESOURCELOADER_4(new DefaultName("XmlJar2RepoResourceLoader.4")),
 	
 	;
 

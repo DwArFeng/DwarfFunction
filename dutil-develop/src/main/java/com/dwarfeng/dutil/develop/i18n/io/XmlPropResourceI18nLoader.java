@@ -29,6 +29,7 @@ import com.dwarfeng.dutil.develop.i18n.PropUrlI18nInfo;
  * 
  * <pre>
  * &lt;root&gt;
+ * 	 &lt;info-default name="默认" resource="directory/zh_CN.properties"/&gt;
  *	 &lt;info locale="en_US" name="English" resource="directory/en_US.properties"/&gt;
  *	 &lt;info locale="zh_CN" name="简体中文" resource="directory/zh_CN.properties"/&gt;
  *	 &lt;info locale="ja_JP" name="日本語" resource="directory/ja_JP.properties"/&gt;
@@ -69,6 +70,18 @@ public class XmlPropResourceI18nLoader extends StreamLoader<I18nHandler> {
 
 			SAXReader reader = new SAXReader();
 			Element root = reader.read(in).getRootElement();
+
+			Element info_default = root.element("info-default");
+			String defaultNameString = info_default.attributeValue("name");
+			String defaultResourceString = info_default.attributeValue("resource");
+
+			if (Objects.isNull(defaultNameString) || Objects.isNull(defaultResourceString)) {
+				throw new LoadFailedException(DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_3));
+			}
+
+			URL defaultRrl = XmlPropResourceI18nLoader.class.getResource(defaultResourceString);
+
+			i18nHandler.add(new PropUrlI18nInfo(null, defaultNameString, defaultRrl));
 
 			/*
 			 * 根据 dom4j 的相关说明，此处转换是安全的。
@@ -114,6 +127,24 @@ public class XmlPropResourceI18nLoader extends StreamLoader<I18nHandler> {
 
 			SAXReader reader = new SAXReader();
 			Element root = reader.read(in).getRootElement();
+
+			try {
+				Element info_default = root.element("info-default");
+				String defaultNameString = info_default.attributeValue("name");
+				String defaultResourceString = info_default.attributeValue("resource");
+
+				if (Objects.isNull(defaultNameString) || Objects.isNull(defaultResourceString)) {
+					throw new LoadFailedException(
+							DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_3));
+				}
+
+				URL defaultRrl = XmlPropResourceI18nLoader.class.getResource(defaultResourceString);
+
+				i18nHandler.add(new PropUrlI18nInfo(null, defaultNameString, defaultRrl));
+			} catch (LoadFailedException e) {
+				exceptions.add(new LoadFailedException(
+						DwarfUtil.getExecptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_2), e));
+			}
 
 			/*
 			 * 根据 dom4j 的相关说明，此处转换是安全的。

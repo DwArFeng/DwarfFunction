@@ -29,10 +29,9 @@ public abstract class AbstractI18nInfo implements I18nInfo {
 	 * @param name
 	 *            指定的名称。
 	 * @throws NullPointerException
-	 *             入口参数为 <code>null</code>。
+	 *             入口参数 <code>name</code> 为 <code>null</code>。
 	 */
 	public AbstractI18nInfo(Locale key, String name) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTI18NINFO_0));
 		Objects.requireNonNull(name, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTI18NINFO_1));
 
 		this.key = key;

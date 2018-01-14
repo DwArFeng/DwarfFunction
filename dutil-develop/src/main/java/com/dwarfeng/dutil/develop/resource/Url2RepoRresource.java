@@ -172,6 +172,6 @@ public class Url2RepoRresource extends AbstractResource {
 	 */
 	private File getResourceFile() {
 		return new File(repoDir,
-				new StringBuilder().append(classify).append(File.pathSeparator).append(fileName).toString());
+				new StringBuilder().append(classify).append(File.separator).append(fileName).toString());
 	}
 }

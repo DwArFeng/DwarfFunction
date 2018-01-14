@@ -117,14 +117,14 @@ public class XmlJar2RepoResourceLoader extends StreamLoader<ResourceHandler> {
 
 				if (Objects.isNull(def)) {
 					throw new LoadFailedException(
-							DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR3REPORESOURCELOADER_3));
+							DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_3));
 				}
 
 				resourceHandler.add(new Url2RepoRresource(key, def, repoDir0, classify, fileName));
 			}
 
 		} catch (Exception e) {
-			throw new LoadFailedException(DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR4REPORESOURCELOADER_4),
+			throw new LoadFailedException(DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_4),
 					e);
 		}
 
@@ -180,20 +180,20 @@ public class XmlJar2RepoResourceLoader extends StreamLoader<ResourceHandler> {
 
 					if (Objects.isNull(def)) {
 						throw new LoadFailedException(
-								DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR3REPORESOURCELOADER_3));
+								DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_3));
 					}
 
 					resourceHandler.add(new Url2RepoRresource(key, def, repoDir0, classify, fileName));
 				} catch (Exception e) {
 					exceptions.add(new LoadFailedException(
-							DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR4REPORESOURCELOADER_4), e));
+							DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_4), e));
 				}
 
 			}
 
 		} catch (Exception e) {
 			exceptions.add(new LoadFailedException(
-					DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR4REPORESOURCELOADER_4), e));
+					DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_4), e));
 		}
 
 		return exceptions;
