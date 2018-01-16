@@ -96,6 +96,14 @@ public class Url2FileResource extends AbstractResource {
 	 * {@inheritDoc}
 	 */
 	@Override
+	public boolean isValid() {
+		return res.exists();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public int hashCode() {
 		return key.hashCode() * 177 + def.hashCode() + res.hashCode();
 	}

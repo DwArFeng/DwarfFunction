@@ -700,6 +700,14 @@ public final class ResourceUtil {
 		 * {@inheritDoc}
 		 */
 		@Override
+		public boolean isValid() {
+			return delegate.isValid();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
 		public int hashCode() {
 			return delegate.hashCode();
 		}
@@ -759,6 +767,7 @@ public final class ResourceUtil {
 	}
 
 	private final static class ReadOnlyResourceHandler implements ResourceHandler {
+
 		private final ResourceHandler delegate;
 		private final ReadOnlyGenerator<Resource> generator;
 

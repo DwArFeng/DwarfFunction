@@ -42,7 +42,11 @@ import com.dwarfeng.dutil.develop.resource.Url2RepoRresource;
  */
 public class XmlJar2RepoResourceLoader extends StreamLoader<ResourceHandler> {
 
+	/** 仓库的根目录。 */
 	protected final File repoDir;
+
+	/** 是否自动复位。 */
+	protected final boolean autoReset;
 
 	private boolean readFlag = false;
 
@@ -51,9 +55,25 @@ public class XmlJar2RepoResourceLoader extends StreamLoader<ResourceHandler> {
 	 * 
 	 * @param in
 	 *            指定的输入流。
+	 * @throws NullPointerException
+	 *             入口参数 <code>in</code> 为 <code>null</code>。
 	 */
 	public XmlJar2RepoResourceLoader(InputStream in) {
-		this(in, null);
+		this(in, null, false);
+	}
+
+	/**
+	 * 生成一个 XML jar包资源仓库读取器。
+	 * 
+	 * @param in
+	 *            指定的输入流。
+	 * @param autoReset
+	 *            是否自动复位。
+	 * @throws NullPointerException
+	 *             入口参数 <code>in</code> 为 <code>null</code>。
+	 */
+	public XmlJar2RepoResourceLoader(InputStream in, boolean autoReset) {
+		this(in, null, autoReset);
 	}
 
 	/**
@@ -63,10 +83,29 @@ public class XmlJar2RepoResourceLoader extends StreamLoader<ResourceHandler> {
 	 *            指定的输入流。
 	 * @param repoDir
 	 *            指定的资源仓库根目录，如果为 <code>null</code>，则使用 XML 中的根目录。
+	 * @throws NullPointerException
+	 *             入口参数 <code>in</code> 为 <code>null</code>。
 	 */
 	public XmlJar2RepoResourceLoader(InputStream in, File repoDir) {
+		this(in, repoDir, false);
+	}
+
+	/**
+	 * 生成一个 XML jar包资源仓库读取器，由指定的资源仓库根目录替代 XML 文件中的根目录。
+	 * 
+	 * @param in
+	 *            指定的输入流。
+	 * @param repoDir
+	 *            指定的资源仓库根目录，如果为 <code>null</code>，则使用 XML 中的根目录。
+	 * @param autoReset
+	 *            是否自动复位。
+	 * @throws NullPointerException
+	 *             入口参数 <code>in</code> 为 <code>null</code>。
+	 */
+	public XmlJar2RepoResourceLoader(InputStream in, File repoDir, boolean autoReset) {
 		super(in);
 		this.repoDir = repoDir;
+		this.autoReset = autoReset;
 	}
 
 	/**
@@ -120,7 +159,12 @@ public class XmlJar2RepoResourceLoader extends StreamLoader<ResourceHandler> {
 							DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_3));
 				}
 
-				resourceHandler.add(new Url2RepoRresource(key, def, repoDir0, classify, fileName));
+				Url2RepoRresource resource = new Url2RepoRresource(key, def, repoDir0, classify, fileName);
+				resourceHandler.add(resource);
+
+				if (autoReset && !resource.isValid()) {
+					resource.reset();
+				}
 			}
 
 		} catch (Exception e) {
@@ -183,7 +227,12 @@ public class XmlJar2RepoResourceLoader extends StreamLoader<ResourceHandler> {
 								DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_3));
 					}
 
-					resourceHandler.add(new Url2RepoRresource(key, def, repoDir0, classify, fileName));
+					Url2RepoRresource resource = new Url2RepoRresource(key, def, repoDir0, classify, fileName);
+					resourceHandler.add(resource);
+
+					if (autoReset && !resource.isValid()) {
+						resource.reset();
+					}
 				} catch (Exception e) {
 					exceptions.add(new LoadFailedException(
 							DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_4), e));
