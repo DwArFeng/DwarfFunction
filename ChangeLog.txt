@@ -267,7 +267,6 @@ Beta_0.2.0__build_A (maven)
 		basic.io.SyncOutputStream 同步输出流。
 	更新 basic.io.StringInputStream 使其实现 mark 和 reset 方法。
 	更新 basic.io.OutputStream 使其实现 autoFlush 功能。
-	新增 develop.logger 包，提供可自由配置的日志记录模块。
 	修复了 basic.cna.ArrayUtil.contains(Object[], Object) 方法的BUG。
 		当入口参数 Object[] 中含有 null 元素的时候，该方法会导致意料之外的 NullPointerException。
 	修改了资源文件的结构。
