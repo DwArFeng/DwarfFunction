@@ -39,4 +39,12 @@ public abstract class AbstractResource implements Resource {
 		return key;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean isValid() {
+		return true;
+	}
+
 }

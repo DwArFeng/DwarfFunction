@@ -295,4 +295,7 @@ Beta_0.2.0__build_A (maven)
 		新增了对默认语言读取的支持。
 	修改 develop.i18n.AbstractI18nInfo
 		现在支持值为 null 的键了。
+	改进 develop.resource 包。
+		为 develop.resource.Resource 增加了自动复位的机制。
+		develop.resource.io 包中的读取器增加了自动复位的选项。ö
 	更新的README.md

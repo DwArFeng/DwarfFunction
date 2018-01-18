@@ -111,6 +111,14 @@ public class Url2RepoRresource extends AbstractResource {
 	 * {@inheritDoc}
 	 */
 	@Override
+	public boolean isValid() {
+		return getResourceFile().exists();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;

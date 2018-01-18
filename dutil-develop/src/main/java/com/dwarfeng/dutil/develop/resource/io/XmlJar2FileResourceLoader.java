@@ -40,10 +40,36 @@ import com.dwarfeng.dutil.develop.resource.Url2FileResource;
  */
 public class XmlJar2FileResourceLoader extends StreamLoader<ResourceHandler> {
 
+	/** 是否自动复位。 */
+	protected final boolean autoReset;
+
 	private boolean readFlag = false;
 
+	/**
+	 * 生成一个 XML jar包资源文件读取器。
+	 * 
+	 * @param in
+	 *            指定的输入流。
+	 * @throws NullPointerException
+	 *             入口参数 <code>in</code> 为 <code>null</code>。
+	 */
 	public XmlJar2FileResourceLoader(InputStream in) {
+		this(in, false);
+	}
+
+	/**
+	 * 生成一个 XML jar包资源文件读取器。
+	 * 
+	 * @param in
+	 *            指定的输入流。
+	 * @param autoReset
+	 *            是否自动复位。
+	 * @throws NullPointerException
+	 *             入口参数 <code>in</code> 为 <code>null</code>。
+	 */
+	public XmlJar2FileResourceLoader(InputStream in, boolean autoReset) {
 		super(in);
+		this.autoReset = autoReset;
 	}
 
 	/**
@@ -89,7 +115,12 @@ public class XmlJar2FileResourceLoader extends StreamLoader<ResourceHandler> {
 
 				File res = new File(resString);
 
-				resourceHandler.add(new Url2FileResource(key, def, res));
+				Url2FileResource resource = new Url2FileResource(key, def, res);
+				resourceHandler.add(resource);
+
+				if (autoReset && !resource.isValid()) {
+					resource.reset();
+				}
 			}
 
 		} catch (Exception e) {
@@ -144,7 +175,12 @@ public class XmlJar2FileResourceLoader extends StreamLoader<ResourceHandler> {
 
 					File res = new File(resString);
 
-					resourceHandler.add(new Url2FileResource(key, def, res));
+					Url2FileResource resource = new Url2FileResource(key, def, res);
+					resourceHandler.add(resource);
+
+					if (autoReset && !resource.isValid()) {
+						resource.reset();
+					}
 				} catch (Exception e) {
 					exceptions.add(new LoadFailedException(
 							DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_2), e));
