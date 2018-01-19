@@ -545,7 +545,7 @@ public enum ExceptionStringKey implements Name {
 	XMLPROPFILEI18NLOADER_2(new DefaultName("XmlPropFileI18nLoader.2")),
 	/** XmlPropFileI18nLoader类第3号文本字段 */
 	XMLPROPFILEI18NLOADER_3(new DefaultName("XmlPropFileI18nLoader.3")),
-	
+
 	/** XmlPropResourceI18nLoader类第0号文本字段 */
 	XMLPROPRESOURCEI18NLOADER_0(new DefaultName("XmlPropResourceI18nLoader.0")),
 	/** XmlPropResourceI18nLoader类第1号文本字段 */
@@ -560,7 +560,11 @@ public enum ExceptionStringKey implements Name {
 
 	/** FileUtil类第0号文本字段 */
 	FILEUTIL_0(new DefaultName("FileUtil.0")),
-
+	/** FileUtil类第1号文本字段 */
+	FILEUTIL_1(new DefaultName("FileUtil.1")),
+	/** FileUtil类第2号文本字段 */
+	FILEUTIL_2(new DefaultName("FileUtil.2")),
+	
 	/** Interval类第0号文本字段 */
 	INTERVAL_0(new DefaultName("Interval.0")),
 	/** Interval类第1号文本字段 */
@@ -618,9 +622,6 @@ public enum ExceptionStringKey implements Name {
 	/** Log4jLoggerInfo类第0号文本字段 */
 	LOG4JLOGGERINFO_0(new DefaultName("Log4jLoggerInfo.0")),
 
-	/** AbstractLoggerInfo类第0号文本字段 */
-	ABSTRACTLOGGERINFO_0(new DefaultName("AbstractLoggerInfo.0")),
-
 	/** DelegateLoggerHandler类第0号文本字段 */
 	DELEGATELOGGERHANDLER_0(new DefaultName("DelegateLoggerHandler.0")),
 	/** DelegateLoggerHandler类第1号文本字段 */
@@ -676,7 +677,7 @@ public enum ExceptionStringKey implements Name {
 	XMLJAR2REPORESOURCELOADER_3(new DefaultName("XmlJar2RepoResourceLoader.3")),
 	/** XmlJar4RepoResourceLoader类第4号文本字段 */
 	XMLJAR2REPORESOURCELOADER_4(new DefaultName("XmlJar2RepoResourceLoader.4")),
-	
+
 	;
 
 	private final Name name;

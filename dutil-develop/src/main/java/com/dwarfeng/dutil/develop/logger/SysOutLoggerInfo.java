@@ -16,8 +16,6 @@ public class SysOutLoggerInfo extends AbstractLoggerInfo {
 	 * 
 	 * @param key
 	 *            指定的键值。
-	 * @throws NullPointerException
-	 *             入口参数为 <code>null</code>。
 	 */
 	public SysOutLoggerInfo(String key) {
 		this(key, false);

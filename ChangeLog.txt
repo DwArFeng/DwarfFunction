@@ -297,5 +297,8 @@ Beta_0.2.0__build_A (maven)
 		现在支持值为 null 的键了。
 	改进 develop.resource 包。
 		为 develop.resource.Resource 增加了自动复位的机制。
-		develop.resource.io 包中的读取器增加了自动复位的选项。ö
+		develop.resource.io 包中的读取器增加了自动复位的选项。
+	对 basic.io.FileUtil 进行更新
+		对必要方法的入口参数进行非 null 判定。
+		增加方法 createDirIfNotExists(File)，如果不存在指定的目录，则创建该目录。
 	更新的README.md

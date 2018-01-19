@@ -1,10 +1,5 @@
 package com.dwarfeng.dutil.develop.logger;
 
-import java.util.Objects;
-
-import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.ExceptionStringKey;
-
 /**
  * 抽象记录器信息。
  * <p>
@@ -23,11 +18,8 @@ public abstract class AbstractLoggerInfo implements LoggerInfo {
 	 * 
 	 * @param key
 	 *            指定的键值。
-	 * @throws NullPointerException
-	 *             入口参数为 <code>null</code>。
 	 */
 	public AbstractLoggerInfo(String key) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTLOGGERINFO_0));
 		this.key = key;
 	}
 

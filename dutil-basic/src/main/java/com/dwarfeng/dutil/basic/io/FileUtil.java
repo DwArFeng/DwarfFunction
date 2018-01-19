@@ -34,6 +34,8 @@ public final class FileUtil {
 	 *            需要复制到的目标文件。
 	 * @throws IOException
 	 *             复制过程中IO发生异常时抛出的异常。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
 	 */
 	@Deprecated
 	public static void FileCopy(File source, File target) throws IOException {
@@ -49,8 +51,13 @@ public final class FileUtil {
 	 *            需要复制到的目标文件。
 	 * @throws IOException
 	 *             复制过程中IO发生异常时抛出的异常。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
 	 */
 	public static void fileCopy(File source, File target) throws IOException {
+		Objects.requireNonNull(source, DwarfUtil.getExecptionString(ExceptionStringKey.FILEUTIL_1));
+		Objects.requireNonNull(target, DwarfUtil.getExecptionString(ExceptionStringKey.FILEUTIL_2));
+
 		// 如果target不存在，则创建target以及其目录（有必要的话）。
 		createFileIfNotExists(target);
 		// 定义2MB的缓冲大小
@@ -94,6 +101,8 @@ public final class FileUtil {
 	 * @return 文件或文件夹是否删除。
 	 */
 	public static boolean deleteFile(File file) {
+		Objects.requireNonNull(file, DwarfUtil.getExecptionString(ExceptionStringKey.FILEUTIL_0));
+
 		if (file.isDirectory()) {
 			String[] children = file.list();
 			// 递归删除该目录的子目录文件
@@ -116,8 +125,12 @@ public final class FileUtil {
 	 *            指定的文件。
 	 * @throws IOException
 	 *             文件无法创建或者通信错误时抛出的异常。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
 	 */
 	public static void createFileIfNotExists(File file) throws IOException {
+		Objects.requireNonNull(file, DwarfUtil.getExecptionString(ExceptionStringKey.FILEUTIL_0));
+
 		// 如果文件存在，则什么事也不做。
 		if (file.exists())
 			return;
@@ -125,6 +138,25 @@ public final class FileUtil {
 		if (parentFile != null && !parentFile.exists())
 			parentFile.mkdirs();
 		file.createNewFile();
+	}
+
+	/**
+	 * 如果指定的目录不存在，则尝试新建目录的方法。
+	 * <p>
+	 * 该方法在建立目录时，会将其根目录一同创建（如果具有根目录的话）。
+	 * 
+	 * @param file
+	 *            指定的目录。
+	 * @throws IOException
+	 *             目录无法创建或者通信错误时抛出的异常。
+	 */
+	public static void createDirIfNotExists(File file) throws IOException {
+		Objects.requireNonNull(file, DwarfUtil.getExecptionString(ExceptionStringKey.FILEUTIL_0));
+
+		// 如果目录存在，则什么事也不做。
+		if (file.exists())
+			return;
+		file.mkdirs();
 	}
 
 	/**
