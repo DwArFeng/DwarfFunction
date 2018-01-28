@@ -30,7 +30,7 @@ import com.dwarfeng.dutil.develop.cfg.CurrentValueContainer;
  */
 public class PropConfigLoader extends StreamLoader<CurrentValueContainer> {
 
-	private boolean flag = true;
+	private boolean readFlag = false;
 
 	/**
 	 * 生成一个新的 Properties 配置读取器。
@@ -49,15 +49,14 @@ public class PropConfigLoader extends StreamLoader<CurrentValueContainer> {
 	 */
 	@Override
 	public void load(CurrentValueContainer container) throws LoadFailedException {
-		if (flag) {
-			flag = false;
-		} else {
+		if (readFlag)
 			throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.PropertiesConfigLoader_1));
-		}
+
 		Objects.requireNonNull(container, DwarfUtil.getExecptionString(ExceptionStringKey.PropertiesConfigLoader_0));
 
 		Properties properties = new Properties();
 		try {
+			readFlag = true;
 			properties.load(in);
 			Map<ConfigKey, String> configMap = new HashMap<ConfigKey, String>();
 			for (String str : properties.stringPropertyNames()) {
@@ -75,17 +74,16 @@ public class PropConfigLoader extends StreamLoader<CurrentValueContainer> {
 	 */
 	@Override
 	public Set<LoadFailedException> countinuousLoad(CurrentValueContainer container) throws IllegalStateException {
-		if (flag) {
-			flag = false;
-		} else {
+		if (readFlag)
 			throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.PropertiesConfigLoader_1));
-		}
+
 		Objects.requireNonNull(container, DwarfUtil.getExecptionString(ExceptionStringKey.PropertiesConfigLoader_0));
 
 		final Set<LoadFailedException> exceptions = new LinkedHashSet<>();
 
 		Properties properties = new Properties();
 		try {
+			readFlag = true;
 			properties.load(in);
 			Map<ConfigKey, String> configMap = new HashMap<ConfigKey, String>();
 			for (String str : properties.stringPropertyNames()) {
