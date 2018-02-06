@@ -276,11 +276,13 @@ Beta_0.2.0__build_A (maven)
 		develop.cfg.checker.ByteConfigChecker
 		develop.cfg.checker.DoubleConfigChecker
 		develop.cfg.checker.FloatConfigChecker
+		develop.cfg.parser.ClassValueParser
 	在 develop.cfg.parser 中添加了多个工具
 		develop.cfg.parser.LongValueParser
 		develop.cfg.parser.ShortValueParser
 		develop.cfg.parser.ByteValueParser
 		develop.cfg.parser.FloatValueChecker
+		develop.cfg.parser.DoubleValueParser
 	新增 develop.resource.Url2RepoRresource 用以构建基于资源仓库的资源。
 		新增 dutil.develop.resource.io.XmlJar2RepoResourceLoader 通过XML配置读取资源列表。
 	新增 develop.i18n.I18nHandler 功能，用于快速获取当前国际化接口中的文本字段

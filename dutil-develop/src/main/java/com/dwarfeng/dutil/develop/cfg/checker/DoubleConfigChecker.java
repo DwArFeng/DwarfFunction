@@ -6,6 +6,7 @@ import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
 
 /**
  * 双精度浮点检查器。
+ * 
  * <p>
  * 如果指定的值是双精度浮点，且处于指定的范围之内，则能够通过值检查器。
  * 
