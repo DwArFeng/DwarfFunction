@@ -244,6 +244,10 @@ Beta_0.1.5_20171203_build_C (maven)
 	调整了部分test的测试方法，以适应maven。
 	
 Beta_0.2.0__build_A (maven)
+	注意，该版本不兼容之前的版本！
+	不兼容的更改：
+		将 dutil.basic.io.IOUtil更名为 dutil.basic.io.IOUtil。
+
 	修复了v0.1.5.c-beta版本 dutil 资源的路径问题。
 	增加了过滤器相关的接口与实现
 		basic.prog.Filter<T>

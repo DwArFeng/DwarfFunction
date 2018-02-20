@@ -12,7 +12,7 @@ import java.io.OutputStream;
  * @author DwArFeng
  * @since 0.0.2-beta
  */
-public final class IoUtil {
+public final class IOUtil {
 
 	/**
 	 * 数据传送方法。
@@ -42,10 +42,8 @@ public final class IoUtil {
 			bout.flush();
 		}
 	}
-	
-	
 
 	// 禁止外部生成实例。
-	private IoUtil() {
+	private IOUtil() {
 	}
 }
