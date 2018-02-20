@@ -16,8 +16,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dwarfeng.dutil.basic.io.FileUtil;
-import com.dwarfeng.dutil.basic.io.IoUtil;
-import com.dwarfeng.dutil.develop.resource.Url2FileResource;
+import com.dwarfeng.dutil.basic.io.IOUtil;
 
 public class Test_Url2FileResource {
 
@@ -33,7 +32,7 @@ public class Test_Url2FileResource {
 		File file = new File("test/hello.txt");
 		FileUtil.createFileIfNotExists(file);
 		OutputStream out = new FileOutputStream(file);
-		IoUtil.trans(in, out, 4096);
+		IOUtil.trans(in, out, 4096);
 		in.close();
 		out.close();
 	}

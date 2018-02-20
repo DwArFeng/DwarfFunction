@@ -12,7 +12,7 @@ import java.util.Objects;
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.io.FileUtil;
-import com.dwarfeng.dutil.basic.io.IoUtil;
+import com.dwarfeng.dutil.basic.io.IOUtil;
 
 /**
  * URL到文件的资源。
@@ -81,7 +81,7 @@ public class Url2FileResource extends AbstractResource {
 		try {
 			in = def.openStream();
 			out = new FileOutputStream(res);
-			IoUtil.trans(in, out, 8192);
+			IOUtil.trans(in, out, 8192);
 		} finally {
 			if (Objects.nonNull(in)) {
 				in.close();

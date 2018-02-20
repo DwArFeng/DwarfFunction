@@ -17,11 +17,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dwarfeng.dutil.basic.io.FileUtil;
-import com.dwarfeng.dutil.basic.io.IoUtil;
+import com.dwarfeng.dutil.basic.io.IOUtil;
 import com.dwarfeng.dutil.basic.io.LoadFailedException;
-import com.dwarfeng.dutil.develop.resource.DelegateResourceHandler;
-import com.dwarfeng.dutil.develop.resource.Resource;
-import com.dwarfeng.dutil.develop.resource.ResourceHandler;
 import com.dwarfeng.dutil.develop.resource.io.XmlJar2FileResourceLoader;
 
 public class Test_XmlJar2FileResourceLoader {
@@ -40,7 +37,7 @@ public class Test_XmlJar2FileResourceLoader {
 		File file = new File("test/hello.txt");
 		FileUtil.createFileIfNotExists(file);
 		OutputStream out = new FileOutputStream(file);
-		IoUtil.trans(in, out, 4096);
+		IOUtil.trans(in, out, 4096);
 		in.close();
 		out.close();
 	}
