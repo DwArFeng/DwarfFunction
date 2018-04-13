@@ -19,8 +19,8 @@ import com.dwarfeng.dutil.basic.prog.Buildable;
  */
 public final class JMenuItemAction extends AbstractAction {
 
-	private static final long serialVersionUID = 67574488277609694L;
-
+	private static final long serialVersionUID = -2443355091954158655L;
+	
 	private ActionListener listener;
 
 	/**
@@ -44,9 +44,22 @@ public final class JMenuItemAction extends AbstractAction {
 		 * @param val
 		 *            动作的图标。
 		 * @return 构造器自身。
+		 * @deprecated 该方法被 {@link #setIcon(Icon)}代替。
 		 */
 		public Builder icon(Icon val) {
 			this.icon = val;
+			return this;
+		}
+
+		/**
+		 * 设定动作的图标。
+		 * 
+		 * @param icon
+		 *            指定的图标。
+		 * @return 构造器自身。
+		 */
+		public Builder setIcon(Icon icon) {
+			this.icon = icon;
 			return this;
 		}
 
@@ -56,9 +69,22 @@ public final class JMenuItemAction extends AbstractAction {
 		 * @param val
 		 *            动作的名称。
 		 * @return 构造器自身。
+		 * @deprecated 该方法被 {@link #setName(String)} 代替。
 		 */
 		public Builder name(String val) {
 			this.name = val;
+			return this;
+		}
+
+		/**
+		 * 设定动作的名称。
+		 * 
+		 * @param name
+		 *            动作的名称。
+		 * @return 构造器自身。
+		 */
+		public Builder setName(String name) {
+			this.name = name;
 			return this;
 		}
 
@@ -68,9 +94,22 @@ public final class JMenuItemAction extends AbstractAction {
 		 * @param val
 		 *            动作的描述。
 		 * @return 构造器自身。
+		 * @deprecated 该方法被 {@link #setDescription(String)} 代替。
 		 */
 		public Builder description(String val) {
 			this.description = val;
+			return this;
+		}
+
+		/**
+		 * 设定动作的描述。
+		 * 
+		 * @param description
+		 *            动作的描述。
+		 * @return 构造器自身。
+		 */
+		public Builder setDescription(String description) {
+			this.description = description;
 			return this;
 		}
 
@@ -80,9 +119,22 @@ public final class JMenuItemAction extends AbstractAction {
 		 * @param val
 		 *            设定动作的组合键。
 		 * @return 构造器自身。
+		 * @deprecated 该方法被 {@link #setKeyStorke(KeyStroke)} 代替。
 		 */
 		public Builder keyStorke(KeyStroke val) {
 			this.keyStroke = val;
+			return this;
+		}
+
+		/**
+		 * 设定动作的组合键。
+		 * 
+		 * @param keyStroke
+		 *            设定动作的组合键。
+		 * @return 构造器自身。
+		 */
+		public Builder setKeyStorke(KeyStroke keyStroke) {
+			this.keyStroke = keyStroke;
 			return this;
 		}
 
@@ -92,9 +144,22 @@ public final class JMenuItemAction extends AbstractAction {
 		 * @param val
 		 *            动作的助记符。
 		 * @return 构造器自身。
+		 * @deprecated 该方法被 {@link #setDescription(String)} 代替。
 		 */
 		public Builder mnemonic(int val) {
 			this.mnemonic = val;
+			return this;
+		}
+
+		/**
+		 * 设定动作的助记符。
+		 * 
+		 * @param mnemonic
+		 *            动作的助记符。
+		 * @return 构造器自身。
+		 */
+		public Builder setMnemonic(int mnemonic) {
+			this.mnemonic = mnemonic;
 			return this;
 		}
 
@@ -104,9 +169,22 @@ public final class JMenuItemAction extends AbstractAction {
 		 * @param val
 		 *            动作的动作侦听。
 		 * @return 构造器自身。
+		 * @deprecated 该方法被 {@link #setListener(ActionListener)} 代替。
 		 */
 		public Builder listener(ActionListener val) {
 			this.listener = val;
+			return this;
+		}
+
+		/**
+		 * 设定动作的动作侦听。
+		 * 
+		 * @param listener
+		 *            动作的动作侦听。
+		 * @return 构造器自身。
+		 */
+		public Builder setListener(ActionListener listener) {
+			this.listener = listener;
 			return this;
 		}
 

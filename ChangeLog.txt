@@ -308,4 +308,7 @@ Beta_0.2.0__build_A (maven)
 		增加方法 createDirIfNotExists(File)，如果不存在指定的目录，则创建该目录。
 	对部分异常文本进行了修复。
 	对部分代码结构进行优化。
+	规范Builder方法。
+		basic.gui.swing.JMenuItemAction.Builder 中方法名称更改。
+		basic.prog.DefaultVersion.Builder 中方法更改。
 	更新的README.md

@@ -44,9 +44,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.text.BadLocationException;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.LabelStringKey;
 import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.ImageKey;
+import com.dwarfeng.dutil.basic.LabelStringKey;
 import com.dwarfeng.dutil.basic.num.NumberUtil;
 import com.dwarfeng.dutil.basic.threads.NumberedThreadFactory;
 
@@ -86,7 +86,7 @@ import com.dwarfeng.dutil.basic.threads.NumberedThreadFactory;
  */
 public class JExconsole extends JPanel {
 
-	private static final long serialVersionUID = 8565782090438599219L;
+	private static final long serialVersionUID = 5833629064130812694L;
 
 	private final static ThreadFactory THREAD_FACTORY = new NumberedThreadFactory("jexconsole_cleaner");
 
@@ -194,6 +194,7 @@ public class JExconsole extends JPanel {
 		textField = new JTextField();
 		textField.setBorder(new EmptyBorder(0, 0, 0, 0));
 		textField.addKeyListener(new KeyAdapter() {
+
 			/**
 			 * {@inheritDoc}
 			 */
@@ -215,6 +216,7 @@ public class JExconsole extends JPanel {
 						in.readFlag = true;
 						inputCondition.signalAll();
 						SwingUtilities.invokeLater(new Runnable() {
+
 							@Override
 							public void run() {
 								textField.setVisible(false);
@@ -254,6 +256,7 @@ public class JExconsole extends JPanel {
 		popup = creatDefaultPopup ? new InnerPopupMenu() : null;
 
 		textArea.addMouseListener(new MouseAdapter() {
+
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if (e.isPopupTrigger()) {
@@ -276,6 +279,7 @@ public class JExconsole extends JPanel {
 		});
 
 		textArea.getActionMap().put("cls", new AbstractAction() {
+
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -283,6 +287,7 @@ public class JExconsole extends JPanel {
 				if (Objects.isNull(textArea))
 					return;
 				SwingUtilities.invokeLater(new Runnable() {
+
 					@Override
 					public void run() {
 						textArea.requestFocus();
@@ -570,6 +575,7 @@ public class JExconsole extends JPanel {
 				while ((!disposeFlag.get()) && !readFlag) {
 					try {
 						SwingUtilities.invokeLater(new Runnable() {
+
 							@Override
 							public void run() {
 								if (!textField.isVisible()) {
@@ -706,15 +712,17 @@ public class JExconsole extends JPanel {
 		public InnerPopupMenu() {
 			super();
 			selectAllMenuItem = add(
-					new JMenuItemAction.Builder().icon(new ImageIcon(DwarfUtil.getImage(ImageKey.SELECT_ALL)))
-							.name(DwarfUtil.getLabelString(LabelStringKey.JEXCONSOLE_0, getDefaultLocale()))
-							.keyStorke(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_DOWN_MASK)).mnemonic('A')
-							.listener(new ActionListener() {
+					new JMenuItemAction.Builder().setIcon(new ImageIcon(DwarfUtil.getImage(ImageKey.SELECT_ALL)))
+							.setName(DwarfUtil.getLabelString(LabelStringKey.JEXCONSOLE_0, getDefaultLocale()))
+							.setKeyStorke(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_DOWN_MASK))
+							.setMnemonic('A').setListener(new ActionListener() {
+
 								@Override
 								public void actionPerformed(ActionEvent e) {
 									if (Objects.isNull(textArea))
 										return;
 									SwingUtilities.invokeLater(new Runnable() {
+
 										@Override
 										public void run() {
 											textArea.requestFocus();
@@ -725,15 +733,17 @@ public class JExconsole extends JPanel {
 							}).build());
 
 			cleanScreenMenuItem = add(
-					new JMenuItemAction.Builder().icon(new ImageIcon(DwarfUtil.getImage(ImageKey.CLEAN_SCREEN)))
-							.name(DwarfUtil.getLabelString(LabelStringKey.JEXCONSOLE_1, getDefaultLocale()))
-							.keyStorke(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_DOWN_MASK)).mnemonic('E')
-							.listener(new ActionListener() {
+					new JMenuItemAction.Builder().setIcon(new ImageIcon(DwarfUtil.getImage(ImageKey.CLEAN_SCREEN)))
+							.setName(DwarfUtil.getLabelString(LabelStringKey.JEXCONSOLE_1, getDefaultLocale()))
+							.setKeyStorke(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_DOWN_MASK))
+							.setMnemonic('E').setListener(new ActionListener() {
+
 								@Override
 								public void actionPerformed(ActionEvent e) {
 									if (Objects.isNull(textArea))
 										return;
 									SwingUtilities.invokeLater(new Runnable() {
+
 										@Override
 										public void run() {
 											textArea.requestFocus();
@@ -750,11 +760,13 @@ public class JExconsole extends JPanel {
 			lineWrapMenuItem.setIcon(new ImageIcon(DwarfUtil.getImage(ImageKey.LINE_WRAP)));
 			lineWrapMenuItem.setMnemonic('W');
 			lineWrapMenuItem.addActionListener(new ActionListener() {
+
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					if (Objects.isNull(textArea))
 						return;
 					SwingUtilities.invokeLater(new Runnable() {
+
 						@Override
 						public void run() {
 							textArea.setLineWrap(lineWrapMenuItem.getState());
@@ -829,6 +841,7 @@ public class JExconsole extends JPanel {
 				if (textArea.getCaretPosition() < textArea.getText().length()) {
 					int pos = textArea.getText().length();
 					SwingUtilities.invokeLater(new Runnable() {
+
 						@Override
 						public void run() {
 							textArea.setCaretPosition(pos);
@@ -839,6 +852,7 @@ public class JExconsole extends JPanel {
 				if (textArea.getLineCount() > maxLine) {
 					int pos = getLinePos();
 					SwingUtilities.invokeLater(new Runnable() {
+
 						@Override
 						public void run() {
 							textArea.replaceRange(null, 0, pos);

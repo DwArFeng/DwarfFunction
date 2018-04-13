@@ -134,7 +134,7 @@ public interface I18nHandler extends KeySetModel<Locale, I18nInfo> {
 	 * 如果该国际化处理器没有正在使用的国际化接口，则返回 <code>defaultString</code>，否则返回
 	 * <code>getCurrentI18n().getStringOrDefault(name.getName(), defaultString);</code>
 	 * 
-	 * @param key
+	 * @param name
 	 *            指定的键。
 	 * @param defaultString
 	 *            默认值。

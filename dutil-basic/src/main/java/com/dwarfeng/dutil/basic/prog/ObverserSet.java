@@ -23,26 +23,33 @@ public interface ObverserSet<T extends Obverser> {
 	public Set<T> getObversers();
 
 	/**
-	 * 向属性行模型中添加观察器。
+	 * 向属性行模型中添加观察器（可选方法）。
 	 * 
 	 * @param obverser
 	 *            指定的观察器。
 	 * @return 该动作是否引起了观察器集合的改变。
+	 * @throws UnsupportedOperationException
+	 *             不支持该操作。
 	 */
-	public boolean addObverser(T obverser);
+	public boolean addObverser(T obverser) throws UnsupportedOperationException;
 
 	/**
-	 * 从属性行模型中移除观察器。
+	 * 从属性行模型中移除观察器（可选方法）。
 	 * 
 	 * @param obverser
 	 *            指定的观察器。
 	 * @return 该动作是否引起了观察器集合的改变。
+	 * @throws UnsupportedOperationException
+	 *             不支持该操作。
 	 */
-	public boolean removeObverser(T obverser);
+	public boolean removeObverser(T obverser) throws UnsupportedOperationException;
 
 	/**
-	 * 从属性行模型中移除所有观察器。
+	 * 从属性行模型中移除所有观察器（可选方法）。
+	 * 
+	 * @throws UnsupportedOperationException
+	 *             不支持该操作。
 	 */
-	public void clearObverser();
+	public void clearObverser() throws UnsupportedOperationException;
 
 }

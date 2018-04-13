@@ -58,9 +58,22 @@ public class DefaultVersion implements Version {
 		 * @param val
 		 *            指定的版本类型。
 		 * @return 构造器自身。
+		 * @deprecated 该方法被 {@link #setType(VersionType)} 替代。
 		 */
 		public Builder type(VersionType val) {
 			this.type = val;
+			return this;
+		}
+
+		/**
+		 * 设置构造者中的版本类型。
+		 * 
+		 * @param versionType
+		 *            指定的版本类型。
+		 * @return 构造器自身。
+		 */
+		public Builder setType(VersionType versionType) {
+			this.type = versionType;
 			return this;
 		}
 
@@ -70,9 +83,22 @@ public class DefaultVersion implements Version {
 		 * @param val
 		 *            指定的值。
 		 * @return 构造器自身。
+		 * @deprecated 该方法被 {@link #setFirstVersion(byte)} 代替。
 		 */
 		public Builder firstVersion(byte val) {
 			this.firstVersion = val;
+			return this;
+		}
+
+		/**
+		 * 设置构造器中第一个版本的值。
+		 * 
+		 * @param firstVersion
+		 *            指定的值。
+		 * @return 构造器自身。
+		 */
+		public Builder setFirstVersion(byte firstVersion) {
+			this.firstVersion = firstVersion;
 			return this;
 		}
 
@@ -82,9 +108,22 @@ public class DefaultVersion implements Version {
 		 * @param val
 		 *            指定的值。
 		 * @return 构造器自身。
+		 * @deprecated 该方法被 {@link #setSecondVersion(byte)} 代替。
 		 */
 		public Builder secondVersion(byte val) {
 			this.secondVersion = val;
+			return this;
+		}
+
+		/**
+		 * 设置构造器中第二个版本的值。
+		 * 
+		 * @param secondVersion
+		 *            指定的值。
+		 * @return 构造器自身。
+		 */
+		public Builder setSecondVersion(byte secondVersion) {
+			this.secondVersion = secondVersion;
 			return this;
 		}
 
@@ -94,9 +133,22 @@ public class DefaultVersion implements Version {
 		 * @param val
 		 *            指定的值。
 		 * @return 构造器自身。
+		 * @deprecated 该方法被 {@link #setThirdVersion(byte)} 代替。
 		 */
 		public Builder thirdVersion(byte val) {
 			this.thirdVersion = val;
+			return this;
+		}
+
+		/**
+		 * 设置构造器中第三个版本的值。
+		 * 
+		 * @param thirdVersion
+		 *            指定的值。
+		 * @return 构造器自身。
+		 */
+		public Builder setThirdVersion(byte thirdVersion) {
+			this.thirdVersion = thirdVersion;
 			return this;
 		}
 
@@ -106,9 +158,22 @@ public class DefaultVersion implements Version {
 		 * @param val
 		 *            指定的编译时间。
 		 * @return 构造器自身。
+		 * @deprecated 该方法被 {@link #setBuildDate(String)} 代替。
 		 */
 		public Builder buildDate(String val) {
 			this.buildDate = val;
+			return this;
+		}
+
+		/**
+		 * 设置构造器中的编译时间。
+		 * 
+		 * @param buildDate
+		 *            指定的编译时间。
+		 * @return 构造器自身。
+		 */
+		public Builder setBuildDate(String buildDate) {
+			this.buildDate = buildDate;
 			return this;
 		}
 
@@ -118,9 +183,22 @@ public class DefaultVersion implements Version {
 		 * @param val
 		 *            构造器中的编译版本号。
 		 * @return 构造器自身。
+		 * @deprecated 该方法被 {@link #setBuildVersion(char)} 代替。
 		 */
 		public Builder buildVersion(char val) {
 			this.buildVersion = val;
+			return this;
+		}
+
+		/**
+		 * 设置构造器中的编译版本号。
+		 * 
+		 * @param buildVersion
+		 *            构造器中的编译版本号。
+		 * @return 构造器自身。
+		 */
+		public Builder setBuildVersion(char buildVersion) {
+			this.buildVersion = buildVersion;
 			return this;
 		}
 
