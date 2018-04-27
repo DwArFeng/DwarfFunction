@@ -115,5 +115,5 @@ public interface Background extends ExternalReadWriteThreadSafe, ObverserSet<Bac
 	 * @return 由后台中的所有任务组成的集合。
 	 */
 	public Set<Task> tasks();
-	
+
 }

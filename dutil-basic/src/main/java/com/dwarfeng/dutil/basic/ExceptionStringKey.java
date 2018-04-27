@@ -326,6 +326,13 @@ public enum ExceptionStringKey implements Name {
 	PROPSETTINGVALUELOADER_1(new DefaultName("PropSettingValueLoader.1")), //
 	PROPSETTINGVALUESAVER_0(new DefaultName("PropSettingValueSaver.0")), //
 	PROPSETTINGVALUESAVER_1(new DefaultName("PropSettingValueSaver.1")), //
+	ABSTRACTTASK_0(new DefaultName("AbstractTask.0")), //
+	ABSTRACTPLAIN_0(new DefaultName("AbstractPlain.0")), //
+	ABSTRACTPLAIN_1(new DefaultName("AbstractPlain.1")), //
+	ABSTRACTPLAIN_2(new DefaultName("AbstractPlain.2")), //
+	FIXEDTIMEPLAIN_0(new DefaultName("FixedTimePlain.0")), //
+	FIXEDRATEPLAIN_0(new DefaultName("FixedRatePlain.0")),//
+
 	;
 
 	private final Name name;

@@ -34,8 +34,8 @@ public abstract class AbstractTask implements Task {
 	private final Lock runningLock = new ReentrantLock();
 	private final Condition runningCondition = runningLock.newCondition();
 
-	private boolean finishFlag = false;
-	private boolean startFlag = false;
+	private boolean finishedFlag = false;
+	private boolean startedFlag = false;
 	private Throwable throwable = null;
 
 	/**
@@ -58,7 +58,8 @@ public abstract class AbstractTask implements Task {
 	public void awaitFinish() throws InterruptedException {
 		runningLock.lock();
 		try {
-			while (!finishFlag) {
+			// TODO 此处将 finishedFlag 换成了 isFinished() 方法，请确认这样做是否会产生死锁。
+			while (!isFinished()) {
 				runningCondition.await();
 			}
 		} finally {
@@ -74,7 +75,8 @@ public abstract class AbstractTask implements Task {
 		runningLock.lock();
 		try {
 			long nanosTimeout = unit.toNanos(timeout);
-			while (!finishFlag) {
+			// TODO 此处将 finishedFlag 换成了 isFinished() 方法，请确认这样做是否会产生死锁。
+			while (!isFinished()) {
 				if (nanosTimeout > 0)
 					nanosTimeout = runningCondition.awaitNanos(nanosTimeout);
 				else
@@ -157,7 +159,7 @@ public abstract class AbstractTask implements Task {
 	public boolean isFinished() {
 		lock.readLock().lock();
 		try {
-			return finishFlag;
+			return finishedFlag;
 		} finally {
 			lock.readLock().unlock();
 		}
@@ -170,7 +172,7 @@ public abstract class AbstractTask implements Task {
 	public boolean isStarted() {
 		lock.readLock().lock();
 		try {
-			return startFlag;
+			return startedFlag;
 		} finally {
 			lock.readLock().unlock();
 		}
@@ -197,7 +199,7 @@ public abstract class AbstractTask implements Task {
 		// 置位开始标志，并且通知观察器。
 		lock.writeLock().lock();
 		try {
-			startFlag = true;
+			startedFlag = true;
 		} finally {
 			lock.writeLock().unlock();
 		}
@@ -211,7 +213,7 @@ public abstract class AbstractTask implements Task {
 		// 置位结束标志，并且通知观察器。
 		lock.writeLock().lock();
 		try {
-			finishFlag = true;
+			finishedFlag = true;
 		} finally {
 			lock.writeLock().unlock();
 		}
@@ -230,7 +232,8 @@ public abstract class AbstractTask implements Task {
 	 */
 	@Override
 	public String toString() {
-		return "AbstractTask [finishFlag=" + finishFlag + ", startFlag=" + startFlag + ", exception=" + throwable + "]";
+		return "AbstractTask [finishFlag=" + finishedFlag + ", startFlag=" + startedFlag + ", exception=" + throwable
+				+ "]";
 	}
 
 	/**

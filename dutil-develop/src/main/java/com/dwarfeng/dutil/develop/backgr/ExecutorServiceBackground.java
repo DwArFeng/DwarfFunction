@@ -180,13 +180,15 @@ public class ExecutorServiceBackground extends AbstractBackground {
 	 */
 	@Override
 	public void awaitTermination() throws InterruptedException {
+		lock.readLock().lock();
 		runningLock.lock();
 		try {
-			while (!isTerminated()) {
+			while (!terminateFlag) {
 				runningCondition.await();
 			}
 		} finally {
 			runningLock.unlock();
+			lock.readLock().unlock();
 		}
 	}
 
@@ -195,10 +197,11 @@ public class ExecutorServiceBackground extends AbstractBackground {
 	 */
 	@Override
 	public boolean awaitTermination(long timeout, TimeUnit unit) throws InterruptedException {
+		lock.readLock().lock();
 		runningLock.lock();
 		try {
 			long nanosTimeout = unit.toNanos(timeout);
-			while (!isTerminated()) {
+			while (!terminateFlag) {
 				if (nanosTimeout > 0)
 					nanosTimeout = runningCondition.awaitNanos(nanosTimeout);
 				else
@@ -207,6 +210,7 @@ public class ExecutorServiceBackground extends AbstractBackground {
 			return true;
 		} finally {
 			runningLock.unlock();
+			lock.readLock().unlock();
 		}
 	}
 
@@ -233,7 +237,12 @@ public class ExecutorServiceBackground extends AbstractBackground {
 		 */
 		@Override
 		public void fireStarted() {
-			fireTaskStarted(task);
+			lock.readLock().lock();
+			try {
+				fireTaskStarted(task);
+			} finally {
+				lock.readLock().unlock();
+			}
 		}
 
 		/**
