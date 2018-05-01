@@ -1,6 +1,5 @@
 package com.dwarfeng.dutil.develop.cfg.struct;
 
-import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
 import com.dwarfeng.dutil.develop.cfg.ExconfigModel;
 
 /**

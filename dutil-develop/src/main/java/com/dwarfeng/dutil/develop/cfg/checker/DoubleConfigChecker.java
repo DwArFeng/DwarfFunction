@@ -2,7 +2,7 @@ package com.dwarfeng.dutil.develop.cfg.checker;
 
 import java.util.Objects;
 
-import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
+import com.dwarfeng.dutil.develop.cfg.struct.ConfigChecker;
 
 /**
  * 双精度浮点检查器。

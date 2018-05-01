@@ -11,16 +11,16 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import com.dwarfeng.dutil.basic.io.StreamLoader;
-import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
 import com.dwarfeng.dutil.develop.cfg.ConfigEntry;
 import com.dwarfeng.dutil.develop.cfg.ConfigFirmProps;
 import com.dwarfeng.dutil.develop.cfg.ConfigKey;
 import com.dwarfeng.dutil.develop.cfg.ConfigModel;
-import com.dwarfeng.dutil.develop.cfg.ConfigObverser;
 import com.dwarfeng.dutil.develop.cfg.CurrentValueContainer;
 import com.dwarfeng.dutil.develop.cfg.DefaultConfigModel;
 import com.dwarfeng.dutil.develop.cfg.checker.IntegerConfigChecker;
 import com.dwarfeng.dutil.develop.cfg.io.PropConfigLoader;
+import com.dwarfeng.dutil.develop.cfg.obv.ConfigObverser;
+import com.dwarfeng.dutil.develop.cfg.struct.ConfigChecker;
 
 /**
  * {@link ConfigModel}的代码示例。

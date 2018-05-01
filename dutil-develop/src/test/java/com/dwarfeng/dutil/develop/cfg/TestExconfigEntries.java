@@ -1,18 +1,15 @@
 package com.dwarfeng.dutil.develop.cfg;
 
-import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
-import com.dwarfeng.dutil.develop.cfg.ConfigEntry;
-import com.dwarfeng.dutil.develop.cfg.ConfigFirmProps;
-import com.dwarfeng.dutil.develop.cfg.ConfigKey;
 import com.dwarfeng.dutil.develop.cfg.checker.BooleanConfigChecker;
 import com.dwarfeng.dutil.develop.cfg.checker.IntegerConfigChecker;
 import com.dwarfeng.dutil.develop.cfg.parser.BooleanValueParser;
 import com.dwarfeng.dutil.develop.cfg.parser.IntegerValueParser;
+import com.dwarfeng.dutil.develop.cfg.struct.ConfigChecker;
 import com.dwarfeng.dutil.develop.cfg.struct.ExconfigEntry;
 import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
-public enum TestExconfigEntries implements ExconfigEntry, ConfigEntry{
-	
+public enum TestExconfigEntries implements ExconfigEntry, ConfigEntry {
+
 	//
 	FAIL_0(null, null, null, null, null),
 	//

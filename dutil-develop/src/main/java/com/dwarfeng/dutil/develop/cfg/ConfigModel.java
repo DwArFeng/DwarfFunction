@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Set;
 
 import com.dwarfeng.dutil.basic.prog.ObverserSet;
+import com.dwarfeng.dutil.develop.cfg.obv.ConfigObverser;
 
 /**
  * 配置模型。

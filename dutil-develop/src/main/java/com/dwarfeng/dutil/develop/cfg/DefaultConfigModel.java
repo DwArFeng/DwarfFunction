@@ -13,6 +13,7 @@ import java.util.Set;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.ExceptionStringKey;
+import com.dwarfeng.dutil.develop.cfg.struct.ConfigChecker;
 
 /**
  * 默认配置模型。

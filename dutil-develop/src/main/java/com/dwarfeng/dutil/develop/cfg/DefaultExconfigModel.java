@@ -14,6 +14,7 @@ import java.util.WeakHashMap;
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.develop.cfg.obv.ExconfigObverser;
+import com.dwarfeng.dutil.develop.cfg.struct.ConfigChecker;
 import com.dwarfeng.dutil.develop.cfg.struct.ExconfigEntry;
 import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 

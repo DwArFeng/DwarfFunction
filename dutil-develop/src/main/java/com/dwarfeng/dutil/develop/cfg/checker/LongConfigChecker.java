@@ -2,7 +2,7 @@ package com.dwarfeng.dutil.develop.cfg.checker;
 
 import java.util.Objects;
 
-import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
+import com.dwarfeng.dutil.develop.cfg.struct.ConfigChecker;
 
 /**
  * 长整数检查器。
@@ -15,7 +15,7 @@ import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
 public class LongConfigChecker implements ConfigChecker {
 
 	private static final String REGEX_TO_MATCH = "-*[0-9]+";
-	
+
 	private final long minValue;
 	private final long maxValue;
 

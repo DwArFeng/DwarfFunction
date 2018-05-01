@@ -4,12 +4,9 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
-import com.dwarfeng.dutil.develop.cfg.ConfigFirmProps;
-import com.dwarfeng.dutil.develop.cfg.ConfigKey;
-import com.dwarfeng.dutil.develop.cfg.ConfigUtil;
 import com.dwarfeng.dutil.develop.cfg.checker.IntegerConfigChecker;
 import com.dwarfeng.dutil.develop.cfg.parser.IntegerValueParser;
+import com.dwarfeng.dutil.develop.cfg.struct.ConfigChecker;
 import com.dwarfeng.dutil.develop.cfg.struct.ExconfigEntry;
 import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 

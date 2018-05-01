@@ -3,7 +3,7 @@ package com.dwarfeng.dutil.develop.cfg.checker;
 import java.util.Objects;
 
 import com.dwarfeng.dutil.basic.cna.ArrayUtil;
-import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
+import com.dwarfeng.dutil.develop.cfg.struct.ConfigChecker;
 
 /**
  * 特定文本检测器。

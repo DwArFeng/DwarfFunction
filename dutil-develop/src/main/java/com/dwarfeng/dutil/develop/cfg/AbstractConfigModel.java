@@ -5,6 +5,8 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.WeakHashMap;
 
+import com.dwarfeng.dutil.develop.cfg.obv.ConfigObverser;
+
 /**
  * 抽象配置模型实现。
  * 

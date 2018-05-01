@@ -12,14 +12,10 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
-import com.dwarfeng.dutil.develop.cfg.ConfigFirmProps;
-import com.dwarfeng.dutil.develop.cfg.ConfigKey;
-import com.dwarfeng.dutil.develop.cfg.DefaultExconfigModel;
-import com.dwarfeng.dutil.develop.cfg.ExconfigModel;
 import com.dwarfeng.dutil.develop.cfg.checker.BooleanConfigChecker;
 import com.dwarfeng.dutil.develop.cfg.obv.ExconfigObverser;
 import com.dwarfeng.dutil.develop.cfg.parser.BooleanValueParser;
+import com.dwarfeng.dutil.develop.cfg.struct.ConfigChecker;
 import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
 public class Test_DefaultExconfigModel {

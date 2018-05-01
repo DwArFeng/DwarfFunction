@@ -1,6 +1,6 @@
 package com.dwarfeng.dutil.develop.cfg.checker;
 
-import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
+import com.dwarfeng.dutil.develop.cfg.struct.ConfigChecker;
 
 /**
  * 恒假配置值检查器。

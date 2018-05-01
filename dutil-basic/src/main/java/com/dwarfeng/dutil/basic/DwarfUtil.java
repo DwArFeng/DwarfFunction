@@ -47,8 +47,9 @@ public final class DwarfUtil {
 	private static ResourceBundle sf = ResourceBundle.getBundle(EXCEPTION_STRING_PATH, Locale.getDefault(),
 			CT.class.getClassLoader());
 
-	private static final Version version = new DefaultVersion.Builder().type(VersionType.BETA).firstVersion((byte) 0)
-			.secondVersion((byte) 2).thirdVersion((byte) 0).buildDate("").buildVersion('A').build();
+	private static final Version version = new DefaultVersion.Builder().setType(VersionType.BETA)
+			.setFirstVersion((byte) 0).setSecondVersion((byte) 2).setThirdVersion((byte) 0).setBuildDate("")
+			.setBuildVersion('A').build();
 
 	/**
 	 * 根据异常文本字段主键枚举返回其主键对应的文本。
@@ -176,8 +177,6 @@ public final class DwarfUtil {
 			locale = Locale.getDefault();
 		sf = ResourceBundle.getBundle(EXCEPTION_STRING_PATH, locale, DwarfUtil.class.getClassLoader());
 	}
-	
-	
 
 	// 禁止外部实例化
 	private DwarfUtil() {
