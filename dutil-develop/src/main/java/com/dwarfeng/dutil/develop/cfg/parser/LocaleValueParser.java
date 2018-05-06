@@ -1,6 +1,7 @@
 package com.dwarfeng.dutil.develop.cfg.parser;
 
 import java.util.Locale;
+import java.util.Objects;
 import java.util.StringTokenizer;
 
 import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
@@ -33,6 +34,26 @@ public class LocaleValueParser implements ValueParser {
 	public String parseObject(Object object) {
 		Locale locale = (Locale) object;
 		return String.format("%s_%s_%s", locale.getLanguage(), locale.getCountry(), locale.getVariant());
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (Objects.isNull(obj))
+			return false;
+		return obj.getClass() == LocaleValueParser.class;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int hashCode() {
+		return LocaleValueParser.class.hashCode() * 17;
 	}
 
 }

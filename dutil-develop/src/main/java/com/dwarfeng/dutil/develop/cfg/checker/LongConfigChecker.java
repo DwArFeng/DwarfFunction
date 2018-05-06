@@ -43,6 +43,9 @@ public class LongConfigChecker implements ConfigChecker {
 		this.maxValue = maxValue;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean isValid(String value) {
 		if (Objects.isNull(value))
@@ -55,6 +58,37 @@ public class LongConfigChecker implements ConfigChecker {
 		} catch (NumberFormatException e) {
 			return false;
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		LongConfigChecker other = (LongConfigChecker) obj;
+		if (maxValue != other.maxValue)
+			return false;
+		if (minValue != other.minValue)
+			return false;
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (maxValue ^ (maxValue >>> 32));
+		result = prime * result + (int) (minValue ^ (minValue >>> 32));
+		return result;
 	}
 
 }

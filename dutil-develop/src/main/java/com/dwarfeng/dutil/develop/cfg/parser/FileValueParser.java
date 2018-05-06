@@ -1,6 +1,7 @@
 package com.dwarfeng.dutil.develop.cfg.parser;
 
 import java.io.File;
+import java.util.Objects;
 
 import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
@@ -28,6 +29,26 @@ public class FileValueParser implements ValueParser {
 	@Override
 	public String parseObject(Object object) {
 		return ((File) object).getAbsolutePath();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (Objects.isNull(obj))
+			return false;
+		return obj.getClass() == FileValueParser.class;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int hashCode() {
+		return FileValueParser.class.hashCode() * 17;
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.dwarfeng.dutil.develop.cfg.parser;
 
+import java.util.Objects;
+
 import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
 /**
@@ -26,6 +28,26 @@ public class FloatValueParser implements ValueParser {
 	@Override
 	public String parseObject(Object object) {
 		return Float.toString((float) object);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (Objects.isNull(obj))
+			return false;
+		return obj.getClass() == FloatValueParser.class;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int hashCode() {
+		return FloatValueParser.class.hashCode() * 17;
 	}
 
 }

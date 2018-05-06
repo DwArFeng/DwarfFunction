@@ -45,4 +45,35 @@ public class MatchConfigChecker implements ConfigChecker {
 		return value.matches(regex);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MatchConfigChecker other = (MatchConfigChecker) obj;
+		if (regex == null) {
+			if (other.regex != null)
+				return false;
+		} else if (!regex.equals(other.regex))
+			return false;
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((regex == null) ? 0 : regex.hashCode());
+		return result;
+	}
+
 }

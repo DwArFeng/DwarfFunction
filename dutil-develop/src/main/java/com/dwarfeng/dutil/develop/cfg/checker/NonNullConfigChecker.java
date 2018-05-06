@@ -22,4 +22,24 @@ public class NonNullConfigChecker implements ConfigChecker {
 		return Objects.nonNull(value);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (Objects.isNull(obj))
+			return false;
+		return obj.getClass() == NonNullConfigChecker.class;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int hashCode() {
+		return NonNullConfigChecker.class.hashCode() * 17;
+	}
+
 }

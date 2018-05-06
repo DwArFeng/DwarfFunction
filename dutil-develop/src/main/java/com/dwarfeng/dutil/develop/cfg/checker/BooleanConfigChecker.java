@@ -27,4 +27,24 @@ public class BooleanConfigChecker implements ConfigChecker {
 		return false;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (Objects.isNull(obj))
+			return false;
+		return obj.getClass() == BooleanConfigChecker.class;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int hashCode() {
+		return BooleanConfigChecker.class.hashCode() * 17;
+	}
+
 }

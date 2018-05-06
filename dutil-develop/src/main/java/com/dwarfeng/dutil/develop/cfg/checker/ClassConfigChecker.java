@@ -30,4 +30,24 @@ public class ClassConfigChecker implements ConfigChecker {
 		return value.matches(REGEX_TO_MATCH);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (Objects.isNull(obj))
+			return false;
+		return obj.getClass() == ClassConfigChecker.class;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int hashCode() {
+		return ClassConfigChecker.class.hashCode() * 17;
+	}
+
 }

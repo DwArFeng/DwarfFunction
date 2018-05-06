@@ -1,5 +1,7 @@
 package com.dwarfeng.dutil.develop.cfg.checker;
 
+import java.util.Objects;
+
 import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
 
 /**
@@ -20,6 +22,26 @@ public class TureConfigChecker implements ConfigChecker {
 	@Override
 	public boolean isValid(String value) {
 		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (Objects.isNull(obj))
+			return false;
+		return obj.getClass() == TureConfigChecker.class;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int hashCode() {
+		return TureConfigChecker.class.hashCode() * 17;
 	}
 
 }

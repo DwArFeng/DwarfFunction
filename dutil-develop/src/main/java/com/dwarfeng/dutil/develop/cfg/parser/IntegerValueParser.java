@@ -48,4 +48,32 @@ public class IntegerValueParser extends IntegralValueParser implements ValuePars
 		return Integer.toString((int) object, radix);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		IntegerValueParser other = (IntegerValueParser) obj;
+		if (radix != other.radix)
+			return false;
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 37;
+		int result = 1;
+		result = prime * result + radix;
+		return result;
+	}
+
 }

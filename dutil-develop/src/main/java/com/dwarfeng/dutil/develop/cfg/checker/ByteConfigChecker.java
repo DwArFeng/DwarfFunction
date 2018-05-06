@@ -31,4 +31,24 @@ public class ByteConfigChecker implements ConfigChecker {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (Objects.isNull(obj))
+			return false;
+		return obj.getClass() == ByteConfigChecker.class;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int hashCode() {
+		return ByteConfigChecker.class.hashCode() * 17;
+	}
+
 }

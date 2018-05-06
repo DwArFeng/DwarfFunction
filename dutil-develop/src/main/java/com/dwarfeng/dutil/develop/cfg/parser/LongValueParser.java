@@ -48,4 +48,32 @@ public class LongValueParser extends IntegralValueParser implements ValueParser 
 		return Long.toString((long) object, radix);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		LongValueParser other = (LongValueParser) obj;
+		if (radix != other.radix)
+			return false;
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 39;
+		int result = 1;
+		result = prime * result + radix;
+		return result;
+	}
+
 }

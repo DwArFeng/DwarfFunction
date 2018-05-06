@@ -62,4 +62,38 @@ public class DoubleConfigChecker implements ConfigChecker {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DoubleConfigChecker other = (DoubleConfigChecker) obj;
+		if (Double.doubleToLongBits(maxValue) != Double.doubleToLongBits(other.maxValue))
+			return false;
+		if (Double.doubleToLongBits(minValue) != Double.doubleToLongBits(other.minValue))
+			return false;
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		long temp;
+		temp = Double.doubleToLongBits(maxValue);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(minValue);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
 }

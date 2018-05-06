@@ -1,5 +1,6 @@
 package com.dwarfeng.dutil.develop.cfg.checker;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 import com.dwarfeng.dutil.basic.cna.ArrayUtil;
@@ -54,6 +55,34 @@ public class SpecificConfigChecker implements ConfigChecker {
 		if (ArrayUtil.contains(arr, value))
 			return true;
 		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SpecificConfigChecker other = (SpecificConfigChecker) obj;
+		if (!Arrays.equals(arr, other.arr))
+			return false;
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.hashCode(arr);
+		return result;
 	}
 
 }

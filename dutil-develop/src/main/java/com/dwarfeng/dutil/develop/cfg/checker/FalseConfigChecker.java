@@ -1,5 +1,7 @@
 package com.dwarfeng.dutil.develop.cfg.checker;
 
+import java.util.Objects;
+
 import com.dwarfeng.dutil.develop.cfg.struct.ConfigChecker;
 
 /**
@@ -18,6 +20,26 @@ public class FalseConfigChecker implements ConfigChecker {
 	@Override
 	public boolean isValid(String value) {
 		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (Objects.isNull(obj))
+			return false;
+		return obj.getClass() == FalseConfigChecker.class;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int hashCode() {
+		return FalseConfigChecker.class.hashCode() * 17;
 	}
 
 }

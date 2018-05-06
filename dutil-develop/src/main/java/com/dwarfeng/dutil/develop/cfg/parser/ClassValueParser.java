@@ -1,5 +1,7 @@
 package com.dwarfeng.dutil.develop.cfg.parser;
 
+import java.util.Objects;
+
 import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
 /**
@@ -30,6 +32,26 @@ public class ClassValueParser implements ValueParser {
 	@Override
 	public String parseObject(Object object) {
 		return ((Class<?>) object).getName();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (Objects.isNull(obj))
+			return false;
+		return obj.getClass() == ClassValueParser.class;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int hashCode() {
+		return BooleanValueParser.class.hashCode() * 17;
 	}
 
 }

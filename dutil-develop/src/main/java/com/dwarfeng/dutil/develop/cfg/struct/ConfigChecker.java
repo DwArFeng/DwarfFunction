@@ -37,4 +37,23 @@ public interface ConfigChecker {
 		return !isValid(value);
 	}
 
+	/**
+	 * 对于配置值检查器 A 和 B 来说，当无论任何值 value， 都有
+	 * <code>A.isValid(value) == B.isValid(value)</code> 时，则可以认为 A 和 B 相等。
+	 * <p>
+	 * 为了保险起见，符合上述等式的两个对象可以不相等（也就是说可以不重写 equals 方法）， 但不满足上述等式的对象一定要不相等。
+	 * 
+	 * @param obj
+	 *            指定的对象。
+	 * @return 该配置值检查器是否与该对象相等。
+	 */
+	@Override
+	public boolean equals(Object obj);
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int hashCode();
+
 }

@@ -1,6 +1,7 @@
 package com.dwarfeng.dutil.develop.cfg.parser;
 
 import java.awt.Font;
+import java.util.Objects;
 import java.util.StringTokenizer;
 
 import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
@@ -36,6 +37,26 @@ public final class FontValueParser implements ValueParser {
 		Font font = (Font) object;
 
 		return String.format("%s-%d-%d", font.getName(), font.getStyle(), font.getSize());
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (Objects.isNull(obj))
+			return false;
+		return obj.getClass() == FontValueParser.class;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int hashCode() {
+		return FontValueParser.class.hashCode() * 17;
 	}
 
 }

@@ -311,4 +311,6 @@ Beta_0.2.0__build_A (maven)
 	规范Builder方法。
 		basic.gui.swing.JMenuItemAction.Builder 中方法名称更改。
 		basic.prog.DefaultVersion.Builder 中方法更改。
+	为 develop.cfg.struct.ConfigChecker 添加了 equals 方法。
+	为 develop.cfg.struct.ValueParser 添加了 equals 方法。
 	更新的README.md
