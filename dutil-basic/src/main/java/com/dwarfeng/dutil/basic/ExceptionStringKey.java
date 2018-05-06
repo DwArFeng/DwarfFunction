@@ -564,7 +564,7 @@ public enum ExceptionStringKey implements Name {
 	FILEUTIL_1(new DefaultName("FileUtil.1")),
 	/** FileUtil类第2号文本字段 */
 	FILEUTIL_2(new DefaultName("FileUtil.2")),
-	
+
 	/** Interval类第0号文本字段 */
 	INTERVAL_0(new DefaultName("Interval.0")),
 	/** Interval类第1号文本字段 */
@@ -677,6 +677,11 @@ public enum ExceptionStringKey implements Name {
 	XMLJAR2REPORESOURCELOADER_3(new DefaultName("XmlJar2RepoResourceLoader.3")),
 	/** XmlJar4RepoResourceLoader类第4号文本字段 */
 	XMLJAR2REPORESOURCELOADER_4(new DefaultName("XmlJar2RepoResourceLoader.4")),
+
+	/** SettingHandler类第0号文本字段 */
+	SETTINGHANDLER_0(new DefaultName("SettingHandler.0")),
+	/** SettingHandler类第1号文本字段 */
+	SETTINGHANDLER_1(new DefaultName("SettingHandler.1")),
 
 	;
 
