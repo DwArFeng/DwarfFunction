@@ -19,6 +19,9 @@ public class ClassValueParser implements ValueParser {
 	 */
 	@Override
 	public Object parseValue(String value) {
+		if (Objects.isNull(value))
+			return null;
+
 		try {
 			return Class.forName(value);
 		} catch (ClassNotFoundException e) {
@@ -31,6 +34,11 @@ public class ClassValueParser implements ValueParser {
 	 */
 	@Override
 	public String parseObject(Object object) {
+		if (Objects.isNull(object))
+			return null;
+		if (!(object instanceof Class<?>))
+			return null;
+
 		return ((Class<?>) object).getName();
 	}
 

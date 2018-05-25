@@ -21,12 +21,18 @@ public final class FontValueParser implements ValueParser {
 	 */
 	@Override
 	public Object parseValue(String value) {
-		StringTokenizer st = new StringTokenizer(value, "-");
-		String name = st.nextToken();
-		int style = Integer.parseInt(st.nextToken());
-		int size = Integer.parseInt(st.nextToken());
+		if (Objects.isNull(value))
+			return null;
 
-		return new Font(name, style, size);
+		try {
+			StringTokenizer st = new StringTokenizer(value, "-");
+			String name = st.nextToken();
+			int style = Integer.parseInt(st.nextToken());
+			int size = Integer.parseInt(st.nextToken());
+			return new Font(name, style, size);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	/**
@@ -34,8 +40,12 @@ public final class FontValueParser implements ValueParser {
 	 */
 	@Override
 	public String parseObject(Object object) {
-		Font font = (Font) object;
+		if (Objects.isNull(object))
+			return null;
+		if (!(object instanceof Font))
+			return null;
 
+		Font font = (Font) object;
 		return String.format("%s-%d-%d", font.getName(), font.getStyle(), font.getSize());
 	}
 

@@ -19,6 +19,11 @@ public class LocaleValueParser implements ValueParser {
 	 */
 	@Override
 	public Object parseValue(String value) {
+		if (Objects.isNull(value))
+			return null;
+		if (!value.matches("[a-z]+(_[A-Z]+(_[a-zA-Z]+)?)?"))
+			return null;
+
 		StringTokenizer tokenizer = new StringTokenizer(value, "_");
 		String language = tokenizer.hasMoreTokens() ? tokenizer.nextToken() : "";
 		String country = tokenizer.hasMoreTokens() ? tokenizer.nextToken() : "";
@@ -32,6 +37,11 @@ public class LocaleValueParser implements ValueParser {
 	 */
 	@Override
 	public String parseObject(Object object) {
+		if (Objects.isNull(object))
+			return null;
+		if (!(object instanceof Locale))
+			return null;
+
 		Locale locale = (Locale) object;
 		return String.format("%s_%s_%s", locale.getLanguage(), locale.getCountry(), locale.getVariant());
 	}

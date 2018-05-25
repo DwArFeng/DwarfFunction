@@ -1,5 +1,7 @@
 package com.dwarfeng.dutil.develop.cfg.parser;
 
+import java.util.Objects;
+
 import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
 /**
@@ -37,7 +39,13 @@ public class LongValueParser extends IntegralValueParser implements ValueParser 
 	 */
 	@Override
 	public Object parseValue(String value) {
-		return Long.parseLong(value, radix);
+		if (Objects.isNull(value))
+			return null;
+		try {
+			return Long.parseLong(value, radix);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	/**
@@ -45,7 +53,13 @@ public class LongValueParser extends IntegralValueParser implements ValueParser 
 	 */
 	@Override
 	public String parseObject(Object object) {
-		return Long.toString((long) object, radix);
+		if (Objects.isNull(object))
+			return null;
+		try {
+			return Long.toString((long) object, radix);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	/**

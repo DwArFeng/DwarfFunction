@@ -1,5 +1,7 @@
 package com.dwarfeng.dutil.develop.cfg.parser;
 
+import java.util.Objects;
+
 import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
 /**
@@ -37,7 +39,14 @@ public class IntegerValueParser extends IntegralValueParser implements ValuePars
 	 */
 	@Override
 	public Object parseValue(String value) {
-		return Integer.parseInt(value, radix);
+		if (Objects.isNull(value))
+			return null;
+
+		try {
+			return Integer.parseInt(value, radix);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	/**
@@ -45,6 +54,10 @@ public class IntegerValueParser extends IntegralValueParser implements ValuePars
 	 */
 	@Override
 	public String parseObject(Object object) {
+		if (Objects.isNull(object))
+			return null;
+		if (!(object instanceof Integer))
+			return null;
 		return Integer.toString((int) object, radix);
 	}
 

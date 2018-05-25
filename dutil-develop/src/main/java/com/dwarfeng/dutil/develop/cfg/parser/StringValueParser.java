@@ -24,6 +24,8 @@ public class StringValueParser implements ValueParser {
 	 */
 	@Override
 	public Object parseValue(String value) {
+		if (Objects.isNull(value))
+			return null;
 		return value;
 	}
 
@@ -32,7 +34,12 @@ public class StringValueParser implements ValueParser {
 	 */
 	@Override
 	public String parseObject(Object object) {
-		return object.toString();
+		if (Objects.isNull(object))
+			return null;
+		if (!(object instanceof String))
+			return null;
+
+		return (String) object;
 	}
 
 	/**

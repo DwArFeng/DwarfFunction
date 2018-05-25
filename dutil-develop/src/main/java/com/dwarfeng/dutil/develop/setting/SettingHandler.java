@@ -2,14 +2,10 @@ package com.dwarfeng.dutil.develop.setting;
 
 import java.util.Collection;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
-import com.dwarfeng.dutil.basic.DwarfUtil;
-import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.prog.ObverserSet;
 import com.dwarfeng.dutil.basic.str.Name;
-import com.dwarfeng.dutil.develop.cfg.struct.ConfigChecker;
 import com.dwarfeng.dutil.develop.setting.obv.SettingObverser;
 
 /**
@@ -23,15 +19,18 @@ public interface SettingHandler extends ObverserSet<SettingObverser> {
 	/**
 	 * 配置处理器入口。
 	 * 
+	 * <p>
+	 * 配置入口包含了一条配置中所需要的全部属性， 包括配置键、配置信息、当前值。
+	 * 
 	 * @author DwArFeng
 	 * @since 0.2.0-beta
 	 */
 	public interface Entry {
 
 		/**
-		 * 获取配置入口的键值。
+		 * 获取配置入口的键。
 		 * 
-		 * @return 配置入口的键值。
+		 * @return 配置入口的键。
 		 */
 		public String getKey();
 
@@ -43,11 +42,15 @@ public interface SettingHandler extends ObverserSet<SettingObverser> {
 		public SettingInfo getSettingInfo();
 
 		/**
-		 * 设置配置入口的配置信息。
+		 * 设置配置入口的配置信息（可选操作）。
 		 * 
-		 * @return 指定的配置信息。
+		 * @param settingInfo
+		 *            指定的配置信息。
+		 * @return 该操作是否对该配置处理器造成改变。
+		 * @throws UnsupportedOperationException
+		 *             不支持该操作。
 		 * @throws NullPointerException
-		 *             指定的入口参数为 <code> null </code>。
+		 *             入口参数为 <code>null</code>。
 		 */
 		public boolean setSettingInfo(SettingInfo settingInfo);
 
@@ -59,11 +62,42 @@ public interface SettingHandler extends ObverserSet<SettingObverser> {
 		public String getCurrentValue();
 
 		/**
-		 * 设置配置入口的当前值。
+		 * 设置配置入口的当前值（可选操作）。
 		 * 
-		 * @return 指定的当前值。
+		 * @param currentValue
+		 *            指定的当前值。
+		 * @return 该操作是否对当前值造成了改变。
+		 * @throws UnsupportedOperationException
+		 *             不支持该操作。
 		 */
 		public boolean setCurrentValue(String currentValue);
+
+		/**
+		 * 判断该入口是否与其它对象相等。
+		 * 
+		 * <p>
+		 * 对于入口A，如果有对象B也属于入口，且同时满足：
+		 * 
+		 * <pre>
+		 * <code>Objects.equals(A.getName(), B.getName())</code>
+		 * <code>Objects.equals(A.getSettingInfo(), B.getSettingInfo())</code>
+		 * <code>Objects.equals(A.getCurrentValue(), B.getCurrentValue())</code>
+		 * </pre>
+		 * 
+		 * 则可认为 入口A 与对象B 相等。
+		 * 
+		 * @param obj
+		 *            指定的对象。
+		 * @return 该入口是否与指定的对象相等。
+		 */
+		@Override
+		public boolean equals(Object obj);
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public int hashCode();
 
 	}
 
@@ -107,10 +141,18 @@ public interface SettingHandler extends ObverserSet<SettingObverser> {
 	 * @throws NullPointerException
 	 *             指定的入口参数为 <code> null </code>。
 	 */
-	public default boolean put(Name key, SettingInfo settingInfo, String currentValue) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGHANDLER_0));
-		return put(key.getName(), settingInfo, currentValue);
-	}
+	public boolean put(Name key, SettingInfo settingInfo, String currentValue);
+
+	/**
+	 * 向该配置处理器中添加指定的配置处理器中的所有配置。
+	 * 
+	 * @param handler
+	 *            指定的配置处理器。
+	 * @return 该操作是否改变了该配置处理器本身。
+	 * @throws NullPointerException
+	 *             指定的入口参数为 <code> null </code>。
+	 */
+	public boolean putAll(SettingHandler handler);
 
 	/**
 	 * 返回该处理器中的所有配置入口组成的集合。
@@ -200,10 +242,7 @@ public interface SettingHandler extends ObverserSet<SettingObverser> {
 	 * @throws NullPointerException
 	 *             指定的入口参数为 <code> null </code>。
 	 */
-	public default SettingInfo getSettingInfo(Name key) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGHANDLER_0));
-		return getSettingInfo(key.getName());
-	}
+	public SettingInfo getSettingInfo(Name key);
 
 	/**
 	 * 设置该配置处理器指定键的配置信息（可选操作）。
@@ -231,10 +270,7 @@ public interface SettingHandler extends ObverserSet<SettingObverser> {
 	 * @throws UnsupportedOperationException
 	 *             不支持该操作。
 	 */
-	public default boolean setSettingInfo(Name key, SettingInfo settingInfo) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGHANDLER_0));
-		return setSettingInfo(key.getName(), settingInfo);
-	}
+	public boolean setSettingInfo(Name key, SettingInfo settingInfo);
 
 	/**
 	 * 判断一个值对于该处理器来说是否合法。
@@ -248,20 +284,7 @@ public interface SettingHandler extends ObverserSet<SettingObverser> {
 	 *            指定的值。
 	 * @return 指定的值是否合适指定的配置键。
 	 */
-	public default boolean isValueValid(String key, String value) {
-		if (Objects.isNull(value))
-			return false;
-		if (!containsKey(key))
-			return false;
-
-		SettingInfo info = getSettingInfo(key);
-		ConfigChecker configChecker = info.getConfigChecker();
-
-		if (Objects.isNull(configChecker))
-			return false;
-
-		return configChecker.isValid(value);
-	}
+	public boolean isValueValid(String key, String value);
 
 	/**
 	 * 判断一个值对于该处理器来说是否合法。
@@ -275,10 +298,7 @@ public interface SettingHandler extends ObverserSet<SettingObverser> {
 	 *            指定的值。
 	 * @return 指定的值是否合适指定的配置键。
 	 */
-	public default boolean isValueValid(Name key, String value) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGHANDLER_0));
-		return isValueValid(key.getName(), value);
-	}
+	public boolean isValueValid(Name key, String value);
 
 	/**
 	 * 获取一个配置键的合法的值。
@@ -291,18 +311,20 @@ public interface SettingHandler extends ObverserSet<SettingObverser> {
 	 *            指定的配置键。
 	 * @return 该配置键的合法的值。
 	 */
-	public default String getValidValue(String key) {
-		if (!containsKey(key))
-			return null;
+	public String getValidValue(String key);
 
-		SettingInfo info = getSettingInfo(key);
-		String currentValue = getCurrentValue(key);
-
-		String defaultValue = info.getDefaultValue();
-		ConfigChecker checker = info.getConfigChecker();
-
-		return checker.isValid(currentValue) ? currentValue : defaultValue;
-	}
+	/**
+	 * 获取一个配置键的合法的值。
+	 * <p>
+	 * 如果指定的配置键在该处理器中存在，则查看该配置键的当前值是否合法， 如果合法，则返回当前值；如果不合法，则返回默认值。
+	 * <p>
+	 * 如果指定的配置键在该处理器中不存在，则返回 <code>null</code>
+	 * 
+	 * @param key
+	 *            指定的配置对应的名称。
+	 * @return 该配置键的合法的值。
+	 */
+	public String getValidValue(Name key);
 
 	/**
 	 * 获取该配置处理器指定键的当前值。
@@ -320,26 +342,7 @@ public interface SettingHandler extends ObverserSet<SettingObverser> {
 	 *            指定的键对应的名称。
 	 * @return 该配置处理器指定的键对应的当前值。
 	 */
-	public default String getCurrentValue(Name key) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGHANDLER_0));
-		return getCurrentValue(key.getName());
-	}
-
-	/**
-	 * 获取一个配置键的合法的值。
-	 * <p>
-	 * 如果指定的配置键在该处理器中存在，则查看该配置键的当前值是否合法， 如果合法，则返回当前值；如果不合法，则返回默认值。
-	 * <p>
-	 * 如果指定的配置键在该处理器中不存在，则返回 <code>null</code>
-	 * 
-	 * @param key
-	 *            指定的配置对应的名称。
-	 * @return 该配置键的合法的值。
-	 */
-	public default String getValidValue(Name key) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGHANDLER_0));
-		return getValidValue(key.getName());
-	}
+	public String getCurrentValue(Name key);
 
 	/**
 	 * 设置该配置处理器的当前值（可选操作）。
@@ -373,15 +376,14 @@ public interface SettingHandler extends ObverserSet<SettingObverser> {
 	 * @throws NullPointerException
 	 *             指定的入口参数为 <code> null </code>。
 	 */
-	public default boolean setCurrentValue(Name key, String newValue) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGHANDLER_0));
-		return setCurrentValue(key.getName(), newValue);
-	}
+	public boolean setCurrentValue(Name key, String newValue);
 
 	/**
+	 * 设置指定映射中所有键的当前值。
 	 * 
 	 * @param m
-	 * @return
+	 *            指定的键-当前值映射。
+	 * @return 该操作是否改变了该配置处理器本身。
 	 * @throws UnsupportedOperationException
 	 *             不支持该操作。
 	 */
@@ -411,10 +413,20 @@ public interface SettingHandler extends ObverserSet<SettingObverser> {
 	 * @throws UnsupportedOperationException
 	 *             不支持该操作。
 	 */
-	public default boolean resetCurrentValue(Name key) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGHANDLER_0));
-		return resetCurrentValue(key.getName());
-	}
+	public boolean resetCurrentValue(Name key);
+
+	/**
+	 * 将处理器中的指定配置键对应的当前值重置为默认值（可选操作）。
+	 * 
+	 * @param c
+	 *            指定的配置键组成的集合。
+	 * @return 该操作是否改变了该配置处理器本身。
+	 * @throws NullPointerException
+	 *             指定的入口参数为 <code> null </code>。
+	 * @throws UnsupportedOperationException
+	 *             不支持该操作。
+	 */
+	public boolean resetAllCurrentValue(Collection<String> c);
 
 	/**
 	 * 将处理器中的所有配置键对应的当前值重置为默认值（可选操作）。
@@ -445,10 +457,7 @@ public interface SettingHandler extends ObverserSet<SettingObverser> {
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public default Object getParsedValue(Name key) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGHANDLER_0));
-		return getParsedValue(key.getName());
-	}
+	public Object getParsedValue(Name key);
 
 	/**
 	 * 获取处理器中指定配置键的对应的有效值的解析值。
@@ -467,12 +476,7 @@ public interface SettingHandler extends ObverserSet<SettingObverser> {
 	 * @throws ClassCastException
 	 *             类型转换异常。
 	 */
-	public default <T> T getParsedValue(String key, Class<T> clas) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGHANDLER_0));
-		Objects.requireNonNull(clas, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGHANDLER_1));
-
-		return clas.cast(getParsedValue(key));
-	}
+	public <T> T getParsedValue(String key, Class<T> clas);
 
 	/**
 	 * 获取处理器中指定配置键的对应的有效值的解析值。
@@ -491,12 +495,7 @@ public interface SettingHandler extends ObverserSet<SettingObverser> {
 	 * @throws ClassCastException
 	 *             类型转换异常。
 	 */
-	public default <T> T getParsedValue(Name key, Class<T> clas) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGHANDLER_0));
-		Objects.requireNonNull(clas, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGHANDLER_1));
-
-		return clas.cast(getParsedValue(key.getName()));
-	}
+	public <T> T getParsedValue(Name key, Class<T> clas);
 
 	/**
 	 * 设置处理器中对应的配置键的对应的有效值（可选操作）。
@@ -530,9 +529,25 @@ public interface SettingHandler extends ObverserSet<SettingObverser> {
 	 * @throws UnsupportedOperationException
 	 *             不支持该操作。
 	 */
-	public default boolean setParsedValue(Name key, Object obj) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGHANDLER_0));
-		return setParsedValue(key.getName(), obj);
-	}
+	public boolean setParsedValue(Name key, Object obj);
+
+	/**
+	 * 判断两个配置处理器是否相等。
+	 * 
+	 * <p>
+	 * 两个配置处理器相等是指两个配置处理器拥有相同数量的元素， 且拥有相同的键值集合， 并且对于多有的键来说， 其对应的配置信息和当前值也相等。
+	 * 
+	 * @param obj
+	 *            指定的对象。
+	 * @return 该配置处理器与指定的对象是否相等。
+	 */
+	@Override
+	public boolean equals(Object obj);
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int hashCode();
 
 }

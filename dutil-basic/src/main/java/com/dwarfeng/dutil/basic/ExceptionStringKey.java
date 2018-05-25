@@ -678,10 +678,45 @@ public enum ExceptionStringKey implements Name {
 	/** XmlJar4RepoResourceLoader类第4号文本字段 */
 	XMLJAR2REPORESOURCELOADER_4(new DefaultName("XmlJar2RepoResourceLoader.4")),
 
-	/** SettingHandler类第0号文本字段 */
-	SETTINGHANDLER_0(new DefaultName("SettingHandler.0")),
-	/** SettingHandler类第1号文本字段 */
-	SETTINGHANDLER_1(new DefaultName("SettingHandler.1")),
+	/** AbstractSettingHandler类第0号文本字段 */
+	ABSTRACTSETTINGHANDLER_0(new DefaultName("AbstractSettingHandler.0")),
+	/** AbstractSettingHandler类第1号文本字段 */
+	ABSTRACTSETTINGHANDLER_1(new DefaultName("AbstractSettingHandler.1")),
+	/** AbstractSettingHandler类第2号文本字段 */
+	ABSTRACTSETTINGHANDLER_2(new DefaultName("AbstractSettingHandler.2")),
+	/** AbstractSettingHandler类第3号文本字段 */
+	ABSTRACTSETTINGHANDLER_3(new DefaultName("AbstractSettingHandler.3")),
+	/** AbstractSettingHandler类第4号文本字段 */
+	ABSTRACTSETTINGHANDLER_4(new DefaultName("AbstractSettingHandler.4")),
+
+	/** DefaultSettingHandler类第0号文本字段 */
+	DEFAULTSETTINGHANDLER_0(new DefaultName("DefaultSettingHandler.0")),
+	/** DefaultSettingHandler类第1号文本字段 */
+	DEFAULTSETTINGHANDLER_1(new DefaultName("DefaultSettingHandler.1")),
+	/** DefaultSettingHandler类第2号文本字段 */
+	DEFAULTSETTINGHANDLER_2(new DefaultName("DefaultSettingHandler.2")),
+	/** DefaultSettingHandler类第3号文本字段 */
+	DEFAULTSETTINGHANDLER_3(new DefaultName("DefaultSettingHandler.3")),
+
+	/** DefaultSettingInfo类第0号文本字段 */
+	DEFAULTSETTINGINFO_0(new DefaultName("DefaultSettingInfo.0")),
+	/** DefaultSettingInfo类第1号文本字段 */
+	DEFAULTSETTINGINFO_1(new DefaultName("DefaultSettingInfo.1")),
+	/** DefaultSettingInfo类第2号文本字段 */
+	DEFAULTSETTINGINFO_2(new DefaultName("DefaultSettingInfo.2")),
+	/** DefaultSettingInfo类第3号文本字段 */
+	DEFAULTSETTINGINFO_3(new DefaultName("DefaultSettingInfo.3")),
+
+	/** SettingUtil类第0号文本字段 */
+	SETTINGUTIL_0(new DefaultName("SettingUtil.0")),
+	/** SettingUtil类第1号文本字段 */
+	SETTINGUTIL_1(new DefaultName("SettingUtil.1")),
+	/** SettingUtil类第2号文本字段 */
+	SETTINGUTIL_2(new DefaultName("SettingUtil.2")),
+	/** SettingUtil类第3号文本字段 */
+	SETTINGUTIL_3(new DefaultName("SettingUtil.3")),
+	/** SettingUtil类第4号文本字段 */
+	SETTINGUTIL_4(new DefaultName("SettingUtil.4")),
 
 	;
 

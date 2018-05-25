@@ -24,11 +24,7 @@ public interface ValueParser {
 	 * 
 	 * @param value
 	 *            指定的 String 值。
-	 * @return 解析成的 {@link Object} 对象。
-	 * @throws NullPointerException
-	 *             入口参数为 <code>null</code>。
-	 * @throws IllegalArgumentException
-	 *             指定的字符串无法解析。
+	 * @return 解析成的 {@link Object} 对象，如果值无效，则返回 <code>null</code>。
 	 */
 	public Object parseValue(String value);
 
@@ -40,11 +36,7 @@ public interface ValueParser {
 	 * 
 	 * @param object
 	 *            指定的对象。
-	 * @return 由指定对象解析成的字符串。
-	 * @throws NullPointerException
-	 *             入口参数为 <code>null</code>。
-	 * @throws IllegalArgumentException
-	 *             指定的对象无法解析为字符串。
+	 * @return 由指定对象解析成的字符串， 如果对象无效，则返回 <code>null</code>。
 	 */
 	public String parseObject(Object object);
 

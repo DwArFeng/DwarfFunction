@@ -19,7 +19,14 @@ public class FloatValueParser implements ValueParser {
 	 */
 	@Override
 	public Object parseValue(String value) {
-		return Float.parseFloat(value);
+		if (Objects.isNull(value))
+			return null;
+
+		try {
+			return Float.parseFloat(value);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	/**
@@ -27,6 +34,11 @@ public class FloatValueParser implements ValueParser {
 	 */
 	@Override
 	public String parseObject(Object object) {
+		if (Objects.isNull(object))
+			return null;
+		if (!(object instanceof Float))
+			return null;
+
 		return Float.toString((float) object);
 	}
 

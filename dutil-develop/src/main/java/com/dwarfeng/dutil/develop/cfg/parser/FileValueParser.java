@@ -20,7 +20,14 @@ public class FileValueParser implements ValueParser {
 	 */
 	@Override
 	public Object parseValue(String value) {
-		return new File(value);
+		if (Objects.isNull(value))
+			return null;
+
+		try {
+			return new File(value);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	/**
@@ -28,6 +35,11 @@ public class FileValueParser implements ValueParser {
 	 */
 	@Override
 	public String parseObject(Object object) {
+		if (Objects.isNull(object))
+			return null;
+		if (!(object instanceof File))
+			return null;
+
 		return ((File) object).getAbsolutePath();
 	}
 

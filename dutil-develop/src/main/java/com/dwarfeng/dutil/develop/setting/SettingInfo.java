@@ -32,4 +32,30 @@ public interface SettingInfo {
 	 */
 	public String getDefaultValue();
 
+	/**
+	 * 判断一个配置信息是否与另一个对象相等。
+	 * <p>
+	 * 有配置信息A，当另一个对象B属于配置信息，且
+	 * 
+	 * <pre>
+	 * <code>Objects.equals(A.getConfigChecker(), B.getConfigChecker())</code>
+	 * <code>Objects.equals(A.getValueParser(), B.getValueParser())</code>
+	 * <code>Objects.equals(A.getDefaultValue(), B.getDefalutValue())</code>
+	 * </pre>
+	 * 
+	 * 均成立时，可认为 A与B 相等。
+	 * 
+	 * @param obj
+	 *            指定的对象。
+	 * @return 该配置信息与指定的对象是否相等。
+	 */
+	@Override
+	public boolean equals(Object obj);
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int hashCode();
+
 }

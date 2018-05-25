@@ -19,7 +19,14 @@ public class DoubleValueParser implements ValueParser {
 	 */
 	@Override
 	public Object parseValue(String value) {
-		return Double.parseDouble(value);
+		if (Objects.isNull(value))
+			return false;
+
+		try {
+			return Double.parseDouble(value);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	/**
@@ -27,6 +34,11 @@ public class DoubleValueParser implements ValueParser {
 	 */
 	@Override
 	public String parseObject(Object object) {
+		if (Objects.isNull(object))
+			return null;
+		if (!(object instanceof Double))
+			return null;
+
 		return Double.toString((double) object);
 	}
 

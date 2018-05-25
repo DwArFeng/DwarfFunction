@@ -1,12 +1,18 @@
 package com.dwarfeng.dutil.develop.setting;
 
+import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.WeakHashMap;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.ExceptionStringKey;
+import com.dwarfeng.dutil.basic.str.Name;
+import com.dwarfeng.dutil.develop.cfg.struct.ConfigChecker;
+import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 import com.dwarfeng.dutil.develop.setting.obv.SettingObverser;
 
 /**
@@ -19,6 +25,149 @@ import com.dwarfeng.dutil.develop.setting.obv.SettingObverser;
  * @since 0.2.0-beta
  */
 public abstract class AbstractSettingHandler implements SettingHandler {
+
+	/**
+	 * 抽象入口。
+	 * 
+	 * <p>
+	 * 实现了<code>equals(), hashCode(), toString()</code> 方法的入口。
+	 * 
+	 * @author DwArFeng
+	 * @since 0.2.0-beta
+	 */
+	public abstract static class AbstractEntry implements SettingHandler.Entry {
+
+		@Override
+		public abstract String getKey();
+
+		@Override
+		public abstract SettingInfo getSettingInfo();
+
+		@Override
+		public abstract boolean setSettingInfo(SettingInfo settingInfo);
+
+		@Override
+		public abstract String getCurrentValue();
+
+		@Override
+		public abstract boolean setCurrentValue(String currentValue);
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public int hashCode() {
+			return this.getKey().hashCode() * 31 + this.getSettingInfo().hashCode() * 17
+					+ this.getCurrentValue().hashCode();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean equals(Object obj) {
+			if (obj == this)
+				return true;
+
+			if (!(obj instanceof SettingHandler.Entry))
+				return false;
+
+			SettingHandler.Entry that = (Entry) obj;
+
+			return Objects.equals(this.getKey(), that.getKey())
+					&& Objects.equals(this.getSettingInfo(), that.getSettingInfo())
+					&& Objects.equals(this.getCurrentValue(), that.getCurrentValue());
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public String toString() {
+			return "Entry [getKey()=" + getKey() + ", getSettingInfo()=" + getSettingInfo() + ", getCurrentValue()="
+					+ getCurrentValue() + "]";
+		}
+
+	}
+
+	/**
+	 * 简单入口。
+	 * 
+	 * <p>
+	 * 使用参数构造的简单的，不可更改的简单入口。
+	 * 
+	 * @author DwArFeng
+	 * @since 0.2.0-beta
+	 */
+	public static class SimpleEntry extends AbstractSettingHandler.AbstractEntry {
+
+		private final String key;
+		private final SettingInfo settingInfo;
+		private final String currentValue;
+
+		/**
+		 * 新实例。
+		 * 
+		 * @param key
+		 *            指定的键。
+		 * @param settingInfo
+		 *            指定的配置信息。
+		 * @param currentValue
+		 *            指定的当前值。
+		 * @throws NullPointerException
+		 *             指定的入口参数为 <code> null </code>。
+		 */
+		public SimpleEntry(String key, SettingInfo settingInfo, String currentValue) {
+			// TODO 国际化。
+			Objects.requireNonNull(key, "入口参数 key 不能为 null。");
+			Objects.requireNonNull(settingInfo, "入口参数 settingInfo 不能为 null。");
+
+			this.key = key;
+			this.settingInfo = settingInfo;
+			this.currentValue = currentValue;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public String getKey() {
+			return key;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public SettingInfo getSettingInfo() {
+			return settingInfo;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean setSettingInfo(SettingInfo settingInfo) {
+			throw new UnsupportedOperationException("setSettingInfo");
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public String getCurrentValue() {
+			return currentValue;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean setCurrentValue(String currentValue) {
+			throw new UnsupportedOperationException("setCurrentValue");
+		}
+
+	}
 
 	/** 观察器集合 */
 	protected final Set<SettingObverser> obversers;
@@ -75,6 +224,431 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 	@Override
 	public void clearObverser() {
 		obversers.clear();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public abstract int size();
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public abstract boolean isEmpty();
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean put(String key, SettingInfo settingInfo, String currentValue) {
+		throw new UnsupportedOperationException("put");
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean put(Name key, SettingInfo settingInfo, String currentValue) {
+		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		return put(key.getName(), settingInfo, currentValue);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean putAll(SettingHandler handler) {
+		// TODO 国际化。
+		Objects.requireNonNull(handler, "入口参数 handler 不能为 null。");
+
+		boolean aFlag = false;
+		for (Entry entry : handler.entrySet()) {
+			if (put(entry.getKey(), entry.getSettingInfo(), entry.getCurrentValue()))
+				aFlag = true;
+		}
+		return aFlag;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public abstract Set<Entry> entrySet();
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public abstract void clear();
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public abstract Set<String> keySet();
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public abstract boolean containsKey(Object key);
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean containsAllKey(Collection<?> c) {
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_3));
+
+		for (Object obj : c) {
+			if (!containsKey(obj))
+				return false;
+		}
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean removeKey(Object key) {
+		throw new UnsupportedOperationException("removeKey");
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean removeAllKey(Collection<?> c) {
+		throw new UnsupportedOperationException("removeAllKey");
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean retainAllKey(Collection<?> c) {
+		throw new UnsupportedOperationException("retainAllKey");
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public abstract SettingInfo getSettingInfo(String key);
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public SettingInfo getSettingInfo(Name key) {
+		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		return getSettingInfo(key.getName());
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean setSettingInfo(String key, SettingInfo settingInfo) {
+		throw new UnsupportedOperationException("setSettingInfo");
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean setSettingInfo(Name key, SettingInfo settingInfo) {
+		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		return setSettingInfo(key.getName(), settingInfo);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean isValueValid(String key, String value) {
+		if (Objects.isNull(value))
+			return false;
+		if (!containsKey(key))
+			return false;
+
+		SettingInfo info = getSettingInfo(key);
+		ConfigChecker configChecker = info.getConfigChecker();
+
+		if (Objects.isNull(configChecker))
+			return false;
+
+		return configChecker.isValid(value);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean isValueValid(Name key, String value) {
+		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		return isValueValid(key.getName(), value);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getValidValue(String key) {
+		if (!containsKey(key))
+			return null;
+
+		SettingInfo info = getSettingInfo(key);
+		String currentValue = getCurrentValue(key);
+
+		String defaultValue = info.getDefaultValue();
+		ConfigChecker checker = info.getConfigChecker();
+
+		return checker.isValid(currentValue) ? currentValue : defaultValue;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public abstract String getCurrentValue(String key);
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getCurrentValue(Name key) {
+		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		return getCurrentValue(key.getName());
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getValidValue(Name key) {
+		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		return getValidValue(key.getName());
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean setCurrentValue(String key, String newValue) {
+		throw new UnsupportedOperationException("setCurrentValue");
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean setCurrentValue(Name key, String newValue) {
+		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		return setCurrentValue(key.getName(), newValue);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean setAllCurrentValue(Map<String, String> m) {
+		Objects.requireNonNull(m, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_2));
+
+		boolean aFlag = false;
+
+		for (Map.Entry<String, String> entry : m.entrySet()) {
+			if (setCurrentValue(entry.getKey(), entry.getValue())) {
+				aFlag = true;
+			}
+		}
+
+		return aFlag;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean resetCurrentValue(String key) {
+		throw new UnsupportedOperationException("resetCurrentValue");
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean resetCurrentValue(Name key) {
+		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		return resetCurrentValue(key.getName());
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean resetAllCurrentValue(Collection<String> c) {
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_3));
+
+		boolean aFlag = false;
+
+		for (String key : c) {
+			if (resetCurrentValue(key)) {
+				aFlag = true;
+			}
+		}
+
+		return aFlag;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean resetAllCurrentValue() {
+		boolean aFlag = false;
+
+		for (String key : keySet()) {
+			if (resetCurrentValue(key)) {
+				aFlag = true;
+			}
+		}
+
+		return aFlag;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Object getParsedValue(String key) {
+		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+
+		if (!containsKey(key))
+			return null;
+
+		String currentValue = getCurrentValue(key);
+		if (Objects.isNull(currentValue))
+			return null;
+
+		SettingInfo settingInfo = getSettingInfo(key);
+		ValueParser parser = settingInfo.getValueParser();
+
+		if (Objects.isNull(parser))
+			return null;
+
+		return parser.parseValue(currentValue);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Object getParsedValue(Name key) {
+		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		return getParsedValue(key.getName());
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public <T> T getParsedValue(String key, Class<T> clas) {
+		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		Objects.requireNonNull(clas, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_1));
+
+		return clas.cast(getParsedValue(key));
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public <T> T getParsedValue(Name key, Class<T> clas) {
+		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		Objects.requireNonNull(clas, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_1));
+
+		return clas.cast(getParsedValue(key.getName()));
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean setParsedValue(String key, Object obj) {
+		throw new UnsupportedOperationException("setParsedValue");
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean setParsedValue(Name key, Object obj) {
+		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		return setParsedValue(key.getName(), obj);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int hashCode() {
+		int h = 0;
+		for (Iterator<Entry> i = entrySet().iterator(); i.hasNext();) {
+			Entry entry = i.next();
+			h += entry.hashCode();
+		}
+
+		return h;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this)
+			return true;
+
+		if (!(obj instanceof SettingHandler))
+			return false;
+
+		SettingHandler that = (SettingHandler) obj;
+
+		if (this.size() != that.size())
+			return false;
+
+		for (Iterator<Entry> i = entrySet().iterator(); i.hasNext();) {
+			Entry entry = i.next();
+
+			String thisKey = entry.getKey();
+			SettingInfo thisSettingInfo = entry.getSettingInfo();
+			String thisCurrentValue = entry.getCurrentValue();
+
+			if (!that.containsKey(thisKey))
+				return false;
+
+			SettingInfo thatSettingInfo = that.getSettingInfo(thisKey);
+			String thatCurrentValue = that.getCurrentValue(thisKey);
+
+			if (!Objects.equals(thisSettingInfo, thatSettingInfo)
+					|| !Objects.equals(thisCurrentValue, thatCurrentValue))
+				return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String toString() {
+		// TODO 未完成的 toString 方法。
+		return "AbstractSettingHandler [obversers=" + obversers + "]";
 	}
 
 	/**

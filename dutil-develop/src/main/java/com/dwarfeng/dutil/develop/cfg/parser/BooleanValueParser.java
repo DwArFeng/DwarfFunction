@@ -19,7 +19,14 @@ public class BooleanValueParser implements ValueParser {
 	 */
 	@Override
 	public Object parseValue(String value) {
-		return Boolean.parseBoolean(value);
+		if (Objects.isNull(value))
+			return null;
+
+		try {
+			return Boolean.parseBoolean(value);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	/**
@@ -27,6 +34,11 @@ public class BooleanValueParser implements ValueParser {
 	 */
 	@Override
 	public String parseObject(Object object) {
+		if (Objects.isNull(object))
+			return null;
+		if (!(object instanceof Boolean))
+			return null;
+
 		return Boolean.toString((boolean) object);
 	}
 
