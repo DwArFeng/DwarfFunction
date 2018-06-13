@@ -90,85 +90,6 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 
 	}
 
-	/**
-	 * 简单入口。
-	 * 
-	 * <p>
-	 * 使用参数构造的简单的，不可更改的简单入口。
-	 * 
-	 * @author DwArFeng
-	 * @since 0.2.0-beta
-	 */
-	public static class SimpleEntry extends AbstractSettingHandler.AbstractEntry {
-
-		private final String key;
-		private final SettingInfo settingInfo;
-		private final String currentValue;
-
-		/**
-		 * 新实例。
-		 * 
-		 * @param key
-		 *            指定的键。
-		 * @param settingInfo
-		 *            指定的配置信息。
-		 * @param currentValue
-		 *            指定的当前值。
-		 * @throws NullPointerException
-		 *             指定的入口参数为 <code> null </code>。
-		 */
-		public SimpleEntry(String key, SettingInfo settingInfo, String currentValue) {
-			// TODO 国际化。
-			Objects.requireNonNull(key, "入口参数 key 不能为 null。");
-			Objects.requireNonNull(settingInfo, "入口参数 settingInfo 不能为 null。");
-
-			this.key = key;
-			this.settingInfo = settingInfo;
-			this.currentValue = currentValue;
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public String getKey() {
-			return key;
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public SettingInfo getSettingInfo() {
-			return settingInfo;
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public boolean setSettingInfo(SettingInfo settingInfo) {
-			throw new UnsupportedOperationException("setSettingInfo");
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public String getCurrentValue() {
-			return currentValue;
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public boolean setCurrentValue(String currentValue) {
-			throw new UnsupportedOperationException("setCurrentValue");
-		}
-
-	}
-
 	/** 观察器集合 */
 	protected final Set<SettingObverser> obversers;
 
@@ -260,8 +181,7 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 	 */
 	@Override
 	public boolean putAll(SettingHandler handler) {
-		// TODO 国际化。
-		Objects.requireNonNull(handler, "入口参数 handler 不能为 null。");
+		Objects.requireNonNull(handler, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_5));
 
 		boolean aFlag = false;
 		for (Entry entry : handler.entrySet()) {
@@ -647,8 +567,20 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 	 */
 	@Override
 	public String toString() {
-		// TODO 未完成的 toString 方法。
-		return "AbstractSettingHandler [obversers=" + obversers + "]";
+		Iterator<SettingHandler.Entry> it = entrySet().iterator();
+
+		if (!it.hasNext())
+			return "[]";
+
+		StringBuilder sb = new StringBuilder();
+		sb.append('[');
+		for (;;) {
+			SettingHandler.Entry entry = it.next();
+			sb.append(entry.toString());
+			if (!it.hasNext())
+				return sb.append(']').toString();
+			sb.append(',').append(' ');
+		}
 	}
 
 	/**

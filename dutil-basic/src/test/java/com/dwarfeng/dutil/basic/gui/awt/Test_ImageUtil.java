@@ -5,13 +5,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
-import com.dwarfeng.dutil.basic.gui.awt.CommonIconLib;
-import com.dwarfeng.dutil.basic.gui.awt.ImageSize;
-import com.dwarfeng.dutil.basic.gui.awt.ImageUtil;
-import com.dwarfeng.dutil.basic.gui.awt.Size2D;
 import com.dwarfeng.dutil.basic.num.IntNumberValue;
 import com.dwarfeng.dutil.basic.num.NumberValue;
 import com.dwarfeng.dutil.basic.num.OutOfIntervalException;
@@ -174,9 +172,10 @@ public class Test_ImageUtil {
 		ImageUtil.requireImageSize2D(InvalidImageSize2D.INSTANCE, "1233211234567");
 	}
 
+	@Ignore
 	@Test
 	public void testScaleAndOverlayImage() {
-		// fail("Not yet implemented"); // TODO 如何实现该测试。
+		fail("Not yet implemented"); // TODO 如何实现该测试。
 	}
 
 }

@@ -10,9 +10,8 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.ExceptionStringKey;
+import com.dwarfeng.dutil.basic.cna.CollectionUtil;
 import com.dwarfeng.dutil.basic.str.Name;
-import com.dwarfeng.dutil.develop.cfg.struct.ConfigChecker;
-import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 import com.dwarfeng.dutil.develop.setting.obv.SettingObverser;
 
 /**
@@ -29,123 +28,6 @@ import com.dwarfeng.dutil.develop.setting.obv.SettingObverser;
 public final class SettingUtil {
 
 	/**
-	 * 以最少的参数生成一个快速入口。
-	 * 
-	 * <p>
-	 * 该类可以使用户以最少的入口参数生成一个不可更改的配置入口。 只需要指定四个参数，即可生成一个快速配置入口，
-	 * 分别是：键、配置检查器、值转换器、默认值。
-	 * <p>
-	 * 该入口返回的当前值等于默认值。
-	 * 
-	 * @param key
-	 *            指定的键。
-	 * @param configChecker
-	 *            指定的配置检查器。
-	 * @param valueParser
-	 *            指定的值转换器。
-	 * @param defaultValue
-	 *            指定的默认值。
-	 * @throws NullPointerException
-	 *             指定的入口参数为 <code> null </code>。
-	 * @throws IllegalStateException
-	 *             指定的默认值不能通过指定的值检查器检查。
-	 */
-	public static SettingHandler.Entry quickEntry(String key, ConfigChecker configChecker, ValueParser valueParser,
-			String defaultValue) throws NullPointerException, IllegalStateException {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_0));
-		Objects.requireNonNull(configChecker, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_1));
-		Objects.requireNonNull(valueParser, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_2));
-		Objects.requireNonNull(defaultValue, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_3));
-
-		if (configChecker.nonValid(defaultValue)) {
-			throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_4));
-		}
-
-		return new QuickEntry(key, configChecker, valueParser, defaultValue);
-	}
-
-	private static final class QuickEntry extends AbstractSettingHandler.AbstractEntry implements SettingHandler.Entry {
-
-		private final String key;
-		private final ConfigChecker configChecker;
-		private final ValueParser valueParser;
-		private final String defaultValue;
-
-		public QuickEntry(String key, ConfigChecker configChecker, ValueParser valueParser, String defaultValue) {
-			this.key = key;
-			this.configChecker = configChecker;
-			this.valueParser = valueParser;
-			this.defaultValue = defaultValue;
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public String getKey() {
-			return key;
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public SettingInfo getSettingInfo() {
-			return new AbstractSettingInfo() {
-
-				/**
-				 * {@inheritDoc}
-				 */
-				@Override
-				public ValueParser getValueParser() {
-					return valueParser;
-				}
-
-				/**
-				 * {@inheritDoc}
-				 */
-				@Override
-				public String getDefaultValue() {
-					return defaultValue;
-				}
-
-				/**
-				 * {@inheritDoc}
-				 */
-				@Override
-				public ConfigChecker getConfigChecker() {
-					return configChecker;
-				}
-			};
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public boolean setSettingInfo(SettingInfo settingInfo) {
-			throw new UnsupportedOperationException("setSettingInfo");
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public String getCurrentValue() {
-			return defaultValue;
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public boolean setCurrentValue(String currentValue) {
-			throw new UnsupportedOperationException("setCurrentValue");
-		}
-
-	}
-
-	/**
 	 * 根据指定的配置入口生成一个不可变更的配置入口。
 	 * 
 	 * @param entry
@@ -154,9 +36,8 @@ public final class SettingUtil {
 	 * @throws NullPointerException
 	 *             指定的入口参数为 <code> null </code>。
 	 */
-	public SettingHandler.Entry unmodifiableEntry(SettingHandler.Entry entry) throws NullPointerException {
-		// TODO 国际化。
-		Objects.requireNonNull(entry, "入口参数 entry 不能为 null。");
+	public static SettingHandler.Entry unmodifiableEntry(SettingHandler.Entry entry) throws NullPointerException {
+		Objects.requireNonNull(entry, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_0));
 		return new UnmodifiableEntry(entry);
 	}
 
@@ -248,8 +129,7 @@ public final class SettingUtil {
 	 *             指定的入口参数为 <code> null </code>。
 	 */
 	public static SettingHandler unmodifiableSettingHandler(SettingHandler settingHandler) throws NullPointerException {
-		// TODO 国际化。
-		Objects.requireNonNull(settingHandler, "入口参数 settingHandler 不能为 null。");
+		Objects.requireNonNull(settingHandler, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_1));
 		return new UnmodifableSettingHandler(settingHandler);
 	}
 
@@ -338,7 +218,9 @@ public final class SettingUtil {
 		 */
 		@Override
 		public Set<Entry> entrySet() {
-			return Collections.unmodifiableSet(delegate.entrySet());
+			return CollectionUtil.readOnlySet(delegate.entrySet(), entry -> {
+				return unmodifiableEntry(entry);
+			});
 		}
 
 		/**
@@ -593,8 +475,7 @@ public final class SettingUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static SyncSettingHandler syncSettingHandler(SettingHandler settingHandler) throws NullPointerException {
-		// TODO 国际化。
-		Objects.requireNonNull(settingHandler, "入口参数 settingHandler 不能为 null。");
+		Objects.requireNonNull(settingHandler, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_1));
 		return new SyncSettingHandlerImpl(settingHandler);
 	}
 
@@ -1190,7 +1071,7 @@ public final class SettingUtil {
 	 * 
 	 * @param clazz
 	 *            指定的枚举对应的类。
-	 * @param handler
+	 * @param settingHandler
 	 *            指定的配置处理器。
 	 * @return 该操作是否对指定的配置处理器造成了改变。
 	 * @throws IllegalStateException
@@ -1198,20 +1079,19 @@ public final class SettingUtil {
 	 * @throws NullPointerException
 	 *             指定的入口参数为 <code> null </code>。
 	 */
-	public static <T extends Enum<T>> boolean putEnumItems(Class<T> clazz, SettingHandler handler)
+	public static <T extends Enum<T>> boolean putEnumItems(Class<T> clazz, SettingHandler settingHandler)
 			throws IllegalStateException {
-		// TODO 国际化。
-		Objects.requireNonNull(clazz, "入口参数 clazz 不能为 null。");
-		Objects.requireNonNull(handler, "入口参数 handler 不能为 null。");
-		// TODO 国际化。
+		Objects.requireNonNull(clazz, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_2));
+		Objects.requireNonNull(settingHandler, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_1));
+
 		if (!SettingEnumItem.class.isAssignableFrom(clazz))
-			throw new IllegalStateException("枚举没有实现 SettingEnumItem 接口。");
+			throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_3));
 
 		boolean aFlag = false;
 
 		for (T t : clazz.getEnumConstants()) {
 			SettingEnumItem item = (SettingEnumItem) t;
-			if (handler.put(item.getName(),
+			if (settingHandler.put(item.getName(),
 					new DefaultSettingInfo(item.getConfigChecker(), item.getValueParser(), item.getInitialValue()),
 					item.getInitialValue()))
 				aFlag = true;

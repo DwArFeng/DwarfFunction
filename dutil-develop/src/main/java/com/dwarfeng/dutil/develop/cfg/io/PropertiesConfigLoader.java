@@ -71,7 +71,7 @@ public class PropertiesConfigLoader extends StreamConfigLoader implements Config
 	@Override
 	@Deprecated
 	public void loadConfig(CurrentValueContainer container) throws LoadFailedException {
-		Objects.requireNonNull(container, DwarfUtil.getExecptionString(ExceptionStringKey.PropertiesConfigLoader_0));
+		Objects.requireNonNull(container, DwarfUtil.getExecptionString(ExceptionStringKey.PROPERTIESCONFIGLOADER_0));
 
 		Properties properties = new Properties();
 		try {

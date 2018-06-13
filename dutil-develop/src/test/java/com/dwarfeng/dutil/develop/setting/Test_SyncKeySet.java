@@ -45,7 +45,7 @@ public class Test_SyncKeySet {
 	public void setUp() throws Exception {
 		handler = SettingUtil.syncSettingHandler(new DefaultSettingHandler(new LinkedHashMap<>(), new LinkedHashMap<>(),
 				Collections.newSetFromMap(new WeakHashMap<>())));
-		SettingUtil.putEnumItems(TestEntry.class, handler);
+		SettingUtil.putEnumItems(TestSettingItem.class, handler);
 		keySet = handler.keySet();
 		obv = new TestSettingObverser();
 		handler.addObverser(obv);

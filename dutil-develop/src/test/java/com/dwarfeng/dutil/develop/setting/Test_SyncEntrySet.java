@@ -27,22 +27,22 @@ import com.dwarfeng.dutil.develop.setting.SettingHandler.Entry;
 
 public class Test_SyncEntrySet {
 
-	private static final Entry ENTRY_1 = SettingUtil.quickEntry(TestEntry.ENTRY_1.getName(),
-			TestEntry.ENTRY_1.getConfigChecker(), TestEntry.ENTRY_1.getValueParser(),
-			TestEntry.ENTRY_1.getInitialValue());
-	private static final Entry ENTRY_1F = SettingUtil.quickEntry(TestEntry.ENTRY_1.getName(),
-			TestEntry.ENTRY_1.getConfigChecker(), TestEntry.ENTRY_1.getValueParser(), "FALSE");
-	private static final Entry ENTRY_2 = SettingUtil.quickEntry(TestEntry.ENTRY_2.getName(),
-			TestEntry.ENTRY_2.getConfigChecker(), TestEntry.ENTRY_2.getValueParser(),
-			TestEntry.ENTRY_2.getInitialValue());
-	private static final Entry ENTRY_3 = SettingUtil.quickEntry(TestEntry.ENTRY_3.getName(),
-			TestEntry.ENTRY_3.getConfigChecker(), TestEntry.ENTRY_3.getValueParser(),
-			TestEntry.ENTRY_3.getInitialValue());
-	private static final Entry ENTRY_4 = SettingUtil.quickEntry(TestEntry.ENTRY_4.getName(),
-			TestEntry.ENTRY_4.getConfigChecker(), TestEntry.ENTRY_4.getValueParser(),
-			TestEntry.ENTRY_4.getInitialValue());
-	private static final Entry ENTRY_5 = SettingUtil.quickEntry("entry.5", new BooleanConfigChecker(),
-			new BooleanValueParser(), "TRUE");
+	private static final Entry ENTRY_1 = new TestEntry(TestSettingItem.ENTRY_1.getName(),
+			TestSettingItem.ENTRY_1.getConfigChecker(), TestSettingItem.ENTRY_1.getValueParser(),
+			TestSettingItem.ENTRY_1.getInitialValue());
+	private static final Entry ENTRY_1F = new TestEntry(TestSettingItem.ENTRY_1.getName(),
+			TestSettingItem.ENTRY_1.getConfigChecker(), TestSettingItem.ENTRY_1.getValueParser(), "FALSE");
+	private static final Entry ENTRY_2 = new TestEntry(TestSettingItem.ENTRY_2.getName(),
+			TestSettingItem.ENTRY_2.getConfigChecker(), TestSettingItem.ENTRY_2.getValueParser(),
+			TestSettingItem.ENTRY_2.getInitialValue());
+	private static final Entry ENTRY_3 = new TestEntry(TestSettingItem.ENTRY_3.getName(),
+			TestSettingItem.ENTRY_3.getConfigChecker(), TestSettingItem.ENTRY_3.getValueParser(),
+			TestSettingItem.ENTRY_3.getInitialValue());
+	private static final Entry ENTRY_4 = new TestEntry(TestSettingItem.ENTRY_4.getName(),
+			TestSettingItem.ENTRY_4.getConfigChecker(), TestSettingItem.ENTRY_4.getValueParser(),
+			TestSettingItem.ENTRY_4.getInitialValue());
+	private static final Entry ENTRY_5 = new TestEntry("entry.5", new BooleanConfigChecker(), new BooleanValueParser(),
+			"TRUE");
 
 	private static SettingHandler handler;
 	private static TestSettingObverser obv;
@@ -60,7 +60,7 @@ public class Test_SyncEntrySet {
 	public void setUp() throws Exception {
 		handler = SettingUtil.syncSettingHandler(new DefaultSettingHandler(new LinkedHashMap<>(), new LinkedHashMap<>(),
 				Collections.newSetFromMap(new WeakHashMap<>())));
-		SettingUtil.putEnumItems(TestEntry.class, handler);
+		SettingUtil.putEnumItems(TestSettingItem.class, handler);
 		entrySet = handler.entrySet();
 		obv = new TestSettingObverser();
 		handler.addObverser(obv);
@@ -102,8 +102,8 @@ public class Test_SyncEntrySet {
 		assertTrue(entrySet.contains(ENTRY_2));
 		assertTrue(entrySet.contains(ENTRY_3));
 		assertTrue(entrySet.contains(ENTRY_4));
-		assertTrue(entrySet.contains(
-				SettingUtil.quickEntry("entry.1", new BooleanConfigChecker(), new BooleanValueParser(), "TRUE")));
+		assertTrue(entrySet
+				.contains(new TestEntry("entry.1", new BooleanConfigChecker(), new BooleanValueParser(), "TRUE")));
 	}
 
 	@Test

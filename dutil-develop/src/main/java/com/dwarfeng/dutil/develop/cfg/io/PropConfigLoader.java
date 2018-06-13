@@ -50,9 +50,9 @@ public class PropConfigLoader extends StreamLoader<CurrentValueContainer> {
 	@Override
 	public void load(CurrentValueContainer container) throws LoadFailedException {
 		if (readFlag)
-			throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.PropertiesConfigLoader_1));
+			throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.PROPERTIESCONFIGLOADER_1));
 
-		Objects.requireNonNull(container, DwarfUtil.getExecptionString(ExceptionStringKey.PropertiesConfigLoader_0));
+		Objects.requireNonNull(container, DwarfUtil.getExecptionString(ExceptionStringKey.PROPERTIESCONFIGLOADER_0));
 
 		Properties properties = new Properties();
 		try {
@@ -75,9 +75,9 @@ public class PropConfigLoader extends StreamLoader<CurrentValueContainer> {
 	@Override
 	public Set<LoadFailedException> countinuousLoad(CurrentValueContainer container) throws IllegalStateException {
 		if (readFlag)
-			throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.PropertiesConfigLoader_1));
+			throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.PROPERTIESCONFIGLOADER_1));
 
-		Objects.requireNonNull(container, DwarfUtil.getExecptionString(ExceptionStringKey.PropertiesConfigLoader_0));
+		Objects.requireNonNull(container, DwarfUtil.getExecptionString(ExceptionStringKey.PROPERTIESCONFIGLOADER_0));
 
 		final Set<LoadFailedException> exceptions = new LinkedHashSet<>();
 

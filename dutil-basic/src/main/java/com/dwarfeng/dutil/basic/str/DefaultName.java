@@ -2,10 +2,11 @@ package com.dwarfeng.dutil.basic.str;
 
 import java.util.Objects;
 
-import com.dwarfeng.dutil.basic.str.Name;
+import com.dwarfeng.dutil.basic.DwarfUtil;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 
 /**
- * 默认名称接口。
+ * 默认名称。
  * <p>
  * 名称接口的默认实现。
  * 
@@ -16,9 +17,16 @@ public class DefaultName implements Name {
 
 	private final String name;
 
+	/**
+	 * 生成一个默认名称。
+	 * 
+	 * @param name
+	 *            默认名称的名字。
+	 * @throws NullPointerException
+	 *             指定的入口参数为 <code> null </code>。
+	 */
 	public DefaultName(String name) {
-		// TODO 国际化支持
-		Objects.requireNonNull(name, "入口参数 name 不能为 null。");
+		Objects.requireNonNull(name, DwarfUtil.getExecptionString(ExceptionStringKey.DEFAULTNAME_0));
 		this.name = name;
 	}
 

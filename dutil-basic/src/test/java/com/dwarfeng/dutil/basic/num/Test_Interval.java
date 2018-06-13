@@ -1,6 +1,8 @@
 package com.dwarfeng.dutil.basic.num;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -9,15 +11,17 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import com.dwarfeng.dutil.basic.io.CT;
-import com.dwarfeng.dutil.basic.num.Interval;
 import com.dwarfeng.dutil.basic.num.Interval.BoundaryType;
 
 public class Test_Interval {
 
 	@Test
-	@Ignore
 	public void testHashCode() {
-		fail("Not yet implemented"); // TODO
+		Interval interval0 = new Interval(BoundaryType.CLOSED, BoundaryType.OPENED, new BigDecimal(12450),
+				new BigDecimal(12450.12));
+		Interval interval1 = new Interval(BoundaryType.CLOSED, BoundaryType.OPENED, new BigDecimal(12450),
+				new BigDecimal(12450.12));
+		assertTrue(interval0.hashCode() == interval1.hashCode());
 	}
 
 	@Test

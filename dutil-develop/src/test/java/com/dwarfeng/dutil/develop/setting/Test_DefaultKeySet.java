@@ -45,7 +45,7 @@ public class Test_DefaultKeySet {
 	public void setUp() throws Exception {
 		handler = new DefaultSettingHandler(new LinkedHashMap<>(), new LinkedHashMap<>(),
 				Collections.newSetFromMap(new WeakHashMap<>()));
-		SettingUtil.putEnumItems(TestEntry.class, handler);
+		SettingUtil.putEnumItems(TestSettingItem.class, handler);
 		keySet = handler.keySet();
 		obv = new TestSettingObverser();
 		handler.addObverser(obv);
