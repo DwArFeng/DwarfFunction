@@ -11,8 +11,6 @@ import java.util.WeakHashMap;
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.str.Name;
-import com.dwarfeng.dutil.develop.cfg.struct.ConfigChecker;
-import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 import com.dwarfeng.dutil.develop.setting.obv.SettingObverser;
 
 /**
@@ -37,20 +35,39 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 	 */
 	public abstract static class AbstractEntry implements SettingHandler.Entry {
 
+		/**
+		 * {@inheritDoc}
+		 */
 		@Override
 		public abstract String getKey();
 
+		/**
+		 * {@inheritDoc}
+		 */
 		@Override
 		public abstract SettingInfo getSettingInfo();
 
+		/**
+		 * {@inheritDoc}
+		 */
 		@Override
-		public abstract boolean setSettingInfo(SettingInfo settingInfo);
+		public boolean setSettingInfo(SettingInfo settingInfo) {
+			throw new UnsupportedOperationException("setSettingInfo");
+		}
 
+		/**
+		 * {@inheritDoc}
+		 */
 		@Override
 		public abstract String getCurrentValue();
 
+		/**
+		 * {@inheritDoc}
+		 */
 		@Override
-		public abstract boolean setCurrentValue(String currentValue);
+		public boolean setCurrentValue(String currentValue) {
+			throw new UnsupportedOperationException("setCurrentValue");
+		}
 
 		/**
 		 * {@inheritDoc}
@@ -295,13 +312,11 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 		if (!containsKey(key))
 			return false;
 
-		SettingInfo info = getSettingInfo(key);
-		ConfigChecker configChecker = info.getConfigChecker();
-
-		if (Objects.isNull(configChecker))
+		SettingInfo settingInfo = getSettingInfo(key);
+		if (Objects.isNull(settingInfo))
 			return false;
 
-		return configChecker.isValid(value);
+		return settingInfo.isValid(value);
 	}
 
 	/**
@@ -321,13 +336,12 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 		if (!containsKey(key))
 			return null;
 
-		SettingInfo info = getSettingInfo(key);
+		SettingInfo settingInfo = getSettingInfo(key);
+		if (Objects.isNull(settingInfo))
+			return null;
+
 		String currentValue = getCurrentValue(key);
-
-		String defaultValue = info.getDefaultValue();
-		ConfigChecker checker = info.getConfigChecker();
-
-		return checker.isValid(currentValue) ? currentValue : defaultValue;
+		return settingInfo.isValid(currentValue) ? currentValue : settingInfo.getDefaultValue();
 	}
 
 	/**
@@ -450,17 +464,17 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 		if (!containsKey(key))
 			return null;
 
+		SettingInfo settingInfo = getSettingInfo(key);
+		if (Objects.isNull(settingInfo))
+			return null;
+
 		String currentValue = getCurrentValue(key);
 		if (Objects.isNull(currentValue))
 			return null;
-
-		SettingInfo settingInfo = getSettingInfo(key);
-		ValueParser parser = settingInfo.getValueParser();
-
-		if (Objects.isNull(parser))
+		if (settingInfo.nonValid(currentValue))
 			return null;
 
-		return parser.parseValue(currentValue);
+		return settingInfo.parseValue(currentValue);
 	}
 
 	/**
@@ -492,6 +506,60 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 		Objects.requireNonNull(clas, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_1));
 
 		return clas.cast(getParsedValue(key.getName()));
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Object getParsedValidValue(String key) {
+		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+
+		if (!containsKey(key))
+			return null;
+
+		SettingInfo settingInfo = getSettingInfo(key);
+		if (Objects.isNull(settingInfo))
+			return null;
+
+		String validValue = getValidValue(key);
+		if (Objects.isNull(validValue))
+			return null;
+		if (settingInfo.nonValid(validValue))
+			return null;
+
+		return settingInfo.parseValue(validValue);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Object getParsedValidValue(Name key) {
+		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		return getParsedValidValue(key.getName());
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public <T> T getParsedValidValue(String key, Class<T> clas) {
+		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		Objects.requireNonNull(clas, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_1));
+
+		return clas.cast(getParsedValidValue(key));
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public <T> T getParsedValidValue(Name key, Class<T> clas) {
+		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		Objects.requireNonNull(clas, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_1));
+
+		return clas.cast(getParsedValidValue(key.getName()));
 	}
 
 	/**
@@ -665,17 +733,12 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 	 *            指定的键对应的旧的当前值。
 	 * @param newValue
 	 *            指定的键对应的新的当前值。
-	 * @param validValue
-	 *            指定的键对应的有效值。
-	 * @param parsedValue
-	 *            指定的键对应的对象。
 	 */
-	protected void fireCurrentValueChanged(String key, String oldValue, String newValue, String validValue,
-			Object parsedValue) {
+	protected void fireCurrentValueChanged(String key, String oldValue, String newValue) {
 		for (SettingObverser obverser : obversers) {
 			if (Objects.nonNull(obverser))
 				try {
-					obverser.fireCurrentValueChanged(key, oldValue, newValue, validValue, parsedValue);
+					obverser.fireCurrentValueChanged(key, oldValue, newValue);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

@@ -308,14 +308,19 @@ public enum ExceptionStringKey implements Name {
 	DEFAULTSETTINGHANDLER_1(new DefaultName("DefaultSettingHandler.1")), //
 	DEFAULTSETTINGHANDLER_2(new DefaultName("DefaultSettingHandler.2")), //
 	DEFAULTSETTINGHANDLER_3(new DefaultName("DefaultSettingHandler.3")), //
-	DEFAULTSETTINGINFO_0(new DefaultName("DefaultSettingInfo.0")), //
-	DEFAULTSETTINGINFO_1(new DefaultName("DefaultSettingInfo.1")), //
-	DEFAULTSETTINGINFO_2(new DefaultName("DefaultSettingInfo.2")), //
-	DEFAULTSETTINGINFO_3(new DefaultName("DefaultSettingInfo.3")), //
+	ABSTRACTSETTINGINFO_0(new DefaultName("AbstractSettingInfo.0")), //
+	ABSTRACTSETTINGINFO_1(new DefaultName("AbstractSettingInfo.1")), //
 	SETTINGUTIL_0(new DefaultName("SettingUtil.0")), //
 	SETTINGUTIL_1(new DefaultName("SettingUtil.1")), //
 	SETTINGUTIL_2(new DefaultName("SettingUtil.2")), //
 	SETTINGUTIL_3(new DefaultName("SettingUtil.3")), //
+	SETTINGUTIL_4(new DefaultName("SettingUtil.4")), //
+	SETTINGUTIL_5(new DefaultName("SettingUtil.5")), //
+	SETTINGUTIL_6(new DefaultName("SettingUtil.6")), //
+	SETTINGUTIL_7(new DefaultName("SettingUtil.7")), //
+	SETTINGUTIL_8(new DefaultName("SettingUtil.8")), //
+	SETTINGUTIL_9(new DefaultName("SettingUtil.9")), //
+	SETTINGUTIL_10(new DefaultName("SettingUtil.10")), //
 	PROPSETTINGVALUELOADER_0(new DefaultName("PropSettingValueLoader.0")), //
 	PROPSETTINGVALUELOADER_1(new DefaultName("PropSettingValueLoader.1")), //
 	PROPSETTINGVALUESAVER_0(new DefaultName("PropSettingValueSaver.0")), //

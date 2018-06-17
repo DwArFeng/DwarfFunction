@@ -438,6 +438,66 @@ public interface SettingHandler extends ObverserSet<SettingObverser> {
 	public boolean resetAllCurrentValue();
 
 	/**
+	 * 获取处理器中指定配置键的对应的当前值的解析值。
+	 * 
+	 * @param key
+	 *            指定配置键。
+	 * @return 指定的配置键对应的当前值的解析值。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public Object getParsedValue(String key);
+
+	/**
+	 * 获取处理器中指定配置键的对应的当前值的解析值。
+	 * 
+	 * @param key
+	 *            指定配置键所对应的名称。
+	 * @return 指定的配置键对应的当前值的解析值。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public Object getParsedValue(Name key);
+
+	/**
+	 * 获取处理器中指定配置键的对应的当前值的解析值。
+	 * <p>
+	 * 该解析值将被转换为指定的类型。
+	 * 
+	 * @param key
+	 *            指定的配置键。
+	 * @param clas
+	 *            指定的类型。
+	 * @param <T>
+	 *            值需要被转换成的类型。
+	 * @return 被转换成指定类型的指定的配置键对应的当前值的解析值。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 * @throws ClassCastException
+	 *             类型转换异常。
+	 */
+	public <T> T getParsedValue(String key, Class<T> clas);
+
+	/**
+	 * 获取处理器中指定配置键的对应的当前值的解析值。
+	 * <p>
+	 * 该解析值将被转换为指定的类型。
+	 * 
+	 * @param key
+	 *            指定的配置键所对应的名称。
+	 * @param clas
+	 *            指定的类型。
+	 * @param <T>
+	 *            值需要被转换成的类型。
+	 * @return 被转换成指定类型的指定的配置键对应的当前值的解析值。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 * @throws ClassCastException
+	 *             类型转换异常。
+	 */
+	public <T> T getParsedValue(Name key, Class<T> clas);
+	
+	/**
 	 * 获取处理器中指定配置键的对应的有效值的解析值。
 	 * 
 	 * @param key
@@ -446,7 +506,7 @@ public interface SettingHandler extends ObverserSet<SettingObverser> {
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public Object getParsedValue(String key);
+	public Object getParsedValidValue(String key);
 
 	/**
 	 * 获取处理器中指定配置键的对应的有效值的解析值。
@@ -457,7 +517,7 @@ public interface SettingHandler extends ObverserSet<SettingObverser> {
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public Object getParsedValue(Name key);
+	public Object getParsedValidValue(Name key);
 
 	/**
 	 * 获取处理器中指定配置键的对应的有效值的解析值。
@@ -476,7 +536,7 @@ public interface SettingHandler extends ObverserSet<SettingObverser> {
 	 * @throws ClassCastException
 	 *             类型转换异常。
 	 */
-	public <T> T getParsedValue(String key, Class<T> clas);
+	public <T> T getParsedValidValue(String key, Class<T> clas);
 
 	/**
 	 * 获取处理器中指定配置键的对应的有效值的解析值。
@@ -495,10 +555,10 @@ public interface SettingHandler extends ObverserSet<SettingObverser> {
 	 * @throws ClassCastException
 	 *             类型转换异常。
 	 */
-	public <T> T getParsedValue(Name key, Class<T> clas);
+	public <T> T getParsedValidValue(Name key, Class<T> clas);
 
 	/**
-	 * 设置处理器中对应的配置键的对应的有效值（可选操作）。
+	 * 设置处理器中对应的配置键的对应的当前值（可选操作）。
 	 * <p>
 	 * 该方法使用解析器将对象解析为字符串，并将得到的字符串设置为当前值。
 	 * 
@@ -515,7 +575,7 @@ public interface SettingHandler extends ObverserSet<SettingObverser> {
 	public boolean setParsedValue(String key, Object obj);
 
 	/**
-	 * 设置处理器中对应的配置键的对应的有效值（可选操作）。
+	 * 设置处理器中对应的配置键的对应的当前值（可选操作）。
 	 * <p>
 	 * 该方法使用解析器将对象解析为字符串，并将得到的字符串设置为当前值。
 	 * 

@@ -22,8 +22,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.dwarfeng.dutil.basic.str.DefaultName;
-import com.dwarfeng.dutil.develop.cfg.checker.BooleanConfigChecker;
-import com.dwarfeng.dutil.develop.cfg.parser.BooleanValueParser;
+import com.dwarfeng.dutil.develop.setting.info.BooleanSettingInfo;
 import com.dwarfeng.dutil.develop.setting.obv.SettingObverser;
 
 public class Test_SyncSettingHandler {
@@ -43,7 +42,8 @@ public class Test_SyncSettingHandler {
 	public void setUp() throws Exception {
 		handler = SettingUtil.syncSettingHandler(new DefaultSettingHandler(new LinkedHashMap<>(), new LinkedHashMap<>(),
 				Collections.newSetFromMap(new WeakHashMap<>())));
-		SettingUtil.putEnumItems(TestSettingItem.class, handler);
+		SettingUtil.putEnumItems(new SettingEnumItem[] { TestSettingEnumItem.ENTRY_1, TestSettingEnumItem.ENTRY_2,
+				TestSettingEnumItem.ENTRY_3, TestSettingEnumItem.ENTRY_4 }, handler);
 		obv = new TestSettingObverser();
 		handler.addObverser(obv);
 	}
@@ -57,17 +57,19 @@ public class Test_SyncSettingHandler {
 
 	@Test
 	public void testPutStringSettingInfoString() {
-		assertTrue(handler.put("entry.5",
-				new DefaultSettingInfo(new BooleanConfigChecker(), new BooleanValueParser(), "TRUE"), "TRUE"));
-		assertFalse(handler.put("entry.5",
-				new DefaultSettingInfo(new BooleanConfigChecker(), new BooleanValueParser(), "TRUE"), "TRUE"));
+		assertTrue(handler.put("entry.5", new BooleanSettingInfo("TRUE"), "TRUE"));
+		assertFalse(handler.put("entry.5", new BooleanSettingInfo("TRUE"), "TRUE"));
 		assertEquals(5, handler.size());
 		assertEquals(1, obv.putList.size());
 		assertEquals("entry.5", obv.putList.get(0));
-		assertTrue(handler.put("entry.1",
-				new DefaultSettingInfo(new BooleanConfigChecker(), new BooleanValueParser(), "TRUE"), "FALSE"));
+		assertTrue(handler.put("entry.1", new BooleanSettingInfo("TRUE"), "FALSE"));
 		assertEquals(1, obv.currentValueChangedKey.size());
 		assertEquals("entry.1", obv.currentValueChangedKey.get(0));
+		assertTrue(handler.put("entry.2", new BooleanSettingInfo("TRUE"), "TRUE"));
+		assertEquals(1, obv.settingInfoChangedKey.size());
+		assertEquals("entry.2", obv.settingInfoChangedKey.get(0));
+		assertEquals(2, obv.currentValueChangedKey.size());
+		assertEquals("entry.2", obv.currentValueChangedKey.get(1));
 	}
 
 	@Test
@@ -90,10 +92,8 @@ public class Test_SyncSettingHandler {
 
 	@Test
 	public void testSetSettingInfoStringSettingInfo() {
-		assertFalse(handler.setSettingInfo("entry.1",
-				new DefaultSettingInfo(new BooleanConfigChecker(), new BooleanValueParser(), "TRUE")));
-		assertTrue(handler.setSettingInfo("entry.1",
-				new DefaultSettingInfo(new BooleanConfigChecker(), new BooleanValueParser(), "FALSE")));
+		assertFalse(handler.setSettingInfo("entry.1", new BooleanSettingInfo("TRUE")));
+		assertTrue(handler.setSettingInfo("entry.1", new BooleanSettingInfo("FALSE")));
 		assertEquals(1, obv.settingInfoChangedKey.size());
 		assertEquals("entry.1", obv.settingInfoChangedKey.get(0));
 	}
@@ -186,7 +186,8 @@ public class Test_SyncSettingHandler {
 				Collections.newSetFromMap(new WeakHashMap<>()));
 		assertEquals(0, anotherHandler.hashCode());
 
-		SettingUtil.putEnumItems(TestSettingItem.class, anotherHandler);
+		SettingUtil.putEnumItems(new SettingEnumItem[] { TestSettingEnumItem.ENTRY_1, TestSettingEnumItem.ENTRY_2,
+				TestSettingEnumItem.ENTRY_3, TestSettingEnumItem.ENTRY_4 }, anotherHandler);
 		assertTrue(handler.hashCode() == anotherHandler.hashCode());
 	}
 
@@ -211,15 +212,12 @@ public class Test_SyncSettingHandler {
 
 	@Test
 	public void testPutNameSettingInfoString() {
-		assertTrue(handler.put(new DefaultName("entry.5"),
-				new DefaultSettingInfo(new BooleanConfigChecker(), new BooleanValueParser(), "TRUE"), "TRUE"));
-		assertFalse(handler.put(new DefaultName("entry.5"),
-				new DefaultSettingInfo(new BooleanConfigChecker(), new BooleanValueParser(), "TRUE"), "TRUE"));
+		assertTrue(handler.put(new DefaultName("entry.5"), new BooleanSettingInfo("TRUE"), "TRUE"));
+		assertFalse(handler.put(new DefaultName("entry.5"), new BooleanSettingInfo("TRUE"), "TRUE"));
 		assertEquals(5, handler.size());
 		assertEquals(1, obv.putList.size());
 		assertEquals("entry.5", obv.putList.get(0));
-		assertTrue(handler.put(TestSettingItem.ENTRY_1,
-				new DefaultSettingInfo(new BooleanConfigChecker(), new BooleanValueParser(), "TRUE"), "FALSE"));
+		assertTrue(handler.put(TestSettingEnumItem.ENTRY_1, new BooleanSettingInfo("TRUE"), "FALSE"));
 		assertEquals(1, obv.currentValueChangedKey.size());
 		assertEquals("entry.1", obv.currentValueChangedKey.get(0));
 	}
@@ -227,17 +225,12 @@ public class Test_SyncSettingHandler {
 	@Test
 	public void testPutAll() {
 		SettingHandler anotherHandler = new DefaultSettingHandler();
-		SettingUtil.putEnumItems(TestSettingItem.class, anotherHandler);
+		SettingUtil.putEnumItems(new SettingEnumItem[] { TestSettingEnumItem.ENTRY_1, TestSettingEnumItem.ENTRY_2,
+				TestSettingEnumItem.ENTRY_3, TestSettingEnumItem.ENTRY_4 }, anotherHandler);
 		assertFalse(handler.putAll(anotherHandler));
 		anotherHandler.clear();
-		anotherHandler.put("entry.5",
-				new DefaultSettingInfo(new BooleanConfigChecker(), new BooleanValueParser(), "TRUE"), "TRUE");
-		anotherHandler.put("entry.6",
-				new DefaultSettingInfo(new BooleanConfigChecker(), new BooleanValueParser(), "TRUE"), "TRUE");
-		anotherHandler.put("entry.7",
-				new DefaultSettingInfo(new BooleanConfigChecker(), new BooleanValueParser(), "TRUE"), "TRUE");
-		anotherHandler.put("entry.8",
-				new DefaultSettingInfo(new BooleanConfigChecker(), new BooleanValueParser(), "TRUE"), "TRUE");
+		SettingUtil.putEnumItems(new SettingEnumItem[] { TestSettingEnumItem.ENTRY_5, TestSettingEnumItem.ENTRY_6,
+				TestSettingEnumItem.ENTRY_7, TestSettingEnumItem.ENTRY_8 }, anotherHandler);
 		assertTrue(handler.putAll(anotherHandler));
 		assertEquals(4, obv.putList.size());
 		assertTrue(obv.putList.contains("entry.5"));
@@ -256,17 +249,15 @@ public class Test_SyncSettingHandler {
 
 	@Test
 	public void testGetSettingInfoName() {
-		assertEquals("TRUE", handler.getSettingInfo(TestSettingItem.ENTRY_1).getDefaultValue());
-		assertEquals("FALSE", handler.getSettingInfo(TestSettingItem.ENTRY_2).getDefaultValue());
+		assertEquals("TRUE", handler.getSettingInfo(TestSettingEnumItem.ENTRY_1).getDefaultValue());
+		assertEquals("FALSE", handler.getSettingInfo(TestSettingEnumItem.ENTRY_2).getDefaultValue());
 		assertNull(handler.getSettingInfo(new DefaultName("entry.5")));
 	}
 
 	@Test
 	public void testSetSettingInfoNameSettingInfo() {
-		assertFalse(handler.setSettingInfo(TestSettingItem.ENTRY_1,
-				new DefaultSettingInfo(new BooleanConfigChecker(), new BooleanValueParser(), "TRUE")));
-		assertTrue(handler.setSettingInfo(TestSettingItem.ENTRY_1,
-				new DefaultSettingInfo(new BooleanConfigChecker(), new BooleanValueParser(), "FALSE")));
+		assertFalse(handler.setSettingInfo(TestSettingEnumItem.ENTRY_1, new BooleanSettingInfo("TRUE")));
+		assertTrue(handler.setSettingInfo(TestSettingEnumItem.ENTRY_1, new BooleanSettingInfo("FALSE")));
 		assertEquals(1, obv.settingInfoChangedKey.size());
 		assertEquals("entry.1", obv.settingInfoChangedKey.get(0));
 	}
@@ -283,12 +274,12 @@ public class Test_SyncSettingHandler {
 
 	@Test
 	public void testIsValueValidNameString() {
-		assertTrue(handler.isValueValid(TestSettingItem.ENTRY_1, "TRUE"));
-		assertTrue(handler.isValueValid(TestSettingItem.ENTRY_1, "FALSE"));
-		assertTrue(handler.isValueValid(TestSettingItem.ENTRY_1, "true"));
-		assertTrue(handler.isValueValid(TestSettingItem.ENTRY_1, "false"));
-		assertFalse(handler.isValueValid(TestSettingItem.ENTRY_1, "233"));
-		assertFalse(handler.isValueValid(TestSettingItem.ENTRY_1, "ture"));
+		assertTrue(handler.isValueValid(TestSettingEnumItem.ENTRY_1, "TRUE"));
+		assertTrue(handler.isValueValid(TestSettingEnumItem.ENTRY_1, "FALSE"));
+		assertTrue(handler.isValueValid(TestSettingEnumItem.ENTRY_1, "true"));
+		assertTrue(handler.isValueValid(TestSettingEnumItem.ENTRY_1, "false"));
+		assertFalse(handler.isValueValid(TestSettingEnumItem.ENTRY_1, "233"));
+		assertFalse(handler.isValueValid(TestSettingEnumItem.ENTRY_1, "ture"));
 	}
 
 	@Test
@@ -302,29 +293,29 @@ public class Test_SyncSettingHandler {
 
 	@Test
 	public void testGetCurrentValueName() {
-		assertEquals("TRUE", handler.getCurrentValue(TestSettingItem.ENTRY_1));
-		assertEquals("FALSE", handler.getCurrentValue(TestSettingItem.ENTRY_2));
+		assertEquals("TRUE", handler.getCurrentValue(TestSettingEnumItem.ENTRY_1));
+		assertEquals("FALSE", handler.getCurrentValue(TestSettingEnumItem.ENTRY_2));
 	}
 
 	@Test
 	public void testGetValidValueName() {
-		assertEquals("TRUE", handler.getValidValue(TestSettingItem.ENTRY_1));
-		handler.setCurrentValue(TestSettingItem.ENTRY_1, "FALSE");
-		assertEquals("FALSE", handler.getValidValue(TestSettingItem.ENTRY_1));
-		handler.setCurrentValue(TestSettingItem.ENTRY_1, "ABC");
-		assertEquals("TRUE", handler.getValidValue(TestSettingItem.ENTRY_1));
+		assertEquals("TRUE", handler.getValidValue(TestSettingEnumItem.ENTRY_1));
+		handler.setCurrentValue(TestSettingEnumItem.ENTRY_1, "FALSE");
+		assertEquals("FALSE", handler.getValidValue(TestSettingEnumItem.ENTRY_1));
+		handler.setCurrentValue(TestSettingEnumItem.ENTRY_1, "ABC");
+		assertEquals("TRUE", handler.getValidValue(TestSettingEnumItem.ENTRY_1));
 	}
 
 	@Test
 	public void testSetCurrentValueNameString() {
 		assertFalse(handler.setCurrentValue(new DefaultName("entry.5"), "TRUE"));
-		assertTrue(handler.setCurrentValue(TestSettingItem.ENTRY_1, "FALSE"));
-		assertEquals("FALSE", handler.getCurrentValue(TestSettingItem.ENTRY_1));
+		assertTrue(handler.setCurrentValue(TestSettingEnumItem.ENTRY_1, "FALSE"));
+		assertEquals("FALSE", handler.getCurrentValue(TestSettingEnumItem.ENTRY_1));
 		assertEquals("entry.1", obv.currentValueChangedKey.get(0));
 		assertEquals(1, obv.currentValueChangedKey.size());
-		assertTrue(handler.setCurrentValue(TestSettingItem.ENTRY_1, "ABC"));
+		assertTrue(handler.setCurrentValue(TestSettingEnumItem.ENTRY_1, "ABC"));
 		assertEquals("entry.1", obv.currentValueChangedKey.get(1));
-		assertEquals("ABC", handler.getCurrentValue(TestSettingItem.ENTRY_1));
+		assertEquals("ABC", handler.getCurrentValue(TestSettingEnumItem.ENTRY_1));
 		assertEquals(2, obv.currentValueChangedKey.size());
 	}
 
@@ -352,9 +343,9 @@ public class Test_SyncSettingHandler {
 
 	@Test
 	public void testResetCurrentValueName() {
-		handler.setCurrentValue(TestSettingItem.ENTRY_1, "ABC");
-		assertTrue(handler.resetCurrentValue(TestSettingItem.ENTRY_1));
-		assertEquals("TRUE", handler.getCurrentValue(TestSettingItem.ENTRY_1));
+		handler.setCurrentValue(TestSettingEnumItem.ENTRY_1, "ABC");
+		assertTrue(handler.resetCurrentValue(TestSettingEnumItem.ENTRY_1));
+		assertEquals("TRUE", handler.getCurrentValue(TestSettingEnumItem.ENTRY_1));
 		assertEquals(2, obv.currentValueChangedKey.size());
 		assertEquals("entry.1", obv.currentValueChangedKey.get(0));
 		assertEquals("entry.1", obv.currentValueChangedKey.get(1));
@@ -362,20 +353,20 @@ public class Test_SyncSettingHandler {
 
 	@Test
 	public void testResetAllCurrentValueCollectionOfString() {
-		handler.setCurrentValue(TestSettingItem.ENTRY_1, "");
-		handler.setCurrentValue(TestSettingItem.ENTRY_2, "");
-		handler.setCurrentValue(TestSettingItem.ENTRY_3, "");
-		handler.setCurrentValue(TestSettingItem.ENTRY_4, "");
+		handler.setCurrentValue(TestSettingEnumItem.ENTRY_1, "");
+		handler.setCurrentValue(TestSettingEnumItem.ENTRY_2, "");
+		handler.setCurrentValue(TestSettingEnumItem.ENTRY_3, "");
+		handler.setCurrentValue(TestSettingEnumItem.ENTRY_4, "");
 
 	}
 
 	@Test
 	public void testResetAllCurrentValue() {
 		assertFalse(handler.resetAllCurrentValue());
-		handler.setCurrentValue(TestSettingItem.ENTRY_1, "");
-		handler.setCurrentValue(TestSettingItem.ENTRY_2, "");
-		handler.setCurrentValue(TestSettingItem.ENTRY_3, "");
-		handler.setCurrentValue(TestSettingItem.ENTRY_4, "");
+		handler.setCurrentValue(TestSettingEnumItem.ENTRY_1, "");
+		handler.setCurrentValue(TestSettingEnumItem.ENTRY_2, "");
+		handler.setCurrentValue(TestSettingEnumItem.ENTRY_3, "");
+		handler.setCurrentValue(TestSettingEnumItem.ENTRY_4, "");
 		assertTrue(handler.resetAllCurrentValue());
 		assertEquals(8, obv.currentValueChangedKey.size());
 
@@ -397,10 +388,10 @@ public class Test_SyncSettingHandler {
 
 	@Test
 	public void testGetParsedValueName() {
-		assertEquals(true, handler.getParsedValue(TestSettingItem.ENTRY_1));
-		assertEquals(false, handler.getParsedValue(TestSettingItem.ENTRY_2));
-		assertEquals(12, handler.getParsedValue(TestSettingItem.ENTRY_3));
-		assertEquals(450, handler.getParsedValue(TestSettingItem.ENTRY_4));
+		assertEquals(true, handler.getParsedValue(TestSettingEnumItem.ENTRY_1));
+		assertEquals(false, handler.getParsedValue(TestSettingEnumItem.ENTRY_2));
+		assertEquals(12, handler.getParsedValue(TestSettingEnumItem.ENTRY_3));
+		assertEquals(450, handler.getParsedValue(TestSettingEnumItem.ENTRY_4));
 	}
 
 	@Test
@@ -419,18 +410,66 @@ public class Test_SyncSettingHandler {
 
 	@Test
 	public void testGetParsedValueNameClassOfT() {
-		assertEquals(true, handler.getParsedValue(TestSettingItem.ENTRY_1, Boolean.class));
-		assertEquals(false, handler.getParsedValue(TestSettingItem.ENTRY_2, Boolean.class));
-		assertEquals(12, (Object) handler.getParsedValue(TestSettingItem.ENTRY_3, Integer.class));
-		assertEquals(450, (Object) handler.getParsedValue(TestSettingItem.ENTRY_4, Integer.class));
+		assertEquals(true, handler.getParsedValue(TestSettingEnumItem.ENTRY_1, Boolean.class));
+		assertEquals(false, handler.getParsedValue(TestSettingEnumItem.ENTRY_2, Boolean.class));
+		assertEquals(12, (Object) handler.getParsedValue(TestSettingEnumItem.ENTRY_3, Integer.class));
+		assertEquals(450, (Object) handler.getParsedValue(TestSettingEnumItem.ENTRY_4, Integer.class));
+	}
+
+	@Test
+	public void testGetParsedValidValueString() {
+		assertEquals(true, handler.getParsedValidValue("entry.1"));
+		assertEquals(false, handler.getParsedValidValue("entry.2"));
+		assertEquals(12, handler.getParsedValidValue("entry.3"));
+		assertEquals(450, handler.getParsedValidValue("entry.4"));
+		assertNull(handler.getParsedValidValue("entry.5"));
+	}
+
+	@Test
+	public void testGetParsedValidValueName() {
+		assertEquals(true, handler.getParsedValidValue(TestSettingEnumItem.ENTRY_1));
+		assertEquals(false, handler.getParsedValidValue(TestSettingEnumItem.ENTRY_2));
+		assertEquals(12, handler.getParsedValidValue(TestSettingEnumItem.ENTRY_3));
+		assertEquals(450, handler.getParsedValidValue(TestSettingEnumItem.ENTRY_4));
+		assertNull(handler.getParsedValidValue(TestSettingEnumItem.ENTRY_5));
+	}
+
+	@Test
+	public void testGetParsedValidValueStringClassOfT() {
+		assertEquals(true, handler.getParsedValidValue("entry.1", Boolean.class));
+		assertEquals(false, handler.getParsedValidValue("entry.2", Boolean.class));
+		assertEquals(12, (int) handler.getParsedValidValue("entry.3", Integer.class));
+		assertEquals(450, (int) handler.getParsedValidValue("entry.4", Integer.class));
+		assertNull(handler.getParsedValidValue("entry.5", Boolean.class));
+	}
+
+	@Test(expected = ClassCastException.class)
+	public void testGetParsedValidValueStringClassOfTException() {
+		handler.getParsedValidValue("entry.1", String.class);
+		fail("没有抛出异常。");
+	}
+
+	@Test
+	public void testGetParsedValidValueNameClassOfT() {
+		assertEquals(true, handler.getParsedValidValue(TestSettingEnumItem.ENTRY_1, Boolean.class));
+		assertEquals(false, handler.getParsedValidValue(TestSettingEnumItem.ENTRY_2, Boolean.class));
+		assertEquals(12, (int) handler.getParsedValidValue(TestSettingEnumItem.ENTRY_3, Integer.class));
+		assertEquals(450, (int) handler.getParsedValidValue(TestSettingEnumItem.ENTRY_4, Integer.class));
+		assertNull(handler.getParsedValidValue(TestSettingEnumItem.ENTRY_5, Boolean.class));
+	}
+
+	@Test(expected = ClassCastException.class)
+	public void testGetParsedValidValueNameClassOfTException() {
+		handler.getParsedValidValue(TestSettingEnumItem.ENTRY_1, String.class);
+		fail("没有抛出异常。");
 	}
 
 	@Test
 	public void testSetParsedValueNameObject() {
-		assertEquals(true, handler.getParsedValue(TestSettingItem.ENTRY_1));
-		assertEquals(false, handler.getParsedValue(TestSettingItem.ENTRY_2));
-		assertEquals(12, handler.getParsedValue(TestSettingItem.ENTRY_3));
-		assertEquals(450, handler.getParsedValue(TestSettingItem.ENTRY_4));
+		assertEquals(true, handler.getParsedValue(TestSettingEnumItem.ENTRY_1));
+		assertEquals(false, handler.getParsedValue(TestSettingEnumItem.ENTRY_2));
+		assertEquals(12, handler.getParsedValue(TestSettingEnumItem.ENTRY_3));
+		assertEquals(450, handler.getParsedValue(TestSettingEnumItem.ENTRY_4));
 	}
 
 	@Test
@@ -438,7 +477,8 @@ public class Test_SyncSettingHandler {
 		DefaultSettingHandler anotherHandler = new DefaultSettingHandler(new LinkedHashMap<>(), new LinkedHashMap<>(),
 				Collections.newSetFromMap(new WeakHashMap<>()));
 
-		SettingUtil.putEnumItems(TestSettingItem.class, anotherHandler);
+		SettingUtil.putEnumItems(new SettingEnumItem[] { TestSettingEnumItem.ENTRY_1, TestSettingEnumItem.ENTRY_2,
+				TestSettingEnumItem.ENTRY_3, TestSettingEnumItem.ENTRY_4 }, anotherHandler);
 		assertTrue(handler.equals(anotherHandler));
 	}
 

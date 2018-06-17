@@ -11,7 +11,11 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.cna.CollectionUtil;
+import com.dwarfeng.dutil.basic.prog.Filter;
 import com.dwarfeng.dutil.basic.str.Name;
+import com.dwarfeng.dutil.develop.cfg.struct.ConfigChecker;
+import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
+import com.dwarfeng.dutil.develop.setting.SettingHandler.Entry;
 import com.dwarfeng.dutil.develop.setting.obv.SettingObverser;
 
 /**
@@ -445,6 +449,38 @@ public final class SettingUtil {
 		@Override
 		public <T> T getParsedValue(Name key, Class<T> clas) {
 			return delegate.getParsedValue(key, clas);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public Object getParsedValidValue(String key) {
+			return delegate.getParsedValidValue(key);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public Object getParsedValidValue(Name key) {
+			return delegate.getParsedValidValue(key);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public <T> T getParsedValidValue(String key, Class<T> clas) {
+			return delegate.getParsedValidValue(key, clas);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public <T> T getParsedValidValue(Name key, Class<T> clas) {
+			return delegate.getParsedValidValue(key, clas);
 		}
 
 		/**
@@ -935,6 +971,58 @@ public final class SettingUtil {
 		 * {@inheritDoc}
 		 */
 		@Override
+		public Object getParsedValidValue(String key) {
+			lock.readLock().lock();
+			try {
+				return delegate.getParsedValidValue(key);
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public Object getParsedValidValue(Name key) {
+			lock.readLock().lock();
+			try {
+				return delegate.getParsedValidValue(key);
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public <T> T getParsedValidValue(String key, Class<T> clas) {
+			lock.readLock().lock();
+			try {
+				return delegate.getParsedValidValue(key, clas);
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public <T> T getParsedValidValue(Name key, Class<T> clas) {
+			lock.readLock().lock();
+			try {
+				return delegate.getParsedValidValue(key, clas);
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
 		public boolean setParsedValue(String key, Object obj) {
 			lock.writeLock().lock();
 			try {
@@ -1080,24 +1168,507 @@ public final class SettingUtil {
 	 *             指定的入口参数为 <code> null </code>。
 	 */
 	public static <T extends Enum<T>> boolean putEnumItems(Class<T> clazz, SettingHandler settingHandler)
-			throws IllegalStateException {
+			throws NullPointerException, IllegalStateException {
 		Objects.requireNonNull(clazz, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_2));
 		Objects.requireNonNull(settingHandler, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_1));
 
 		if (!SettingEnumItem.class.isAssignableFrom(clazz))
 			throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_3));
 
-		boolean aFlag = false;
+		SettingEnumItem[] items = (SettingEnumItem[]) clazz.getEnumConstants();
+		return putEnumItems(items, settingHandler);
+	}
 
-		for (T t : clazz.getEnumConstants()) {
-			SettingEnumItem item = (SettingEnumItem) t;
-			if (settingHandler.put(item.getName(),
-					new DefaultSettingInfo(item.getConfigChecker(), item.getValueParser(), item.getInitialValue()),
-					item.getInitialValue()))
+	/**
+	 * 将指定集合中的所有配置枚举条目添加到指定的配置处理器中。
+	 * 
+	 * @param items
+	 *            指定的配置枚举条目组成的集合。
+	 * @param settingHandler
+	 *            指定的配置处理器。
+	 * @return 该操作是否对指定的配置处理器造成了改变。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static boolean putEnumItems(Collection<SettingEnumItem> items, SettingHandler settingHandler)
+			throws NullPointerException {
+		Objects.requireNonNull(items, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_4));
+		Objects.requireNonNull(settingHandler, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_1));
+
+		return putEnumItems(items.toArray(new SettingEnumItem[0]), settingHandler);
+	}
+
+	/**
+	 * 将指定数组中的所有配置枚举条目添加到指定的配置处理器中。
+	 * 
+	 * @param items
+	 *            指定的配置枚举条目组成的数组。
+	 * @param settingHandler
+	 *            指定的配置处理器。
+	 * @return 该操作是否对指定的配置处理器造成了改变。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static boolean putEnumItems(SettingEnumItem[] items, SettingHandler settingHandler)
+			throws NullPointerException {
+		Objects.requireNonNull(items, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_4));
+		Objects.requireNonNull(settingHandler, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_1));
+
+		boolean aFlag = false;
+		for (SettingEnumItem item : items) {
+			if (settingHandler.put(item.getName(), item.getSettingInfo(), item.getSettingInfo().getDefaultValue()))
 				aFlag = true;
 		}
-
 		return aFlag;
+	}
+
+	/**
+	 * 将指定的配置值检查器、值转换器、默认值转换为配置信息。
+	 * 
+	 * <p>
+	 * 该方法可以由 com.dwarfeng.dutil.develop.cfg 包中的配置值检查器以及值转换器生成新的配置信息。
+	 * 
+	 * @param configChecker
+	 *            指定的配置值检查器。
+	 * @param valueParser
+	 *            制定的值转换器。
+	 * @param defaultValue
+	 *            制定的默认值。
+	 * @return 由指定的配置值检查器、指定的值转换器、指定的配置信息转换而成的配置信息。
+	 * @throws NullPointerException
+	 *             指定的入口参数为 <code> null </code>。
+	 * @throws IllegalArgumentException
+	 *             指定的默认值无法通过配置值检查器的检验。
+	 * @see ConfigChecker
+	 * @see ValueParser
+	 */
+	public static SettingInfo toSettingInfo(ConfigChecker configChecker, ValueParser valueParser, String defaultValue)
+			throws NullPointerException, IllegalArgumentException {
+		return new CvSettingInfo(configChecker, valueParser, defaultValue);
+	}
+
+	private static final class CvSettingInfo extends AbstractSettingInfo implements SettingInfo {
+
+		private final ConfigChecker configChecker;
+		private final ValueParser valueParser;
+
+		public CvSettingInfo(ConfigChecker configChecker, ValueParser valueParser, String defaultValue)
+				throws NullPointerException, IllegalArgumentException {
+			super(defaultValue);
+			Objects.requireNonNull(configChecker, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_5));
+			Objects.requireNonNull(valueParser, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_6));
+
+			this.configChecker = configChecker;
+			this.valueParser = valueParser;
+
+			checkDefaultValue();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((configChecker == null) ? 0 : configChecker.hashCode());
+			result = prime * result + ((valueParser == null) ? 0 : valueParser.hashCode());
+			result = prime * result + ((defaultValue == null) ? 0 : defaultValue.hashCode());
+			return result;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			CvSettingInfo other = (CvSettingInfo) obj;
+			if (configChecker == null) {
+				if (other.configChecker != null)
+					return false;
+			} else if (!configChecker.equals(other.configChecker))
+				return false;
+			if (valueParser == null) {
+				if (other.valueParser != null)
+					return false;
+			} else if (!valueParser.equals(other.valueParser)) {
+				return false;
+			} else if (defaultValue == null) {
+				if (other.defaultValue != null)
+					return false;
+			} else if (!defaultValue.equals(other.defaultValue))
+				return false;
+			return true;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public String toString() {
+			return "CvSettingInfo [defaultValue=" + defaultValue + ", configChecker=" + configChecker + ", valueParser="
+					+ valueParser + "]";
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		protected boolean isNonNullValid(String value) {
+			return configChecker.isValid(value);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		protected Object parseValidValue(String value) {
+			return valueParser.parseValue(value);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		protected String parseNonNullObject(Object object) {
+			return valueParser.parseObject(object);
+		}
+
+	}
+
+	/**
+	 * 将指定的配置枚举条目、当前值转换为配置入口。
+	 * 
+	 * @param item
+	 *            指定的配置枚举条目。
+	 * @param currentValue
+	 *            指定的当前值。
+	 * @return 由制定的配置枚举条目、指定的当前值转换而成的配置入口。
+	 * @throws NullPointerException
+	 *             指定的入口参数为 <code> null </code>。
+	 */
+	public static SettingHandler.Entry toEntry(SettingEnumItem item, String currentValue) throws NullPointerException {
+		return new SsEntry(item, currentValue);
+	}
+
+	private static final class SsEntry extends AbstractSettingHandler.AbstractEntry implements Entry {
+
+		private final SettingEnumItem item;
+		private final String currentValue;
+
+		public SsEntry(SettingEnumItem item, String currentValue) {
+			this.item = item;
+			this.currentValue = currentValue;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public String getKey() {
+			return item.getName();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public SettingInfo getSettingInfo() {
+			return item.getSettingInfo();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public String getCurrentValue() {
+			return currentValue;
+		}
+
+	}
+
+	/**
+	 * 根据指定的配置信息和指定的值过滤器生成一个新的配置信息。
+	 * <p>
+	 * 只有同时满足配置信息值检查和过滤器的值检查，才能算是有效的值。 <br>
+	 * 该方法使一个配置信息的有效范围按照指定的要求进一步缩小。
+	 * 
+	 * @param settingInfo
+	 *            指定的配置信息。
+	 * @param valueFilter
+	 *            指定的值过滤器。
+	 * @return 根据指定的配置信息和指定的值过滤器生成的一个新的配置信息。
+	 * @throws IllegalArgumentException
+	 *             指定配置信息的默认值不能通过过滤器。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static SettingInfo valueFilteredSettingInfo(SettingInfo settingInfo, Filter<String> valueFilter)
+			throws NullPointerException, IllegalArgumentException {
+		Objects.requireNonNull(settingInfo, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_7));
+		Objects.requireNonNull(valueFilter, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_8));
+		if (!valueFilter.accept(settingInfo.getDefaultValue()))
+			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_9));
+
+		return new ValueFilteredSettingInfo(settingInfo, valueFilter);
+	}
+
+	private static final class ValueFilteredSettingInfo implements SettingInfo {
+
+		private final SettingInfo delegate;
+		private final Filter<String> valueFilter;
+
+		public ValueFilteredSettingInfo(SettingInfo delegate, Filter<String> valueFilter) {
+			this.delegate = delegate;
+			this.valueFilter = valueFilter;
+
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean isValid(String value) {
+			if (Objects.isNull(value))
+				return false;
+			if (delegate.nonValid(value))
+				return false;
+
+			return valueFilter.accept(value);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean nonValid(String value) {
+			if (Objects.isNull(value))
+				return true;
+			return !isValid(value);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public Object parseValue(String value) {
+			if (Objects.isNull(value) || nonValid(value))
+				return null;
+			return delegate.parseValue(value);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public String parseObject(Object object) {
+			if (Objects.isNull(object))
+				return null;
+			String value = delegate.parseObject(object);
+			return valueFilter.accept(value) ? value : null;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public String getDefaultValue() {
+			return delegate.getDefaultValue();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((delegate == null) ? 0 : delegate.hashCode());
+			result = prime * result + ((valueFilter == null) ? 0 : valueFilter.hashCode());
+			return result;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (!(obj instanceof ValueFilteredSettingInfo))
+				return false;
+			ValueFilteredSettingInfo other = (ValueFilteredSettingInfo) obj;
+			if (delegate == null) {
+				if (other.delegate != null)
+					return false;
+			} else if (!delegate.equals(other.delegate))
+				return false;
+			if (valueFilter == null) {
+				if (other.valueFilter != null)
+					return false;
+			} else if (!valueFilter.equals(other.valueFilter))
+				return false;
+			return true;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public String toString() {
+			return "FilteredSettingInfo [delegate=" + delegate + ", valueFilter=" + valueFilter + "]";
+		}
+
+	}
+
+	/**
+	 * 根据指定的配置信息和指定的对象过滤器生成一个新的配置信息。
+	 * <p>
+	 * 只有同时满足配置信息值检查和过滤器的值检查，才能算是有效的值。 <br>
+	 * 该方法使一个配置信息的有效范围按照指定的要求进一步缩小。
+	 * 
+	 * @param settingInfo
+	 *            指定的配置信息。
+	 * @param objectFilter
+	 *            指定的对象过滤器。
+	 * @return 根据指定的配置信息和指定的对象过滤器生成的一个新的配置信息。
+	 * @throws IllegalArgumentException
+	 *             指定配置信息的默认值不能通过过滤器。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static SettingInfo objectFilteredSettingInfo(SettingInfo settingInfo, Filter<Object> objectFilter)
+			throws NullPointerException, IllegalArgumentException {
+		Objects.requireNonNull(settingInfo, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_7));
+		Objects.requireNonNull(objectFilter, "入口参数 objectFilter 不能为 null。");
+		if (!objectFilter.accept(settingInfo.parseValue(settingInfo.getDefaultValue())))
+			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_9));
+
+		return new ObjectFilteredSettingInfo(settingInfo, objectFilter);
+	}
+
+	private static final class ObjectFilteredSettingInfo implements SettingInfo {
+
+		private final SettingInfo delegate;
+		private final Filter<Object> objectFilter;
+
+		public ObjectFilteredSettingInfo(SettingInfo delegate, Filter<Object> objectFilter) {
+			this.delegate = delegate;
+			this.objectFilter = objectFilter;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean isValid(String value) {
+			if (Objects.isNull(value))
+				return false;
+			if (delegate.nonValid(value))
+				return false;
+
+			Object object = delegate.parseValue(value);
+			return objectFilter.accept(object);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean nonValid(String value) {
+			if (Objects.isNull(value))
+				return true;
+			return !isValid(value);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public Object parseValue(String value) {
+			if (Objects.isNull(value) || nonValid(value))
+				return null;
+			return delegate.parseValue(value);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public String parseObject(Object object) {
+			if (Objects.isNull(object))
+				return null;
+			if (!objectFilter.accept(object))
+				return null;
+
+			return delegate.parseObject(object);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public String getDefaultValue() {
+			return delegate.getDefaultValue();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((delegate == null) ? 0 : delegate.hashCode());
+			result = prime * result + ((objectFilter == null) ? 0 : objectFilter.hashCode());
+			return result;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (!(obj instanceof ObjectFilteredSettingInfo))
+				return false;
+			ObjectFilteredSettingInfo other = (ObjectFilteredSettingInfo) obj;
+			if (delegate == null) {
+				if (other.delegate != null)
+					return false;
+			} else if (!delegate.equals(other.delegate))
+				return false;
+			if (objectFilter == null) {
+				if (other.objectFilter != null)
+					return false;
+			} else if (!objectFilter.equals(other.objectFilter))
+				return false;
+			return true;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public String toString() {
+			return "ObjectFilteredSettingInfo [delegate=" + delegate + ", objectFilter=" + objectFilter + "]";
+		}
+
+	}
+
+	// 禁止外部实例化。
+	private SettingUtil() {
 	}
 
 }

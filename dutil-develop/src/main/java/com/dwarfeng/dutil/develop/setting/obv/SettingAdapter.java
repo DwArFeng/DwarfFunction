@@ -27,8 +27,7 @@ public abstract class SettingAdapter implements SettingObverser {
 	}
 
 	@Override
-	public void fireCurrentValueChanged(String key, String oldValue, String newValue, String validValue,
-			Object parsedValue) {
+	public void fireCurrentValueChanged(String key, String oldValue, String newValue) {
 	}
 
 }

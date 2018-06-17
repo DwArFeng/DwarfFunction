@@ -51,8 +51,7 @@ public final class TestSettingObverser extends SettingAdapter implements Setting
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void fireCurrentValueChanged(String key, String oldValue, String newValue, String validValue,
-			Object parsedValue) {
+	public void fireCurrentValueChanged(String key, String oldValue, String newValue) {
 		currentValueChangedKey.add(key);
 	}
 

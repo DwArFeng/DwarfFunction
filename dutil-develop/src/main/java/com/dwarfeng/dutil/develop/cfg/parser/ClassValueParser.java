@@ -59,7 +59,7 @@ public class ClassValueParser implements ValueParser {
 	 */
 	@Override
 	public int hashCode() {
-		return BooleanValueParser.class.hashCode() * 17;
+		return ClassValueParser.class.hashCode() * 17;
 	}
 
 }

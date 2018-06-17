@@ -13,7 +13,6 @@ import java.util.WeakHashMap;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.ExceptionStringKey;
-import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 import com.dwarfeng.dutil.develop.setting.obv.SettingObverser;
 
 /**
@@ -593,7 +592,7 @@ public class DefaultSettingHandler extends AbstractSettingHandler {
 				fireSettingInfoChanged(key, oldSettingInfo, settingInfo);
 			}
 			if (flag_currentValueChange) {
-				fireCurrentValueChanged(key, oldCurrentValue, currentValue, getValidValue(key), getParsedValue(key));
+				fireCurrentValueChanged(key, oldCurrentValue, currentValue);
 			}
 		} else {
 			increaceModCount();
@@ -741,7 +740,7 @@ public class DefaultSettingHandler extends AbstractSettingHandler {
 			return false;
 
 		currentValueMap.put(key, newValue);
-		fireCurrentValueChanged(key, oldValue, newValue, getValidValue(key), getParsedValue(key));
+		fireCurrentValueChanged(key, oldValue, newValue);
 		return true;
 	}
 
@@ -764,7 +763,7 @@ public class DefaultSettingHandler extends AbstractSettingHandler {
 			return false;
 
 		currentValueMap.put(key, defaultValue);
-		fireCurrentValueChanged(key, currentValue, defaultValue, getValidValue(key), getParsedValue(key));
+		fireCurrentValueChanged(key, currentValue, defaultValue);
 		return true;
 	}
 
@@ -780,18 +779,14 @@ public class DefaultSettingHandler extends AbstractSettingHandler {
 		if (Objects.isNull(settingInfo))
 			return false;
 
-		ValueParser valueParser = settingInfo.getValueParser();
-		if (Objects.isNull(valueParser))
-			return false;
-
 		String oldValue = currentValueMap.get(key);
-		String newValue = valueParser.parseObject(obj);
+		String newValue = settingInfo.parseObject(obj);
 
 		if (Objects.equals(oldValue, newValue))
 			return false;
 
 		currentValueMap.put(key, newValue);
-		fireCurrentValueChanged(key, oldValue, newValue, getValidValue(key), getParsedValue(key));
+		fireCurrentValueChanged(key, oldValue, newValue);
 		return true;
 	}
 

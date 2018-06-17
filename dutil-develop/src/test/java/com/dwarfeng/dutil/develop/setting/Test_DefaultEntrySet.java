@@ -21,28 +21,23 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.dwarfeng.dutil.develop.cfg.checker.BooleanConfigChecker;
-import com.dwarfeng.dutil.develop.cfg.parser.BooleanValueParser;
 import com.dwarfeng.dutil.develop.setting.SettingHandler.Entry;
+import com.dwarfeng.dutil.develop.setting.info.BooleanSettingInfo;
 
 public class Test_DefaultEntrySet {
 
-	private static final Entry ENTRY_1 = new TestEntry(TestSettingItem.ENTRY_1.getName(),
-			TestSettingItem.ENTRY_1.getConfigChecker(), TestSettingItem.ENTRY_1.getValueParser(),
-			TestSettingItem.ENTRY_1.getInitialValue());
-	private static final Entry ENTRY_1F = new TestEntry(TestSettingItem.ENTRY_1.getName(),
-			TestSettingItem.ENTRY_1.getConfigChecker(), TestSettingItem.ENTRY_1.getValueParser(), "FALSE");
-	private static final Entry ENTRY_2 = new TestEntry(TestSettingItem.ENTRY_2.getName(),
-			TestSettingItem.ENTRY_2.getConfigChecker(), TestSettingItem.ENTRY_2.getValueParser(),
-			TestSettingItem.ENTRY_2.getInitialValue());
-	private static final Entry ENTRY_3 = new TestEntry(TestSettingItem.ENTRY_3.getName(),
-			TestSettingItem.ENTRY_3.getConfigChecker(), TestSettingItem.ENTRY_3.getValueParser(),
-			TestSettingItem.ENTRY_3.getInitialValue());
-	private static final Entry ENTRY_4 = new TestEntry(TestSettingItem.ENTRY_4.getName(),
-			TestSettingItem.ENTRY_4.getConfigChecker(), TestSettingItem.ENTRY_4.getValueParser(),
-			TestSettingItem.ENTRY_4.getInitialValue());
-	private static final Entry ENTRY_5 = new TestEntry("entry.5", new BooleanConfigChecker(),
-			new BooleanValueParser(), "TRUE");
+	private static final Entry ENTRY_1 = SettingUtil.toEntry(TestSettingEnumItem.ENTRY_1,
+			TestSettingEnumItem.ENTRY_1.getSettingInfo().getDefaultValue());
+	private static final Entry ENTRY_1F = SettingUtil.toEntry(TestSettingEnumItem.ENTRY_1F,
+			TestSettingEnumItem.ENTRY_1F.getSettingInfo().getDefaultValue());
+	private static final Entry ENTRY_2 = SettingUtil.toEntry(TestSettingEnumItem.ENTRY_2,
+			TestSettingEnumItem.ENTRY_2.getSettingInfo().getDefaultValue());
+	private static final Entry ENTRY_3 = SettingUtil.toEntry(TestSettingEnumItem.ENTRY_3,
+			TestSettingEnumItem.ENTRY_3.getSettingInfo().getDefaultValue());
+	private static final Entry ENTRY_4 = SettingUtil.toEntry(TestSettingEnumItem.ENTRY_4,
+			TestSettingEnumItem.ENTRY_4.getSettingInfo().getDefaultValue());
+	private static final Entry ENTRY_5 = SettingUtil.toEntry(TestSettingEnumItem.ENTRY_4,
+			TestSettingEnumItem.ENTRY_5.getSettingInfo().getDefaultValue());
 
 	private static DefaultSettingHandler handler;
 	private static TestSettingObverser obv;
@@ -60,7 +55,8 @@ public class Test_DefaultEntrySet {
 	public void setUp() throws Exception {
 		handler = new DefaultSettingHandler(new LinkedHashMap<>(), new LinkedHashMap<>(),
 				Collections.newSetFromMap(new WeakHashMap<>()));
-		SettingUtil.putEnumItems(TestSettingItem.class, handler);
+		SettingUtil.putEnumItems(new SettingEnumItem[] { TestSettingEnumItem.ENTRY_1, TestSettingEnumItem.ENTRY_2,
+				TestSettingEnumItem.ENTRY_3, TestSettingEnumItem.ENTRY_4 }, handler);
 		entrySet = handler.entrySet();
 		obv = new TestSettingObverser();
 		handler.addObverser(obv);
@@ -102,8 +98,32 @@ public class Test_DefaultEntrySet {
 		assertTrue(entrySet.contains(ENTRY_2));
 		assertTrue(entrySet.contains(ENTRY_3));
 		assertTrue(entrySet.contains(ENTRY_4));
-		assertTrue(entrySet.contains(
-				new TestEntry("entry.1", new BooleanConfigChecker(), new BooleanValueParser(), "TRUE")));
+		assertTrue(entrySet.contains(new AbstractSettingHandler.AbstractEntry() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public SettingInfo getSettingInfo() {
+				return new BooleanSettingInfo("TRUE");
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public String getKey() {
+				return "entry.1";
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public String getCurrentValue() {
+				return "TRUE";
+			}
+		}));
 	}
 
 	@Test

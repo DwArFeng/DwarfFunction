@@ -57,11 +57,6 @@ public interface SettingObverser extends Obverser {
 	 *            指定的键对应的旧的当前值。
 	 * @param newValue
 	 *            指定的键对应的新的当前值。
-	 * @param validValue
-	 *            指定的键对应的有效值。
-	 * @param parsedValue
-	 *            指定的键对应的对象。
 	 */
-	public void fireCurrentValueChanged(String key, String oldValue, String newValue, String validValue,
-			Object parsedValue);
+	public void fireCurrentValueChanged(String key, String oldValue, String newValue);
 }

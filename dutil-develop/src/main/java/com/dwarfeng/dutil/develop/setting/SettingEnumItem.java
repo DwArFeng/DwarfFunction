@@ -1,14 +1,14 @@
 package com.dwarfeng.dutil.develop.setting;
 
 import com.dwarfeng.dutil.basic.str.Name;
-import com.dwarfeng.dutil.develop.cfg.struct.ConfigChecker;
-import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
 /**
  * 配置枚举条目。
  * 
  * <p>
  * 该条目专门用于存放配置条目的枚举类。该类可以使枚举中的配置条目快速的添加到配置处理器中。
+ * <p>
+ * 同时，该条目实现 <code>Name</code> 接口，方便使用枚举条目进行查询。
  * 
  * @author DwArFeng
  * @since 0.2.0-beta
@@ -26,26 +26,12 @@ public interface SettingEnumItem extends Name {
 	public String getName();
 
 	/**
-	 * 获取条目中的配置检查器。
-	 * 
-	 * @return 条目中的配置检查器。
-	 */
-	public ConfigChecker getConfigChecker();
-
-	/**
-	 * 获取条目中的值解析器。
-	 * 
-	 * @return 条目中的值解析器。
-	 */
-	public ValueParser getValueParser();
-
-	/**
-	 * 获取条目中的初始值。
+	 * 获取条目中的配置信息。
 	 * <p>
-	 * 该值作为配置处理器中的默认值，也作为添加到配置处理器中的初始当前值。
+	 * 该配置信息中的默认值同时用作配置处理器的当前值。
 	 * 
-	 * @return 条目中的初始值。
+	 * @return 条目中的配置信息。
 	 */
-	public String getInitialValue();
+	public SettingInfo getSettingInfo();
 
 }
