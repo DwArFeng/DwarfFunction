@@ -1,6 +1,6 @@
 package com.dwarfeng.dutil.develop.cfg.checker;
 
-import com.dwarfeng.dutil.develop.cfg.struct.ConfigChecker;
+import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
 
 /**
  * 国家/地区配置值检查器。
@@ -10,6 +10,7 @@ import com.dwarfeng.dutil.develop.cfg.struct.ConfigChecker;
  * @author DwArFeng
  * @since 0.0.2-beta
  */
+@SuppressWarnings("deprecation")
 public class LocaleConfigChecker implements ConfigChecker {
 
 	private final MatchConfigChecker delegate = new MatchConfigChecker("[a-z]+(_[A-Z]+(_[a-zA-Z]+)?)?");

@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 import com.dwarfeng.dutil.basic.cna.ArrayUtil;
-import com.dwarfeng.dutil.develop.cfg.struct.ConfigChecker;
+import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
 
 /**
  * 特定文本检测器。
@@ -14,6 +14,7 @@ import com.dwarfeng.dutil.develop.cfg.struct.ConfigChecker;
  * @author DwArFeng
  * @since 0.0.2-beta
  */
+@SuppressWarnings("deprecation")
 public class SpecificConfigChecker implements ConfigChecker {
 
 	private final String[] arr;

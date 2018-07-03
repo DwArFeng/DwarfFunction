@@ -2,7 +2,7 @@ package com.dwarfeng.dutil.develop.cfg.checker;
 
 import java.util.Objects;
 
-import com.dwarfeng.dutil.develop.cfg.struct.ConfigChecker;
+import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
 
 /**
  * 非空检查器。
@@ -12,6 +12,7 @@ import com.dwarfeng.dutil.develop.cfg.struct.ConfigChecker;
  * @author DwArFeng
  * @since 0.0.2-beta
  */
+@SuppressWarnings("deprecation")
 public class NonNullConfigChecker implements ConfigChecker {
 
 	/**

@@ -2,7 +2,7 @@ package com.dwarfeng.dutil.develop.cfg.checker;
 
 import java.util.Objects;
 
-import com.dwarfeng.dutil.develop.cfg.struct.ConfigChecker;
+import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
 
 /**
  * 类检查器。
@@ -15,6 +15,7 @@ import com.dwarfeng.dutil.develop.cfg.struct.ConfigChecker;
  * @author DwArFeng
  * @since 0.2.0-beta
  */
+@SuppressWarnings("deprecation")
 public class ClassConfigChecker implements ConfigChecker {
 
 	private static final String REGEX_TO_MATCH = "^[a-z,A-Z][a-z,A-Z,0-9]*(\\.[a-z,A-Z][a-z,A-Z,0-9]*)*$";

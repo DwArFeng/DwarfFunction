@@ -2,7 +2,7 @@ package com.dwarfeng.dutil.develop.cfg.checker;
 
 import java.util.Objects;
 
-import com.dwarfeng.dutil.develop.cfg.struct.ConfigChecker;
+import com.dwarfeng.dutil.develop.cfg.ConfigChecker;
 
 /**
  * 匹配值检查器。
@@ -12,6 +12,7 @@ import com.dwarfeng.dutil.develop.cfg.struct.ConfigChecker;
  * @author DwArFeng
  * @since 0.0.2-beta
  */
+@SuppressWarnings("deprecation")
 public class MatchConfigChecker implements ConfigChecker {
 
 	private final String regex;
