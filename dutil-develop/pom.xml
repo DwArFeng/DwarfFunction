@@ -24,28 +24,23 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>dom4j</groupId>
-			<artifactId>dom4j-core</artifactId>
-			<version>1.4-dev-8</version>
+			<artifactId>dom4j</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.dwarfeng</groupId>
 			<artifactId>dutil-basic</artifactId>
-			<version>beta-0.2.0.a-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
-			<version>2.10.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
-			<version>2.10.0</version>
 		</dependency>
 	</dependencies>
 
