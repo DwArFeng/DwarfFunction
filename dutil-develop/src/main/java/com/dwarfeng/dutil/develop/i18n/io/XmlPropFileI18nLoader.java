@@ -74,7 +74,7 @@ public class XmlPropFileI18nLoader extends StreamLoader<I18nHandler> {
 			Element info_default;
 			if (Objects.nonNull(info_default = root.element("info-default"))) {
 				String defaultNameString = info_default.attributeValue("name");
-				String defaultFileString = info_default.attributeValue("resource");
+				String defaultFileString = info_default.attributeValue("file");
 
 				if (Objects.isNull(defaultNameString) || Objects.isNull(defaultFileString)) {
 					throw new LoadFailedException(
@@ -135,7 +135,7 @@ public class XmlPropFileI18nLoader extends StreamLoader<I18nHandler> {
 				Element info_default;
 				if (Objects.nonNull(info_default = root.element("info-default"))) {
 					String defaultNameString = info_default.attributeValue("name");
-					String defaultFileString = info_default.attributeValue("resource");
+					String defaultFileString = info_default.attributeValue("file");
 
 					if (Objects.isNull(defaultNameString) || Objects.isNull(defaultFileString)) {
 						throw new LoadFailedException(
