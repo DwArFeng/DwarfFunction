@@ -16,8 +16,13 @@ public enum VersionType implements Name {
 	BETA("Beta"),
 	/** 发布版本 */
 	RELEASE("Release"),
-	/** 预览版本 */
-	SNAPSHOTS("Snapshots");
+	/** 由于不符合规范，已经改为SNAPSHOT。 */
+	@Deprecated
+	SNAPSHOTS("Snapshots"),
+	/** 预览版本。 */
+	SNAPSHOT("Snapshot"),
+
+	;
 
 	private final String name;
 

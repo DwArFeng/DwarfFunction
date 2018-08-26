@@ -28,7 +28,8 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 
 	private static final long serialVersionUID = -9035220797049152472L;
 
-	private final List<E> delegate;
+	/** 模型中的列表代理。 */
+	protected final List<E> delegate;
 
 	/**
 	 * 生成一个默认的，由 {@link ArrayList}实现的列表模型。
@@ -40,15 +41,14 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	/**
 	 * 生成一个由指定列表实现的列表模型。
 	 * 
-	 * @param list
+	 * @param delegate
 	 *            指定的列表。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>
 	 */
-	public MuaListModel(List<E> list) {
-		super();
-		Objects.requireNonNull(list, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_0));
-		this.delegate = list;
+	public MuaListModel(List<E> delegate) {
+		Objects.requireNonNull(delegate, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_0));
+		this.delegate = delegate;
 	}
 
 	/**
@@ -96,7 +96,52 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	 */
 	@Override
 	public Iterator<E> iterator() {
-		return delegate.iterator();
+		return new InnerIterator(delegate.iterator());
+	}
+
+	private class InnerIterator implements Iterator<E> {
+
+		private final Iterator<E> itr;
+		private int lastRet = -1;
+		private int cursor = 0;
+
+		public InnerIterator(Iterator<E> itr) {
+			this.itr = itr;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean hasNext() {
+			return itr.hasNext();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public E next() {
+			int i = cursor;
+			cursor++;
+			lastRet = i;
+			return itr.next();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public void remove() {
+			if (lastRet < 0)
+				throw new IllegalStateException();
+
+			cursor = lastRet;
+			itr.remove();
+			fireIntervalRemoved(this, lastRet, lastRet);
+			lastRet = -1;
+		}
+
 	}
 
 	/**
@@ -120,11 +165,12 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	 */
 	@Override
 	public boolean add(E e) {
-		boolean aFlag = delegate.add(e);
-		int index = delegate.size();
-		if (aFlag)
-			fireIntervalAdded(this, index, index);
-		return aFlag;
+		int size = delegate.size();
+		if (delegate.add(e)) {
+			fireIntervalAdded(this, size, size);
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -132,12 +178,12 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	 */
 	@Override
 	public boolean remove(Object o) {
-		int index = indexOf(o);
-		boolean rv = delegate.remove(o);
-		if (index >= 0) {
+		int index = delegate.indexOf(o);
+		if (delegate.remove(o)) {
 			fireIntervalRemoved(this, index, index);
+			return true;
 		}
-		return rv;
+		return false;
 	}
 
 	/**
@@ -145,6 +191,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	 */
 	@Override
 	public boolean containsAll(Collection<?> c) {
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
 		return delegate.containsAll(c);
 	}
 
@@ -153,6 +200,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	 */
 	@Override
 	public boolean addAll(Collection<? extends E> c) {
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
 		int index = delegate.size();
 		boolean aFlag = delegate.addAll(c);
 		if (aFlag == true) {
@@ -166,6 +214,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	 */
 	@Override
 	public boolean addAll(int index, Collection<? extends E> c) {
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
 		int aIndex = delegate.size();
 		boolean aFlag = delegate.addAll(index, c);
 		if (aFlag == true) {
@@ -179,12 +228,8 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	 */
 	@Override
 	public boolean removeAll(Collection<?> c) {
-		boolean aFlag = false;
-		for (Object o : c) {
-			if (remove(o))
-				aFlag = true;
-		}
-		return aFlag;
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
+		return batchRemove(c, true);
 	}
 
 	/**
@@ -192,12 +237,25 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	 */
 	@Override
 	public boolean retainAll(Collection<?> c) {
-		Collection<Object> col = new ArrayList<Object>();
-		for (Object o : delegate) {
-			if (!c.contains(o))
-				col.add(o);
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
+		return batchRemove(c, false);
+	}
+
+	private boolean batchRemove(Collection<?> c, boolean aFlag) {
+		boolean result = false;
+
+		for (ListIterator<E> i = delegate.listIterator(); i.hasNext();) {
+			int index = i.nextIndex();
+			E element = i.next();
+
+			if (c.contains(element) == aFlag) {
+				i.remove();
+				fireIntervalRemoved(this, index, index);
+				result = true;
+			}
 		}
-		return removeAll(col);
+
+		return result;
 	}
 
 	/**
@@ -225,10 +283,9 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	 */
 	@Override
 	public E set(int index, E element) {
-		E rv = delegate.get(index);
-		delegate.set(index, element);
+		E oldElement = delegate.set(index, element);
 		fireContentsChanged(this, index, index);
-		return rv;
+		return oldElement;
 	}
 
 	/**
@@ -236,10 +293,8 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	 */
 	@Override
 	public void add(int index, E element) {
-		int size = size();
 		delegate.add(index, element);
-		if (size != getSize())
-			fireIntervalAdded(this, index, index);
+		fireIntervalAdded(this, index, index);
 	}
 
 	/**
@@ -247,10 +302,9 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	 */
 	@Override
 	public E remove(int index) {
-		E rv = delegate.get(index);
-		delegate.remove(index);
+		E element = delegate.remove(index);
 		fireIntervalRemoved(this, index, index);
-		return rv;
+		return element;
 	}
 
 	/**
@@ -274,7 +328,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	 */
 	@Override
 	public ListIterator<E> listIterator() {
-		return delegate.listIterator();
+		return new InnerListIterator(delegate.listIterator(), 0);
 	}
 
 	/**
@@ -282,7 +336,112 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	 */
 	@Override
 	public ListIterator<E> listIterator(int index) {
-		return listIterator(index);
+		return new InnerListIterator(delegate.listIterator(index), index);
+	}
+
+	private class InnerListIterator implements ListIterator<E> {
+
+		private final ListIterator<E> litr;
+		private int lastRet = -1;
+		private int cursor;
+
+		public InnerListIterator(ListIterator<E> litr, int cursor) {
+			this.litr = litr;
+			this.cursor = cursor;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean hasNext() {
+			return litr.hasNext();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public E next() {
+			int i = cursor;
+			cursor++;
+			lastRet = i;
+			return litr.next();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean hasPrevious() {
+			return litr.hasPrevious();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public E previous() {
+			int i = cursor - 1;
+			cursor = i;
+			lastRet = i;
+			return litr.previous();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public int nextIndex() {
+			return litr.nextIndex();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public int previousIndex() {
+			return litr.previousIndex();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public void remove() {
+			if (lastRet < 0)
+				throw new IllegalStateException();
+
+			cursor = lastRet;
+			litr.remove();
+			fireIntervalRemoved(this, lastRet, lastRet);
+			lastRet = -1;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public void set(E e) {
+			if (lastRet < 0)
+				throw new IllegalStateException();
+
+			litr.set(e);
+			fireContentsChanged(this, lastRet, lastRet);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public void add(E e) {
+			int i = cursor;
+			litr.add(e);
+			fireIntervalAdded(this, i, i);
+			cursor = i + 1;
+			lastRet = -1;
+		}
+
 	}
 
 	/**
@@ -290,7 +449,455 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	 */
 	@Override
 	public List<E> subList(int fromIndex, int toIndex) {
-		return subList(fromIndex, toIndex);
+		return new SubList(fromIndex, delegate.subList(fromIndex, toIndex));
+	}
+
+	private class SubList implements List<E> {
+
+		private final int offset;
+		private List<E> subDelegate;
+
+		public SubList(int offset, List<E> subDelegate) {
+			this.offset = offset;
+			this.subDelegate = subDelegate;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public int size() {
+			return subDelegate.size();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean isEmpty() {
+			return subDelegate.isEmpty();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean contains(Object o) {
+			return subDelegate.contains(o);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public Iterator<E> iterator() {
+			return new SubIterator(subDelegate.iterator());
+		}
+
+		private class SubIterator implements Iterator<E> {
+
+			private final Iterator<E> itr;
+			private int lastRet = -1;
+			private int cursor = 0;
+
+			public SubIterator(Iterator<E> itr) {
+				this.itr = itr;
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public boolean hasNext() {
+				return itr.hasNext();
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public E next() {
+				int i = cursor;
+				cursor++;
+				lastRet = i;
+				return itr.next();
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public void remove() {
+				if (lastRet < 0)
+					throw new IllegalStateException();
+
+				cursor = lastRet;
+				itr.remove();
+				fireIntervalRemoved(this, lastRet + offset, lastRet + offset);
+				lastRet = -1;
+			}
+
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public Object[] toArray() {
+			return subDelegate.toArray();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public <T> T[] toArray(T[] a) {
+			return subDelegate.toArray(a);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean add(E e) {
+			int size = subDelegate.size();
+			if (subDelegate.add(e)) {
+				fireIntervalAdded(this, size + offset, size + offset);
+				return true;
+			}
+			return false;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean remove(Object o) {
+			int index = subDelegate.indexOf(o);
+			if (subDelegate.remove(o)) {
+				fireIntervalRemoved(this, index + offset, index + offset);
+				return true;
+			}
+			return false;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean containsAll(Collection<?> c) {
+			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
+			return subDelegate.containsAll(c);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean addAll(Collection<? extends E> c) {
+			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
+			boolean aFlag = false;
+			for (E e : c) {
+				if (add(e))
+					aFlag = true;
+			}
+			return aFlag;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean addAll(int index, Collection<? extends E> c) {
+			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
+			int size = subDelegate.size();
+			int i = 0;
+			for (E e : c) {
+				add(index + i++, e);
+			}
+			return size != subDelegate.size();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean removeAll(Collection<?> c) {
+			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
+			return batchRemove(c, true);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean retainAll(Collection<?> c) {
+			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
+			return batchRemove(c, false);
+		}
+
+		private boolean batchRemove(Collection<?> c, boolean aFlag) {
+			boolean result = false;
+
+			for (ListIterator<E> i = subDelegate.listIterator(); i.hasNext();) {
+				int index = i.nextIndex();
+				E element = i.next();
+
+				if (c.contains(element) == aFlag) {
+					i.remove();
+					fireIntervalRemoved(this, index + offset, index + offset);
+					result = true;
+				}
+			}
+
+			return result;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public void clear() {
+			int size = subDelegate.size();
+			for (int i = 0; i < size; i++) {
+				remove(0);
+			}
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public E get(int index) {
+			return subDelegate.get(index);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public E set(int index, E element) {
+			E oldElement = subDelegate.set(index, element);
+			fireContentsChanged(this, index + offset, index + offset);
+			return oldElement;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public void add(int index, E element) {
+			subDelegate.add(index, element);
+			fireIntervalAdded(this, index + offset, index + offset);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public E remove(int index) {
+			E element = subDelegate.remove(index);
+			fireIntervalRemoved(this, index + offset, index + offset);
+			return element;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public int indexOf(Object o) {
+			return subDelegate.indexOf(o);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public int lastIndexOf(Object o) {
+			return subDelegate.lastIndexOf(o);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public ListIterator<E> listIterator() {
+			return new SubListIterator(subDelegate.listIterator(), 0);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public ListIterator<E> listIterator(int index) {
+			return new SubListIterator(subDelegate.listIterator(index), index);
+		}
+
+		private class SubListIterator implements ListIterator<E> {
+
+			private final ListIterator<E> litr;
+			private int lastRet = -1;
+			private int cursor;
+
+			public SubListIterator(ListIterator<E> litr, int cursor) {
+				this.litr = litr;
+				this.cursor = cursor;
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public boolean hasNext() {
+				return litr.hasNext();
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public E next() {
+				int i = cursor;
+				cursor++;
+				lastRet = i;
+				return litr.next();
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public boolean hasPrevious() {
+				return litr.hasPrevious();
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public E previous() {
+				int i = cursor - 1;
+				cursor = i;
+				lastRet = i;
+				return litr.previous();
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public int nextIndex() {
+				return litr.nextIndex();
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public int previousIndex() {
+				return litr.previousIndex();
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public void remove() {
+				if (lastRet < 0)
+					throw new IllegalStateException();
+
+				cursor = lastRet;
+				litr.remove();
+				fireIntervalRemoved(this, lastRet + offset, lastRet + offset);
+				lastRet = -1;
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public void set(E e) {
+				if (lastRet < 0)
+					throw new IllegalStateException();
+
+				litr.set(e);
+				fireContentsChanged(this, lastRet + offset, lastRet + offset);
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public void add(E e) {
+				int i = cursor;
+				litr.add(e);
+				fireIntervalAdded(this, i + offset, i + offset);
+				cursor = i + 1;
+				lastRet = -1;
+			}
+
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public List<E> subList(int fromIndex, int toIndex) {
+			return new SubList(offset + fromIndex, subDelegate.subList(fromIndex, toIndex));
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public int hashCode() {
+			return subDelegate.hashCode();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public boolean equals(Object obj) {
+			if (obj == this)
+				return true;
+			return subDelegate.equals(obj);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public String toString() {
+			return subDelegate.toString();
+		}
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int hashCode() {
+		return delegate.hashCode();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this)
+			return true;
+		return delegate.equals(obj);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String toString() {
+		return delegate.toString();
 	}
 
 }

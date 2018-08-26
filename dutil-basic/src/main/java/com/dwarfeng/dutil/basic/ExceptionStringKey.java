@@ -34,6 +34,7 @@ public enum ExceptionStringKey implements Name {
 	TIMEMEASURER_5(new DefaultName("TimeMeasurer.5")), //
 	EVENTLISTENERWEAKSET_0(new DefaultName("EventListenerWeakSet.0")), //
 	MUALISTMODEL_0(new DefaultName("MuaListModel.0")), //
+	MUALISTMODEL_1(new DefaultName("MuaListModel.1")), //
 	STRINGOUTPUTSTREAM_0(new DefaultName("StringOutputStream.0")), //
 	STRINGINPUTSTREAM_0(new DefaultName("StringInputStream.0")), //
 	STRINGINPUTSTREAM_1(new DefaultName("StringInputStream.1")), //

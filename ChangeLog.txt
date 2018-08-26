@@ -246,7 +246,7 @@ Beta_0.1.5_20171203_build_C (maven)
 Beta_0.2.0__build_A (maven)
 	注意，该版本不兼容之前的版本！
 	不兼容的更改：
-		将 dutil.basic.io.IOUtil更名为 dutil.basic.io.IOUtil。
+		将 dutil.basic.io.IoUtil更名为 dutil.basic.io.IOUtil。
 
 	修复了v0.1.5.c-beta版本 dutil 资源的路径问题。
 	增加了过滤器相关的接口与实现
@@ -313,4 +313,8 @@ Beta_0.2.0__build_A (maven)
 		basic.prog.DefaultVersion.Builder 中方法更改。
 	为 develop.cfg.struct.ConfigChecker 添加了 equals 方法。
 	为 develop.cfg.struct.ValueParser 添加了 equals 方法。
+	更新 basic.gui.swing.MuaListModel<E>
+		更方便的可继承结构
+		模型的迭代器、子列表均能够正确的发送侦听通知。
+	废弃 basic.prog.VersionType 中不符合规范的 SNAPSHOTS，改为SNAPSHOT。
 	更新的README.md
