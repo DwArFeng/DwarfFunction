@@ -11,6 +11,8 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+import com.dwarfeng.dutil.basic.DwarfUtil;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.develop.backgr.obv.TaskObverser;
 
 /**
@@ -27,7 +29,7 @@ import com.dwarfeng.dutil.develop.backgr.obv.TaskObverser;
 public abstract class AbstractTask implements Task {
 
 	/** 观察器集合。 */
-	protected final Set<TaskObverser> obversers = Collections.newSetFromMap(new WeakHashMap<>());
+	protected final Set<TaskObverser> obversers;
 	/** 同步读写锁 */
 	protected final ReadWriteLock lock = new ReentrantReadWriteLock();
 
@@ -37,6 +39,26 @@ public abstract class AbstractTask implements Task {
 	private boolean finishedFlag = false;
 	private boolean startedFlag = false;
 	private Throwable throwable = null;
+
+	/**
+	 * 生成一个默认的抽象任务。
+	 */
+	public AbstractTask() {
+		this(Collections.newSetFromMap(new WeakHashMap<>()));
+	}
+
+	/**
+	 * 生成一个具有指定观察器集合的抽象任务。
+	 * 
+	 * @param obversers
+	 *            指定的观察器集合。
+	 * @throws NullPointerException
+	 *             指定的入口参数为 <code> null </code>。
+	 */
+	public AbstractTask(Set<TaskObverser> obversers) throws NullPointerException {
+		Objects.requireNonNull(obversers, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTTASK_0));
+		this.obversers = obversers;
+	}
 
 	/**
 	 * {@inheritDoc}

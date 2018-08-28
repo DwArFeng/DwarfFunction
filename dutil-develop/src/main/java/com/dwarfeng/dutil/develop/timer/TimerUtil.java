@@ -8,6 +8,8 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReadWriteLock;
 
+import com.dwarfeng.dutil.basic.DwarfUtil;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.develop.timer.obv.PlainObverser;
 import com.dwarfeng.dutil.develop.timer.obv.TimerObverser;
 
@@ -46,10 +48,8 @@ public final class TimerUtil {
 		 */
 		@Override
 		public int compare(Plain o1, Plain o2) {
-			// TODO 国际化。
-			Objects.requireNonNull(o1, "入口参数 o1 不能为 null。");
-			// TODO 国际化。
-			Objects.requireNonNull(o2, "入口参数 o2 不能为 null。");
+			Objects.requireNonNull(o1, DwarfUtil.getExecptionString(ExceptionStringKey.TIMERUTIL_0));
+			Objects.requireNonNull(o2, DwarfUtil.getExecptionString(ExceptionStringKey.TIMERUTIL_1));
 
 			long l1 = o1.getNextRunTime();
 			long l2 = o2.getNextRunTime();
@@ -76,8 +76,7 @@ public final class TimerUtil {
 	 * @return 根据指定的计时器生成的不可变更的计时器。
 	 */
 	public static final Timer unmodifiableTimer(Timer timer) {
-		// TODO 国际化。
-		Objects.requireNonNull(timer, "入口参数 timer 不能为 null。");
+		Objects.requireNonNull(timer, DwarfUtil.getExecptionString(ExceptionStringKey.TIMERUTIL_2));
 		return new UnmodifiableTimer(timer);
 	}
 
@@ -242,14 +241,13 @@ public final class TimerUtil {
 	 * @param plain
 	 *            指定的计划。
 	 * @param limitedDate
-	 *            指定的执行期限限制。
+	 *            指定的执行期限限制，其值为1970年1月1日到计划执行期限包含的毫秒数。
 	 * @return 根据指定的计划生成的具有执行期限的计划。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static final Plain dateLimitedPlain(Plain plain, long limitedDate) {
-		// TODO 国际化。
-		Objects.requireNonNull(plain, "入口参数 plain 不能为 null。");
+		Objects.requireNonNull(plain, DwarfUtil.getExecptionString(ExceptionStringKey.TIMERUTIL_3));
 		return new DateLimitedPlain(plain, limitedDate);
 	}
 
@@ -405,8 +403,7 @@ public final class TimerUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static final Plain timesLimitedPlain(Plain plain, int limitedTimes) {
-		// TODO 国际化。
-		Objects.requireNonNull(plain, "入口参数 plain 不能为 null。");
+		Objects.requireNonNull(plain, DwarfUtil.getExecptionString(ExceptionStringKey.TIMERUTIL_3));
 		return new TimesLimitedPlain(plain, limitedTimes);
 	}
 
@@ -551,8 +548,6 @@ public final class TimerUtil {
 		}
 
 	}
-	
-	
 
 	// 禁止外部实例化。
 	private TimerUtil() {

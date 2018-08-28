@@ -29,6 +29,8 @@ import com.dwarfeng.dutil.develop.timer.obv.TimerObverser;
  * 该方法会停止计时器的内部计时线程，并且移除所有的计划。
  * <p>
  * 一般来说， 计时器会使用一个专用的线程来周期性地执行计划， 正是由于这个性质， 计时器是线程安全的， 并且实现了外部读写安全接口。
+ * <p>
+ * 计时器中的所有任务都是单独的，也就是说，不能向一个计时器中添加两个相等的任务。
  * 
  * @author DwArFeng
  * @since 0.2.0-beta

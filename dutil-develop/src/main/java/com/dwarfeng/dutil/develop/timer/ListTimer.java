@@ -15,6 +15,8 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 
+import com.dwarfeng.dutil.basic.DwarfUtil;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.cna.CollectionUtil;
 import com.dwarfeng.dutil.basic.threads.NumberedThreadFactory;
 import com.dwarfeng.dutil.develop.timer.obv.PlainAdapter;
@@ -27,6 +29,8 @@ import com.dwarfeng.dutil.develop.timer.obv.TimerObverser;
  * 利用列表实现的计时器。
  * <p>
  * 请不要用任何手段（比如反射）中止该类实例中的线程，因为这样做会引发不可预料的结果。
+ * <p>
+ * 根据计时器的文档，列表计时器中的任务都是单独的，即使该计时器内部由一个 List 维护，也不能向其中添加已经存在的任务。
  * 
  * @author DwArFeng
  * @since 0.2.0-beta
@@ -54,25 +58,30 @@ public class ListTimer extends AbstractTimer {
 	private boolean terminateFlag = false;
 
 	/**
-	 * 
+	 * 生成一个具有默认维护列表，默认的线程工厂，默认观察器集合的列表计时器。
 	 */
 	public ListTimer() {
 		this(new ArrayList<>(), THREAD_FACTORY, Collections.newSetFromMap(new WeakHashMap<>()));
 	}
 
 	/**
+	 * 生成一个指定维护列表，指定的线程工厂，指定观察器集合的列表计时器。
 	 * 
 	 * @param plains
+	 *            指定的维护列表。
 	 * @param threadFactory
+	 *            指定的线程工厂。
 	 * @param obversers
+	 *            指定的观察器集合。
+	 * @throws NullPointerException
+	 *             指定的入口参数为 <code> null </code>。
 	 */
-	public ListTimer(List<Plain> plains, ThreadFactory threadFactory, Set<TimerObverser> obversers) {
+	public ListTimer(List<Plain> plains, ThreadFactory threadFactory, Set<TimerObverser> obversers)
+			throws NullPointerException {
 		super(obversers);
 
-		// TODO 国际化
-		Objects.requireNonNull(plains, "入口参数 plains 不能为 null。");
-		// TODO 国际化
-		Objects.requireNonNull(threadFactory, "入口参数 threadFactory 不能为 null。");
+		Objects.requireNonNull(plains, DwarfUtil.getExecptionString(ExceptionStringKey.LISTTIMER_0));
+		Objects.requireNonNull(threadFactory, DwarfUtil.getExecptionString(ExceptionStringKey.LISTTIMER_1));
 
 		this.plains = plains;
 
@@ -107,8 +116,7 @@ public class ListTimer extends AbstractTimer {
 		try {
 			// 判断计时器是否已经结束。
 			if (isShutdown())
-				// TODO 国际化
-				throw new IllegalStateException("计时器已经停止");
+				throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.LISTTIMER_2));
 
 			if (Objects.isNull(plain) || plains.contains(plain) || plain.getNextRunTime() < 0
 					|| plains2Schedule.contains(plain))
@@ -328,12 +336,10 @@ public class ListTimer extends AbstractTimer {
 					removePlain(plain, false);
 				}
 				plains2Remove.clear();
-				// CT.trace("isEmpty" + plains.isEmpty());
 
 				// 遍历所有待添加的计划，将计划按照下一次执行的时间排序。
 				for (Plain plain : plains2Schedule) {
-					CollectionUtil.insertByOrder(plains, plain, SCHEDULE_PLAIN_COMPARATOR); // TODO
-																							// 效率不高，换成二分查找。
+					CollectionUtil.insertByOrder(plains, plain, SCHEDULE_PLAIN_COMPARATOR);
 				}
 				plains2Schedule.clear();
 
@@ -448,13 +454,13 @@ public class ListTimer extends AbstractTimer {
 		private void removePlain(Plain plain, boolean fireFlag) {
 			// 注意：下面 if 中的表达式不能换成等价的非-短路或。
 			if (!(plains.remove(plain) || plains2Schedule.remove(plain))) {
-				// TODO 国际化。
-				new IllegalStateException("移除计划时出现异常。").printStackTrace();
+				// 该异常不应该抛出，不对外开放，故不设置国际化接口。
+				new IllegalStateException("An exception occurred while the plan was being removed.").printStackTrace();
 			}
 
 			if (!plain.removeObverser(inspecRefs.remove(plain))) {
-				// TODO 国际化。
-				new IllegalStateException("侦听器未能正常移除").printStackTrace();
+				// 该异常不应该抛出，不对外开放，故不设置国际化接口。
+				new IllegalStateException("The listener was not properly removed.").printStackTrace();
 			}
 
 			if (fireFlag)

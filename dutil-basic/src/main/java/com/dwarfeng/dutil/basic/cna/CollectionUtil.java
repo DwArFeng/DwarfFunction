@@ -770,6 +770,7 @@ public final class CollectionUtil {
 		Objects.requireNonNull(list, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_15));
 		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_16));
 
+		// TODO 效率不高，换成二分查找。
 		for (int i = 0; i < list.size(); i++) {
 			T t = list.get(i);
 			if (c.compare(obj, t) <= 0) {

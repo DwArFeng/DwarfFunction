@@ -311,19 +311,19 @@ public abstract class AbstractPlain implements Plain {
 			lastThrowableCount = thisRunningCount;
 			throwableFlag = true;
 		}
-		
+
 		lock.writeLock().lock();
 		try {
 			// 设置结束相关参数。
 			runningFlag = false;
 			finishedCount = thisRunningCount;
-			
+
 			// 通知计划结束。
 			fireFinished(thisRunningCount, throwableFlag ? lastThrowable : null);
 		} finally {
 			lock.writeLock().unlock();
 		}
-		
+
 		// 唤醒等待线程
 		runningLock.lock();
 		try {
@@ -384,10 +384,15 @@ public abstract class AbstractPlain implements Plain {
 	}
 
 	/**
+	 * 更新计划的下一次运行时间。
+	 * <p>
+	 * 返回 <code>-1</code> 代表计划执行完毕，永远不会再次执行。
+	 * <p>
+	 * 如果 {@link #getNextRunTime()} 返回 <code>-1</code> ，那么该方法只能返回
+	 * <code>-1</code>。
 	 * 
-	 * @return
+	 * @return 计划的下一次运行时间。
 	 */
-	// TODO
 	protected abstract long updateNextRunTime();
 
 	/**

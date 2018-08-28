@@ -331,7 +331,14 @@ public enum ExceptionStringKey implements Name {
 	ABSTRACTPLAIN_1(new DefaultName("AbstractPlain.1")), //
 	ABSTRACTPLAIN_2(new DefaultName("AbstractPlain.2")), //
 	FIXEDTIMEPLAIN_0(new DefaultName("FixedTimePlain.0")), //
-	FIXEDRATEPLAIN_0(new DefaultName("FixedRatePlain.0")),//
+	FIXEDRATEPLAIN_0(new DefaultName("FixedRatePlain.0")), //
+	LISTTIMER_0(new DefaultName("ListTimer.0")), //
+	LISTTIMER_1(new DefaultName("ListTimer.1")), //
+	LISTTIMER_2(new DefaultName("ListTimer.2")), //
+	TIMERUTIL_0(new DefaultName("TimerUtil.0")), //
+	TIMERUTIL_1(new DefaultName("TimerUtil.1")), //
+	TIMERUTIL_2(new DefaultName("TimerUtil.2")), //
+	TIMERUTIL_3(new DefaultName("TimerUtil.3")), //
 
 	;
 

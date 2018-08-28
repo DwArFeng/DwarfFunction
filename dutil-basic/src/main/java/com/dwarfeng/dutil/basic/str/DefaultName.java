@@ -18,14 +18,14 @@ public class DefaultName implements Name {
 	private final String name;
 
 	/**
-	 * 生成一个默认名称。
+	 * 生成一个具有指定名称的默认名称接口。
 	 * 
 	 * @param name
-	 *            默认名称的名字。
+	 *            指定的名称。
 	 * @throws NullPointerException
 	 *             指定的入口参数为 <code> null </code>。
 	 */
-	public DefaultName(String name) {
+	public DefaultName(String name) throws NullPointerException {
 		Objects.requireNonNull(name, DwarfUtil.getExecptionString(ExceptionStringKey.DEFAULTNAME_0));
 		this.name = name;
 	}
