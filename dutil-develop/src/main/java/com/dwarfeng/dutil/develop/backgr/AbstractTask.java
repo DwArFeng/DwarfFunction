@@ -58,7 +58,7 @@ public abstract class AbstractTask implements Task {
 	public void awaitFinish() throws InterruptedException {
 		runningLock.lock();
 		try {
-			// TODO 此处将 finishedFlag 换成了 isFinished() 方法，请确认这样做是否会产生死锁。
+			// TODO 此处将 finishedFlag 换成了 isFinished() 方法，在将来的实际运行中确认这样做是否会产生死锁。
 			while (!isFinished()) {
 				runningCondition.await();
 			}
@@ -75,7 +75,7 @@ public abstract class AbstractTask implements Task {
 		runningLock.lock();
 		try {
 			long nanosTimeout = unit.toNanos(timeout);
-			// TODO 此处将 finishedFlag 换成了 isFinished() 方法，请确认这样做是否会产生死锁。
+			// TODO 此处将 finishedFlag 换成了 isFinished() 方法，在将来的实际运行中确认这样做是否会产生死锁。
 			while (!isFinished()) {
 				if (nanosTimeout > 0)
 					nanosTimeout = runningCondition.awaitNanos(nanosTimeout);

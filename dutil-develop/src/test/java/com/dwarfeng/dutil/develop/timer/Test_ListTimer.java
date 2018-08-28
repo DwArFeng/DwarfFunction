@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.Collection;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -13,54 +14,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.dwarfeng.dutil.basic.io.CT;
-import com.dwarfeng.dutil.develop.timer.plain.FixedTimePlain;
+import com.dwarfeng.dutil.basic.mea.TimeMeasurer;
 
 public class Test_ListTimer {
-
-	private static class InnerPlain extends FixedTimePlain {
-
-		public InnerPlain() {
-			this(100l);
-		}
-
-		public InnerPlain(long peroid) {
-			super(peroid, 0);
-		}
-
-		@Override
-		protected void todo() throws Exception {
-			CT.trace(getFinishedCount() + 1);
-		}
-
-	}
-
-	private static final class BlockPlain extends AbstractPlain {
-
-		private final long blockTime;
-
-		public BlockPlain() {
-			this(1000l);
-		}
-
-		public BlockPlain(long blockTime) {
-			super(0);
-			this.blockTime = blockTime;
-		}
-
-		@Override
-		protected void todo() throws Exception {
-			CT.trace("block start...");
-			Thread.sleep(blockTime);
-			CT.trace("block end!");
-		}
-
-		@Override
-		protected long updateNextRunTime() {
-			return 0;
-		}
-
-	}
 
 	private static ListTimer timer;
 	private static TestTimerObverser obv;
@@ -89,9 +45,9 @@ public class Test_ListTimer {
 
 	@Test
 	public final void testGetPlains() {
-		Plain plain_1 = new InnerPlain();
-		Plain plain_2 = new InnerPlain();
-		Plain plain_3 = new InnerPlain();
+		Plain plain_1 = new TestFixTimePlain();
+		Plain plain_2 = new TestFixTimePlain();
+		Plain plain_3 = new TestFixTimePlain();
 
 		assertTrue(timer.schedule(plain_1));
 		assertEquals(1, timer.getPlains().size());
@@ -109,8 +65,8 @@ public class Test_ListTimer {
 
 	@Test
 	public final void testSchedule() throws InterruptedException {
-		Plain plain_1 = new InnerPlain();
-		Plain plain_2 = new InnerPlain();
+		Plain plain_1 = new TestFixTimePlain();
+		Plain plain_2 = new TestFixTimePlain();
 
 		assertTrue(timer.schedule(plain_1));
 		Thread.sleep(300);
@@ -134,16 +90,18 @@ public class Test_ListTimer {
 
 	@Test
 	public final void testRemove() throws InterruptedException {
-		Plain plain_1 = new InnerPlain();
-		Plain plain_2 = new InnerPlain();
-		Plain plain_3 = TimerUtil.dateLimitedPlain(new InnerPlain(), System.currentTimeMillis() + 1000);
+		Plain plain_1 = new TestFixTimePlain();
+		Plain plain_2 = new TestFixTimePlain();
+		Plain plain_3 = TimerUtil.dateLimitedPlain(new TestFixTimePlain(), System.currentTimeMillis() + 1000);
 
 		timer.schedule(plain_1);
 		timer.schedule(plain_2);
 		timer.schedule(plain_3);
 
+		Thread.sleep(10);
 		assertTrue(timer.remove(plain_1));
 		assertFalse(timer.remove(plain_1));
+		Thread.sleep(100);
 		assertEquals(2, timer.getPlains().size());
 		assertEquals(1, obv.removedPlain.size());
 		assertEquals(plain_1, obv.removedPlain.get(0));
@@ -165,12 +123,14 @@ public class Test_ListTimer {
 	}
 
 	@Test
-	public final void testClear() {
-		Plain plain_1 = new InnerPlain();
-		Plain plain_2 = new InnerPlain();
+	public final void testClear() throws InterruptedException {
+		Plain plain_1 = new TestFixTimePlain();
+		Plain plain_2 = new TestFixTimePlain();
 
 		timer.schedule(plain_1);
 		timer.schedule(plain_2);
+
+		Thread.sleep(10);
 
 		timer.clear();
 
@@ -180,7 +140,7 @@ public class Test_ListTimer {
 
 	@Test
 	public final void testShuttdown() {
-		timer.schedule(new InnerPlain());
+		timer.schedule(new TestFixTimePlain());
 		timer.shutdown();
 		assertTrue(timer.isShutdown());
 	}
@@ -189,21 +149,21 @@ public class Test_ListTimer {
 	public final void testShutdown1() {
 		timer.shutdown();
 		assertTrue(timer.isShutdown());
-		timer.schedule(new InnerPlain());
+		timer.schedule(new TestFixTimePlain());
 
 		fail("没有抛出异常");
 	}
 
 	@Test
 	public final void testIsShutdown() {
-		timer.schedule(new InnerPlain());
+		timer.schedule(new TestFixTimePlain());
 		timer.shutdown();
 		assertTrue(timer.isShutdown());
 	}
 
 	@Test
 	public final void testIsTerminated() throws InterruptedException {
-		Plain plain_1 = new BlockPlain();
+		Plain plain_1 = new TestBlockPlain();
 
 		timer.schedule(plain_1);
 		Thread.sleep(100);
@@ -218,13 +178,42 @@ public class Test_ListTimer {
 	}
 
 	@Test
-	public final void testAwaitTermination() {
-		fail("Not yet implemented"); // TODO
+	public final void testAwaitTermination() throws InterruptedException {
+		Plain plain_1 = new TestBlockPlain(100);
+		Plain plain_2 = new TestBlockPlain(100);
+		Plain plain_3 = new TestBlockPlain(100);
+
+		timer.schedule(plain_1);
+		timer.schedule(plain_2);
+		timer.schedule(plain_3);
+
+		TimeMeasurer tm = new TimeMeasurer();
+		tm.start();
+		Thread.sleep(10);
+		timer.shutdown();
+		timer.awaitTermination();
+		tm.stop();
+
+		// 理论上，计时器只执行完第一个计划，就会进入结束调度。
+		assertTrue(tm.getTimeMs() >= 100);
 	}
 
 	@Test
-	public final void testAwaitTerminationLongTimeUnit() {
-		fail("Not yet implemented"); // TODO
+	public final void testAwaitTerminationLongTimeUnit() throws InterruptedException {
+		Plain plain = new TestBlockPlain(300);
+
+		timer.schedule(plain);
+		TimeMeasurer tm = new TimeMeasurer();
+		tm.start();
+		Thread.sleep(50);
+		timer.shutdown();
+		assertFalse(plain.awaitFinish(100, TimeUnit.MILLISECONDS));
+		assertFalse(plain.awaitFinish(100, TimeUnit.MILLISECONDS));
+		assertTrue(plain.awaitFinish(100, TimeUnit.MILLISECONDS));
+		tm.stop();
+
+		// 理论上，计时器只执行完第一个计划，就会进入结束调度。
+		assertTrue(tm.getTimeMs() >= 300);
 	}
 
 }

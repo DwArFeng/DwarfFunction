@@ -157,9 +157,8 @@ public class ListTimer extends AbstractTimer {
 	public void clear() throws UnsupportedOperationException {
 		lock.writeLock().lock();
 		try {
-			plains.clear();
-			plains2Schedule.clear();
-			plains2Remove.clear();
+			plains2Remove.addAll(plains2Schedule);
+			plains2Remove.addAll(plains);
 			firePlainCleared();
 			// 唤醒计时器线程，检查当前队列。
 			signalCondition();
@@ -329,10 +328,12 @@ public class ListTimer extends AbstractTimer {
 					removePlain(plain, false);
 				}
 				plains2Remove.clear();
+				// CT.trace("isEmpty" + plains.isEmpty());
 
 				// 遍历所有待添加的计划，将计划按照下一次执行的时间排序。
 				for (Plain plain : plains2Schedule) {
-					CollectionUtil.insertByOrder(plains, plain, SCHEDULE_PLAIN_COMPARATOR);
+					CollectionUtil.insertByOrder(plains, plain, SCHEDULE_PLAIN_COMPARATOR); // TODO
+																							// 效率不高，换成二分查找。
 				}
 				plains2Schedule.clear();
 

@@ -1,13 +1,12 @@
-package com.dwarfeng.dutil.develop.timer;
+package com.dwarfeng.dutil.develop.backgr;
 
 import java.util.Objects;
 
-class TestAbstractPlain extends AbstractPlain {
+class TestExceptionTask extends AbstractTask {
 
 	private Exception nextException = null;
 
-	public TestAbstractPlain() {
-		super(0);
+	public TestExceptionTask() {
 	}
 
 	public Exception getNextException() {
@@ -24,19 +23,8 @@ class TestAbstractPlain extends AbstractPlain {
 	@Override
 	protected void todo() throws Exception {
 		if (Objects.nonNull(nextException)) {
-			Exception dejavu = nextException;
-			nextException = null;
-			throw dejavu;
+			throw nextException;
 		}
-
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected long updateNextRunTime() {
-		return 0;
 	}
 
 }

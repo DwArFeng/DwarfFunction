@@ -284,12 +284,12 @@ public abstract class AbstractPlain implements Plain {
 		int thisRunningCount = -1;
 
 		// 置位开始标志，并且通知观察器。
+		// 如果在nextRunTime小于等于0的情况下调用了该方法，那么说明计时器的逻辑有错误。
+		if (nextRunTime < 0)
+			throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTPLAIN_2));
+
 		lock.writeLock().lock();
 		try {
-			// 如果在nextRunTime小于等于0的情况下调用了该方法，那么说明计时器的逻辑有错误。
-			if (nextRunTime < 0)
-				throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTPLAIN_2));
-
 			// 设置启动相关参数。
 			expectedRunTime = nextRunTime;
 			actualRunTime = System.currentTimeMillis();
@@ -299,23 +299,37 @@ public abstract class AbstractPlain implements Plain {
 
 			// 通知计划开始。
 			fireRun(thisRunningCount, expectedRunTime, actualRunTime);
+		} finally {
+			lock.writeLock().unlock();
+		}
 
-			// 运行 todo 方法。
-			try {
-				todo();
-			} catch (Throwable e) {
-				lastThrowable = e;
-				lastThrowableCount = thisRunningCount;
-				throwableFlag = true;
-			}
+		// 运行 todo 方法。
+		try {
+			todo();
+		} catch (Throwable e) {
+			lastThrowable = e;
+			lastThrowableCount = thisRunningCount;
+			throwableFlag = true;
+		}
+		
+		lock.writeLock().lock();
+		try {
 			// 设置结束相关参数。
 			runningFlag = false;
 			finishedCount = thisRunningCount;
-
+			
 			// 通知计划结束。
 			fireFinished(thisRunningCount, throwableFlag ? lastThrowable : null);
 		} finally {
 			lock.writeLock().unlock();
+		}
+		
+		// 唤醒等待线程
+		runningLock.lock();
+		try {
+			runningCondition.signalAll();
+		} finally {
+			runningLock.unlock();
 		}
 	}
 

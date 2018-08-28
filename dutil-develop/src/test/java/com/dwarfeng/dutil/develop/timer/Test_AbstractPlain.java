@@ -5,7 +5,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+
+import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -13,9 +14,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.dwarfeng.dutil.basic.mea.TimeMeasurer;
+
 public class Test_AbstractPlain {
 
-	private TestAbstractPlain plain;
+	private TestExceptionPlain plain;
 	private TestPlainObverser obv;
 
 	@BeforeClass
@@ -28,14 +31,14 @@ public class Test_AbstractPlain {
 
 	@Before
 	public void setUp() throws Exception {
-		plain = new TestAbstractPlain();
+		plain = new TestExceptionPlain();
 		obv = new TestPlainObverser();
 		plain.addObverser(obv);
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		plain.removeObverser(obv);
+		plain.clearObverser();
 		plain = null;
 	}
 
@@ -130,13 +133,37 @@ public class Test_AbstractPlain {
 	}
 
 	@Test
-	public final void testAwaitFinish() {
-		fail("Not yet implemented"); // TODO
+	public final void testAwaitFinish() throws InterruptedException {
+		TimeMeasurer tm = new TimeMeasurer();
+		TestBlockPlain plain = new TestBlockPlain(500);
+		tm.start();
+		Thread thread = new Thread(() -> {
+			plain.run();
+		});
+		thread.start();
+		Thread.sleep(100);
+		plain.awaitFinish();
+		tm.stop();
+
+		assertTrue(tm.getTimeMs() >= 500);
 	}
 
 	@Test
-	public final void testAwaitFinishLongTimeUnit() {
-		fail("Not yet implemented"); // TODO
+	public final void testAwaitFinishLongTimeUnit() throws InterruptedException {
+		TimeMeasurer tm = new TimeMeasurer();
+		TestBlockPlain plain = new TestBlockPlain(500);
+		tm.start();
+		Thread thread = new Thread(() -> {
+			plain.run();
+		});
+		thread.start();
+		assertFalse(plain.awaitFinish(100, TimeUnit.MILLISECONDS));
+		assertFalse(plain.awaitFinish(100, TimeUnit.MILLISECONDS));
+		assertFalse(plain.awaitFinish(100, TimeUnit.MILLISECONDS));
+		assertTrue(plain.awaitFinish(300, TimeUnit.MILLISECONDS));
+		tm.stop();
+
+		assertTrue(tm.getTimeMs() >= 500);
 	}
 
 	@Test

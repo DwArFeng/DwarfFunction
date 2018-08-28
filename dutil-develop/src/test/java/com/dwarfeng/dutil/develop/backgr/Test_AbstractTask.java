@@ -14,65 +14,20 @@ import com.dwarfeng.dutil.basic.mea.TimeMeasurer;
 
 public class Test_AbstractTask {
 
-	private TestTask task;
+	private TestExceptionTask task;
 	private TestTaskObverser obv;
 
 	@Before
 	public void setUp() throws Exception {
 		obv = new TestTaskObverser();
-		task = new TestTask();
+		task = new TestExceptionTask();
 		task.addObverser(obv);
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		if (!task.isFinished()) {
-			task.finishTask();
-		}
 		task.clearObverser();
 		task = null;
-	}
-
-	private void runTask(TestTask task) {
-		new Thread(task).start();
-	}
-
-	private void runTaskAndStop(TestTask task, long milisec) {
-		new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-				new Thread(new Runnable() {
-
-					@Override
-					public void run() {
-						try {
-							Thread.sleep(milisec);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-						task.finishTask();
-					}
-				}).start();
-				task.run();
-			}
-		}).start();
-	}
-
-	@Test // TODO 该测试方法不完善，请修改。
-	public void testTodo() throws InterruptedException {
-		assertEquals(false, task.isStarted());
-		assertEquals(false, task.isFinished());
-		runTask(task);
-		Thread.sleep(20);
-		assertEquals(true, task.isStarted());
-		assertEquals(false, task.isFinished());
-		assertEquals(true, obv.startFlag);
-		task.finishTask();
-		Thread.sleep(20);
-		assertEquals(true, task.isStarted());
-		assertEquals(true, task.isFinished());
-		assertEquals(true, obv.finishFlag);
 	}
 
 	@Test
@@ -93,64 +48,77 @@ public class Test_AbstractTask {
 		assertFalse(task.getObversers().contains(obv));
 	}
 
-	@Test // TODO 该测试方法不完善，请修改。
-	public void testIsStarted() throws InterruptedException {
+	// 该方法可以测试任务的 isFinished(), isStarted, todo()方法。
+	@Test
+	public void testState() throws InterruptedException {
+		Task task = new TestBlockTask(100);
+		TestTaskObverser obv = new TestTaskObverser();
+		task.addObverser(obv);
+
 		assertEquals(false, task.isStarted());
 		assertEquals(false, task.isFinished());
-		runTask(task);
-		Thread.sleep(20);
+
+		Thread thread = new Thread(() -> {
+			task.run();
+		});
+		thread.start();
+
+		Thread.sleep(50);
 		assertEquals(true, task.isStarted());
 		assertEquals(false, task.isFinished());
-		assertEquals(true, obv.startFlag);
-		task.finishTask();
-		Thread.sleep(20);
+		assertEquals(1, obv.startCount);
+		task.awaitFinish();
 		assertEquals(true, task.isStarted());
 		assertEquals(true, task.isFinished());
-		assertEquals(true, obv.finishFlag);
+		assertEquals(1, obv.finishCount);
 	}
 
-	@Test // TODO 该测试方法不完善，请修改。
-	public void testIsFinish() throws InterruptedException {
-		assertEquals(false, task.isStarted());
-		assertEquals(false, task.isFinished());
-		runTask(task);
-		Thread.sleep(20);
-		assertEquals(true, task.isStarted());
-		assertEquals(false, task.isFinished());
-		assertEquals(true, obv.startFlag);
-		task.finishTask();
-		Thread.sleep(20);
-		assertEquals(true, task.isStarted());
-		assertEquals(true, task.isFinished());
-		assertEquals(true, obv.finishFlag);
-	}
-
-	@Test // TODO 该测试方法不完善，请修改。
+	@Test
 	public void testGetException() throws InterruptedException {
 		RuntimeException e = new RuntimeException();
-		runTask(task);
-		task.finishTaskWithException(e);
-		Thread.sleep(20);
+		task.setNextException(e);
+
+		Thread thread = new Thread(() -> {
+			task.run();
+		});
+		thread.start();
+		task.awaitFinish();
+		assertEquals(true, task.isStarted());
+		assertEquals(true, task.isFinished());
+		assertEquals(1, obv.finishCount);
 		assertEquals(e, task.getException());
 	}
 
-	@Test // TODO 该测试方法不完善，请修改。
+	@Test
 	public void testAwaitFinish() throws InterruptedException {
+		TestBlockTask task = new TestBlockTask(100);
 		TimeMeasurer tm = new TimeMeasurer();
+
 		tm.start();
-		runTaskAndStop(task, 100);
+		Thread thread = new Thread(() -> {
+			task.run();
+		});
+		thread.start();
 		task.awaitFinish();
 		tm.stop();
 		assertTrue(tm.getTimeMs() >= 100);
 	}
 
-	@Test // TODO 该测试方法不完善，请修改。
+	@Test
 	public void testAwaitFinishLongTimeUnit() throws InterruptedException {
+		TestBlockTask task = new TestBlockTask(100);
 		TimeMeasurer tm = new TimeMeasurer();
+
 		tm.start();
-		runTaskAndStop(task, 100);
+		Thread thread = new Thread(() -> {
+			task.run();
+		});
+		thread.start();
 		assertEquals(false, task.awaitFinish(60, TimeUnit.MILLISECONDS));
 		assertEquals(true, task.awaitFinish(100, TimeUnit.MILLISECONDS));
+		tm.stop();
+
+		assertTrue(tm.getTimeMs() >= 100);
 
 	}
 
