@@ -15,7 +15,7 @@ import org.junit.Test;
 
 import com.dwarfeng.dutil.develop.setting.info.LocaleSettingInfo;
 
-public class TestValueFilteredSettingInfo {
+public class Test_ValueFilteredSettingInfo {
 
 	private static SettingInfo settingInfo;
 

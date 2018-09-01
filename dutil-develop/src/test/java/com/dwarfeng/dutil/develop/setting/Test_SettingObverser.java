@@ -6,7 +6,7 @@ import java.util.List;
 import com.dwarfeng.dutil.develop.setting.obv.SettingAdapter;
 import com.dwarfeng.dutil.develop.setting.obv.SettingObverser;
 
-public final class TestSettingObverser extends SettingAdapter implements SettingObverser {
+public final class Test_SettingObverser extends SettingAdapter implements SettingObverser {
 
 	public final List<String> putList = new ArrayList<>();
 	public final List<String> removedKey = new ArrayList<>();

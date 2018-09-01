@@ -14,7 +14,7 @@ import org.junit.Test;
 
 import com.dwarfeng.dutil.develop.setting.info.ShortSettingInfo;
 
-public class TestShortSettingInfo {
+public class Test_ShortSettingInfo {
 
 	private final static String VALUE_INIT = "12";
 	private final static String VALUE_OTHER = "450";

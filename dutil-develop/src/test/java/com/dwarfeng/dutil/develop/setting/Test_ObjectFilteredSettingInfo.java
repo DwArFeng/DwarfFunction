@@ -13,7 +13,7 @@ import org.junit.Test;
 
 import com.dwarfeng.dutil.develop.setting.info.IntegerSettingInfo;
 
-public class TestObjectFilteredSettingInfo {
+public class Test_ObjectFilteredSettingInfo {
 
 	private static SettingInfo settingInfo;
 

@@ -3,7 +3,7 @@ package com.dwarfeng.dutil.develop.setting;
 import com.dwarfeng.dutil.develop.setting.info.BooleanSettingInfo;
 import com.dwarfeng.dutil.develop.setting.info.IntegerSettingInfo;
 
-enum TestSettingEnumItem implements SettingEnumItem {
+enum Test_SettingEnumItem implements SettingEnumItem {
 	ENTRY_1("entry.1", new BooleanSettingInfo("TRUE")), //
 	ENTRY_1F("entry.1", new BooleanSettingInfo("FALSE")), //
 	ENTRY_2("entry.2", new BooleanSettingInfo("FALSE")), //
@@ -19,7 +19,7 @@ enum TestSettingEnumItem implements SettingEnumItem {
 	private final String name;
 	private final SettingInfo settingInfo;
 
-	private TestSettingEnumItem(String name, SettingInfo settingInfo) {
+	private Test_SettingEnumItem(String name, SettingInfo settingInfo) {
 		this.name = name;
 		this.settingInfo = settingInfo;
 	}

@@ -12,17 +12,17 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.dwarfeng.dutil.develop.setting.info.LongSettingInfo;
+import com.dwarfeng.dutil.develop.setting.info.BooleanSettingInfo;
 
-public class TestLongSettingInfo {
+public class Test_BooleanSettingInfo {
 
-	private final static String VALUE_INIT = "12";
-	private final static String VALUE_OTHER = "450";
-	private final static String VALUE_INVALID = "com.dwarfeng";
+	private final static String VALUE_INIT = "FALSE";
+	private final static String VALUE_OTHER = "TRUE";
+	private final static String VALUE_INVALID = "TTTT";
 
-	private final static Object VALUE_PARSE_INIT = (long) 12;
-	private final static Object VALUE_PARSE_OTHER = (long) 450;
-	private final static Object VALUE_PARSE_INVALID = "foo";
+	private final static Object VALUE_PARSE_INIT = false;
+	private final static Object VALUE_PARSE_OTHER = true;
+	private final static Object VALUE_PARSE_INVALID = (int) 133;
 
 	private static SettingInfo info;
 
@@ -36,7 +36,7 @@ public class TestLongSettingInfo {
 
 	@Before
 	public void setUp() throws Exception {
-		info = new LongSettingInfo(VALUE_INIT);
+		info = new BooleanSettingInfo(VALUE_INIT);
 	}
 
 	@After
@@ -46,17 +46,17 @@ public class TestLongSettingInfo {
 
 	@Test
 	public final void testHashCode() {
-		SettingInfo other = new LongSettingInfo(VALUE_INIT);
+		SettingInfo other = new BooleanSettingInfo(VALUE_INIT);
 		assertEquals(info.hashCode(), other.hashCode());
-		other = new LongSettingInfo(VALUE_OTHER);
+		other = new BooleanSettingInfo(VALUE_OTHER);
 		assertNotEquals(info.hashCode(), other.hashCode());
 	}
 
 	@Test
 	public final void testEqualsObject() {
-		SettingInfo other = new LongSettingInfo(VALUE_INIT);
+		SettingInfo other = new BooleanSettingInfo(VALUE_INIT);
 		assertTrue(info.equals(other));
-		other = new LongSettingInfo(VALUE_OTHER);
+		other = new BooleanSettingInfo(VALUE_OTHER);
 		assertFalse(info.equals(other));
 	}
 
@@ -99,12 +99,12 @@ public class TestLongSettingInfo {
 
 	@Test
 	public final void testCheckDefaultValue() {
-		new LongSettingInfo(VALUE_INIT);
+		new BooleanSettingInfo(VALUE_INIT);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public final void testCheckDefaultValueException() {
-		new LongSettingInfo(VALUE_INVALID);
+		new BooleanSettingInfo(VALUE_INVALID);
 		fail("没有抛出异常");
 	}
 

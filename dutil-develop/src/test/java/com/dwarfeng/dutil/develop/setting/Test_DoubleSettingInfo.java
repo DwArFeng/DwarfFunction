@@ -12,17 +12,17 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.dwarfeng.dutil.develop.setting.info.ByteSettingInfo;
+import com.dwarfeng.dutil.develop.setting.info.DoubleSettingInfo;
 
-public class TestByteSettingInfo {
+public class Test_DoubleSettingInfo {
 
-	private final static String VALUE_INIT = "12";
-	private final static String VALUE_OTHER = "127";
-	private final static String VALUE_INVALID = "bba";
+	private final static String VALUE_INIT = "12.0";
+	private final static String VALUE_OTHER = "12.45";
+	private final static String VALUE_INVALID = "1a9b";
 
-	private final static Object VALUE_PARSE_INIT = (byte) 12;
-	private final static Object VALUE_PARSE_OTHER = (byte) 127;
-	private final static Object VALUE_PARSE_INVALID = (int) 133;
+	private final static Object VALUE_PARSE_INIT = (double) 12.0;
+	private final static Object VALUE_PARSE_OTHER = (double) 12.45;
+	private final static Object VALUE_PARSE_INVALID = true;
 
 	private static SettingInfo info;
 
@@ -36,7 +36,7 @@ public class TestByteSettingInfo {
 
 	@Before
 	public void setUp() throws Exception {
-		info = new ByteSettingInfo(VALUE_INIT);
+		info = new DoubleSettingInfo(VALUE_INIT);
 	}
 
 	@After
@@ -46,17 +46,17 @@ public class TestByteSettingInfo {
 
 	@Test
 	public final void testHashCode() {
-		SettingInfo other = new ByteSettingInfo(VALUE_INIT);
+		SettingInfo other = new DoubleSettingInfo(VALUE_INIT);
 		assertEquals(info.hashCode(), other.hashCode());
-		other = new ByteSettingInfo(VALUE_OTHER);
+		other = new DoubleSettingInfo(VALUE_OTHER);
 		assertNotEquals(info.hashCode(), other.hashCode());
 	}
 
 	@Test
 	public final void testEqualsObject() {
-		SettingInfo other = new ByteSettingInfo(VALUE_INIT);
+		SettingInfo other = new DoubleSettingInfo(VALUE_INIT);
 		assertTrue(info.equals(other));
-		other = new ByteSettingInfo(VALUE_OTHER);
+		other = new DoubleSettingInfo(VALUE_OTHER);
 		assertFalse(info.equals(other));
 	}
 
@@ -99,12 +99,12 @@ public class TestByteSettingInfo {
 
 	@Test
 	public final void testCheckDefaultValue() {
-		new ByteSettingInfo(VALUE_INIT);
+		new DoubleSettingInfo(VALUE_INIT);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public final void testCheckDefaultValueException() {
-		new ByteSettingInfo(VALUE_INVALID);
+		new DoubleSettingInfo(VALUE_INVALID);
 		fail("没有抛出异常");
 	}
 

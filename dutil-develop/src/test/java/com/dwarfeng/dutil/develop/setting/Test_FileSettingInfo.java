@@ -4,7 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+
+import java.io.File;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -12,16 +13,17 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.dwarfeng.dutil.develop.setting.info.FloatSettingInfo;
+import com.dwarfeng.dutil.develop.setting.info.FileSettingInfo;
 
-public class TestFloatSettingInfo {
+public class Test_FileSettingInfo {
 
-	private final static String VALUE_INIT = "12.0";
-	private final static String VALUE_OTHER = "12.45";
-	private final static String VALUE_INVALID = "com.dwarfeng";
+	private final static String VALUE_INIT = "D:\\foo.tmp";
+	private final static String VALUE_OTHER = "D:\\foo.txt";
+	// FileSettingInfo 没有无效的值。
+	// private final static String VALUE_INVALID = "1a9b";
 
-	private final static Object VALUE_PARSE_INIT = (float) 12;
-	private final static Object VALUE_PARSE_OTHER = (float) 12.45;
+	private final static Object VALUE_PARSE_INIT = new File("D:\\foo.tmp");
+	private final static Object VALUE_PARSE_OTHER = new File("D:\\foo.txt");
 	private final static Object VALUE_PARSE_INVALID = (int) 133;
 
 	private static SettingInfo info;
@@ -36,7 +38,7 @@ public class TestFloatSettingInfo {
 
 	@Before
 	public void setUp() throws Exception {
-		info = new FloatSettingInfo(VALUE_INIT);
+		info = new FileSettingInfo(VALUE_INIT);
 	}
 
 	@After
@@ -46,24 +48,24 @@ public class TestFloatSettingInfo {
 
 	@Test
 	public final void testHashCode() {
-		SettingInfo other = new FloatSettingInfo(VALUE_INIT);
+		SettingInfo other = new FileSettingInfo(VALUE_INIT);
 		assertEquals(info.hashCode(), other.hashCode());
-		other = new FloatSettingInfo(VALUE_OTHER);
+		other = new FileSettingInfo(VALUE_OTHER);
 		assertNotEquals(info.hashCode(), other.hashCode());
 	}
 
 	@Test
 	public final void testEqualsObject() {
-		SettingInfo other = new FloatSettingInfo(VALUE_INIT);
+		SettingInfo other = new FileSettingInfo(VALUE_INIT);
 		assertTrue(info.equals(other));
-		other = new FloatSettingInfo(VALUE_OTHER);
+		other = new FileSettingInfo(VALUE_OTHER);
 		assertFalse(info.equals(other));
 	}
 
 	@Test
 	public final void testIsValid() {
 		assertFalse(info.isValid(null));
-		assertFalse(info.isValid(VALUE_INVALID));
+		// assertFalse(info.isValid(VALUE_INVALID));
 		assertTrue(info.isValid(VALUE_INIT));
 		assertTrue(info.isValid(VALUE_OTHER));
 	}
@@ -71,7 +73,7 @@ public class TestFloatSettingInfo {
 	@Test
 	public final void testNonValid() {
 		assertTrue(info.nonValid(null));
-		assertTrue(info.nonValid(VALUE_INVALID));
+		// assertTrue(info.nonValid(VALUE_INVALID));
 		assertFalse(info.nonValid(VALUE_INIT));
 		assertFalse(info.nonValid(VALUE_OTHER));
 	}
@@ -81,7 +83,7 @@ public class TestFloatSettingInfo {
 		assertEquals(VALUE_PARSE_INIT, info.parseValue(VALUE_INIT));
 		assertEquals(VALUE_PARSE_OTHER, info.parseValue(VALUE_OTHER));
 		assertEquals(null, info.parseValue(null));
-		assertEquals(null, info.parseValue(VALUE_INVALID));
+		// assertEquals(null, info.parseValue(VALUE_INVALID));
 	}
 
 	@Test
@@ -99,13 +101,14 @@ public class TestFloatSettingInfo {
 
 	@Test
 	public final void testCheckDefaultValue() {
-		new FloatSettingInfo(VALUE_INIT);
+		new FileSettingInfo(VALUE_INIT);
 	}
 
-	@Test(expected = IllegalArgumentException.class)
-	public final void testCheckDefaultValueException() {
-		new FloatSettingInfo(VALUE_INVALID);
-		fail("没有抛出异常");
-	}
+	// FileSettingInfo 没有无效的值。
+	// @Test(expected = IllegalArgumentException.class)
+	// public final void testCheckDefaultValueException() {
+	// new ClassSettingInfo(VALUE_INVALID);
+	// fail("没有抛出异常");
+	// }
 
 }

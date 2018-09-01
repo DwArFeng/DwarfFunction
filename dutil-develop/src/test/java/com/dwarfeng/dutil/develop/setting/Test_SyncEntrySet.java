@@ -26,21 +26,21 @@ import com.dwarfeng.dutil.develop.setting.info.BooleanSettingInfo;
 
 public class Test_SyncEntrySet {
 
-	private static final Entry ENTRY_1 = SettingUtil.toEntry(TestSettingEnumItem.ENTRY_1,
-			TestSettingEnumItem.ENTRY_1.getSettingInfo().getDefaultValue());
-	private static final Entry ENTRY_1F = SettingUtil.toEntry(TestSettingEnumItem.ENTRY_1F,
-			TestSettingEnumItem.ENTRY_1F.getSettingInfo().getDefaultValue());
-	private static final Entry ENTRY_2 = SettingUtil.toEntry(TestSettingEnumItem.ENTRY_2,
-			TestSettingEnumItem.ENTRY_2.getSettingInfo().getDefaultValue());
-	private static final Entry ENTRY_3 = SettingUtil.toEntry(TestSettingEnumItem.ENTRY_3,
-			TestSettingEnumItem.ENTRY_3.getSettingInfo().getDefaultValue());
-	private static final Entry ENTRY_4 = SettingUtil.toEntry(TestSettingEnumItem.ENTRY_4,
-			TestSettingEnumItem.ENTRY_4.getSettingInfo().getDefaultValue());
-	private static final Entry ENTRY_5 = SettingUtil.toEntry(TestSettingEnumItem.ENTRY_4,
-			TestSettingEnumItem.ENTRY_5.getSettingInfo().getDefaultValue());
+	private static final Entry ENTRY_1 = SettingUtil.toEntry(Test_SettingEnumItem.ENTRY_1,
+			Test_SettingEnumItem.ENTRY_1.getSettingInfo().getDefaultValue());
+	private static final Entry ENTRY_1F = SettingUtil.toEntry(Test_SettingEnumItem.ENTRY_1F,
+			Test_SettingEnumItem.ENTRY_1F.getSettingInfo().getDefaultValue());
+	private static final Entry ENTRY_2 = SettingUtil.toEntry(Test_SettingEnumItem.ENTRY_2,
+			Test_SettingEnumItem.ENTRY_2.getSettingInfo().getDefaultValue());
+	private static final Entry ENTRY_3 = SettingUtil.toEntry(Test_SettingEnumItem.ENTRY_3,
+			Test_SettingEnumItem.ENTRY_3.getSettingInfo().getDefaultValue());
+	private static final Entry ENTRY_4 = SettingUtil.toEntry(Test_SettingEnumItem.ENTRY_4,
+			Test_SettingEnumItem.ENTRY_4.getSettingInfo().getDefaultValue());
+	private static final Entry ENTRY_5 = SettingUtil.toEntry(Test_SettingEnumItem.ENTRY_4,
+			Test_SettingEnumItem.ENTRY_5.getSettingInfo().getDefaultValue());
 
 	private static SettingHandler handler;
-	private static TestSettingObverser obv;
+	private static Test_SettingObverser obv;
 	private static Set<Entry> entrySet;
 
 	@BeforeClass
@@ -55,10 +55,10 @@ public class Test_SyncEntrySet {
 	public void setUp() throws Exception {
 		handler = SettingUtil.syncSettingHandler(new DefaultSettingHandler(new LinkedHashMap<>(), new LinkedHashMap<>(),
 				Collections.newSetFromMap(new WeakHashMap<>())));
-		SettingUtil.putEnumItems(new SettingEnumItem[] { TestSettingEnumItem.ENTRY_1, TestSettingEnumItem.ENTRY_2,
-				TestSettingEnumItem.ENTRY_3, TestSettingEnumItem.ENTRY_4 }, handler);
+		SettingUtil.putEnumItems(new SettingEnumItem[] { Test_SettingEnumItem.ENTRY_1, Test_SettingEnumItem.ENTRY_2,
+				Test_SettingEnumItem.ENTRY_3, Test_SettingEnumItem.ENTRY_4 }, handler);
 		entrySet = handler.entrySet();
-		obv = new TestSettingObverser();
+		obv = new Test_SettingObverser();
 		handler.addObverser(obv);
 	}
 

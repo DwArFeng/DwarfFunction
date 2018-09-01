@@ -12,16 +12,16 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.dwarfeng.dutil.develop.setting.info.BooleanSettingInfo;
+import com.dwarfeng.dutil.develop.setting.info.ClassSettingInfo;
 
-public class TestBooleanSettingInfo {
+public class Test_ClassSettingInfo {
 
-	private final static String VALUE_INIT = "FALSE";
-	private final static String VALUE_OTHER = "TRUE";
-	private final static String VALUE_INVALID = "TTTT";
+	private final static String VALUE_INIT = String.class.getName();
+	private final static String VALUE_OTHER = Integer.class.getName();
+	private final static String VALUE_INVALID = "com.dwarfeng";
 
-	private final static Object VALUE_PARSE_INIT = false;
-	private final static Object VALUE_PARSE_OTHER = true;
+	private final static Object VALUE_PARSE_INIT = String.class;
+	private final static Object VALUE_PARSE_OTHER = Integer.class;
 	private final static Object VALUE_PARSE_INVALID = (int) 133;
 
 	private static SettingInfo info;
@@ -36,7 +36,7 @@ public class TestBooleanSettingInfo {
 
 	@Before
 	public void setUp() throws Exception {
-		info = new BooleanSettingInfo(VALUE_INIT);
+		info = new ClassSettingInfo(VALUE_INIT);
 	}
 
 	@After
@@ -46,17 +46,17 @@ public class TestBooleanSettingInfo {
 
 	@Test
 	public final void testHashCode() {
-		SettingInfo other = new BooleanSettingInfo(VALUE_INIT);
+		SettingInfo other = new ClassSettingInfo(VALUE_INIT);
 		assertEquals(info.hashCode(), other.hashCode());
-		other = new BooleanSettingInfo(VALUE_OTHER);
+		other = new ClassSettingInfo(VALUE_OTHER);
 		assertNotEquals(info.hashCode(), other.hashCode());
 	}
 
 	@Test
 	public final void testEqualsObject() {
-		SettingInfo other = new BooleanSettingInfo(VALUE_INIT);
+		SettingInfo other = new ClassSettingInfo(VALUE_INIT);
 		assertTrue(info.equals(other));
-		other = new BooleanSettingInfo(VALUE_OTHER);
+		other = new ClassSettingInfo(VALUE_OTHER);
 		assertFalse(info.equals(other));
 	}
 
@@ -99,12 +99,12 @@ public class TestBooleanSettingInfo {
 
 	@Test
 	public final void testCheckDefaultValue() {
-		new BooleanSettingInfo(VALUE_INIT);
+		new ClassSettingInfo(VALUE_INIT);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public final void testCheckDefaultValueException() {
-		new BooleanSettingInfo(VALUE_INVALID);
+		new ClassSettingInfo(VALUE_INVALID);
 		fail("没有抛出异常");
 	}
 

@@ -6,7 +6,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.util.Locale;
+import java.awt.Font;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -14,17 +14,17 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.dwarfeng.dutil.develop.setting.info.LocaleSettingInfo;
+import com.dwarfeng.dutil.develop.setting.info.FontSettingInfo;
 
-public class TestLocaleSettingInfo {
+public class Test_FontSettingInfo {
 
-	private final static String VALUE_INIT = "zh_CN";
-	private final static String VALUE_OTHER = "en_US";
-	private final static String VALUE_INVALID = "com.dwarfeng";
+	private final static String VALUE_INIT = Font.SANS_SERIF + "-" + Font.PLAIN + "-12";
+	private final static String VALUE_OTHER = Font.SANS_SERIF + "-" + Font.BOLD + "-10";
+	private final static String VALUE_INVALID = "foo-plain-10";
 
-	private final static Object VALUE_PARSE_INIT = Locale.SIMPLIFIED_CHINESE;
-	private final static Object VALUE_PARSE_OTHER = Locale.US;
-	private final static Object VALUE_PARSE_INVALID = 114514;
+	private final static Object VALUE_PARSE_INIT = new Font(Font.SANS_SERIF, Font.PLAIN, 12);
+	private final static Object VALUE_PARSE_OTHER = new Font(Font.SANS_SERIF, Font.BOLD, 10);
+	private final static Object VALUE_PARSE_INVALID = true;
 
 	private static SettingInfo info;
 
@@ -38,7 +38,7 @@ public class TestLocaleSettingInfo {
 
 	@Before
 	public void setUp() throws Exception {
-		info = new LocaleSettingInfo(VALUE_INIT);
+		info = new FontSettingInfo(VALUE_INIT);
 	}
 
 	@After
@@ -48,17 +48,17 @@ public class TestLocaleSettingInfo {
 
 	@Test
 	public final void testHashCode() {
-		SettingInfo other = new LocaleSettingInfo(VALUE_INIT);
+		SettingInfo other = new FontSettingInfo(VALUE_INIT);
 		assertEquals(info.hashCode(), other.hashCode());
-		other = new LocaleSettingInfo(VALUE_OTHER);
+		other = new FontSettingInfo(VALUE_OTHER);
 		assertNotEquals(info.hashCode(), other.hashCode());
 	}
 
 	@Test
 	public final void testEqualsObject() {
-		SettingInfo other = new LocaleSettingInfo(VALUE_INIT);
+		SettingInfo other = new FontSettingInfo(VALUE_INIT);
 		assertTrue(info.equals(other));
-		other = new LocaleSettingInfo(VALUE_OTHER);
+		other = new FontSettingInfo(VALUE_OTHER);
 		assertFalse(info.equals(other));
 	}
 
@@ -87,19 +87,6 @@ public class TestLocaleSettingInfo {
 	}
 
 	@Test
-	public final void testParseValueExtra() {
-		Locale locale;
-		locale = new Locale("zh", "", "");
-		assertEquals("zh", info.parseObject(locale));
-		locale = new Locale("zh", "", "gz");
-		assertEquals("zh__gz", info.parseObject(locale));
-		locale = new Locale("zh", "CN", "");
-		assertEquals("zh_CN", info.parseObject(locale));
-		locale = new Locale("zh", "CN", "gz");
-		assertEquals("zh_CN_gz", info.parseObject(locale));
-	}
-
-	@Test
 	public final void testParseObject() {
 		assertEquals(VALUE_INIT, info.parseObject(VALUE_PARSE_INIT));
 		assertEquals(VALUE_OTHER, info.parseObject(VALUE_PARSE_OTHER));
@@ -114,12 +101,12 @@ public class TestLocaleSettingInfo {
 
 	@Test
 	public final void testCheckDefaultValue() {
-		new LocaleSettingInfo(VALUE_INIT);
+		new FontSettingInfo(VALUE_INIT);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public final void testCheckDefaultValueException() {
-		new LocaleSettingInfo(VALUE_INVALID);
+		new FontSettingInfo(VALUE_INVALID);
 		fail("没有抛出异常");
 	}
 

@@ -5,25 +5,23 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.io.File;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.dwarfeng.dutil.develop.setting.info.FileSettingInfo;
+import com.dwarfeng.dutil.develop.setting.info.StringSettingInfo;
 
-public class TestFileSettingInfo {
+public class Test_StringSettingInfo {
 
-	private final static String VALUE_INIT = "D:\\foo.tmp";
-	private final static String VALUE_OTHER = "D:\\foo.txt";
-	// FileSettingInfo 没有无效的值。
+	private final static String VALUE_INIT = "12";
+	private final static String VALUE_OTHER = "450";
+	// StringSettingInfo 没有无效的值。
 	// private final static String VALUE_INVALID = "1a9b";
 
-	private final static Object VALUE_PARSE_INIT = new File("D:\\foo.tmp");
-	private final static Object VALUE_PARSE_OTHER = new File("D:\\foo.txt");
+	private final static Object VALUE_PARSE_INIT = "12";
+	private final static Object VALUE_PARSE_OTHER = "450";
 	private final static Object VALUE_PARSE_INVALID = (int) 133;
 
 	private static SettingInfo info;
@@ -38,7 +36,7 @@ public class TestFileSettingInfo {
 
 	@Before
 	public void setUp() throws Exception {
-		info = new FileSettingInfo(VALUE_INIT);
+		info = new StringSettingInfo(VALUE_INIT);
 	}
 
 	@After
@@ -48,17 +46,17 @@ public class TestFileSettingInfo {
 
 	@Test
 	public final void testHashCode() {
-		SettingInfo other = new FileSettingInfo(VALUE_INIT);
+		SettingInfo other = new StringSettingInfo(VALUE_INIT);
 		assertEquals(info.hashCode(), other.hashCode());
-		other = new FileSettingInfo(VALUE_OTHER);
+		other = new StringSettingInfo(VALUE_OTHER);
 		assertNotEquals(info.hashCode(), other.hashCode());
 	}
 
 	@Test
 	public final void testEqualsObject() {
-		SettingInfo other = new FileSettingInfo(VALUE_INIT);
+		SettingInfo other = new StringSettingInfo(VALUE_INIT);
 		assertTrue(info.equals(other));
-		other = new FileSettingInfo(VALUE_OTHER);
+		other = new StringSettingInfo(VALUE_OTHER);
 		assertFalse(info.equals(other));
 	}
 
@@ -101,10 +99,10 @@ public class TestFileSettingInfo {
 
 	@Test
 	public final void testCheckDefaultValue() {
-		new FileSettingInfo(VALUE_INIT);
+		new StringSettingInfo(VALUE_INIT);
 	}
 
-	// FileSettingInfo 没有无效的值。
+	// StringSettingInfo 没有无效的值。
 	// @Test(expected = IllegalArgumentException.class)
 	// public final void testCheckDefaultValueException() {
 	// new ClassSettingInfo(VALUE_INVALID);

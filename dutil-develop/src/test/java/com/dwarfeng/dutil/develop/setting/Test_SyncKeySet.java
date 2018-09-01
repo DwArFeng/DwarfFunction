@@ -30,7 +30,7 @@ public class Test_SyncKeySet {
 	private static final String ENTRY_5 = "entry.5";
 
 	private static SettingHandler handler;
-	private static TestSettingObverser obv;
+	private static Test_SettingObverser obv;
 	private static Set<String> keySet;
 
 	@BeforeClass
@@ -45,10 +45,10 @@ public class Test_SyncKeySet {
 	public void setUp() throws Exception {
 		handler = SettingUtil.syncSettingHandler(new DefaultSettingHandler(new LinkedHashMap<>(), new LinkedHashMap<>(),
 				Collections.newSetFromMap(new WeakHashMap<>())));
-		SettingUtil.putEnumItems(new SettingEnumItem[] { TestSettingEnumItem.ENTRY_1, TestSettingEnumItem.ENTRY_2,
-				TestSettingEnumItem.ENTRY_3, TestSettingEnumItem.ENTRY_4 }, handler);
+		SettingUtil.putEnumItems(new SettingEnumItem[] { Test_SettingEnumItem.ENTRY_1, Test_SettingEnumItem.ENTRY_2,
+				Test_SettingEnumItem.ENTRY_3, Test_SettingEnumItem.ENTRY_4 }, handler);
 		keySet = handler.keySet();
-		obv = new TestSettingObverser();
+		obv = new Test_SettingObverser();
 		handler.addObverser(obv);
 
 	}
