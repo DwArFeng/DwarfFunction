@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.dwarfeng.dutil.basic.num.Interval;
 import com.dwarfeng.dutil.develop.setting.info.ShortSettingInfo;
 
 public class Test_ShortSettingInfo {
@@ -106,6 +107,13 @@ public class Test_ShortSettingInfo {
 	public final void testCheckDefaultValueException() {
 		new ShortSettingInfo(VALUE_INVALID);
 		fail("没有抛出异常");
+	}
+
+	@Test
+	public final void testWithInterval() {
+		ShortSettingInfo info = new ShortSettingInfo("0", Interval.INTERVAL_NOT_NEGATIVE);
+		assertTrue(info.isValid("12"));
+		assertFalse(info.isValid("-110"));
 	}
 
 }

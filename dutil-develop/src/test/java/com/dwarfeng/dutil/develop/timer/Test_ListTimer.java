@@ -114,6 +114,7 @@ public class Test_ListTimer {
 		assertEquals(0, plain_3.getObversers().size());
 
 		assertTrue(timer.remove(plain_2));
+		Thread.sleep(10);
 		assertEquals(0, timer.getPlains().size());
 		assertEquals(3, obv.removedPlain.size());
 		assertEquals(plain_2, obv.removedPlain.get(2));
@@ -183,12 +184,13 @@ public class Test_ListTimer {
 		Plain plain_2 = new TestBlockPlain(100);
 		Plain plain_3 = new TestBlockPlain(100);
 
+		TimeMeasurer tm = new TimeMeasurer();
+		tm.start();
+
 		timer.schedule(plain_1);
 		timer.schedule(plain_2);
 		timer.schedule(plain_3);
 
-		TimeMeasurer tm = new TimeMeasurer();
-		tm.start();
 		Thread.sleep(10);
 		timer.shutdown();
 		timer.awaitTermination();

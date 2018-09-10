@@ -339,6 +339,7 @@ public enum ExceptionStringKey implements Name {
 	TIMERUTIL_1(new DefaultName("TimerUtil.1")), //
 	TIMERUTIL_2(new DefaultName("TimerUtil.2")), //
 	TIMERUTIL_3(new DefaultName("TimerUtil.3")), //
+	NUMBERSETTINGINFO_0(new DefaultName("NumberSettingInfo.0")), //
 
 	;
 

@@ -1,18 +1,19 @@
 package com.dwarfeng.dutil.basic.num;
 
+import com.dwarfeng.dutil.basic.prog.Filter;
+
 /**
  * 数字值过滤器。
- * <p> 能够过滤数字值的接口。
+ * <p>
+ * 能够过滤数字值的接口。
+ * 
  * @author DwArFeng
  * @since 0.0.2-beta
+ * @deprecated 该类可以通过使用lambda表达式构造<code>Filter&ltNumberValue&gt</code>匿名类快速实现，因此没必要保留这个类。
  */
-public interface NumberValueFilter{
+public interface NumberValueFilter extends Filter<NumberValue> {
 
-	/**
-	 * 返回该过滤器是否接受指定的数字值。
-	 * @param value 数字值。
-	 * @return 是否接受指定的数字值。
-	 */
+	@Override
 	public boolean accept(NumberValue value);
-	
+
 }

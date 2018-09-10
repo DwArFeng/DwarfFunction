@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.ExceptionStringKey;
+import com.dwarfeng.dutil.basic.prog.Filter;
 
 /**
  * 区间。
@@ -19,7 +20,7 @@ import com.dwarfeng.dutil.basic.ExceptionStringKey;
  * @author DwArFeng
  * @since 0.1.3-beta
  */
-public class Interval implements NumberValueFilter {
+public class Interval implements Filter<NumberValue> {
 
 	/**
 	 * 区间的边界类型。
@@ -224,6 +225,45 @@ public class Interval implements NumberValueFilter {
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
+	public boolean contains(float value) {
+		return contains(new BigDecimal(value));
+	}
+
+	/**
+	 * 判断该区间是否包含指定的值。
+	 * 
+	 * @param value
+	 *            指定的值。
+	 * @return 区间是否包含指定的值。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public boolean contains(byte value) {
+		return contains(new BigDecimal((int) value));
+	}
+
+	/**
+	 * 判断该区间是否包含指定的值。
+	 * 
+	 * @param value
+	 *            指定的值。
+	 * @return 区间是否包含指定的值。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public boolean contains(short value) {
+		return contains(new BigDecimal((int) value));
+	}
+
+	/**
+	 * 判断该区间是否包含指定的值。
+	 * 
+	 * @param value
+	 *            指定的值。
+	 * @return 区间是否包含指定的值。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
 	public boolean contains(int value) {
 		return contains(new BigDecimal(value));
 	}
@@ -239,44 +279,6 @@ public class Interval implements NumberValueFilter {
 	 */
 	public boolean contains(long value) {
 		return contains(new BigDecimal(value));
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (!(obj instanceof Interval)) {
-			return false;
-		}
-		Interval other = (Interval) obj;
-		if (leftBoundaryType != other.leftBoundaryType) {
-			return false;
-		}
-		if (leftValue == null) {
-			if (other.leftValue != null) {
-				return false;
-			}
-		} else if (!leftValue.equals(other.leftValue)) {
-			return false;
-		}
-		if (rightBoundaryType != other.rightBoundaryType) {
-			return false;
-		}
-		if (rightValue == null) {
-			if (other.rightValue != null) {
-				return false;
-			}
-		} else if (!rightValue.equals(other.rightValue)) {
-			return false;
-		}
-		return true;
 	}
 
 	/**
@@ -327,6 +329,44 @@ public class Interval implements NumberValueFilter {
 		result = prime * result + ((rightBoundaryType == null) ? 0 : rightBoundaryType.hashCode());
 		result = prime * result + ((rightValue == null) ? 0 : rightValue.hashCode());
 		return result;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof Interval)) {
+			return false;
+		}
+		Interval other = (Interval) obj;
+		if (leftBoundaryType != other.leftBoundaryType) {
+			return false;
+		}
+		if (leftValue == null) {
+			if (other.leftValue != null) {
+				return false;
+			}
+		} else if (!leftValue.equals(other.leftValue)) {
+			return false;
+		}
+		if (rightBoundaryType != other.rightBoundaryType) {
+			return false;
+		}
+		if (rightValue == null) {
+			if (other.rightValue != null) {
+				return false;
+			}
+		} else if (!rightValue.equals(other.rightValue)) {
+			return false;
+		}
+		return true;
 	}
 
 	/**

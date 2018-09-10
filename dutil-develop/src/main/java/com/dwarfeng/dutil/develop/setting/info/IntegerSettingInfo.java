@@ -4,7 +4,7 @@ import java.util.Objects;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import com.dwarfeng.dutil.develop.setting.AbstractSettingInfo;
+import com.dwarfeng.dutil.basic.num.Interval;
 
 /**
  * Integer配置检查器。
@@ -12,7 +12,7 @@ import com.dwarfeng.dutil.develop.setting.AbstractSettingInfo;
  * @author DwArFeng
  * @since 0.2.0-beta
  */
-public class IntegerSettingInfo extends AbstractSettingInfo {
+public class IntegerSettingInfo extends NumberSettingInfo {
 
 	private static final int RADIX = 10;
 
@@ -32,7 +32,24 @@ public class IntegerSettingInfo extends AbstractSettingInfo {
 	 *             指定的默认值不能通过自身检查。
 	 */
 	public IntegerSettingInfo(String defaultValue) throws NullPointerException, IllegalArgumentException {
-		super(defaultValue);
+		this(defaultValue, Interval.INTERVAL_REALNUMBER);
+	}
+
+	/**
+	 * 生成一个新的Integer配置信息。
+	 * 
+	 * @param defaultValue
+	 *            指定的默认值。
+	 * @param interval
+	 *            指定的区间。
+	 * @throws NullPointerException
+	 *             指定的入口参数为 <code> null </code>。
+	 * @throws IllegalArgumentException
+	 *             指定的默认值不能通过自身检查。
+	 */
+	public IntegerSettingInfo(String defaultValue, Interval interval)
+			throws NullPointerException, IllegalArgumentException {
+		super(defaultValue, interval);
 		checkDefaultValue();
 	}
 
@@ -41,7 +58,7 @@ public class IntegerSettingInfo extends AbstractSettingInfo {
 	 */
 	@Override
 	public int hashCode() {
-		return IntegerSettingInfo.class.hashCode() * 61 + defaultValue.hashCode() * 17;
+		return IntegerSettingInfo.class.hashCode() * 61 + defaultValue.hashCode() * 17 + interval.hashCode() * 9;
 	}
 
 	/**
@@ -57,7 +74,7 @@ public class IntegerSettingInfo extends AbstractSettingInfo {
 			return false;
 
 		IntegerSettingInfo that = (IntegerSettingInfo) obj;
-		return Objects.equals(this.defaultValue, that.defaultValue);
+		return Objects.equals(this.defaultValue, that.defaultValue) && Objects.equals(this.interval, that.interval);
 	}
 
 	/**
@@ -65,7 +82,7 @@ public class IntegerSettingInfo extends AbstractSettingInfo {
 	 */
 	@Override
 	public String toString() {
-		return "IntegerSettingInfo [defaultValue=" + defaultValue + "]";
+		return "IntegerSettingInfo [defaultValue=" + defaultValue + ", interval=" + interval + "]";
 	}
 
 	/**
@@ -85,6 +102,12 @@ public class IntegerSettingInfo extends AbstractSettingInfo {
 				lastParsedValue = null;
 				return false;
 			}
+
+			if (!interval.contains(lastParsedValue)) {
+				lastParsedValue = null;
+				return false;
+			}
+
 			return true;
 		} finally {
 			lock.unlock();
@@ -104,12 +127,18 @@ public class IntegerSettingInfo extends AbstractSettingInfo {
 			try {
 				lastCheckedValue = value;
 				lastParsedValue = Integer.parseInt(value, RADIX);
+				if (!interval.contains(lastParsedValue)) {
+					lastCheckedValue = null;
+					lastParsedValue = null;
+					return null;
+				}
 				return lastParsedValue;
 			} catch (Exception e) {
 				lastCheckedValue = null;
 				lastParsedValue = null;
 				throw new IllegalStateException();
 			}
+
 		} finally {
 			lock.unlock();
 		}
@@ -122,6 +151,9 @@ public class IntegerSettingInfo extends AbstractSettingInfo {
 	protected String parseNonNullObject(Object object) {
 		if (!(object instanceof Integer))
 			return null;
+		if (!interval.contains((int) object)) {
+			return null;
+		}
 
 		return Integer.toString((int) object, RADIX);
 	}
