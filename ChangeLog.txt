@@ -319,4 +319,5 @@ Beta_0.2.0__build_A (maven)
 	废弃 basic.prog.VersionType 中不符合规范的 SNAPSHOTS，改为SNAPSHOT。
 	废弃 basic.num.NumberValueFilter 类，使用 basic.prog.Filter<NumberValue>。
 	为 dutil.basic.num.Interval 添加了新的重载方法。
-	更新的README.md
+	新增 basic.gui.swing.MuaComboBoxModel<E> —— 实现了 List<E> 的下拉菜单模型。
+	更新了README.md

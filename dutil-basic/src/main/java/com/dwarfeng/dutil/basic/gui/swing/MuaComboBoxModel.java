@@ -8,47 +8,50 @@ import java.util.ListIterator;
 import java.util.Objects;
 
 import javax.swing.AbstractListModel;
-import javax.swing.DefaultListModel;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.ExceptionStringKey;
 
 /**
- * 多重操作列表模型。
+ * 多重操作下拉菜单模型。
  * 
  * <p>
- * 该列表模型具有 {@link DefaultListModel}的所有功能，同时优化了结构类型，并且对批量操作进行了优化。
+ * 该下拉菜单模型具有 {@link DefaultComboBoxModel}的所有功能，同时优化了结构类型，并且对批量操作进行了优化。
  * 同时，这个类是一个真正的列表的实现。
  * <p>
  * 该类可以通过指定入口的参数来保证列表的不同实现，如用同步列表作为实现就可以保证其中方法的同步。
  * 
  * @author DwArFeng
- * @since 0.0.2-beta
+ * @since 0.2.0-beta
  */
-public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
+public class MuaComboBoxModel<E> extends AbstractListModel<E> implements ComboBoxModel<E>, List<E> {
 
-	private static final long serialVersionUID = -9035220797049152472L;
+	private static final long serialVersionUID = 6609773804561258553L;
 
 	/** 模型中的列表代理。 */
 	protected final List<E> delegate;
+	/** 被选择的对象。 */
+	protected Object selectedObject;
 
 	/**
-	 * 生成一个默认的，由 {@link ArrayList}实现的列表模型。
+	 * 生成一个默认的，由 {@link ArrayList}实现的下拉菜单模型。
 	 */
-	public MuaListModel() {
+	public MuaComboBoxModel() {
 		this(new ArrayList<E>());
 	}
 
 	/**
-	 * 生成一个由指定列表实现的列表模型。
+	 * 生成一个由指定列表实现的下拉菜单模型。
 	 * 
 	 * @param delegate
 	 *            指定的列表。
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>
 	 */
-	public MuaListModel(List<E> delegate) {
-		Objects.requireNonNull(delegate, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_0));
+	public MuaComboBoxModel(List<E> delegate) {
+		Objects.requireNonNull(delegate, DwarfUtil.getExecptionString(ExceptionStringKey.MUACOMBOBOXMODEL_0));
 		this.delegate = delegate;
 	}
 
@@ -192,7 +195,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	 */
 	@Override
 	public boolean containsAll(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUACOMBOBOXMODEL_1));
 		return delegate.containsAll(c);
 	}
 
@@ -201,7 +204,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	 */
 	@Override
 	public boolean addAll(Collection<? extends E> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUACOMBOBOXMODEL_1));
 		int index = delegate.size();
 		boolean aFlag = delegate.addAll(c);
 		if (aFlag == true) {
@@ -215,7 +218,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	 */
 	@Override
 	public boolean addAll(int index, Collection<? extends E> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUACOMBOBOXMODEL_1));
 		int aIndex = delegate.size();
 		boolean aFlag = delegate.addAll(index, c);
 		if (aFlag == true) {
@@ -229,7 +232,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	 */
 	@Override
 	public boolean removeAll(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUACOMBOBOXMODEL_1));
 		return batchRemove(c, true);
 	}
 
@@ -238,7 +241,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	 */
 	@Override
 	public boolean retainAll(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUACOMBOBOXMODEL_1));
 		return batchRemove(c, false);
 	}
 
@@ -587,7 +590,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
-			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
+			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUACOMBOBOXMODEL_1));
 			return subDelegate.containsAll(c);
 		}
 
@@ -596,7 +599,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 		 */
 		@Override
 		public boolean addAll(Collection<? extends E> c) {
-			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
+			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUACOMBOBOXMODEL_1));
 			boolean aFlag = false;
 			for (E e : c) {
 				if (add(e))
@@ -610,7 +613,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 		 */
 		@Override
 		public boolean addAll(int index, Collection<? extends E> c) {
-			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
+			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUACOMBOBOXMODEL_1));
 			int size = subDelegate.size();
 			int i = 0;
 			for (E e : c) {
@@ -624,7 +627,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
-			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
+			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUACOMBOBOXMODEL_1));
 			return batchRemove(c, true);
 		}
 
@@ -633,7 +636,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
-			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
+			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUACOMBOBOXMODEL_1));
 			return batchRemove(c, false);
 		}
 
@@ -879,8 +882,31 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	 * {@inheritDoc}
 	 */
 	@Override
+	public void setSelectedItem(Object anItem) {
+		if ((selectedObject != null && !selectedObject.equals(anItem)) || selectedObject == null && anItem != null) {
+			selectedObject = anItem;
+			fireContentsChanged(this, -1, -1);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Object getSelectedItem() {
+		return selectedObject;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public int hashCode() {
-		return delegate.hashCode();
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((delegate == null) ? 0 : delegate.hashCode());
+		result = prime * result + ((selectedObject == null) ? 0 : selectedObject.hashCode());
+		return result;
 	}
 
 	/**
@@ -888,9 +914,24 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == this)
+		if (this == obj)
 			return true;
-		return delegate.equals(obj);
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MuaComboBoxModel<?> other = (MuaComboBoxModel<?>) obj;
+		if (delegate == null) {
+			if (other.delegate != null)
+				return false;
+		} else if (!delegate.equals(other.delegate))
+			return false;
+		if (selectedObject == null) {
+			if (other.selectedObject != null)
+				return false;
+		} else if (!selectedObject.equals(other.selectedObject))
+			return false;
+		return true;
 	}
 
 	/**
@@ -898,7 +939,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	 */
 	@Override
 	public String toString() {
-		return delegate.toString();
+		return "MuaComboBoxModel [delegate=" + delegate + ", selectedObject=" + selectedObject + "]";
 	}
 
 }
