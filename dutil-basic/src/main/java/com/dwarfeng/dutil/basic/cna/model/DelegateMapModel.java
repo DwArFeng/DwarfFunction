@@ -44,7 +44,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 	 */
 	public DelegateMapModel(Map<K, V> delegate, Set<MapObverser<K, V>> obversers) {
 		super(obversers);
-		Objects.requireNonNull(delegate, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATEMAPMODEL_0));
+		Objects.requireNonNull(delegate, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATEMAPMODEL_0));
 		this.delegate = delegate;
 	}
 
@@ -124,7 +124,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 	 */
 	@Override
 	public void putAll(Map<? extends K, ? extends V> m) {
-		Objects.requireNonNull(m, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATEMAPMODEL_1));
+		Objects.requireNonNull(m, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATEMAPMODEL_1));
 		for (Map.Entry<? extends K, ? extends V> entry : m.entrySet()) {
 			put(entry.getKey(), entry.getValue());
 		}
@@ -270,7 +270,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
-			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATEMAPMODEL_2));
+			Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATEMAPMODEL_2));
 			return delegateKeySet.containsAll(c);
 		}
 
@@ -287,7 +287,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
-			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATEMAPMODEL_2));
+			Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATEMAPMODEL_2));
 			return batchRemove(c, true);
 		}
 
@@ -296,7 +296,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
-			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATEMAPMODEL_2));
+			Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATEMAPMODEL_2));
 			return batchRemove(c, false);
 		}
 
@@ -495,7 +495,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
-			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATEMAPMODEL_2));
+			Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATEMAPMODEL_2));
 			return delegateValues.containsAll(c);
 		}
 
@@ -504,7 +504,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 		 */
 		@Override
 		public boolean addAll(Collection<? extends V> c) {
-			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATEMAPMODEL_2));
+			Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATEMAPMODEL_2));
 			throw new UnsupportedOperationException("addAll");
 		}
 
@@ -513,7 +513,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
-			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATEMAPMODEL_2));
+			Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATEMAPMODEL_2));
 			return batchRemove(c, true);
 		}
 
@@ -728,7 +728,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
-			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATEMAPMODEL_2));
+			Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATEMAPMODEL_2));
 			return delegateEntrySet.containsAll(c);
 		}
 
@@ -745,7 +745,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
-			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATEMAPMODEL_2));
+			Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATEMAPMODEL_2));
 			return batchRemove(c, true);
 		}
 
@@ -754,7 +754,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
-			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATEMAPMODEL_2));
+			Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATEMAPMODEL_2));
 			return batchRemove(c, false);
 		}
 

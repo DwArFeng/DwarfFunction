@@ -170,8 +170,8 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			Set<ExconfigObverser> obversers) {
 		super(obversers);
 
-		Objects.requireNonNull(delegate, DwarfUtil.getExecptionString(ExceptionStringKey.DEFAULTEXCONFIGMODEL_0));
-		Objects.requireNonNull(entries, DwarfUtil.getExecptionString(ExceptionStringKey.DEFAULTEXCONFIGMODEL_1));
+		Objects.requireNonNull(delegate, DwarfUtil.getExceptionString(ExceptionStringKey.DEFAULTEXCONFIGMODEL_0));
+		Objects.requireNonNull(entries, DwarfUtil.getExceptionString(ExceptionStringKey.DEFAULTEXCONFIGMODEL_1));
 
 		this.delegate = delegate;
 
@@ -286,7 +286,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 	 */
 	@Override
 	public boolean removeAll(Collection<ConfigKey> configKeys) {
-		Objects.requireNonNull(configKeys, DwarfUtil.getExecptionString(ExceptionStringKey.DEFAULTEXCONFIGMODEL_2));
+		Objects.requireNonNull(configKeys, DwarfUtil.getExceptionString(ExceptionStringKey.DEFAULTEXCONFIGMODEL_2));
 		return batchRemove(configKeys, true);
 	}
 
@@ -295,7 +295,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 	 */
 	@Override
 	public boolean retainAll(Collection<ConfigKey> configKeys) {
-		Objects.requireNonNull(configKeys, DwarfUtil.getExecptionString(ExceptionStringKey.DEFAULTEXCONFIGMODEL_2));
+		Objects.requireNonNull(configKeys, DwarfUtil.getExceptionString(ExceptionStringKey.DEFAULTEXCONFIGMODEL_2));
 		return batchRemove(configKeys, false);
 	}
 
@@ -419,7 +419,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 	 */
 	@Override
 	public boolean setAllCurrentValue(Map<ConfigKey, String> map) {
-		Objects.requireNonNull(map, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultConfigModel_3));
+		Objects.requireNonNull(map, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultConfigModel_3));
 
 		boolean aFlag = false;
 

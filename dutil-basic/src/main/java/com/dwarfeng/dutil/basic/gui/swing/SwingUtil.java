@@ -35,7 +35,7 @@ public final class SwingUtil {
 	 *             入口参数 <code>fileChooser</code> 为 <code>null</code>。
 	 */
 	public static void setJFileChooserLocal(JFileChooser fileChooser, Locale locale) {
-		Objects.requireNonNull(fileChooser, DwarfUtil.getExecptionString(ExceptionStringKey.SWINGUTIL_0));
+		Objects.requireNonNull(fileChooser, DwarfUtil.getExceptionString(ExceptionStringKey.SWINGUTIL_0));
 		fileChooser.setLocale(locale);
 		fileChooser.updateUI();
 	}
@@ -49,7 +49,7 @@ public final class SwingUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public final static void invokeInEventQueue(Runnable runnable) {
-		Objects.requireNonNull(runnable, DwarfUtil.getExecptionString(ExceptionStringKey.SWINGUTIL_1));
+		Objects.requireNonNull(runnable, DwarfUtil.getExceptionString(ExceptionStringKey.SWINGUTIL_1));
 
 		if (SwingUtilities.isEventDispatchThread()) {
 			runnable.run();
@@ -74,7 +74,7 @@ public final class SwingUtil {
 	 */
 	public final static void invokeAndWaitInEventQueue(Runnable runnable)
 			throws InvocationTargetException, InterruptedException {
-		Objects.requireNonNull(runnable, DwarfUtil.getExecptionString(ExceptionStringKey.SWINGUTIL_1));
+		Objects.requireNonNull(runnable, DwarfUtil.getExceptionString(ExceptionStringKey.SWINGUTIL_1));
 
 		if (SwingUtilities.isEventDispatchThread()) {
 			runnable.run();

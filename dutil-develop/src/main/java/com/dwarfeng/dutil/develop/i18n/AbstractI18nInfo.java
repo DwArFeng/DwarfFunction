@@ -32,7 +32,7 @@ public abstract class AbstractI18nInfo implements I18nInfo {
 	 *             入口参数 <code>name</code> 为 <code>null</code>。
 	 */
 	public AbstractI18nInfo(Locale key, String name) {
-		Objects.requireNonNull(name, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTI18NINFO_1));
+		Objects.requireNonNull(name, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTI18NINFO_1));
 
 		this.key = key;
 		this.name = name;

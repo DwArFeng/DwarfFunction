@@ -50,9 +50,9 @@ public final class CollectionUtil {
 	 *             当入口的参数不是空的时候抛出该异常。
 	 */
 	public static <T> Set<T> nonNullSet(Set<T> set) {
-		Objects.requireNonNull(set, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_0));
+		Objects.requireNonNull(set, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_0));
 		if (!set.isEmpty()) {
-			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_8));
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_8));
 		}
 		return new NonNullSet<T>(set);
 	}
@@ -118,7 +118,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean add(E e) {
-			Objects.requireNonNull(e, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_1));
+			Objects.requireNonNull(e, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_1));
 			return set.add(e);
 		}
 
@@ -143,9 +143,9 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean addAll(Collection<? extends E> c) {
-			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_1));
+			Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_1));
 			if (CollectionUtil.conatinsNull(c)) {
-				throw new NullPointerException(DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_3));
+				throw new NullPointerException(DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_3));
 			}
 			return set.addAll(c);
 		}
@@ -202,9 +202,9 @@ public final class CollectionUtil {
 	 *             当入口的参数不是空的时候抛出该异常。
 	 */
 	public static <T> List<T> nonNullList(List<T> list) {
-		Objects.requireNonNull(list, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_4));
+		Objects.requireNonNull(list, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_4));
 		if (!list.isEmpty()) {
-			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_8));
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_8));
 		}
 		return new NonNullList<T>(list);
 	}
@@ -270,7 +270,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean add(E e) {
-			Objects.requireNonNull(e, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_1));
+			Objects.requireNonNull(e, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_1));
 			return list.add(e);
 		}
 
@@ -295,9 +295,9 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean addAll(Collection<? extends E> c) {
-			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_1));
+			Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_1));
 			if (CollectionUtil.conatinsNull(c)) {
-				throw new NullPointerException(DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_3));
+				throw new NullPointerException(DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_3));
 			}
 			return list.addAll(c);
 		}
@@ -307,9 +307,9 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public boolean addAll(int index, Collection<? extends E> c) {
-			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_1));
+			Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_1));
 			if (CollectionUtil.conatinsNull(c)) {
-				throw new NullPointerException(DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_3));
+				throw new NullPointerException(DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_3));
 			}
 			return list.addAll(index, c);
 		}
@@ -351,7 +351,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public E set(int index, E element) {
-			Objects.requireNonNull(element, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_1));
+			Objects.requireNonNull(element, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_1));
 			return list.set(index, element);
 		}
 
@@ -360,7 +360,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public void add(int index, E element) {
-			Objects.requireNonNull(element, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_1));
+			Objects.requireNonNull(element, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_1));
 			list.add(index, element);
 		}
 
@@ -443,9 +443,9 @@ public final class CollectionUtil {
 	 *             当入口的参数不是空的时候抛出该异常。
 	 */
 	public static <K, V> Map<K, V> nonNullMap(Map<K, V> map) {
-		Objects.requireNonNull(map, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_5));
+		Objects.requireNonNull(map, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_5));
 		if (!map.isEmpty()) {
-			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_8));
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_8));
 		}
 		return new NonNullMap<K, V>(map);
 	}
@@ -503,7 +503,7 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public V put(K key, V value) {
-			Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_6));
+			Objects.requireNonNull(key, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_6));
 			return map.put(key, value);
 		}
 
@@ -520,9 +520,9 @@ public final class CollectionUtil {
 		 */
 		@Override
 		public void putAll(Map<? extends K, ? extends V> m) {
-			Objects.requireNonNull(m, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_7));
+			Objects.requireNonNull(m, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_7));
 			if (CollectionUtil.conatinsNull(m.keySet())) {
-				throw new NullPointerException(DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_6));
+				throw new NullPointerException(DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_6));
 			}
 			map.putAll(m);
 		}
@@ -571,7 +571,7 @@ public final class CollectionUtil {
 	 *             当入口参数为 <code>null</code>时。
 	 */
 	public static boolean conatinsNull(Collection<?> collection) {
-		Objects.requireNonNull(collection, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_2));
+		Objects.requireNonNull(collection, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_2));
 		for (Object obj : collection) {
 			if (Objects.isNull(obj))
 				return true;
@@ -593,7 +593,7 @@ public final class CollectionUtil {
 	 *             <code>collection</code> 中含有 <code>null</code>元素。
 	 */
 	public static void requireNotContainsNull(Collection<?> collection) {
-		Objects.requireNonNull(collection, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_2));
+		Objects.requireNonNull(collection, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_2));
 		if (conatinsNull(collection))
 			throw new NullPointerException();
 	}
@@ -614,7 +614,7 @@ public final class CollectionUtil {
 	 *             <code>collection</code> 中含有 <code>null</code>元素。
 	 */
 	public static void requireNotContainsNull(Collection<?> collection, String message) {
-		Objects.requireNonNull(collection, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_2));
+		Objects.requireNonNull(collection, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_2));
 		if (conatinsNull(collection))
 			throw new NullPointerException(message);
 	}
@@ -657,7 +657,7 @@ public final class CollectionUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static <T> Iterator<T> enumeration2Iterator(Enumeration<T> enumeration) {
-		Objects.requireNonNull(enumeration, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_9));
+		Objects.requireNonNull(enumeration, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_9));
 		return new EnumerationIterator<>(enumeration);
 	}
 
@@ -699,7 +699,7 @@ public final class CollectionUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static <T> Enumeration<T> iterator2Enumeration(Iterator<T> iterator) {
-		Objects.requireNonNull(iterator, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_10));
+		Objects.requireNonNull(iterator, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_10));
 		return new IteratorEnumeration<>(iterator);
 	}
 
@@ -722,7 +722,7 @@ public final class CollectionUtil {
 	 */
 	@Deprecated
 	public static <T> Iterator<T> array2Iterator(T[] array) {
-		Objects.requireNonNull(array, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_11));
+		Objects.requireNonNull(array, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_11));
 		return ArrayUtil.array2Iterable(array).iterator();
 	}
 
@@ -741,8 +741,8 @@ public final class CollectionUtil {
 	 * @return 两个迭代器连接形成的迭代器。
 	 */
 	public static <T> Iterator<T> contactIterator(Iterator<T> firstIterator, Iterator<T> secondIterator) {
-		Objects.requireNonNull(firstIterator, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_13));
-		Objects.requireNonNull(secondIterator, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_14));
+		Objects.requireNonNull(firstIterator, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_13));
+		Objects.requireNonNull(secondIterator, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_14));
 		return new JointIterator.Builder<T>().append(firstIterator).append(secondIterator).build();
 	}
 
@@ -767,8 +767,8 @@ public final class CollectionUtil {
 	 * @return 对象的插入位置。
 	 */
 	public static <T> int insertByOrder(List<T> list, T obj, Comparator<? super T> c) {
-		Objects.requireNonNull(list, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_15));
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_16));
+		Objects.requireNonNull(list, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_15));
+		Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_16));
 
 		// TODO 效率不高，换成二分查找。
 		for (int i = 0; i < list.size(); i++) {
@@ -794,7 +794,7 @@ public final class CollectionUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static <E> Iterator<E> unmodifiableIterator(Iterator<E> iterator) {
-		Objects.requireNonNull(iterator, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_10));
+		Objects.requireNonNull(iterator, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_10));
 		return new UnmodifiableIterator<>(iterator);
 	}
 
@@ -838,8 +838,8 @@ public final class CollectionUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static <E> Iterator<E> readOnlyIterator(Iterator<E> iterator, ReadOnlyGenerator<E> generator) {
-		Objects.requireNonNull(iterator, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_10));
-		Objects.requireNonNull(generator, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_17));
+		Objects.requireNonNull(iterator, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_10));
+		Objects.requireNonNull(generator, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_17));
 		return new ReadOnlyIterator<>(iterator, generator);
 	}
 
@@ -883,7 +883,7 @@ public final class CollectionUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static <E> ListIterator<E> unmodifiableListIterator(ListIterator<E> listIterator) {
-		Objects.requireNonNull(listIterator, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_18));
+		Objects.requireNonNull(listIterator, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_18));
 		return new UnmodifiableListIterator<>(listIterator);
 	}
 
@@ -984,8 +984,8 @@ public final class CollectionUtil {
 	 */
 	public static <E> ListIterator<E> readOnlyListIterator(ListIterator<E> listIterator,
 			ReadOnlyGenerator<E> generator) {
-		Objects.requireNonNull(listIterator, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_18));
-		Objects.requireNonNull(generator, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_17));
+		Objects.requireNonNull(listIterator, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_18));
+		Objects.requireNonNull(generator, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_17));
 		return new ReadOnlyListIterator<>(listIterator, generator);
 	}
 
@@ -1087,8 +1087,8 @@ public final class CollectionUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static <E> Collection<E> readOnlyCollection(Collection<E> collection, ReadOnlyGenerator<E> generator) {
-		Objects.requireNonNull(collection, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_2));
-		Objects.requireNonNull(generator, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_17));
+		Objects.requireNonNull(collection, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_2));
+		Objects.requireNonNull(generator, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_17));
 		return new ReadOnlyCollection<>(collection, generator);
 	}
 
@@ -1234,8 +1234,8 @@ public final class CollectionUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static <E> Set<E> readOnlySet(Set<E> set, ReadOnlyGenerator<E> generator) {
-		Objects.requireNonNull(generator, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_0));
-		Objects.requireNonNull(generator, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_17));
+		Objects.requireNonNull(generator, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_0));
+		Objects.requireNonNull(generator, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_17));
 		return new ReadOnlySet<>(set, generator);
 	}
 
@@ -1401,8 +1401,8 @@ public final class CollectionUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static <E> List<E> readOnlyList(List<E> list, ReadOnlyGenerator<E> generator) {
-		Objects.requireNonNull(list, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_4));
-		Objects.requireNonNull(generator, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_17));
+		Objects.requireNonNull(list, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_4));
+		Objects.requireNonNull(generator, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_17));
 		return new ReadOnlyList<>(list, generator);
 	}
 
@@ -1653,9 +1653,9 @@ public final class CollectionUtil {
 	 */
 	public static <K, V> Map.Entry<K, V> readOnlyMapEntry(Map.Entry<K, V> entry, ReadOnlyGenerator<K> keyGen,
 			ReadOnlyGenerator<V> valueGen) {
-		Objects.requireNonNull(entry, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_21));
-		Objects.requireNonNull(keyGen, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_19));
-		Objects.requireNonNull(valueGen, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_20));
+		Objects.requireNonNull(entry, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_21));
+		Objects.requireNonNull(keyGen, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_19));
+		Objects.requireNonNull(valueGen, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_20));
 		return new ReadOnlyMapEntry<>(entry, keyGen, valueGen);
 	}
 
@@ -1744,9 +1744,9 @@ public final class CollectionUtil {
 	 */
 	public static <K, V> Map<K, V> readOnlyMap(Map<K, V> map, ReadOnlyGenerator<K> keyGen,
 			ReadOnlyGenerator<V> valueGen) {
-		Objects.requireNonNull(map, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_5));
-		Objects.requireNonNull(keyGen, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_19));
-		Objects.requireNonNull(valueGen, DwarfUtil.getExecptionString(ExceptionStringKey.COLLECTIONUTIL_20));
+		Objects.requireNonNull(map, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_5));
+		Objects.requireNonNull(keyGen, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_19));
+		Objects.requireNonNull(valueGen, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_20));
 		return new ReadOnlyMap<>(map, keyGen, valueGen);
 	}
 

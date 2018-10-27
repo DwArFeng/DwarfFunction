@@ -34,7 +34,7 @@ public class WriterLogger extends ObjectLogger {
 	 */
 	@Override
 	protected PrintWriter createWriter(Object writer) throws IllegalArgumentException {
-		Objects.requireNonNull(writer, DwarfUtil.getExecptionString(ExceptionStringKey.WRITERLOGGER_0));
+		Objects.requireNonNull(writer, DwarfUtil.getExceptionString(ExceptionStringKey.WRITERLOGGER_0));
 		return new PrintWriter((Writer) writer, true);
 	}
 

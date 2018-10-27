@@ -80,8 +80,8 @@ public class ListTimer extends AbstractTimer {
 			throws NullPointerException {
 		super(obversers);
 
-		Objects.requireNonNull(plains, DwarfUtil.getExecptionString(ExceptionStringKey.LISTTIMER_0));
-		Objects.requireNonNull(threadFactory, DwarfUtil.getExecptionString(ExceptionStringKey.LISTTIMER_1));
+		Objects.requireNonNull(plains, DwarfUtil.getExceptionString(ExceptionStringKey.LISTTIMER_0));
+		Objects.requireNonNull(threadFactory, DwarfUtil.getExceptionString(ExceptionStringKey.LISTTIMER_1));
 
 		this.plains = plains;
 
@@ -116,7 +116,7 @@ public class ListTimer extends AbstractTimer {
 		try {
 			// 判断计时器是否已经结束。
 			if (isShutdown())
-				throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.LISTTIMER_2));
+				throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.LISTTIMER_2));
 
 			if (Objects.isNull(plain) || plains.contains(plain) || plain.getNextRunTime() < 0
 					|| plains2Schedule.contains(plain))

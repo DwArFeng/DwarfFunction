@@ -40,7 +40,7 @@ public abstract class AbstractReferenceModel<E> implements ReferenceModel<E> {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public AbstractReferenceModel(Set<ReferenceObverser<E>> obversers) {
-		Objects.requireNonNull(obversers, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTREFERENCEMODEL_0));
+		Objects.requireNonNull(obversers, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTREFERENCEMODEL_0));
 		this.obversers = obversers;
 	}
 

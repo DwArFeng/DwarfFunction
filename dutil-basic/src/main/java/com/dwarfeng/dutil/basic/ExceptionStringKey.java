@@ -342,6 +342,15 @@ public enum ExceptionStringKey implements Name {
 	NUMBERSETTINGINFO_0(new DefaultName("NumberSettingInfo.0")), //
 	MUACOMBOBOXMODEL_0(new DefaultName("MuaComboBoxModel.0")), //
 	MUACOMBOBOXMODEL_1(new DefaultName("MuaComboBoxModel.1")), //
+	ATTRIBUTECOMPLEX_0(new DefaultName("AttributeComplex.0")), //
+	ATTRIBUTECOMPLEX_1(new DefaultName("AttributeComplex.1")), //
+	ATTRIBUTECOMPLEX_2(new DefaultName("AttributeComplex.2")), //
+	ATTRIBUTECOMPLEX_3(new DefaultName("AttributeComplex.3")), //
+	ATTRIBUTECOMPLEX_4(new DefaultName("AttributeComplex.4")), //
+	ATTRIBUTECOMPLEX_5(new DefaultName("AttributeComplex.5")), //
+	ATTRIBUTECOMPLEX_6(new DefaultName("AttributeComplex.6")), //
+	ATTRIBUTECOMPLEX_7(new DefaultName("AttributeComplex.7")), //
+	ATTRIBUTECOMPLEX_8(new DefaultName("AttributeComplex.8")), //
 
 	;
 

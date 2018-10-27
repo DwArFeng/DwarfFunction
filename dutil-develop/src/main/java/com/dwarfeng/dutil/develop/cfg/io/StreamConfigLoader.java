@@ -32,7 +32,7 @@ public abstract class StreamConfigLoader implements ConfigLoader, Closeable {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public StreamConfigLoader(InputStream in) {
-		Objects.requireNonNull(in, DwarfUtil.getExecptionString(ExceptionStringKey.StreamConfigLoader_0));
+		Objects.requireNonNull(in, DwarfUtil.getExceptionString(ExceptionStringKey.StreamConfigLoader_0));
 		this.in = in;
 	}
 

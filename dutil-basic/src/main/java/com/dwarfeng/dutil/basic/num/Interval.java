@@ -75,7 +75,7 @@ public class Interval implements Filter<NumberValue> {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static Interval parseInterval(String str) {
-		Objects.requireNonNull(str, DwarfUtil.getExecptionString(ExceptionStringKey.INTERVAL_4));
+		Objects.requireNonNull(str, DwarfUtil.getExceptionString(ExceptionStringKey.INTERVAL_4));
 
 		// 常量。
 		final String leftBoundaryPattern = "[\\[|\\(]";
@@ -93,14 +93,14 @@ public class Interval implements Filter<NumberValue> {
 		try {
 			if (!scanner.hasNext(leftBoundaryPattern)) {
 				throw new IllegalArgumentException(
-						String.format(DwarfUtil.getExecptionString(ExceptionStringKey.INTERVAL_5), str));
+						String.format(DwarfUtil.getExceptionString(ExceptionStringKey.INTERVAL_5), str));
 			}
 			String leftBoundary = scanner.next(leftBoundaryPattern);
 			leftBoundaryType = leftBoundary.equals("[") ? BoundaryType.CLOSED : BoundaryType.OPENED;
 
 			if (!scanner.hasNextBigDecimal() && !scanner.hasNext(leftInfinityPattern)) {
 				throw new IllegalArgumentException(
-						String.format(DwarfUtil.getExecptionString(ExceptionStringKey.INTERVAL_5), str));
+						String.format(DwarfUtil.getExceptionString(ExceptionStringKey.INTERVAL_5), str));
 			}
 			if (scanner.hasNextBigDecimal()) {
 				leftValue = scanner.nextBigDecimal();
@@ -111,13 +111,13 @@ public class Interval implements Filter<NumberValue> {
 
 			if (!scanner.hasNext(",")) {
 				throw new IllegalArgumentException(
-						String.format(DwarfUtil.getExecptionString(ExceptionStringKey.INTERVAL_5), str));
+						String.format(DwarfUtil.getExceptionString(ExceptionStringKey.INTERVAL_5), str));
 			}
 			scanner.next(",");
 
 			if (!scanner.hasNextBigDecimal() && !scanner.hasNext(rightInfinityPattern)) {
 				throw new IllegalArgumentException(
-						String.format(DwarfUtil.getExecptionString(ExceptionStringKey.INTERVAL_5), str));
+						String.format(DwarfUtil.getExceptionString(ExceptionStringKey.INTERVAL_5), str));
 			}
 			if (scanner.hasNextBigDecimal()) {
 				rightValue = scanner.nextBigDecimal();
@@ -127,7 +127,7 @@ public class Interval implements Filter<NumberValue> {
 			}
 			if (!scanner.hasNext(rightBoundaryPattern)) {
 				throw new IllegalArgumentException(
-						String.format(DwarfUtil.getExecptionString(ExceptionStringKey.INTERVAL_5), str));
+						String.format(DwarfUtil.getExceptionString(ExceptionStringKey.INTERVAL_5), str));
 			}
 			String rightBoundary = scanner.next(rightBoundaryPattern);
 			rightBoundaryType = rightBoundary.equals("]") ? BoundaryType.CLOSED : BoundaryType.OPENED;
@@ -161,11 +161,11 @@ public class Interval implements Filter<NumberValue> {
 	 */
 	public Interval(BoundaryType leftBoundaryType, BoundaryType rightBoundaryType, BigDecimal leftValue,
 			BigDecimal rightValue) {
-		Objects.requireNonNull(leftBoundaryType, DwarfUtil.getExecptionString(ExceptionStringKey.INTERVAL_0));
-		Objects.requireNonNull(rightBoundaryType, DwarfUtil.getExecptionString(ExceptionStringKey.INTERVAL_1));
+		Objects.requireNonNull(leftBoundaryType, DwarfUtil.getExceptionString(ExceptionStringKey.INTERVAL_0));
+		Objects.requireNonNull(rightBoundaryType, DwarfUtil.getExceptionString(ExceptionStringKey.INTERVAL_1));
 
 		if ((Objects.nonNull(leftValue) && Objects.nonNull(rightValue)) && leftValue.compareTo(rightValue) == 1) {
-			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.INTERVAL_2));
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.INTERVAL_2));
 		}
 
 		this.leftBoundaryType = leftBoundaryType;
@@ -179,7 +179,7 @@ public class Interval implements Filter<NumberValue> {
 	 */
 	@Override
 	public boolean accept(NumberValue value) {
-		Objects.requireNonNull(value, DwarfUtil.getExecptionString(ExceptionStringKey.INTERVAL_6));
+		Objects.requireNonNull(value, DwarfUtil.getExceptionString(ExceptionStringKey.INTERVAL_6));
 		return contains(value.doubleValue());
 	}
 
@@ -395,7 +395,7 @@ public class Interval implements Filter<NumberValue> {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public String toString(int scale, RoundingMode roundingMode) {
-		Objects.requireNonNull(roundingMode, DwarfUtil.getExecptionString(ExceptionStringKey.INTERVAL_3));
+		Objects.requireNonNull(roundingMode, DwarfUtil.getExceptionString(ExceptionStringKey.INTERVAL_3));
 
 		StringBuilder sb = new StringBuilder();
 		sb.append(leftBoundaryType == BoundaryType.CLOSED ? "[ " : "( ");

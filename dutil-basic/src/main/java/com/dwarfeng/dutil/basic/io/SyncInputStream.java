@@ -34,7 +34,7 @@ public class SyncInputStream extends FilterInputStream implements ExternalThread
 	 */
 	public SyncInputStream(InputStream in) {
 		super(in);
-		Objects.requireNonNull(in, DwarfUtil.getExecptionString(ExceptionStringKey.SYNCINPUTSTREAM_0));
+		Objects.requireNonNull(in, DwarfUtil.getExceptionString(ExceptionStringKey.SYNCINPUTSTREAM_0));
 	}
 
 	/**

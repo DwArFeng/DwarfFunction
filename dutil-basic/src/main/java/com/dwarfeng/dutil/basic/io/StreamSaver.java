@@ -30,7 +30,7 @@ public abstract class StreamSaver<T> implements Closeable, Saver<T> {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public StreamSaver(OutputStream out) {
-		Objects.requireNonNull(out, DwarfUtil.getExecptionString(ExceptionStringKey.STREAMSAVER_0));
+		Objects.requireNonNull(out, DwarfUtil.getExceptionString(ExceptionStringKey.STREAMSAVER_0));
 		this.out = out;
 	}
 

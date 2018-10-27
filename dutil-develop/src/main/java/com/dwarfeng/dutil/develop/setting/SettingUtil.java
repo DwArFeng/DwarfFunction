@@ -41,7 +41,7 @@ public final class SettingUtil {
 	 *             指定的入口参数为 <code> null </code>。
 	 */
 	public static SettingHandler.Entry unmodifiableEntry(SettingHandler.Entry entry) throws NullPointerException {
-		Objects.requireNonNull(entry, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_0));
+		Objects.requireNonNull(entry, DwarfUtil.getExceptionString(ExceptionStringKey.SETTINGUTIL_0));
 		return new UnmodifiableEntry(entry);
 	}
 
@@ -133,7 +133,7 @@ public final class SettingUtil {
 	 *             指定的入口参数为 <code> null </code>。
 	 */
 	public static SettingHandler unmodifiableSettingHandler(SettingHandler settingHandler) throws NullPointerException {
-		Objects.requireNonNull(settingHandler, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_1));
+		Objects.requireNonNull(settingHandler, DwarfUtil.getExceptionString(ExceptionStringKey.SETTINGUTIL_1));
 		return new UnmodifableSettingHandler(settingHandler);
 	}
 
@@ -511,7 +511,7 @@ public final class SettingUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static SyncSettingHandler syncSettingHandler(SettingHandler settingHandler) throws NullPointerException {
-		Objects.requireNonNull(settingHandler, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_1));
+		Objects.requireNonNull(settingHandler, DwarfUtil.getExceptionString(ExceptionStringKey.SETTINGUTIL_1));
 		return new SyncSettingHandlerImpl(settingHandler);
 	}
 
@@ -1169,11 +1169,11 @@ public final class SettingUtil {
 	 */
 	public static <T extends Enum<T>> boolean putEnumItems(Class<T> clazz, SettingHandler settingHandler)
 			throws NullPointerException, IllegalStateException {
-		Objects.requireNonNull(clazz, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_2));
-		Objects.requireNonNull(settingHandler, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_1));
+		Objects.requireNonNull(clazz, DwarfUtil.getExceptionString(ExceptionStringKey.SETTINGUTIL_2));
+		Objects.requireNonNull(settingHandler, DwarfUtil.getExceptionString(ExceptionStringKey.SETTINGUTIL_1));
 
 		if (!SettingEnumItem.class.isAssignableFrom(clazz))
-			throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_3));
+			throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.SETTINGUTIL_3));
 
 		SettingEnumItem[] items = (SettingEnumItem[]) clazz.getEnumConstants();
 		return putEnumItems(items, settingHandler);
@@ -1192,8 +1192,8 @@ public final class SettingUtil {
 	 */
 	public static boolean putEnumItems(Collection<SettingEnumItem> items, SettingHandler settingHandler)
 			throws NullPointerException {
-		Objects.requireNonNull(items, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_4));
-		Objects.requireNonNull(settingHandler, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_1));
+		Objects.requireNonNull(items, DwarfUtil.getExceptionString(ExceptionStringKey.SETTINGUTIL_4));
+		Objects.requireNonNull(settingHandler, DwarfUtil.getExceptionString(ExceptionStringKey.SETTINGUTIL_1));
 
 		return putEnumItems(items.toArray(new SettingEnumItem[0]), settingHandler);
 	}
@@ -1211,8 +1211,8 @@ public final class SettingUtil {
 	 */
 	public static boolean putEnumItems(SettingEnumItem[] items, SettingHandler settingHandler)
 			throws NullPointerException {
-		Objects.requireNonNull(items, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_4));
-		Objects.requireNonNull(settingHandler, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_1));
+		Objects.requireNonNull(items, DwarfUtil.getExceptionString(ExceptionStringKey.SETTINGUTIL_4));
+		Objects.requireNonNull(settingHandler, DwarfUtil.getExceptionString(ExceptionStringKey.SETTINGUTIL_1));
 
 		boolean aFlag = false;
 		for (SettingEnumItem item : items) {
@@ -1255,8 +1255,8 @@ public final class SettingUtil {
 		public CvSettingInfo(ConfigChecker configChecker, ValueParser valueParser, String defaultValue)
 				throws NullPointerException, IllegalArgumentException {
 			super(defaultValue);
-			Objects.requireNonNull(configChecker, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_5));
-			Objects.requireNonNull(valueParser, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_6));
+			Objects.requireNonNull(configChecker, DwarfUtil.getExceptionString(ExceptionStringKey.SETTINGUTIL_5));
+			Objects.requireNonNull(valueParser, DwarfUtil.getExceptionString(ExceptionStringKey.SETTINGUTIL_6));
 
 			this.configChecker = configChecker;
 			this.valueParser = valueParser;
@@ -1411,10 +1411,10 @@ public final class SettingUtil {
 	 */
 	public static SettingInfo valueFilteredSettingInfo(SettingInfo settingInfo, Filter<String> valueFilter)
 			throws NullPointerException, IllegalArgumentException {
-		Objects.requireNonNull(settingInfo, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_7));
-		Objects.requireNonNull(valueFilter, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_8));
+		Objects.requireNonNull(settingInfo, DwarfUtil.getExceptionString(ExceptionStringKey.SETTINGUTIL_7));
+		Objects.requireNonNull(valueFilter, DwarfUtil.getExceptionString(ExceptionStringKey.SETTINGUTIL_8));
 		if (!valueFilter.accept(settingInfo.getDefaultValue()))
-			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_9));
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.SETTINGUTIL_9));
 
 		return new ValueFilteredSettingInfo(settingInfo, valueFilter);
 	}
@@ -1547,10 +1547,10 @@ public final class SettingUtil {
 	 */
 	public static SettingInfo objectFilteredSettingInfo(SettingInfo settingInfo, Filter<Object> objectFilter)
 			throws NullPointerException, IllegalArgumentException {
-		Objects.requireNonNull(settingInfo, DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_7));
+		Objects.requireNonNull(settingInfo, DwarfUtil.getExceptionString(ExceptionStringKey.SETTINGUTIL_7));
 		Objects.requireNonNull(objectFilter, "入口参数 objectFilter 不能为 null。");
 		if (!objectFilter.accept(settingInfo.parseValue(settingInfo.getDefaultValue())))
-			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.SETTINGUTIL_9));
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.SETTINGUTIL_9));
 
 		return new ObjectFilteredSettingInfo(settingInfo, objectFilter);
 	}

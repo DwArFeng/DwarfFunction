@@ -28,7 +28,7 @@ public class ConfigKey implements Name {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public ConfigKey(String name) {
-		Objects.requireNonNull(name, DwarfUtil.getExecptionString(ExceptionStringKey.ConfigKey_0));
+		Objects.requireNonNull(name, DwarfUtil.getExceptionString(ExceptionStringKey.ConfigKey_0));
 		this.name = name;
 	}
 

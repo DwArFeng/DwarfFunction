@@ -100,8 +100,8 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	 */
 	public DelegateLoggerHandler(KeySetModel<String, LoggerInfo> delegateKeySet, Map<LoggerInfo, Logger> delegateMap) {
 		Objects.requireNonNull(delegateKeySet,
-				DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_0));
-		Objects.requireNonNull(delegateMap, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_1));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_0));
+		Objects.requireNonNull(delegateMap, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_1));
 
 		this.delegateKeySet = delegateKeySet;
 		this.delegateMap = delegateMap;
@@ -248,7 +248,7 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	 */
 	@Override
 	public boolean removeAll(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
+		Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
 		return batchRemove(c, true);
 	}
 
@@ -257,7 +257,7 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	 */
 	@Override
 	public boolean removeAllKey(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
+		Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
 		return batchRemoveKey(c, true);
 	}
 
@@ -289,7 +289,7 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	 */
 	@Override
 	public boolean retainAll(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
+		Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
 		return batchRemove(c, false);
 	}
 
@@ -298,7 +298,7 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	 */
 	@Override
 	public boolean retainAllKey(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
+		Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
 		return batchRemoveKey(c, false);
 	}
 
@@ -383,7 +383,7 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	 */
 	@Override
 	public boolean useAll(Collection<LoggerInfo> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
+		Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
 
 		boolean result = false;
 		for (LoggerInfo loggerInfo : c) {
@@ -399,7 +399,7 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	 */
 	@Override
 	public boolean unuseAll(Collection<LoggerInfo> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
+		Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
 		return batchUnuse(c, true);
 		// boolean result = false;
 		// for (LoggerInfo loggerInfo : c) {
@@ -415,7 +415,7 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	 */
 	@Override
 	public boolean useAllKey(Collection<String> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
+		Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
 
 		boolean result = false;
 		for (String key : c) {
@@ -431,7 +431,7 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	 */
 	@Override
 	public boolean unuseAllKey(Collection<String> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
+		Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
 		return batchUnuseKey(c, true);
 		// boolean result = false;
 		// for (String key : c) {
@@ -447,7 +447,7 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	 */
 	@Override
 	public boolean retainUse(Collection<LoggerInfo> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
+		Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
 		return batchUnuse(c, false);
 	}
 
@@ -456,7 +456,7 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	 */
 	@Override
 	public boolean retainUseKey(Collection<String> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
+		Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
 		return batchUnuseKey(c, false);
 	}
 

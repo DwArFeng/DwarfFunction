@@ -75,10 +75,10 @@ public abstract class AbstractPlain implements Plain {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public AbstractPlain(long nextRunOffset, Set<PlainObverser> obversers) {
-		Objects.requireNonNull(obversers, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTPLAIN_0));
+		Objects.requireNonNull(obversers, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTPLAIN_0));
 		if (nextRunOffset < 0) {
 			throw new IllegalArgumentException(
-					String.format(DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTPLAIN_1), nextRunOffset));
+					String.format(DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTPLAIN_1), nextRunOffset));
 		}
 
 		this.obversers = obversers;
@@ -286,7 +286,7 @@ public abstract class AbstractPlain implements Plain {
 		// 置位开始标志，并且通知观察器。
 		// 如果在nextRunTime小于等于0的情况下调用了该方法，那么说明计时器的逻辑有错误。
 		if (nextRunTime < 0)
-			throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTPLAIN_2));
+			throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTPLAIN_2));
 
 		lock.writeLock().lock();
 		try {

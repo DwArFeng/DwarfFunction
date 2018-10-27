@@ -88,7 +88,7 @@ public class DelegateI18nHandler implements I18nHandler {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public DelegateI18nHandler(KeySetModel<Locale, I18nInfo> delegate) {
-		Objects.requireNonNull(delegate, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATEI18NHANDLER_0));
+		Objects.requireNonNull(delegate, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATEI18NHANDLER_0));
 		this.delegate = delegate;
 	}
 

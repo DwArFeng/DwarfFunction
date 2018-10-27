@@ -180,7 +180,7 @@ public interface LoggerHandler extends Logger, KeySetModel<String, LoggerInfo> {
 	 */
 	@Override
 	public default void trace(String message) {
-		Objects.requireNonNull(message, DwarfUtil.getExecptionString(ExceptionStringKey.LOGGERHANDLER_0));
+		Objects.requireNonNull(message, DwarfUtil.getExceptionString(ExceptionStringKey.LOGGERHANDLER_0));
 
 		usedLoggers().forEach(logger -> {
 			logger.trace(message);
@@ -197,7 +197,7 @@ public interface LoggerHandler extends Logger, KeySetModel<String, LoggerInfo> {
 	 */
 	@Override
 	public default void debug(String message) {
-		Objects.requireNonNull(message, DwarfUtil.getExecptionString(ExceptionStringKey.LOGGERHANDLER_0));
+		Objects.requireNonNull(message, DwarfUtil.getExceptionString(ExceptionStringKey.LOGGERHANDLER_0));
 
 		usedLoggers().forEach(logger -> {
 			if (Objects.nonNull(logger)) {
@@ -216,7 +216,7 @@ public interface LoggerHandler extends Logger, KeySetModel<String, LoggerInfo> {
 	 */
 	@Override
 	public default void info(String message) {
-		Objects.requireNonNull(message, DwarfUtil.getExecptionString(ExceptionStringKey.LOGGERHANDLER_0));
+		Objects.requireNonNull(message, DwarfUtil.getExceptionString(ExceptionStringKey.LOGGERHANDLER_0));
 
 		usedLoggers().forEach(logger -> {
 			if (Objects.nonNull(logger)) {
@@ -235,7 +235,7 @@ public interface LoggerHandler extends Logger, KeySetModel<String, LoggerInfo> {
 	 */
 	@Override
 	public default void warn(String message) {
-		Objects.requireNonNull(message, DwarfUtil.getExecptionString(ExceptionStringKey.LOGGERHANDLER_0));
+		Objects.requireNonNull(message, DwarfUtil.getExceptionString(ExceptionStringKey.LOGGERHANDLER_0));
 
 		usedLoggers().forEach(logger -> {
 			if (Objects.nonNull(logger)) {
@@ -256,8 +256,8 @@ public interface LoggerHandler extends Logger, KeySetModel<String, LoggerInfo> {
 	 */
 	@Override
 	public default void warn(String message, Throwable t) {
-		Objects.requireNonNull(message, DwarfUtil.getExecptionString(ExceptionStringKey.LOGGERHANDLER_0));
-		Objects.requireNonNull(t, DwarfUtil.getExecptionString(ExceptionStringKey.LOGGERHANDLER_1));
+		Objects.requireNonNull(message, DwarfUtil.getExceptionString(ExceptionStringKey.LOGGERHANDLER_0));
+		Objects.requireNonNull(t, DwarfUtil.getExceptionString(ExceptionStringKey.LOGGERHANDLER_1));
 
 		usedLoggers().forEach(logger -> {
 			if (Objects.nonNull(logger)) {
@@ -278,8 +278,8 @@ public interface LoggerHandler extends Logger, KeySetModel<String, LoggerInfo> {
 	 */
 	@Override
 	public default void error(String message, Throwable t) {
-		Objects.requireNonNull(message, DwarfUtil.getExecptionString(ExceptionStringKey.LOGGERHANDLER_0));
-		Objects.requireNonNull(t, DwarfUtil.getExecptionString(ExceptionStringKey.LOGGERHANDLER_1));
+		Objects.requireNonNull(message, DwarfUtil.getExceptionString(ExceptionStringKey.LOGGERHANDLER_0));
+		Objects.requireNonNull(t, DwarfUtil.getExceptionString(ExceptionStringKey.LOGGERHANDLER_1));
 
 		usedLoggers().forEach(logger -> {
 			if (Objects.nonNull(logger)) {
@@ -300,8 +300,8 @@ public interface LoggerHandler extends Logger, KeySetModel<String, LoggerInfo> {
 	 */
 	@Override
 	public default void fatal(String message, Throwable t) {
-		Objects.requireNonNull(message, DwarfUtil.getExecptionString(ExceptionStringKey.LOGGERHANDLER_0));
-		Objects.requireNonNull(t, DwarfUtil.getExecptionString(ExceptionStringKey.LOGGERHANDLER_1));
+		Objects.requireNonNull(message, DwarfUtil.getExceptionString(ExceptionStringKey.LOGGERHANDLER_0));
+		Objects.requireNonNull(t, DwarfUtil.getExceptionString(ExceptionStringKey.LOGGERHANDLER_1));
 
 		usedLoggers().forEach(logger -> {
 			if (Objects.nonNull(logger)) {

@@ -40,7 +40,7 @@ public class DelegateResourceHandler implements ResourceHandler {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public DelegateResourceHandler(KeySetModel<String, Resource> delegate) {
-		Objects.requireNonNull(delegate, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATERESOURCEHANDLER_0));
+		Objects.requireNonNull(delegate, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATERESOURCEHANDLER_0));
 		this.delegate = delegate;
 	}
 

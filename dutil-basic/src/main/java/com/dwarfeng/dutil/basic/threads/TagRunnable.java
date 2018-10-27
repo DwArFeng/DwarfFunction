@@ -32,8 +32,8 @@ public class TagRunnable implements Runnable, Tag {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public TagRunnable(Runnable runnable, Tag tag) {
-		Objects.requireNonNull(runnable, DwarfUtil.getExecptionString(ExceptionStringKey.TAGRUNNER_0));
-		Objects.requireNonNull(tag, DwarfUtil.getExecptionString(ExceptionStringKey.TAGRUNNER_1));
+		Objects.requireNonNull(runnable, DwarfUtil.getExceptionString(ExceptionStringKey.TAGRUNNER_0));
+		Objects.requireNonNull(tag, DwarfUtil.getExceptionString(ExceptionStringKey.TAGRUNNER_1));
 		this.runnable = runnable;
 		this.tag = tag;
 	}

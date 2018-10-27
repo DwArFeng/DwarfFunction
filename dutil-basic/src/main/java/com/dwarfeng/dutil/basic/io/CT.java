@@ -91,7 +91,7 @@ public final class CT {
 	 *            指定的输出类型。
 	 */
 	public static void setOutputType(OutputType outputType) {
-		Objects.requireNonNull(outputType, DwarfUtil.getExecptionString(ExceptionStringKey.CT_1));
+		Objects.requireNonNull(outputType, DwarfUtil.getExceptionString(ExceptionStringKey.CT_1));
 		CT.outputType = outputType;
 	}
 
@@ -111,7 +111,7 @@ public final class CT {
 	 *            指定的多行文本处理类型。
 	 */
 	public static void setMutiLineType(MultiLineType mutiLineType) {
-		Objects.requireNonNull(mutiLineType, DwarfUtil.getExecptionString(ExceptionStringKey.CT_2));
+		Objects.requireNonNull(mutiLineType, DwarfUtil.getExceptionString(ExceptionStringKey.CT_2));
 		CT.mutiLineType = mutiLineType;
 	}
 
@@ -381,7 +381,7 @@ public final class CT {
 
 		// sb.append(String.format("%s\t%s\n", prefix,
 		// DwarfUtil.getExecptionString(ExceptionStringKey.CT_0)));
-		sb.append(prefix).append("\t").append(DwarfUtil.getExecptionString(ExceptionStringKey.CT_0)).append("\n");
+		sb.append(prefix).append("\t").append(DwarfUtil.getExceptionString(ExceptionStringKey.CT_0)).append("\n");
 
 		while (st.hasMoreTokens()) {
 			String token = st.nextToken();

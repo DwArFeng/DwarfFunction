@@ -43,7 +43,7 @@ public class JointIterator<T> implements Iterator<T> {
 		 *             入口参数为 <code>null</code>。
 		 */
 		public Builder<T> append(Iterator<T> iterator) {
-			Objects.requireNonNull(iterator, DwarfUtil.getExecptionString(ExceptionStringKey.JointIterator_0));
+			Objects.requireNonNull(iterator, DwarfUtil.getExceptionString(ExceptionStringKey.JointIterator_0));
 			iteratorList.add(iterator);
 			return this;
 		}
@@ -58,7 +58,7 @@ public class JointIterator<T> implements Iterator<T> {
 		 *             入口参数为 <code>null</code>。
 		 */
 		public Builder<T> append(Iterable<T> iterable) {
-			Objects.requireNonNull(iterable, DwarfUtil.getExecptionString(ExceptionStringKey.JointIterator_1));
+			Objects.requireNonNull(iterable, DwarfUtil.getExceptionString(ExceptionStringKey.JointIterator_1));
 			iteratorList.add(iterable.iterator());
 			return this;
 		}
@@ -75,7 +75,7 @@ public class JointIterator<T> implements Iterator<T> {
 		 *             入口参数为 <code>null</code>。
 		 */
 		public Builder<T> append(T[] array) {
-			Objects.requireNonNull(array, DwarfUtil.getExecptionString(ExceptionStringKey.JointIterator_2));
+			Objects.requireNonNull(array, DwarfUtil.getExceptionString(ExceptionStringKey.JointIterator_2));
 			iteratorList.add(ArrayUtil.array2Iterable(array).iterator());
 			return this;
 		}

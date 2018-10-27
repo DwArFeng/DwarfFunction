@@ -29,7 +29,7 @@ public interface FothVariable extends MathObject, FothValue, Name{
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public default void setValue(FothValue val){
-		Objects.requireNonNull(val, DwarfUtil.getExecptionString(ExceptionStringKey.FothVariable_0));
+		Objects.requireNonNull(val, DwarfUtil.getExceptionString(ExceptionStringKey.FothVariable_0));
 		setValue(val.value());
 	}
 	
@@ -49,7 +49,7 @@ public interface FothVariable extends MathObject, FothValue, Name{
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public default void offset(FothValue val){
-		Objects.requireNonNull(val, DwarfUtil.getExecptionString(ExceptionStringKey.FothVariable_0));
+		Objects.requireNonNull(val, DwarfUtil.getExceptionString(ExceptionStringKey.FothVariable_0));
 		setValue(value() + val.value());
 	}
 	

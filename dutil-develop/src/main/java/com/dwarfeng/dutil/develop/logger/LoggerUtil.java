@@ -1338,7 +1338,7 @@ public final class LoggerUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static LoggerHandler readOnlyLoggerHandler(LoggerHandler loggerHandler) {
-		Objects.requireNonNull(loggerHandler, DwarfUtil.getExecptionString(ExceptionStringKey.LOGGERUTIL_0));
+		Objects.requireNonNull(loggerHandler, DwarfUtil.getExceptionString(ExceptionStringKey.LOGGERUTIL_0));
 		return readOnlyLoggerHandler(loggerHandler, loggerInfo -> {
 			return unmodifiableLoggerInfo(loggerInfo);
 		}, logger -> {
@@ -1361,9 +1361,9 @@ public final class LoggerUtil {
 	 */
 	public static LoggerHandler readOnlyLoggerHandler(LoggerHandler loggerHandler,
 			ReadOnlyGenerator<LoggerInfo> loggerInfoGen, ReadOnlyGenerator<Logger> loggerGen) {
-		Objects.requireNonNull(loggerHandler, DwarfUtil.getExecptionString(ExceptionStringKey.LOGGERUTIL_0));
-		Objects.requireNonNull(loggerInfoGen, DwarfUtil.getExecptionString(ExceptionStringKey.LOGGERUTIL_2));
-		Objects.requireNonNull(loggerGen, DwarfUtil.getExecptionString(ExceptionStringKey.LOGGERUTIL_4));
+		Objects.requireNonNull(loggerHandler, DwarfUtil.getExceptionString(ExceptionStringKey.LOGGERUTIL_0));
+		Objects.requireNonNull(loggerInfoGen, DwarfUtil.getExceptionString(ExceptionStringKey.LOGGERUTIL_2));
+		Objects.requireNonNull(loggerGen, DwarfUtil.getExceptionString(ExceptionStringKey.LOGGERUTIL_4));
 
 		return new ReadOnlyLoggerHandler(loggerHandler, loggerInfoGen, loggerGen);
 	}
@@ -1378,7 +1378,7 @@ public final class LoggerUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static SyncLoggerHandler syncLoggerHandler(LoggerHandler loggerHandler) {
-		Objects.requireNonNull(loggerHandler, DwarfUtil.getExecptionString(ExceptionStringKey.LOGGERUTIL_0));
+		Objects.requireNonNull(loggerHandler, DwarfUtil.getExceptionString(ExceptionStringKey.LOGGERUTIL_0));
 		return new SyncLoggerHandlerImpl(loggerHandler);
 	}
 
@@ -1392,7 +1392,7 @@ public final class LoggerUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static Logger unmodifiableLogger(Logger logger) {
-		Objects.requireNonNull(logger, DwarfUtil.getExecptionString(ExceptionStringKey.LOGGERUTIL_3));
+		Objects.requireNonNull(logger, DwarfUtil.getExceptionString(ExceptionStringKey.LOGGERUTIL_3));
 		return new UnmodifiableLogger(logger);
 	}
 
@@ -1406,7 +1406,7 @@ public final class LoggerUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static LoggerHandler unmodifiableLoggerHandler(LoggerHandler loggerHandler) {
-		Objects.requireNonNull(loggerHandler, DwarfUtil.getExecptionString(ExceptionStringKey.LOGGERUTIL_0));
+		Objects.requireNonNull(loggerHandler, DwarfUtil.getExceptionString(ExceptionStringKey.LOGGERUTIL_0));
 		return new UnmodifiableLoggerHandler(loggerHandler);
 	}
 
@@ -1420,7 +1420,7 @@ public final class LoggerUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static LoggerInfo unmodifiableLoggerInfo(LoggerInfo loggerInfo) {
-		Objects.requireNonNull(loggerInfo, DwarfUtil.getExecptionString(ExceptionStringKey.LOGGERUTIL_1));
+		Objects.requireNonNull(loggerInfo, DwarfUtil.getExceptionString(ExceptionStringKey.LOGGERUTIL_1));
 		return new UnmodifiableLoggerInfo(loggerInfo);
 	}
 

@@ -48,7 +48,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	 *             入口参数为 <code>null</code>
 	 */
 	public MuaListModel(List<E> delegate) {
-		Objects.requireNonNull(delegate, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_0));
+		Objects.requireNonNull(delegate, DwarfUtil.getExceptionString(ExceptionStringKey.MUALISTMODEL_0));
 		this.delegate = delegate;
 	}
 
@@ -192,7 +192,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	 */
 	@Override
 	public boolean containsAll(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.MUALISTMODEL_1));
 		return delegate.containsAll(c);
 	}
 
@@ -201,7 +201,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	 */
 	@Override
 	public boolean addAll(Collection<? extends E> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.MUALISTMODEL_1));
 		int index = delegate.size();
 		boolean aFlag = delegate.addAll(c);
 		if (aFlag == true) {
@@ -215,7 +215,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	 */
 	@Override
 	public boolean addAll(int index, Collection<? extends E> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.MUALISTMODEL_1));
 		int aIndex = delegate.size();
 		boolean aFlag = delegate.addAll(index, c);
 		if (aFlag == true) {
@@ -229,7 +229,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	 */
 	@Override
 	public boolean removeAll(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.MUALISTMODEL_1));
 		return batchRemove(c, true);
 	}
 
@@ -238,7 +238,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	 */
 	@Override
 	public boolean retainAll(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.MUALISTMODEL_1));
 		return batchRemove(c, false);
 	}
 
@@ -587,7 +587,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 		 */
 		@Override
 		public boolean containsAll(Collection<?> c) {
-			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
+			Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.MUALISTMODEL_1));
 			return subDelegate.containsAll(c);
 		}
 
@@ -596,7 +596,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 		 */
 		@Override
 		public boolean addAll(Collection<? extends E> c) {
-			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
+			Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.MUALISTMODEL_1));
 			boolean aFlag = false;
 			for (E e : c) {
 				if (add(e))
@@ -610,7 +610,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 		 */
 		@Override
 		public boolean addAll(int index, Collection<? extends E> c) {
-			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
+			Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.MUALISTMODEL_1));
 			int size = subDelegate.size();
 			int i = 0;
 			for (E e : c) {
@@ -624,7 +624,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
-			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
+			Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.MUALISTMODEL_1));
 			return batchRemove(c, true);
 		}
 
@@ -633,7 +633,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
-			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MUALISTMODEL_1));
+			Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.MUALISTMODEL_1));
 			return batchRemove(c, false);
 		}
 

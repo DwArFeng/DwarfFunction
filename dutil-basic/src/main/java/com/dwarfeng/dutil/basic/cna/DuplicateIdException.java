@@ -65,7 +65,7 @@ class DuplicateIdException extends Exception {
 	@Override
 	public String getMessage(){
 		if(super.getMessage() == null || super.getMessage().equals(""))
-			return DwarfUtil.getExecptionString(ExceptionStringKey.DUPLICATEIDEXCEPTION_0) + getID();
+			return DwarfUtil.getExceptionString(ExceptionStringKey.DUPLICATEIDEXCEPTION_0) + getID();
 		return super.getMessage();
 	}
 }

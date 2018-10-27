@@ -28,9 +28,9 @@ public class DefaultRowVector extends AbstractMathObject implements RowVector {
 	 *             数组的大小小于1。
 	 */
 	public DefaultRowVector(double[] vals) {
-		Objects.requireNonNull(vals, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultRowVector_0));
+		Objects.requireNonNull(vals, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultRowVector_0));
 		if (vals.length < 1) {
-			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.DefaultRowVector_1));
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.DefaultRowVector_1));
 		}
 
 		this.vals = vals;
@@ -41,7 +41,7 @@ public class DefaultRowVector extends AbstractMathObject implements RowVector {
 	 */
 	@Override
 	public String getMathName() {
-		return DwarfUtil.getExecptionString(ExceptionStringKey.Linalge_RowVector);
+		return DwarfUtil.getExceptionString(ExceptionStringKey.Linalge_RowVector);
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class DefaultRowVector extends AbstractMathObject implements RowVector {
 	@Override
 	public double valueAt(int index) {
 		LinalgeUtil.requireIndexInBound(this, index,
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultRowVector_6));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultRowVector_6));
 		return vals[index];
 	}
 
@@ -81,9 +81,9 @@ public class DefaultRowVector extends AbstractMathObject implements RowVector {
 	 */
 	@Override
 	public RowVector add(RowVector rowVector) {
-		Objects.requireNonNull(rowVector, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultRowVector_2));
+		Objects.requireNonNull(rowVector, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultRowVector_2));
 		LinalgeUtil.requireSpecificSize(rowVector, size(),
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultRowVector_3));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultRowVector_3));
 
 		double[] vs = new double[vals.length];
 		for (int i = 0; i < vs.length; i++) {
@@ -97,9 +97,9 @@ public class DefaultRowVector extends AbstractMathObject implements RowVector {
 	 */
 	@Override
 	public RowVector minus(RowVector rowVector) {
-		Objects.requireNonNull(rowVector, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultRowVector_2));
+		Objects.requireNonNull(rowVector, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultRowVector_2));
 		LinalgeUtil.requireSpecificSize(rowVector, size(),
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultRowVector_3));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultRowVector_3));
 
 		double[] vs = new double[vals.length];
 		for (int i = 0; i < vs.length; i++) {
@@ -113,9 +113,9 @@ public class DefaultRowVector extends AbstractMathObject implements RowVector {
 	 */
 	@Override
 	public double mul(ColumnVector columnVector) {
-		Objects.requireNonNull(columnVector, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultRowVector_4));
+		Objects.requireNonNull(columnVector, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultRowVector_4));
 		LinalgeUtil.requireForMutiply(this, columnVector,
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultRowVector_5));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultRowVector_5));
 
 		double sum = 0;
 		for (int i = 0; i < size(); i++) {

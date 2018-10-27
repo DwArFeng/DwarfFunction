@@ -28,9 +28,9 @@ public class DefaultColumnVector extends AbstractMathObject implements ColumnVec
 	 *             数组的大小小于1。
 	 */
 	public DefaultColumnVector(double[] vals) {
-		Objects.requireNonNull(vals, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultColumnVector_0));
+		Objects.requireNonNull(vals, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultColumnVector_0));
 		if (vals.length == 0) {
-			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.DefaultColumnVector_1));
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.DefaultColumnVector_1));
 		}
 
 		this.vals = vals;
@@ -41,7 +41,7 @@ public class DefaultColumnVector extends AbstractMathObject implements ColumnVec
 	 */
 	@Override
 	public String getMathName() {
-		return DwarfUtil.getExecptionString(ExceptionStringKey.Linalge_ColVector);
+		return DwarfUtil.getExceptionString(ExceptionStringKey.Linalge_ColVector);
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class DefaultColumnVector extends AbstractMathObject implements ColumnVec
 	@Override
 	public double valueAt(int index) {
 		LinalgeUtil.requireIndexInBound(this, index,
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultColumnVector_4));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultColumnVector_4));
 
 		return vals[index];
 	}
@@ -82,9 +82,9 @@ public class DefaultColumnVector extends AbstractMathObject implements ColumnVec
 	 */
 	@Override
 	public ColumnVector add(ColumnVector columnVector) {
-		Objects.requireNonNull(columnVector, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultColumnVector_2));
+		Objects.requireNonNull(columnVector, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultColumnVector_2));
 		LinalgeUtil.requireSpecificSize(columnVector, size(),
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultColumnVector_3));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultColumnVector_3));
 
 		double[] vs = new double[vals.length];
 		for (int i = 0; i < vs.length; i++) {
@@ -98,9 +98,9 @@ public class DefaultColumnVector extends AbstractMathObject implements ColumnVec
 	 */
 	@Override
 	public ColumnVector minus(ColumnVector columnVector) {
-		Objects.requireNonNull(columnVector, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultColumnVector_2));
+		Objects.requireNonNull(columnVector, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultColumnVector_2));
 		LinalgeUtil.requireSpecificSize(columnVector, size(),
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultColumnVector_3));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultColumnVector_3));
 
 		double[] vs = new double[vals.length];
 		for (int i = 0; i < vs.length; i++) {

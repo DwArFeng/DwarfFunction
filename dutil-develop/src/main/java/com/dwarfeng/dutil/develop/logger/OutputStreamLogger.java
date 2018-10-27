@@ -34,7 +34,7 @@ public class OutputStreamLogger extends ObjectLogger {
 	 */
 	@Override
 	protected PrintWriter createWriter(Object out) throws IllegalArgumentException {
-		Objects.requireNonNull(out, DwarfUtil.getExecptionString(ExceptionStringKey.OUTPUTSTREAMLOGGER_0));
+		Objects.requireNonNull(out, DwarfUtil.getExceptionString(ExceptionStringKey.OUTPUTSTREAMLOGGER_0));
 		return new PrintWriter((OutputStream) out, true);
 	}
 

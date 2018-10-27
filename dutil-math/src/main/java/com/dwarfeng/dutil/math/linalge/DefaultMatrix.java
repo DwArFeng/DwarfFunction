@@ -29,9 +29,9 @@ public class DefaultMatrix extends AbstractMathObject implements Matrix {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public DefaultMatrix(double[][] vals) {
-		Objects.requireNonNull(vals, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultMatrix_0));
+		Objects.requireNonNull(vals, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultMatrix_0));
 		if (vals.length == 0 || vals[0].length == 0) {
-			throw new IllegalAccessError(DwarfUtil.getExecptionString(ExceptionStringKey.DefaultMatrix_1));
+			throw new IllegalAccessError(DwarfUtil.getExceptionString(ExceptionStringKey.DefaultMatrix_1));
 		}
 
 		this.vals = vals;
@@ -62,7 +62,7 @@ public class DefaultMatrix extends AbstractMathObject implements Matrix {
 		 */
 		public Builder(int row, int column) {
 			if (row < 1 || column < 1) {
-				throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.DefaultMatrix_1));
+				throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.DefaultMatrix_1));
 			}
 			this.vals = new double[row][column];
 		}
@@ -82,10 +82,10 @@ public class DefaultMatrix extends AbstractMathObject implements Matrix {
 		 */
 		public Builder setVal(int row, int column, double val) {
 			if (row < 1 || row >= vals.length) {
-				throw new IndexOutOfBoundsException(DwarfUtil.getExecptionString(ExceptionStringKey.DefaultMatrix_2));
+				throw new IndexOutOfBoundsException(DwarfUtil.getExceptionString(ExceptionStringKey.DefaultMatrix_2));
 			}
 			if (column < 1 || column >= vals[0].length) {
-				throw new IndexOutOfBoundsException(DwarfUtil.getExecptionString(ExceptionStringKey.DefaultMatrix_3));
+				throw new IndexOutOfBoundsException(DwarfUtil.getExceptionString(ExceptionStringKey.DefaultMatrix_3));
 			}
 
 			vals[row][column] = val;
@@ -107,7 +107,7 @@ public class DefaultMatrix extends AbstractMathObject implements Matrix {
 	 */
 	@Override
 	public String getMathName() {
-		return DwarfUtil.getExecptionString(ExceptionStringKey.Linalge_Matrix);
+		return DwarfUtil.getExceptionString(ExceptionStringKey.Linalge_Matrix);
 	}
 
 	/**
@@ -129,7 +129,7 @@ public class DefaultMatrix extends AbstractMathObject implements Matrix {
 	 */
 	@Override
 	public DefaultRowVector rowVectorAt(int row) {
-		LinalgeUtil.requireRowInBound(this, row, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultMatrix_2));
+		LinalgeUtil.requireRowInBound(this, row, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultMatrix_2));
 		return new DefaultRowVector(vals[row]);
 	}
 
@@ -139,7 +139,7 @@ public class DefaultMatrix extends AbstractMathObject implements Matrix {
 	@Override
 	public DefaultColumnVector columnVectorAt(int column) {
 		LinalgeUtil.requireColumnInBound(this, column,
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultMatrix_3));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultMatrix_3));
 
 		double[] valueables = new double[rows()];
 		for (int i = 0; i < valueables.length; i++) {
@@ -169,9 +169,9 @@ public class DefaultMatrix extends AbstractMathObject implements Matrix {
 	 */
 	@Override
 	public double valueAt(int row, int column) {
-		LinalgeUtil.requireRowInBound(this, row, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultMatrix_2));
+		LinalgeUtil.requireRowInBound(this, row, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultMatrix_2));
 		LinalgeUtil.requireColumnInBound(this, column,
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultMatrix_3));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultMatrix_3));
 		return vals[row][column];
 	}
 
@@ -180,9 +180,9 @@ public class DefaultMatrix extends AbstractMathObject implements Matrix {
 	 */
 	@Override
 	public Matrix add(Matrix matrix) {
-		Objects.requireNonNull(matrix, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultMatrix_5));
+		Objects.requireNonNull(matrix, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultMatrix_5));
 		LinalgeUtil.requireSpecificSize(matrix, rows(), columns(),
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultMatrix_4));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultMatrix_4));
 
 		double ds[][] = new double[rows()][columns()];
 		for (int i = 0; i < ds.length; i++) {
@@ -198,9 +198,9 @@ public class DefaultMatrix extends AbstractMathObject implements Matrix {
 	 */
 	@Override
 	public Matrix minus(Matrix matrix) {
-		Objects.requireNonNull(matrix, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultMatrix_5));
+		Objects.requireNonNull(matrix, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultMatrix_5));
 		LinalgeUtil.requireSpecificSize(matrix, rows(), columns(),
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultMatrix_4));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultMatrix_4));
 
 		double ds[][] = new double[rows()][columns()];
 		for (int i = 0; i < ds.length; i++) {
@@ -216,8 +216,8 @@ public class DefaultMatrix extends AbstractMathObject implements Matrix {
 	 */
 	@Override
 	public Matrix mul(Matrix matrix) {
-		Objects.requireNonNull(matrix, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultMatrix_5));
-		LinalgeUtil.requireForMutiply(this, matrix, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultMatrix_4));
+		Objects.requireNonNull(matrix, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultMatrix_5));
+		LinalgeUtil.requireForMutiply(this, matrix, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultMatrix_4));
 
 		double ds[][] = new double[rows()][matrix.columns()];
 		for (int i = 0; i < ds.length; i++) {

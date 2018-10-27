@@ -72,7 +72,7 @@ public class DelegateKeySetModel<K, V extends WithKey<K>> extends DelegateSetMod
 	 */
 	@Override
 	public boolean containsAllKey(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATEKEYSETMODEL_0));
+		Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATEKEYSETMODEL_0));
 
 		for (Object obj : c) {
 			if (!containsKey(obj))
@@ -106,7 +106,7 @@ public class DelegateKeySetModel<K, V extends WithKey<K>> extends DelegateSetMod
 	 */
 	@Override
 	public boolean removeAllKey(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATEKEYSETMODEL_0));
+		Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATEKEYSETMODEL_0));
 		return batchRemoveKey(c, true);
 	}
 
@@ -115,7 +115,7 @@ public class DelegateKeySetModel<K, V extends WithKey<K>> extends DelegateSetMod
 	 */
 	@Override
 	public boolean retainAllKey(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATEKEYSETMODEL_0));
+		Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATEKEYSETMODEL_0));
 		return batchRemoveKey(c, false);
 	}
 
@@ -154,7 +154,7 @@ public class DelegateKeySetModel<K, V extends WithKey<K>> extends DelegateSetMod
 	 */
 	@Override
 	public boolean addAll(Collection<? extends V> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.MAPKEYSETMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.MAPKEYSETMODEL_1));
 		boolean aFlag = false;
 		for (V v : c) {
 			if (add(v))

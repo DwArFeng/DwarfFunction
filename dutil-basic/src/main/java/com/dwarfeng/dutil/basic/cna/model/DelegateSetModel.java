@@ -44,7 +44,7 @@ public class DelegateSetModel<E> extends AbstractSetModel<E> {
 	 */
 	public DelegateSetModel(Set<E> delegate, Set<SetObverser<E>> obversers) {
 		super(obversers);
-		Objects.requireNonNull(delegate, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATESETMODEL_0));
+		Objects.requireNonNull(delegate, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATESETMODEL_0));
 		this.delegate = delegate;
 	}
 
@@ -166,7 +166,7 @@ public class DelegateSetModel<E> extends AbstractSetModel<E> {
 	 */
 	@Override
 	public boolean containsAll(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATESETMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATESETMODEL_1));
 		return delegate.containsAll(c);
 	}
 
@@ -175,7 +175,7 @@ public class DelegateSetModel<E> extends AbstractSetModel<E> {
 	 */
 	@Override
 	public boolean addAll(Collection<? extends E> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATESETMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATESETMODEL_1));
 
 		boolean aFlag = false;
 		for (E e : c) {
@@ -191,7 +191,7 @@ public class DelegateSetModel<E> extends AbstractSetModel<E> {
 	 */
 	@Override
 	public boolean removeAll(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATESETMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATESETMODEL_1));
 		return batchRemove(c, true);
 	}
 
@@ -200,7 +200,7 @@ public class DelegateSetModel<E> extends AbstractSetModel<E> {
 	 */
 	@Override
 	public boolean retainAll(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DELEGATESETMODEL_1));
+		Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATESETMODEL_1));
 		return batchRemove(c, false);
 	}
 

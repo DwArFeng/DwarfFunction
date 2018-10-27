@@ -42,7 +42,7 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 	 */
 	public DefalutFormulaColumnVector(ColumnVector columnVector) {
 		Objects.requireNonNull(columnVector,
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaColumnVector_3));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaColumnVector_3));
 
 		FothValue[] vals = new FothValue[columnVector.size()];
 		for (int i = 0; i < vals.length; i++) {
@@ -67,10 +67,10 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 	 *             元素数组无效。
 	 */
 	public DefalutFormulaColumnVector(double[] vals) {
-		Objects.requireNonNull(vals, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaColumnVector_1));
+		Objects.requireNonNull(vals, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaColumnVector_1));
 		if (vals.length < 1) {
 			throw new IllegalArgumentException(
-					DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaColumnVector_0));
+					DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaColumnVector_0));
 		}
 
 		this.vals = FothAlgebraUtil.toFothValues(vals);
@@ -93,10 +93,10 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 	 */
 	public DefalutFormulaColumnVector(FothValue[] valueables) {
 		ArrayUtil.requireNotContainsNull(valueables,
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaColumnVector_2));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaColumnVector_2));
 		if (valueables.length < 1) {
 			throw new IllegalArgumentException(
-					DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaColumnVector_0));
+					DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaColumnVector_0));
 		}
 
 		this.vals = valueables;
@@ -127,7 +127,7 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 	 */
 	@Override
 	public String getMathName() {
-		return DwarfUtil.getExecptionString(ExceptionStringKey.Linalge_ColVector);
+		return DwarfUtil.getExceptionString(ExceptionStringKey.Linalge_ColVector);
 	}
 
 	/**
@@ -144,7 +144,7 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 	@Override
 	public FothValue fothValueAt(int index) {
 		LinalgeUtil.requireIndexInBound(this, index,
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaColumnVector_6));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaColumnVector_6));
 		return vals[index];
 	}
 
@@ -162,9 +162,9 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 	@Override
 	public FormulaColumnVector add(FormulaColumnVector columnVector) {
 		Objects.requireNonNull(columnVector,
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaColumnVector_3));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaColumnVector_3));
 		LinalgeUtil.requireSpecificSize(columnVector, size(),
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaColumnVector_4));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaColumnVector_4));
 
 		FothValue[] vs = new FothValue[vals.length];
 		for (int i = 0; i < vs.length; i++) {
@@ -176,9 +176,9 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 	@Override
 	public FormulaColumnVector minus(FormulaColumnVector columnVector) {
 		Objects.requireNonNull(columnVector,
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaColumnVector_3));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaColumnVector_3));
 		LinalgeUtil.requireSpecificSize(columnVector, size(),
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaColumnVector_4));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaColumnVector_4));
 
 		FothValue[] vs = new FothValue[vals.length];
 		for (int i = 0; i < vs.length; i++) {
@@ -192,7 +192,7 @@ public class DefalutFormulaColumnVector extends AbstractMathObject implements Fo
 	 */
 	@Override
 	public FormulaColumnVector scale(FothValue val) {
-		Objects.requireNonNull(val, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaColumnVector_5));
+		Objects.requireNonNull(val, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaColumnVector_5));
 
 		FothValue[] vs = new FothValue[vals.length];
 		for (int i = 0; i < vs.length; i++) {

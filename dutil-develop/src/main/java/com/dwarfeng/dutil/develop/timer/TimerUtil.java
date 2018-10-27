@@ -48,8 +48,8 @@ public final class TimerUtil {
 		 */
 		@Override
 		public int compare(Plain o1, Plain o2) {
-			Objects.requireNonNull(o1, DwarfUtil.getExecptionString(ExceptionStringKey.TIMERUTIL_0));
-			Objects.requireNonNull(o2, DwarfUtil.getExecptionString(ExceptionStringKey.TIMERUTIL_1));
+			Objects.requireNonNull(o1, DwarfUtil.getExceptionString(ExceptionStringKey.TIMERUTIL_0));
+			Objects.requireNonNull(o2, DwarfUtil.getExceptionString(ExceptionStringKey.TIMERUTIL_1));
 
 			long l1 = o1.getNextRunTime();
 			long l2 = o2.getNextRunTime();
@@ -76,7 +76,7 @@ public final class TimerUtil {
 	 * @return 根据指定的计时器生成的不可变更的计时器。
 	 */
 	public static final Timer unmodifiableTimer(Timer timer) {
-		Objects.requireNonNull(timer, DwarfUtil.getExecptionString(ExceptionStringKey.TIMERUTIL_2));
+		Objects.requireNonNull(timer, DwarfUtil.getExceptionString(ExceptionStringKey.TIMERUTIL_2));
 		return new UnmodifiableTimer(timer);
 	}
 
@@ -247,7 +247,7 @@ public final class TimerUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static final Plain dateLimitedPlain(Plain plain, long limitedDate) {
-		Objects.requireNonNull(plain, DwarfUtil.getExecptionString(ExceptionStringKey.TIMERUTIL_3));
+		Objects.requireNonNull(plain, DwarfUtil.getExceptionString(ExceptionStringKey.TIMERUTIL_3));
 		return new DateLimitedPlain(plain, limitedDate);
 	}
 
@@ -403,7 +403,7 @@ public final class TimerUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static final Plain timesLimitedPlain(Plain plain, int limitedTimes) {
-		Objects.requireNonNull(plain, DwarfUtil.getExecptionString(ExceptionStringKey.TIMERUTIL_3));
+		Objects.requireNonNull(plain, DwarfUtil.getExceptionString(ExceptionStringKey.TIMERUTIL_3));
 		return new TimesLimitedPlain(plain, limitedTimes);
 	}
 

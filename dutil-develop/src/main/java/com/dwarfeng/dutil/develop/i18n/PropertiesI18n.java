@@ -28,7 +28,7 @@ public class PropertiesI18n implements I18n {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public PropertiesI18n(Properties properties) {
-		Objects.requireNonNull(properties, DwarfUtil.getExecptionString(ExceptionStringKey.PROPERTIESI18N_0));
+		Objects.requireNonNull(properties, DwarfUtil.getExceptionString(ExceptionStringKey.PROPERTIESI18N_0));
 		this.properties = properties;
 	}
 

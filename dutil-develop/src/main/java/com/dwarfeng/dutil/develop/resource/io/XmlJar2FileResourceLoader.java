@@ -79,10 +79,10 @@ public class XmlJar2FileResourceLoader extends StreamLoader<ResourceHandler> {
 	public void load(ResourceHandler resourceHandler) throws LoadFailedException, IllegalStateException {
 		if (readFlag)
 			throw new IllegalStateException(
-					DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_0));
+					DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_0));
 
 		Objects.requireNonNull(resourceHandler,
-				DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_1));
+				DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_1));
 
 		try {
 			readFlag = true;
@@ -103,14 +103,14 @@ public class XmlJar2FileResourceLoader extends StreamLoader<ResourceHandler> {
 
 				if (Objects.isNull(defString) || Objects.isNull(resString) || Objects.isNull(key)) {
 					throw new LoadFailedException(
-							DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_3));
+							DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_3));
 				}
 
 				URL def = DwarfUtil.class.getResource(defString);
 
 				if (Objects.isNull(def)) {
 					throw new LoadFailedException(
-							DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_4));
+							DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_4));
 				}
 
 				File res = new File(resString);
@@ -124,7 +124,7 @@ public class XmlJar2FileResourceLoader extends StreamLoader<ResourceHandler> {
 			}
 
 		} catch (Exception e) {
-			throw new LoadFailedException(DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_2),
+			throw new LoadFailedException(DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_2),
 					e);
 		}
 
@@ -137,10 +137,10 @@ public class XmlJar2FileResourceLoader extends StreamLoader<ResourceHandler> {
 	public Set<LoadFailedException> countinuousLoad(ResourceHandler resourceHandler) throws IllegalStateException {
 		if (readFlag)
 			throw new IllegalStateException(
-					DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_0));
+					DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_0));
 
 		Objects.requireNonNull(resourceHandler,
-				DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_1));
+				DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_1));
 
 		final Set<LoadFailedException> exceptions = new LinkedHashSet<>();
 		try {
@@ -163,14 +163,14 @@ public class XmlJar2FileResourceLoader extends StreamLoader<ResourceHandler> {
 
 					if (Objects.isNull(defString) || Objects.isNull(resString) || Objects.isNull(key)) {
 						throw new LoadFailedException(
-								DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_3));
+								DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_3));
 					}
 
 					URL def = DwarfUtil.class.getResource(defString);
 
 					if (Objects.isNull(def)) {
 						throw new LoadFailedException(
-								DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_4));
+								DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_4));
 					}
 
 					File res = new File(resString);
@@ -183,14 +183,14 @@ public class XmlJar2FileResourceLoader extends StreamLoader<ResourceHandler> {
 					}
 				} catch (Exception e) {
 					exceptions.add(new LoadFailedException(
-							DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_2), e));
+							DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_2), e));
 				}
 
 			}
 
 		} catch (Exception e) {
 			exceptions.add(new LoadFailedException(
-					DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_2), e));
+					DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_2), e));
 		}
 
 		return exceptions;

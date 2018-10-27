@@ -47,7 +47,7 @@ public final class ByteBufferOutputStream extends OutputStream {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public ByteBufferOutputStream(ByteBuffer byteBuffer, boolean isClear) {
-		Objects.requireNonNull(byteBuffer, DwarfUtil.getExecptionString(ExceptionStringKey.BYTEBUFFEROUTPUTSTREAM_0));
+		Objects.requireNonNull(byteBuffer, DwarfUtil.getExceptionString(ExceptionStringKey.BYTEBUFFEROUTPUTSTREAM_0));
 
 		this.byteBuffer = byteBuffer;
 		this.clearFlag = isClear;

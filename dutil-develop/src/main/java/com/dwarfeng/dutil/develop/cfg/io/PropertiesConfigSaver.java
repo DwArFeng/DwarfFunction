@@ -47,7 +47,7 @@ public class PropertiesConfigSaver extends StreamConfigSaver implements ConfigSa
 	@Override
 	@Deprecated
 	public void saveConfig(CurrentValueContainer container) throws SaveFailedException {
-		Objects.requireNonNull(container, DwarfUtil.getExecptionString(ExceptionStringKey.PROPERTIESCONFIGSAVER_0));
+		Objects.requireNonNull(container, DwarfUtil.getExceptionString(ExceptionStringKey.PROPERTIESCONFIGSAVER_0));
 
 		Properties properties = new Properties();
 		for (Map.Entry<ConfigKey, String> entry : container.getAllCurrentValue().entrySet()) {

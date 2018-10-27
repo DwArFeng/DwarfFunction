@@ -41,7 +41,7 @@ public class DefaultFormulaRowVector extends AbstractMathObject implements Formu
 	 *             入口参数为 <code>null</code>。
 	 */
 	public DefaultFormulaRowVector(RowVector rowVector) {
-		Objects.requireNonNull(rowVector, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaRowVector_3));
+		Objects.requireNonNull(rowVector, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaRowVector_3));
 
 		FothValue[] vals = new FothValue[rowVector.size()];
 		for (int i = 0; i < vals.length; i++) {
@@ -65,10 +65,10 @@ public class DefaultFormulaRowVector extends AbstractMathObject implements Formu
 	 *             元素数组无效。
 	 */
 	public DefaultFormulaRowVector(double[] vals) {
-		Objects.requireNonNull(vals, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaRowVector_1));
+		Objects.requireNonNull(vals, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaRowVector_1));
 		if (vals.length < 1) {
 			throw new IllegalArgumentException(
-					DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaRowVector_0));
+					DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaRowVector_0));
 		}
 
 		this.vals = FothAlgebraUtil.toFothValues(vals);
@@ -91,10 +91,10 @@ public class DefaultFormulaRowVector extends AbstractMathObject implements Formu
 	 */
 	public DefaultFormulaRowVector(FothValue[] valueables) throws VariableConflictException {
 		ArrayUtil.requireNotContainsNull(valueables,
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaRowVector_2));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaRowVector_2));
 		if (valueables.length < 1) {
 			throw new IllegalArgumentException(
-					DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaRowVector_0));
+					DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaRowVector_0));
 		}
 
 		this.vals = valueables;
@@ -124,7 +124,7 @@ public class DefaultFormulaRowVector extends AbstractMathObject implements Formu
 	 */
 	@Override
 	public String getMathName() {
-		return DwarfUtil.getExecptionString(ExceptionStringKey.Linalge_RowVector);
+		return DwarfUtil.getExceptionString(ExceptionStringKey.Linalge_RowVector);
 	}
 
 	/**
@@ -141,7 +141,7 @@ public class DefaultFormulaRowVector extends AbstractMathObject implements Formu
 	@Override
 	public FothValue fothValueAt(int index) {
 		LinalgeUtil.requireIndexInBound(this, index,
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaRowVector_8));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaRowVector_8));
 		return vals[index];
 	}
 
@@ -158,9 +158,9 @@ public class DefaultFormulaRowVector extends AbstractMathObject implements Formu
 	 */
 	@Override
 	public FormulaRowVector add(FormulaRowVector rowVector) {
-		Objects.requireNonNull(rowVector, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaRowVector_3));
+		Objects.requireNonNull(rowVector, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaRowVector_3));
 		LinalgeUtil.requireSpecificSize(rowVector, size(),
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaRowVector_5));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaRowVector_5));
 
 		FothValue vs[] = new FothValue[vals.length];
 		for (int i = 0; i < vs.length; i++) {
@@ -174,9 +174,9 @@ public class DefaultFormulaRowVector extends AbstractMathObject implements Formu
 	 */
 	@Override
 	public FormulaRowVector minus(FormulaRowVector rowVector) {
-		Objects.requireNonNull(rowVector, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaRowVector_3));
+		Objects.requireNonNull(rowVector, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaRowVector_3));
 		LinalgeUtil.requireSpecificSize(rowVector, size(),
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaRowVector_5));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaRowVector_5));
 
 		FothValue vs[] = new FothValue[vals.length];
 		for (int i = 0; i < vs.length; i++) {
@@ -191,9 +191,9 @@ public class DefaultFormulaRowVector extends AbstractMathObject implements Formu
 	@Override
 	public FothValue mul(FormulaColumnVector columnVector) {
 		Objects.requireNonNull(columnVector,
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaRowVector_4));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaRowVector_4));
 		FormulaLinalgeUtil.requireForMutiply(this, columnVector,
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaRowVector_6));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaRowVector_6));
 
 		FothValue sum = QuickFothValue.ZERO;
 		for (int i = 0; i < vals.length; i++) {
@@ -210,7 +210,7 @@ public class DefaultFormulaRowVector extends AbstractMathObject implements Formu
 	 */
 	@Override
 	public FormulaRowVector scale(FothValue val) {
-		Objects.requireNonNull(val, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaRowVector_7));
+		Objects.requireNonNull(val, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaRowVector_7));
 
 		FothValue[] vs = new FothValue[vals.length];
 		for (int i = 0; i < vs.length; i++) {

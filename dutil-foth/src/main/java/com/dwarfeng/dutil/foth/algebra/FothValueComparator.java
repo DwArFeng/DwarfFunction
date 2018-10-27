@@ -21,8 +21,8 @@ public class FothValueComparator implements Comparator<FothValue> {
 	 */
 	@Override
 	public int compare(FothValue o1, FothValue o2) {
-		Objects.requireNonNull(o1, DwarfUtil.getExecptionString(ExceptionStringKey.FothValueComparator_0));
-		Objects.requireNonNull(o2, DwarfUtil.getExecptionString(ExceptionStringKey.FothValueComparator_0));
+		Objects.requireNonNull(o1, DwarfUtil.getExceptionString(ExceptionStringKey.FothValueComparator_0));
+		Objects.requireNonNull(o2, DwarfUtil.getExceptionString(ExceptionStringKey.FothValueComparator_0));
 		return Double.compare(o1.value(), o2.value());
 	}
 

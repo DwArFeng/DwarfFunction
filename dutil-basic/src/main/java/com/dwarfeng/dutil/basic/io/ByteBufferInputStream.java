@@ -45,7 +45,7 @@ public class ByteBufferInputStream extends InputStream {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public ByteBufferInputStream(ByteBuffer byteBuffer, boolean isRewind) {
-		Objects.requireNonNull(byteBuffer, DwarfUtil.getExecptionString(ExceptionStringKey.BYTEBUFFERINPUTSTREAM_0));
+		Objects.requireNonNull(byteBuffer, DwarfUtil.getExceptionString(ExceptionStringKey.BYTEBUFFERINPUTSTREAM_0));
 
 		this.byteBuffer = byteBuffer;
 		this.rewindFlag = isRewind;

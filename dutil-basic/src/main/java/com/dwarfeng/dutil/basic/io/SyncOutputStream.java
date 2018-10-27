@@ -34,7 +34,7 @@ public class SyncOutputStream extends FilterOutputStream implements ExternalThre
 	 */
 	public SyncOutputStream(OutputStream out) {
 		super(out);
-		Objects.requireNonNull(out, DwarfUtil.getExecptionString(ExceptionStringKey.SYNCOUTPUTSTREAM_0));
+		Objects.requireNonNull(out, DwarfUtil.getExceptionString(ExceptionStringKey.SYNCOUTPUTSTREAM_0));
 	}
 
 	/**

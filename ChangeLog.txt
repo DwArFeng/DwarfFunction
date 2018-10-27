@@ -318,6 +318,7 @@ Beta_0.2.0__build_A (maven)
 		模型的迭代器、子列表均能够正确的发送侦听通知。
 	废弃 basic.prog.VersionType 中不符合规范的 SNAPSHOTS，改为SNAPSHOT。
 	废弃 basic.num.NumberValueFilter 类，使用 basic.prog.Filter<NumberValue>。
-	为 dutil.basic.num.Interval 添加了新的重载方法。
+	为 basic.num.Interval 添加了新的重载方法。
 	新增 basic.gui.swing.MuaComboBoxModel<E> —— 实现了 List<E> 的下拉菜单模型。
+	新增 basic.cna.AttributeComplex 类，用来解决Java方法中返回多个值的问题。
 	更新了README.md

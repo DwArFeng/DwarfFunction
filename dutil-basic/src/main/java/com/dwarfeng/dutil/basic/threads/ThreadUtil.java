@@ -107,7 +107,7 @@ public final class ThreadUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static Lock unmodifiableLock(Lock lock) {
-		Objects.requireNonNull(lock, DwarfUtil.getExecptionString(ExceptionStringKey.THREADUTIL_0));
+		Objects.requireNonNull(lock, DwarfUtil.getExceptionString(ExceptionStringKey.THREADUTIL_0));
 		return new UnmodifiableLock(lock);
 	}
 
@@ -205,7 +205,7 @@ public final class ThreadUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static ReadWriteLock unmodifiableReadWriteLock(ReadWriteLock lock) {
-		Objects.requireNonNull(lock, DwarfUtil.getExecptionString(ExceptionStringKey.THREADUTIL_0));
+		Objects.requireNonNull(lock, DwarfUtil.getExceptionString(ExceptionStringKey.THREADUTIL_0));
 		return new UnmodifiableReadWriteLock(lock);
 	}
 

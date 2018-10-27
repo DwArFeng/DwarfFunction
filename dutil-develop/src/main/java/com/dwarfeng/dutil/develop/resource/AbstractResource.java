@@ -27,7 +27,7 @@ public abstract class AbstractResource implements Resource {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public AbstractResource(String key) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTRESOURCE_0));
+		Objects.requireNonNull(key, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTRESOURCE_0));
 		this.key = key;
 	}
 

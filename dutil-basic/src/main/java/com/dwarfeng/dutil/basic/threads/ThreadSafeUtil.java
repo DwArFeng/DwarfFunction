@@ -25,7 +25,7 @@ public final class ThreadSafeUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static void readLockIfSync(Object object) {
-		Objects.requireNonNull(object, DwarfUtil.getExecptionString(ExceptionStringKey.THREADSAFEUTIL_0));
+		Objects.requireNonNull(object, DwarfUtil.getExceptionString(ExceptionStringKey.THREADSAFEUTIL_0));
 
 		if (object instanceof ExternalReadWriteThreadSafe) {
 			((ExternalReadWriteThreadSafe) object).getLock().readLock().lock();
@@ -41,7 +41,7 @@ public final class ThreadSafeUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static void readUnlockIfSync(Object object) {
-		Objects.requireNonNull(object, DwarfUtil.getExecptionString(ExceptionStringKey.THREADSAFEUTIL_0));
+		Objects.requireNonNull(object, DwarfUtil.getExceptionString(ExceptionStringKey.THREADSAFEUTIL_0));
 
 		if (object instanceof ExternalReadWriteThreadSafe) {
 			((ExternalReadWriteThreadSafe) object).getLock().readLock().unlock();
@@ -57,7 +57,7 @@ public final class ThreadSafeUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static void writeLockIfSync(Object object) {
-		Objects.requireNonNull(object, DwarfUtil.getExecptionString(ExceptionStringKey.THREADSAFEUTIL_0));
+		Objects.requireNonNull(object, DwarfUtil.getExceptionString(ExceptionStringKey.THREADSAFEUTIL_0));
 
 		if (object instanceof ExternalReadWriteThreadSafe) {
 			((ExternalReadWriteThreadSafe) object).getLock().writeLock().lock();
@@ -73,7 +73,7 @@ public final class ThreadSafeUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static void writeUnlockIfSync(Object object) {
-		Objects.requireNonNull(object, DwarfUtil.getExecptionString(ExceptionStringKey.THREADSAFEUTIL_0));
+		Objects.requireNonNull(object, DwarfUtil.getExceptionString(ExceptionStringKey.THREADSAFEUTIL_0));
 
 		if (object instanceof ExternalReadWriteThreadSafe) {
 			((ExternalReadWriteThreadSafe) object).getLock().writeLock().unlock();
@@ -89,7 +89,7 @@ public final class ThreadSafeUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static void lockIfSync(Object object) {
-		Objects.requireNonNull(object, DwarfUtil.getExecptionString(ExceptionStringKey.THREADSAFEUTIL_0));
+		Objects.requireNonNull(object, DwarfUtil.getExceptionString(ExceptionStringKey.THREADSAFEUTIL_0));
 
 		if (object instanceof ExternalThreadSafe) {
 			((ExternalThreadSafe) object).getLock().lock();
@@ -105,7 +105,7 @@ public final class ThreadSafeUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static void unlockIfSync(Object object) {
-		Objects.requireNonNull(object, DwarfUtil.getExecptionString(ExceptionStringKey.THREADSAFEUTIL_0));
+		Objects.requireNonNull(object, DwarfUtil.getExceptionString(ExceptionStringKey.THREADSAFEUTIL_0));
 
 		if (object instanceof ExternalThreadSafe) {
 			((ExternalThreadSafe) object).getLock().unlock();

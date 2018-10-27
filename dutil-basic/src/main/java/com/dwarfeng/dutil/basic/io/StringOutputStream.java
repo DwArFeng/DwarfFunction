@@ -62,7 +62,7 @@ public class StringOutputStream extends OutputStream {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public StringOutputStream(Charset charset, boolean autoFlush) {
-		Objects.requireNonNull(charset, DwarfUtil.getExecptionString(ExceptionStringKey.STRINGOUTPUTSTREAM_0));
+		Objects.requireNonNull(charset, DwarfUtil.getExceptionString(ExceptionStringKey.STRINGOUTPUTSTREAM_0));
 		this.charset = charset;
 		this.autoFlush = autoFlush;
 

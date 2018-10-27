@@ -30,7 +30,7 @@ public class Log4jLoggerInfo extends AbstractLoggerInfo {
 	public Log4jLoggerInfo(String key, LoggerContext loggerContext) {
 		super(key);
 
-		Objects.requireNonNull(loggerContext, DwarfUtil.getExecptionString(ExceptionStringKey.LOG4JLOGGERINFO_0));
+		Objects.requireNonNull(loggerContext, DwarfUtil.getExceptionString(ExceptionStringKey.LOG4JLOGGERINFO_0));
 		this.loggerContext = loggerContext;
 	}
 

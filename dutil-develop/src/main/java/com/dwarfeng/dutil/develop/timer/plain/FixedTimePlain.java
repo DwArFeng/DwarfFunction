@@ -66,7 +66,7 @@ public abstract class FixedTimePlain extends AbstractPlain {
 	 */
 	public FixedTimePlain(long period, long nextRunOffset, Set<PlainObverser> obversers) {
 		super(nextRunOffset, obversers);
-		Objects.requireNonNull(period, DwarfUtil.getExecptionString(ExceptionStringKey.FIXEDTIMEPLAIN_0));
+		Objects.requireNonNull(period, DwarfUtil.getExceptionString(ExceptionStringKey.FIXEDTIMEPLAIN_0));
 
 		this.period = period;
 	}

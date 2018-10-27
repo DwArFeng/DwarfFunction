@@ -45,8 +45,8 @@ public class Url2FileResource extends AbstractResource {
 	public Url2FileResource(String key, URL def, File res) {
 		super(key);
 
-		Objects.requireNonNull(def, DwarfUtil.getExecptionString(ExceptionStringKey.URL2FILERESOURCE_0));
-		Objects.requireNonNull(res, DwarfUtil.getExecptionString(ExceptionStringKey.URL2FILERESOURCE_1));
+		Objects.requireNonNull(def, DwarfUtil.getExceptionString(ExceptionStringKey.URL2FILERESOURCE_0));
+		Objects.requireNonNull(res, DwarfUtil.getExceptionString(ExceptionStringKey.URL2FILERESOURCE_1));
 
 		this.def = def;
 		this.res = res;

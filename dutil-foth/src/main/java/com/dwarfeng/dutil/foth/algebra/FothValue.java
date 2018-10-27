@@ -27,7 +27,7 @@ public interface FothValue extends NumberBased{
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public default FothValue add(FothValue val){
-		Objects.requireNonNull(val, DwarfUtil.getExecptionString(ExceptionStringKey.FothValue_0));
+		Objects.requireNonNull(val, DwarfUtil.getExceptionString(ExceptionStringKey.FothValue_0));
 		return new QuickFothValue(val.value() + value());
 	}
 	
@@ -39,7 +39,7 @@ public interface FothValue extends NumberBased{
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public default FothValue minus(FothValue val){
-		Objects.requireNonNull(val, DwarfUtil.getExecptionString(ExceptionStringKey.FothValue_0));
+		Objects.requireNonNull(val, DwarfUtil.getExceptionString(ExceptionStringKey.FothValue_0));
 		return new QuickFothValue(val.value() - value());
 	}
 	
@@ -51,7 +51,7 @@ public interface FothValue extends NumberBased{
 	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public default FothValue mul(FothValue val){
-		Objects.requireNonNull(val, DwarfUtil.getExecptionString(ExceptionStringKey.FothValue_0));
+		Objects.requireNonNull(val, DwarfUtil.getExceptionString(ExceptionStringKey.FothValue_0));
 		return new QuickFothValue(val.value() * value());
 	}
 	
@@ -64,7 +64,7 @@ public interface FothValue extends NumberBased{
 	 * @throws ArithmeticException 当val为0是抛出异常。
 	 */
 	public default FothValue div(FothValue val){
-		Objects.requireNonNull(val, DwarfUtil.getExecptionString(ExceptionStringKey.FothValue_0));
+		Objects.requireNonNull(val, DwarfUtil.getExceptionString(ExceptionStringKey.FothValue_0));
 		return new QuickFothValue(val.value() / value());
 	}
 	

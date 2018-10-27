@@ -30,7 +30,7 @@ public abstract class StreamLoader<T> implements Closeable, Loader<T> {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public StreamLoader(InputStream in) {
-		Objects.requireNonNull(in, DwarfUtil.getExecptionString(ExceptionStringKey.STREAMLOADER_0));
+		Objects.requireNonNull(in, DwarfUtil.getExceptionString(ExceptionStringKey.STREAMLOADER_0));
 		this.in = in;
 	}
 

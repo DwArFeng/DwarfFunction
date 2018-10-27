@@ -166,7 +166,7 @@ public final class ImageUtil {
 	 */
 	public final static Image getDefaultImage(Size2D size) {
 		if (Objects.nonNull(size)) {
-			requireImageSize2D(size, DwarfUtil.getExecptionString(ExceptionStringKey.IMAGEUTIL_7));
+			requireImageSize2D(size, DwarfUtil.getExceptionString(ExceptionStringKey.IMAGEUTIL_7));
 		}
 
 		if (Objects.isNull(size)) {
@@ -215,9 +215,9 @@ public final class ImageUtil {
 	 *             入口尺寸不是图片尺寸，或者图片的尺寸未知。
 	 */
 	public final static Image getInternalImage(Name name, Image defaultImage, Size2D size) {
-		Objects.requireNonNull(name, DwarfUtil.getExecptionString(ExceptionStringKey.IMAGEUTIL_4));
+		Objects.requireNonNull(name, DwarfUtil.getExceptionString(ExceptionStringKey.IMAGEUTIL_4));
 		if (Objects.nonNull(size)) {
-			requireImageSize2D(size, DwarfUtil.getExecptionString(ExceptionStringKey.IMAGEUTIL_7));
+			requireImageSize2D(size, DwarfUtil.getExceptionString(ExceptionStringKey.IMAGEUTIL_7));
 		}
 
 		try {
@@ -264,7 +264,7 @@ public final class ImageUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public final static boolean isImageSize2D(Size2D size) {
-		Objects.requireNonNull(size, DwarfUtil.getExecptionString(ExceptionStringKey.IMAGEUTIL_1));
+		Objects.requireNonNull(size, DwarfUtil.getExceptionString(ExceptionStringKey.IMAGEUTIL_1));
 		if (NumberUtil.isInInterval(size.getIntWidth(), Interval.INTERVAL_POSITIVE)
 				&& NumberUtil.isInInterval(size.getIntHeight(), Interval.INTERVAL_POSITIVE)) {
 			return true;
@@ -282,7 +282,7 @@ public final class ImageUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public final static Size2D newImageSize2D(Image image) {
-		Objects.requireNonNull(image, DwarfUtil.getExecptionString(ExceptionStringKey.IMAGEUTIL_0));
+		Objects.requireNonNull(image, DwarfUtil.getExceptionString(ExceptionStringKey.IMAGEUTIL_0));
 
 		int width = image.getWidth(null);
 		int height = image.getHeight(null);
@@ -310,9 +310,9 @@ public final class ImageUtil {
 	 */
 	public final static Size2D newImageSize2D(int width, int height) {
 		NumberUtil.requireInInterval(width, Interval.INTERVAL_POSITIVE,
-				DwarfUtil.getExecptionString(ExceptionStringKey.IMAGEUTIL_5));
+				DwarfUtil.getExceptionString(ExceptionStringKey.IMAGEUTIL_5));
 		NumberUtil.requireInInterval(height, Interval.INTERVAL_POSITIVE,
-				DwarfUtil.getExecptionString(ExceptionStringKey.IMAGEUTIL_6));
+				DwarfUtil.getExceptionString(ExceptionStringKey.IMAGEUTIL_6));
 
 		return new ImageSize2D(width, height);
 	}
@@ -350,7 +350,7 @@ public final class ImageUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static void requireImageSize2D(Size2D size, String message) throws IllegalArgumentException {
-		Objects.requireNonNull(size, DwarfUtil.getExecptionString(ExceptionStringKey.IMAGEUTIL_1));
+		Objects.requireNonNull(size, DwarfUtil.getExceptionString(ExceptionStringKey.IMAGEUTIL_1));
 		if (!isImageSize2D(size))
 			throw new IllegalArgumentException(message);
 	}
@@ -372,17 +372,17 @@ public final class ImageUtil {
 	 *             入口尺寸不是图片尺寸，或者图片的尺寸未知。
 	 */
 	public final static Image scaleAndOverlayImage(Image bottom, Image top, Size2D size) {
-		Objects.requireNonNull(bottom, DwarfUtil.getExecptionString(ExceptionStringKey.IMAGEUTIL_2));
-		Objects.requireNonNull(top, DwarfUtil.getExecptionString(ExceptionStringKey.IMAGEUTIL_3));
+		Objects.requireNonNull(bottom, DwarfUtil.getExceptionString(ExceptionStringKey.IMAGEUTIL_2));
+		Objects.requireNonNull(top, DwarfUtil.getExceptionString(ExceptionStringKey.IMAGEUTIL_3));
 		if (Objects.nonNull(size)) {
-			requireImageSize2D(size, DwarfUtil.getExecptionString(ExceptionStringKey.IMAGEUTIL_7));
+			requireImageSize2D(size, DwarfUtil.getExceptionString(ExceptionStringKey.IMAGEUTIL_7));
 		}
 
 		int width = size.getWidth().intValue();
 		int height = size.getHeight().intValue();
 
 		if (width <= 0 || height <= 0) {
-			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.IMAGEUTIL_8));
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.IMAGEUTIL_8));
 		}
 
 		BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
@@ -417,7 +417,7 @@ public final class ImageUtil {
 	 */
 	public final static Image scaleImage(Image image, Size2D size) {
 		if (Objects.nonNull(size)) {
-			requireImageSize2D(size, DwarfUtil.getExecptionString(ExceptionStringKey.IMAGEUTIL_7));
+			requireImageSize2D(size, DwarfUtil.getExceptionString(ExceptionStringKey.IMAGEUTIL_7));
 		}
 
 		if (Objects.isNull(image)) {
@@ -432,7 +432,7 @@ public final class ImageUtil {
 		int height = size.getHeight().intValue();
 
 		if (width <= 0 || height <= 0) {
-			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.IMAGEUTIL_8));
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.IMAGEUTIL_8));
 		}
 
 		if (image.getWidth(null) == width && image.getHeight(null) == height)

@@ -56,7 +56,7 @@ public class DefaultSettingHandler extends AbstractSettingHandler {
 		protected void checkForComodification() {
 			if (exceptedModCount != modCount()) {
 				throw new ConcurrentModificationException(
-						DwarfUtil.getExecptionString(ExceptionStringKey.DEFAULTSETTINGHANDLER_3));
+						DwarfUtil.getExceptionString(ExceptionStringKey.DEFAULTSETTINGHANDLER_3));
 			}
 		}
 
@@ -140,7 +140,7 @@ public class DefaultSettingHandler extends AbstractSettingHandler {
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
-			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DEFAULTSETTINGHANDLER_2));
+			Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DEFAULTSETTINGHANDLER_2));
 			return batchRemove(c, false);
 		}
 
@@ -149,7 +149,7 @@ public class DefaultSettingHandler extends AbstractSettingHandler {
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
-			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DEFAULTSETTINGHANDLER_2));
+			Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DEFAULTSETTINGHANDLER_2));
 			return batchRemove(c, true);
 		}
 
@@ -320,7 +320,7 @@ public class DefaultSettingHandler extends AbstractSettingHandler {
 		 */
 		@Override
 		public boolean retainAll(Collection<?> c) {
-			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DEFAULTSETTINGHANDLER_2));
+			Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DEFAULTSETTINGHANDLER_2));
 			return batchRemove(c, false);
 		}
 
@@ -329,7 +329,7 @@ public class DefaultSettingHandler extends AbstractSettingHandler {
 		 */
 		@Override
 		public boolean removeAll(Collection<?> c) {
-			Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DEFAULTSETTINGHANDLER_2));
+			Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DEFAULTSETTINGHANDLER_2));
 			return batchRemove(c, true);
 		}
 
@@ -527,9 +527,9 @@ public class DefaultSettingHandler extends AbstractSettingHandler {
 		super(obversers);
 
 		Objects.requireNonNull(settingInfoMap,
-				DwarfUtil.getExecptionString(ExceptionStringKey.DEFAULTSETTINGHANDLER_0));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DEFAULTSETTINGHANDLER_0));
 		Objects.requireNonNull(currentValueMap,
-				DwarfUtil.getExecptionString(ExceptionStringKey.DEFAULTSETTINGHANDLER_1));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DEFAULTSETTINGHANDLER_1));
 
 		this.settingInfoMap = settingInfoMap;
 		this.currentValueMap = currentValueMap;
@@ -659,7 +659,7 @@ public class DefaultSettingHandler extends AbstractSettingHandler {
 	 */
 	@Override
 	public boolean removeAllKey(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DEFAULTSETTINGHANDLER_2));
+		Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DEFAULTSETTINGHANDLER_2));
 		return batchRemove(c, true);
 	}
 
@@ -668,7 +668,7 @@ public class DefaultSettingHandler extends AbstractSettingHandler {
 	 */
 	@Override
 	public boolean retainAllKey(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.DEFAULTSETTINGHANDLER_2));
+		Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DEFAULTSETTINGHANDLER_2));
 		return batchRemove(c, false);
 	}
 

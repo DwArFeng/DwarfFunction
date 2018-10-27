@@ -33,7 +33,7 @@ public class DefaultTagFilter<T> extends DefaultNameFilter<T> implements TagFilt
 	public DefaultTagFilter(String name, String description, Filter<? super T> delegateFilter) {
 		super(name, delegateFilter);
 
-		Objects.requireNonNull(description, DwarfUtil.getExecptionString(ExceptionStringKey.DEFAULTTAGFILTER_0));
+		Objects.requireNonNull(description, DwarfUtil.getExceptionString(ExceptionStringKey.DEFAULTTAGFILTER_0));
 		this.description = description;
 	}
 

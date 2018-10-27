@@ -126,7 +126,7 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public AbstractSettingHandler(Set<SettingObverser> obversers) {
-		Objects.requireNonNull(obversers, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTEXCONFIGMODEL_0));
+		Objects.requireNonNull(obversers, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTEXCONFIGMODEL_0));
 		this.obversers = obversers;
 	}
 
@@ -189,7 +189,7 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 	 */
 	@Override
 	public boolean put(Name key, SettingInfo settingInfo, String currentValue) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		Objects.requireNonNull(key, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
 		return put(key.getName(), settingInfo, currentValue);
 	}
 
@@ -198,7 +198,7 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 	 */
 	@Override
 	public boolean putAll(SettingHandler handler) {
-		Objects.requireNonNull(handler, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_5));
+		Objects.requireNonNull(handler, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_5));
 
 		boolean aFlag = false;
 		for (Entry entry : handler.entrySet()) {
@@ -237,7 +237,7 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 	 */
 	@Override
 	public boolean containsAllKey(Collection<?> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_3));
+		Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_3));
 
 		for (Object obj : c) {
 			if (!containsKey(obj))
@@ -281,7 +281,7 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 	 */
 	@Override
 	public SettingInfo getSettingInfo(Name key) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		Objects.requireNonNull(key, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
 		return getSettingInfo(key.getName());
 	}
 
@@ -298,7 +298,7 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 	 */
 	@Override
 	public boolean setSettingInfo(Name key, SettingInfo settingInfo) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		Objects.requireNonNull(key, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
 		return setSettingInfo(key.getName(), settingInfo);
 	}
 
@@ -324,7 +324,7 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 	 */
 	@Override
 	public boolean isValueValid(Name key, String value) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		Objects.requireNonNull(key, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
 		return isValueValid(key.getName(), value);
 	}
 
@@ -355,7 +355,7 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 	 */
 	@Override
 	public String getCurrentValue(Name key) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		Objects.requireNonNull(key, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
 		return getCurrentValue(key.getName());
 	}
 
@@ -364,7 +364,7 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 	 */
 	@Override
 	public String getValidValue(Name key) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		Objects.requireNonNull(key, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
 		return getValidValue(key.getName());
 	}
 
@@ -381,7 +381,7 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 	 */
 	@Override
 	public boolean setCurrentValue(Name key, String newValue) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		Objects.requireNonNull(key, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
 		return setCurrentValue(key.getName(), newValue);
 	}
 
@@ -390,7 +390,7 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 	 */
 	@Override
 	public boolean setAllCurrentValue(Map<String, String> m) {
-		Objects.requireNonNull(m, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_2));
+		Objects.requireNonNull(m, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_2));
 
 		boolean aFlag = false;
 
@@ -416,7 +416,7 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 	 */
 	@Override
 	public boolean resetCurrentValue(Name key) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		Objects.requireNonNull(key, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
 		return resetCurrentValue(key.getName());
 	}
 
@@ -425,7 +425,7 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 	 */
 	@Override
 	public boolean resetAllCurrentValue(Collection<String> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_3));
+		Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_3));
 
 		boolean aFlag = false;
 
@@ -459,7 +459,7 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 	 */
 	@Override
 	public Object getParsedValue(String key) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		Objects.requireNonNull(key, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
 
 		if (!containsKey(key))
 			return null;
@@ -482,7 +482,7 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 	 */
 	@Override
 	public Object getParsedValue(Name key) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		Objects.requireNonNull(key, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
 		return getParsedValue(key.getName());
 	}
 
@@ -491,8 +491,8 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 	 */
 	@Override
 	public <T> T getParsedValue(String key, Class<T> clas) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
-		Objects.requireNonNull(clas, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_1));
+		Objects.requireNonNull(key, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		Objects.requireNonNull(clas, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_1));
 
 		return clas.cast(getParsedValue(key));
 	}
@@ -502,8 +502,8 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 	 */
 	@Override
 	public <T> T getParsedValue(Name key, Class<T> clas) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
-		Objects.requireNonNull(clas, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_1));
+		Objects.requireNonNull(key, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		Objects.requireNonNull(clas, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_1));
 
 		return clas.cast(getParsedValue(key.getName()));
 	}
@@ -513,7 +513,7 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 	 */
 	@Override
 	public Object getParsedValidValue(String key) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		Objects.requireNonNull(key, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
 
 		if (!containsKey(key))
 			return null;
@@ -536,7 +536,7 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 	 */
 	@Override
 	public Object getParsedValidValue(Name key) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		Objects.requireNonNull(key, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
 		return getParsedValidValue(key.getName());
 	}
 
@@ -545,8 +545,8 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 	 */
 	@Override
 	public <T> T getParsedValidValue(String key, Class<T> clas) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
-		Objects.requireNonNull(clas, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_1));
+		Objects.requireNonNull(key, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		Objects.requireNonNull(clas, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_1));
 
 		return clas.cast(getParsedValidValue(key));
 	}
@@ -556,8 +556,8 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 	 */
 	@Override
 	public <T> T getParsedValidValue(Name key, Class<T> clas) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
-		Objects.requireNonNull(clas, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_1));
+		Objects.requireNonNull(key, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		Objects.requireNonNull(clas, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_1));
 
 		return clas.cast(getParsedValidValue(key.getName()));
 	}
@@ -575,7 +575,7 @@ public abstract class AbstractSettingHandler implements SettingHandler {
 	 */
 	@Override
 	public boolean setParsedValue(Name key, Object obj) {
-		Objects.requireNonNull(key, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
+		Objects.requireNonNull(key, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTSETTINGHANDLER_0));
 		return setParsedValue(key.getName(), obj);
 	}
 

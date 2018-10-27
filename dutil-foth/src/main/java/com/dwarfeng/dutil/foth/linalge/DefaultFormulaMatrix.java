@@ -40,9 +40,9 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 	 *             指定的矩阵的行或列小于1。
 	 */
 	public DefaultFormulaMatrix(Matrix matrix) {
-		Objects.requireNonNull(matrix, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaMatrix_5));
+		Objects.requireNonNull(matrix, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaMatrix_5));
 		if (matrix.rows() < 1 || matrix.columns() < 1) {
-			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaMatrix_1));
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaMatrix_1));
 		}
 
 		FothValue[][] vals = new FothValue[matrix.rows()][matrix.columns()];
@@ -67,12 +67,12 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 	 *             数组的行或列的大小为0。
 	 */
 	public DefaultFormulaMatrix(double[][] vals) {
-		Objects.requireNonNull(vals, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaMatrix_0));
+		Objects.requireNonNull(vals, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaMatrix_0));
 		if (vals.length == 0 || vals[0].length == 0) {
-			throw new IllegalAccessError(DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaMatrix_1));
+			throw new IllegalAccessError(DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaMatrix_1));
 		}
 		for (double[] ds : vals) {
-			Objects.requireNonNull(ds, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaMatrix_0));
+			Objects.requireNonNull(ds, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaMatrix_0));
 		}
 
 		FothValue[][] valueables = new FothValue[vals.length][vals[0].length];
@@ -96,13 +96,13 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 	 *             数组的行或列的大小为0。
 	 */
 	public DefaultFormulaMatrix(FothValue[][] vals) {
-		Objects.requireNonNull(vals, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaMatrix_0));
+		Objects.requireNonNull(vals, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaMatrix_0));
 		if (vals.length == 0 || vals[0].length == 0) {
-			throw new IllegalAccessError(DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaMatrix_1));
+			throw new IllegalAccessError(DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaMatrix_1));
 		}
 		for (FothValue[] ds : vals) {
 			ArrayUtil.requireNotContainsNull(ds,
-					DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaMatrix_0));
+					DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaMatrix_0));
 		}
 
 		FothVariableSpace.Builder builder = new FothVariableSpace.Builder();
@@ -143,7 +143,7 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 		public DoubleBuilder(int row, int column) {
 			if (row < 1 || column < 1) {
 				throw new IllegalArgumentException(
-						DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaMatrix_1));
+						DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaMatrix_1));
 			}
 			this.vals = new double[row][column];
 		}
@@ -164,11 +164,11 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 		public DoubleBuilder setVal(int row, int column, double val) {
 			if (row < 1 || row >= vals.length) {
 				throw new IndexOutOfBoundsException(
-						DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaMatrix_3));
+						DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaMatrix_3));
 			}
 			if (column < 1 || column >= vals[0].length) {
 				throw new IndexOutOfBoundsException(
-						DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaMatrix_4));
+						DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaMatrix_4));
 			}
 
 			vals[row][column] = val;
@@ -219,7 +219,7 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 		public FValueBuilder(int row, int column) {
 			if (row < 1 || column < 1) {
 				throw new IllegalArgumentException(
-						DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaMatrix_1));
+						DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaMatrix_1));
 			}
 
 			builder = new FothVariableSpace.Builder();
@@ -248,14 +248,14 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 		 *             入口参数 <code>val</code>为 <code>null</code>。
 		 */
 		public FValueBuilder setVal(int row, int column, FothValue val) {
-			Objects.requireNonNull(val, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaMatrix_2));
+			Objects.requireNonNull(val, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaMatrix_2));
 			if (row < 1 || row >= vals.length) {
 				throw new IndexOutOfBoundsException(
-						DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaMatrix_3));
+						DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaMatrix_3));
 			}
 			if (column < 1 || column >= vals[0].length) {
 				throw new IndexOutOfBoundsException(
-						DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaMatrix_4));
+						DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaMatrix_4));
 			}
 
 			FothValue value = vals[row][column];
@@ -286,7 +286,7 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 	 */
 	@Override
 	public String getMathName() {
-		return DwarfUtil.getExecptionString(ExceptionStringKey.Linalge_Matrix);
+		return DwarfUtil.getExceptionString(ExceptionStringKey.Linalge_Matrix);
 	}
 
 	/**
@@ -333,9 +333,9 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 	@Override
 	public FothValue fothValueAt(int row, int column) {
 		LinalgeUtil.requireRowInBound(this, row,
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaMatrix_3));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaMatrix_3));
 		LinalgeUtil.requireColumnInBound(this, column,
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaMatrix_4));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaMatrix_4));
 		return vals[row][column];
 	}
 
@@ -345,7 +345,7 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 	@Override
 	public DefaultFormulaRowVector formulaRowVectorAt(int row) {
 		LinalgeUtil.requireRowInBound(this, row,
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaMatrix_3));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaMatrix_3));
 		return new DefaultFormulaRowVector(vals[row]);
 	}
 
@@ -355,7 +355,7 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 	@Override
 	public DefalutFormulaColumnVector formulaColumnVectorAt(int column) {
 		LinalgeUtil.requireColumnInBound(this, column,
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaMatrix_4));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaMatrix_4));
 
 		FothValue[] valueables = new FothValue[rows()];
 		for (int i = 0; i < valueables.length; i++) {
@@ -369,9 +369,9 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 	 * {@inheritDoc}
 	 */
 	public FormulaMatrix add(FormulaMatrix matrix) {
-		Objects.requireNonNull(matrix, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaMatrix_5));
+		Objects.requireNonNull(matrix, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaMatrix_5));
 		LinalgeUtil.requireSpecificSize(matrix, rows(), columns(),
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaMatrix_6));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaMatrix_6));
 
 		double ds[][] = new double[rows()][columns()];
 		for (int i = 0; i < ds.length; i++) {
@@ -387,9 +387,9 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 	 */
 	@Override
 	public FormulaMatrix minus(FormulaMatrix matrix) {
-		Objects.requireNonNull(matrix, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaMatrix_5));
+		Objects.requireNonNull(matrix, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaMatrix_5));
 		LinalgeUtil.requireSpecificSize(matrix, rows(), columns(),
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaMatrix_6));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaMatrix_6));
 
 		double ds[][] = new double[rows()][columns()];
 		for (int i = 0; i < ds.length; i++) {
@@ -405,9 +405,9 @@ public class DefaultFormulaMatrix extends AbstractMathObject implements FormulaM
 	 */
 	@Override
 	public FormulaMatrix mul(FormulaMatrix matrix) {
-		Objects.requireNonNull(matrix, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaMatrix_5));
+		Objects.requireNonNull(matrix, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaMatrix_5));
 		LinalgeUtil.requireForMutiply(this, matrix,
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultFormulaMatrix_6));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultFormulaMatrix_6));
 
 		double ds[][] = new double[rows()][matrix.columns()];
 		for (int i = 0; i < ds.length; i++) {

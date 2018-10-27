@@ -43,7 +43,7 @@ public class PropUrlI18nInfo extends AbstractI18nInfo {
 	public PropUrlI18nInfo(Locale key, String name, URL url) {
 		super(key, name);
 
-		Objects.requireNonNull(url, DwarfUtil.getExecptionString(ExceptionStringKey.PROPURLI18NINFO_0));
+		Objects.requireNonNull(url, DwarfUtil.getExceptionString(ExceptionStringKey.PROPURLI18NINFO_0));
 		this.url = url;
 	}
 

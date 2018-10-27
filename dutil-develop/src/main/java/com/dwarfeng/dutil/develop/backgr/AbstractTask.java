@@ -56,7 +56,7 @@ public abstract class AbstractTask implements Task {
 	 *             指定的入口参数为 <code> null </code>。
 	 */
 	public AbstractTask(Set<TaskObverser> obversers) throws NullPointerException {
-		Objects.requireNonNull(obversers, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTTASK_0));
+		Objects.requireNonNull(obversers, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTTASK_0));
 		this.obversers = obversers;
 	}
 

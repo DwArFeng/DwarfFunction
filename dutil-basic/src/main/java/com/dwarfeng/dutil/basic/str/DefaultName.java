@@ -26,7 +26,7 @@ public class DefaultName implements Name {
 	 *             指定的入口参数为 <code> null </code>。
 	 */
 	public DefaultName(String name) throws NullPointerException {
-		Objects.requireNonNull(name, DwarfUtil.getExecptionString(ExceptionStringKey.DEFAULTNAME_0));
+		Objects.requireNonNull(name, DwarfUtil.getExceptionString(ExceptionStringKey.DEFAULTNAME_0));
 		this.name = name;
 	}
 

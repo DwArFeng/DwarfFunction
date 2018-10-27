@@ -40,7 +40,7 @@ public final class ResourceUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static ResourceHandler unmodifiableResourceHandler(ResourceHandler resourceHandler) {
-		Objects.requireNonNull(resourceHandler, DwarfUtil.getExecptionString(ExceptionStringKey.RESOURCEUTIL_0));
+		Objects.requireNonNull(resourceHandler, DwarfUtil.getExceptionString(ExceptionStringKey.RESOURCEUTIL_0));
 		return new UnmodifiableResourceHandler(resourceHandler);
 	}
 
@@ -292,7 +292,7 @@ public final class ResourceUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static SyncResourceHandler syncResourceHandler(ResourceHandler resourceHandler) {
-		Objects.requireNonNull(resourceHandler, DwarfUtil.getExecptionString(ExceptionStringKey.RESOURCEUTIL_0));
+		Objects.requireNonNull(resourceHandler, DwarfUtil.getExceptionString(ExceptionStringKey.RESOURCEUTIL_0));
 		return new SyncResourceHandlerImpl(resourceHandler);
 	}
 
@@ -652,7 +652,7 @@ public final class ResourceUtil {
 	 *             指定的入口参数为 <code> null </code>。
 	 */
 	public static Resource unmodifiableResource(Resource resource) {
-		Objects.requireNonNull(DwarfUtil.getExecptionString(ExceptionStringKey.RESOURCEUTIL_1));
+		Objects.requireNonNull(DwarfUtil.getExceptionString(ExceptionStringKey.RESOURCEUTIL_1));
 		return new UnmodifiableResource(resource);
 	}
 
@@ -742,7 +742,7 @@ public final class ResourceUtil {
 	 *             指定的入口参数为 <code> null </code>。
 	 */
 	public static ResourceHandler readOnlyResourceHandler(ResourceHandler resourceHandler) {
-		Objects.requireNonNull(resourceHandler, DwarfUtil.getExecptionString(ExceptionStringKey.RESOURCEUTIL_0));
+		Objects.requireNonNull(resourceHandler, DwarfUtil.getExceptionString(ExceptionStringKey.RESOURCEUTIL_0));
 		return readOnlyResourceHandler(resourceHandler, resource -> {
 			return unmodifiableResource(resource);
 		});
@@ -761,8 +761,8 @@ public final class ResourceUtil {
 	 */
 	public static ResourceHandler readOnlyResourceHandler(ResourceHandler resourceHandler,
 			ReadOnlyGenerator<Resource> generator) {
-		Objects.requireNonNull(resourceHandler, DwarfUtil.getExecptionString(ExceptionStringKey.RESOURCEUTIL_0));
-		Objects.requireNonNull(generator, DwarfUtil.getExecptionString(ExceptionStringKey.RESOURCEUTIL_2));
+		Objects.requireNonNull(resourceHandler, DwarfUtil.getExceptionString(ExceptionStringKey.RESOURCEUTIL_0));
+		Objects.requireNonNull(generator, DwarfUtil.getExceptionString(ExceptionStringKey.RESOURCEUTIL_2));
 		return new ReadOnlyResourceHandler(resourceHandler, generator);
 	}
 

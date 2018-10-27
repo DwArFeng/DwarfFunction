@@ -32,7 +32,7 @@ public abstract class AbstractSettingInfo implements SettingInfo {
 	 *             指定的默认值不能通过自身检查。
 	 */
 	public AbstractSettingInfo(String defaultValue) throws NullPointerException, IllegalArgumentException {
-		Objects.requireNonNull(defaultValue, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGINFO_0));
+		Objects.requireNonNull(defaultValue, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTSETTINGINFO_0));
 		this.defaultValue = defaultValue;
 	}
 
@@ -115,7 +115,7 @@ public abstract class AbstractSettingInfo implements SettingInfo {
 	 */
 	protected final void checkDefaultValue() throws IllegalArgumentException {
 		if (nonValid(defaultValue))
-			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETTINGINFO_1));
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTSETTINGINFO_1));
 	}
 
 	/**

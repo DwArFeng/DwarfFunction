@@ -52,7 +52,7 @@ public class NumberedThreadFactory implements ThreadFactory {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public NumberedThreadFactory(String prefix, boolean daemonFlag, int priority) {
-		Objects.requireNonNull(prefix, DwarfUtil.getExecptionString(ExceptionStringKey.NumberedThreadFactory_0));
+		Objects.requireNonNull(prefix, DwarfUtil.getExceptionString(ExceptionStringKey.NumberedThreadFactory_0));
 
 		SecurityManager s = System.getSecurityManager();
 		group = (s != null) ? s.getThreadGroup() : Thread.currentThread().getThreadGroup();

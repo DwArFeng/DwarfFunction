@@ -39,7 +39,7 @@ public abstract class AbstractExconfigModel implements ExconfigModel {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public AbstractExconfigModel(Set<ExconfigObverser> obversers) {
-		Objects.requireNonNull(obversers, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTEXCONFIGMODEL_0));
+		Objects.requireNonNull(obversers, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTEXCONFIGMODEL_0));
 		this.obversers = obversers;
 	}
 

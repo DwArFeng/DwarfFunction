@@ -119,7 +119,7 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 
 		int defalutSize = defaultItemList.size();
 		if (index < defalutSize) {
-			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.DefaultListItemModel_0));
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.DefaultListItemModel_0));
 		}
 		normalItemList.delegate.add(index - defalutSize, element);
 		fireIntervalAdded(this, index, index);
@@ -178,10 +178,10 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	 *             数组不够大，以至于不能放下所有对象。
 	 */
 	public void copyInto(Object[] anArray) {
-		Objects.requireNonNull(anArray, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultListItemModel_5));
+		Objects.requireNonNull(anArray, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultListItemModel_5));
 		if (anArray.length < getSize()) {
 			throw new IndexOutOfBoundsException(
-					DwarfUtil.getExecptionString(ExceptionStringKey.DefaultListItemModel_6));
+					DwarfUtil.getExceptionString(ExceptionStringKey.DefaultListItemModel_6));
 		}
 		Object[] def = defaultItemList.toArray();
 		Object[] nor = normalItemList.toArray();
@@ -387,7 +387,7 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 		}
 		int defaultSize = defaultItemList.size();
 		if (index < defaultSize) {
-			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.DefaultListItemModel_1));
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.DefaultListItemModel_1));
 		}
 		E e = normalItemList.delegate.remove(index - defaultSize);
 		fireIntervalRemoved(this, index, index);
@@ -459,7 +459,7 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 	public void removeRange(int fromIndex, int toIndex) {
 		int defaultSize = defaultItemList.size();
 		if (fromIndex < defaultSize) {
-			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.DefaultListItemModel_1));
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.DefaultListItemModel_1));
 		}
 		if (fromIndex < 0) {
 			throw new IndexOutOfBoundsException(String.valueOf(fromIndex));
@@ -499,7 +499,7 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
 		}
 		int defaultSize = defaultItemList.size();
 		if (index < defaultSize) {
-			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.DefaultListItemModel_2));
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.DefaultListItemModel_2));
 		}
 		E e = normalItemList.delegate.set(index - defaultSize, element);
 		fireContentsChanged(this, index, index);

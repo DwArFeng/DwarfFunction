@@ -31,8 +31,8 @@ public class DefaultNameFilter<T> implements NameFilter<T> {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public DefaultNameFilter(String name, Filter<? super T> delegateFilter) {
-		Objects.requireNonNull(name, DwarfUtil.getExecptionString(ExceptionStringKey.DEFAULTNAMEFILTER_0));
-		Objects.requireNonNull(delegateFilter, DwarfUtil.getExecptionString(ExceptionStringKey.DEFAULTNAMEFILTER_1));
+		Objects.requireNonNull(name, DwarfUtil.getExceptionString(ExceptionStringKey.DEFAULTNAMEFILTER_0));
+		Objects.requireNonNull(delegateFilter, DwarfUtil.getExceptionString(ExceptionStringKey.DEFAULTNAMEFILTER_1));
 
 		this.name = name;
 		this.delegateFilter = delegateFilter;

@@ -19,8 +19,8 @@ public final class ToStringComparator<T> implements Comparator<T> {
 	 */
 	@Override
 	public int compare(T o1, T o2) {
-		Objects.requireNonNull(o1, DwarfUtil.getExecptionString(ExceptionStringKey.TOSTRINGCOMPARATOR_0));
-		Objects.requireNonNull(o2, DwarfUtil.getExecptionString(ExceptionStringKey.TOSTRINGCOMPARATOR_0));
+		Objects.requireNonNull(o1, DwarfUtil.getExceptionString(ExceptionStringKey.TOSTRINGCOMPARATOR_0));
+		Objects.requireNonNull(o2, DwarfUtil.getExceptionString(ExceptionStringKey.TOSTRINGCOMPARATOR_0));
 		return o1.toString().compareTo(o2.toString());
 	}
 

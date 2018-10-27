@@ -215,7 +215,7 @@ public class FothVariableSpace extends AbstractMathObject implements Iterable<Fo
 	 */
 	@Override
 	public String getMathName() {
-		return DwarfUtil.getExecptionString(ExceptionStringKey.Algebra_VariableSpace);
+		return DwarfUtil.getExceptionString(ExceptionStringKey.Algebra_VariableSpace);
 	}
 
 	/**
@@ -292,7 +292,7 @@ public class FothVariableSpace extends AbstractMathObject implements Iterable<Fo
 	 */
 	public void setValue(double[] vals) {
 		if (vals.length != vars.length) {
-			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.FothValue_0));
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.FothValue_0));
 		}
 		for (int i = 0; i < vars.length; i++) {
 			vars[i].setValue(vals[i]);
@@ -310,9 +310,9 @@ public class FothVariableSpace extends AbstractMathObject implements Iterable<Fo
 	 *             入口数组大小与变量空间中的变量个数不一致。
 	 */
 	public void setValue(FothValue[] vals) {
-		ArrayUtil.requireNotContainsNull(vals, DwarfUtil.getExecptionString(ExceptionStringKey.FothVariableSpace_1));
+		ArrayUtil.requireNotContainsNull(vals, DwarfUtil.getExceptionString(ExceptionStringKey.FothVariableSpace_1));
 		if (vals.length != vars.length) {
-			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.FothVariableSpace_0));
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.FothVariableSpace_0));
 		}
 		for (int i = 0; i < vars.length; i++) {
 			vars[i].setValue(vals[i]);
@@ -329,7 +329,7 @@ public class FothVariableSpace extends AbstractMathObject implements Iterable<Fo
 	 */
 	public void offset(double[] vals) {
 		if (vals.length != vars.length) {
-			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.FothValue_0));
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.FothValue_0));
 		}
 		for (int i = 0; i < vars.length; i++) {
 			vars[i].offset(vals[i]);
@@ -347,9 +347,9 @@ public class FothVariableSpace extends AbstractMathObject implements Iterable<Fo
 	 *             入口数组大小与变量空间中的变量个数不一致。
 	 */
 	public void offset(FothValue[] vals) {
-		ArrayUtil.requireNotContainsNull(vals, DwarfUtil.getExecptionString(ExceptionStringKey.FothVariableSpace_1));
+		ArrayUtil.requireNotContainsNull(vals, DwarfUtil.getExceptionString(ExceptionStringKey.FothVariableSpace_1));
 		if (vals.length != vars.length) {
-			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.FothVariableSpace_0));
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.FothVariableSpace_0));
 		}
 		for (int i = 0; i < vars.length; i++) {
 			vars[i].offset(vals[i]);

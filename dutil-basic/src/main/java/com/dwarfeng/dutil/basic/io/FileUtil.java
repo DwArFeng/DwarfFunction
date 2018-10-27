@@ -55,8 +55,8 @@ public final class FileUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static void fileCopy(File source, File target) throws IOException {
-		Objects.requireNonNull(source, DwarfUtil.getExecptionString(ExceptionStringKey.FILEUTIL_1));
-		Objects.requireNonNull(target, DwarfUtil.getExecptionString(ExceptionStringKey.FILEUTIL_2));
+		Objects.requireNonNull(source, DwarfUtil.getExceptionString(ExceptionStringKey.FILEUTIL_1));
+		Objects.requireNonNull(target, DwarfUtil.getExceptionString(ExceptionStringKey.FILEUTIL_2));
 
 		// 如果target不存在，则创建target以及其目录（有必要的话）。
 		createFileIfNotExists(target);
@@ -101,7 +101,7 @@ public final class FileUtil {
 	 * @return 文件或文件夹是否删除。
 	 */
 	public static boolean deleteFile(File file) {
-		Objects.requireNonNull(file, DwarfUtil.getExecptionString(ExceptionStringKey.FILEUTIL_0));
+		Objects.requireNonNull(file, DwarfUtil.getExceptionString(ExceptionStringKey.FILEUTIL_0));
 
 		if (file.isDirectory()) {
 			String[] children = file.list();
@@ -129,7 +129,7 @@ public final class FileUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static void createFileIfNotExists(File file) throws IOException {
-		Objects.requireNonNull(file, DwarfUtil.getExecptionString(ExceptionStringKey.FILEUTIL_0));
+		Objects.requireNonNull(file, DwarfUtil.getExceptionString(ExceptionStringKey.FILEUTIL_0));
 
 		// 如果文件存在，则什么事也不做。
 		if (file.exists())
@@ -151,7 +151,7 @@ public final class FileUtil {
 	 *             目录无法创建或者通信错误时抛出的异常。
 	 */
 	public static void createDirIfNotExists(File file) throws IOException {
-		Objects.requireNonNull(file, DwarfUtil.getExecptionString(ExceptionStringKey.FILEUTIL_0));
+		Objects.requireNonNull(file, DwarfUtil.getExceptionString(ExceptionStringKey.FILEUTIL_0));
 
 		// 如果目录存在，则什么事也不做。
 		if (file.exists())
@@ -186,7 +186,7 @@ public final class FileUtil {
 	 * @return 指定文件夹下的符合要求的所有文件。
 	 */
 	public static File[] listAllFile(File file, FileFilter filter) {
-		Objects.requireNonNull(file, DwarfUtil.getExecptionString(ExceptionStringKey.FILEUTIL_0));
+		Objects.requireNonNull(file, DwarfUtil.getExceptionString(ExceptionStringKey.FILEUTIL_0));
 
 		if (!file.isDirectory()) {
 			return Objects.isNull(filter) || filter.accept(file) ? new File[] { file } : new File[0];

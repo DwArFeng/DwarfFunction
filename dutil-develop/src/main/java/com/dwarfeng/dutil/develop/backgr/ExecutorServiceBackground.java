@@ -68,7 +68,7 @@ public class ExecutorServiceBackground extends AbstractBackground {
 	public ExecutorServiceBackground(ExecutorService executorService, Set<BackgroundObverser> obversers) {
 		super(obversers);
 		Objects.requireNonNull(executorService,
-				DwarfUtil.getExecptionString(ExceptionStringKey.EXECUTORSERVICEBACKGROUND_0));
+				DwarfUtil.getExceptionString(ExceptionStringKey.EXECUTORSERVICEBACKGROUND_0));
 		this.executorService = executorService;
 	}
 
@@ -81,7 +81,7 @@ public class ExecutorServiceBackground extends AbstractBackground {
 		try {
 			if (isShutdown())
 				throw new IllegalStateException(
-						DwarfUtil.getExecptionString(ExceptionStringKey.EXECUTORSERVICEBACKGROUND_1));
+						DwarfUtil.getExceptionString(ExceptionStringKey.EXECUTORSERVICEBACKGROUND_1));
 			if (Objects.isNull(task))
 				return false;
 			if (tasks.contains(task))
@@ -109,7 +109,7 @@ public class ExecutorServiceBackground extends AbstractBackground {
 	 */
 	@Override
 	public boolean submitAll(Collection<? extends Task> c) {
-		Objects.requireNonNull(c, DwarfUtil.getExecptionString(ExceptionStringKey.EXECUTORSERVICEBACKGROUND_2));
+		Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.EXECUTORSERVICEBACKGROUND_2));
 
 		lock.writeLock().lock();
 		try {

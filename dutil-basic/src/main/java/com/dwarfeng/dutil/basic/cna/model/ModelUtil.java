@@ -46,7 +46,7 @@ public final class ModelUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static <E> ListModel<E> unmodifiableListModel(ListModel<E> listModel) {
-		Objects.requireNonNull(listModel, DwarfUtil.getExecptionString(ExceptionStringKey.MODELUTIL_0));
+		Objects.requireNonNull(listModel, DwarfUtil.getExceptionString(ExceptionStringKey.MODELUTIL_0));
 		return new UnmodifiableListModel<>(listModel);
 	}
 
@@ -318,8 +318,8 @@ public final class ModelUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static <E> ListModel<E> readOnlyListModel(ListModel<E> listModel, ReadOnlyGenerator<E> generator) {
-		Objects.requireNonNull(listModel, DwarfUtil.getExecptionString(ExceptionStringKey.MODELUTIL_0));
-		Objects.requireNonNull(generator, DwarfUtil.getExecptionString(ExceptionStringKey.MODELUTIL_5));
+		Objects.requireNonNull(listModel, DwarfUtil.getExceptionString(ExceptionStringKey.MODELUTIL_0));
+		Objects.requireNonNull(generator, DwarfUtil.getExceptionString(ExceptionStringKey.MODELUTIL_5));
 		return new ReadOnlyListModel<>(listModel, generator);
 	}
 
@@ -595,7 +595,7 @@ public final class ModelUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static <E> SyncListModel<E> syncListModel(ListModel<E> listModel) {
-		Objects.requireNonNull(listModel, DwarfUtil.getExecptionString(ExceptionStringKey.MODELUTIL_0));
+		Objects.requireNonNull(listModel, DwarfUtil.getExceptionString(ExceptionStringKey.MODELUTIL_0));
 		return new SyncListModelImpl<>(listModel);
 	}
 
@@ -1021,7 +1021,7 @@ public final class ModelUtil {
 	 * @deprecated 该方法由于命名错误，已经过时，由 {@link ModelUtil#syncSetModel(SetModel)}代替。
 	 */
 	public static <E> SyncSetModel<E> syncSetMdel(SetModel<E> setModel) {
-		Objects.requireNonNull(setModel, DwarfUtil.getExecptionString(ExceptionStringKey.MODELUTIL_1));
+		Objects.requireNonNull(setModel, DwarfUtil.getExceptionString(ExceptionStringKey.MODELUTIL_1));
 		return new SyncSetModelImpl<>(setModel);
 	}
 
@@ -1318,7 +1318,7 @@ public final class ModelUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static <E> SetModel<E> unmodifiableSetModel(SetModel<E> setModel) {
-		Objects.requireNonNull(setModel, DwarfUtil.getExecptionString(ExceptionStringKey.MODELUTIL_1));
+		Objects.requireNonNull(setModel, DwarfUtil.getExceptionString(ExceptionStringKey.MODELUTIL_1));
 		return new UnmodifiableSetModel<>(setModel);
 	}
 
@@ -1510,8 +1510,8 @@ public final class ModelUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static <E> SetModel<E> readOnlySetModel(SetModel<E> setModel, ReadOnlyGenerator<E> generator) {
-		Objects.requireNonNull(setModel, DwarfUtil.getExecptionString(ExceptionStringKey.MODELUTIL_1));
-		Objects.requireNonNull(generator, DwarfUtil.getExecptionString(ExceptionStringKey.MODELUTIL_5));
+		Objects.requireNonNull(setModel, DwarfUtil.getExceptionString(ExceptionStringKey.MODELUTIL_1));
+		Objects.requireNonNull(generator, DwarfUtil.getExceptionString(ExceptionStringKey.MODELUTIL_5));
 		return new ReadOnlySetModel<>(setModel, generator);
 	}
 
@@ -1709,7 +1709,7 @@ public final class ModelUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static <K, V> SyncMapModel<K, V> syncMapModel(MapModel<K, V> mapModel) {
-		Objects.requireNonNull(mapModel, DwarfUtil.getExecptionString(ExceptionStringKey.MODELUTIL_2));
+		Objects.requireNonNull(mapModel, DwarfUtil.getExceptionString(ExceptionStringKey.MODELUTIL_2));
 		return new SyncMapModelImpl<>(mapModel);
 	}
 
@@ -1980,7 +1980,7 @@ public final class ModelUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static <K, V> MapModel<K, V> unmodifiableMapModel(MapModel<K, V> mapModel) {
-		Objects.requireNonNull(mapModel, DwarfUtil.getExecptionString(ExceptionStringKey.MODELUTIL_2));
+		Objects.requireNonNull(mapModel, DwarfUtil.getExceptionString(ExceptionStringKey.MODELUTIL_2));
 		return new UnmodifiableMapModel<>(mapModel);
 	}
 
@@ -2167,9 +2167,9 @@ public final class ModelUtil {
 	 */
 	public static <K, V> MapModel<K, V> readOnlyMapModel(MapModel<K, V> mapModel, ReadOnlyGenerator<K> keyGen,
 			ReadOnlyGenerator<V> valueGen) {
-		Objects.requireNonNull(mapModel, DwarfUtil.getExecptionString(ExceptionStringKey.MODELUTIL_2));
-		Objects.requireNonNull(keyGen, DwarfUtil.getExecptionString(ExceptionStringKey.MODELUTIL_6));
-		Objects.requireNonNull(valueGen, DwarfUtil.getExecptionString(ExceptionStringKey.MODELUTIL_7));
+		Objects.requireNonNull(mapModel, DwarfUtil.getExceptionString(ExceptionStringKey.MODELUTIL_2));
+		Objects.requireNonNull(keyGen, DwarfUtil.getExceptionString(ExceptionStringKey.MODELUTIL_6));
+		Objects.requireNonNull(valueGen, DwarfUtil.getExceptionString(ExceptionStringKey.MODELUTIL_7));
 		return new ReadOnlyMapModel<>(mapModel, keyGen, valueGen);
 	}
 
@@ -2359,7 +2359,7 @@ public final class ModelUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static <K, V extends WithKey<K>> SyncKeyListModel<K, V> syncKeyListModel(KeyListModel<K, V> keyListModel) {
-		Objects.requireNonNull(keyListModel, DwarfUtil.getExecptionString(ExceptionStringKey.MODELUTIL_3));
+		Objects.requireNonNull(keyListModel, DwarfUtil.getExceptionString(ExceptionStringKey.MODELUTIL_3));
 		return new SyncKeyListModelImpl<>(keyListModel);
 	}
 
@@ -2878,7 +2878,7 @@ public final class ModelUtil {
 	 */
 	public static <K, V extends WithKey<K>> KeyListModel<K, V> unmodifiableKeyListModel(
 			KeyListModel<K, V> keyListModel) {
-		Objects.requireNonNull(keyListModel, DwarfUtil.getExecptionString(ExceptionStringKey.MODELUTIL_3));
+		Objects.requireNonNull(keyListModel, DwarfUtil.getExceptionString(ExceptionStringKey.MODELUTIL_3));
 		return new UnmodifiableKeyListModel<>(keyListModel);
 	}
 
@@ -3215,8 +3215,8 @@ public final class ModelUtil {
 	 */
 	public static <K, V extends WithKey<K>> KeyListModel<K, V> readOnlyKeyListModel(KeyListModel<K, V> keyListModel,
 			ReadOnlyGenerator<V> generator) {
-		Objects.requireNonNull(keyListModel, DwarfUtil.getExecptionString(ExceptionStringKey.MODELUTIL_3));
-		Objects.requireNonNull(generator, DwarfUtil.getExecptionString(ExceptionStringKey.MODELUTIL_5));
+		Objects.requireNonNull(keyListModel, DwarfUtil.getExceptionString(ExceptionStringKey.MODELUTIL_3));
+		Objects.requireNonNull(generator, DwarfUtil.getExceptionString(ExceptionStringKey.MODELUTIL_5));
 		return new ReadOnlyKeyListModel<>(keyListModel, generator);
 	}
 
@@ -3558,7 +3558,7 @@ public final class ModelUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static <K, V extends WithKey<K>> SyncKeySetModel<K, V> syncKeySetModel(KeySetModel<K, V> keySetModel) {
-		Objects.requireNonNull(keySetModel, DwarfUtil.getExecptionString(ExceptionStringKey.MODELUTIL_4));
+		Objects.requireNonNull(keySetModel, DwarfUtil.getExceptionString(ExceptionStringKey.MODELUTIL_4));
 		return new SyncKeySetModelImpl<>(keySetModel);
 	}
 
@@ -3926,7 +3926,7 @@ public final class ModelUtil {
 	 */
 	public static <K, V extends WithKey<K>> KeySetModel<K, V> unmodifiableKeySetModel(KeySetModel<K, V> keySetModel,
 			ReadOnlyGenerator<V> generator) {
-		Objects.requireNonNull(keySetModel, DwarfUtil.getExecptionString(ExceptionStringKey.MODELUTIL_4));
+		Objects.requireNonNull(keySetModel, DwarfUtil.getExceptionString(ExceptionStringKey.MODELUTIL_4));
 		return new UnmodifiableKeySetModel<>(keySetModel);
 	}
 
@@ -3942,7 +3942,7 @@ public final class ModelUtil {
 	 * @return 由指定的键值列表模型生成的不可编辑的键值列表模型。
 	 */
 	public static <K, V extends WithKey<K>> KeySetModel<K, V> unmodifiableKeySetModel(KeySetModel<K, V> keySetModel) {
-		Objects.requireNonNull(keySetModel, DwarfUtil.getExecptionString(ExceptionStringKey.MODELUTIL_4));
+		Objects.requireNonNull(keySetModel, DwarfUtil.getExceptionString(ExceptionStringKey.MODELUTIL_4));
 		return new UnmodifiableKeySetModel<>(keySetModel);
 	}
 
@@ -4185,8 +4185,8 @@ public final class ModelUtil {
 	 */
 	public static <K, V extends WithKey<K>> KeySetModel<K, V> readOnlyKeySetModel(KeySetModel<K, V> keySetModel,
 			ReadOnlyGenerator<V> generator) {
-		Objects.requireNonNull(keySetModel, DwarfUtil.getExecptionString(ExceptionStringKey.MODELUTIL_4));
-		Objects.requireNonNull(generator, DwarfUtil.getExecptionString(ExceptionStringKey.MODELUTIL_5));
+		Objects.requireNonNull(keySetModel, DwarfUtil.getExceptionString(ExceptionStringKey.MODELUTIL_4));
+		Objects.requireNonNull(generator, DwarfUtil.getExceptionString(ExceptionStringKey.MODELUTIL_5));
 		return new ReadOnlyKeySetModel<>(keySetModel, generator);
 	}
 
@@ -4430,7 +4430,7 @@ public final class ModelUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static <E> SyncReferenceModel<E> syncReferenceModel(ReferenceModel<E> referenceModel) {
-		Objects.requireNonNull(referenceModel, DwarfUtil.getExecptionString(ExceptionStringKey.MODELUTIL_8));
+		Objects.requireNonNull(referenceModel, DwarfUtil.getExceptionString(ExceptionStringKey.MODELUTIL_8));
 		return new SyncReferenceModelImpl<>(referenceModel);
 	}
 
@@ -4591,7 +4591,7 @@ public final class ModelUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static <E> ReferenceModel<E> unmodifiableReferenceModel(ReferenceModel<E> referenceModel) {
-		Objects.requireNonNull(referenceModel, DwarfUtil.getExecptionString(ExceptionStringKey.MODELUTIL_8));
+		Objects.requireNonNull(referenceModel, DwarfUtil.getExceptionString(ExceptionStringKey.MODELUTIL_8));
 		return new UnmodifiableReferenceModel<>(referenceModel);
 	}
 
@@ -4702,8 +4702,8 @@ public final class ModelUtil {
 	 */
 	public static <E> ReferenceModel<E> readOnlyReferenceModel(ReferenceModel<E> referenceModel,
 			ReadOnlyGenerator<E> generator) {
-		Objects.requireNonNull(referenceModel, DwarfUtil.getExecptionString(ExceptionStringKey.MODELUTIL_8));
-		Objects.requireNonNull(generator, DwarfUtil.getExecptionString(ExceptionStringKey.MODELUTIL_5));
+		Objects.requireNonNull(referenceModel, DwarfUtil.getExceptionString(ExceptionStringKey.MODELUTIL_8));
+		Objects.requireNonNull(generator, DwarfUtil.getExceptionString(ExceptionStringKey.MODELUTIL_5));
 		return new ReadOnlyReferenceModel<>(referenceModel, generator);
 	}
 

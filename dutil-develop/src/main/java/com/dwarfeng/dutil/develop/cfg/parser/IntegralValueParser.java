@@ -29,7 +29,7 @@ public abstract class IntegralValueParser implements ValueParser {
 	protected IntegralValueParser(int radix) {
 		if (Character.MIN_RADIX > radix || Character.MAX_RADIX < radix) {
 			throw new IllegalArgumentException(
-					String.format(DwarfUtil.getExecptionString(ExceptionStringKey.INTEGRALVALUEPARSER_0), radix));
+					String.format(DwarfUtil.getExceptionString(ExceptionStringKey.INTEGRALVALUEPARSER_0), radix));
 		}
 		this.radix = radix;
 	}

@@ -66,7 +66,7 @@ public abstract class FixedRatePlain extends AbstractPlain {
 	 */
 	public FixedRatePlain(long period, long nextRunOffset, Set<PlainObverser> obversers) {
 		super(nextRunOffset, obversers);
-		Objects.requireNonNull(period, DwarfUtil.getExecptionString(ExceptionStringKey.FIXEDRATEPLAIN_0));
+		Objects.requireNonNull(period, DwarfUtil.getExceptionString(ExceptionStringKey.FIXEDRATEPLAIN_0));
 
 		this.period = period;
 	}

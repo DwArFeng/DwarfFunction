@@ -52,8 +52,8 @@ public class StringInputStream extends InputStream {
 	 *             入口参数 <code>charset</code> 为 <code>null</code>。
 	 */
 	public StringInputStream(String string, Charset charset) {
-		Objects.requireNonNull(string, DwarfUtil.getExecptionString(ExceptionStringKey.STRINGINPUTSTREAM_0));
-		Objects.requireNonNull(charset, DwarfUtil.getExecptionString(ExceptionStringKey.STRINGINPUTSTREAM_1));
+		Objects.requireNonNull(string, DwarfUtil.getExceptionString(ExceptionStringKey.STRINGINPUTSTREAM_0));
+		Objects.requireNonNull(charset, DwarfUtil.getExceptionString(ExceptionStringKey.STRINGINPUTSTREAM_1));
 		this.bytes = string.getBytes(charset);
 	}
 
@@ -105,7 +105,7 @@ public class StringInputStream extends InputStream {
 	 */
 	@Override
 	public int read(byte[] b) throws IOException {
-		Objects.requireNonNull(b, DwarfUtil.getExecptionString(ExceptionStringKey.STRINGINPUTSTREAM_3));
+		Objects.requireNonNull(b, DwarfUtil.getExceptionString(ExceptionStringKey.STRINGINPUTSTREAM_3));
 
 		int length = b.length + pos > bytes.length ? bytes.length - pos : b.length;
 		System.arraycopy(bytes, pos, b, 0, length);
@@ -125,10 +125,10 @@ public class StringInputStream extends InputStream {
 	 */
 	@Override
 	public int read(byte[] b, int off, int len) throws IOException {
-		Objects.requireNonNull(b, DwarfUtil.getExecptionString(ExceptionStringKey.STRINGINPUTSTREAM_3));
+		Objects.requireNonNull(b, DwarfUtil.getExceptionString(ExceptionStringKey.STRINGINPUTSTREAM_3));
 		
 		if (off < 0 || len < 0 || len > b.length - off) {
-            throw new IndexOutOfBoundsException(DwarfUtil.getExecptionString(ExceptionStringKey.STRINGINPUTSTREAM_4));
+            throw new IndexOutOfBoundsException(DwarfUtil.getExceptionString(ExceptionStringKey.STRINGINPUTSTREAM_4));
         }
 
 		int length = len + pos > bytes.length ? bytes.length - pos : len;
@@ -150,7 +150,7 @@ public class StringInputStream extends InputStream {
 	@Override
 	public synchronized void reset() throws IOException {
 		if (markPos < 0) {
-			throw new IOException(DwarfUtil.getExecptionString(ExceptionStringKey.STRINGINPUTSTREAM_2));
+			throw new IOException(DwarfUtil.getExceptionString(ExceptionStringKey.STRINGINPUTSTREAM_2));
 		}
 
 		pos = markPos;

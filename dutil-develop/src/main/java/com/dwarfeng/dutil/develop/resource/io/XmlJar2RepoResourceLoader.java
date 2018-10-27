@@ -115,10 +115,10 @@ public class XmlJar2RepoResourceLoader extends StreamLoader<ResourceHandler> {
 	public void load(ResourceHandler resourceHandler) throws LoadFailedException, IllegalStateException {
 		if (readFlag)
 			throw new IllegalStateException(
-					DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_0));
+					DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_0));
 
 		Objects.requireNonNull(resourceHandler,
-				DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_1));
+				DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_1));
 
 		try {
 			readFlag = true;
@@ -149,14 +149,14 @@ public class XmlJar2RepoResourceLoader extends StreamLoader<ResourceHandler> {
 				if (Objects.isNull(defString) || Objects.isNull(classify) || Objects.isNull(fileName)
 						|| Objects.isNull(key)) {
 					throw new LoadFailedException(
-							DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_2));
+							DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_2));
 				}
 
 				URL def = DwarfUtil.class.getResource(defString);
 
 				if (Objects.isNull(def)) {
 					throw new LoadFailedException(
-							DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_3));
+							DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_3));
 				}
 
 				Url2RepoRresource resource = new Url2RepoRresource(key, def, repoDir0, classify, fileName);
@@ -168,7 +168,7 @@ public class XmlJar2RepoResourceLoader extends StreamLoader<ResourceHandler> {
 			}
 
 		} catch (Exception e) {
-			throw new LoadFailedException(DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_4),
+			throw new LoadFailedException(DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_4),
 					e);
 		}
 
@@ -181,10 +181,10 @@ public class XmlJar2RepoResourceLoader extends StreamLoader<ResourceHandler> {
 	public Set<LoadFailedException> countinuousLoad(ResourceHandler resourceHandler) throws IllegalStateException {
 		if (readFlag)
 			throw new IllegalStateException(
-					DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_0));
+					DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_0));
 
 		Objects.requireNonNull(resourceHandler,
-				DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_1));
+				DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_1));
 
 		final Set<LoadFailedException> exceptions = new LinkedHashSet<>();
 		try {
@@ -217,14 +217,14 @@ public class XmlJar2RepoResourceLoader extends StreamLoader<ResourceHandler> {
 					if (Objects.isNull(defString) || Objects.isNull(classify) || Objects.isNull(fileName)
 							|| Objects.isNull(key)) {
 						throw new LoadFailedException(
-								DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_2));
+								DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_2));
 					}
 
 					URL def = DwarfUtil.class.getResource(defString);
 
 					if (Objects.isNull(def)) {
 						throw new LoadFailedException(
-								DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_3));
+								DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_3));
 					}
 
 					Url2RepoRresource resource = new Url2RepoRresource(key, def, repoDir0, classify, fileName);
@@ -235,14 +235,14 @@ public class XmlJar2RepoResourceLoader extends StreamLoader<ResourceHandler> {
 					}
 				} catch (Exception e) {
 					exceptions.add(new LoadFailedException(
-							DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_4), e));
+							DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_4), e));
 				}
 
 			}
 
 		} catch (Exception e) {
 			exceptions.add(new LoadFailedException(
-					DwarfUtil.getExecptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_4), e));
+					DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_4), e));
 		}
 
 		return exceptions;

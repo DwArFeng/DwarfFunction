@@ -20,8 +20,8 @@ public final class NameableComparator implements Comparator<Name> {
 	 */
 	@Override
 	public int compare(Name o1, Name o2) {
-		Objects.requireNonNull(o1, DwarfUtil.getExecptionString(ExceptionStringKey.NameableComparator_0));
-		Objects.requireNonNull(o2, DwarfUtil.getExecptionString(ExceptionStringKey.NameableComparator_0));
+		Objects.requireNonNull(o1, DwarfUtil.getExceptionString(ExceptionStringKey.NameableComparator_0));
+		Objects.requireNonNull(o2, DwarfUtil.getExceptionString(ExceptionStringKey.NameableComparator_0));
 		return o1.getName().compareTo(o2.getName());
 	}
 

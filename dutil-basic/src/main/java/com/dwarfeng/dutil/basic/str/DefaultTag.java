@@ -29,8 +29,8 @@ public class DefaultTag implements Tag {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public DefaultTag(String name, String description) {
-		Objects.requireNonNull(name, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultTag_0));
-		Objects.requireNonNull(name, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultTag_1));
+		Objects.requireNonNull(name, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultTag_0));
+		Objects.requireNonNull(name, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultTag_1));
 		this.name = name;
 		this.description = description;
 	}

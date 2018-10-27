@@ -164,11 +164,11 @@ public class JExconsole extends JPanel {
 	 */
 	public JExconsole(int maxLine, double cleanRatio, Integer maxRollback, boolean creatDefaultPopup) {
 		if (maxLine <= 0)
-			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.JEXCONSOLE_1));
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.JEXCONSOLE_1));
 		if (cleanRatio <= 0 || cleanRatio > 1)
-			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.JEXCONSOLE_2));
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.JEXCONSOLE_2));
 		if (maxRollback < 0)
-			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.JEXCONSOLE_3));
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.JEXCONSOLE_3));
 
 		this.maxLine = maxLine;
 		this.cleanRatio = cleanRatio;
@@ -206,7 +206,7 @@ public class JExconsole extends JPanel {
 					try {
 						if (disposeFlag.get()) {
 							throw new IllegalStateException(
-									DwarfUtil.getExecptionString(ExceptionStringKey.JEXCONSOLE_0));
+									DwarfUtil.getExceptionString(ExceptionStringKey.JEXCONSOLE_0));
 						}
 
 						InnerInputStream in = (InnerInputStream) JExconsole.this.in;
@@ -384,7 +384,7 @@ public class JExconsole extends JPanel {
 	 */
 	public void setMaxLine(int maxLine) {
 		if (maxLine <= 0)
-			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.JEXCONSOLE_1));
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.JEXCONSOLE_1));
 
 		renderLock.lock();
 		try {
@@ -414,7 +414,7 @@ public class JExconsole extends JPanel {
 	 */
 	public void setCleanRatio(double cleanRatio) {
 		if (cleanRatio <= 0 || cleanRatio > 1)
-			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.JEXCONSOLE_2));
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.JEXCONSOLE_2));
 
 		renderLock.lock();
 		try {
@@ -444,7 +444,7 @@ public class JExconsole extends JPanel {
 	 */
 	public void setMaxRollback(int maxRollback) {
 		if (maxLine <= 0)
-			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.JEXCONSOLE_1));
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.JEXCONSOLE_1));
 		this.maxRollback = maxRollback;
 		if (rollbackStrings.size() > maxRollback) {
 			for (int i = 0; i < maxRollback - rollbackStrings.size(); i++) {
@@ -482,7 +482,7 @@ public class JExconsole extends JPanel {
 		inputLock.lock();
 		try {
 			if (disposeFlag.get()) {
-				throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.JEXCONSOLE_0));
+				throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.JEXCONSOLE_0));
 			}
 
 			InnerInputStream in = (InnerInputStream) JExconsole.this.in;
@@ -513,7 +513,7 @@ public class JExconsole extends JPanel {
 		inputLock.lock();
 		try {
 			if (disposeFlag.get()) {
-				throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.JEXCONSOLE_0));
+				throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.JEXCONSOLE_0));
 			}
 
 			InnerInputStream in = (InnerInputStream) JExconsole.this.in;
@@ -567,7 +567,7 @@ public class JExconsole extends JPanel {
 		@Override
 		public int read() throws IOException {
 			if (disposeFlag.get()) {
-				throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.JEXCONSOLE_0));
+				throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.JEXCONSOLE_0));
 			}
 
 			inputLock.lock();
@@ -643,7 +643,7 @@ public class JExconsole extends JPanel {
 		@Override
 		public void write(int b) throws IOException {
 			if (disposeFlag.get()) {
-				throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.JEXCONSOLE_0));
+				throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.JEXCONSOLE_0));
 			}
 
 			outputLock.lock();
@@ -666,7 +666,7 @@ public class JExconsole extends JPanel {
 		@Override
 		public void flush() throws IOException {
 			if (disposeFlag.get()) {
-				throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.JEXCONSOLE_0));
+				throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.JEXCONSOLE_0));
 			}
 
 			String str = null;

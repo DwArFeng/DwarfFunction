@@ -33,12 +33,12 @@ public class DefaultConfigFirmProps implements ConfigFirmProps {
 	 */
 	public DefaultConfigFirmProps(ConfigChecker configChecker, String defaultValue) {
 		Objects.requireNonNull(configChecker,
-				DwarfUtil.getExecptionString(ExceptionStringKey.DefaultConfigFirmProps_0));
-		Objects.requireNonNull(defaultValue, DwarfUtil.getExecptionString(ExceptionStringKey.DefaultConfigFirmProps_1));
+				DwarfUtil.getExceptionString(ExceptionStringKey.DefaultConfigFirmProps_0));
+		Objects.requireNonNull(defaultValue, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultConfigFirmProps_1));
 
 		if (configChecker.nonValid(defaultValue)) {
 			throw new IllegalArgumentException(
-					DwarfUtil.getExecptionString(ExceptionStringKey.DefaultConfigFirmProps_2));
+					DwarfUtil.getExceptionString(ExceptionStringKey.DefaultConfigFirmProps_2));
 		}
 
 		this.ConfigChecker = configChecker;

@@ -45,9 +45,9 @@ public class QuickFothVariable extends AbstractMathObject implements FothVariabl
 	 */
 	public QuickFothVariable(String name, FothValue val) {
 		if (Objects.isNull(name) || name.equals("")) {
-			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.QuickFothVariable_1));
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.QuickFothVariable_1));
 		}
-		Objects.requireNonNull(val, DwarfUtil.getExecptionString(ExceptionStringKey.QuickFothVariable_0));
+		Objects.requireNonNull(val, DwarfUtil.getExceptionString(ExceptionStringKey.QuickFothVariable_0));
 
 		this.name = name;
 		this.val = val.value();
@@ -65,7 +65,7 @@ public class QuickFothVariable extends AbstractMathObject implements FothVariabl
 	 */
 	public QuickFothVariable(String name, double d) {
 		if (Objects.isNull(name) || name.equals("")) {
-			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.QuickFothVariable_1));
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.QuickFothVariable_1));
 		}
 
 		this.name = name;
@@ -101,7 +101,7 @@ public class QuickFothVariable extends AbstractMathObject implements FothVariabl
 	 */
 	@Override
 	public String getMathName() {
-		return DwarfUtil.getExecptionString(ExceptionStringKey.ALGEBRA_VARIABLE);
+		return DwarfUtil.getExceptionString(ExceptionStringKey.ALGEBRA_VARIABLE);
 	}
 
 	/**

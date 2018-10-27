@@ -66,7 +66,7 @@ public final class DwarfUtil {
 	 *            异常文本字段主键枚举。
 	 * @return 主键对应的文本。
 	 */
-	public static String getExecptionString(ExceptionStringKey key) {
+	public static String getExceptionString(ExceptionStringKey key) {
 		if (Objects.isNull(key))
 			return "";
 		return sf.getString(key.getName());
@@ -156,7 +156,7 @@ public final class DwarfUtil {
 	 * @return 该包的欢迎
 	 */
 	public static String getWelcomeString() {
-		return getExecptionString(ExceptionStringKey.WELCOME_STRING) + getVersion().getLongName();
+		return getExceptionString(ExceptionStringKey.WELCOME_STRING) + getVersion().getLongName();
 	}
 
 	public static void main(String[] args) {

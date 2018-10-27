@@ -31,9 +31,9 @@ public final class FactoriesByString {
 	 *             入口参数不是标准的国家/地区代码格式。
 	 */
 	public static Locale newLocale(String string) {
-		Objects.requireNonNull(string, DwarfUtil.getExecptionString(ExceptionStringKey.FactoriesByString_0));
+		Objects.requireNonNull(string, DwarfUtil.getExceptionString(ExceptionStringKey.FactoriesByString_0));
 		if (!string.matches("[a-z]+(_[A-Z]+(_[a-zA-Z]+)?)?")) {
-			throw new IllegalArgumentException(DwarfUtil.getExecptionString(ExceptionStringKey.FactoriesByString_1));
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.FactoriesByString_1));
 		}
 
 		StringTokenizer tokenizer = new StringTokenizer(string, "_");

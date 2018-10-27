@@ -40,7 +40,7 @@ public abstract class AbstractListModel<E> implements ListModel<E> {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public AbstractListModel(Set<ListObverser<E>> obversers) {
-		Objects.requireNonNull(obversers, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTLISTMODEL_0));
+		Objects.requireNonNull(obversers, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTLISTMODEL_0));
 		this.obversers = obversers;
 	}
 

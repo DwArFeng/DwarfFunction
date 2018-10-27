@@ -43,7 +43,7 @@ public abstract class AbstractBackground implements Background {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public AbstractBackground(Set<BackgroundObverser> obversers) {
-		Objects.requireNonNull(obversers, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTBACKGROUND_0));
+		Objects.requireNonNull(obversers, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTBACKGROUND_0));
 		this.obversers = obversers;
 	}
 

@@ -40,7 +40,7 @@ public abstract class AbstractSetModel<E> implements SetModel<E> {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public AbstractSetModel(Set<SetObverser<E>> obversers) {
-		Objects.requireNonNull(obversers, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTSETMODEL_0));
+		Objects.requireNonNull(obversers, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTSETMODEL_0));
 		this.obversers = obversers;
 	}
 

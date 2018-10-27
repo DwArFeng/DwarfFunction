@@ -37,7 +37,7 @@ public final class I18nUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static I18nHandler unmodifiableI18nHandler(I18nHandler i18nHandler) {
-		Objects.requireNonNull(i18nHandler, DwarfUtil.getExecptionString(ExceptionStringKey.I18NUTIL_0));
+		Objects.requireNonNull(i18nHandler, DwarfUtil.getExceptionString(ExceptionStringKey.I18NUTIL_0));
 		return new UnmodifiableI18nHandler(i18nHandler);
 	}
 
@@ -285,7 +285,7 @@ public final class I18nUtil {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public static SyncI18nHandler syncI18nHandler(I18nHandler i18nHandler) {
-		Objects.requireNonNull(i18nHandler, DwarfUtil.getExecptionString(ExceptionStringKey.I18NUTIL_0));
+		Objects.requireNonNull(i18nHandler, DwarfUtil.getExceptionString(ExceptionStringKey.I18NUTIL_0));
 		return new SyncI18nHandlerImpl(i18nHandler);
 	}
 
@@ -684,7 +684,7 @@ public final class I18nUtil {
 	 *             指定的入口参数为 <code> null </code>。
 	 */
 	public static I18nInfo unmodifiableI18nInfo(I18nInfo i18nInfo) {
-		Objects.requireNonNull(i18nInfo, DwarfUtil.getExecptionString(ExceptionStringKey.I18NUTIL_1));
+		Objects.requireNonNull(i18nInfo, DwarfUtil.getExceptionString(ExceptionStringKey.I18NUTIL_1));
 		return new UnmodifiableI18nInfo(i18nInfo);
 	}
 
@@ -752,7 +752,7 @@ public final class I18nUtil {
 	 * @return 由指定的国际化处理器生成的只读的国际化处理器。
 	 */
 	public static I18nHandler readOnlyI18nHandler(I18nHandler i18nHandler) {
-		Objects.requireNonNull(i18nHandler, DwarfUtil.getExecptionString(ExceptionStringKey.I18NUTIL_0));
+		Objects.requireNonNull(i18nHandler, DwarfUtil.getExceptionString(ExceptionStringKey.I18NUTIL_0));
 		return readOnlyI18nHandler(i18nHandler, i18nInfo -> {
 			return unmodifiableI18nInfo(i18nInfo);
 		});
@@ -770,8 +770,8 @@ public final class I18nUtil {
 	 *             指定的入口参数为 <code> null </code>。
 	 */
 	public static I18nHandler readOnlyI18nHandler(I18nHandler i18nHandler, ReadOnlyGenerator<I18nInfo> generator) {
-		Objects.requireNonNull(i18nHandler, DwarfUtil.getExecptionString(ExceptionStringKey.I18NUTIL_0));
-		Objects.requireNonNull(generator, DwarfUtil.getExecptionString(ExceptionStringKey.I18NUTIL_2));
+		Objects.requireNonNull(i18nHandler, DwarfUtil.getExceptionString(ExceptionStringKey.I18NUTIL_0));
+		Objects.requireNonNull(generator, DwarfUtil.getExceptionString(ExceptionStringKey.I18NUTIL_2));
 		return new ReadOnlyI18nHandler(i18nHandler, generator);
 	}
 

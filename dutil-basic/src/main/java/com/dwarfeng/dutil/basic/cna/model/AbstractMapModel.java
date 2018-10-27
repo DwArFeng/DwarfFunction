@@ -40,7 +40,7 @@ public abstract class AbstractMapModel<K, V> implements MapModel<K, V> {
 	 *             入口参数为 <code>null</code>。
 	 */
 	public AbstractMapModel(Set<MapObverser<K, V>> obversers) {
-		Objects.requireNonNull(obversers, DwarfUtil.getExecptionString(ExceptionStringKey.ABSTRACTMAPMODEL_0));
+		Objects.requireNonNull(obversers, DwarfUtil.getExceptionString(ExceptionStringKey.ABSTRACTMAPMODEL_0));
 		this.obversers = obversers;
 	}
 

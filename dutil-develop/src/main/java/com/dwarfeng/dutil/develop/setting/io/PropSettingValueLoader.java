@@ -60,9 +60,9 @@ public class PropSettingValueLoader extends StreamLoader<SettingHandler> {
 	@Override
 	public void load(SettingHandler handler) throws LoadFailedException, IllegalStateException {
 		if (readFlag)
-			throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.PROPSETTINGVALUELOADER_0));
+			throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.PROPSETTINGVALUELOADER_0));
 
-		Objects.requireNonNull(handler, DwarfUtil.getExecptionString(ExceptionStringKey.PROPSETTINGVALUELOADER_1));
+		Objects.requireNonNull(handler, DwarfUtil.getExceptionString(ExceptionStringKey.PROPSETTINGVALUELOADER_1));
 
 		Properties properties = genProperties(ordered);
 		try {
@@ -84,9 +84,9 @@ public class PropSettingValueLoader extends StreamLoader<SettingHandler> {
 	@Override
 	public Set<LoadFailedException> countinuousLoad(SettingHandler handler) throws IllegalStateException {
 		if (readFlag)
-			throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.PROPSETTINGVALUELOADER_0));
+			throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.PROPSETTINGVALUELOADER_0));
 
-		Objects.requireNonNull(handler, DwarfUtil.getExecptionString(ExceptionStringKey.PROPSETTINGVALUELOADER_1));
+		Objects.requireNonNull(handler, DwarfUtil.getExceptionString(ExceptionStringKey.PROPSETTINGVALUELOADER_1));
 
 		final Set<LoadFailedException> exceptions = new LinkedHashSet<>();
 

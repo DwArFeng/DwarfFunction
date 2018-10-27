@@ -53,7 +53,7 @@ public abstract class NumberSettingInfo extends AbstractSettingInfo {
 	public NumberSettingInfo(String defaultValue, Interval interval)
 			throws NullPointerException, IllegalArgumentException {
 		super(defaultValue);
-		Objects.requireNonNull(interval, DwarfUtil.getExecptionString(ExceptionStringKey.NUMBERSETTINGINFO_0));
+		Objects.requireNonNull(interval, DwarfUtil.getExceptionString(ExceptionStringKey.NUMBERSETTINGINFO_0));
 		this.interval = interval;
 	}
 

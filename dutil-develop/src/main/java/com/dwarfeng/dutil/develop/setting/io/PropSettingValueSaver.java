@@ -60,9 +60,9 @@ public class PropSettingValueSaver extends StreamSaver<SettingHandler> {
 	@Override
 	public void save(SettingHandler handler) throws SaveFailedException, IllegalStateException {
 		if (writeFlag)
-			throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.PROPSETTINGVALUESAVER_0));
+			throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.PROPSETTINGVALUESAVER_0));
 
-		Objects.requireNonNull(handler, DwarfUtil.getExecptionString(ExceptionStringKey.PROPSETTINGVALUESAVER_1));
+		Objects.requireNonNull(handler, DwarfUtil.getExceptionString(ExceptionStringKey.PROPSETTINGVALUESAVER_1));
 
 		Properties properties = genProperties(ordered);
 		for (SettingHandler.Entry entry : handler.entrySet()) {
@@ -81,9 +81,9 @@ public class PropSettingValueSaver extends StreamSaver<SettingHandler> {
 	@Override
 	public Set<SaveFailedException> countinuousSave(SettingHandler handler) throws IllegalStateException {
 		if (writeFlag)
-			throw new IllegalStateException(DwarfUtil.getExecptionString(ExceptionStringKey.PROPSETTINGVALUESAVER_0));
+			throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.PROPSETTINGVALUESAVER_0));
 
-		Objects.requireNonNull(handler, DwarfUtil.getExecptionString(ExceptionStringKey.PROPSETTINGVALUESAVER_1));
+		Objects.requireNonNull(handler, DwarfUtil.getExceptionString(ExceptionStringKey.PROPSETTINGVALUESAVER_1));
 
 		final Set<SaveFailedException> exceptions = new LinkedHashSet<>();
 
