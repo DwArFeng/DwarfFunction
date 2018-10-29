@@ -132,14 +132,6 @@ public final class TimerUtil {
 		 * {@inheritDoc}
 		 */
 		@Override
-		public Collection<Plain> getPlains() {
-			return Collections.unmodifiableCollection(getPlains());
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
 		public boolean schedule(Plain plain)
 				throws IllegalStateException, NullPointerException, UnsupportedOperationException {
 			throw new UnsupportedOperationException("schedule");
@@ -199,6 +191,14 @@ public final class TimerUtil {
 		@Override
 		public boolean awaitTermination(long timeout, TimeUnit unit) throws InterruptedException {
 			throw new UnsupportedOperationException("awaitTermination");
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public Collection<Plain> plains() {
+			return Collections.unmodifiableCollection(plains());
 		}
 
 		/**

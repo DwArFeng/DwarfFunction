@@ -44,26 +44,6 @@ public class Test_ListTimer {
 	}
 
 	@Test
-	public final void testGetPlains() {
-		Plain plain_1 = new TestFixTimePlain();
-		Plain plain_2 = new TestFixTimePlain();
-		Plain plain_3 = new TestFixTimePlain();
-
-		assertTrue(timer.schedule(plain_1));
-		assertEquals(1, timer.getPlains().size());
-		assertTrue(timer.schedule(plain_2));
-		assertTrue(timer.schedule(plain_3));
-		assertEquals(3, timer.getPlains().size());
-
-		Collection<Plain> plains = timer.getPlains();
-
-		assertEquals(3, plains.size());
-		assertTrue(plains.contains(plain_1));
-		assertTrue(plains.contains(plain_2));
-		assertTrue(plains.contains(plain_3));
-	}
-
-	@Test
 	public final void testSchedule() throws InterruptedException {
 		Plain plain_1 = new TestFixTimePlain();
 		Plain plain_2 = new TestFixTimePlain();
@@ -102,20 +82,20 @@ public class Test_ListTimer {
 		assertTrue(timer.remove(plain_1));
 		assertFalse(timer.remove(plain_1));
 		Thread.sleep(100);
-		assertEquals(2, timer.getPlains().size());
+		assertEquals(2, timer.plains().size());
 		assertEquals(1, obv.removedPlain.size());
 		assertEquals(plain_1, obv.removedPlain.get(0));
 		assertEquals(0, plain_1.getObversers().size());
 
 		Thread.sleep(1500);
-		assertEquals(1, timer.getPlains().size());
+		assertEquals(1, timer.plains().size());
 		assertEquals(2, obv.removedPlain.size());
 		assertEquals(plain_3, obv.removedPlain.get(1));
 		assertEquals(0, plain_3.getObversers().size());
 
 		assertTrue(timer.remove(plain_2));
 		Thread.sleep(10);
-		assertEquals(0, timer.getPlains().size());
+		assertEquals(0, timer.plains().size());
 		assertEquals(3, obv.removedPlain.size());
 		assertEquals(plain_2, obv.removedPlain.get(2));
 		assertEquals(0, plain_2.getObversers().size());
@@ -135,7 +115,7 @@ public class Test_ListTimer {
 
 		timer.clear();
 
-		assertTrue(timer.getPlains().isEmpty());
+		assertTrue(timer.plains().isEmpty());
 		assertEquals(1, obv.clearedCount);
 	}
 
@@ -216,6 +196,26 @@ public class Test_ListTimer {
 
 		// 理论上，计时器只执行完第一个计划，就会进入结束调度。
 		assertTrue(tm.getTimeMs() >= 300);
+	}
+
+	@Test
+	public final void testPlains() {
+		Plain plain_1 = new TestFixTimePlain();
+		Plain plain_2 = new TestFixTimePlain();
+		Plain plain_3 = new TestFixTimePlain();
+
+		assertTrue(timer.schedule(plain_1));
+		assertEquals(1, timer.plains().size());
+		assertTrue(timer.schedule(plain_2));
+		assertTrue(timer.schedule(plain_3));
+		assertEquals(3, timer.plains().size());
+
+		Collection<Plain> plains = timer.plains();
+
+		assertEquals(3, plains.size());
+		assertTrue(plains.contains(plain_1));
+		assertTrue(plains.contains(plain_2));
+		assertTrue(plains.contains(plain_3));
 	}
 
 }

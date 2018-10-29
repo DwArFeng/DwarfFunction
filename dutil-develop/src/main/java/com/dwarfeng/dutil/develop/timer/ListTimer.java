@@ -93,23 +93,6 @@ public class ListTimer extends AbstractTimer {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Collection<Plain> getPlains() {
-		lock.readLock().lock();
-		try {
-			Set<Plain> plains = new HashSet<>();
-			plains.addAll(this.plains);
-			plains.addAll(plains2Schedule);
-			plains.removeAll(plains2Remove);
-			return Collections.unmodifiableCollection(plains);
-		} finally {
-			lock.readLock().unlock();
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
 	public boolean schedule(Plain plain)
 			throws IllegalStateException, NullPointerException, UnsupportedOperationException {
 		lock.writeLock().lock();
@@ -248,6 +231,23 @@ public class ListTimer extends AbstractTimer {
 			return true;
 		} finally {
 			lock.writeLock().unlock();
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Collection<Plain> plains() {
+		lock.readLock().lock();
+		try {
+			Set<Plain> plains = new HashSet<>();
+			plains.addAll(this.plains);
+			plains.addAll(plains2Schedule);
+			plains.removeAll(plains2Remove);
+			return Collections.unmodifiableCollection(plains);
+		} finally {
+			lock.readLock().unlock();
 		}
 	}
 

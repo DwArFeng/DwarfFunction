@@ -38,15 +38,6 @@ import com.dwarfeng.dutil.develop.timer.obv.TimerObverser;
 public interface Timer extends ExternalReadWriteThreadSafe, ObverserSet<TimerObverser> {
 
 	/**
-	 * 获取该计时器中所有的计划组成的集合。
-	 * <p>
-	 * 该集合不可调用添加方法，如果在该集合中移除某个计划， 也会在计时器中移除该计划。
-	 * 
-	 * @return 该计时器中所有的计划组成的集合。
-	 */
-	public Collection<Plain> getPlains();
-
-	/**
 	 * 向该计时器中添加一个计划（可选操作）。
 	 * 
 	 * @param plain
@@ -132,5 +123,14 @@ public interface Timer extends ExternalReadWriteThreadSafe, ObverserSet<TimerObv
 	 */
 	public boolean awaitTermination(long timeout, TimeUnit unit)
 			throws InterruptedException, UnsupportedOperationException;
+
+	/**
+	 * 获取该计时器中所有的计划组成的集合。
+	 * <p>
+	 * 该集合不可调用添加方法，如果在该集合中移除某个计划， 也会在计时器中移除该计划。
+	 * 
+	 * @return 该计时器中所有的计划组成的集合。
+	 */
+	public Collection<Plain> plains();
 
 }
