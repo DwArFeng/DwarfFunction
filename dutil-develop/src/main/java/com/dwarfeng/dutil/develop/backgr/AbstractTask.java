@@ -64,12 +64,116 @@ public abstract class AbstractTask implements Task {
 	 * {@inheritDoc}
 	 */
 	@Override
+	public ReadWriteLock getLock() {
+		return lock;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Set<TaskObverser> getObversers() {
+		lock.readLock().lock();
+		try {
+			return obversers;
+		} finally {
+			lock.readLock().unlock();
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public boolean addObverser(TaskObverser obverser) {
 		lock.writeLock().lock();
 		try {
 			return obversers.add(obverser);
 		} finally {
 			lock.writeLock().unlock();
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean removeObverser(TaskObverser obverser) {
+		lock.writeLock().lock();
+		try {
+			return obversers.remove(obverser);
+		} finally {
+			lock.writeLock().unlock();
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void clearObverser() {
+		lock.writeLock().lock();
+		try {
+			obversers.clear();
+		} finally {
+			lock.writeLock().unlock();
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean isStarted() {
+		lock.readLock().lock();
+		try {
+			return startedFlag;
+		} finally {
+			lock.readLock().unlock();
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean isFinished() {
+		lock.readLock().lock();
+		try {
+			return finishedFlag;
+		} finally {
+			lock.readLock().unlock();
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	@Deprecated
+	public Exception getException() {
+		lock.readLock().lock();
+		try {
+			if (throwable instanceof Exception) {
+				return (Exception) throwable;
+			} else {
+				return new Exception(throwable);
+			}
+		} finally {
+			lock.readLock().unlock();
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Throwable getThrowable() {
+		lock.readLock().lock();
+		try {
+			return throwable;
+		} finally {
+			lock.readLock().unlock();
 		}
 	}
 
@@ -114,109 +218,6 @@ public abstract class AbstractTask implements Task {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void clearObverser() {
-		lock.writeLock().lock();
-		try {
-			obversers.clear();
-		} finally {
-			lock.writeLock().unlock();
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Exception getException() {
-		lock.readLock().lock();
-		try {
-			if (throwable instanceof Exception) {
-				return (Exception) throwable;
-			} else {
-				return new Exception(throwable);
-			}
-		} finally {
-			lock.readLock().unlock();
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public ReadWriteLock getLock() {
-		return lock;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Set<TaskObverser> getObversers() {
-		lock.readLock().lock();
-		try {
-			return obversers;
-		} finally {
-			lock.readLock().unlock();
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Throwable getThrowable() {
-		lock.readLock().lock();
-		try {
-			return throwable;
-		} finally {
-			lock.readLock().unlock();
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean isFinished() {
-		lock.readLock().lock();
-		try {
-			return finishedFlag;
-		} finally {
-			lock.readLock().unlock();
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean isStarted() {
-		lock.readLock().lock();
-		try {
-			return startedFlag;
-		} finally {
-			lock.readLock().unlock();
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean removeObverser(TaskObverser obverser) {
-		lock.writeLock().lock();
-		try {
-			return obversers.remove(obverser);
-		} finally {
-			lock.writeLock().unlock();
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
 	public void run() {
 		// 置位开始标志，并且通知观察器。
 		lock.writeLock().lock();
@@ -226,9 +227,13 @@ public abstract class AbstractTask implements Task {
 			lock.writeLock().unlock();
 		}
 		fireStarted();
-		// 运行 todo 方法。
 		try {
+			// 运行准备方法。
+			beforeTodo();
+			// 运行 todo 方法。
 			todo();
+			// 运行结束方法。
+			afterTodo();
 		} catch (Throwable e) {
 			throwable = e;
 		}
@@ -284,6 +289,26 @@ public abstract class AbstractTask implements Task {
 					e.printStackTrace();
 				}
 		}
+	}
+
+	/**
+	 * 在调用 {@link #todo()} 之前调用，默认不执行任何操作。
+	 * 
+	 * @throws Exception
+	 *             抛出的异常。
+	 */
+	protected void beforeTodo() throws Exception {
+		// 默认不执行任何操作。
+	}
+
+	/**
+	 * 在调用 {@link #todo()} 之后调用，默认不执行任何操作。
+	 * 
+	 * @throws Exception
+	 *             抛出的异常。
+	 */
+	protected void afterTodo() throws Exception {
+		// 默认不执行任何操作。
 	}
 
 	/**

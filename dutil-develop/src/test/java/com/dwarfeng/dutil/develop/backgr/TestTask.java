@@ -2,15 +2,15 @@ package com.dwarfeng.dutil.develop.backgr;
 
 import com.dwarfeng.dutil.basic.io.CT;
 
-final class TestBlockTask extends AbstractTask {
+final class TestTask extends AbstractTask {
 
 	private final long blockTime;
 
-	public TestBlockTask() {
+	public TestTask() {
 		this(1000l);
 	}
 
-	public TestBlockTask(long blockTime) {
+	public TestTask(long blockTime) {
 		this.blockTime = blockTime;
 	}
 

@@ -321,4 +321,10 @@ Beta_0.2.0__build_A (maven)
 	为 basic.num.Interval 添加了新的重载方法。
 	新增 basic.gui.swing.MuaComboBoxModel<E> —— 实现了 List<E> 的下拉菜单模型。
 	新增 basic.cna.AttributeComplex 类，用来解决Java方法中返回多个值的问题。
-	更新了README.md
+	在 develop.backgr.BackgroundUtil 中新增方法
+		BackgroundUtil.newTaskFromRunnable(Runnable, Set<TaskObverser>)
+		newTaskFromCallable(Callable<?>)
+		newTaskFromCallable(Callable<?>, Set<TaskObverser>)
+		blockedTask(Task, Task[])
+		blockedTask(Task, Task[], Set<TaskObverser>)
+	更新了README.md。

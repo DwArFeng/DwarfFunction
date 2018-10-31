@@ -51,7 +51,7 @@ public class Test_AbstractTask {
 	// 该方法可以测试任务的 isFinished(), isStarted, todo()方法。
 	@Test
 	public void testState() throws InterruptedException {
-		Task task = new TestBlockTask(100);
+		Task task = new TestTask(100);
 		TestTaskObverser obv = new TestTaskObverser();
 		task.addObverser(obv);
 
@@ -73,6 +73,7 @@ public class Test_AbstractTask {
 		assertEquals(1, obv.finishCount);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testGetException() throws InterruptedException {
 		RuntimeException e = new RuntimeException();
@@ -91,7 +92,7 @@ public class Test_AbstractTask {
 
 	@Test
 	public void testAwaitFinish() throws InterruptedException {
-		TestBlockTask task = new TestBlockTask(100);
+		TestTask task = new TestTask(100);
 		TimeMeasurer tm = new TimeMeasurer();
 
 		tm.start();
@@ -106,7 +107,7 @@ public class Test_AbstractTask {
 
 	@Test
 	public void testAwaitFinishLongTimeUnit() throws InterruptedException {
-		TestBlockTask task = new TestBlockTask(100);
+		TestTask task = new TestTask(100);
 		TimeMeasurer tm = new TimeMeasurer();
 
 		tm.start();

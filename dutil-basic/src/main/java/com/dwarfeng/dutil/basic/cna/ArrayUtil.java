@@ -1,5 +1,7 @@
 package com.dwarfeng.dutil.basic.cna;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
@@ -24,6 +26,23 @@ public final class ArrayUtil {
 
 	private ArrayUtil() {
 		// 不允许实例化。
+	}
+
+	/**
+	 * 获取一个指定类型的空数组。
+	 * 
+	 * @param clas
+	 *            指定的类型。
+	 * @return 指定类型的空数组。
+	 * @throws NullPointerException
+	 *             指定的入口参数为 <code> null </code>。
+	 */
+	public static <T> T[] empty(Class<T> clas) throws NullPointerException {
+		Objects.requireNonNull(clas, DwarfUtil.getExceptionString(ExceptionStringKey.ARRAYUTIL_5));
+		// 根据 Array 的相关说明，此处类型转换是安全的。
+		@SuppressWarnings("unchecked")
+		T[] array = (T[]) Array.newInstance(clas, 0);
+		return array;
 	}
 
 	/**
@@ -77,8 +96,9 @@ public final class ArrayUtil {
 
 	/**
 	 * 在一个数组剔除其中所有的null元素，并把不是null的元素按照原有的顺序以数组的形式返回。
+	 * 
 	 * <p>
-	 * 如果元素数组为 <code>null</code> 则返回一个空的集合。
+	 * 如果元素数组为 <code>null</code> 则返回一个空的数组。
 	 * 
 	 * @param objects
 	 *            元素数组。
@@ -87,9 +107,10 @@ public final class ArrayUtil {
 	 * @param <T>
 	 *            泛型T
 	 * @return 返回的数组泛型。
+	 * @deprecated 该方法性能太差，应该优先使用 {@link #getNonNull(Object[])};
 	 */
 	public static <T> T[] getNotNull(Object[] objects, T[] t) {
-		Collection<Object> col = new Vector<Object>();
+		ArrayList<Object> col = new ArrayList<Object>(objects.length);
 		if (objects != null) {
 			for (Object o : objects) {
 				if (o != null)
@@ -101,6 +122,7 @@ public final class ArrayUtil {
 
 	/**
 	 * 在一个数组剔除其中所有的null元素，并把不是null的元素按照原有的顺序以集合的形式返回。
+	 * 
 	 * <p>
 	 * 如果元素数组为 <code>null</code> 则返回一个空的集合。
 	 * 
@@ -109,9 +131,10 @@ public final class ArrayUtil {
 	 * @param <T>
 	 *            泛型T
 	 * @return 返回的集合。
+	 * @deprecated 该方法性能太差，且不符合ArrayUtil工具包的功能。
 	 */
 	public static <T> Collection<T> getNotNull(T[] object) {
-		Collection<T> col = new Vector<T>();
+		Collection<T> col = new Vector<T>(object.length);
 		if (object != null) {
 			for (T o : object) {
 				if (o != null)
@@ -122,9 +145,39 @@ public final class ArrayUtil {
 	}
 
 	/**
+	 * 在一个数组剔除其中所有的null元素，并把不是null的元素按照原有的顺序以数组的形式返回。
+	 * 
+	 * <p>
+	 * 如果元素数组为 <code>null</code> 则返回一个空的数组。
+	 * 
+	 * @param array
+	 *            指定数组。
+	 * @return 返回的不含有 <code>null</code> 元素的数组。
+	 * @throws NullPointerException
+	 *             指定的入口参数为 <code> null </code>。
+	 */
+	public static <T> T[] getNonNull(T[] array) throws NullPointerException {
+		Objects.requireNonNull(array, DwarfUtil.getExceptionString(ExceptionStringKey.ARRAYUTIL_3));
+
+		Object[] target = new Object[array.length];
+		int j = 0;
+
+		for (int i = 0; i < array.length; i++) {
+			T t = array[i];
+			if (Objects.nonNull(t))
+				target[j++] = t;
+		}
+
+		// 由于 target 数组中只含有 T 类型元素，因此该类型转换安全。
+		@SuppressWarnings("unchecked")
+		T[] dejavu = (T[]) Arrays.copyOf(target, j, array.getClass());
+		return dejavu;
+	}
+
+	/**
 	 * 将两个数组合并。
 	 * <p>
-	 * 两个数组均不能为 null。;
+	 * 两个数组均不能为 null。
 	 * 
 	 * @param first
 	 *            第一个数组。

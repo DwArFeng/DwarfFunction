@@ -1,13 +1,17 @@
 package com.dwarfeng.dutil.develop.backgr;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
+import java.util.WeakHashMap;
+import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReadWriteLock;
 
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.ExceptionStringKey;
+import com.dwarfeng.dutil.basic.cna.ArrayUtil;
 import com.dwarfeng.dutil.basic.cna.CollectionUtil;
 import com.dwarfeng.dutil.basic.prog.ReadOnlyGenerator;
 import com.dwarfeng.dutil.basic.threads.ThreadUtil;
@@ -35,16 +39,34 @@ public final class BackgroundUtil {
 	 * @throws NullPointerException
 	 *             入口参数为 <code>null</code>。
 	 */
-	public static Task newTaskFromRunnable(Runnable runnable) {
+	public static Task newTaskFromRunnable(Runnable runnable) throws NullPointerException {
+		return newTaskFromRunnable(runnable, Collections.newSetFromMap(new WeakHashMap<>()));
+	}
+
+	/**
+	 * 从指定的 {@link Runnable} 中生成一个新的任务。
+	 * 
+	 * @param runnable
+	 *            指定的 {@link Runnable}。
+	 * @param obversers
+	 *            指定的观察器集合。
+	 * @return 从指定的 {@link Runnable} 中生成的新任务。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public static Task newTaskFromRunnable(Runnable runnable, Set<TaskObverser> obversers) throws NullPointerException {
 		Objects.requireNonNull(runnable, DwarfUtil.getExceptionString(ExceptionStringKey.BACKGROUNDUTIL_0));
-		return new RunnableTask(runnable);
+		Objects.requireNonNull(obversers, DwarfUtil.getExceptionString(ExceptionStringKey.BACKGROUNDUTIL_4));
+
+		return new RunnableTask(runnable, obversers);
 	}
 
 	private final static class RunnableTask extends AbstractTask {
 
 		private final Runnable runnable;
 
-		public RunnableTask(Runnable runnable) {
+		public RunnableTask(Runnable runnable, Set<TaskObverser> obversers) throws NullPointerException {
+			super(obversers);
 			this.runnable = runnable;
 		}
 
@@ -54,6 +76,176 @@ public final class BackgroundUtil {
 		@Override
 		protected void todo() throws Exception {
 			runnable.run();
+		}
+
+	}
+
+	/**
+	 * 通过指定的 {@link Callable} 生成一个新的任务。
+	 * 
+	 * @param callable
+	 *            指定的 {@link Callable}。
+	 * @return 从指定的 {@link Callable} 生成的新任务。
+	 * @throws NullPointerException
+	 *             指定的入口参数为 <code> null </code>。
+	 */
+	public static Task newTaskFromCallable(Callable<?> callable) throws NullPointerException {
+		return newTaskFromCallable(callable, Collections.newSetFromMap(new WeakHashMap<>()));
+	}
+
+	/**
+	 * 通过指定的 {@link Callable} 生成一个新的任务。
+	 * 
+	 * @param callable
+	 *            指定的 {@link Callable}。
+	 * @param obversers
+	 *            指定的观察器集合。
+	 * @return 从指定的 {@link Callable} 生成的新任务。
+	 * @throws NullPointerException
+	 *             指定的入口参数为 <code> null </code>。
+	 */
+	public static Task newTaskFromCallable(Callable<?> callable, Set<TaskObverser> obversers)
+			throws NullPointerException {
+		Objects.requireNonNull(callable, DwarfUtil.getExceptionString(ExceptionStringKey.BACKGROUNDUTIL_5));
+		Objects.requireNonNull(obversers, DwarfUtil.getExceptionString(ExceptionStringKey.BACKGROUNDUTIL_4));
+
+		return new CallableTask(callable, obversers);
+	}
+
+	private static final class CallableTask extends AbstractTask {
+
+		private final Callable<?> callable;
+
+		public CallableTask(Callable<?> callable, Set<TaskObverser> obversers) throws NullPointerException {
+			super(obversers);
+			this.callable = callable;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		protected void todo() throws Exception {
+			callable.call();
+		}
+
+	}
+
+	/**
+	 * 通过指定的任务和指定的阻塞任务数组生成一个阻塞任务。
+	 * 
+	 * <p>
+	 * 生成的任务会代理指定任务的 {@link #getException()} 和 {@link #getThrowable()}等结果性质的方法。
+	 * <p>
+	 * 关于任务的阻塞<br>
+	 * 在该任务执行时，只有所有参与阻塞的任务完成后，才开始执行任务中的功能语句。 <br>
+	 * 阻塞任务可以被应用在数个任务需要按照先后关系依次执行的情形中，特别是在并发线程中先后执行指定的数个任务。
+	 * 只要将先执行的任务作为后执行任务的阻塞任务，即可以完成任务的先后执行。 <br>
+	 * 当阻塞任务具有至少一个阻塞任务时，如果在等待阻塞任务时阻塞任务被中断（抛出 {@link InterruptedException} 异常），
+	 * 该任务将会终止执行，并且调用 {@link #getThrowable()} 会返回相应的异常。
+	 * 
+	 * @param task
+	 *            指定的任务。
+	 * @param blockTasks
+	 *            指定的阻塞任务数组。
+	 * @return 通过指定的任务和指定的阻塞任务数组生成的阻塞任务。
+	 * @throws NullPointerException
+	 *             指定的入口参数为 <code> null </code>。
+	 */
+	public static Task blockedTask(Task task, Task[] blockTasks) throws NullPointerException, IllegalStateException {
+		Objects.requireNonNull(task, DwarfUtil.getExceptionString(ExceptionStringKey.BACKGROUNDUTIL_1));
+		Objects.requireNonNull(blockTasks, DwarfUtil.getExceptionString(ExceptionStringKey.BACKGROUNDUTIL_6));
+
+		return new BlockedTask(task, ArrayUtil.getNonNull(blockTasks), Collections.newSetFromMap(new WeakHashMap<>()));
+	}
+
+	/**
+	 * 通过指定的任务和指定的阻塞任务数组生成一个阻塞任务。
+	 * 
+	 * <p>
+	 * 生成的任务会代理指定任务的 {@link #getException()} 和 {@link #getThrowable()}等结果性质的方法。
+	 * <p>
+	 * 关于任务的阻塞<br>
+	 * 在该任务执行时，只有所有参与阻塞的任务完成后，才开始执行任务中的功能语句。 <br>
+	 * 阻塞任务可以被应用在数个任务需要按照先后关系依次执行的情形中，特别是在并发线程中先后执行指定的数个任务。
+	 * 只要将先执行的任务作为后执行任务的阻塞任务，即可以完成任务的先后执行。 <br>
+	 * 当阻塞任务具有至少一个阻塞任务时，如果在等待阻塞任务时阻塞任务被中断（抛出 {@link InterruptedException} 异常），
+	 * 该任务将会终止执行，并且调用 {@link #getThrowable()} 会返回相应的异常。
+	 * 
+	 * @param task
+	 *            指定的任务。
+	 * @param blockTasks
+	 *            指定的阻塞任务数组。
+	 * @param obversers
+	 *            指定的观察器集合。
+	 * @return 通过指定的任务和指定的阻塞任务数组生成的阻塞任务。
+	 * @throws NullPointerException
+	 *             指定的入口参数为 <code> null </code>。
+	 */
+	public static Task blockedTask(Task task, Task[] blockTasks, Set<TaskObverser> obversers)
+			throws NullPointerException, IllegalStateException {
+		Objects.requireNonNull(task, DwarfUtil.getExceptionString(ExceptionStringKey.BACKGROUNDUTIL_1));
+		Objects.requireNonNull(blockTasks, DwarfUtil.getExceptionString(ExceptionStringKey.BACKGROUNDUTIL_6));
+		Objects.requireNonNull(obversers, DwarfUtil.getExceptionString(ExceptionStringKey.BACKGROUNDUTIL_4));
+
+		return new BlockedTask(task, ArrayUtil.getNonNull(blockTasks), obversers);
+	}
+
+	private static final class BlockedTask extends AbstractTask {
+
+		private final Task task;
+		private final Task[] blockTasks;
+
+		public BlockedTask(Task task, Task[] blockTasks, Set<TaskObverser> obversers) throws NullPointerException {
+			super(obversers);
+			this.task = task;
+			this.blockTasks = blockTasks;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		@Deprecated
+		public Exception getException() {
+			lock.readLock().lock();
+			try {
+				return task.getException();
+
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public Throwable getThrowable() {
+			lock.readLock().lock();
+			try {
+				return task.getThrowable();
+
+			} finally {
+				lock.readLock().unlock();
+			}
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		protected void beforeTodo() throws Exception {
+			for (Task blockTask : blockTasks)
+				blockTask.awaitFinish();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		protected void todo() throws Exception {
+			task.run();
 		}
 
 	}

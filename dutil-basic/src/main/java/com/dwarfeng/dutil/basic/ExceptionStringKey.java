@@ -46,6 +46,7 @@ public enum ExceptionStringKey implements Name {
 	ARRAYUTIL_2(new DefaultName("ArrayUtil.2")), //
 	ARRAYUTIL_3(new DefaultName("ArrayUtil.3")), //
 	ARRAYUTIL_4(new DefaultName("ArrayUtil.4")), //
+	ARRAYUTIL_5(new DefaultName("ArrayUtil.5")), //
 	FOTHALGEBRAUTIL_0(new DefaultName("FothAlgebraUtil.0")), //
 	FOTHALGEBRAUTIL_1(new DefaultName("FothAlgebraUtil.1")), //
 	FOTHALGEBRAUTIL_2(new DefaultName("FothAlgebraUtil.2")), //
@@ -220,6 +221,9 @@ public enum ExceptionStringKey implements Name {
 	BACKGROUNDUTIL_1(new DefaultName("BackgroundUtil.1")), //
 	BACKGROUNDUTIL_2(new DefaultName("BackgroundUtil.2")), //
 	BACKGROUNDUTIL_3(new DefaultName("BackgroundUtil.3")), //
+	BACKGROUNDUTIL_4(new DefaultName("BackgroundUtil.4")), //
+	BACKGROUNDUTIL_5(new DefaultName("BackgroundUtil.5")), //
+	BACKGROUNDUTIL_6(new DefaultName("BackgroundUtil.6")), //
 	RESOURCEUTIL_0(new DefaultName("ResourceUtil.0")), //
 	RESOURCEUTIL_1(new DefaultName("ResourceUtil.1")), //
 	RESOURCEUTIL_2(new DefaultName("ResourceUtil.2")), //
