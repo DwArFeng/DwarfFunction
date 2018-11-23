@@ -327,4 +327,5 @@ Beta_0.2.0__build_A (maven)
 		newTaskFromCallable(Callable<?>, Set<TaskObverser>)
 		blockedTask(Task, Task[])
 		blockedTask(Task, Task[], Set<TaskObverser>)
+	新增 develop.backgr.ResultTask<T> 类，支持任务返回结果。
 	更新了README.md。

@@ -89,7 +89,7 @@ public final class BackgroundUtil {
 	 * @throws NullPointerException
 	 *             指定的入口参数为 <code> null </code>。
 	 */
-	public static Task newTaskFromCallable(Callable<?> callable) throws NullPointerException {
+	public static <V> ResultTask<V> newTaskFromCallable(Callable<V> callable) throws NullPointerException {
 		return newTaskFromCallable(callable, Collections.newSetFromMap(new WeakHashMap<>()));
 	}
 
@@ -104,19 +104,19 @@ public final class BackgroundUtil {
 	 * @throws NullPointerException
 	 *             指定的入口参数为 <code> null </code>。
 	 */
-	public static Task newTaskFromCallable(Callable<?> callable, Set<TaskObverser> obversers)
+	public static <V> ResultTask<V> newTaskFromCallable(Callable<V> callable, Set<TaskObverser> obversers)
 			throws NullPointerException {
 		Objects.requireNonNull(callable, DwarfUtil.getExceptionString(ExceptionStringKey.BACKGROUNDUTIL_5));
 		Objects.requireNonNull(obversers, DwarfUtil.getExceptionString(ExceptionStringKey.BACKGROUNDUTIL_4));
 
-		return new CallableTask(callable, obversers);
+		return new CallableTask<>(callable, obversers);
 	}
 
-	private static final class CallableTask extends AbstractTask {
+	private static final class CallableTask<V> extends ResultTask<V> {
 
-		private final Callable<?> callable;
+		private final Callable<V> callable;
 
-		public CallableTask(Callable<?> callable, Set<TaskObverser> obversers) throws NullPointerException {
+		public CallableTask(Callable<V> callable, Set<TaskObverser> obversers) throws NullPointerException {
 			super(obversers);
 			this.callable = callable;
 		}
@@ -126,7 +126,7 @@ public final class BackgroundUtil {
 		 */
 		@Override
 		protected void todo() throws Exception {
-			callable.call();
+			setResult(callable.call());
 		}
 
 	}
