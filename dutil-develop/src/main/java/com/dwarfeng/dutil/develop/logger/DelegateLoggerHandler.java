@@ -136,8 +136,8 @@ public final class DelegateLoggerHandler implements LoggerHandler {
 	 */
 	@Override
 	public void clear() {
-		delegateKeySet.clear();
 		unuseAll();
+		delegateKeySet.clear();
 	}
 
 	/**

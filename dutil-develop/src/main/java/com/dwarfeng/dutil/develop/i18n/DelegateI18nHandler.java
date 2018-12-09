@@ -121,8 +121,8 @@ public class DelegateI18nHandler implements I18nHandler {
 	 */
 	@Override
 	public void clear() {
-		delegate.clear();
 		resetDefaultLocale();
+		delegate.clear();
 	}
 
 	/**
