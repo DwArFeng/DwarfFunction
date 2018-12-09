@@ -236,6 +236,7 @@ public enum ExceptionStringKey implements Name {
 	XMLJAR2FILERESOURCELOADER_2(new DefaultName("XmlJar2FileResourceLoader.2")), //
 	XMLJAR2FILERESOURCELOADER_3(new DefaultName("XmlJar2FileResourceLoader.3")), //
 	XMLJAR2FILERESOURCELOADER_4(new DefaultName("XmlJar2FileResourceLoader.4")), //
+	XMLJAR2FILERESOURCELOADER_5(new DefaultName("XmlJar2FileResourceLoader.5")), //
 	ABSTRACTI18NINFO_1(new DefaultName("AbstractI18nInfo.1")), //
 	I18NUTIL_0(new DefaultName("I18nUtil.0")), //
 	I18NUTIL_1(new DefaultName("I18nUtil.1")), //

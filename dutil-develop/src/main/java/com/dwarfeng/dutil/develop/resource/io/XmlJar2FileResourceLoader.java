@@ -6,7 +6,9 @@ import java.net.URL;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
+import java.util.function.Supplier;
 
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
@@ -40,8 +42,20 @@ import com.dwarfeng.dutil.develop.resource.Url2FileResource;
  */
 public class XmlJar2FileResourceLoader extends StreamLoader<ResourceHandler> {
 
+	protected static final String MARK_DEFAULT = "default";
+	protected static final String MARK_RESOURCE = "path";
+	protected static final String MARK_KEY = "key";
+
+	protected static final Supplier<? extends IllegalArgumentException> EXCEPTION_SUPPLIER_LOSSING_PROPERTY = () -> new IllegalArgumentException(
+			DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_3));
+	protected static final Supplier<? extends IllegalArgumentException> EXCEPTION_SUPPLIER_INVALID_DEF_PATH = () -> new IllegalArgumentException(
+			DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_4));
+
 	/** 是否自动复位。 */
+	@Deprecated
 	protected final boolean autoReset;
+	/** 重置资源的策略。 */
+	protected final ResourceResetPolicy resourceResetPolicy;
 
 	private boolean readFlag = false;
 
@@ -54,7 +68,7 @@ public class XmlJar2FileResourceLoader extends StreamLoader<ResourceHandler> {
 	 *             入口参数 <code>in</code> 为 <code>null</code>。
 	 */
 	public XmlJar2FileResourceLoader(InputStream in) {
-		this(in, false);
+		this(in, ResourceResetPolicy.NEVER);
 	}
 
 	/**
@@ -66,10 +80,36 @@ public class XmlJar2FileResourceLoader extends StreamLoader<ResourceHandler> {
 	 *            是否自动复位。
 	 * @throws NullPointerException
 	 *             入口参数 <code>in</code> 为 <code>null</code>。
+	 * @deprecated 该方法被更合理的方法
+	 *             {@link #XmlJar2FileResourceLoader(InputStream, ResourceResetPolicy)}取代。
+	 * @see #XmlJar2FileResourceLoader(InputStream, ResourceResetPolicy)
 	 */
 	public XmlJar2FileResourceLoader(InputStream in, boolean autoReset) {
+		this(in, ResourceResetPolicy.AUTO);
+	}
+
+	/**
+	 * 生成一个 XML jar包资源文件读取器。
+	 * 
+	 * @param in
+	 *            指定的输入流。
+	 * @param resourceResetPolicy
+	 *            复位的策略。
+	 * @throws NullPointerException
+	 *             入口参数为 <code>null</code>。
+	 */
+	public XmlJar2FileResourceLoader(InputStream in, ResourceResetPolicy resourceResetPolicy) {
 		super(in);
-		this.autoReset = autoReset;
+
+		Objects.requireNonNull(resourceResetPolicy,
+				DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_5));
+
+		this.resourceResetPolicy = resourceResetPolicy;
+		if (resourceResetPolicy == ResourceResetPolicy.AUTO) {
+			autoReset = true;
+		} else {
+			autoReset = false;
+		}
 	}
 
 	/**
@@ -84,9 +124,9 @@ public class XmlJar2FileResourceLoader extends StreamLoader<ResourceHandler> {
 		Objects.requireNonNull(resourceHandler,
 				DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_1));
 
-		try {
-			readFlag = true;
+		readFlag = true;
 
+		try {
 			SAXReader reader = new SAXReader();
 			Element root = reader.read(in).getRootElement();
 
@@ -97,30 +137,7 @@ public class XmlJar2FileResourceLoader extends StreamLoader<ResourceHandler> {
 			List<Element> infos = (List<Element>) root.elements("info");
 
 			for (Element info : infos) {
-				String defString = info.attributeValue("default");
-				String resString = info.attributeValue("path");
-				String key = info.attributeValue("key");
-
-				if (Objects.isNull(defString) || Objects.isNull(resString) || Objects.isNull(key)) {
-					throw new LoadFailedException(
-							DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_3));
-				}
-
-				URL def = DwarfUtil.class.getResource(defString);
-
-				if (Objects.isNull(def)) {
-					throw new LoadFailedException(
-							DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_4));
-				}
-
-				File res = new File(resString);
-
-				Url2FileResource resource = new Url2FileResource(key, def, res);
-				resourceHandler.add(resource);
-
-				if (autoReset && !resource.isValid()) {
-					resource.reset();
-				}
+				loadInfo(resourceHandler, info);
 			}
 
 		} catch (Exception e) {
@@ -142,10 +159,11 @@ public class XmlJar2FileResourceLoader extends StreamLoader<ResourceHandler> {
 		Objects.requireNonNull(resourceHandler,
 				DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_1));
 
-		final Set<LoadFailedException> exceptions = new LinkedHashSet<>();
-		try {
-			readFlag = true;
+		readFlag = true;
 
+		final Set<LoadFailedException> exceptions = new LinkedHashSet<>();
+
+		try {
 			SAXReader reader = new SAXReader();
 			Element root = reader.read(in).getRootElement();
 
@@ -157,30 +175,7 @@ public class XmlJar2FileResourceLoader extends StreamLoader<ResourceHandler> {
 
 			for (Element info : infos) {
 				try {
-					String defString = info.attributeValue("default");
-					String resString = info.attributeValue("path");
-					String key = info.attributeValue("key");
-
-					if (Objects.isNull(defString) || Objects.isNull(resString) || Objects.isNull(key)) {
-						throw new LoadFailedException(
-								DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_3));
-					}
-
-					URL def = DwarfUtil.class.getResource(defString);
-
-					if (Objects.isNull(def)) {
-						throw new LoadFailedException(
-								DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_4));
-					}
-
-					File res = new File(resString);
-
-					Url2FileResource resource = new Url2FileResource(key, def, res);
-					resourceHandler.add(resource);
-
-					if (autoReset && !resource.isValid()) {
-						resource.reset();
-					}
+					loadInfo(resourceHandler, info);
 				} catch (Exception e) {
 					exceptions.add(new LoadFailedException(
 							DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2FILERESOURCELOADER_2), e));
@@ -195,6 +190,35 @@ public class XmlJar2FileResourceLoader extends StreamLoader<ResourceHandler> {
 
 		return exceptions;
 
+	}
+
+	private void loadInfo(ResourceHandler resourceHandler, Element info) throws Exception {
+		String defString = Optional.ofNullable(info.attributeValue(MARK_DEFAULT))
+				.orElseThrow(EXCEPTION_SUPPLIER_LOSSING_PROPERTY);
+		String resString = Optional.ofNullable(info.attributeValue(MARK_RESOURCE))
+				.orElseThrow(EXCEPTION_SUPPLIER_LOSSING_PROPERTY);
+		String key = Optional.ofNullable(info.attributeValue(MARK_KEY))
+				.orElseThrow(EXCEPTION_SUPPLIER_LOSSING_PROPERTY);
+
+		URL def = Optional.ofNullable(DwarfUtil.class.getResource(defString))
+				.orElseThrow(EXCEPTION_SUPPLIER_INVALID_DEF_PATH);
+
+		File res = new File(resString);
+
+		Url2FileResource resource = new Url2FileResource(key, def, res);
+		resourceHandler.add(resource);
+
+		switch (resourceResetPolicy) {
+		case AUTO:
+			if (resource.isValid())
+				break;
+		case ALWAYS:
+			resource.reset();
+			break;
+		case NEVER:
+		default:
+			break;
+		}
 	}
 
 }
