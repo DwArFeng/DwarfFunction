@@ -93,11 +93,11 @@ public class Test_SyncEntrySet {
 
 	@Test
 	public final void testContainsObject() {
-		assertFalse(entrySet.contains("entry.1"));
 		assertTrue(entrySet.contains(ENTRY_1));
 		assertTrue(entrySet.contains(ENTRY_2));
 		assertTrue(entrySet.contains(ENTRY_3));
 		assertTrue(entrySet.contains(ENTRY_4));
+		assertFalse(entrySet.contains(ENTRY_5));
 		assertTrue(entrySet.contains(new AbstractSettingHandler.AbstractEntry() {
 
 			/**

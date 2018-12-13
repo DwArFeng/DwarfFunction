@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 import java.util.ListIterator;
 
 import org.junit.Before;
@@ -265,7 +266,7 @@ public class Test_DelegateListModel {
 
 	@Test
 	public void testEqualsObject() {
-		ArrayList<String> list = new ArrayList<>(Arrays.asList("0", "1", "2", "3"));
+		List<String> list = new ArrayList<>(Arrays.asList("0", "1", "2", "3"));
 		assertEquals(true, model.equals(list));
 		assertEquals(true, list.equals(model));
 		list.add("1");

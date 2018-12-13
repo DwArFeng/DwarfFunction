@@ -180,7 +180,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 				continue;
 			if (ConfigUtil.nonValid(exconfigEntry))
 				continue;
-			if (delegate.containsKey(exconfigEntry))
+			if (delegate.containsKey(exconfigEntry.getConfigKey()))
 				continue;
 			delegate.put(exconfigEntry.getConfigKey(), new ExconfigBean(exconfigEntry.getConfigFirmProps(),
 					exconfigEntry.getCurrentValue(), exconfigEntry.getValueParser()));
@@ -247,7 +247,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
 			return false;
 		if (ConfigUtil.nonValid(exconfigEntry))
 			return false;
-		if (delegate.containsKey(exconfigEntry))
+		if (delegate.containsKey(exconfigEntry.getConfigKey()))
 			return false;
 		delegate.put(exconfigEntry.getConfigKey(), new ExconfigBean(exconfigEntry.getConfigFirmProps(),
 				exconfigEntry.getCurrentValue(), exconfigEntry.getValueParser()));
