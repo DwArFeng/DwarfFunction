@@ -42,10 +42,8 @@ public class StringOutputStream extends OutputStream {
 	/**
 	 * 生成一个字符集合指定的字符串构造输出流。
 	 * 
-	 * @param charset
-	 *            指定的字符集合。
-	 * @throws NullPointerException
-	 *             入口参数charset 为 <code>null</code>。
+	 * @param charset 指定的字符集合。
+	 * @throws NullPointerException 入口参数charset 为 <code>null</code>。
 	 */
 	public StringOutputStream(Charset charset) {
 		this(charset, false);
@@ -54,12 +52,9 @@ public class StringOutputStream extends OutputStream {
 	/**
 	 * 生成一个字符集指定，并且指定是否刷新的字符串构造输出流。
 	 * 
-	 * @param charset
-	 *            指定的字符集合。
-	 * @param autoFlush
-	 *            是否自动刷新。
-	 * @throws NullPointerException
-	 *             入口参数为 <code>null</code>。
+	 * @param charset   指定的字符集合。
+	 * @param autoFlush 是否自动刷新。
+	 * @throws NullPointerException 入口参数为 <code>null</code>。
 	 */
 	public StringOutputStream(Charset charset, boolean autoFlush) {
 		Objects.requireNonNull(charset, DwarfUtil.getExceptionString(ExceptionStringKey.STRINGOUTPUTSTREAM_0));
@@ -84,7 +79,7 @@ public class StringOutputStream extends OutputStream {
 	 */
 	@Override
 	public void flush() throws IOException {
-		String str = new String(ArrayUtil.unpack(buffer.toArray(new Byte[0])));
+		String str = new String(ArrayUtil.unpack(buffer.toArray(new Byte[0])), charset);
 		stringBuilder.append(str);
 		buffer.clear();
 	}

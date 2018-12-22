@@ -331,4 +331,6 @@ Beta_0.2.0__build_A (maven)
 	优化了 develop 工具中大部分Loader和Saver的结构。
 	为 develop.resource.io.XmlJar2FileResourceLoader 添加了新的构造器方法。
 		允许对读取的资源执行不同的重置策略。
+	修复 basic.io.StringOutputStream 的一个严重 bug。
+		该 bug 会导致其构造器方法 charset 失效。
 	更新了README.md。
