@@ -265,6 +265,8 @@ Beta_0.2.0__build_A (maven)
 	新增 basic.str.StringUtil，提供了额外的文本工具。
 		StringUtil.isMultiline(String) 判断一个文本是否是多行文本。
 		StringUtil.isEmailAddress(String) 判断一个文本是否是电子邮件地址。
+		StringUtil.isInteger(String) 判断一个文本是否是整数。
+		StringUtil.isNumeric(String) 判断一个文本是否是数字（包括浮点数）。
 	新增同步输入/输出流。
 		basic.io.SyncInputStream 同步输入流。
 		basic.io.SyncOutputStream 同步输出流。
