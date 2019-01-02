@@ -36,6 +36,7 @@ public enum ExceptionStringKey implements Name {
 	MUALISTMODEL_0(new DefaultName("MuaListModel.0")), //
 	MUALISTMODEL_1(new DefaultName("MuaListModel.1")), //
 	STRINGOUTPUTSTREAM_0(new DefaultName("StringOutputStream.0")), //
+	STRINGOUTPUTSTREAM_1(new DefaultName("StringOutputStream.1")), //
 	STRINGINPUTSTREAM_0(new DefaultName("StringInputStream.0")), //
 	STRINGINPUTSTREAM_1(new DefaultName("StringInputStream.1")), //
 	STRINGINPUTSTREAM_2(new DefaultName("StringInputStream.2")), //
