@@ -336,4 +336,5 @@ Beta_0.2.0__build_A (maven)
 	修复 basic.io.StringOutputStream 的两个严重 bug。
 		会导致其构造器方法 charset 失效的bug。
 		会导致多种编码输出在flush之后输出乱码的bug。
+	优化了 basic.io.IOUtil.trans(InputStream, OutputStream, int) 的算法。
 	更新了README.md。
