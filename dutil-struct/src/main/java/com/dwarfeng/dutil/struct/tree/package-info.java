@@ -6,4 +6,4 @@
  * @author DwArFeng
  * @since 0.2.0-beta
  */
-package com.dwarfeng.dutil.dstruc.tree;
+package com.dwarfeng.dutil.struct.tree;

@@ -1,4 +1,4 @@
-package com.dwarfeng.dutil.dstruc.tree;
+package com.dwarfeng.dutil.struct.tree;
 
 import java.util.Collection;
 import java.util.ListIterator;

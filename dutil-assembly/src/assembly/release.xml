@@ -1,0 +1,28 @@
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+	<id>release</id>
+
+	<formats>
+		<format>dir</format>
+	</formats>
+
+	<includeBaseDirectory>false</includeBaseDirectory>
+
+	<moduleSets>
+		<moduleSet>
+			<useAllReactorProjects>true</useAllReactorProjects>
+			<includes>
+				<include>com.dwarfeng:dutil-basic</include>
+				<include>com.dwarfeng:dutil-demo</include>
+				<include>com.dwarfeng:dutil-detool</include>
+				<include>com.dwarfeng:dutil-develop</include>
+				<include>com.dwarfeng:dutil-struct</include>
+			</includes>
+			<binaries>
+				<outputDirectory></outputDirectory>
+				<unpack>false</unpack>
+			</binaries>
+		</moduleSet>
+	</moduleSets>
+</assembly>

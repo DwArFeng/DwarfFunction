@@ -9,12 +9,13 @@
 		<groupId>com.dwarfeng</groupId>
 		<artifactId>dutil</artifactId>
 		<version>beta-0.2.0.a-SNAPSHOT</version>
-		<relativePath>..</relativePath>
 	</parent>
 
-	<artifactId>dutil-basic</artifactId>
-	<name>dutil-basic</name>
+	<artifactId>dutil-assembly</artifactId>
+	<name>dutil-assembly</name>
 	<url>http://maven.apache.org</url>
+
+	<packaging>pom</packaging>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -24,17 +25,32 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
+			<groupId>com.dwarfeng</groupId>
+			<artifactId>dutil-basic</artifactId>
 		</dependency>
 	</dependencies>
 
 	<build>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-			</resource>
-		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<id>dutil-release</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptors>
+								<descriptor>src/assembly/release.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
 	</build>
 </project>
