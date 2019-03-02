@@ -20,6 +20,7 @@ public enum ExceptionStringKey implements Name {
 	CLASSUTIL_1("ClassUtil.1"), //
 	CLASSUTIL_2("ClassUtil.2"), //
 	CLASSUTIL_3("ClassUtil.3"), //
+	CLASSUTIL_4("ClassUtil.4"), //
 	DUPLICATEIDEXCEPTION_0("DuplicateIdException.0"), //
 	TOSTRINGCOMPARATOR_0("ToStringComparator.0"), //
 	JADJUSTABLEBORDERPANEL_0("JAdjustableBorderPanel.0"), //
@@ -358,7 +359,13 @@ public enum ExceptionStringKey implements Name {
 	ATTRIBUTECOMPLEX_8("AttributeComplex.8"), //
 	UUIDUTIL_0("UUIDUtil.0"), //
 	UUIDUTIL_1("UUIDUtil.1"), //
-
+	MAPPINGTABLEMODEL_0("MappingTableModel.0"), //
+	MAPPINGTABLEMODEL_1("MappingTableModel.1"), //
+	MAPPINGTABLEMODEL_2("MappingTableModel.2"),//
+	MAPPINGTABLEMODEL_3("MappingTableModel.3"),//
+	MAPPINGTABLEMODEL_4("MappingTableModel.4"),//
+	MAPPINGTABLEMODEL_5("MappingTableModel.5"),//
+	
 	;
 
 	private String name;

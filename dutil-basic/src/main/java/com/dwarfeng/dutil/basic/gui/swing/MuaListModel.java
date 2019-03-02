@@ -42,10 +42,8 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 	/**
 	 * 生成一个由指定列表实现的列表模型。
 	 * 
-	 * @param delegate
-	 *            指定的列表。
-	 * @throws NullPointerException
-	 *             入口参数为 <code>null</code>
+	 * @param delegate 指定的列表。
+	 * @throws NullPointerException 入口参数为 <code>null</code>
 	 */
 	public MuaListModel(List<E> delegate) {
 		Objects.requireNonNull(delegate, DwarfUtil.getExceptionString(ExceptionStringKey.MUALISTMODEL_0));
@@ -205,7 +203,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 		int index = delegate.size();
 		boolean aFlag = delegate.addAll(c);
 		if (aFlag == true) {
-			fireIntervalAdded(this, index, delegate.size());
+			fireIntervalAdded(this, index, Math.max(index, delegate.size() - 1));
 		}
 		return aFlag;
 	}
@@ -219,7 +217,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 		int aIndex = delegate.size();
 		boolean aFlag = delegate.addAll(index, c);
 		if (aFlag == true) {
-			fireIntervalAdded(this, index, index + delegate.size() - aIndex);
+			fireIntervalAdded(this, index, Math.max(index, index + delegate.size() - aIndex - 1));
 		}
 		return aFlag;
 	}
@@ -596,6 +594,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 		 */
 		@Override
 		public boolean addAll(Collection<? extends E> c) {
+			// TODO 此处逻辑有误，虽然结果正确，但是侦听器会触发多次。
 			Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.MUALISTMODEL_1));
 			boolean aFlag = false;
 			for (E e : c) {
@@ -610,6 +609,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
 		 */
 		@Override
 		public boolean addAll(int index, Collection<? extends E> c) {
+			// TODO 此处逻辑有误，虽然结果正确，但是侦听器会触发多次。
 			Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.MUALISTMODEL_1));
 			int size = subDelegate.size();
 			int i = 0;
