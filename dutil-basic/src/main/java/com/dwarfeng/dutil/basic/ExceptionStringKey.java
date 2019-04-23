@@ -356,6 +356,8 @@ public enum ExceptionStringKey implements Name {
 	ATTRIBUTECOMPLEX_6("AttributeComplex.6"), //
 	ATTRIBUTECOMPLEX_7("AttributeComplex.7"), //
 	ATTRIBUTECOMPLEX_8("AttributeComplex.8"), //
+	UUIDUTIL_0("UUIDUtil.0"), //
+	UUIDUTIL_1("UUIDUtil.1"), //
 
 	;
 

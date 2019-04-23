@@ -20,7 +20,7 @@ Alpha_0.2.0_20161101_build_A 与之前的版本不兼容
 	新建 dutil.basic.num.unit包，用于放置单位枚举。
 	更改 dutil.basic.num.MusValueable 为 dutil.basic.num.NumberValue。
 	新建 NumberValueFilter，即数字值过滤器。
-	删除 dutil.basic.cna.IDMap， 将会在之后以接口的方式重写。
+	删除 dutil.basic.cna.IDMap，将会在之后以接口的方式重写。
 	删除 dtuil.basic.cna.DumplicateIdException 将会在将来以别的方式进行替代。
 	
 Alpha_0.3.0_20161101_build_A
@@ -137,7 +137,7 @@ Beta_0.1.1_20170413_build_B
 	修改了 dutil.basic.cna.model包中的一些 bug：
 		DelegateKeySet 和 DelegateKeyList 的 get 方法在入口参数为 null 的时候行为异常。
 	修改了 dutil.develop.backgr中的一些不足：
-		修改 dutil.develop.backgr.Task 接口， getException() 改为 getThrowable()，这样，即使在 Task 运行的时候抛出 Error，也能正常捕捉。
+		修改 dutil.develop.backgr.Task 接口，getException() 改为 getThrowable()，这样，即使在 Task 运行的时候抛出 Error，也能正常捕捉。
 	完善了 dutil.develop.cfg 中的方法：
 		将 dutil.develop.cfg.io.PropConfigSaver.countinuousSave(CurrentValueContainer) 的返回集合改成了 LinkedHashSet ，这样的话，异常可以按照产生的顺序进行迭代。
 		将 dutil.develop.cfg.io.PropConfigLoadr.countinuousLoad(CurrentValueContainer) 的返回集合改成了 LinkedHashSet，道理同上。
@@ -321,7 +321,7 @@ Beta_0.2.0__build_A (maven)
 	废弃 basic.prog.VersionType 中不符合规范的 SNAPSHOTS，改为SNAPSHOT。
 	废弃 basic.num.NumberValueFilter 类，使用 basic.prog.Filter<NumberValue>。
 	为 basic.num.Interval 添加了新的重载方法。
-	新增 basic.gui.swing.MuaComboBoxModel<E> —— 实现了 List<E> 的下拉菜单模型。
+	新增 basic.gui.swing.MuaComboBoxModel<E>，实现了 List<E> 的下拉菜单模型。
 	新增 basic.cna.AttributeComplex 类，用来解决Java方法中返回多个值的问题。
 	在 develop.backgr.BackgroundUtil 中新增方法
 		BackgroundUtil.newTaskFromRunnable(Runnable, Set<TaskObverser>)
@@ -337,4 +337,6 @@ Beta_0.2.0__build_A (maven)
 		会导致其构造器方法 charset 失效的bug。
 		会导致多种编码输出在flush之后输出乱码的bug。
 	优化了 basic.io.IOUtil.trans(InputStream, OutputStream, int) 的算法。
+	新增 com.dwarfeng.dutil.basic.str.UUIDUtil
+		com.dwarfeng.dutil.basic.str.UUIDUtil.toDenseString(UUID)，实现了UUID 36位到22位的压缩算法。
 	更新了README.md。
