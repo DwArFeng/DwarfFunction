@@ -243,7 +243,7 @@ Beta_0.1.5_20171203_build_C (maven)
 	调整资源和test文件位置。
 	调整了部分test的测试方法，以适应maven。
 	
-Beta_0.2.0__build_A (maven)
+Beta_0.2.0_20190602_build_A (maven)
 	注意，该版本不兼容之前的版本！
 	不兼容的更改：
 		将 dutil.basic.io.IoUtil更名为 dutil.basic.io.IOUtil。

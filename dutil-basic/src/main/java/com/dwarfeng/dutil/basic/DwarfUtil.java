@@ -48,7 +48,7 @@ public final class DwarfUtil {
 			CT.class.getClassLoader());
 
 	private static final Version version = new DefaultVersion.Builder().setType(VersionType.BETA)
-			.setFirstVersion((byte) 0).setSecondVersion((byte) 2).setThirdVersion((byte) 0).setBuildDate("")
+			.setFirstVersion((byte) 0).setSecondVersion((byte) 2).setThirdVersion((byte) 0).setBuildDate("20190602")
 			.setBuildVersion('A').build();
 
 	/**

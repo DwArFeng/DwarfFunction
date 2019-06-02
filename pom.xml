@@ -6,7 +6,7 @@
 
 	<groupId>com.dwarfeng</groupId>
 	<artifactId>dutil</artifactId>
-	<version>beta-0.2.0.a-SNAPSHOT</version>
+	<version>beta-0.2.0.a</version>
 
 	<name>dutil</name>
 	<url>http://maven.apache.org</url>
@@ -78,7 +78,7 @@
 			<dependency>
 				<groupId>com.dwarfeng</groupId>
 				<artifactId>dutil-basic</artifactId>
-				<version>beta-0.2.0.a-SNAPSHOT</version>
+				<version>beta-0.2.0.a</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.logging.log4j</groupId>
