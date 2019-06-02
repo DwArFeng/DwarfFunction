@@ -49,7 +49,7 @@ public final class DwarfUtil {
 
 	private static final Version version = new DefaultVersion.Builder().setType(VersionType.BETA)
 			.setFirstVersion((byte) 0).setSecondVersion((byte) 2).setThirdVersion((byte) 1).setBuildDate("")
-			.setBuildVersion('A').build();
+			.setBuildVersion('A').setSnapshot(true).build();
 
 	/**
 	 * 根据异常文本字段主键枚举返回其主键对应的文本。

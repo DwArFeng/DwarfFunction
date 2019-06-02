@@ -343,3 +343,6 @@ Beta_0.2.0_20190602_build_A (maven)
 	更新了README.md。
 	
 Beta_0.2.1__build_A(maven)
+	针对 com.dwarfeng.dutil.basic.prog 包中的版本机制进行了一系列修改。
+		过期 com.dwarfeng.dutil.basic.prog.VersionType.SNAPSHOT，因为预览版应该是版本的属性，而不是版本的类型。
+		更新 com.dwarfeng.dutil.basic.prog.DefaultVersion，在构造器方法中添加了snapshot的属性，并对所有的预览版本输出_SNAPSHOT的后缀。

@@ -16,10 +16,17 @@ public enum VersionType implements Name {
 	BETA("Beta"),
 	/** 发布版本 */
 	RELEASE("Release"),
-	/** 由于不符合规范，已经改为SNAPSHOT。 */
+	/**
+	 * @deprecated 由于不符合规范，已经改为SNAPSHOT。
+	 */
 	@Deprecated
 	SNAPSHOTS("Snapshots"),
-	/** 预览版本。 */
+	/**
+	 * 预览版本
+	 * 
+	 * @deprecated SNAPSHOT 不应该是版本的类型，而应该是版本的属性，故不应该出现在这个地方。
+	 */
+	@Deprecated
 	SNAPSHOT("Snapshot"),
 
 	;

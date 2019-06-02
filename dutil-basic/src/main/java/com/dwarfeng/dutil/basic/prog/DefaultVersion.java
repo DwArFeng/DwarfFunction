@@ -11,25 +11,29 @@ package com.dwarfeng.dutil.basic.prog;
  */
 public class DefaultVersion implements Version {
 
-	/** 表示编译版本的字段 */
+	/** 表示编译版本的字段。 */
 	protected static final String BUILD_TEXT = "build";
-	/** 版本数字段之间的分隔符 */
+	/** 表示预览版本的字段。 */
+	protected static final String SNAPSHOT_TEXT = "SNAPSHOT";
+	/** 版本数字段之间的分隔符。 */
 	protected static final char VERSION_SEP = '.';
-	/** 版本域字段之间的分隔符 */
+	/** 版本域字段之间的分隔符。 */
 	protected static final char FIELD_SEP = '_';
 
-	/** 版本的类型 */
+	/** 版本的类型。 */
 	protected final VersionType type;
-	/** 第一个版本号 */
+	/** 第一个版本号。 */
 	protected final byte firstVersion;
-	/** 第二个版本号 */
+	/** 第二个版本号。 */
 	protected final byte secondVersion;
-	/** 第三个版本号 */
+	/** 第三个版本号。 */
 	protected final byte thirdVersion;
-	/** 创建日期 */
+	/** 创建日期。 */
 	protected final String buildDate;
-	/** 创建版本 */
+	/** 创建版本。 */
 	protected final char buildVersion;
+	/** 是否是预览版。 */
+	protected final boolean snapshot;
 
 	/**
 	 * 默认版本的构造者。
@@ -45,6 +49,7 @@ public class DefaultVersion implements Version {
 		private byte thirdVersion = 0;
 		private String buildDate = "19700101";
 		private char buildVersion = 'A';
+		private boolean snapshot = false;
 
 		/**
 		 * 构造默认的版本构造者。
@@ -203,23 +208,37 @@ public class DefaultVersion implements Version {
 		}
 
 		/**
+		 * 设置构造器中的预览版标记。
+		 * 
+		 * @param snapshot
+		 *            指定的预览版标记。
+		 * @return 构造器自身。
+		 */
+		public Builder setSnapshot(boolean snapshot) {
+			this.snapshot = snapshot;
+			return this;
+		}
+
+		/**
 		 * {@inheritDoc}
 		 */
 		@Override
 		public DefaultVersion build() {
-			return new DefaultVersion(type, firstVersion, secondVersion, thirdVersion, buildDate, buildVersion);
+			return new DefaultVersion(type, firstVersion, secondVersion, thirdVersion, buildDate, buildVersion,
+					snapshot);
 		}
 
 	}
 
 	private DefaultVersion(VersionType type, byte firstVersion, byte secondVersion, byte thirdVersion, String buildDate,
-			char buildVersion) {
+			char buildVersion, boolean snapshot) {
 		this.type = type;
 		this.firstVersion = firstVersion;
 		this.secondVersion = secondVersion;
 		this.thirdVersion = thirdVersion;
 		this.buildDate = buildDate;
 		this.buildVersion = Character.toUpperCase(buildVersion);
+		this.snapshot = snapshot;
 	}
 
 	/**
@@ -236,7 +255,8 @@ public class DefaultVersion implements Version {
 	@Override
 	public String getLongName() {
 		return type.getName() + FIELD_SEP + firstVersion + VERSION_SEP + secondVersion + VERSION_SEP + thirdVersion
-				+ FIELD_SEP + buildDate + FIELD_SEP + BUILD_TEXT + FIELD_SEP + buildVersion;
+				+ FIELD_SEP + buildDate + FIELD_SEP + BUILD_TEXT + FIELD_SEP + buildVersion
+				+ (snapshot ? FIELD_SEP + SNAPSHOT_TEXT : "");
 	}
 
 	/**
@@ -244,7 +264,8 @@ public class DefaultVersion implements Version {
 	 */
 	@Override
 	public String getShortName() {
-		return type.getName() + FIELD_SEP + firstVersion + VERSION_SEP + secondVersion + VERSION_SEP + thirdVersion;
+		return type.getName() + FIELD_SEP + firstVersion + VERSION_SEP + secondVersion + VERSION_SEP + thirdVersion
+				+ (snapshot ? FIELD_SEP + SNAPSHOT_TEXT : "");
 	}
 
 	/**
