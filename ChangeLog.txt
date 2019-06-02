@@ -341,3 +341,5 @@ Beta_0.2.0_20190602_build_A (maven)
 		com.dwarfeng.dutil.basic.str.UUIDUtil.toDenseString(UUID)，实现了UUID 36位到22位的压缩算法。
 	新增 com.dwarfeng.dutil.basic.gui.swing.MappingTableModel，实现了实现 List 接口的基于注解配置的 TableModel。
 	更新了README.md。
+	
+Beta_0.2.1__build_A(maven)
