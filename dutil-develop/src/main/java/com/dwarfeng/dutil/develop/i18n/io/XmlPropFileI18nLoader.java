@@ -2,12 +2,15 @@ package com.dwarfeng.dutil.develop.i18n.io;
 
 import java.io.File;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
+import java.util.function.Supplier;
 
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
@@ -41,6 +44,16 @@ import com.dwarfeng.dutil.develop.i18n.PropUrlI18nInfo;
  */
 public class XmlPropFileI18nLoader extends StreamLoader<I18nHandler> {
 
+	protected static final String MARK_INFO_DEFAULT = "info-default";
+	protected static final String MARK_INFO = "info";
+
+	protected static final String MARK_LOCALE = "locale";
+	protected static final String MARK_NAME = "name";
+	protected static final String MARK_FILE = "file";
+
+	protected static final Supplier<? extends IllegalArgumentException> EXCEPTION_SUPPLIER_LOSSING_PROPERTY = () -> new IllegalArgumentException(
+			DwarfUtil.getExceptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_3));
+
 	private boolean readFlag = false;
 
 	/**
@@ -71,41 +84,16 @@ public class XmlPropFileI18nLoader extends StreamLoader<I18nHandler> {
 			SAXReader reader = new SAXReader();
 			Element root = reader.read(in).getRootElement();
 
-			Element info_default;
-			if (Objects.nonNull(info_default = root.element("info-default"))) {
-				String defaultNameString = info_default.attributeValue("name");
-				String defaultFileString = info_default.attributeValue("file");
-
-				if (Objects.isNull(defaultNameString) || Objects.isNull(defaultFileString)) {
-					throw new LoadFailedException(
-							DwarfUtil.getExceptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_3));
-				}
-
-				URL defaultUrl = new File(defaultFileString).toURI().toURL();
-
-				i18nHandler.add(new PropUrlI18nInfo(null, defaultNameString, defaultUrl));
-			}
+			loadDefaultInfo(i18nHandler, root);
 
 			/*
 			 * 根据 dom4j 的相关说明，此处转换是安全的。
 			 */
 			@SuppressWarnings("unchecked")
-			List<Element> infos = (List<Element>) root.elements("info");
+			List<Element> infos = (List<Element>) root.elements(MARK_INFO);
 
 			for (Element info : infos) {
-				String localeString = info.attributeValue("locale");
-				String nameString = info.attributeValue("name");
-				String fileString = info.attributeValue("file");
-
-				if (Objects.isNull(localeString) || Objects.isNull(nameString) || Objects.isNull(fileString)) {
-					throw new LoadFailedException(
-							DwarfUtil.getExceptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_3));
-				}
-
-				URL url = new File(fileString).toURI().toURL();
-				Locale locale = FactoriesByString.newLocale(localeString);
-
-				i18nHandler.add(new PropUrlI18nInfo(locale, nameString, url));
+				loadInfo(i18nHandler, info);
 			}
 
 		} catch (Exception e) {
@@ -132,20 +120,7 @@ public class XmlPropFileI18nLoader extends StreamLoader<I18nHandler> {
 			Element root = reader.read(in).getRootElement();
 
 			try {
-				Element info_default;
-				if (Objects.nonNull(info_default = root.element("info-default"))) {
-					String defaultNameString = info_default.attributeValue("name");
-					String defaultFileString = info_default.attributeValue("file");
-
-					if (Objects.isNull(defaultNameString) || Objects.isNull(defaultFileString)) {
-						throw new LoadFailedException(
-								DwarfUtil.getExceptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_3));
-					}
-
-					URL defaultUrl = new File(defaultFileString).toURI().toURL();
-
-					i18nHandler.add(new PropUrlI18nInfo(null, defaultNameString, defaultUrl));
-				}
+				loadDefaultInfo(i18nHandler, root);
 			} catch (Exception e) {
 				exceptions.add(new LoadFailedException(
 						DwarfUtil.getExceptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_2), e));
@@ -155,23 +130,11 @@ public class XmlPropFileI18nLoader extends StreamLoader<I18nHandler> {
 			 * 根据 dom4j 的相关说明，此处转换是安全的。
 			 */
 			@SuppressWarnings("unchecked")
-			List<Element> infos = (List<Element>) root.elements("info");
+			List<Element> infos = (List<Element>) root.elements(MARK_INFO);
 
 			for (Element info : infos) {
 				try {
-					String localeString = info.attributeValue("locale");
-					String nameString = info.attributeValue("name");
-					String fileString = info.attributeValue("file");
-
-					if (Objects.isNull(localeString) || Objects.isNull(nameString) || Objects.isNull(fileString)) {
-						throw new LoadFailedException(
-								DwarfUtil.getExceptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_3));
-					}
-
-					URL url = new File(fileString).toURI().toURL();
-					Locale locale = FactoriesByString.newLocale(localeString);
-
-					i18nHandler.add(new PropUrlI18nInfo(locale, nameString, url));
+					loadInfo(i18nHandler, info);
 				} catch (Exception e) {
 					exceptions.add(new LoadFailedException(
 							DwarfUtil.getExceptionString(ExceptionStringKey.XMLPROPFILEI18NLOADER_2), e));
@@ -186,6 +149,39 @@ public class XmlPropFileI18nLoader extends StreamLoader<I18nHandler> {
 
 		return exceptions;
 
+	}
+
+	private void loadDefaultInfo(I18nHandler i18nHandler, Element root)
+			throws LoadFailedException, MalformedURLException {
+		Element defaultInfo;
+
+		// 默认信息存在判断。
+		// 由于默认信息不是必须存在的，所以应该首先判断默认信息是否存在，如果存在，执行相应逻辑；如果不存在，直接退出。
+		if (Objects.nonNull(defaultInfo = root.element(MARK_INFO_DEFAULT))) {
+			// 信息存在，执行相应逻辑。
+			String defaultNameString = Optional.ofNullable(defaultInfo.attributeValue(MARK_NAME))
+					.orElseThrow(EXCEPTION_SUPPLIER_LOSSING_PROPERTY);
+			String defaultFileString = Optional.ofNullable(defaultInfo.attributeValue(MARK_FILE))
+					.orElseThrow(EXCEPTION_SUPPLIER_LOSSING_PROPERTY);
+
+			URL defaultUrl = new File(defaultFileString).toURI().toURL();
+
+			i18nHandler.add(new PropUrlI18nInfo(null, defaultNameString, defaultUrl));
+		}
+	}
+
+	private void loadInfo(I18nHandler i18nHandler, Element info) throws LoadFailedException, MalformedURLException {
+		String localeString = Optional.ofNullable(info.attributeValue(MARK_LOCALE))
+				.orElseThrow(EXCEPTION_SUPPLIER_LOSSING_PROPERTY);
+		String nameString = Optional.ofNullable(info.attributeValue(MARK_NAME))
+				.orElseThrow(EXCEPTION_SUPPLIER_LOSSING_PROPERTY);
+		String fileString = Optional.ofNullable(info.attributeValue(MARK_FILE))
+				.orElseThrow(EXCEPTION_SUPPLIER_LOSSING_PROPERTY);
+
+		URL url = new File(fileString).toURI().toURL();
+		Locale locale = FactoriesByString.newLocale(localeString);
+
+		i18nHandler.add(new PropUrlI18nInfo(locale, nameString, url));
 	}
 
 }

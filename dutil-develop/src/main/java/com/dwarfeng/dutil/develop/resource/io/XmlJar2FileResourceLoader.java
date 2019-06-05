@@ -42,6 +42,8 @@ import com.dwarfeng.dutil.develop.resource.Url2FileResource;
  */
 public class XmlJar2FileResourceLoader extends StreamLoader<ResourceHandler> {
 
+	protected static final String MARK_INFO = "info";
+
 	protected static final String MARK_DEFAULT = "default";
 	protected static final String MARK_RESOURCE = "path";
 	protected static final String MARK_KEY = "key";
@@ -134,7 +136,7 @@ public class XmlJar2FileResourceLoader extends StreamLoader<ResourceHandler> {
 			 * 根据 dom4j 的相关说明，此处转换是安全的。
 			 */
 			@SuppressWarnings("unchecked")
-			List<Element> infos = (List<Element>) root.elements("info");
+			List<Element> infos = (List<Element>) root.elements(MARK_INFO);
 
 			for (Element info : infos) {
 				loadInfo(resourceHandler, info);
@@ -171,7 +173,7 @@ public class XmlJar2FileResourceLoader extends StreamLoader<ResourceHandler> {
 			 * 根据 dom4j 的相关说明，此处转换是安全的。
 			 */
 			@SuppressWarnings("unchecked")
-			List<Element> infos = (List<Element>) root.elements("info");
+			List<Element> infos = (List<Element>) root.elements(MARK_INFO);
 
 			for (Element info : infos) {
 				try {
