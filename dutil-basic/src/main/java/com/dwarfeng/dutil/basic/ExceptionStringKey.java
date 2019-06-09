@@ -366,8 +366,11 @@ public enum ExceptionStringKey implements Name {
 	MAPPINGTABLEMODEL_4("MappingTableModel.4"), //
 	MAPPINGTABLEMODEL_5("MappingTableModel.5"), //
 	MAPPINGTABLEMODEL_6("MappingTableModel.6"), //
-	MAPPINGTABLEMODEL_7("MappingTableModel.7"),//
-	MAPPINGTABLEMODEL_8("MappingTableModel.8"),//
+	MAPPINGTABLEMODEL_7("MappingTableModel.7"), //
+	MAPPINGTABLEMODEL_8("MappingTableModel.8"), //
+	MAPREUSEPOOL_0("MapReusePool.0"), //
+	MAPREUSEPOOL_1("MapReusePool.1"), //
+	MAPREUSEPOOL_2("MapReusePool.2"),//
 
 	;
 
