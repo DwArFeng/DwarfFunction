@@ -23,9 +23,31 @@ import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.cls.ClassUtil;
 
+/**
+ * 映射表格模型。
+ * 
+ * <p>
+ * 映射表格模型本身实现了 {@link List} 接口，本身是一个列表。 并且使用注解将列表中的元素对应的方法映射为表格中的列。
+ * 
+ * @author DwArFeng
+ * @since 0.2.0-beta
+ */
 public class MappingTableModel<E> extends AbstractTableModel implements TableModel, List<E> {
 
-	private static final long serialVersionUID = 8323319554356138146L;
+	private static final long serialVersionUID = 6828473429797783122L;
+
+	/**
+	 * 映射信息集合接口。
+	 * 
+	 * <p>
+	 * 该接口是标记型接口，没有任何方法，仅仅用于在其中定义表格列的注解。
+	 * 
+	 * @author DwArFeng
+	 * @since 0.2.1-beta
+	 */
+	public interface MappingInfos {
+
+	}
 
 	/**
 	 * 设置对象的策略。
@@ -43,6 +65,7 @@ public class MappingTableModel<E> extends AbstractTableModel implements TableMod
 	}
 
 	/**
+	 * 表格列集合注解。
 	 * 
 	 * @author DwArFeng
 	 * @since 0.2.0-beta
@@ -53,14 +76,19 @@ public class MappingTableModel<E> extends AbstractTableModel implements TableMod
 	public @interface TableColumns {
 
 		/**
+		 * 获取注解中的所有表格列。
 		 * 
-		 * @return
+		 * @return 所有的表格列组成的数组。
 		 */
 		public TableColumn[] value();
 
 	}
 
 	/**
+	 * 表格列注解。
+	 * 
+	 * <p>
+	 * 映射表格模型中的核心配置注解。
 	 * 
 	 * @author DwArFeng
 	 * @since 0.2.0-beta
@@ -175,14 +203,51 @@ public class MappingTableModel<E> extends AbstractTableModel implements TableMod
 	/** 模型中的映射方法组成的数组。 */
 	private final List<TableColumnInfo> tableColumnInfos = new ArrayList<>();
 
+	/**
+	 * 根据指定的类来生成新的映射表格模型。
+	 * 
+	 * <p>
+	 * 指定的类需要定义至少一个 {@link TableColumn}。
+	 * 
+	 * @deprecated {@link TableColumn} 数组的定义由数据类本身转移到标识接口 {@link MappingInfos}
+	 *             中，因此该方法已过时，请使用 {@link #MappingTableModel(Class, Class)}。
+	 * 
+	 * @param clazz 指定的类。
+	 * @throws NullPointerException     指定的入口参数为 <code> null </code>。
+	 * @throws IllegalArgumentException TableColumn 配置与指定对象不匹配。
+	 */
 	public MappingTableModel(Class<? extends E> clazz) {
 		this(clazz, new ArrayList<>());
 	}
 
 	/**
+	 * 根据指定的类与指定的映射信息集合接口生成新的映射表格模型。
 	 * 
-	 * @param clazz
-	 * @param delegate
+	 * <p>
+	 * 指定的映射信息集合接口需要定义至少一个 {@link TableColumn}。
+	 * 
+	 * @param clazz        指定的类。
+	 * @param mappingInfos 指定的映射信息集合接口的类。
+	 * @throws NullPointerException     指定的入口参数为 <code> null </code>。
+	 * @throws IllegalArgumentException TableColumn 配置与指定对象不匹配。
+	 */
+	public MappingTableModel(Class<? extends E> clazz, Class<? extends MappingInfos> mappingInfos) {
+		this(clazz, mappingInfos, new ArrayList<>());
+	}
+
+	/**
+	 * 根据指定的类和指定的列表代理生成一个新的映射表格模型。
+	 * 
+	 * <p>
+	 * 指定的类需要定义至少一个 {@link TableColumn}。
+	 * 
+	 * @deprecated {@link TableColumn} 数组的定义由数据类本身转移到标识接口 {@link MappingInfos}
+	 *             中，因此该方法已过时，请使用 {@link #MappingTableModel(Class, Class, List)}。
+	 * 
+	 * @param clazz    指定的类。
+	 * @param delegate 指定的列表代理。
+	 * @throws NullPointerException     指定的入口参数为 <code> null </code>。
+	 * @throws IllegalArgumentException TableColumn 配置与指定对象不匹配。
 	 */
 	public MappingTableModel(Class<? extends E> clazz, List<E> delegate) {
 		Objects.requireNonNull(clazz, DwarfUtil.getExceptionString(ExceptionStringKey.MAPPINGTABLEMODEL_0));
@@ -190,9 +255,45 @@ public class MappingTableModel<E> extends AbstractTableModel implements TableMod
 
 		this.delegate = delegate;
 
+		// 判断指定的映射信息是否存在 mappingInfos 注解。
 		TableColumns tableColumns = clazz.getAnnotation(TableColumns.class);
 		if (Objects.isNull(tableColumns)) {
-			throw new IllegalStateException("clazz中没有TableColumns注解");
+			throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.MAPPINGTABLEMODEL_7));
+		}
+
+		// 遍历clazz类中的所有TableMapping注解，生成tableColumnInfo。
+		try {
+			for (TableColumn tableColumn : tableColumns.value()) {
+				tableColumnInfos.add(makeTableColumnInfo(clazz, tableColumn));
+			}
+		} catch (NoSuchMethodException | SecurityException | IllegalStateException e) {
+			throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.MAPPINGTABLEMODEL_2), e);
+		}
+	}
+
+	/**
+	 * 根据指定的类，指定的映射信息集合接口，指定的列表代理生成一个新的映射表格模型。
+	 * 
+	 * <p>
+	 * 指定的类需要定义至少一个 {@link TableColumn}。
+	 * 
+	 * @param clazz        指定的类。
+	 * @param mappingInfos 指定的映射信息集合接口。
+	 * @param delegate     指定的列表代理。
+	 * @throws NullPointerException     指定的入口参数为 <code> null </code>。
+	 * @throws IllegalArgumentException TableColumn 配置与指定对象不匹配。
+	 */
+	public MappingTableModel(Class<? extends E> clazz, Class<? extends MappingInfos> mappingInfos, List<E> delegate) {
+		Objects.requireNonNull(mappingInfos, DwarfUtil.getExceptionString(ExceptionStringKey.MAPPINGTABLEMODEL_6));
+		Objects.requireNonNull(clazz, DwarfUtil.getExceptionString(ExceptionStringKey.MAPPINGTABLEMODEL_0));
+		Objects.requireNonNull(delegate, DwarfUtil.getExceptionString(ExceptionStringKey.MAPPINGTABLEMODEL_1));
+
+		this.delegate = delegate;
+
+		// 判断指定的映射信息是否存在 mappingInfos 注解。
+		TableColumns tableColumns = mappingInfos.getAnnotation(TableColumns.class);
+		if (Objects.isNull(tableColumns)) {
+			throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.MAPPINGTABLEMODEL_8));
 		}
 
 		// 遍历clazz类中的所有TableMapping注解，生成tableColumnInfo。
@@ -1137,25 +1238,24 @@ public class MappingTableModel<E> extends AbstractTableModel implements TableMod
 	 * 
 	 * <p>
 	 * Compares the specified object with this list for equality. Returns
-	 * {@code true} if and only if the specified object is also a list, both
-	 * lists have the same size, and all corresponding pairs of elements in the
-	 * two lists are <i>equal</i>. (Two elements {@code e1} and {@code e2} are
-	 * <i>equal</i> if {@code (e1==null ? e2==null :
-	 * e1.equals(e2))}.) In other words, two lists are defined to be equal if
-	 * they contain the same elements in the same order.
+	 * {@code true} if and only if the specified object is also a list, both lists
+	 * have the same size, and all corresponding pairs of elements in the two lists
+	 * are <i>equal</i>. (Two elements {@code e1} and {@code e2} are <i>equal</i> if
+	 * {@code (e1==null ? e2==null :
+	 * e1.equals(e2))}.) In other words, two lists are defined to be equal if they
+	 * contain the same elements in the same order.
 	 * <p>
 	 *
-	 * This implementation first checks if the specified object is this list. If
-	 * so, it returns {@code true}; if not, it checks if the specified object is
-	 * a list. If not, it returns {@code false}; if so, it iterates over both
-	 * lists, comparing corresponding pairs of elements. If any comparison
-	 * returns {@code false}, this method returns {@code false}. If either
-	 * iterator runs out of elements before the other it returns {@code false}
-	 * (as the lists are of unequal length); otherwise it returns {@code true}
-	 * when the iterations complete.
+	 * This implementation first checks if the specified object is this list. If so,
+	 * it returns {@code true}; if not, it checks if the specified object is a list.
+	 * If not, it returns {@code false}; if so, it iterates over both lists,
+	 * comparing corresponding pairs of elements. If any comparison returns
+	 * {@code false}, this method returns {@code false}. If either iterator runs out
+	 * of elements before the other it returns {@code false} (as the lists are of
+	 * unequal length); otherwise it returns {@code true} when the iterations
+	 * complete.
 	 *
-	 * @param o
-	 *            the object to be compared for equality with this list
+	 * @param o the object to be compared for equality with this list
 	 * @return {@code true} if the specified object is equal to this list
 	 */
 	@Override
@@ -1200,11 +1300,11 @@ public class MappingTableModel<E> extends AbstractTableModel implements TableMod
 	 * 符合 Collection 接口的 toString 规则。
 	 * 
 	 * <p>
-	 * Returns a string representation of this collection. The string
-	 * representation consists of a list of the collection's elements in the
-	 * order they are returned by its iterator, enclosed in square brackets
-	 * (<tt>"[]"</tt>). Adjacent elements are separated by the characters
-	 * <tt>", "</tt> (comma and space). Elements are converted to strings as by
+	 * Returns a string representation of this collection. The string representation
+	 * consists of a list of the collection's elements in the order they are
+	 * returned by its iterator, enclosed in square brackets (<tt>"[]"</tt>).
+	 * Adjacent elements are separated by the characters <tt>", "</tt> (comma and
+	 * space). Elements are converted to strings as by
 	 * {@link String#valueOf(Object)}.
 	 *
 	 * @return a string representation of this collection

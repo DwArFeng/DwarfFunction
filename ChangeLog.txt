@@ -350,3 +350,4 @@ Beta_0.2.1__build_A(maven)
 	优化 com.dwarfeng.dutil.develop.i18n.io.XmlPropResourceI18nLoader 的代码结构。
 	优化 com.dwarfeng.dutil.develop.i18n.io.XmlPropFileI18nLoader 的代码结构。
 	优化 com.dwarfeng.dutil.develop.resource.io.XmlJar2FileResourceLoader 的代码结构。
+	优化 com.dwarfeng.dutil.basic.gui.swing.MappingTableModel 类代码，将注解的配置从维护对象转移到映射信息接口中。

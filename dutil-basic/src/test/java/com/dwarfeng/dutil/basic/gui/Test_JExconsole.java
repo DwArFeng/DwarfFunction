@@ -1,9 +1,8 @@
-package com.dwarfeng.dutil.basic.gui.swing;
+package com.dwarfeng.dutil.basic.gui;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Scanner;
 
-import com.dwarfeng.dutil.basic.gui.awt.ComponentTester;
 import com.dwarfeng.dutil.basic.gui.swing.JExconsole;
 import com.dwarfeng.dutil.basic.gui.swing.SwingUtil;
 import com.dwarfeng.dutil.basic.io.CT;

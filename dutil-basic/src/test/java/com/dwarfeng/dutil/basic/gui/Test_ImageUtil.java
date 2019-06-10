@@ -1,4 +1,4 @@
-package com.dwarfeng.dutil.basic.gui.awt;
+package com.dwarfeng.dutil.basic.gui;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -10,6 +10,10 @@ import static org.junit.Assert.fail;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.dwarfeng.dutil.basic.gui.awt.CommonIconLib;
+import com.dwarfeng.dutil.basic.gui.awt.ImageSize;
+import com.dwarfeng.dutil.basic.gui.awt.ImageUtil;
+import com.dwarfeng.dutil.basic.gui.awt.Size2D;
 import com.dwarfeng.dutil.basic.num.IntNumberValue;
 import com.dwarfeng.dutil.basic.num.NumberValue;
 import com.dwarfeng.dutil.basic.num.OutOfIntervalException;

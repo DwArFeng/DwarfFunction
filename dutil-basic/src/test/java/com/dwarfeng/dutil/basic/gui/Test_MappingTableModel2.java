@@ -1,4 +1,4 @@
-package com.dwarfeng.dutil.basic.gui.swing;
+package com.dwarfeng.dutil.basic.gui;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -21,15 +21,21 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.dwarfeng.dutil.basic.gui.swing.MappingTableModel;
 import com.dwarfeng.dutil.basic.gui.swing.MappingTableModel.ColumnValueSettingPolicy;
+import com.dwarfeng.dutil.basic.gui.swing.MappingTableModel.MappingInfos;
 import com.dwarfeng.dutil.basic.gui.swing.MappingTableModel.TableColumn;
 
-public class Test_MappingTableModel {
+public class Test_MappingTableModel2 {
 
 	@TableColumn(columnValueGetterName = "getId", columnName = "id", columnClass = int.class, editable = false)
 	@TableColumn(columnValueGetterName = "getName", columnName = "name", columnClass = String.class, editable = true, columnValueSettingPolicy = ColumnValueSettingPolicy.NOTIFICATION_ONLY)
 	@TableColumn(columnValueGetterName = "getSalary", columnName = "salary", columnClass = double.class, editable = true, columnValueSettingPolicy = ColumnValueSettingPolicy.CALL_SETTER, columnValueSetterName = "setSalary")
-	private final static class Employee {
+	private final static class EmployeeMappingInfos implements MappingInfos {
+
+	}
+
+	public final static class Employee {
 
 		private int id;
 		private String name;
@@ -41,38 +47,26 @@ public class Test_MappingTableModel {
 			this.salary = salary;
 		}
 
-		// 该方法通过反射的方式调用，并非没有调用。
-		@SuppressWarnings("unused")
 		public int getId() {
 			return id;
 		}
 
-		// 该方法通过反射的方式调用，并非没有调用。
-		@SuppressWarnings("unused")
 		public void setId(int id) {
 			this.id = id;
 		}
 
-		// 该方法通过反射的方式调用，并非没有调用。
-		@SuppressWarnings("unused")
 		public String getName() {
 			return name;
 		}
 
-		// 该方法通过反射的方式调用，并非没有调用。
-		@SuppressWarnings("unused")
 		public void setName(String name) {
 			this.name = name;
 		}
 
-		// 该方法通过反射的方式调用，并非没有调用。
-		@SuppressWarnings("unused")
 		public double getSalary() {
 			return salary;
 		}
 
-		// 该方法通过反射的方式调用，并非没有调用。
-		@SuppressWarnings("unused")
 		public void setSalary(double salary) {
 			this.salary = salary;
 		}
@@ -112,7 +106,7 @@ public class Test_MappingTableModel {
 		employees.add(EMPLOYEE_DWARFENG);
 		employees.add(EMPLOYEE_RAE);
 		employees.add(EMPLOYEE_BOSS);
-		tableModel = new MappingTableModel<Test_MappingTableModel.Employee>(Employee.class, employees);
+		tableModel = new MappingTableModel<Employee>(Employee.class, EmployeeMappingInfos.class, employees);
 		tableModelListener = new InterceptorTableModelListener();
 		tableModel.addTableModelListener(tableModelListener);
 	}

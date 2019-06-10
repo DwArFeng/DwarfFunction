@@ -1,4 +1,4 @@
-package com.dwarfeng.dutil.basic.gui.awt;
+package com.dwarfeng.dutil.basic.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Component;

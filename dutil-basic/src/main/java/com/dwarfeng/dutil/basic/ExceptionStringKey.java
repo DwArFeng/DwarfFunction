@@ -361,11 +361,14 @@ public enum ExceptionStringKey implements Name {
 	UUIDUTIL_1("UUIDUtil.1"), //
 	MAPPINGTABLEMODEL_0("MappingTableModel.0"), //
 	MAPPINGTABLEMODEL_1("MappingTableModel.1"), //
-	MAPPINGTABLEMODEL_2("MappingTableModel.2"),//
-	MAPPINGTABLEMODEL_3("MappingTableModel.3"),//
-	MAPPINGTABLEMODEL_4("MappingTableModel.4"),//
-	MAPPINGTABLEMODEL_5("MappingTableModel.5"),//
-	
+	MAPPINGTABLEMODEL_2("MappingTableModel.2"), //
+	MAPPINGTABLEMODEL_3("MappingTableModel.3"), //
+	MAPPINGTABLEMODEL_4("MappingTableModel.4"), //
+	MAPPINGTABLEMODEL_5("MappingTableModel.5"), //
+	MAPPINGTABLEMODEL_6("MappingTableModel.6"), //
+	MAPPINGTABLEMODEL_7("MappingTableModel.7"),//
+	MAPPINGTABLEMODEL_8("MappingTableModel.8"),//
+
 	;
 
 	private String name;
