@@ -345,10 +345,11 @@ Beta_0.2.0_20190602_build_A (maven)
 Beta_0.2.1__build_A(maven)
 	针对 com.dwarfeng.dutil.basic.prog 包中的版本机制进行了一系列修改。
 		过期 com.dwarfeng.dutil.basic.prog.VersionType.SNAPSHOT，因为预览版应该是版本的属性，而不是版本的类型。
-		更新 com.dwarfeng.dutil.basic.prog.DefaultVersion，在构造器方法中添加了snapshot的属性，并对所有的预览版本输出_SNAPSHOT的后缀。
+		更新 com.dwarfeng.dutil.basic.prog.DefaultVersion，在构造器方法中添加了 snapshot 的属性，并对所有的预览版本输出_SNAPSHOT的后缀。
 	修改 com.dwarfeng.dutil.develop.i18n.io.XmlPropResourceI18nLoader 的文档注释，修正几处容易引起误会的文档注释。
 	优化 com.dwarfeng.dutil.develop.i18n.io.XmlPropResourceI18nLoader 的代码结构。
 	优化 com.dwarfeng.dutil.develop.i18n.io.XmlPropFileI18nLoader 的代码结构。
 	优化 com.dwarfeng.dutil.develop.resource.io.XmlJar2FileResourceLoader 的代码结构。
 	优化 com.dwarfeng.dutil.basic.gui.swing.MappingTableModel 类代码，将注解的配置从维护对象转移到映射信息接口中。
+	新增 com.dwarfeng.dutil.develop.setting.info.DateSettingInfo， 为 SettingHandler 提供日期支持。
 	新增复用池功能包 com.dwarfeng.dutil.develop.reuse。
