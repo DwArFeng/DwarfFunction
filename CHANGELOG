@@ -342,7 +342,7 @@ Beta_0.2.0_20190602_build_A (maven)
 	新增 com.dwarfeng.dutil.basic.gui.swing.MappingTableModel，实现了实现 List 接口的基于注解配置的 TableModel。
 	更新了README.md。
 	
-Beta_0.2.1__build_A(maven)
+Beta_0.2.1_20200304_build_A
 	针对 com.dwarfeng.dutil.basic.prog 包中的版本机制进行了一系列修改。
 		过期 com.dwarfeng.dutil.basic.prog.VersionType.SNAPSHOT，因为预览版应该是版本的属性，而不是版本的类型。
 		更新 com.dwarfeng.dutil.basic.prog.DefaultVersion，在构造器方法中添加了 snapshot 的属性，并对所有的预览版本输出_SNAPSHOT的后缀。
@@ -353,3 +353,6 @@ Beta_0.2.1__build_A(maven)
 	优化 com.dwarfeng.dutil.basic.gui.swing.MappingTableModel 类代码，将注解的配置从维护对象转移到映射信息接口中。
 	新增 com.dwarfeng.dutil.develop.setting.info.DateSettingInfo， 为 SettingHandler 提供日期支持。
 	新增复用池功能包 com.dwarfeng.dutil.develop.reuse。
+	修改 .gitignore，使其适应idea。
+	删除 dutil-assembly 模块。
+	优化 pom.xml 将各模块的版本号分离成属性。

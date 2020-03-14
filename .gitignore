@@ -1,7 +1,6 @@
 #################
 ## Eclipse
 #################
-
 *.pydevproject
 .project
 .metadata
@@ -29,9 +28,14 @@ local.properties
 .buildpath
 
 #################
+## Idea
+#################
+**/*.iml
+.idea/
+
+#################
 ## Maven
 #################
-
 target/
 pom.xml.tag
 pom.xml.releaseBackup
@@ -44,3 +48,15 @@ buildNumber.properties
 
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
+
+#################
+## Logger Files
+#################
+/fdr-impl/logs/
+/fdr-node/logs/
+
+#################
+## Configuration Files
+#################
+/fdr-impl/conf/
+/fdr-node/conf/
