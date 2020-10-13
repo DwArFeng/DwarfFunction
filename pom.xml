@@ -22,7 +22,7 @@
         <!-- 进行资源的统一声明 -->
         <!-- 进行版本声明 -->
         <!-- 集中定义依赖版本号 -->
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <dom4j.version>1.6.1</dom4j.version>
         <!-- Maven插件版本声明 -->
         <maven-clean-plugin.version>2.5</maven-clean-plugin.version>
